@@ -64,10 +64,11 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
   Uses Webpack 5
    1. npm install
    this command will install webpack and all required plugins
-   
+
    2. then use command:
      npm start , runs dev server (with disabled intentionally dev-server error overlay )
      npm run build, builds the appliation in dist folder
+
 
 ## How to execute  
   You need to install simple node HTTP server
@@ -83,6 +84,11 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
    Should now in browser be: http://127.0.0.1:8080/ as host for the Application
 
    After that all modules and parts of Application are runnable
+
+
+## Compatability
+  Works well in all modern Desktop resolutions on most browsers.
+  Also Mobile-friendly and can be useful on mobile devices.
 
 ## Tests
   Mainly Chrome and mobile viewport, but also looks good on Firefox latest, Edge latest
