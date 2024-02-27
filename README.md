@@ -87,7 +87,7 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
 
 ## Compatability
-  Works well in all modern Desktop resolutions on most browsers.
+  Works well in all modern Desktop resolutions on most browsers. <br />
   Also Mobile-friendly and can be useful on mobile devices.
 
 ## Tests
