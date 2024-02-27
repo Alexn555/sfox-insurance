@@ -62,9 +62,10 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
    
 ## First (primary) way to execute 
   Uses Webpack 5
-   npm install
+   1. npm install
    this command will install webpack and all required plugins
-   then use command:
+   
+   2. then use command:
      npm start , runs dev server (with disabled intentionally dev-server error overlay )
      npm run build, builds the appliation in dist folder
 
