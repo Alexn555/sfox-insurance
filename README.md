@@ -30,6 +30,13 @@ v 1.02
   Added fixes to Payment amount error number check
 
 
+## Demo 
+
+![Alt text](http://norwaydict.com/sfoxinsurance/screen.jpg "Screen")
+
+Demo link: [a link](http://norwaydict.com/sfoxinsurance)
+
+
 ## Overall structure
  Program is structured in this way: 
 
