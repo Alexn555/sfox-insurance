@@ -34,7 +34,7 @@ v 1.02
 
 ![Alt text](http://norwaydict.com/sfoxinsurance/screen.jpg "Screen")
 
-Demo link: [a link](http://norwaydict.com/sfoxinsurance)
+Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
 
 ## Overall structure
@@ -54,7 +54,7 @@ Demo link: [a link](http://norwaydict.com/sfoxinsurance)
 
     pages / -> pages and some components specially designed for them
       home / - home page and components
-      banking / - banking page and components
+      insurance / - insurance page and components
     
     index.html -> initial point
     style.css -> initial styling, main offsets and fonts
@@ -76,8 +76,8 @@ Demo link: [a link](http://norwaydict.com/sfoxinsurance)
        npm run command 
 		live-server     
 
-    C:\node_projects\sw-calc\src>live-server
-    Serving "C:\node_projects\sw-calc\src" at http://127.0.0.1:8080
+    C:\node_projects\sfox-insruance\src>live-server
+    Serving "C:\node_projects\sfox-insruance\src" at http://127.0.0.1:8080
 
    Should now in browser be: http://127.0.0.1:8080/ as host for the Application
 
