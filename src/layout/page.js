@@ -1,4 +1,4 @@
-import { pageNames } from "../components/common/settings.js";
+import { pageNames } from "../components/common/settings";
 
 class PageSwitcher extends HTMLElement {
     constructor() {

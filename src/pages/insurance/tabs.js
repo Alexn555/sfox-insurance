@@ -1,3 +1,6 @@
+// @ts-nocheck
+import { theme } from '../../theme/theme';
+
 class BankingTabs extends HTMLElement {
     constructor() {
       super();
@@ -33,7 +36,7 @@ class BankingTabs extends HTMLElement {
             <style>
                 .tab {
                   overflow: hidden;
-                  background-color: white;
+                  background-color: ${theme.page.tabs.background};
                   border-radius: 4px;
                 }
                 
@@ -49,20 +52,20 @@ class BankingTabs extends HTMLElement {
                 }
                 
                 .tab button:hover {
-                  background-color: #c5569a;
+                  background-color: ${theme.page.tabs.hover};
                   color: white;
                   border-radius: 4px;
                 }
                 
                 .tab button.active {
-                  background-color: white;
+                  background-color: ${theme.page.tabs.background};
                 }
                 
                 .tabcontent {
                   display: none;
                   padding: 6px 12px;
                   background-color: white;
-                  border: 1px solid #f7f5f3;
+                  border: 1px solid ${theme.page.tabs.border};
                   border-top: none;
                 }
 

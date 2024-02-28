@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class HeaderMenu extends HTMLElement {
     constructor() {
         super();
@@ -52,12 +54,12 @@ class HeaderMenu extends HTMLElement {
 
                     @media (max-width: 768px) {
                         grid-template-columns: 100%;
-                        background-color: white;
+                        background-color: ${theme.header.menu.background};
                         height: fit-content;
                     }
                 }
                 .header-menu-item {
-                    border: 1px solid #ebe7e2;
+                    border: 1px solid ${theme.header.menu.line};
                     border-bottom: none;
                     text-align: center;
                     align-items: center;
@@ -77,7 +79,7 @@ class HeaderMenu extends HTMLElement {
                     }
                 }
                 .header-menu-item-active {
-                    color: #913a83;
+                    color: ${theme.header.menu.item.active};
 
                     & img {
                         filter: invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);

@@ -1,3 +1,5 @@
+import { theme } from '../theme/theme';
+
 class InsurancePage extends HTMLElement {
     constructor() {
         super();
@@ -30,7 +32,7 @@ class InsurancePage extends HTMLElement {
                     }
                 }
                 .title {
-                    color: #c5569a;
+                    color: ${theme.page.common.title};
                     font-weight: bold;
                     font-size: 32px;
                     padding: 0;

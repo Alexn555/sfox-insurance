@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class AccountTable extends HTMLElement {
     constructor() {
         super();
@@ -63,16 +65,16 @@ class AccountTable extends HTMLElement {
                     }
                 }
                 .row-head {
-                    background-color: #e9f7fb;
+                    background-color: ${theme.ui.accountTable.head};
                     padding: 8px 0 8px 0;
                 }
 
                 .row {
                     padding: 6px 0 6px 0;
-                    border-bottom: 1px solid #ebe7e2;
+                    border-bottom: 1px solid ${theme.ui.accountTable.row};
 
                     & a {
-                        color: #257886;
+                        color: ${theme.ui.accountTable.link};
                     }
                 }
                 

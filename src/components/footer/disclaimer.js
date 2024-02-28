@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class FooterDisclaimer extends HTMLElement {
     constructor() {
         super();
@@ -15,10 +17,10 @@ class FooterDisclaimer extends HTMLElement {
                     display: flex;
                     width: 100vw;
                     height: 140px;
-                    background-color: white;
+                    background-color: ${theme.footer.disclaimer.background};
                     align-items: center;
                     justify-content: center;
-                    color: #666666;
+                    color: ${theme.footer.disclaimer.text};
                     font-size: smaller;
 
                     @media (max-width: 768px) {

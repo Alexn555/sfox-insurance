@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
+import { theme } from '../../theme/theme';
 
 class BankingPaymentForm extends HTMLElement {
   constructor() {
@@ -37,9 +38,9 @@ class BankingPaymentForm extends HTMLElement {
 
                 .payment {
                     padding: 6px 12px;
-                    background-color: white;
+                    background-color: ${theme.page.insurance.payment.background};
                     border-top: none;
-                    --error-color: #c8131c;
+                    --error-color: ${theme.page.insurance.payment.error};
 
                     & div {
                         margin: 10px;

@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class BankingBanner extends HTMLElement {
     constructor() {
         super();
@@ -13,7 +15,7 @@ class BankingBanner extends HTMLElement {
             <style>
                 .banner {
                     margin-top: 10px;
-                    background-color: white;
+                    background-color: ${theme.page.insurance.banner.background};
                     padding: 16px;
 
                     @media (max-width: 768px) {
@@ -22,7 +24,7 @@ class BankingBanner extends HTMLElement {
                     }
 
                     a {
-                        color: #257886;
+                        color: ${theme.page.insurance.banner.content.link};;
                         text-decoration: none;
                     }
                 }
@@ -30,7 +32,7 @@ class BankingBanner extends HTMLElement {
                 .content {
                     display: grid;
                     grid-template-columns: 25% 75%;
-                    background-color: #ebf8f2;
+                    background-color: ${theme.page.insurance.banner.content.background};
                     padding: 20px;
 
         
@@ -47,7 +49,7 @@ class BankingBanner extends HTMLElement {
                     display: flex;
                     height: 200px;
                     width: 200px;
-                    background-color: #fdc129;
+                    background-color: ${theme.page.insurance.banner.content.circle};
                     border-radius: 50%;
                     justify-content: center;
                     align-items: center;
@@ -62,7 +64,7 @@ class BankingBanner extends HTMLElement {
                         content: '';
                         border-bottom: 1px dashed rgb(177, 177, 177);
                         border-right: 1px dashed rgb(177, 177, 177);
-                        background-color: #fdc129;
+                        background-color: ${theme.page.insurance.banner.content.circle};
                         position: absolute;
                         left: 90px;
                         bottom: -10px;

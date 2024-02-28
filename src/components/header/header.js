@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { GlobalSizes } from '../../components/common/settings.js';
+import { GlobalSizes } from '../../components/common/settings';
+import { theme } from '../../theme/theme';
 
 class Header extends HTMLElement {
     constructor() {
@@ -58,7 +59,7 @@ class Header extends HTMLElement {
                     position: block;
                     width: 100vw;
                     height: 112px;
-                    background-color: white;
+                    background-color: ${theme.header.background};
                     z-index: 100;
 
                     @media (max-width: 768px) {
@@ -73,7 +74,7 @@ class Header extends HTMLElement {
                     margin: 0;
                     width: 100%;
                     height: 100%;
-                    background-color: #9e8b88;
+                    background-color: ${theme.header.overlayBg};
                     opacity: 0.5;
                 }
                 .logo-menu {

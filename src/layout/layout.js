@@ -1,3 +1,5 @@
+import { theme } from '../theme/theme';
+
 class Layout extends HTMLElement {
     constructor() {
         super();
@@ -14,6 +16,7 @@ class Layout extends HTMLElement {
             <style>
                 .layout {
                     width: 100vw;
+                    background-color: ${theme.layout.background};
                     overflow-x: hidden;
                 }
             </style>

@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class ActionButton extends HTMLElement {
     constructor(cb) {
         super();
@@ -16,14 +18,15 @@ class ActionButton extends HTMLElement {
     }
 
     setColor() {
-        let color = '#ee7023';
+        const { button: btn } = theme.ui;
+        let color = btn.default;
         switch(this.buttonType) {
             case 'action':
             default:
-                color = '#913a83';
+                color = btn.action;
             break;
             case 'passive':
-                color = '#31a3ae';
+                color = btn.passive;
             break;
         }
         return color;

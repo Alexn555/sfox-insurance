@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class SplitLine extends HTMLElement {
     constructor() {
         super();
@@ -13,9 +15,9 @@ class SplitLine extends HTMLElement {
         this.shadow.innerHTML = `
             <style>
                 .split-line {
-                    --start-color: #c5569a;
-                    --mid-color: #f9872d;
-                    --end-color: #f5b341;
+                    --start-color: ${theme.ui.line.start};
+                    --mid-color: ${theme.ui.line.mid};
+                    --end-color: ${theme.ui.line.end};
                     height: ${this.height}px;
                     background-image: linear-gradient(90deg, var(--start-color) 0%, var(--mid-color) 35%, var(--end-color) 100%);
                 }

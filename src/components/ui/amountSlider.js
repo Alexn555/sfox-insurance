@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
+
 class AmountSlider extends HTMLElement {
     constructor() {
       super();
@@ -51,7 +53,7 @@ class AmountSlider extends HTMLElement {
             }
             
             input[type="range"] {
-              color: #cb6ade;
+              color: ${theme.ui.slider.range};
               --thumb-height: 1.125em;
               --track-height: 0.125em;
               --track-color: rgba(0, 0, 0, 0.2);
@@ -61,7 +63,7 @@ class AmountSlider extends HTMLElement {
             }
             
             input[type="range"].win10-thumb {
-              color: #cb6ade;
+              color: ${theme.ui.slider.thumb};
             
               --thumb-height: 1em;
               --thumb-width: 1em;

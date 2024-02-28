@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class HomeBanners extends HTMLElement {
     constructor() {
         super();
@@ -13,7 +15,7 @@ class HomeBanners extends HTMLElement {
             <style>
                 .banners {
                     margin-top: 10px;
-                    background-color: white;
+                    background-color: ${theme.page.home.banners.background};
                     display: grid;
                     grid-template-columns: 33% 33% 33%;
 
@@ -23,7 +25,7 @@ class HomeBanners extends HTMLElement {
                     }
 
                     a {
-                        color: #257886;
+                        color: ${theme.page.home.banners.link};
                         text-decoration: none;
                     }
                 }
@@ -42,8 +44,8 @@ class HomeBanners extends HTMLElement {
                     & li:before{
                         content: '';
                         position: absolute;
-                        border-right: 2px solid #c5569a;
-                        border-bottom: 2px solid #c5569a;
+                        border-right: 2px solid ${theme.page.home.banners.itemBorder};
+                        border-bottom: 2px solid ${theme.page.home.banners.itemBorder};
                         width: 10px;
                         height: 10px;
                         top: calc(50% - 4px);

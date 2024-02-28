@@ -1,9 +1,11 @@
 // compoanent footer
+import { theme } from '../../../theme/theme';
+
 export const setStyle = () => {
     return `
         .footer {
             display: grid;
-            background-color: #f7edf6;
+            background-color: ${theme.footer.background};
             align-items: center;
             vertical-align: middle;
             width: 100vw;

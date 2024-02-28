@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
+
 class Selectbox extends HTMLElement {
     constructor() {
       super();
@@ -48,7 +50,8 @@ class Selectbox extends HTMLElement {
       this.shadow.innerHTML = `
           <style>         
               select {
-                background-color: #ebf8f2;
+                background-color: ${theme.ui.select.background};
+                color: ${theme.ui.select.text};
                 width: ${this.width}px;
                 padding: 10px;
               }      

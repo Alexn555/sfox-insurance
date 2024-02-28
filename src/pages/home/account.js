@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class HomeAccount extends HTMLElement {
     constructor() {
         super();
@@ -14,7 +16,7 @@ class HomeAccount extends HTMLElement {
                 .account {
                     display: grid;
                     grid-template-columns: 100%;
-                    background-color: white;
+                    background-color: ${theme.page.home.account.background};
 
                     & div:nth-child(3) {
                         grid-column: 1 / -1;
@@ -27,7 +29,7 @@ class HomeAccount extends HTMLElement {
                     padding: 10px 0 10px 10px;
 
                     a {
-                       color: #257886;
+                       color: ${theme.page.home.account.headerLink};
                        text-decoration: none;
 
                        img {

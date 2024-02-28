@@ -1,4 +1,4 @@
-import { setStyle } from "./styles/footer.js";
+import { setStyle } from "./styles/footer";
 
 class Footer extends HTMLElement {
     constructor() {

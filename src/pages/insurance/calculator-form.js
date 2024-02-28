@@ -1,7 +1,8 @@
+// @ts-nocheck
 import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
+import { theme } from '../../theme/theme';
 
-// @ts-nocheck
 class BankingCalculatorForm extends HTMLElement {
     constructor() {
       super();
@@ -75,10 +76,9 @@ class BankingCalculatorForm extends HTMLElement {
                     justify-content: center;
 
                     padding: 6px 12px;
-                    background-color: white;
+                    background-color: ${theme.page.insurance.calculation.background};
                     border-top: none;
-                    --error-color: #c8131c;
-                    border-right: 1px solid #e3e3e3;
+                    border-right: 1px solid ${theme.page.insurance.calculation.border};
 
                     & div {
                         margin: 10px;
@@ -107,7 +107,7 @@ class BankingCalculatorForm extends HTMLElement {
                       display: flex;
                       align-items: space-between;
                       justify-content: space-between;
-                      border-bottom: 1px solid #e3e3e3;                        
+                      border-bottom: 1px solid ${theme.page.insurance.calculation.border};                        
           
                       & div:nth-child(2) {
                           color: #ee7023;

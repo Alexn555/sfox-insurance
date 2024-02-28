@@ -1,3 +1,5 @@
+import { theme } from '../../theme/theme';
+
 class FooterContact extends HTMLElement {
     constructor() {
         super();
@@ -16,14 +18,14 @@ class FooterContact extends HTMLElement {
                     padding-bottom: 4px;
                 }
                 .phone {
-                    color: #f35b1c;
+                    color: ${theme.footer.contact.phone};
                     font-weight: bold;
                     font-size: 26px;
                     padding-bottom: 10px;
                 }
                 .email {
                     & a {
-                        color: #257886;
+                        color: ${theme.footer.contact.email};
                     }
                     padding-bottom: 12px;
                 }
@@ -61,12 +63,6 @@ class FooterContact extends HTMLElement {
                     >
                     </footer-social-item>
                     <footer-social-item 
-                        url="https://instagram.com/sfoxinsurance" 
-                        image-name="instagram"
-                        image-alt="instagram"
-                    >
-                    </footer-social-item>
-                    <footer-social-item 
                         url="https://youtube.com/sfoxinsurance" 
                         image-name="youtube"
                         image-alt="youtube"
@@ -76,6 +72,12 @@ class FooterContact extends HTMLElement {
                         url="https://twitter.com/sfoxinsurance" 
                         image-name="twitter"
                         image-alt="twitter"
+                    >
+                    </footer-social-item>
+                    <footer-social-item 
+                        url="https://instagram.com/sfoxinsurance" 
+                        image-name="instagram"
+                        image-alt="instagram"
                     >
                     </footer-social-item>
                     <footer-social-item 

@@ -1,4 +1,6 @@
-import { GlobalSizes } from '../../components/common/settings.js';
+// @ts-nocheck
+import { GlobalSizes } from '../../components/common/settings';
+import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
     constructor() {
@@ -51,7 +53,7 @@ class FooterLinkSection extends HTMLElement {
         this.shadow.innerHTML = `
             <style>
                 .footer-link-section {
-                    color: #512b2b;
+                    color: ${theme.footer.links.text};
 
                     @media (max-width: 768px) {
                         border-top: 1px solid #ddcdc4;
@@ -74,7 +76,7 @@ class FooterLinkSection extends HTMLElement {
                         --point-size: 6px;
                         content: "";
                         position: absolute;
-                        border-left: var(--point-size) solid #512b2b;
+                        border-left: var(--point-size) solid ${theme.footer.links.poiner};
                         border-top: var(--point-size) solid transparent;
                         border-bottom: var(--point-size) solid transparent;
                         top: 2px;
@@ -82,7 +84,7 @@ class FooterLinkSection extends HTMLElement {
                     }
 
                     & a {
-                        color: #512b2b;
+                        color: ${theme.footer.links.link};
                         text-decoration: none;
                     }
                 }

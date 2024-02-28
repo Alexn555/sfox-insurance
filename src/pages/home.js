@@ -1,3 +1,5 @@
+import { theme } from '../theme/theme';
+
 class IndexPage extends HTMLElement {
     constructor() {
         super();
@@ -29,7 +31,7 @@ class IndexPage extends HTMLElement {
                     }
                 }
                 .title {
-                    color: #c5569a;
+                    color: ${theme.page.common.title};
                     font-weight: bold;
                     font-size: 32px;
                     padding: 0;
