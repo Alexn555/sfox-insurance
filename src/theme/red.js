@@ -1,8 +1,8 @@
-const mainColor = '#000';
+const mainColor = '#ad0e2b';
 
-export const themeBlack = {
+export const themeRed = {
     layout: {
-        background: 'grey'
+        background: '#f0f0f0'
     },
     ui: {
         line: {
@@ -17,7 +17,7 @@ export const themeBlack = {
         },
         slider: {
             thumb: mainColor,
-            range: mainColor     
+            range: mainColor    
         },
         select: {
             background: mainColor,
@@ -47,7 +47,7 @@ export const themeBlack = {
         tabs: {
             background: 'white',
             border: '#f7f5f3',
-            hover: '#c5569a',
+            hover: mainColor,
         },
         home: {
             account: {
@@ -71,7 +71,7 @@ export const themeBlack = {
             },
             calculation: {
                 background: 'white',
-                border: '#e3e3e3'
+                border: '#ad0e2b'
             },
             payment: {
                 background: 'white',

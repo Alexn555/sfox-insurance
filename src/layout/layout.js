@@ -4,7 +4,6 @@ class Layout extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.pageName = 'home';
     }
     
     connectedCallback() {

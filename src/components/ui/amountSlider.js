@@ -22,7 +22,7 @@ class AmountSlider extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`slider-value-change-${this.id}`);
+      document.removeEventListener(`slider-value-change-${this.id}`, null);
    }
   
     render() {

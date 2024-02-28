@@ -1,4 +1,6 @@
+import { themeMain1 } from './main1';
 import { themeBlack } from './black';
+import { themeRed } from './red';
 
 export let theme = {
     layout: {
@@ -98,6 +100,18 @@ export let theme = {
 }
 
 
-export const changeTheme = () => {
-    theme = themeBlack;
+export const changeTheme = (themeId) => {
+    theme = themeMain1;
+    switch(themeId) {
+        case 'main1':
+            default:
+                theme = themeMain1;
+                break;
+        case 'black':
+                theme = themeBlack;
+            break;
+        case 'red':
+                theme = themeRed;
+            break;
+    }
 }

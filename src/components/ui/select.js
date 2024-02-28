@@ -26,7 +26,7 @@ class Selectbox extends HTMLElement {
 
     
     disconnectedCallback() {
-      document.removeEventListener(`select-change-${this.id}`);
+      document.removeEventListener(`select-change-${this.id}`, null);
    }
 
     setOptions() {

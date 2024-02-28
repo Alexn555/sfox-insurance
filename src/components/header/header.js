@@ -35,8 +35,8 @@ class Header extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener('header-menu-overlay');
-        document.removeEventListener('header-menu-overlay-remove');
+        document.removeEventListener('header-menu-overlay', null);
+        document.removeEventListener('header-menu-overlay-remove', null);
     }
 
     toggleMenu() {
