@@ -1,4 +1,4 @@
-class HomePage extends HTMLElement {
+class IndexPage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
@@ -47,7 +47,7 @@ class HomePage extends HTMLElement {
                 }
             </style>
             <div class="home">
-                <h2 class="title">Home</h2>
+                <h2 class="title">Accounts</h2>
                 <home-account></home-account>
                 <div class="banner">
                     <home-banners></home-banners>
@@ -59,5 +59,5 @@ class HomePage extends HTMLElement {
 
 
 if ('customElements' in window) {
-	customElements.define('home-page', HomePage);
+	customElements.define('index-page', IndexPage);
 }

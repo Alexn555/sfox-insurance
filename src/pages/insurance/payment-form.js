@@ -1,3 +1,7 @@
+// @ts-nocheck
+import { dtCurrencies, dtCurrencyNames } from '../../data/money';
+import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
+
 class BankingPaymentForm extends HTMLElement {
   constructor() {
     super();
@@ -82,8 +86,8 @@ class BankingPaymentForm extends HTMLElement {
                                     label="Account:"
                                     symbol=""
                                     width="300" 
-                                    items='["accName1", "accName2", "accName3"]'
-                                    option-names='["Acccount Name 1", "Acccount Name 2", "Acccount Name 3"]'
+                                    items='${dtAccNameValues}'
+                                    option-names='${dtAccNames}'
                                 />
                            </div>
                             <div>
@@ -92,20 +96,20 @@ class BankingPaymentForm extends HTMLElement {
                                     label="Saved Payments:"
                                     symbol=""
                                     width="300" 
-                                    items='["savedPayment1", "savedPayment2"]'
-                                    option-names='["Saved Name 1", "Saved Special Name 3"]'
+                                    items='${dtSaveValues}'
+                                    option-names='${dtSaves}'
                                 />
                             </div>
                             <div>
                                 <label for="amount">Amount:</label>
-                                <input class="amount" onchange="this.setAmount()" type="text" id="amount" name="amount">
+                                <input class="amount" onchange="this.setAmount()" min="1" max="15000" type="text" id="amount" name="amount">
                                 <form-select 
                                     selectbox-id="currencies" 
                                     label=""
                                     symbol=""
                                     width="100" 
-                                    items='["eur", "dollar", "canadianDollar"]'
-                                    option-names='["EUR", "USD", "CAD"]'
+                                    items='${dtCurrencyNames}'
+                                    option-names='${dtCurrencies}'
                                 />
                             </div>
                             <div class="input-error">Amount accepts only numbers</div> 

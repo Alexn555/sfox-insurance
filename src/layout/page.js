@@ -18,7 +18,7 @@ class PageSwitcher extends HTMLElement {
         switch(name) {
             case pageNames.home:
             default:
-                this.page = '<home-page></home-page';
+                this.page = '<index-page></index-page';
             break;
             case pageNames.insurance:
                 this.page = '<insurance-page></insurance-page>';

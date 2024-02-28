@@ -1,6 +1,6 @@
+// @ts-nocheck
 import { GlobalSizes } from '../../components/common/settings.js';
 
-// @ts-nocheck
 class Header extends HTMLElement {
     constructor() {
         super();

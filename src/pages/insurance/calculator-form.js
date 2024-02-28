@@ -1,3 +1,6 @@
+import { dtPeriods, dtInterests } from '../../data/options';
+import { dtAmountSlider } from '../../data/sliders';
+
 // @ts-nocheck
 class BankingCalculatorForm extends HTMLElement {
     constructor() {
@@ -13,8 +16,8 @@ class BankingCalculatorForm extends HTMLElement {
       this.currency = '€';
       this.currencyID = 'EUR';
       this.loan = 1;
-      this.period = 1;
-      this.interests = 1; 
+      this.period = 10;
+      this.interests = 10; 
       this.totalPayment = '0.00';
 
       document.addEventListener(`slider-value-change-${this.selectIds.loan}`, (evt) => {
@@ -123,8 +126,8 @@ class BankingCalculatorForm extends HTMLElement {
                         <div class="loan-slider">
                           <amount-slider 
                             slider-id=${this.selectIds.loan}
-                            min-amount="320"
-                            max-amount="3000"
+                            min-amount="${dtAmountSlider.min}"
+                            max-amount="${dtAmountSlider.max}"
                           /> 
                         </div>
                         <div>
@@ -133,7 +136,7 @@ class BankingCalculatorForm extends HTMLElement {
                                 label="Period: &nbsp;"
                                 symbol="years"
                                 width="100" 
-                                items="[10, 20, 30]"
+                                items="${dtPeriods}"
                               />
                         </div>
                         <div>
@@ -142,7 +145,7 @@ class BankingCalculatorForm extends HTMLElement {
                                 label="Interest:"
                                 symbol="%"
                                 width="80" 
-                                items="[4.5, 10, 20]"
+                                items="${dtInterests}"
                               />
                         </div>                       
                     </div>     
