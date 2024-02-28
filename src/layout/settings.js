@@ -15,20 +15,20 @@ class AppSettings extends HTMLElement {
         thm.onclick = (() => {
             this.setTheme('main1');
         });
-        const thm5 = this.shadow.querySelector(`#themeBlue`);
-        thm5.onclick = (() => {
+        const thm2 = this.shadow.querySelector(`#themeBlue`);
+        thm2.onclick = (() => {
            this.setTheme('blue');
         });
-        const thm2 = this.shadow.querySelector(`#themeBlack`);
-        thm2.onclick = (() => {
+        const thm3 = this.shadow.querySelector(`#themeBlack`);
+        thm3.onclick = (() => {
             this.setTheme('black');
         });
-        const thm3 = this.shadow.querySelector(`#themeRed`);
-        thm3.onclick = (() => {
+        const thm4 = this.shadow.querySelector(`#themeRed`);
+        thm4.onclick = (() => {
             this.setTheme('red');
         });
-        const thm4 = this.shadow.querySelector(`#themeYellow`);
-        thm4.onclick = (() => {
+        const thm5 = this.shadow.querySelector(`#themeYellow`);
+        thm5.onclick = (() => {
            this.setTheme('yellow');
         });
 
