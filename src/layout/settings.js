@@ -11,27 +11,38 @@ class AppSettings extends HTMLElement {
     connectedCallback() {
         this.render();
 
-        const el = this.shadow.querySelector(`#themeMain`);
-        el.onclick = (() => {
-            this.theme = 'main1';
-            document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+        const thm = this.shadow.querySelector(`#themeMain`);
+        thm.onclick = (() => {
+            this.setTheme('main1');
         });
-        const el2 = this.shadow.querySelector(`#themeBlack`);
-        el2.onclick = (() => {
-            this.theme = 'black';
-            document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+        const thm5 = this.shadow.querySelector(`#themeBlue`);
+        thm5.onclick = (() => {
+           this.setTheme('blue');
         });
-        const el3 = this.shadow.querySelector(`#themeRed`);
-        el3.onclick = (() => {
-            this.theme = 'red';
-            document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+        const thm2 = this.shadow.querySelector(`#themeBlack`);
+        thm2.onclick = (() => {
+            this.setTheme('black');
         });
+        const thm3 = this.shadow.querySelector(`#themeRed`);
+        thm3.onclick = (() => {
+            this.setTheme('red');
+        });
+        const thm4 = this.shadow.querySelector(`#themeYellow`);
+        thm4.onclick = (() => {
+           this.setTheme('yellow');
+        });
+
 
         const elClose = this.shadow.querySelector(`#close`);
             elClose.onclick = (() => {
             elClose.className += ' close';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
         });
+    }
+
+    setTheme(theme = 'main1') {
+        this.theme = theme;
+        document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
     }
 
     render() {
@@ -78,10 +89,16 @@ class AppSettings extends HTMLElement {
                         <action-button id="themeMain" label="Main Theme" type="action" />
                     </div>
                     <div>
+                        <action-button id="themeBlue" label="Blue Theme" type="action" />
+                    </div>
+                    <div>
                         <action-button id="themeBlack" label="Black Theme" type="action" />
                     </div>
                     <div>
                         <action-button id="themeRed" label="Red Theme" type="action" />
+                    </div>
+                    <div>
+                        <action-button id="themeYellow" label="Yellow Theme" type="action" />
                     </div>
                     <div>
                         <action-button id="close" label="Close" type="passive" />
