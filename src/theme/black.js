@@ -1,12 +1,10 @@
-import { themeBlack } from './black';
-
-export let theme = {
+export const themeBlack = {
     layout: {
-        background: '#f0f0f0'
+        background: '#000'
     },
     ui: {
         line: {
-            start: '#c5569a',
+            start: '#000',
             mid: '#f9872d',
             end: '#f5b341'      
         },
@@ -16,12 +14,12 @@ export let theme = {
             passive: '#31a3ae'
         },
         slider: {
-            thumb: '#cb6ade',
-            range: '#cb6ade'     
+            thumb: '#000',
+            range: '#000'     
         },
         select: {
-            background: '#ebf8f2',
-            text: 'black'
+            background: '#000',
+            text: 'white'
         },
         accountTable: {
             head: '#e9f7fb',
@@ -95,9 +93,4 @@ export let theme = {
             link: '#512b2b'
         }
     }
-}
-
-
-export const changeTheme = () => {
-    theme = themeBlack;
-}
+};

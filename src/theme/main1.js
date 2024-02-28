@@ -1,4 +1,4 @@
-export const main1 = {
+export const themeMain1 = {
     layout: {
         background: '#f0f0f0'
     },
@@ -93,4 +93,4 @@ export const main1 = {
             link: '#512b2b'
         }
     }
-}
+};
