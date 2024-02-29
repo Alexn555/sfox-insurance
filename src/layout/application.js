@@ -37,8 +37,6 @@ class Application extends HTMLElement {
                     width: 100vw;
                     background-color: ${theme.layout.background};
                     overflow-x: hidden;
-                    //background-color: orange;
-                    //border: 2px solid blue;
                 }
                 .settings {
                     height: ${this.settingsHeight}px;
