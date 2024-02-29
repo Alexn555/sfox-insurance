@@ -1,12 +1,13 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
+import { Animations } from '../components/common/settings';
 
 class Application extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         document.addEventListener('settings-theme-changed', this.settingsChanged.bind(this));
-        document.addEventListener('settings-close', this.closeSettings.bind(this));
+        document.addEventListener('settings-toggle', this.toggleSettings.bind(this));
         this.settingsHeight = '120';
     }
     
@@ -21,11 +22,12 @@ class Application extends HTMLElement {
         }, 500);
     }
 
-    closeSettings() {
-        const el = this.shadow.querySelector('.settings');
+    toggleSettings(evt) {
+        const { value } = evt.detail;
         setTimeout(() => {
-            el.style.display = 'none';
-        }, 2000);
+            const el = this.shadow.querySelector('.settings');
+            el.style.display = value ? 'none' : 'block';
+        }, Animations.topSettings * 1000);
     }
 
     render() {
@@ -35,9 +37,15 @@ class Application extends HTMLElement {
                     width: 100vw;
                     background-color: ${theme.layout.background};
                     overflow-x: hidden;
+                    //background-color: orange;
+                    //border: 2px solid blue;
                 }
                 .settings {
                     height: ${this.settingsHeight}px;
+                    z-index: 6;
+                }
+                .layout {
+                    z-index: 7;
                 }
             </style>
             <div class="application">

@@ -6,6 +6,7 @@ class AppSettings extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.theme = 'main1';
+        this.useCloseAnimation = false;
     }
     
     connectedCallback() {
@@ -34,8 +35,8 @@ class AppSettings extends HTMLElement {
 
 
         const elClose = this.shadow.querySelector(`#close`);
-            elClose.onclick = (() => {
-            elClose.className += ' close';
+        elClose.onclick = (() => {
+            elClose.className += this.useCloseAnimation ? ' close' : '';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
         });
     }
