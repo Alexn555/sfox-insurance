@@ -9,14 +9,14 @@ class BankingBanner extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.bannerService = new BannerService();
         this.dataStorage = new DataStorage();
-        this.savedBanner = this.dataStorage.getItem('performanceBanner');
-        this.bannerData = this.savedBanner || '';
-        this.dataFadeIn = this.savedBanner ? '0s' : '1s';
+        this.savedBannerData = this.dataStorage.getItem('performanceBanner');
+        this.bannerData = this.savedBannerData || '';
+        this.dataFadeIn = this.savedBannerData ? '0s' : '1s';
     }
     
     async connectedCallback() {
         // cache data
-        if (this.savedBanner) {
+        if (this.savedBannerData) {
             this.render();
         } else {
             this.bannerData = await this.bannerService.getPerformance();
