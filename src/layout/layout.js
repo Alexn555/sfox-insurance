@@ -70,7 +70,7 @@ class Layout extends HTMLElement {
     }
 
     toggleNotice(isClose) {
-        const elDialog = this.shadow.querySelector('dialog');
+        const elDialog = this.shadow.querySelector('#loadSettings');
         if (!isClose) {
             elDialog.showModal();
             setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);
@@ -108,7 +108,7 @@ class Layout extends HTMLElement {
                 <div class="settingsBtn">                
                     <action-button label="Settings" id="settingsOpen" type="action"> </action-button>
                 </div>
-                <dialog>
+                <dialog id="loadSettings">
                     Loading settings...
                 </dialog>
 
