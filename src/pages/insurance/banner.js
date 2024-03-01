@@ -1,6 +1,6 @@
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
-import DataStorage from '../../services/storage';
+import { SaveObjects } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';
 
 class BankingBanner extends HTMLElement {
@@ -8,8 +8,7 @@ class BankingBanner extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.bannerService = new BannerService();
-        this.dataStorage = new DataStorage();
-        this.savedBannerData = this.dataStorage.getItem('performanceBanner');
+        this.savedBannerData = this.bannerService.getSavedData(SaveObjects.banners.performance);
         this.bannerData = this.savedBannerData || '';
         this.dataFadeIn = this.savedBannerData ? '0s' : '1s';
     }
@@ -17,12 +16,13 @@ class BankingBanner extends HTMLElement {
     async connectedCallback() {
         // cache data
         if (this.savedBannerData) {
-            this.render();
-        } else {
-            this.bannerData = await this.bannerService.getPerformance();
-            this.dataStorage.setItem('performanceBanner', this.bannerData);
-            setTimeout(() => { this.render(); }, 500);
+            return this.render();
         }
+
+        const payload = await this.bannerService.getPerformance(SaveObjects.banners.performance);
+        this.bannerData = payload.data;
+        this.dataFadeIn = payload.isSaved ? '0s' : '1s';
+        this.render(); 
     }
 
     render() {

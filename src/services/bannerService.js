@@ -1,16 +1,30 @@
 import { simulateDelay } from '../components/common/utils/server';
+import performanceBannerData from '../data/mocks/performance';
+import DataStorage from './storage';
 
 export default class BannerService {
+    constructor () {
+        this.dataStorage = new DataStorage();
+    }
+    
+    getSavedData(savedBannerDataId) {
+        return this.dataStorage.getItem(savedBannerDataId);
+    }
 
-    getPerformance() {
-        const data = `With 700 000 private customers and more than 60 000 corporate 
-        and organizational customers. This makes us Sweden's largest bank 
-        in terms of numbers and gives us a leading position in our other home
-        markets of Estonia, US, Latvia, Lithuania. As a major bank, we are a significant part
-        of the financial system and play an important role in the local communities we serve.
-        We are dedicated to helping our customers, our shareholders and society as whole stay financially sound and sustainable.`;
-        
-        return simulateDelay(1000).then(() => { return data; });
+    getPerformance(savedBannerDataId) {
+        let data = performanceBannerData;
+
+        return simulateDelay(1000).then(() => { 
+            const savedData = this.dataStorage.getItem(savedBannerDataId);
+            let isSaved = false;
+            if (savedData) {
+                data = savedData;
+            } else {
+                this.dataStorage.save(savedBannerDataId, data);
+                setTimeout(() => { isSaved = true; }, 1000);
+            }
+            return { data, isSaved }; 
+        });
     }
 
 }

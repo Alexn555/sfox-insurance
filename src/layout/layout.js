@@ -12,6 +12,7 @@ class Layout extends HTMLElement {
         this.settingsToggle = true;
         this.ontainer = this.shadow.querySelector('.layout');
         this.animationDuration = Animations.topSettings;
+        this.loadingNotice = '';
     }
     
     connectedCallback() {
@@ -22,6 +23,7 @@ class Layout extends HTMLElement {
         const container = this.shadow.querySelector('.layout');
 
         el.addEventListener('click', () => {
+           this.toggleNotice(this.settingsToggle);
            this.moveLayout(container);
         });
     }
@@ -35,7 +37,7 @@ class Layout extends HTMLElement {
         const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         this.laytOffsetSettings = isMobile ? '60' : '0';
         if (isInit) {
-            this.settingsToggle = false;
+            this.setToggle(false);
             this.moveLayout(this.shadow.querySelector('.layout'));
         }
     }
@@ -55,12 +57,24 @@ class Layout extends HTMLElement {
             container.style.transform = `translateY(0)`;
          }, this.animationDuration * 1200);
 
-        this.settingsToggle = !this.settingsToggle;
+        this.setToggle(!this.settingsToggle);
     }
 
     closeSettings() {
-        this.settingsToggle = true;
+        this.setToggle(true);
         this.moveLayout(this.shadow.querySelector('.layout'));
+    }
+
+    setToggle(toggle) {
+        this.settingsToggle = toggle;
+    }
+
+    toggleNotice(isClose) {
+        const elDialog = this.shadow.querySelector('dialog');
+        if (!isClose) {
+            elDialog.showModal();
+            setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);
+        }
     }
 
     render() {  
@@ -94,6 +108,9 @@ class Layout extends HTMLElement {
                 <div class="settingsBtn">                
                     <action-button label="Settings" id="settingsOpen" type="action"> </action-button>
                 </div>
+                <dialog>
+                    Loading settings...
+                </dialog>
 
                 <header-section></header-section>
 

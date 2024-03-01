@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
 import { Animations } from '../components/common/settings';
+import { SaveObjects } from '../components/common/saves';
+import DataStorage from '../services/storage';
 
 class Application extends HTMLElement {
     constructor() {
@@ -8,7 +10,9 @@ class Application extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         document.addEventListener('settings-theme-changed', this.settingsChanged.bind(this));
         document.addEventListener('settings-toggle', this.toggleSettings.bind(this));
-        this.settingsHeight = '120';
+        this.dataStorage = new DataStorage();
+        this.isInit = true;
+        setTimeout(() => { this.isInit = false; }, 3000);
     }
     
     connectedCallback() {
@@ -23,9 +27,14 @@ class Application extends HTMLElement {
     }
 
     toggleSettings(evt) {
+        const el = this.shadow.querySelector('.settings');
+        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close)) {
+           el.style.display = 'none';
+           return;
+        }
+
         const { value } = evt.detail;
         setTimeout(() => {
-            const el = this.shadow.querySelector('.settings');
             el.style.display = value ? 'none' : 'block';
         }, Animations.topSettings * 1000);
     }
@@ -39,7 +48,7 @@ class Application extends HTMLElement {
                     overflow-x: hidden;
                 }
                 .settings {
-                    height: ${this.settingsHeight}px;
+                    height: 120px;
                     z-index: 6;
                 }
                 .layout {

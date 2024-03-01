@@ -1,4 +1,4 @@
-### Insurance Calculator v 1.19
+### Insurance Calculator v 1.20
 
 SFoxInsurance (Non-existing in real company) Calculator program to view bank accounts and loans
 It's fiction company, that doesn't exists, just to implement and try out WebComponents
@@ -7,6 +7,10 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.20
+  Added mocks, Improved cache for banner, Saved close settings
+  First the first time Added Native Dialog 
+
 v 1.19
   Added cache mechanism for banner performance
 
@@ -16,8 +20,6 @@ v 1.17
 v 1.15
   Added Top settings with animation and toggle button to open settings
 
-v 1.10
-  Created Theme system and global settings
   
 ## Demo 
 

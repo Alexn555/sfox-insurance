@@ -3,7 +3,7 @@ export default class DataStorage {
         return localStorage.getItem(key);
     }
 
-    setItem(key, data) {
+    save(key, data) {
         localStorage.setItem(key, data);
     }
 

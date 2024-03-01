@@ -1,5 +1,7 @@
 // @ts-nocheck
 import { theme } from '../theme/theme';
+import DataStorage from '../services/storage';
+import { SaveObjects } from '../components/common/saves';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -7,6 +9,7 @@ class AppSettings extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.theme = 'main1';
         this.useCloseAnimation = false;
+        this.dataStorage = new DataStorage();
     }
     
     connectedCallback() {
@@ -36,6 +39,7 @@ class AppSettings extends HTMLElement {
 
         const elClose = this.shadow.querySelector(`#close`);
         elClose.onclick = (() => {
+            this.dataStorage.save(SaveObjects.settings.close, '1');
             elClose.className += this.useCloseAnimation ? ' close' : '';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
         });
