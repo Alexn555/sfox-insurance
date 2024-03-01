@@ -1,22 +1,30 @@
 import { theme } from '../../theme/theme';
+import { fadeInAnimation } from '../../components/common/styles/animations';
+import BannerService from '../../services/bannerService';
 
 class BankingBanner extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.bannerService = new BannerService();
+        this.bannerData = '';
     }
     
-    connectedCallback() {
-        this.render();
+    async connectedCallback() {
+        this.bannerData = await this.bannerService.getPerformance();
+        setTimeout(() => { this.render(); }, 500);
     }
 
     render() {
         this.shadow.innerHTML = `
             <style>
+                ${fadeInAnimation}
+
                 .banner {
                     margin-top: 10px;
                     background-color: ${theme.page.insurance.banner.background};
                     padding: 16px;
+                    animation: fadeIn 1s;
 
                     @media (max-width: 768px) {
                         grid-template-columns: 100%;
@@ -113,12 +121,7 @@ class BankingBanner extends HTMLElement {
                    <div class="content-main">
                         <h3>Welcome to SFoxInsurance!</h3>
                         <p>
-                            With 700 000 private customers and more than 60 000 corporate 
-                            and organizational customers. This makes us Sweden's largest bank 
-                            in terms of numbers and gives us a leading position in our other home
-                            markets of Estonia, US, Latvia, Lithuania. As a major bank, we are a significant part
-                            of the financial system and play an important role in the local communities we serve.
-                            We are dedicated to helping our customers, our shareholders and society as whole stay financially sound and sustainable.
+                          ${this.bannerData}
                         </p>
                         <div class="content-main-more">
                             <div>

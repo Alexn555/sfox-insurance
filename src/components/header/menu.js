@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import { imageMap } from '../../components/common/assets';
 
 class HeaderMenu extends HTMLElement {
     constructor() {
@@ -93,7 +94,7 @@ class HeaderMenu extends HTMLElement {
                     onmouseover="this.setOverlay()" 
                     onmouseout="this.removeOverlay()" 
                     onclick="this.toggleMenuItem(event)">
-                        <img src="./assets/home.svg" alt="home" /> <br />
+                        <img src="./${imageMap.menuHome}" alt="home" /> <br />
                         Home
                 </div>
                 <div 
@@ -102,7 +103,7 @@ class HeaderMenu extends HTMLElement {
                     onmouseover="this.setOverlay()" 
                     onmouseout="this.removeOverlay()" 
                     onclick="this.toggleMenuItem(event)">
-                        <img src="./assets/wallet.svg" alt="insurance" /> <br />
+                        <img src="./${imageMap.menuInsurance}" alt="insurance" /> <br />
                         Everyday performance
                     </div>
             </div>

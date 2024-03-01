@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import { imageMap } from '../../components/common/assets';
 
 class HomeAccount extends HTMLElement {
     constructor() {
@@ -55,13 +56,13 @@ class HomeAccount extends HTMLElement {
                     <div>
                         <span>
                             <a href="#download-pdf">
-                            <img src="./assets/pdf.svg" alt="pdf"/>
+                            <img src="./${imageMap.pdfIcon}" alt="pdf"/>
                                <span>PDF</span>
                             </a>
                         </span>
                         <span>
                             <a href="#download-pdf">
-                            <img src="./assets/pdf.svg" alt="xsl" />
+                            <img src="./${imageMap.pdfIcon}" alt="xsl" />
                                <span>XSL</span>
                             </a>
                         </span>    

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { GlobalSizes } from '../../components/common/settings';
+import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
 
 class Header extends HTMLElement {
@@ -46,7 +47,7 @@ class Header extends HTMLElement {
             const toggleIcon = this.shadow.querySelector('.toggle-icon');
             const isMenuOpen = toggleItem.style.display === 'none';
             toggleItem.style.display = isMenuOpen ? 'block' : 'none';
-            toggleIcon.src = isMenuOpen ? './assets/close.png' : './assets/hambuger.png' ;
+            toggleIcon.src = isMenuOpen ? `./${btnMap.mobile.menuClose}` : `./${btnMap.mobile.menuOpen}` ;
         } else {
             toggleItem.style.display = 'block';
         }
@@ -100,7 +101,7 @@ class Header extends HTMLElement {
                     <header-logo></header-logo>
                     <div class="logo-menu-toggle">
                         <a href="#toggle" onclick="this.toggleMenu()">
-                            <img class="toggle-icon" src="./assets/hambuger.png" />
+                            <img class="toggle-icon" src="./${btnMap.mobile.menuOpen}" />
                         </a>
                     </div>
                 </div>

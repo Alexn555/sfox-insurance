@@ -1,3 +1,5 @@
+import { imageMap } from '../../components/common/assets';
+
 class HeaderLogo extends HTMLElement {
     constructor() {
         super();
@@ -17,7 +19,7 @@ class HeaderLogo extends HTMLElement {
                 }
             </style>
             <div class="header-logo"> 
-                <img src="./assets/logo.png" width="160" height="35" alt="SFoxInsurance" />
+                <img src="./${imageMap.logo}" width="160" height="35" alt="SFoxInsurance" />
             </div>
         `;
     }

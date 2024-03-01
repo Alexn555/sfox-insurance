@@ -2,7 +2,7 @@
 
 export const GlobalSizes = {
     mobileMax: 769
-}
+};
 
 export const pageNames = { 
     home: 'home', 
@@ -10,5 +10,11 @@ export const pageNames = {
 };
 
 export const Animations = {
-    topSettings: 2 //2 seconds
-}
+    topSettings: 2 // seconds
+};
+
+export const Banners = {
+    Accounts: {
+        main: 'purple'
+    }
+};

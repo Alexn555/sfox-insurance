@@ -1,18 +1,26 @@
 import { theme } from '../../theme/theme';
+import { fadeInAnimation } from '../../components/common/styles/animations';
+
+import InfoService from '../../services/infoService';
 
 class FooterDisclaimer extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.infoService = new InfoService();
+        this.disclaimerData = '';
     }
     
-    connectedCallback() {
-        this.render();
+    async connectedCallback() {
+        this.disclaimerData = await this.infoService.getDisclaimer();
+        setTimeout(() => { this.render(); }, 500);
     }
 
     render() {
         this.shadow.innerHTML = `
             <style>
+                ${fadeInAnimation}
+
                 .footer-disclaimer {
                     display: flex;
                     width: 100vw;
@@ -22,6 +30,7 @@ class FooterDisclaimer extends HTMLElement {
                     justify-content: center;
                     color: ${theme.footer.disclaimer.text};
                     font-size: smaller;
+                    animation: fadeIn 1s;
 
                     @media (max-width: 768px) {
                         height: 200px;
@@ -39,13 +48,7 @@ class FooterDisclaimer extends HTMLElement {
             </style>
             <div class="footer-disclaimer"> 
                 <div>
-                  This is a website of companies offering financial services - SFoxInsurance, SFoxInsurance Liising.
-                  
-                  Before entering into any agreement read and conditions of respective service. Consult a specialist, where necessary.
-                  SFoxInsurance does not provide a credit advisory service for the purposes of the Insurance Intermediates Act.
-                  The borrower makes the decision of taking out a loan, who accesses the suitability of the loan product and contractual terms to his/her personal
-                  loan interest, need and financial situation on the basis of the information and warnings presented by the bank
-                  and is responsible for the consequences related to concluding the agreement.
+                  ${this.disclaimerData}
                 </div>
             </div>
         `;
