@@ -9,7 +9,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 ## Changelog
 v 1.20
   Added mocks, Improved cache for banner, Saved close settings
-  First the first time Added Native Dialog 
+  Added Native Dialog, added config enums
 
 v 1.19
   Added cache mechanism for banner performance

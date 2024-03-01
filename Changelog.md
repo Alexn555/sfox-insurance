@@ -1,7 +1,7 @@
 ## Changelog
 v 1.20
   Added mocks, Improved cache for banner, Saved close settings
-  Added Native Dialog 
+  Added Native Dialog, added config enums
 
 v 1.19
   Added cache mechanism for banner performance
