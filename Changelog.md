@@ -1,4 +1,7 @@
 ## Changelog
+v 1.19
+  Added cache mechanism for banner performance
+
 v 1.17
   Added neat animations, services for static data, added settings enums
 

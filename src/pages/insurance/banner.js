@@ -1,5 +1,6 @@
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
+import DataStorage from '../../services/storage';
 import BannerService from '../../services/bannerService';
 
 class BankingBanner extends HTMLElement {
@@ -7,12 +8,20 @@ class BankingBanner extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.bannerService = new BannerService();
-        this.bannerData = '';
+        this.dataStorage = new DataStorage();
+        this.bannerData = this.dataStorage.getItem('performanceBanner') || '';
+        this.dataFadeIn = this.dataStorage.getItem('performanceBanner') ? '0s' : '1s';
     }
     
     async connectedCallback() {
-        this.bannerData = await this.bannerService.getPerformance();
-        setTimeout(() => { this.render(); }, 500);
+        // cache data
+        if (this.dataStorage.getItem('performanceBanner')) {
+            this.render();
+        } else {
+            this.bannerData = await this.bannerService.getPerformance();
+            this.dataStorage.setItem('performanceBanner', this.bannerData);
+            setTimeout(() => { this.render(); }, 500);
+        }
     }
 
     render() {
@@ -24,7 +33,7 @@ class BankingBanner extends HTMLElement {
                     margin-top: 10px;
                     background-color: ${theme.page.insurance.banner.background};
                     padding: 16px;
-                    animation: fadeIn 1s;
+                    animation: fadeIn ${this.dataFadeIn};
 
                     @media (max-width: 768px) {
                         grid-template-columns: 100%;
