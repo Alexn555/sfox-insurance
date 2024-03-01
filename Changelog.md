@@ -1,4 +1,7 @@
 ## Changelog
+v 1.17
+  Added neat animations, services for static data, added settings enums
+
 v 1.15
   Added Top settings with animation and toggle button to open settings
 
