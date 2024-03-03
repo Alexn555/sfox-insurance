@@ -26,7 +26,7 @@ class HeaderMenu extends HTMLElement {
     toggleMenuItem(evt) {
         const { target } = evt;
         const item =  target.id;
-        const selectedItem = item === 'home' ? 0 : 1;
+        const selectedItem = this.setSelected(item);
         document.dispatchEvent(new CustomEvent('header-menu-click', { detail: {value: item}, bubbles: true, cancelable: false }));
         
         const searchCl = this.shadow.querySelectorAll('.header-menu-item');
@@ -34,11 +34,28 @@ class HeaderMenu extends HTMLElement {
         if (searchCl && searchCl.length > 0) {
             searchCl[0].setAttribute('class', 'header-menu-item');
             searchCl[1].setAttribute('class', 'header-menu-item');
+            searchCl[2].setAttribute('class', 'header-menu-item');
             const selected = searchCl[selectedItem];
             if (selected) {
                 selected.setAttribute('class', 'header-menu-item header-menu-item-active');
             }
         }
+    }
+
+    setSelected(item) {
+        let index = 0;
+        switch (item) {
+            case 'home':
+                index = 0;
+                break;
+            case 'insurance':
+                index = 1;
+                break;
+            case 'additional':
+                index = 2;
+                break;
+        }
+        return index;
     }
 
     render() {
