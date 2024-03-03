@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations } from '../components/common/settings';
+import { Animations, PageStructure } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
 import DataStorage from '../services/storage';
 
@@ -48,7 +48,7 @@ class Application extends HTMLElement {
                     overflow-x: hidden;
                 }
                 .settings {
-                    height: 120px;
+                    height: ${PageStructure.settings.height}px;
                     z-index: 6;
                 }
                 .layout {

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalSizes, Animations } from '../components/common/settings';
+import { GlobalSizes, Animations, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
 
 class Layout extends HTMLElement {
@@ -43,7 +43,7 @@ class Layout extends HTMLElement {
     }
 
     moveLayout(container) {
-        const top = this.settingsToggle ? '-140' : this.laytOffsetSettings;
+        const top = this.settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
         container.style.transform = `translateY(${top}px)`;
 
         container.style.transitionDuration = `${this.animationDuration}s`;
