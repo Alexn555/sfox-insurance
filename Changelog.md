@@ -1,4 +1,7 @@
 ## Changelog
+v 1.23
+  Added Fast template render pattern
+
 v 1.22
   Added Rest library, services based on fetch API
   Added Additional page for origial functionalities

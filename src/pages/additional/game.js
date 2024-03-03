@@ -58,6 +58,7 @@ class GameForm extends HTMLElement {
                   & dialog#gameDialog {
                     width: 600px !important;
                     padding: 60px;
+                    border: 1px dotted black;
                     transition:
                     opacity 0.7s ease-out,
                     transform 0.7s ease-out,
