@@ -3,7 +3,7 @@ import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
 
-class BankingCalculatorForm extends HTMLElement {
+class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: "open" });
@@ -165,6 +165,6 @@ class BankingCalculatorForm extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("banking-calculator-form", BankingCalculatorForm);
+    customElements.define("insurance-calculator-form", InsuranceCalculatorForm);
   }
   

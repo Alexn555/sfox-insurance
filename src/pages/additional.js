@@ -1,6 +1,6 @@
 import { theme } from '../theme/theme';
 
-class InsurancePage extends HTMLElement {
+class AddiationalPage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
@@ -13,7 +13,7 @@ class InsurancePage extends HTMLElement {
     render() {
         this.shadow.innerHTML = `
             <style>
-                .insurance {
+                .additional {
                     margin: 10px;
                     width: 70vw;
 
@@ -49,12 +49,9 @@ class InsurancePage extends HTMLElement {
                     padding-bottom: 10px;
                 }
             </style>
-            <div class="insurance">
-                <h2 class="title">Everyday performance</h2>
-                <insurance-tabs></insurance-tabs>
-                <div class="banner">
-                    <insurance-banner></insurance-banner>
-                </div>
+            <div class="additional">
+                <h2 class="title">Additional</h2>
+                <additional-tabs></additional-tabs>
             </div> 
         `;
     }
@@ -62,5 +59,5 @@ class InsurancePage extends HTMLElement {
 
 
 if ('customElements' in window) {
-	customElements.define('insurance-page', InsurancePage);
+	customElements.define('additional-page', AddiationalPage);
 }

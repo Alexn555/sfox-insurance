@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 
-class InsuranceTabs extends HTMLElement {
+class AdditionalTabs extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({mode: 'open'});
@@ -16,18 +16,18 @@ class InsuranceTabs extends HTMLElement {
       const { target } = evt;
       const item = target.id;
       const tab = this.shadow.querySelector(`#${item}`);
-      const tabPayment = this.shadow.querySelector('#payment');
-      const tabCalculator = this.shadow.querySelector('#calculator');
+      const tabGame = this.shadow.querySelector('#game');
+      const tabWriterForm = this.shadow.querySelector('#writerForm');
 
       if (tab) {
-        tabPayment.style.display = 'none';
-        tabCalculator.style.display = 'none';
+        tabGame.style.display = 'none';
+        tabWriterForm.style.display = 'none';
       }
 
-      if (item === 'payment-btn') {
-        tabPayment.style.display = 'block';
+      if (item === 'game-btn') {
+        tabGame.style.display = 'block';
       } else {
-        tabCalculator.style.display = 'block';
+        tabWriterForm.style.display = 'block';
       }
     }
 
@@ -69,21 +69,21 @@ class InsuranceTabs extends HTMLElement {
                   border-top: none;
                 }
 
-                #calculator {
+                #writerForm {
                   display: block;
                 }
             </style>
             <div class="tab">
-              <button id="calculator-btn" onclick="this.openTab(event)">Calculator</button>
-              <button id="payment-btn" onclick="this.openTab(event)">Payment</button>
-              </div>
-            
-            <div id="payment" class="tabcontent">
-              <insurance-payment-form></insurance-payment-form>
+              <button id="game-btn" onclick="this.openTab(event)">Game</button>
+              <button id="writer-btn" onclick="this.openTab(event)">Writer content</button>
             </div>
             
-            <div id="calculator" class="tabcontent">
-              <insurance-calculator-form></insurance-calculator-form>
+            <div id="game" class="tabcontent">
+              <game-form></game-form>
+            </div>
+            
+            <div id="writerForm" class="tabcontent">
+              <writer-form></writer-form>
             </div>   
         `;
     }
@@ -91,5 +91,5 @@ class InsuranceTabs extends HTMLElement {
 
 
 if ('customElements' in window) {
-	customElements.define('insurance-tabs', InsuranceTabs);
+	customElements.define('additional-tabs', AdditionalTabs);
 }

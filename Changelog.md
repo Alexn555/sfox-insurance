@@ -1,4 +1,8 @@
 ## Changelog
+v 1.22
+  Added Rest library, services based on fetch API
+  Added Additional page for origial functionalities
+
 v 1.20
   Added mocks, Improved cache for banner, Saved close settings
   Added Native Dialog, added config enums

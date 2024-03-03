@@ -3,7 +3,7 @@ import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
 import { theme, changeTheme } from '../../theme/theme';
 
-class BankingPaymentForm extends HTMLElement {
+class InsurancePaymentForm extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -137,5 +137,5 @@ class BankingPaymentForm extends HTMLElement {
 }
 
 if ("customElements" in window) {
-  customElements.define("banking-payment-form", BankingPaymentForm);
+  customElements.define("insurance-payment-form", InsurancePaymentForm);
 }

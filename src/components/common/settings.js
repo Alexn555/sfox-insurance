@@ -6,7 +6,8 @@ export const GlobalSizes = {
 
 export const pageNames = { 
     home: 'home', 
-    insurance: 'insurance' 
+    insurance: 'insurance',
+    additional: 'additional'
 };
 
 export const Animations = {

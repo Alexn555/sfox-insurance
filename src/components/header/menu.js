@@ -48,7 +48,7 @@ class HeaderMenu extends HTMLElement {
                     display: grid;
                     width: 100vw;
                     height: 52px;
-                    grid-template-columns: 50% 50%;
+                    grid-template-columns: 33% 33% 33%;
                     color: #913a83;
                     user-select: none;
                     z-index: 102;
@@ -105,7 +105,16 @@ class HeaderMenu extends HTMLElement {
                     onclick="this.toggleMenuItem(event)">
                         <img src="./${imageMap.menuInsurance}" alt="insurance" /> <br />
                         Everyday performance
-                    </div>
+                 </div>
+                 <div 
+                    class="header-menu-item" 
+                    id="additional"
+                    onmouseover="this.setOverlay()" 
+                    onmouseout="this.removeOverlay()" 
+                    onclick="this.toggleMenuItem(event)">
+                        <img src="./${imageMap.menuAdditional}" alt="Additional" /> <br />
+                        Additional
+                </div>
             </div>
         `;
     }

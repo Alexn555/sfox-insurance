@@ -3,7 +3,7 @@ import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';
 
-class BankingBanner extends HTMLElement {
+class InsuranceBanner extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
@@ -150,5 +150,5 @@ class BankingBanner extends HTMLElement {
 
 
 if ('customElements' in window) {
-	customElements.define('banking-banner', BankingBanner);
+	customElements.define('insurance-banner', InsuranceBanner);
 }

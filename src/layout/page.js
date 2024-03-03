@@ -23,6 +23,9 @@ class PageSwitcher extends HTMLElement {
             case pageNames.insurance:
                 this.page = '<insurance-page></insurance-page>';
             break;
+            case pageNames.additional:
+                this.page = '<additional-page></additional-page>';
+            break;
         }
         this.render();
     }
