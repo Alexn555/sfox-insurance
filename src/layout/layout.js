@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { GlobalSizes, Animations, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
+import DataStorage from '../services/storage';
+import { SaveObjects } from '../components/common/saves';
 
 class Layout extends HTMLElement {
     constructor() {
@@ -8,6 +10,7 @@ class Layout extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         document.addEventListener('settings-close', this.closeSettings.bind(this));
         window.addEventListener('resize', this.updateSize.bind(this));
+        this.dataStorage = new DataStorage();
         this.screenW = window.innerWidth;
         this.settingsToggle = true;
         this.ontainer = this.shadow.querySelector('.layout');
@@ -23,6 +26,7 @@ class Layout extends HTMLElement {
         const container = this.shadow.querySelector('.layout');
 
         el.addEventListener('click', () => {
+           this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
            this.toggleNotice(this.settingsToggle);
            this.moveLayout(container);
         });

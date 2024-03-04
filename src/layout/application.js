@@ -26,9 +26,9 @@ class Application extends HTMLElement {
         }, 500);
     }
 
-    toggleSettings(evt) {
+     toggleSettings(evt) {
         const el = this.shadow.querySelector('.settings');
-        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close)) {
+        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === '1') {
            el.style.display = 'none';
            return;
         }
