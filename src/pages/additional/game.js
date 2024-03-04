@@ -37,7 +37,7 @@ class GameForm extends HTMLElement {
     }
 
     setGameOpen(toggle) {
-        this.isGameOpen = toggle;
+      this.isGameOpen = toggle;
     }
   
     render() {
@@ -76,6 +76,12 @@ class GameForm extends HTMLElement {
                     <div>
                         <dialog id="gameDialog">
                             <h2>Game board</h2>
+                            <iframe 
+                              src="http://norwaydict.com/html5games/wordgame/index.html"
+                              title="Game"
+                              width="550"
+                              height="530"
+                            ></iframe>
                             <action-button id="closeGame" label="Close" type="action" />
                         </dialog>
                     </div>

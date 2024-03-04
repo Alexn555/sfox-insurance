@@ -1,5 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
+import { toggleDisplay } from '../../components/common/utils/toggleButton';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -20,13 +21,11 @@ class WriterForm extends HTMLElement {
     async featchContent() {
       const content = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
+      toggleDisplay('#fetchOpen', this.shadow);
+
       if (content && content?.title) {
         el.innerHTML = content.title;
       }
-    }
-    
-    setGameOpen(toggle) {
-      this.isGameOpen = toggle;
     }
   
     render() {
