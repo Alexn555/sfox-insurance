@@ -21,7 +21,7 @@ class WriterForm extends HTMLElement {
     async featchContent() {
       const content = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
-      toggleDisplay('#fetchOpen', this.shadow);
+      toggleDisplay('#fetchOpen', this.shadow, 5000);
 
       if (content && content?.title) {
         el.innerHTML = content.title;
