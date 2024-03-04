@@ -1,4 +1,7 @@
 ## Changelog
+v 1.24
+  Added Flipboard feature
+  
 v 1.23
   Added Fast template render pattern
 

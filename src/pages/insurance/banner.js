@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects } from '../../components/common/saves';
@@ -11,18 +13,43 @@ class InsuranceBanner extends HTMLElement {
         this.savedBannerData = this.bannerService.getSavedData(SaveObjects.banners.performance);
         this.bannerData = this.savedBannerData || '';
         this.dataFadeIn = this.savedBannerData ? '0s' : '1s';
+        this.isFliped = false;
+        this.flipBoardId;
     }
     
     async connectedCallback() {
         // cache data
         if (this.savedBannerData) {
-            return this.render();
+            this.render();
+            this.attachFlipBoard();
+            return;
         }
 
         const payload = await this.bannerService.getPerformance(SaveObjects.banners.performance);
         this.bannerData = payload.data;
         this.dataFadeIn = payload.isSaved ? '0s' : '1s';
         this.render(); 
+        this.attachFlipBoard();
+    }
+
+    attachFlipBoard() {
+        this.flipBoardId = this.shadow.querySelector('#flipBoard');
+        this.flipBoardId.addEventListener('click', () => {
+            this.flipBoard();
+        });
+    }
+
+    disconnectedCallback() {
+        this.flipBoardId.removeEventListener('click', null);
+    }
+
+    flipBoard() {
+        this.toggleFlip(!this.isFliped);
+        document.dispatchEvent(new CustomEvent('flip-board', { detail: { value: this.isFliped }, bubbles: true, cancelable: false }));
+    }
+
+    toggleFlip(toggle) {
+       this.isFliped = toggle;
     }
 
     render() {
@@ -137,6 +164,10 @@ class InsuranceBanner extends HTMLElement {
                             <div>
                                <a href="#more">Read more</a>
                             </div>
+                            <div>
+                                <action-button id="flipBoard" label="Flip board"></action-button>
+                            </div>
+                        </div>
                             <div>
                                 <action-button label="Go"></action-button>
                             </div>

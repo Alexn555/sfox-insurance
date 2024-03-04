@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { pageNames } from "../components/common/settings";
 
 class PageSwitcher extends HTMLElement {
@@ -9,7 +10,6 @@ class PageSwitcher extends HTMLElement {
         this.getPage(this.pageName);
 
         document.addEventListener('header-menu-click', (evt) => {
-            // @ts-ignore
             this.getPage(evt.detail.value);
         });
     }
@@ -32,6 +32,22 @@ class PageSwitcher extends HTMLElement {
     
     connectedCallback() {
         this.render();
+
+        document.addEventListener('flip-board', (evt) => {
+            const { value } = evt.detail;
+            const el = this.shadow.querySelector('.page');
+            const isAngle = true;
+
+            if (value) {
+                if (isAngle) {
+                    el.style.transform = 'rotate3d(1, 1, 1, 7deg)';
+                } else {
+                    el.style.transform = 'rotateY(180deg)';
+                }
+            } else {
+                el.style.transform = 'rotate3d(1, 1, 1, 0deg)';
+            }
+        });
     }
 
     render() {
@@ -43,14 +59,17 @@ class PageSwitcher extends HTMLElement {
                     align-items: center;
                     justify-content: center;
                     margin-bottom: 10px;
+                    transition: transform 0.8s;
+                    transform-style: preserve-3d;
 
                     @media (max-width: 768px) {
                         margin-top: 60px;
                     }
-                }
+                }  
+
             </style>
             <main class="page">
-                ${this.page}
+                ${this.page} 
             </main> 
         `;
     }

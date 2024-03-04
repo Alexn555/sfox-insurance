@@ -6,15 +6,10 @@ class ActionButton extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.label = this.getAttribute('label') || 'Go';
         this.buttonType = this.getAttribute('type') || 'action';
-        this.cb = cb;
     }
     
     connectedCallback() {
         this.render();
-    }
-
-    onBtnClick() {
-        this.cb();
     }
 
     setColor() {
@@ -47,7 +42,7 @@ class ActionButton extends HTMLElement {
                     font-weight: bold;
                 }
             </style>
-            <div class="action-button" onclick="this.onBtnClick()">
+            <div class="action-button">
                 ${this.label}
             </div>
         `;

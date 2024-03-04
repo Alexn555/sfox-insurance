@@ -12,28 +12,19 @@ class GameForm extends HTMLElement {
       this.shadow.querySelector('#gameOpen').addEventListener('click', () => {
           this.toggleGame(true);
       });
-      this.shadow.querySelector('#flipBoard').addEventListener('click', () => {
-          this.flipBoard();
-      });
       this.shadow.querySelector('#closeGame').addEventListener('click', () => {
         this.toggleGame(false);
       });
     }
 
     toggleGame(isOpen) {
-       const el = this.shadow.querySelector('#gameDialog');
-       if (!this.isGameOpen) {
-          el.showModal();
-       } else {
-          el.close();
-       }
-       this.setGameOpen(isOpen)
-    }
-
-    flipBoard() {
-      this.totalPayment = this.loan * (this.period / this.interests);
-      const el = this.shadow.querySelector('.total-payment');
-      el.innerHTML = `${(this.formatTotalValue(this.totalPayment))}`;
+      const el = this.shadow.querySelector('#gameDialog');
+      if (!this.isGameOpen) {
+        el.showModal();
+      } else {
+        el.close();
+      }
+      this.setGameOpen(isOpen)
     }
 
     setGameOpen(toggle) {
@@ -70,8 +61,7 @@ class GameForm extends HTMLElement {
             <form>
                 <div class="game-wrapper">
                     <div>
-                        <action-button id="gameOpen" label="Open Game" type="action" />  <br />
-                        <action-button id="flipBoard" label="Flip board" type="action" />
+                      <action-button id="gameOpen" label="Open Game" type="action" />
                     </div>
                     <div>
                         <dialog id="gameDialog">

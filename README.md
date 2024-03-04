@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.24
+  Added Flipboard feature
+
 v 1.23
   Added Fast template render pattern
 
@@ -20,9 +23,6 @@ v 1.20
 
 v 1.19
   Added cache mechanism for banner performance
-
-v 1.17
-  Added neat animations, services for static data, added settings enums
 
 
 ## Demo 
