@@ -40,6 +40,7 @@ class Application extends HTMLElement {
     }
 
     render() {
+        const stngsHeight = PageStructure.settings.height;
         this.shadow.innerHTML = `
             <style>
                 .application {
@@ -48,8 +49,12 @@ class Application extends HTMLElement {
                     overflow-x: hidden;
                 }
                 .settings {
-                    height: ${PageStructure.settings.height}px;
+                    height: ${stngsHeight}px;
                     z-index: 6;
+
+                    @media (max-width: 768px) {
+                        height: ${stngsHeight + 60}px;
+                    }   
                 }
                 .layout {
                     z-index: 7;

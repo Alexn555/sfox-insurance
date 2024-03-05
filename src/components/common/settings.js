@@ -14,12 +14,20 @@ export const Animations = {
     topSettings: 2 // seconds
 };
 
+export const TextSizes = {
+    page: {
+        title: {
+            mobile: 20  
+        }  
+    }
+};
+
 export const PageStructure = {
     settings: {
         height: 120,
         layoutOffset: 20
     }
-}
+};
 
 export const Banners = {
     Accounts: {

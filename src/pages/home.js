@@ -1,4 +1,5 @@
 import { theme } from '../theme/theme';
+import { TextSizes } from '../components/common/settings';
 
 class IndexPage extends HTMLElement {
     constructor() {
@@ -40,6 +41,11 @@ class IndexPage extends HTMLElement {
                     margin-block-end: 0.3em;
                     margin-inline-start: 0px;
                     margin-inline-end: 0px;
+
+                    @media (max-width: 768px) {
+                        font-size: ${TextSizes.page.title.mobile}px;
+                        padding: 10px;
+                    }   
                 }
                 .account {
                     background-color: white;

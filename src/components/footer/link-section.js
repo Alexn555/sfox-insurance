@@ -57,6 +57,7 @@ class FooterLinkSection extends HTMLElement {
 
                     @media (max-width: 768px) {
                         border-top: 1px solid #ddcdc4;
+                        padding: 10px 0 10px 0;
                     }
                 }
                 .link-title {
@@ -98,6 +99,12 @@ class FooterLinkSection extends HTMLElement {
                 }
                 .toggle-arrow {
                     cursor: pointer;
+
+                    @media (max-width: 768px) {
+                        border: 1px solid black;
+                        border-radius: 24px;
+                        transform: translateY(-20px);
+                    }        
                 }
             </style>
             <div class="footer-link-section"> 
