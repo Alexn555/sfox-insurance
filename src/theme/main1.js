@@ -1,10 +1,12 @@
+const mainColor = '#c5569a';
+
 export const themeMain1 = {
     layout: {
         background: '#f0f0f0'
     },
     ui: {
         line: {
-            start: '#c5569a',
+            start: mainColor,
             mid: '#f9872d',
             end: '#f5b341'      
         },
@@ -40,12 +42,12 @@ export const themeMain1 = {
     },
     page: {
         common: {
-            title: '#c5569a'
+            title: mainColor
         },
         tabs: {
             background: 'white',
             border: '#f7f5f3',
-            hover: '#c5569a',
+            hover: mainColor,
         },
         home: {
             account: {
@@ -55,7 +57,7 @@ export const themeMain1 = {
             banners: {
                 background: 'white',
                 link: '#257886',
-                itemBorder: '#c5569a'
+                itemBorder: mainColor
             }
         },
         insurance: {
