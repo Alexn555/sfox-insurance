@@ -60,7 +60,6 @@ class PageSwitcher extends HTMLElement {
                     justify-content: center;
                     margin-bottom: 10px;
                     transition: transform 0.8s;
-                    transform-style: preserve-3d;
 
                     @media (max-width: 768px) {
                         margin-top: 60px;
