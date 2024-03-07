@@ -48,6 +48,7 @@ class MapForm extends HTMLElement {
 
                   & dialog#mapDialog {
                     width: 600px !important;
+                    padding: 20px;
                     border: 1px dotted black;
                     transition:
                     opacity 0.7s ease-out,
