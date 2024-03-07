@@ -34,7 +34,7 @@ class MapForm extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
             <style>
-               .game-wrapper {
+               .map-wrapper {
                   display: grid;
                   grid-template-columns: 50% 50%; 
 
@@ -46,9 +46,8 @@ class MapForm extends HTMLElement {
                     grid-template-columns: 100%;
                   }
 
-                  & dialog#gameDialog {
+                  & dialog#mapDialog {
                     width: 600px !important;
-                    padding: 60px;
                     border: 1px dotted black;
                     transition:
                     opacity 0.7s ease-out,
@@ -59,18 +58,18 @@ class MapForm extends HTMLElement {
               }
             </style>
             <form>
-                <div class="game-wrapper">
+                <div class="map-wrapper">
                     <div>
                       <action-button id="mapOpen" label="Open Map" type="action" />
                     </div>
                     <div>
                         <dialog id="mapDialog">
-                            <h2>Game board</h2>
+                            <h2>Map board</h2>
                             <iframe
                                 id="mapOpenStreet"
                                 title="Map"
-                                width="300"
-                                height="200"
+                                width="600"
+                                height="400"
                                 src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
                             </iframe>
                             <action-button id="closeMap" label="Close" type="action" />
