@@ -1,4 +1,7 @@
 ## Changelog
+v 1.26
+  Added map page, page title refractor
+
 v 1.24
   Added Flipboard feature
   

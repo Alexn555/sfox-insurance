@@ -17,17 +17,25 @@ class AdditionalTabs extends HTMLElement {
       const item = target.id;
       const tab = this.shadow.querySelector(`#${item}`);
       const tabGame = this.shadow.querySelector('#game');
+      const tabMap = this.shadow.querySelector('#map');
       const tabWriterForm = this.shadow.querySelector('#writerForm');
 
       if (tab) {
         tabGame.style.display = 'none';
+        tabMap.style.display = 'none';
         tabWriterForm.style.display = 'none';
       }
 
-      if (item === 'game-btn') {
-        tabGame.style.display = 'block';
-      } else {
-        tabWriterForm.style.display = 'block';
+      switch (item) {
+        case 'game-btn':
+          tabGame.style.display = 'block';
+          break;
+        case 'map-btn':
+          tabMap.style.display = 'block';
+          break;
+        case 'writer-btn':
+          tabWriterForm.style.display = 'block';
+          break;
       }
     }
 
@@ -75,16 +83,21 @@ class AdditionalTabs extends HTMLElement {
             </style>
             <div class="tab">
               <button id="game-btn" onclick="this.openTab(event)">Game</button>
+              <button id="map-btn" onclick="this.openTab(event)">Map</button>
               <button id="writer-btn" onclick="this.openTab(event)">Writer content</button>
             </div>
             
             <div id="game" class="tabcontent">
               <game-form></game-form>
             </div>
+
+            <div id="map" class="tabcontent">
+              <map-form></map-form>
+            </div>   
             
             <div id="writerForm" class="tabcontent">
               <writer-form></writer-form>
-            </div>   
+            </div>  
         `;
     }
 }

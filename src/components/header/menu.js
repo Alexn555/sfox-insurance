@@ -93,6 +93,7 @@ class HeaderMenu extends HTMLElement {
                     @media (max-width: 768px) {
                         text-align: left;
                         align-items: center;
+                        font-weight: bold;
                         padding: 0 0px 10px 20px;
                     }
                 }

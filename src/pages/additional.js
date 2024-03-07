@@ -1,6 +1,3 @@
-import { TextSizes } from '../components/common/settings';
-import { theme } from '../theme/theme';
-
 class AddiationalPage extends HTMLElement {
     constructor() {
         super();
@@ -31,22 +28,6 @@ class AddiationalPage extends HTMLElement {
                         grid-template-columns: 100%;
                         width: 70vw;
                     }
-                }
-                .title {
-                    color: ${theme.page.common.title};
-                    font-weight: bold;
-                    font-size: 32px;
-                    padding: 0;
-
-                    margin-block-start: 0.3em;
-                    margin-block-end: 0.3em;
-                    margin-inline-start: 0px;
-                    margin-inline-end: 0px;
-
-                    @media (max-width: 768px) {
-                        font-size: ${TextSizes.page.title.mobile}px;
-                        padding: 10px;
-                    }   
                 }
                 .content {
                     background-color: white;
