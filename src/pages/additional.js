@@ -37,7 +37,7 @@ class AddiationalPage extends HTMLElement {
                 }
             </style>
             <div class="additional">
-                <h2 class="title">Additional</h2>
+                <page-title label="Additional"></page-title>
                 <additional-tabs></additional-tabs>
             </div> 
         `;
