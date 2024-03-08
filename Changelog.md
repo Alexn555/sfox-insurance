@@ -1,4 +1,7 @@
 ## Changelog
+v 1.28
+  Added base page, some minor fixes
+
 v 1.26
   Added map page, page title refractor
 

@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.28
+  Added base page, some minor fixes
+
 v 1.26
   Added map page, page title refractor
 
@@ -15,14 +18,6 @@ v 1.24
 
 v 1.23
   Added Fast template render pattern
-
-v 1.22
-  Added Rest library, services based on fetch API
-  Added Additional page for origial functionalities
-
-v 1.20
-  Added mocks, Improved cache for banner, Saved close settings
-  Added Native Dialog, added config enums
 
 ## Demo 
 

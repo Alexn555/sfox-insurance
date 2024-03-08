@@ -1,4 +1,4 @@
-class AddiationalPage extends HTMLElement {
+class NotFoundPage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
@@ -10,13 +10,14 @@ class AddiationalPage extends HTMLElement {
 
     render() {
         this.shadow.innerHTML = `
-            <base-page title="Additional">
-                <additional-tabs></additional-tabs>
+            <base-page title="Page not found">
+                <p>Please return to initial page</p>                
             </base-page> 
         `;
     }
 }
 
+
 if ('customElements' in window) {
-	customElements.define('additional-page', AddiationalPage);
+	customElements.define('not-found-page', NotFoundPage);
 }
