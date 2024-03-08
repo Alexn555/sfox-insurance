@@ -14,6 +14,12 @@ class HeaderMenu extends HTMLElement {
         this.render();
     }
 
+    disconnectedCallback() {
+        this.shadow.removeEventListener('click', null);
+        this.shadow.removeEventListener('mouseover', null);
+        this.shadow.removeEventListener('mouseout', null);
+    }
+
     setOverlay() {
         document.dispatchEvent(new CustomEvent('header-menu-overlay', { bubbles: true, cancelable: false }));
      }

@@ -39,6 +39,11 @@ class FooterLinkSection extends HTMLElement {
         this.render();
     }
 
+    disconnectedCallback() {
+        this.removeEventListener('click', null);
+        window.removeEventListener('resize', null);
+    }
+
     toggleContent() {
         const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         this.contentOpen = !this.contentOpen;

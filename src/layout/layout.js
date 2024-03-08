@@ -32,6 +32,11 @@ class Layout extends HTMLElement {
         });
     }
 
+    disconnectedCallback() {
+        const el = this.shadow.querySelector('#settingsOpen');
+        el.removeEventListener('click', null);
+    }
+
     updateSize() {
         this.screenW = window.innerWidth;
         this.setLayoutOffset();

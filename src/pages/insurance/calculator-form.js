@@ -26,11 +26,11 @@ class InsuranceCalculatorForm extends HTMLElement {
         this.calculateFormula();
       });
       document.addEventListener(`select-change-${this.selectIds.period}`, (evt) => {
-        this.period = evt.detail.value;;
+        this.period = evt.detail.value;
         this.calculateFormula();
       });
       document.addEventListener(`select-change-${this.selectIds.interests}`, (evt) => {
-        this.interests = evt.detail.value;;
+        this.interests = evt.detail.value;
         this.calculateFormula();
       });
     }

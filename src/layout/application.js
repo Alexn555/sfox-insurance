@@ -19,6 +19,11 @@ class Application extends HTMLElement {
         this.render();
     }
 
+    disconnectedCallback() {
+        document.removeEventListener('settings-theme-changed', null);
+        document.removeEventListener('settings-toggle', null);
+    }
+
     settingsChanged(evt) {
         changeTheme(evt.detail.value);
         setTimeout(() => {
