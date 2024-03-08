@@ -6,29 +6,8 @@ class PageSwitcher extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.pageName = pageNames.home;
-        this.page = '';
-        this.getPage(this.pageName);
-
-        document.addEventListener('header-menu-click', (evt) => {
-            this.getPage(evt.detail.value);
-        });
     }
 
-    getPage(name) {
-        switch(name) {
-            case pageNames.home:
-            default:
-                this.page = '<index-page></index-page';
-            break;
-            case pageNames.insurance:
-                this.page = '<insurance-page></insurance-page>';
-            break;
-            case pageNames.additional:
-                this.page = '<additional-page></additional-page>';
-            break;
-        }
-        this.render();
-    }
     
     connectedCallback() {
         this.render();
@@ -68,7 +47,9 @@ class PageSwitcher extends HTMLElement {
 
             </style>
             <main class="page">
-                ${this.page} 
+                <wc-route path="/" title="Home" component="index-page"></wc-route>
+                <wc-route path="/insurance" title="Insurance" component="insurance-page"></wc-route>
+                <wc-route path="/additional" title="Additional" component="additional-page"></wc-route>
             </main> 
         `;
     }

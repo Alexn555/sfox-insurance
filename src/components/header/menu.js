@@ -115,6 +115,7 @@ class HeaderMenu extends HTMLElement {
                 <div 
                     class="header-menu-item"
                     id="home"
+                    route="/"
                     onmouseover="this.setOverlay()" 
                     onmouseout="this.removeOverlay()" 
                     onclick="this.toggleMenuItem(event)">
@@ -124,6 +125,7 @@ class HeaderMenu extends HTMLElement {
                 <div 
                     class="header-menu-item" 
                     id="insurance"
+                    route="/insurance"
                     onmouseover="this.setOverlay()" 
                     onmouseout="this.removeOverlay()" 
                     onclick="this.toggleMenuItem(event)">
@@ -133,6 +135,7 @@ class HeaderMenu extends HTMLElement {
                  <div 
                     class="header-menu-item" 
                     id="additional"
+                    route="/additional"
                     onmouseover="this.setOverlay()" 
                     onmouseout="this.removeOverlay()" 
                     onclick="this.toggleMenuItem(event)">

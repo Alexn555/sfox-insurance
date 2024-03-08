@@ -3,6 +3,7 @@ import './theme/index';
 import './components/common/settings';
 import './components/ui/index';
 import './data/index';
+import './router/index';
 import './layout/index';
 import './pages/index';
 import './components/header/index';
