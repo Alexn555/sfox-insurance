@@ -10,7 +10,7 @@ import './additional/game';
 import './additional/writer-form';
 import './additional/map';
 import './additional/tabs';
-import './notFound';
+import './uknown';
 
 import './common/accountTable';
 import './common/title';
