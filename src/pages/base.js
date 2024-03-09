@@ -31,7 +31,7 @@ class BasePage extends HTMLElement {
                 }
             </style>
             <div class="container">
-                <page-title label="${this.title}"></page-title>
+                <page-title title="${this.title}"></page-title>
                 <slot></slot>
             </div> 
         `;
