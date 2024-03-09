@@ -5,7 +5,7 @@ class PageTitle extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.label = this.getAttribute('label');
+        this.title = this.getAttribute('title');
     }
     
     connectedCallback() {
@@ -32,7 +32,7 @@ class PageTitle extends HTMLElement {
                     }   
                 }
             </style>
-            <h2 class="title">${this.label}</h2>
+            <h2 class="title">${this.title}</h2>
         `;
     }
 }
