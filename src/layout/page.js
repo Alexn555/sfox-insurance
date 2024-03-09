@@ -47,9 +47,9 @@ class PageSwitcher extends HTMLElement {
 
             </style>
             <main class="page">
-                <wc-route path="/" title="Home" component="index-page"></wc-route>
-                <wc-route path="/insurance" title="Insurance" component="insurance-page"></wc-route>
-                <wc-route path="/additional" title="Additional" component="additional-page"></wc-route>
+                <sc-route path="/" title="Home" component="index-page"></sc-route>
+                <sc-route path="/insurance" title="Insurance" component="insurance-page"></sc-route>
+                <sc-route path="/additional" title="Additional" component="additional-page"></sc-route>
             </main> 
         `;
     }

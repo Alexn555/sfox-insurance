@@ -3,17 +3,17 @@ import { match } from './util';
 
 export default class Router extends HTMLElement {
   /**
-   * Router looks for a wc-outlet tag for updating the views on history updates.
+   * Router looks for a sc-outlet tag for updating the views on history updates.
    * Example:
    *
-   * <wc-router>
-   *  <wc-outlet>
+   * <sc-router>
+   *  <sc-outlet>
    *    <!-- All DOM update will be happening here on route change -->
-   *  </wc-outlet>
-   * </wc-router>
+   *  </sc-outlet>
+   * </sc-router>
    */
   get outlet() {
-    return this.querySelector("wc-outlet");
+    return this.querySelector("sc-outlet");
   }
 
   get root() {
@@ -21,12 +21,12 @@ export default class Router extends HTMLElement {
   }
 
   /**
-   * Get all routes from the direct wc-route child element.
+   * Get all routes from the direct sc-route child element.
    * The document title can be updated by providing an
-   * title attribute to the wc-route tag
+   * title attribute to the sc-route tag
    */
   get routes() {
-    return Array.from(this.querySelectorAll("wc-route"))
+    return Array.from(this.querySelectorAll("sc-route"))
       .filter(node => node.parentNode === this)
       .map(r => ({
         path: r.getAttribute("path"),
@@ -133,4 +133,4 @@ export default class Router extends HTMLElement {
   }
 }
 
-customElements.define("wc-router", Router);
+customElements.define("sc-router", Router);
