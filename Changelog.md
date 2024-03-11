@@ -1,4 +1,7 @@
 ## Changelog
+v 1.29
+  Added footer toggle button fixes, added menu settings improvements
+
 v 1.28
   Added base page, some minor fixes
 

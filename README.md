@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.29
+  Added footer toggle button fixes, added menu settings improvements
+
 v 1.28
   Added base page, some minor fixes
 
@@ -15,9 +18,6 @@ v 1.26
 
 v 1.24
   Added Flipboard feature
-
-v 1.23
-  Added Fast template render pattern
 
 ## Demo 
 
