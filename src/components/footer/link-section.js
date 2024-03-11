@@ -14,6 +14,7 @@ class FooterLinkSection extends HTMLElement {
         this.links = [];
         this.linksContent = '';
         this.contentOpen = false;
+        this.screenW = window.innerWidth;
 
         if (rowLinks && rowLinks.length > 0) {
             this.links = JSON.parse(rowLinks);
@@ -27,21 +28,30 @@ class FooterLinkSection extends HTMLElement {
 
     updateSize() {
         const isMobile = window.innerWidth < GlobalSizes.mobileMax;
+        this.screenW = window.innerWidth;
         if (!isMobile) {
             const content = this.shadow.querySelectorAll('.link-content');
             content.forEach((contentItem) => {
                 contentItem.style.display = 'block';
             });
+        } else {
+            const toggleBtn = this.shadow.querySelector('.toggle-content');
+            toggleBtn.style.left = `${this.getTogglePosition()}px`;
         }
     }
     
     connectedCallback() {
         this.render();
     }
+    
 
     disconnectedCallback() {
         this.removeEventListener('click', null);
         window.removeEventListener('resize', null);
+    }
+
+    getTogglePosition() {
+        return `${this.screenW - 60}`;
     }
 
     toggleContent() {
@@ -96,7 +106,7 @@ class FooterLinkSection extends HTMLElement {
                 }
                 .toggle-content {
                     position: absolute;
-                    right: 30px;
+                    left: ${this.getTogglePosition()}px;
 
                     @media (min-width: 768px) {
                        display: none;

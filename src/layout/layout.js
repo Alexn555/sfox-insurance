@@ -40,6 +40,8 @@ class Layout extends HTMLElement {
     updateSize() {
         this.screenW = window.innerWidth;
         this.setLayoutOffset();
+        const stn = this.shadow.querySelector('.settings-button');
+        stn.style.left = `${this.getStnPosition()}px`;
     }
 
     setLayoutOffset(isInit = false) {
@@ -49,6 +51,10 @@ class Layout extends HTMLElement {
             this.setToggle(false);
             this.moveLayout(this.shadow.querySelector('.layout'));
         }
+    }
+
+    getStnPosition() {
+        return `${this.screenW - 100}`;
     }
 
     moveLayout(container) {
@@ -79,7 +85,7 @@ class Layout extends HTMLElement {
     }
 
     toggleNotice(isClose) {
-        const elDialog = this.shadow.querySelector('#loadSettings');
+        const elDialog = this.shadow.querySelector('#load-settings');
         if (!isClose) {
             elDialog.showModal();
             setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);
@@ -97,9 +103,9 @@ class Layout extends HTMLElement {
                 }
 
                 /* {this.screenW - 100}px - to avoid shifting when overlay shows */
-                .settingsBtn {
+                .settings-button {
                     position: absolute;
-                    left: ${this.screenW - 100}px; 
+                    left: ${this.getStnPosition()}px; 
                     top: 16px;
                     z-index: 2000;
                     opacity: 0.3;
@@ -114,10 +120,10 @@ class Layout extends HTMLElement {
                 }
             </style>
             <div class="layout">
-                <div class="settingsBtn">                
+                <div class="settings-button">                
                     <action-button label="Settings" id="settingsOpen" type="action"> </action-button>
                 </div>
-                <dialog id="loadSettings">
+                <dialog id="load-settings">
                     Loading settings...
                 </dialog>
 
