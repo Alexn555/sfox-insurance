@@ -14,6 +14,7 @@ class FooterLinkSection extends HTMLElement {
         this.links = [];
         this.linksContent = '';
         this.contentOpen = false;
+        this.screenW = window.innerWidth;
 
         if (rowLinks && rowLinks.length > 0) {
             this.links = JSON.parse(rowLinks);
@@ -27,6 +28,7 @@ class FooterLinkSection extends HTMLElement {
 
     updateSize() {
         const isMobile = window.innerWidth < GlobalSizes.mobileMax;
+        this.screenW = window.innerWidth;
         if (!isMobile) {
             const content = this.shadow.querySelectorAll('.link-content');
             content.forEach((contentItem) => {
@@ -96,7 +98,7 @@ class FooterLinkSection extends HTMLElement {
                 }
                 .toggle-content {
                     position: absolute;
-                    right: 30px;
+                    left: ${this.screenW - 60}px;
 
                     @media (min-width: 768px) {
                        display: none;
