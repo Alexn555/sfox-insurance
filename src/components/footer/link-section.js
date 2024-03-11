@@ -34,16 +34,24 @@ class FooterLinkSection extends HTMLElement {
             content.forEach((contentItem) => {
                 contentItem.style.display = 'block';
             });
+        } else {
+            const toggleBtn = this.shadow.querySelector('.toggle-content');
+            toggleBtn.style.left = `${this.getTogglePosition()}px`;
         }
     }
     
     connectedCallback() {
         this.render();
     }
+    
 
     disconnectedCallback() {
         this.removeEventListener('click', null);
         window.removeEventListener('resize', null);
+    }
+
+    getTogglePosition() {
+        return `${this.screenW - 60}`;
     }
 
     toggleContent() {
@@ -98,7 +106,7 @@ class FooterLinkSection extends HTMLElement {
                 }
                 .toggle-content {
                     position: absolute;
-                    left: ${this.screenW - 60}px;
+                    left: ${this.getTogglePosition()}px;
 
                     @media (min-width: 768px) {
                        display: none;
