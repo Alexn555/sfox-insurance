@@ -3,6 +3,7 @@ import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
 import { SaveForms } from '../../components/common/saves';
+import { getOptionFromString } from '../../components/common/utils/arrays';
 import DataStorage from '../../services/storage';
 
 class InsuranceCalculatorForm extends HTMLElement {
@@ -25,9 +26,9 @@ class InsuranceCalculatorForm extends HTMLElement {
       this.interests = 10; 
       this.totalPayment = '0.00';
       this.savedForm = { 
-        loan: 0,
-        period: 0, 
-        interests: 0 
+        loan: 320,
+        period: getOptionFromString(dtPeriods, 0), 
+        interests: getOptionFromString(dtInterests, 0) 
       };
 
       document.addEventListener(`slider-value-change-${this.selectIds.loan}`, (evt) => {
@@ -57,7 +58,7 @@ class InsuranceCalculatorForm extends HTMLElement {
 
     initForm() {
       const saved = this.dataStorage.getObject(SaveForms.calculator.main);
-      this.savedForm = saved || { loan: 0 };
+      this.savedForm = saved || this.savedForm;
       const loan = this.shadow.getElementById(this.selectIds.loan);
       const periodId = this.shadow.getElementById(this.selectIds.period);
       const interestsId = this.shadow.getElementById(this.selectIds.interests);

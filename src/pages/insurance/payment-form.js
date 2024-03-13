@@ -2,6 +2,7 @@
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
 import { theme } from '../../theme/theme';
+import { getOptionFromString } from '../../components/common/utils/arrays';
 import { SaveForms } from '../../components/common/saves';
 import DataStorage from '../../services/storage';
 
@@ -15,9 +16,16 @@ class InsurancePaymentForm extends HTMLElement {
     this.$description = '';
     this.$accounts = '';
     this.$savedPayments = '';
-
     this.accounts = '';
     this.savedPayments = '';
+
+    this.savedForm = { 
+        amount: 320,
+        accounts: getOptionFromString(dtAccNameValues, 0), 
+        payments: getOptionFromString(dtSaveValues, 0),
+        description: ''
+    };
+
     this.dataStorage = new DataStorage();
 
     this.selectIds = {
@@ -47,12 +55,7 @@ class InsurancePaymentForm extends HTMLElement {
 
   initForm() {
     const saved = this.dataStorage.getObject(SaveForms.performance.payment);
-    this.savedForm = saved || { 
-        accounts: '',
-        payments: '',
-        amount: 0, 
-        description: ''
-    };
+    this.savedForm = saved || this.savedForm;
 
     this.$amount = this.shadow.getElementById('amount');
     this.$description = this.shadow.getElementById('description');

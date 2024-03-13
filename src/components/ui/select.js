@@ -29,19 +29,18 @@ class Selectbox extends HTMLElement {
       }); 
     }
 
-    
     disconnectedCallback() {
       document.removeEventListener(`select-change-${this.id}`, null);
-   }
-
-   attributeChangedCallback(name, oldValue, newValue) {
-    const el = this.shadow.querySelector(`#${this.id}`);
-    if (el !== null) {
-      el.value = oldValue !== newValue ? newValue : oldValue;
     }
-  }
 
-    setOptions() {
+    attributeChangedCallback(name, oldValue, newValue) {
+      const el = this.shadow.querySelector(`#${this.id}`);
+      if (el !== null) {
+        el.value = oldValue !== newValue ? newValue : oldValue;
+      }
+    }
+
+   setOptions() {
       let html = '';
       const hmtlItems = JSON.parse(this.items);
       let optNames = '';
