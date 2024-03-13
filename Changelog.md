@@ -1,4 +1,7 @@
 ## Changelog
+v 1.30
+  Added fixes footer address pre instead of br, removed also from fetch button
+
 v 1.29
   Added footer toggle button fixes, added menu settings improvements
 

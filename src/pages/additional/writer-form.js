@@ -48,7 +48,7 @@ class WriterForm extends HTMLElement {
                 <div class="writer-wrapper">
                     <h2>Writer content</h2>
                     <div>
-                        <action-button id="fetchOpen" label="Fetch content" type="action" />  <br />
+                        <action-button id="fetchOpen" label="Fetch content" type="action" /> 
                     </div>
                     <div class="writeContent"> </div>
                 </div>

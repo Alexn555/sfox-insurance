@@ -30,8 +30,10 @@ class FooterContact extends HTMLElement {
                     padding-bottom: 12px;
                 }
                 .address {
+                    white-space: pre;
                     font-size: smaller;
                     padding-bottom: 20px;
+                    transform: translateX(-65px);
                 }
 
                 @media (max-width: 768px) {
@@ -40,6 +42,9 @@ class FooterContact extends HTMLElement {
                     }
                     .social {
                         margin-bottom: 6px;
+                    }
+                    .address {
+                        transform: translateX(-60px);
                     }
                 }
             </style>
@@ -50,9 +55,9 @@ class FooterContact extends HTMLElement {
                     <a href="mailto: info@sfoxinsurance.com">info@sfoxinsurance.com</a>
                 </div>
                 <div class="address">
-                    SFoxInsurance  <br />
-                    SomeRoad 32, Tallinn, <br />
-                    INC number: INC2500XC  <br />
+                    SFoxInsurance
+                    SomeRoad 32, Tallinn,
+                    INC number: INC2500XC
                     Reg. number: 10062540000
                 </div>
                 <div class="social">
