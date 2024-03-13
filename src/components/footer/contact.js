@@ -30,9 +30,8 @@ class FooterContact extends HTMLElement {
                     padding-bottom: 12px;
                 }
                 .address {
-                    white-space: pre;
+                    white-space: pre-wrap;
                     font-size: smaller;
-                    padding-bottom: 20px;
                     transform: translateX(-65px);
                 }
 
