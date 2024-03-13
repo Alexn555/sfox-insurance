@@ -1,11 +1,15 @@
 // @ts-nocheck
 import { pageNames } from "../components/common/settings";
+import { SaveRoutes } from '../components/common/saves';
+import DataStorage from '../services/storage';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.pageName = pageNames.home;
+        this.dataStorage = new DataStorage();
+
+        this.pageName = this.getSavedPage();
         this.page = '';
         this.getPage(this.pageName);
 
@@ -15,19 +19,34 @@ class PageSwitcher extends HTMLElement {
     }
 
     getPage(name) {
+        let savePage = pageNames.home;
         switch(name) {
             case pageNames.home:
             default:
                 this.page = '<index-page></index-page';
+                savePage = pageNames.home;
             break;
             case pageNames.insurance:
                 this.page = '<insurance-page></insurance-page>';
+                savePage =  pageNames.insurance;
             break;
             case pageNames.additional:
                 this.page = '<additional-page></additional-page>';
+                savePage =  pageNames.additional;
             break;
         }
+
+        this.dataStorage.save(SaveRoutes.currentPage, savePage);
         this.render();
+    }
+
+    getSavedPage() {
+        let _page = pageNames.home;
+        const saved = this.dataStorage.getItem(SaveRoutes.currentPage);
+        if (saved) {
+            _page = pageNames[saved];
+        }
+        return _page;
     }
     
     connectedCallback() {

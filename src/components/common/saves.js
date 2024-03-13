@@ -7,6 +7,10 @@ export const SaveObjects = {
     }
 };
 
+export const SaveRoutes = {
+    currentPage: 'current-page'
+};
+
 export const SaveForms = {
     performance: {
         payment: 'performance-payment'
@@ -14,4 +18,4 @@ export const SaveForms = {
     calculator: {
         main: 'calculator-main'
     }
-}
+};
