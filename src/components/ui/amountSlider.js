@@ -7,10 +7,15 @@ class AmountSlider extends HTMLElement {
       this.shadow = this.attachShadow({ mode: "open" });
       this.currency = '€';
       this.id = this.getAttribute('slider-id') || 'amount-slider';
+      this.value = this.getAttribute('value') || '';
       this.minAmount = this.getAttribute('min-amount') || '100';
       this.maxAmount = this.getAttribute('max-amount') || '3200';
     }
   
+    static get observedAttributes() { 
+      return ['value']; 
+    }
+
     connectedCallback() {
       this.render();
       const el = this.shadow.querySelector(`#${this.id}`);
@@ -23,7 +28,14 @@ class AmountSlider extends HTMLElement {
 
     disconnectedCallback() {
       document.removeEventListener(`slider-value-change-${this.id}`, null);
-   }
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      const el = this.shadow.querySelector(`#${this.id}`);
+      if (el !== null) {
+        el.value = oldValue !== newValue ? newValue : oldValue;
+      }
+    }
   
     render() {
       this.shadow.innerHTML = `
@@ -249,6 +261,7 @@ class AmountSlider extends HTMLElement {
               <input type="range"
                 id="${this.id}"
                 class="win10-thumb" 
+                value=${this.value}
                 min="${this.minAmount}"
                 max="${this.maxAmount}"
                 value="25" 

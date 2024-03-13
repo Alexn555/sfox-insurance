@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.32
+  Created Save system for Forms
+
 v 1.30
   Added fixes footer address pre instead of br, removed also from fetch button
 
@@ -15,10 +18,6 @@ v 1.29
 
 v 1.28
   Added base page, some minor fixes
-
-v 1.26
-  Added map page, page title refractor
-
 
 ## Demo 
 

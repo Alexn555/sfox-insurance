@@ -3,8 +3,16 @@ export default class DataStorage {
         return localStorage.getItem(key);
     }
 
+    getObject(key) {
+        return JSON.parse(localStorage.getItem(key));
+    }
+
     save(key, data) {
         localStorage.setItem(key, data);
+    }
+
+    saveObject(key, object) {
+        localStorage.setItem(key, JSON.stringify(object));
     }
 
     remove(key) {

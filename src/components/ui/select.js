@@ -8,11 +8,16 @@ class Selectbox extends HTMLElement {
       this.label = this.getAttribute('label') || '';
       this.symbol = this.getAttribute('symbol') || '';
       this.id = this.getAttribute('selectbox-id') || 'select-id';
+      this.value = this.getAttribute('value') || '';
       this.width = this.getAttribute('width') || '100';
       this.items = this.getAttribute('items') || '[]';
       this.optionNames = this.getAttribute('option-names') || '';
     }
   
+    static get observedAttributes() { 
+      return ['value']; 
+    }
+
     connectedCallback() {
       this.setOptions();
       this.render();
@@ -28,6 +33,13 @@ class Selectbox extends HTMLElement {
     disconnectedCallback() {
       document.removeEventListener(`select-change-${this.id}`, null);
    }
+
+   attributeChangedCallback(name, oldValue, newValue) {
+    const el = this.shadow.querySelector(`#${this.id}`);
+    if (el !== null) {
+      el.value = oldValue !== newValue ? newValue : oldValue;
+    }
+  }
 
     setOptions() {
       let html = '';

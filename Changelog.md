@@ -1,4 +1,7 @@
 ## Changelog
+v 1.32
+  Created Save system for Forms
+
 v 1.30
   Added fixes footer address pre instead of br, removed also from fetch button
 

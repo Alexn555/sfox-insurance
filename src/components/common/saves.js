@@ -6,3 +6,12 @@ export const SaveObjects = {
         performance: 'performanceBanner'
     }
 };
+
+export const SaveForms = {
+    performance: {
+        payment: 'performance-payment'
+    },
+    calculator: {
+        main: 'calculator-main'
+    }
+}

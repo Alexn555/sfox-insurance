@@ -2,11 +2,14 @@
 import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
+import { SaveForms } from '../../components/common/saves';
+import DataStorage from '../../services/storage';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: "open" });
+      this.dataStorage = new DataStorage();
 
       this.selectIds = {
         loan: 'amount-slider',
@@ -14,29 +17,60 @@ class InsuranceCalculatorForm extends HTMLElement {
         interests: 'interests'
       };
 
+
       this.currency = '€';
       this.currencyID = 'EUR';
       this.loan = 1;
       this.period = 10;
       this.interests = 10; 
       this.totalPayment = '0.00';
+      this.savedForm = { 
+        loan: 0,
+        period: 0, 
+        interests: 0 
+      };
 
       document.addEventListener(`slider-value-change-${this.selectIds.loan}`, (evt) => {
         this.loan = evt.detail.value;
-        this.calculateFormula();
+        this.save('loan', evt.detail.value);
       });
       document.addEventListener(`select-change-${this.selectIds.period}`, (evt) => {
         this.period = evt.detail.value;
-        this.calculateFormula();
+        this.save('period', evt.detail.value);
       });
       document.addEventListener(`select-change-${this.selectIds.interests}`, (evt) => {
         this.interests = evt.detail.value;
-        this.calculateFormula();
+        this.save('interests', evt.detail.value);
       });
+    }
+
+    save(key, value) {
+      this.savedForm[key] = value;
+      this.dataStorage.saveObject(SaveForms.calculator.main, this.savedForm);
+      this.calculateFormula();
     }
   
     connectedCallback() {
       this.render();
+      this.initForm();
+    }
+
+    initForm() {
+      const saved = this.dataStorage.getObject(SaveForms.calculator.main);
+      this.savedForm = saved || { loan: 0 };
+      const loan = this.shadow.getElementById(this.selectIds.loan);
+      const periodId = this.shadow.getElementById(this.selectIds.period);
+      const interestsId = this.shadow.getElementById(this.selectIds.interests);
+
+      if (this.savedForm.loan !== 0) {
+        loan.setAttribute('value', this.savedForm.loan);
+      }
+      if (this.savedForm.period !== 0) {
+        periodId.setAttribute('value', this.savedForm.period);
+      }
+      if (this.savedForm.interests !== 0) {
+        interestsId.setAttribute('value', this.savedForm.interests);
+      }
     }
 
     calculateFormula() {
@@ -125,25 +159,31 @@ class InsuranceCalculatorForm extends HTMLElement {
                         <div class="loan-current-amount">3200 ${this.currency}</div>
                         <div class="loan-slider">
                           <amount-slider 
+                            id="${this.selectIds.loan}"
                             slider-id=${this.selectIds.loan}
+                            value=${this.savedForm.loan}
                             min-amount="${dtAmountSlider.min}"
                             max-amount="${dtAmountSlider.max}"
                           /> 
                         </div>
                         <div>
                             <form-select 
+                                id="${this.selectIds.period}"
                                 selectbox-id=${this.selectIds.period}
                                 label="Period: &nbsp;"
                                 symbol="years"
+                                value="${this.period}"
                                 width="100" 
                                 items="${dtPeriods}"
                               />
                         </div>
                         <div>
                             <form-select 
+                                id="${this.selectIds.interests}"
                                 selectbox-id=${this.selectIds.interests}
                                 label="Interest:"
                                 symbol="%"
+                                value="${this.interests}"
                                 width="80" 
                                 items="${dtInterests}"
                               />
