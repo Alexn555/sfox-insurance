@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
-import { theme, changeTheme } from '../../theme/theme';
+import { theme } from '../../theme/theme';
 
 class InsurancePaymentForm extends HTMLElement {
   constructor() {
@@ -16,7 +16,6 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   setAmount() {
-    changeTheme();
     const amount = this.shadow.querySelector('#amount');
     if (amount && amount.value !== '') {
         const errorLabel = this.shadow.querySelector('.input-error');
