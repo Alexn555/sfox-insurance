@@ -32,7 +32,7 @@ class FooterContact extends HTMLElement {
                 .address {
                     white-space: pre-wrap;
                     font-size: smaller;
-                    transform: translateX(-65px);
+                    transform: translate(-65px, -8px);
                 }
 
                 @media (max-width: 768px) {
@@ -43,7 +43,7 @@ class FooterContact extends HTMLElement {
                         margin-bottom: 6px;
                     }
                     .address {
-                        transform: translateX(-60px);
+                        transform: translate(-60px, -8px);
                     }
                 }
             </style>
