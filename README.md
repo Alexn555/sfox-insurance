@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.34
+  Added minor fixes, table pdf icons mobile improvements
+
 v 1.32
   Created Save system for Forms
 
@@ -15,9 +18,6 @@ v 1.30
 
 v 1.29
   Added footer toggle button fixes, added menu settings improvements
-
-v 1.28
-  Added base page, some minor fixes
 
 ## Demo 
 

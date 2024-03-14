@@ -1,4 +1,7 @@
 ## Changelog
+v 1.34
+  Added minor fixes, table pdf icons mobile improvements
+
 v 1.32
   Created Save system for Forms
 

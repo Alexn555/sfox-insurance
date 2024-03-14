@@ -45,6 +45,10 @@ class HomeAccount extends HTMLElement {
                     & div:nth-child(2) {
                         font-size: 12px;
                         text-align: right;
+
+                        @media (max-width: 768px) {
+                            padding-right: 20px;
+                        }
                     }
                 }
             </style>

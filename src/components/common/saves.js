@@ -13,7 +13,8 @@ export const SaveRoutes = {
 
 export const SaveForms = {
     performance: {
-        payment: 'performance-payment'
+        payment: 'performance-payment',
+        bannerFlip: 'performance-banner-flip'
     },
     calculator: {
         main: 'calculator-main'

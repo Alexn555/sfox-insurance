@@ -2,19 +2,22 @@
 
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
-import { SaveObjects } from '../../components/common/saves';
+import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';
+import DataStorage from '../../services/storage';
 
 class InsuranceBanner extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.dataStorage = new DataStorage();
         this.bannerService = new BannerService();
         this.savedBannerData = this.bannerService.getSavedData(SaveObjects.banners.performance);
         this.bannerData = this.savedBannerData || '';
         this.dataFadeIn = this.savedBannerData ? '0s' : '1s';
         this.isFliped = false;
         this.flipBoardId;
+        this.checkInitFlipBoard();
     }
     
     async connectedCallback() {
@@ -43,8 +46,15 @@ class InsuranceBanner extends HTMLElement {
         this.flipBoardId.removeEventListener('click', null);
     }
 
+    checkInitFlipBoard() {
+        if (this.dataStorage.getObject(SaveForms.performance.bannerFlip)) {
+            this.flipBoard();
+        }
+    }
+
     flipBoard() {
         this.toggleFlip(!this.isFliped);
+        this.dataStorage.save(SaveForms.performance.bannerFlip, this.isFliped);
         document.dispatchEvent(new CustomEvent('flip-board', { detail: { value: this.isFliped }, bubbles: true, cancelable: false }));
     }
 
