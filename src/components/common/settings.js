@@ -1,7 +1,8 @@
 // Settings and other global constants, variables
 
 export const GlobalSizes = {
-    mobileMax: 769
+    mobileMax: 769,
+    wdStngsRefresh: 3600*2, // 2 hours
 };
 
 export const pageNames = { 

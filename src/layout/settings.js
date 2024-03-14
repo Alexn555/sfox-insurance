@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
+import { GlobalSizes } from '../components/common/settings';
 import DataStorage from '../services/storage';
 import { SaveObjects, WindowSettings } from '../components/common/saves';
 
@@ -40,7 +41,7 @@ class AppSettings extends HTMLElement {
     setThemeOnInit() {
         if(document.cookie.indexOf(WindowSettings.refresh) == -1) {
             // The cookie doesn't exist. Create it now -> expires after [n] time
-            document.cookie = `${WindowSettings.refresh}=1;max-age=${3600*2}`; // 2 hours
+            document.cookie = `${WindowSettings.refresh}=1;max-age=${GlobalSizes.wdStngsRefresh}`;
             // to use only on 'real refresh' with all components
             const savedTheme = this.dataStorage.getItem(SaveObjects.themes.active);
             if (savedTheme) {
