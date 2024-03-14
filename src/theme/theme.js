@@ -6,23 +6,31 @@ import { themeYellow } from './yellow';
 
 export let theme = themeMain1;
 
+export const Themes = {
+    main1: 'main1',
+    blue: 'blue',
+    black: 'black',
+    red: 'red',
+    yellow: 'yellow'
+};
+
 export const changeTheme = (themeId) => {
     theme = themeMain1;
     switch(themeId) {
-        case 'main1':
+        case Themes.main1:
             default:
                 theme = themeMain1;
                 break;
-        case 'blue':
+        case Themes.blue:
                 theme = themeBlue;
             break;
-        case 'black':
+        case Themes.black:
                 theme = themeBlack;
             break;
-        case 'red':
+        case Themes.red:
                 theme = themeRed;
             break;
-        case 'yellow':
+        case Themes.yellow:
                 theme = themeYellow;
             break;
     }

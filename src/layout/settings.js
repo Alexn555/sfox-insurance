@@ -1,41 +1,26 @@
 // @ts-nocheck
-import { theme } from '../theme/theme';
+import { theme, Themes } from '../theme/theme';
 import DataStorage from '../services/storage';
-import { SaveObjects } from '../components/common/saves';
+import { SaveObjects, WindowSettings } from '../components/common/saves';
 
 class AppSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.theme = 'main1';
+        this.theme = Themes.main1;
         this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
+        this.setThemeOnInit();
     }
     
     connectedCallback() {
         this.render();
 
-        const thm = this.shadow.querySelector(`#themeMain`);
-        thm.onclick = (() => {
-            this.setTheme('main1');
-        });
-        const thm2 = this.shadow.querySelector(`#themeBlue`);
-        thm2.onclick = (() => {
-           this.setTheme('blue');
-        });
-        const thm3 = this.shadow.querySelector(`#themeBlack`);
-        thm3.onclick = (() => {
-            this.setTheme('black');
-        });
-        const thm4 = this.shadow.querySelector(`#themeRed`);
-        thm4.onclick = (() => {
-            this.setTheme('red');
-        });
-        const thm5 = this.shadow.querySelector(`#themeYellow`);
-        thm5.onclick = (() => {
-           this.setTheme('yellow');
-        });
-
+        this.setThemeHandler('themeMain', Themes.main1);
+        this.setThemeHandler('themeBlue', Themes.blue);
+        this.setThemeHandler('themeBlack', Themes.black);
+        this.setThemeHandler('themeRed', Themes.red);
+        this.setThemeHandler('themeYellow', Themes.yellow);
 
         const elClose = this.shadow.querySelector(`#close`);
         elClose.onclick = (() => {
@@ -45,8 +30,28 @@ class AppSettings extends HTMLElement {
         });
     }
 
-    setTheme(theme = 'main1') {
+    setThemeHandler(themeId, themeSelected) {
+        const thmHandler = this.shadow.getElementById(themeId);
+        thmHandler.onclick = (() => {
+            this.setTheme(themeSelected);
+        });
+    }
+
+    setThemeOnInit() {
+        if(document.cookie.indexOf(WindowSettings.refresh) == -1) {
+            // The cookie doesn't exist. Create it now -> expires after [n] time
+            document.cookie = `${WindowSettings.refresh}=1;max-age=${3600*2}`; // 2 hours
+            // to use only on 'real refresh' with all components
+            const savedTheme = this.dataStorage.getItem(SaveObjects.themes.active);
+            if (savedTheme) {
+                this.setTheme(savedTheme);
+            }
+        }
+    }
+
+    setTheme(theme = Themes.main1) {
         this.theme = theme;
+        this.dataStorage.save(SaveObjects.themes.active, theme);
         document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
     }
 

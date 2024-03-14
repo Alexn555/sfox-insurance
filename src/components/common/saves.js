@@ -1,4 +1,7 @@
 export const SaveObjects = {
+    themes: {
+        active: 'active',
+    },
     settings: {
         close: 'settings-close'
     },
@@ -6,6 +9,10 @@ export const SaveObjects = {
         performance: 'performanceBanner'
     }
 };
+
+export const WindowSettings = {
+    refresh: 'tempRefresh'
+}
 
 export const SaveRoutes = {
     currentPage: 'current-page'

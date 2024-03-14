@@ -65,13 +65,17 @@ class InsuranceCalculatorForm extends HTMLElement {
 
       if (this.savedForm.loan !== 0) {
         loan.setAttribute('value', this.savedForm.loan);
+        this.loan = this.savedForm.loan;
       }
       if (this.savedForm.period !== 0) {
         periodId.setAttribute('value', this.savedForm.period);
+        this.period = this.savedForm.period;
       }
       if (this.savedForm.interests !== 0) {
         interestsId.setAttribute('value', this.savedForm.interests);
+        this.interests = this.savedForm.interests;
       }
+      this.calculateFormula();
     }
 
     calculateFormula() {

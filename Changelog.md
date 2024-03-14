@@ -1,4 +1,7 @@
 ## Changelog
+v 1.38
+  Added Theme save, settings additinal improvements, calculateFormula on refresh improvements
+  
 v 1.34
   Added minor fixes, table pdf icons mobile improvements
 
