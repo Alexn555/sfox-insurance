@@ -2,7 +2,7 @@
 
 export const GlobalSizes = {
     mobileMax: 769,
-    wdStngsRefresh: 3600*2, // 2 hours
+    wdStngsRefresh: 7200, // 2 hours
 };
 
 export const pageNames = { 
