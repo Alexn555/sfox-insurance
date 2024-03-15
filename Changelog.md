@@ -1,4 +1,7 @@
 ## Changelog
+v 1.46
+  Added Reset Settings system
+
 v 1.38
   Added Theme save, settings additinal improvements, calculateFormula on refresh improvements
   

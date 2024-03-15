@@ -11,6 +11,7 @@ class Application extends HTMLElement {
         document.addEventListener('settings-theme-changed', this.settingsChanged.bind(this));
         document.addEventListener('settings-toggle', this.toggleSettings.bind(this));
         this.dataStorage = new DataStorage();
+        this.setTitle();
         this.isInit = true;
         setTimeout(() => { this.isInit = false; }, 3000);
     }
@@ -22,6 +23,12 @@ class Application extends HTMLElement {
     disconnectedCallback() {
         document.removeEventListener('settings-theme-changed', null);
         document.removeEventListener('settings-toggle', null);
+    }
+
+    setTitle() {
+        const pckData = require('../../package.json');
+        const titleEl = document.querySelector('title');
+        titleEl.innerHTML = `SFoxInsurance calculator R${pckData.version}`;
     }
 
     settingsChanged(evt) {
@@ -58,7 +65,7 @@ class Application extends HTMLElement {
                     z-index: 6;
 
                     @media (max-width: 768px) {
-                        height: ${stngsHeight + 60}px;
+                        height: ${stngsHeight + 120}px;
                     }   
                 }
                 .layout {

@@ -13,6 +13,7 @@ export const themeRed = {
         button: {
             default: '#ee7023',
             action: mainColor,
+            highlight: '#cf384e',
             passive: '#31a3ae'
         },
         slider: {

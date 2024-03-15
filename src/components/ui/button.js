@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import { ButtonTypes } from '../../components/common/ui';
 
 class ActionButton extends HTMLElement {
     constructor(cb) {
@@ -16,11 +17,14 @@ class ActionButton extends HTMLElement {
         const { button: btn } = theme.ui;
         let color = btn.default;
         switch(this.buttonType) {
-            case 'action':
+            case ButtonTypes.action:
             default:
                 color = btn.action;
             break;
-            case 'passive':
+            case ButtonTypes.highlight:
+                color = btn.highlight;
+            break;
+            case ButtonTypes.passive:
                 color = btn.passive;
             break;
         }

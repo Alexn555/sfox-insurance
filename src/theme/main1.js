@@ -13,6 +13,7 @@ export const themeMain1 = {
         button: {
             default: '#ee7023',
             action: '#913a83',
+            highlight: '#7d5c78',
             passive: '#31a3ae'
         },
         slider: {

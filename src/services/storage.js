@@ -19,6 +19,12 @@ export default class DataStorage {
         localStorage.removeItem(key);
     }
 
+    removeList(keyList) {
+        keyList.forEach(k => {
+            localStorage.removeItem(k);
+        });
+    }
+
     removeAll() {
         localStorage.clear();
     }

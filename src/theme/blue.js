@@ -13,6 +13,7 @@ export const themeBlue = {
         button: {
             default: '#ee7023',
             action: mainColor,
+            highlight: '#424b8f',
             passive: '#31a3ae'
         },
         slider: {

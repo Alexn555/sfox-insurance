@@ -1,8 +1,9 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
 import { GlobalSizes } from '../components/common/settings';
+import { ButtonTypes } from '../components/common/ui';
 import DataStorage from '../services/storage';
-import { SaveObjects, WindowSettings } from '../components/common/saves';
+import { SaveForms, SaveObjects, WindowSettings } from '../components/common/saves';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -22,6 +23,7 @@ class AppSettings extends HTMLElement {
         this.setThemeHandler('themeBlack', Themes.black);
         this.setThemeHandler('themeRed', Themes.red);
         this.setThemeHandler('themeYellow', Themes.yellow);
+        this.setResetSettingsHandler();
 
         const elClose = this.shadow.querySelector(`#close`);
         elClose.onclick = (() => {
@@ -35,6 +37,22 @@ class AppSettings extends HTMLElement {
         const thmHandler = this.shadow.getElementById(themeId);
         thmHandler.onclick = (() => {
             this.setTheme(themeSelected);
+        });
+    }
+
+    setResetSettingsHandler() {
+        const resetId = this.shadow.getElementById('resetSettings');
+        resetId.onclick = (() => {
+            const saveObj = [SaveObjects.themes.active, SaveObjects.settings.close, SaveObjects.banners.performance];
+            const saveForms = [SaveForms.performance.bannerFlip, SaveForms.calculator.main, SaveForms.performance.payment];
+            const list = saveObj.concat(saveForms);
+            let permission = prompt("You about to remove all saved values from forms, type Yes to agree or cancel", "Yes");
+            if (permission !== null) {
+              this.dataStorage.removeList(list);
+              setTimeout(() => { // reset to root page
+                document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+              }, 500);
+            }
         });
     }
 
@@ -54,6 +72,24 @@ class AppSettings extends HTMLElement {
         this.theme = theme;
         this.dataStorage.save(SaveObjects.themes.active, theme);
         document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+    }
+
+    showButton(id, label) {
+        return `
+            <div>
+                <action-button id="${id}" label="${label}" type="${ButtonTypes.action}" />
+            </div>
+        `;
+    }
+
+    showButtonSection() {
+        let html = '';
+        html += this.showButton('themeMain', 'Main Theme');
+        html += this.showButton('themeBlue', 'Blue Them');
+        html += this.showButton('themeBlack', 'Black Theme');
+        html += this.showButton('themeRed', 'Red Theme');
+        html += this.showButton('themeYellow', 'Yellow Theme');
+        return html;
     }
 
     render() {
@@ -96,20 +132,9 @@ class AppSettings extends HTMLElement {
             <div class="settings">
                 <h2>Main Settings</h2>
                 <div class="settings-list">
+                    ${this.showButtonSection()}
                     <div>
-                        <action-button id="themeMain" label="Main Theme" type="action" />
-                    </div>
-                    <div>
-                        <action-button id="themeBlue" label="Blue Theme" type="action" />
-                    </div>
-                    <div>
-                        <action-button id="themeBlack" label="Black Theme" type="action" />
-                    </div>
-                    <div>
-                        <action-button id="themeRed" label="Red Theme" type="action" />
-                    </div>
-                    <div>
-                        <action-button id="themeYellow" label="Yellow Theme" type="action" />
+                        <action-button id="resetSettings" label="Reset settings" type="${ButtonTypes.highlight}" />
                     </div>
                     <div>
                         <action-button id="close" label="Close" type="passive" />
