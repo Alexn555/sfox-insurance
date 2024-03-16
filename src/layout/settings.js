@@ -12,17 +12,21 @@ class AppSettings extends HTMLElement {
         this.theme = Themes.main1;
         this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
+
+        this.themeList = [
+            { id: 'themeMain', label: 'Main Theme', content: Themes.main1, },
+            { id: 'themeBlue', label: 'Blue Theme', content: Themes.blue  },
+            { id: 'themeBlack', label: 'Black Theme', content: Themes.black  },
+            { id: 'themeRed', label: 'Red Theme', content: Themes.red  },
+            { id: 'themeYellow', label: 'Yellow Theme', content: Themes.yellow },
+        ];
+
         this.setThemeOnInit();
     }
     
     connectedCallback() {
         this.render();
-
-        this.setThemeHandler('themeMain', Themes.main1);
-        this.setThemeHandler('themeBlue', Themes.blue);
-        this.setThemeHandler('themeBlack', Themes.black);
-        this.setThemeHandler('themeRed', Themes.red);
-        this.setThemeHandler('themeYellow', Themes.yellow);
+        this.setThemeHandlers();
         this.setResetSettingsHandler();
 
         const elClose = this.shadow.querySelector(`#close`);
@@ -30,6 +34,12 @@ class AppSettings extends HTMLElement {
             this.dataStorage.save(SaveObjects.settings.close, '1');
             elClose.className += this.useCloseAnimation ? ' close' : '';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
+        });
+    }
+
+    setThemeHandlers() {
+        this.themeList.forEach((thm) => {
+            this.setThemeHandler(thm.id, thm.content);
         });
     }
 
@@ -68,9 +78,9 @@ class AppSettings extends HTMLElement {
         }
     }
 
-    setTheme(theme = Themes.main1) {
-        this.theme = theme;
-        this.dataStorage.save(SaveObjects.themes.active, theme);
+    setTheme(_theme = Themes.main1) {
+        this.theme = _theme;
+        this.dataStorage.save(SaveObjects.themes.active, _theme);
         document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
     }
 
@@ -84,11 +94,9 @@ class AppSettings extends HTMLElement {
 
     showButtonSection() {
         let html = '';
-        html += this.showButton('themeMain', 'Main Theme');
-        html += this.showButton('themeBlue', 'Blue Them');
-        html += this.showButton('themeBlack', 'Black Theme');
-        html += this.showButton('themeRed', 'Red Theme');
-        html += this.showButton('themeYellow', 'Yellow Theme');
+        this.themeList.forEach((thm) => {
+            html += this.showButton(thm.id, thm.label);
+        });
         return html;
     }
 
