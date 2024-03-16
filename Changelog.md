@@ -1,4 +1,7 @@
 ## Changelog
+v 1.48
+  Added DownloadButtons, small barrel improvements
+
 v 1.46
   Added Reset Settings system
 

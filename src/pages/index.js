@@ -1,19 +1,9 @@
 import './base';
+import './common/index';
 import './home';
+import './home/index';
 import './insurance';
-import './insurance/tabs';
-import './insurance/banner';
-import './insurance/payment-form';
-import './insurance/calculator-form';
+import './insurance/index';
 import './additional';
-import './additional/game';
-import './additional/writer-form';
-import './additional/map';
-import './additional/tabs';
+import './additional/index';
 import './uknown';
-
-import './common/accountTable';
-import './common/title';
-import './home/account';
-import './home/banners';
-import './home/homeBanner';

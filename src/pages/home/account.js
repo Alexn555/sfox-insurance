@@ -57,6 +57,9 @@ class HomeAccount extends HTMLElement {
                     <div>
                         <b>Your SFoxInsurance overview</b>
                     </div>
+                    
+
+
                     <div>
                         <span>
                             <a href="#download-pdf">
