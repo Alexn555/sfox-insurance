@@ -1,5 +1,4 @@
 import { theme } from '../../theme/theme';
-import { imageMap } from '../../components/common/assets';
 
 class HomeAccount extends HTMLElement {
     constructor() {
@@ -28,28 +27,6 @@ class HomeAccount extends HTMLElement {
                     display: grid;
                     grid-template-columns: 50% 50%;
                     padding: 10px 0 10px 10px;
-
-                    a {
-                       color: ${theme.page.home.account.headerLink};
-                       text-decoration: none;
-
-                       img {
-                          transform: translateY(3px);
-                       }
-                    }
-                    
-                    span {
-                        padding: 2px;
-                    }
-
-                    & div:nth-child(2) {
-                        font-size: 12px;
-                        text-align: right;
-
-                        @media (max-width: 768px) {
-                            padding-right: 20px;
-                        }
-                    }
                 }
             </style>
             <div class="account">   
@@ -57,23 +34,7 @@ class HomeAccount extends HTMLElement {
                     <div>
                         <b>Your SFoxInsurance overview</b>
                     </div>
-                    
-
-
-                    <div>
-                        <span>
-                            <a href="#download-pdf">
-                            <img src="./${imageMap.pdfIcon}" alt="pdf"/>
-                               <span>PDF</span>
-                            </a>
-                        </span>
-                        <span>
-                            <a href="#download-pdf">
-                            <img src="./${imageMap.pdfIcon}" alt="xsl" />
-                               <span>XSL</span>
-                            </a>
-                        </span>    
-                    </div>
+                    <download-buttons></download-buttons>
                 <div>   
                 <div class="tbl-content">
                     <account-table
