@@ -57,7 +57,7 @@ class AppSettings extends HTMLElement {
             const saveForms = [SaveForms.performance.bannerFlip, SaveForms.calculator.main, SaveForms.performance.payment];
             const list = saveObj.concat(saveForms);
             let permission = prompt("You about to remove all saved values from forms, type Yes to agree or cancel", "Yes");
-            if (permission !== null) {
+            if (permission !== null && permission.toLowerCase() === 'yes') {
               this.dataStorage.removeList(list);
               setTimeout(() => { // reset to root page
                 document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
