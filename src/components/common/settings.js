@@ -5,6 +5,12 @@ export const GlobalSizes = {
     wdStngsRefresh: 7200, // 2 hours
 };
 
+export const HeaderSettings = {
+    resetDialog: {
+        permissionWord: 'Yes'
+    }
+};
+
 export const pageNames = { 
     home: 'home', 
     insurance: 'insurance',

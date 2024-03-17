@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
-import { GlobalSizes } from '../components/common/settings';
+import { GlobalSizes, HeaderSettings } from '../components/common/settings';
 import { ButtonTypes } from '../components/common/ui';
 import DataStorage from '../services/storage';
 import { SaveForms, SaveObjects, WindowSettings } from '../components/common/saves';
@@ -56,8 +56,9 @@ class AppSettings extends HTMLElement {
             const saveObj = [SaveObjects.themes.active, SaveObjects.settings.close, SaveObjects.banners.performance];
             const saveForms = [SaveForms.performance.bannerFlip, SaveForms.calculator.main, SaveForms.performance.payment];
             const list = saveObj.concat(saveForms);
-            let permission = prompt("You about to remove all saved values from forms, type Yes to agree or cancel", "Yes");
-            if (permission !== null && permission.toLowerCase() === 'yes') {
+            const permWord = HeaderSettings.resetDialog.permissionWord;
+            let permission = prompt(`You about to remove all saved values from forms, type ${permWord} to agree or cancel`, permWord);
+            if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
               this.dataStorage.removeList(list);
               setTimeout(() => { // reset to root page
                 document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
