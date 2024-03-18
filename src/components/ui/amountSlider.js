@@ -31,7 +31,7 @@ class AmountSlider extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      const el = this.shadow.querySelector(`#${this.id}`);
+      const el = this.shadow.getElementById(this.id);
       if (el !== null) {
         el.value = oldValue !== newValue ? newValue : oldValue;
       }

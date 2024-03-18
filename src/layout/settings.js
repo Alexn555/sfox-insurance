@@ -29,7 +29,7 @@ class AppSettings extends HTMLElement {
         this.setThemeHandlers();
         this.setResetSettingsHandler();
 
-        const elClose = this.shadow.querySelector(`#close`);
+        const elClose = this.shadow.getElementById('close');
         elClose.onclick = (() => {
             this.dataStorage.save(SaveObjects.settings.close, '1');
             elClose.className += this.useCloseAnimation ? ' close' : '';
