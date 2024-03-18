@@ -18,8 +18,9 @@ class BasePage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (this.el !== null) {
-            this.el.style.display = newValue === 'true' ? 'block' : 'none';
+        const el = this.shadow.querySelector('.container');
+        if (el !== null) {
+            el.style.display = newValue === 'true' ? 'block' : 'none';
         }
     }
 

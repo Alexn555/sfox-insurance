@@ -1,4 +1,7 @@
 ## Changelog
+v 1.52
+  Added fadeIn effect on page presence
+
 v 1.50
   Created new routing, that doesn't append new page on every page change, rather loads on initialization
 

@@ -2,6 +2,8 @@
 import { pageNames } from "../components/common/settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
+import { fadeInAnimation } from '../components/common/styles/animations';
+
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -60,6 +62,11 @@ class PageSwitcher extends HTMLElement {
         }
     }
 
+    closePageOpener() {
+        const el = this.shadow.querySelector('.opener');
+        setTimeout(() => { el.remove(); }, 1000);
+    }
+
     resetPageActive() {
         this.pageIds.forEach((item) => {
             const container = this.shadow.getElementById(item);
@@ -79,6 +86,7 @@ class PageSwitcher extends HTMLElement {
     connectedCallback() {
         this.render();
         this.getPage(this.getSavedPage(), true);
+        this.closePageOpener();
     }
 
     disconnectedCallback() {
@@ -89,6 +97,8 @@ class PageSwitcher extends HTMLElement {
     render() {
         this.shadow.innerHTML = `
             <style>
+                ${fadeInAnimation}
+
                 .page {
                     display: flex;
                     width: 100vw;
@@ -96,11 +106,16 @@ class PageSwitcher extends HTMLElement {
                     justify-content: center;
                     margin-bottom: 10px;
                     transition: transform 0.8s;
+                    animation: fadeIn 2s;
 
                     @media (max-width: 768px) {
                         margin-top: 60px;
                     }
                 }  
+
+                .opener {
+                    height: 400px;
+                }
 
             </style>
 
@@ -108,6 +123,7 @@ class PageSwitcher extends HTMLElement {
                 <index-page id="${pageNames.home}"></index-page>
                 <insurance-page id="${pageNames.insurance}"></insurance-page>
                 <additional-page id="${pageNames.additional}"></additional-page>
+                <div class="opener"></div>
             </main> 
         `;
     }
