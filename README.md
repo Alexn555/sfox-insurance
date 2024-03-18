@@ -1,4 +1,4 @@
-### Insurance Calculator v 1.49
+### Insurance Calculator v 1.50
 
 SFoxInsurance (Non-existing in real company) Calculator program to view bank accounts and loans
 It's fiction company, that doesn't exists, just to implement and try out WebComponents
