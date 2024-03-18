@@ -82,7 +82,7 @@ class InsuranceTabs extends HTMLElement {
 
       if (item === 'payment-btn') {
         tabPayment.style.display = 'block';
-      } else {
+      } else if (item === 'calculator-btn') {
         tabCalculator.style.display = 'block';
       }
     }
