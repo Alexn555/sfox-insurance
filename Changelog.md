@@ -1,4 +1,7 @@
 ## Changelog
+v 1.50
+  Created new routing, that doesn't append new page on every page change, rather loads on initialization
+
 v 1.49
   Added optimization to ids
 

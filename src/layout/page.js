@@ -8,49 +8,11 @@ class PageSwitcher extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.dataStorage = new DataStorage();
-
-        this.pageName = this.getSavedPage();
-        this.page = '';
-        this.getPage(this.pageName);
+        this.pageIds = ['home', 'insurance', 'additional'];
 
         document.addEventListener('header-menu-click', (evt) => {
-            this.getPage(evt.detail.value);
+            this.getPage(evt.detail.value, false);
         });
-    }
-
-    getPage(name) {
-        let savePage = pageNames.home;
-        switch(name) {
-            case pageNames.home:
-            default:
-                this.page = '<index-page></index-page>';
-                savePage = pageNames.home;
-            break;
-            case pageNames.insurance:
-                this.page = '<insurance-page></insurance-page>';
-                savePage =  pageNames.insurance;
-            break;
-            case pageNames.additional:
-                this.page = '<additional-page></additional-page>';
-                savePage =  pageNames.additional;
-            break;
-        }
-
-        this.dataStorage.save(SaveRoutes.currentPage, savePage);
-        this.render();
-    }
-
-    getSavedPage() {
-        let _page = pageNames.home;
-        const saved = this.dataStorage.getItem(SaveRoutes.currentPage);
-        if (saved) {
-            _page = pageNames[saved];
-        }
-        return _page;
-    }
-    
-    connectedCallback() {
-        this.render();
 
         document.addEventListener('flip-board', (evt) => {
             const { value } = evt.detail;
@@ -67,6 +29,61 @@ class PageSwitcher extends HTMLElement {
                 el.style.transform = 'rotate3d(1, 1, 1, 0deg)';
             }
         });
+    }
+
+    getPage(name, isInit) {
+        let savePage = pageNames.home;
+        switch(name) {
+            case pageNames.home:
+            default:
+                savePage = pageNames.home;
+            break;
+            case pageNames.insurance:
+                savePage = pageNames.insurance;
+            break;
+            case pageNames.additional:
+                savePage = pageNames.additional;
+            break;
+        }
+
+        this.dataStorage.save(SaveRoutes.currentPage, savePage);
+
+        this.resetPageActive();
+
+        const activePage = this.shadow.getElementById(savePage);
+        if (isInit) {
+             setTimeout(() => {
+                activePage?.setAttribute('active', 'true');
+            }, 200);
+        } else {
+            activePage?.setAttribute('active', 'true');
+        }
+    }
+
+    resetPageActive() {
+        this.pageIds.forEach((item) => {
+            const container = this.shadow.getElementById(item);
+            container.setAttribute('active', 'false');
+        });
+    }
+
+    getSavedPage() {
+        let _page = pageNames.home;
+        const saved = this.dataStorage.getItem(SaveRoutes.currentPage);
+        if (saved) {
+            _page = pageNames[saved];
+        }
+        return _page;
+    }
+    
+    connectedCallback() {
+        this.render();
+        this.getPage(this.getSavedPage(), true);
+    }
+
+    disconnectedCallback() {
+        document.removeEventListener('header-menu-click', null);
+        document.removeEventListener('flip-board', null);
     }
 
     render() {
@@ -86,8 +103,11 @@ class PageSwitcher extends HTMLElement {
                 }  
 
             </style>
+
             <main class="page">
-                ${this.page} 
+                <index-page id="${pageNames.home}"></index-page>
+                <insurance-page id="${pageNames.insurance}"></insurance-page>
+                <additional-page id="${pageNames.additional}"></additional-page>
             </main> 
         `;
     }

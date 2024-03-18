@@ -1,11 +1,22 @@
+// @ts-nocheck
 class IndexPage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
+        this.active = this.getAttribute('active') || 'false';
     }
     
+    static get observedAttributes() { 
+        return ['active']; 
+    }
+
     connectedCallback() {
         this.render();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const el = this.shadow.getElementById('base-home');
+        el?.setAttribute('active', newValue);
     }
 
     render() {
@@ -18,11 +29,11 @@ class IndexPage extends HTMLElement {
                     padding-bottom: 10px;
                 }
             </style>
-            <base-page title="Accounts">
+            <base-page id="base-home" title="Accounts" active="${this.active}">
                 <home-account></home-account>
-                <div class="banner">
+                <section class="banner">
                     <home-banners></home-banners>
-                </div>
+                </section>
             </base-page> 
         `;
     }

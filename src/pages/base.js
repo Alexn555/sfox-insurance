@@ -1,12 +1,30 @@
+// @ts-nocheck
 class BasePage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.title = this.getAttribute('title') || '';
+        this.active = this.getAttribute('active') || false;
     }
     
+    static get observedAttributes() { 
+        return ['active']; 
+    }
+
     connectedCallback() {
         this.render();
+        this.el = this.shadow.querySelector('.container');
+        this.setInit();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (this.el !== null) {
+            this.el.style.display = newValue === 'true' ? 'block' : 'none';
+        }
+    }
+
+    setInit() {
+        this.el.style.display = 'none';
     }
 
     render() {
@@ -37,7 +55,6 @@ class BasePage extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('base-page', BasePage);

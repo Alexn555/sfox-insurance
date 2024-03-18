@@ -7,6 +7,9 @@ and some latest best Javascript tricks.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 1.50
+  Created new routing, that doesn't append new page on every page change, rather loads on initialization
+
 v 1.49
   Added optimization to ids
 

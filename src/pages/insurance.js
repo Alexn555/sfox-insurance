@@ -8,7 +8,7 @@ template.innerHTML = `
             padding-bottom: 10px;
         }
     </style>
-    <base-page title="Everyday performance">
+    <base-page id="base-insurance" title="Everyday performance">
         <insurance-tabs></insurance-tabs>
         <div class="banner">
             <insurance-banner></insurance-banner>
@@ -21,6 +21,16 @@ class InsurancePage extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.shadow.appendChild(template.content.cloneNode(true));
+        this.active = this.getAttribute('active') || 'false';
+    }
+
+    static get observedAttributes() { 
+        return ['active']; 
+    }  
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const el = this.shadow.getElementById('base-insurance');
+        el?.setAttribute('active', newValue);
     }
 }
 
