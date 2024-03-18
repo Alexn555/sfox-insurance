@@ -63,7 +63,7 @@ class PageSwitcher extends HTMLElement {
     }
 
     closePageOpener() {
-        const el = this.shadow.querySelector('.opener');
+        const el = this.shadow.querySelector('.heightHolder');
         setTimeout(() => { el.remove(); }, 1000);
     }
 
@@ -113,7 +113,7 @@ class PageSwitcher extends HTMLElement {
                     }
                 }  
 
-                .opener {
+                .heightHolder {
                     height: 400px;
                 }
 
@@ -123,7 +123,7 @@ class PageSwitcher extends HTMLElement {
                 <index-page id="${pageNames.home}"></index-page>
                 <insurance-page id="${pageNames.insurance}"></insurance-page>
                 <additional-page id="${pageNames.additional}"></additional-page>
-                <div class="opener"></div>
+                <div class="heightHolder"></div>
             </main> 
         `;
     }
