@@ -9,16 +9,16 @@ class GameForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.querySelector('#gameOpen').addEventListener('click', () => {
+      this.shadow.getElementById('gameOpen').addEventListener('click', () => {
           this.toggleGame(true);
       });
-      this.shadow.querySelector('#closeGame').addEventListener('click', () => {
+      this.shadow.getElementById('closeGame').addEventListener('click', () => {
         this.toggleGame(false);
       });
     }
 
     toggleGame(isOpen) {
-      const el = this.shadow.querySelector('#gameDialog');
+      const el = this.shadow.getElementById('gameDialog');
       if (!this.isGameOpen) {
         el.showModal();
       } else {

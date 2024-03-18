@@ -1,4 +1,7 @@
 ## Changelog
+v 1.49
+  Added optimization to ids
+
 v 1.48
   Added DownloadButtons, small barrel improvements
 

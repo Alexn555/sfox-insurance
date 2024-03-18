@@ -36,7 +36,7 @@ class InsuranceBanner extends HTMLElement {
     }
 
     attachFlipBoard() {
-        this.flipBoardId = this.shadow.querySelector('#flipBoard');
+        this.flipBoardId = this.shadow.getElementById('flipBoard');
         this.flipBoardId.addEventListener('click', () => {
             this.flipBoard();
         });

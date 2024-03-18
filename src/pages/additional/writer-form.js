@@ -13,7 +13,7 @@ class WriterForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.querySelector('#fetchOpen').addEventListener('click', () => {
+      this.shadow.getElementById('fetchOpen').addEventListener('click', () => {
         this.featchContent();
       });
     }

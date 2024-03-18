@@ -9,16 +9,16 @@ class MapForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.querySelector('#mapOpen').addEventListener('click', () => {
+      this.shadow.getElementById('mapOpen').addEventListener('click', () => {
           this.toggleGame(true);
       });
-      this.shadow.querySelector('#closeMap').addEventListener('click', () => {
+      this.shadow.getElementById('closeMap').addEventListener('click', () => {
         this.toggleGame(false);
       });
     }
 
     toggleGame(isOpen) {
-      const el = this.shadow.querySelector('#mapDialog');
+      const el = this.shadow.getElementById('mapDialog');
       if (!this.isMapOpen) {
         el.showModal();
       } else {

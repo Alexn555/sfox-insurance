@@ -18,7 +18,7 @@ class AmountSlider extends HTMLElement {
 
     connectedCallback() {
       this.render();
-      const el = this.shadow.querySelector(`#${this.id}`);
+      const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
         document.dispatchEvent(new CustomEvent(`slider-value-change-${this.id}`, {
           detail: {value: el.value}, bubbles: true, cancelable: false 

@@ -22,7 +22,7 @@ class Layout extends HTMLElement {
         this.render();
         this.setLayoutOffset(true);
         
-        const el = this.shadow.querySelector('#settingsOpen');
+        const el = this.shadow.getElementById('settingsOpen');
         const container = this.shadow.querySelector('.layout');
 
         el.addEventListener('click', () => {
@@ -33,7 +33,7 @@ class Layout extends HTMLElement {
     }
 
     disconnectedCallback() {
-        const el = this.shadow.querySelector('#settingsOpen');
+        const el = this.shadow.getElementById('settingsOpen');
         el.removeEventListener('click', null);
     }
 
@@ -85,7 +85,7 @@ class Layout extends HTMLElement {
     }
 
     toggleNotice(isClose) {
-        const elDialog = this.shadow.querySelector('#load-settings');
+        const elDialog = this.shadow.getElementById('load-settings');
         if (!isClose) {
             elDialog.showModal();
             setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);

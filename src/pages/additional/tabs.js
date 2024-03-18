@@ -15,10 +15,10 @@ class AdditionalTabs extends HTMLElement {
     openTab(evt) {
       const { target } = evt;
       const item = target.id;
-      const tab = this.shadow.querySelector(`#${item}`);
-      const tabGame = this.shadow.querySelector('#game');
-      const tabMap = this.shadow.querySelector('#map');
-      const tabWriterForm = this.shadow.querySelector('#writerForm');
+      const tab = this.shadow.getElementById(item);
+      const tabGame = this.shadow.getElementById('game');
+      const tabMap = this.shadow.getElementById('map');
+      const tabWriterForm = this.shadow.getElementById('writerForm');
 
       if (tab) {
         tabGame.style.display = 'none';

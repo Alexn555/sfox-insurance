@@ -71,9 +71,9 @@ class InsuranceTabs extends HTMLElement {
     openTab(evt) {
       const { target } = evt;
       const item = target.id;
-      const tab = this.shadow.querySelector(`#${item}`);
-      const tabPayment = this.shadow.querySelector('#payment');
-      const tabCalculator = this.shadow.querySelector('#calculator');
+      const tab = this.shadow.getElementById(item);
+      const tabPayment = this.shadow.getElementById('payment');
+      const tabCalculator = this.shadow.getElementById('calculator');
 
       if (tab) {
         tabPayment.style.display = 'none';
