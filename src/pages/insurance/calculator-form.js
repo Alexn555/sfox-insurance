@@ -34,6 +34,8 @@ class InsuranceCalculatorForm extends HTMLElement {
       document.addEventListener(`slider-value-change-${this.selectIds.loan}`, (evt) => {
         this.loan = evt.detail.value;
         this.save('loan', evt.detail.value);
+        const el = this.shadow.querySelector('.loan-current-amount');
+        el.innerHTML = `${this.loan} ${this.currency}`;
       });
       document.addEventListener(`select-change-${this.selectIds.period}`, (evt) => {
         this.period = evt.detail.value;
