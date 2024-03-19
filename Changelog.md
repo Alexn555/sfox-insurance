@@ -1,4 +1,7 @@
 ## Changelog
+v 1.58
+  Added Text Input component
+
 v 1.52
   Added fadeIn effect on page presence
 

@@ -10,8 +10,6 @@ class InsurancePaymentForm extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
-    this.shadow.addEventListener('click', this.setAmount.bind(this));
-    this.shadow.addEventListener('onchange', this.setAmount.bind(this));
     this.$amount = '';
     this.$description = '';
     this.$accounts = '';
@@ -53,6 +51,13 @@ class InsurancePaymentForm extends HTMLElement {
     this.initForm();
   }
 
+  disconnectedCallback() {
+    document.removeEventListener('text-input-change-amount', null);
+    document.removeEventListener('text-input-change-description', null);
+    document.removeEventListener(`select-change-${this.selectIds.accounts}`, null);
+    document.removeEventListener(`select-change-${this.selectIds.savedPayments}`, null);
+  }
+
   initForm() {
     const saved = this.dataStorage.getObject(SaveForms.performance.payment);
     this.savedForm = saved || this.savedForm;
@@ -61,30 +66,40 @@ class InsurancePaymentForm extends HTMLElement {
     this.$description = this.shadow.getElementById('description');
     this.$accounts = this.shadow.getElementById('accounts');
     this.$savedPayments = this.shadow.getElementById('savedPayments');
-    this.$amount.value = this.savedForm.amount;
-    this.$description.value = this.savedForm.description;
+
+    this.$amount.setAttribute('value', this.savedForm.amount);
+    this.$description.setAttribute('value', this.savedForm.description);
     this.$accounts.setAttribute('value', this.savedForm.accounts);
     this.$savedPayments.setAttribute('value', this.savedForm.payments);
+
+    document.addEventListener('text-input-change-amount', (evt) => {
+        this.setAmount(evt?.detail.value);
+    });
+    document.addEventListener('text-input-change-description', (evt) => {
+        this.setDescription(evt?.detail.value);
+    });
   }
 
-  setAmount() {
-    if (this.$amount && this.$amount.value !== '') {
+  setAmount(amountVal) {
+    if (amountVal && amountVal !== '') {
         const errorLabel = this.shadow.querySelector('.input-error');
         errorLabel.style.display = 'none';
-        const isNumber = /^\d+$/.test(this.$amount.value);
+        const isNumber = /^\d+$/.test(amountVal);
         if (!isNumber) {
             errorLabel.style.display = 'block';
         } else {
-            this.savedForm.amount = this.$amount.value;
+            this.savedForm.amount = amountVal;
         }
-
-    }
-    if (this.$description && this.$description.value !== '') {
-        this.savedForm.description = this.$description.value;
     }
     this.dataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
   }
 
+  setDescription(descVal) {
+    if (descVal && descVal !== '') {
+        this.savedForm.description = descVal;
+    }
+    this.dataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
+  }
 
   render() {
     this.shadow.innerHTML = `
@@ -105,22 +120,10 @@ class InsurancePaymentForm extends HTMLElement {
                         margin: 10px;
                         text-align: right;
                     }
-  
-                    & input {
-                       padding: 10px;
-                    }
-                    
-                    & .input-normal {
-                        width: 275px;
-                    }
-
+ 
                     & .input-error {
                         display: none;
                         color: var(--error-color);
-                    }
-
-                    & .amount {
-                        border: default;
                     }
 
                     & .amount-error {
@@ -165,16 +168,16 @@ class InsurancePaymentForm extends HTMLElement {
                             />
                         </div>
                         <div>
-                            <label for="amount">Amount:</label>
-                            <input class="amount"    
-                                onchange="this.setAmount()" 
+                            <text-input
+                                id="amount" 
+                                text-id="amount"
+                                label="Amount"
+                                class-name="amount"
                                 min="1" 
                                 value="0"
-                                max="15000" 
-                                type="text" 
-                                id="amount" 
-                                name="amount"
+                                max="15000"                
                             >
+                            </text-input>
                             <form-select 
                                 selectbox-id="currencies" 
                                 label=""
@@ -185,9 +188,17 @@ class InsurancePaymentForm extends HTMLElement {
                             />
                         </div>
                         <div class="input-error">Amount accepts only numbers</div> 
-                        <div>
-                            <label for="description">Description:</label>
-                            <input class="input-normal" type="text" onchange="this.setAmount()" id="description" name="description">
+                        <div>  
+                            <text-input
+                                id="description" 
+                                text-id="description"
+                                label="Description"
+                                class-name="input-normal"
+                                min="1" 
+                                value=""
+                                max="100"                 
+                            >
+                            </text-input>  
                         </div>
                     </div>     
                 </div> 
