@@ -18,7 +18,8 @@ export const pageNames = {
 };
 
 export const Animations = {
-    topSettings: 2 // seconds
+    topSettings: 2, // seconds
+    pageInitFadeIn: 2
 };
 
 export const TextSizes = {

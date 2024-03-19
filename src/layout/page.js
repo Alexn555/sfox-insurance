@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { pageNames } from "../components/common/settings";
+import { pageNames, Animations } from "../components/common/settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
@@ -105,8 +105,7 @@ class PageSwitcher extends HTMLElement {
                     align-items: center;
                     justify-content: center;
                     margin-bottom: 10px;
-                    transition: transform 0.8s;
-                    animation: fadeIn 2s;
+                    animation: fadeIn ${Animations.pageInitFadeIn}s;
 
                     @media (max-width: 768px) {
                         margin-top: 60px;
