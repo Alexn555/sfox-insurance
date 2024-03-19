@@ -6,7 +6,7 @@ class AmountSlider extends HTMLElement {
       super();
       this.shadow = this.attachShadow({ mode: "open" });
       this.currency = '€';
-      this.id = this.getAttribute('slider-id') || 'amount-slider';
+      this.id = this.getAttribute('id') || 'amount-slider';
       this.value = this.getAttribute('value') || '';
       this.minAmount = this.getAttribute('min-amount') || '100';
       this.maxAmount = this.getAttribute('max-amount') || '3200';

@@ -167,7 +167,6 @@ class InsuranceCalculatorForm extends HTMLElement {
                         <div class="loan-slider">
                           <amount-slider 
                             id="${this.selectIds.loan}"
-                            slider-id=${this.selectIds.loan}
                             value=${this.savedForm.loan}
                             min-amount="${dtAmountSlider.min}"
                             max-amount="${dtAmountSlider.max}"
@@ -176,7 +175,6 @@ class InsuranceCalculatorForm extends HTMLElement {
                         <div>
                             <form-select 
                                 id="${this.selectIds.period}"
-                                selectbox-id=${this.selectIds.period}
                                 label="Period: &nbsp;"
                                 symbol="years"
                                 value="${this.period}"
@@ -187,7 +185,6 @@ class InsuranceCalculatorForm extends HTMLElement {
                         <div>
                             <form-select 
                                 id="${this.selectIds.interests}"
-                                selectbox-id=${this.selectIds.interests}
                                 label="Interest:"
                                 symbol="%"
                                 value="${this.interests}"

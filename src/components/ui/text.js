@@ -5,7 +5,7 @@ class TextInput extends HTMLElement { // numeric, usual text
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
-    this.id = this.getAttribute('text-id') || 'text-id';
+    this.id = this.getAttribute('id') || 'text-id';
     this.label = this.getAttribute('label') || '';
     this.min = this.getAttribute('min') || '0';
     this.max = this.getAttribute('max') || '100';

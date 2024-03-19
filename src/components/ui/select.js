@@ -7,7 +7,7 @@ class Selectbox extends HTMLElement {
       this.shadow = this.attachShadow({ mode: "open" });
       this.label = this.getAttribute('label') || '';
       this.symbol = this.getAttribute('symbol') || '';
-      this.id = this.getAttribute('selectbox-id') || 'select-id';
+      this.id = this.getAttribute('id') || 'select-id';
       this.value = this.getAttribute('value') || '';
       this.width = this.getAttribute('width') || '100';
       this.items = this.getAttribute('items') || '[]';

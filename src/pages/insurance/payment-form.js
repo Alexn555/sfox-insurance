@@ -145,8 +145,7 @@ class InsurancePaymentForm extends HTMLElement {
                 <div class="payment">
                     <div>
                             <form-select 
-                                id="accounts"
-                                selectbox-id="accounts" 
+                                id="accounts" 
                                 label="Account:"
                                 symbol=""
                                 value="${this.accounts}"
@@ -157,8 +156,7 @@ class InsurancePaymentForm extends HTMLElement {
                         </div>
                         <div>
                             <form-select 
-                                id="savedPayments"
-                                selectbox-id="savedPayments" 
+                                id="savedPayments" 
                                 label="Saved Payments:"
                                 symbol=""
                                 value="${this.savedPayments}"
@@ -170,7 +168,6 @@ class InsurancePaymentForm extends HTMLElement {
                         <div>
                             <text-input
                                 id="amount" 
-                                text-id="amount"
                                 label="Amount"
                                 class-name="amount"
                                 min="1" 
@@ -179,7 +176,7 @@ class InsurancePaymentForm extends HTMLElement {
                             >
                             </text-input>
                             <form-select 
-                                selectbox-id="currencies" 
+                                id="currencies" 
                                 label=""
                                 symbol=""
                                 width="100" 
@@ -191,7 +188,6 @@ class InsurancePaymentForm extends HTMLElement {
                         <div>  
                             <text-input
                                 id="description" 
-                                text-id="description"
                                 label="Description"
                                 class-name="input-normal"
                                 min="1" 
