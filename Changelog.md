@@ -1,4 +1,7 @@
 ## Changelog
+v 1.60
+  Added Text Size settings
+
 v 1.58
   Added Text Input component
 

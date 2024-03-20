@@ -3,7 +3,8 @@ export const SaveObjects = {
         active: 'active',
     },
     settings: {
-        close: 'settings-close'
+        close: 'settings-close',
+        textSize: 'text-size'
     },
     banners: {
         performance: 'performanceBanner'

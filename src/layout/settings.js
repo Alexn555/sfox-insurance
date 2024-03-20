@@ -12,6 +12,7 @@ class AppSettings extends HTMLElement {
         this.theme = Themes.main1;
         this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
+        this.textSizePrcnt = 100;
 
         this.themeList = [
             { id: 'themeMain', label: 'Main Theme', content: Themes.main1, },
@@ -140,7 +141,9 @@ class AppSettings extends HTMLElement {
             </style>
             <div class="settings">
                 <h2>Main Settings</h2>
+
                 <div class="settings-list">
+
                     ${this.showButtonSection()}
                     <div>
                         <action-button id="resetSettings" label="Reset settings" type="${ButtonTypes.highlight}" />
@@ -148,6 +151,10 @@ class AppSettings extends HTMLElement {
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
+                    <div>
+                        <settings-text-size></settings-text-size>
+                    </div>
+        
                 </div> 
             </div> 
         `;

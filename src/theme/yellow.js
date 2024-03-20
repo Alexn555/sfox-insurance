@@ -41,6 +41,12 @@ export const themeYellow = {
             }
         }
     },
+    settings: {
+        textSize: {
+            border: 'orange',
+            indicator: 'orange'
+        }
+    },
     page: {
         common: {
             title: mainColor

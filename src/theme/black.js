@@ -41,6 +41,12 @@ export const themeBlack = {
             }
         }
     },
+    settings: {
+        textSize: {
+            border: '#2b1e2b',
+            indicator: '#adadad'
+        }
+    },
     page: {
         common: {
             title: mainColor

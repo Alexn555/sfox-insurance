@@ -23,6 +23,11 @@ export const Animations = {
 };
 
 export const TextSizes = {
+    settings: {
+        min: 20,
+        max: 150,
+        step: 10 // percentage
+    },
     page: {
         title: {
             mobile: 20  

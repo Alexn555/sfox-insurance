@@ -41,6 +41,12 @@ export const themeMain1 = {
             }
         }
     },
+    settings: {
+        textSize: {
+            border: mainColor,
+            indicator: '#d496d6'
+        }
+    },
     page: {
         common: {
             title: mainColor

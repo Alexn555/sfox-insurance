@@ -41,6 +41,12 @@ export const themeBlue = {
             }
         }
     },
+    settings: {
+        textSize: {
+            border: mainColor,
+            indicator: '#769fdb'
+        }
+    },
     page: {
         common: {
             title: mainColor

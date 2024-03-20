@@ -41,6 +41,12 @@ export const themeRed = {
             }
         }
     },
+    settings: {
+        textSize: {
+            border: '#cf3030',
+            indicator: '#fa9696'
+        }
+    },
     page: {
         common: {
             title: mainColor
