@@ -62,7 +62,9 @@ class SettignsTextSize extends HTMLElement {
         this.shadow.innerHTML = `
             <style>
                 .text-size {
-                    padding: 0 0 0 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     width: 190px;
                     height: 60px;
                     border: 1px solid ${theme.settings.textSize.border};
