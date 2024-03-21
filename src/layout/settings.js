@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
-import { GlobalSizes, HeaderSettings } from '../components/common/settings';
+import { GlobalSizes, HeaderSettings, TextSizes } from '../components/common/settings';
 import { ButtonTypes } from '../components/common/ui';
 import DataStorage from '../services/storage';
 import { SaveForms, SaveObjects, WindowSettings } from '../components/common/saves';
@@ -54,8 +54,15 @@ class AppSettings extends HTMLElement {
     setResetSettingsHandler() {
         const resetId = this.shadow.getElementById('resetSettings');
         resetId.onclick = (() => {
-            const saveObj = [SaveObjects.themes.active, SaveObjects.settings.close, SaveObjects.banners.performance];
-            const saveForms = [SaveForms.performance.bannerFlip, SaveForms.calculator.main, SaveForms.performance.payment];
+            const saveObj = [
+                SaveObjects.themes.active, 
+                SaveObjects.settings.close,
+                SaveObjects.settings.textSize,
+                SaveObjects.banners.performance];
+            const saveForms = [
+                SaveForms.performance.bannerFlip, 
+                SaveForms.calculator.main, 
+                SaveForms.performance.payment];
             const list = saveObj.concat(saveForms);
             const permWord = HeaderSettings.resetDialog.permissionWord;
             let permission = prompt(`You about to remove all saved values from forms, type ${permWord} to agree or cancel`, permWord);
@@ -102,6 +109,15 @@ class AppSettings extends HTMLElement {
         return html;
     }
 
+    showTextSize() {
+        if (TextSizes.settings.enabled) {
+            return `<div>
+                    <settings-text-size></settings-text-size>
+                </div>`;
+        } 
+        return '';
+    }
+
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -141,9 +157,7 @@ class AppSettings extends HTMLElement {
             </style>
             <div class="settings">
                 <h2>Main Settings</h2>
-
                 <div class="settings-list">
-
                     ${this.showButtonSection()}
                     <div>
                         <action-button id="resetSettings" label="Reset settings" type="${ButtonTypes.highlight}" />
@@ -151,10 +165,7 @@ class AppSettings extends HTMLElement {
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
-                    <div>
-                        <settings-text-size></settings-text-size>
-                    </div>
-        
+                    ${this.showTextSize()}
                 </div> 
             </div> 
         `;

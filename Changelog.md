@@ -1,4 +1,7 @@
 ## Changelog
+v 1.62
+  Added TextSize improvements
+
 v 1.60
   Added Text Size settings
 

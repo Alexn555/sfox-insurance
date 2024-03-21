@@ -41,7 +41,7 @@ class HomeAccount extends HTMLElement {
                         col-size="5"
                         column-names='["Account", "Balance", "Insurance", "Reserved", "Case payment"]'
                         last-total-2x="true"
-                        col1='["<a href=#account11224345>Frideric Gonsalez</a> KA752210022577345534","<a href=#account11224345>Nancy Cool</a> KA7552210022577350034", "Total:"]'
+                        col1='["<a href=#account11224345>Frideric Naudini</a> KA752210022577345534","<a href=#account11224345>Nancy Cool</a> KA7552210022577350034", "Total:"]'
                         col2='["3 342 000.00", "50.90", "456.50"]'
                         col3='["20.00", "2000.00", "456.50"]'
                         col4='["725.00", "&nbsp;", "&nbsp;"]'
