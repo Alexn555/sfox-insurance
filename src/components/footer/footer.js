@@ -21,16 +21,19 @@ class Footer extends HTMLElement {
                     <footer-contact></footer-contact>
                     <footer-link-section 
                         title="QuickLinks"
+                        url="sfoxinsurance.org/quicklinks"
                         links='["Calculators", "Prices", "Terms of Service", "Privacy and security"]'
                     > 
                     </footer-link-section>
                     <footer-link-section
                         title="Join SFoxInsurance"
+                        url="sfoxinsurance.org/join"
                         links='["Client programs", "Jobs", "Business customers", "Investments"]'
                     >
                     </footer-link-section>
                     <footer-link-section 
                         title="Tools"
+                        url="sfoxinsurance.org/tools"
                         links='["Everyday insurance", "Loans", "Insurance", "Cards", "Stocks"]'
                     >
                     </footer-link-section>

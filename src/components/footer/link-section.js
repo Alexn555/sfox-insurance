@@ -7,6 +7,8 @@ class FooterLinkSection extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.title = this.getAttribute('title') || 'Section';
+        this.url = this.getAttribute('url') || 'sfoxinsurance.org';
+
         this.addEventListener('click', this.toggleContent.bind(this));
         window.addEventListener('resize', this.updateSize.bind(this));
 
@@ -15,12 +17,13 @@ class FooterLinkSection extends HTMLElement {
         this.linksContent = '';
         this.contentOpen = false;
         this.screenW = window.innerWidth;
+        const protocol = 'https://';
 
         if (rowLinks && rowLinks.length > 0) {
             this.links = JSON.parse(rowLinks);
             for (let i = 0; i < this.links.length; i++) {
                 this.linksContent += `<div class="link-item">
-                  <a href="https://SFoxInsurance.org/${this.links[i]}">${this.links[i]}</a>
+                  <a href="${protocol}${this.url}/${this.links[i]}">${this.links[i]}</a>
                 </div>`;
             }
         }
@@ -43,7 +46,6 @@ class FooterLinkSection extends HTMLElement {
     connectedCallback() {
         this.render();
     }
-    
 
     disconnectedCallback() {
         this.removeEventListener('click', null);
@@ -149,7 +151,6 @@ class FooterLinkSection extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('footer-link-section', FooterLinkSection);
