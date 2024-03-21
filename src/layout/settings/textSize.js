@@ -12,7 +12,7 @@ class SettignsTextSize extends HTMLElement {
         this.theme = Themes.main1;
         this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
-        this.textSizePrcnt = TextSizes.settings.init;
+        this.textSizePrcnt = TextSizes.settings.default;
     }
     
     connectedCallback() {
@@ -51,7 +51,7 @@ class SettignsTextSize extends HTMLElement {
         this.dataStorage.save(SaveObjects.settings.textSize, this.textSizePrcnt);
     }
 
-    setBodyTextSize(size = TextSizes.settings.init) {
+    setBodyTextSize(size = TextSizes.settings.default) {
         const body = document.querySelector('body');
         const indicator = this.shadow.getElementById('indicator');
         indicator.innerHTML = `<b>${size}</b>`;

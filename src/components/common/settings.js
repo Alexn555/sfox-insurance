@@ -25,7 +25,7 @@ export const Animations = {
 export const TextSizes = {
     settings: {
         enabled: true,
-        init: 100,
+        default: 100,
         min: 20,
         max: 150,
         step: 10 // percentage
