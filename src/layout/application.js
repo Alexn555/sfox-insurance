@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure } from '../components/common/settings';
+import { Animations, PageStructure, SEO } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
 import { getVersionFromPackage } from '../components/common/utils/strings';
 import DataStorage from '../services/storage';
@@ -29,7 +29,7 @@ class Application extends HTMLElement {
     setTitle() {
         const pckData = require('../../package.json');
         const titleEl = document.querySelector('title');
-        titleEl.innerHTML = `SFoxInsurance calculator R${getVersionFromPackage(pckData.version)}`;
+        titleEl.innerHTML = `${SEO.application} R${getVersionFromPackage(pckData.version)}`;
     }
 
     settingsChanged(evt) {

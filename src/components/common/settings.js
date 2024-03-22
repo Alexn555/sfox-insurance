@@ -22,6 +22,13 @@ export const Animations = {
     pageInitFadeIn: 2
 };
 
+export const SEO = {
+    enabled: true,
+    application: 'SFoxInsurance engine',
+    author: 'W3C',
+    description: 'SfoxEngine - engine to show good features webComponents.'
+};
+
 export const TextSizes = {
     settings: {
         enabled: true,

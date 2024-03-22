@@ -1,4 +1,7 @@
 ## Changelog
+v 1.65
+  Added SEO helmet
+
 v 1.62
   Added TextSize improvements
 

@@ -96,6 +96,7 @@ class Header extends HTMLElement {
                 }
             </style>
             <header class="header"> 
+                <seo-helmet></seo-helmet>
                 <split-line height="10"></split-line>
                 <div class="logo-menu">
                     <header-logo></header-logo>
@@ -115,7 +116,6 @@ class Header extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('header-section', Header);
