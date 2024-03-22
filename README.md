@@ -2,7 +2,7 @@
 
 SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
-Main plot to show good feature of WebComponents and how can those be used <br />
+Main plot to show good features of WebComponents and how can those be used <br />
 in real website, administration systems.
 
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
