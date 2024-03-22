@@ -15,7 +15,7 @@ class Footer extends HTMLElement {
             <style>
                 ${setStyle()}
             </style>
-            <section class="footer"> 
+            <footer class="footer"> 
                 <split-line height="4"></split-line>
                 <div class="footer-main">
                     <footer-contact></footer-contact>
@@ -39,7 +39,7 @@ class Footer extends HTMLElement {
                     </footer-link-section>
                 </div>
                 <footer-disclaimer><footer-disclaimer>
-            </section>
+            </footer>
         `;
     }
 }

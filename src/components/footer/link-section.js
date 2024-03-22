@@ -124,7 +124,7 @@ class FooterLinkSection extends HTMLElement {
                     }        
                 }
             </style>
-            <div class="footer-link-section"> 
+            <section class="footer-link-section"> 
                 <div class="link-title">
                     ${this.title}
                     <div class="toggle-content">
@@ -147,7 +147,7 @@ class FooterLinkSection extends HTMLElement {
                 <div class="link-content">
                     ${this.linksContent}
                 </div>
-            </div>
+            </section>
         `;
     }
 }

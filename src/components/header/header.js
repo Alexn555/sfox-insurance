@@ -95,7 +95,7 @@ class Header extends HTMLElement {
                     }
                 }
             </style>
-            <section class="header"> 
+            <header class="header"> 
                 <split-line height="10"></split-line>
                 <div class="logo-menu">
                     <header-logo></header-logo>
@@ -111,7 +111,7 @@ class Header extends HTMLElement {
                 </div>
 
                 <div class="header-overlay"></div>
-            </section>
+            </header>
         `;
     }
 }

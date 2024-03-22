@@ -47,7 +47,7 @@ class FooterContact extends HTMLElement {
                     }
                 }
             </style>
-            <div class="footer-contact"> 
+            <section class="footer-contact"> 
                 <div class="title">Contact</div>
                 <div class="phone">2 445 500</div>
                 <div class="email">
@@ -91,7 +91,7 @@ class FooterContact extends HTMLElement {
                     >
                     </footer-social-item>
                 </div>
-            </div>
+            </section>
         `;
     }
 }
