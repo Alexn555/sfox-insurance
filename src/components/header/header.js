@@ -95,8 +95,7 @@ class Header extends HTMLElement {
                     }
                 }
             </style>
-            <header class="header"> 
-                <seo-helmet></seo-helmet>
+            <header class="header">
                 <split-line height="10"></split-line>
                 <div class="logo-menu">
                     <header-logo></header-logo>
