@@ -1,8 +1,9 @@
-### Insurance Calculator v 1.62
+### Insurance Engine v 1.62
 
-SFoxInsurance (Non-existing in real company) Calculator program to view bank accounts and loans
-It's fiction company, that doesn't exists, just to implement and try out WebComponents
-and some latest best Javascript tricks.
+SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
+Economical, News Portal. <br />
+Main plot to show good feature of WebComponents and how can those be used <br />
+in real website, administration systems.
 
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
