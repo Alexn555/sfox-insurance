@@ -5,7 +5,6 @@ export const GlobalSizes = {
 
 export const TextSizes = {
     settings: {
-        enabled: true,
         default: 100,
         min: 20,
         max: 150,

@@ -1,4 +1,7 @@
 ## Changelog
+v 1.67
+  Refactored Settings
+  
 v 1.65
   Added SEO helmet
 

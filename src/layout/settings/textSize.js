@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Themes, theme } from '../../theme/theme';
+import { theme } from '../../theme/theme';
 import { TextSizes } from '../../components/common/settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
@@ -9,16 +9,17 @@ class SettignsTextSize extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.theme = Themes.main1;
-        this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
+        this.enabled = this.getAttribute('enabled') | 1;
         this.textSizePrcnt = TextSizes.settings.default;
     }
     
     connectedCallback() {
-        this.render();
-        this.setTextSizeOnInit();
-        this.setTextSizeHandler();
+        if (this.enabled === 1) {
+            this.render();
+            this.setTextSizeOnInit();
+            this.setTextSizeHandler();   
+        }
     }
 
     setTextSizeHandler() {  

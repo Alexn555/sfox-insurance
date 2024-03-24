@@ -1,9 +1,8 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
-import { GlobalSizes, HeaderSettings, TextSizes } from '../components/common/settings';
-import { ButtonTypes } from '../components/common/ui';
+import { SettingsBoard } from '../components/common/settings';
 import DataStorage from '../services/storage';
-import { SaveForms, SaveObjects, WindowSettings } from '../components/common/saves';
+import { SaveObjects } from '../components/common/saves';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -13,22 +12,10 @@ class AppSettings extends HTMLElement {
         this.useCloseAnimation = false;
         this.dataStorage = new DataStorage();
         this.textSizePrcnt = 100;
-
-        this.themeList = [
-            { id: 'themeMain', label: 'Main Theme', content: Themes.main1, },
-            { id: 'themeBlue', label: 'Blue Theme', content: Themes.blue  },
-            { id: 'themeBlack', label: 'Black Theme', content: Themes.black  },
-            { id: 'themeRed', label: 'Red Theme', content: Themes.red  },
-            { id: 'themeYellow', label: 'Yellow Theme', content: Themes.yellow },
-        ];
-
-        this.setThemeOnInit();
     }
     
     connectedCallback() {
         this.render();
-        this.setThemeHandlers();
-        this.setResetSettingsHandler();
 
         const elClose = this.shadow.getElementById('close');
         elClose.onclick = (() => {
@@ -36,86 +23,6 @@ class AppSettings extends HTMLElement {
             elClose.className += this.useCloseAnimation ? ' close' : '';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
         });
-    }
-
-    setThemeHandlers() {
-        this.themeList.forEach((thm) => {
-            this.setThemeHandler(thm.id, thm.content);
-        });
-    }
-
-    setThemeHandler(themeId, themeSelected) {
-        const thmHandler = this.shadow.getElementById(themeId);
-        thmHandler.onclick = (() => {
-            this.setTheme(themeSelected);
-        });
-    }
-
-    setResetSettingsHandler() {
-        const resetId = this.shadow.getElementById('resetSettings');
-        resetId.onclick = (() => {
-            const saveObj = [
-                SaveObjects.themes.active, 
-                SaveObjects.settings.close,
-                SaveObjects.settings.textSize,
-                SaveObjects.banners.performance];
-            const saveForms = [
-                SaveForms.performance.bannerFlip, 
-                SaveForms.calculator.main, 
-                SaveForms.performance.payment];
-            const list = saveObj.concat(saveForms);
-            const permWord = HeaderSettings.resetDialog.permissionWord;
-            let permission = prompt(`You about to remove all saved values from forms, type ${permWord} to agree or cancel`, permWord);
-            if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
-              this.dataStorage.removeList(list);
-              setTimeout(() => { // reset to root page
-                document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
-              }, 500);
-            }
-        });
-    }
-
-    setThemeOnInit() {
-        if(document.cookie.indexOf(WindowSettings.refresh) == -1) {
-            // The cookie doesn't exist. Create it now -> expires after [n] time
-            document.cookie = `${WindowSettings.refresh}=1;max-age=${GlobalSizes.wdStngsRefresh}`;
-            // to use only on 'real refresh' with all components
-            const savedTheme = this.dataStorage.getItem(SaveObjects.themes.active);
-            if (savedTheme) {
-                this.setTheme(savedTheme);
-            }
-        }
-    }
-
-    setTheme(_theme = Themes.main1) {
-        this.theme = _theme;
-        this.dataStorage.save(SaveObjects.themes.active, _theme);
-        document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
-    }
-
-    showButton(id, label) {
-        return `
-            <div>
-                <action-button id="${id}" label="${label}" type="${ButtonTypes.action}" />
-            </div>
-        `;
-    }
-
-    showButtonSection() {
-        let html = '';
-        this.themeList.forEach((thm) => {
-            html += this.showButton(thm.id, thm.label);
-        });
-        return html;
-    }
-
-    showTextSize() {
-        if (TextSizes.settings.enabled) {
-            return `<div>
-                    <settings-text-size></settings-text-size>
-                </div>`;
-        } 
-        return '';
     }
 
     render() {
@@ -137,16 +44,16 @@ class AppSettings extends HTMLElement {
                     }
                   }
                   
-                 .settings {
+                .settings {
                     background-color: ${theme.layout.background};
                     padding: 0 0 0 50px;
-                 }
+                }
 
-                 .close {
+                .close {
                     animation-name: closeAnimation;
                     animation-duration: 2000ms;
                     animation-fill-mode: forwards;
-                 }
+                }
 
                 .settings-list {
                     & div {
@@ -158,14 +65,18 @@ class AppSettings extends HTMLElement {
             <div class="settings">
                 <h2>Main Settings</h2>
                 <div class="settings-list">
-                    ${this.showButtonSection()}
                     <div>
-                        <action-button id="resetSettings" label="Reset settings" type="${ButtonTypes.highlight}" />
+                        <theme-settings enabled="${SettingsBoard.theme.enabled}"></theme-settings>
+                    </div>
+                    <div>
+                        <reset-settings enabled="${SettingsBoard.resetSettings.enabled}"></reset-settings>
                     </div>
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
-                    ${this.showTextSize()}
+                    <div>
+                        <settings-text-size enabled="${SettingsBoard.textSizes.enabled}"></settings-text-size>
+                    </div>
                 </div> 
             </div> 
         `;
