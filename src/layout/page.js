@@ -4,7 +4,6 @@ import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
 
-
 class PageSwitcher extends HTMLElement {
     constructor() {
         super();
@@ -127,7 +126,6 @@ class PageSwitcher extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('page-switcher', PageSwitcher);

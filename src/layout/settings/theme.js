@@ -86,6 +86,10 @@ class ThemeSettings extends HTMLElement {
                     display: inline-block;
                     padding-right: 10px;
 
+                    &:last-child {
+                        padding-right: 0;
+                    }
+
                     @media (max-width: 768px) {
                         padding-bottom: 10px;
                     }
