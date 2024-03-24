@@ -10,16 +10,13 @@ class SettignsTextSize extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.dataStorage = new DataStorage();
-        this.enabled = this.getAttribute('enabled') | 1;
         this.textSizePrcnt = TextSizes.settings.default;
     }
     
     connectedCallback() {
-        if (this.enabled === 1) {
-            this.render();
-            this.setTextSizeOnInit();
-            this.setTextSizeHandler();   
-        }
+        this.render();
+        this.setTextSizeOnInit();
+        this.setTextSizeHandler();   
     }
 
     setTextSizeHandler() {  

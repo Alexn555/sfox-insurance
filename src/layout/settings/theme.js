@@ -10,7 +10,6 @@ class ThemeSettings extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.theme = Themes.main1;
-        this.enabled = this.getAttribute('enabled') | 1;
         this.dataStorage = new DataStorage();
 
         this.themeList = [
@@ -25,10 +24,8 @@ class ThemeSettings extends HTMLElement {
     }
     
     connectedCallback() {
-        if (this.enabled === 1) {
-            this.render();
-            this.setThemeHandlers(); 
-        }
+        this.render();
+        this.setThemeHandlers();         
     }
 
     setThemeHandlers() {

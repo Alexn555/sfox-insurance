@@ -2,6 +2,7 @@
 import { GlobalSizes, Animations, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
+import { FooterBoard } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
 
 class Layout extends HTMLElement {
@@ -92,6 +93,13 @@ class Layout extends HTMLElement {
         }
     }
 
+    showFooter() {
+        if (FooterBoard.board.enabled) {
+            return '<footer-section></footer-section>';
+        }
+        return '';
+    }
+
     render() {  
         this.shadow.innerHTML = `
             <style>
@@ -131,7 +139,7 @@ class Layout extends HTMLElement {
 
                 <page-switcher></page-switcher>
 
-                <footer-section></footer-section>
+                ${this.showFooter()}
             </div> 
         `;
     }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure, SEO } from '../components/common/settings';
+import { Animations, PageStructure, SEO, SettingsBoard } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
 import { getVersionFromPackage } from '../components/common/utils/strings';
 import DataStorage from '../services/storage';
@@ -52,6 +52,17 @@ class Application extends HTMLElement {
         }, Animations.topSettings * 1000);
     }
 
+    showSettings() {
+        if (SettingsBoard.board.enabled) {
+            return `  
+                <div class="settings">
+                    <main-settings> </main-settings>
+                </div>
+            `;
+        }
+        return '';
+    }
+
     render() {
         const stngsHeight = PageStructure.settings.height;
         this.shadow.innerHTML = `
@@ -74,9 +85,7 @@ class Application extends HTMLElement {
                 }
             </style>
             <div class="application">
-                <div class="settings">
-                    <main-settings> </main-settings>
-                </div>
+                ${this.showSettings()}
                 <div class="layout">
                     <main-layout></main-layout>
                 </div>

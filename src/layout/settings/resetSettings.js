@@ -8,15 +8,12 @@ class ResetSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.enabled = this.getAttribute('enabled') | 1;
         this.dataStorage = new DataStorage();
     }
     
     connectedCallback() {
-        if (this.enabled === 1) {
-            this.render();
-            this.setResetSettingsHandler();
-        }
+        this.render();
+        this.setResetSettingsHandler();
     }
 
     setResetSettingsHandler() {

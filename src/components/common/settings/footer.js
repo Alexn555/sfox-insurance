@@ -1,14 +1,14 @@
-export const SettingsBoard = {
+export const FooterBoard = {
     board: {
         enabled: true
     },
-    theme: {
+    dislaimer: {
         enabled: true
     },
-    resetSettings: {
+    contact: {
         enabled: true
     },
-    textSizes: {
+    links: {
         enabled: true
     }
 };

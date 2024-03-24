@@ -25,6 +25,13 @@ class AppSettings extends HTMLElement {
         });
     }
 
+    showComponent(isEnabled, template) {
+        if (isEnabled) {
+            return template;
+        }
+        return '';
+    }
+
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -65,18 +72,24 @@ class AppSettings extends HTMLElement {
             <div class="settings">
                 <h2>Main Settings</h2>
                 <div class="settings-list">
-                    <div>
-                        <theme-settings enabled="${SettingsBoard.theme.enabled}"></theme-settings>
-                    </div>
-                    <div>
-                        <reset-settings enabled="${SettingsBoard.resetSettings.enabled}"></reset-settings>
-                    </div>
+                    ${this.showComponent(SettingsBoard.theme.enabled, `
+                        <div>
+                            <theme-settings></theme-settings>
+                        </div>
+                    `)}
+                    ${this.showComponent(SettingsBoard.resetSettings.enabled, `
+                        <div>
+                            <reset-settings></reset-settings>
+                        </div>
+                    `)}
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
-                    <div>
-                        <settings-text-size enabled="${SettingsBoard.textSizes.enabled}"></settings-text-size>
-                    </div>
+                    ${this.showComponent(SettingsBoard.textSizes.enabled, `
+                        <div>
+                            <settings-text-size></settings-text-size>
+                        </div>
+                    `)}
                 </div> 
             </div> 
         `;
