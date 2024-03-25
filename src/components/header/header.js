@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { GlobalSizes } from '../../components/common/settings';
+import { GlobalSizes, HeaderBoard } from '../../components/common/settings';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
+import { showComponent } from '../../components/common/utils';
 
 class Header extends HTMLElement {
     constructor() {
@@ -98,7 +99,7 @@ class Header extends HTMLElement {
             <header class="header">
                 <split-line height="10"></split-line>
                 <div class="logo-menu">
-                    <header-logo></header-logo>
+                    ${showComponent(HeaderBoard.logo.enabled, '<header-logo></header-logo>')}
                     <div class="logo-menu-toggle">
                         <a href="#toggle" onclick="this.toggleMenu()">
                             <img class="toggle-icon" src="./${btnMap.mobile.menuOpen}" />

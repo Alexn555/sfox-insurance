@@ -15,4 +15,7 @@ export const HeaderBoard = {
     board: {
         enabled: true
     },
+    logo: {
+        enabled: true
+    }
 };
