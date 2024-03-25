@@ -3,6 +3,7 @@ import { theme, Themes } from '../theme/theme';
 import { SettingsBoard } from '../components/common/settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
+import { showComponent } from "../components/common/utils/";
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -23,13 +24,6 @@ class AppSettings extends HTMLElement {
             elClose.className += this.useCloseAnimation ? ' close' : '';
             document.dispatchEvent(new CustomEvent('settings-close', { bubbles: false, cancelable: false }));
         });
-    }
-
-    showComponent(isEnabled, template) {
-        if (isEnabled) {
-            return template;
-        }
-        return '';
     }
 
     render() {
@@ -72,12 +66,12 @@ class AppSettings extends HTMLElement {
             <div class="settings">
                 <h2>Main Settings</h2>
                 <div class="settings-list">
-                    ${this.showComponent(SettingsBoard.theme.enabled, `
+                    ${showComponent(SettingsBoard.theme.enabled, `
                         <div>
                             <theme-settings></theme-settings>
                         </div>
                     `)}
-                    ${this.showComponent(SettingsBoard.resetSettings.enabled, `
+                    ${showComponent(SettingsBoard.resetSettings.enabled, `
                         <div>
                             <reset-settings></reset-settings>
                         </div>
@@ -85,7 +79,7 @@ class AppSettings extends HTMLElement {
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
-                    ${this.showComponent(SettingsBoard.textSizes.enabled, `
+                    ${showComponent(SettingsBoard.textSizes.enabled, `
                         <div>
                             <settings-text-size></settings-text-size>
                         </div>

@@ -1,5 +1,6 @@
 import { setStyle } from "./styles/footer";
 import { FooterBoard } from '../../components/common/settings';
+import { showComponent } from "../../components/common/utils/";
 
 class Footer extends HTMLElement {
     constructor() {
@@ -11,13 +12,6 @@ class Footer extends HTMLElement {
         this.render();
     }
 
-    showComponent(isEnabled, template) {
-        if (isEnabled) {
-            return template;
-        }
-        return '';
-    }
-
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -26,8 +20,8 @@ class Footer extends HTMLElement {
             <footer class="footer"> 
                 <split-line height="4"></split-line>
                 <div class="footer-main">
-                    ${this.showComponent(FooterBoard.contact.enabled, '<footer-contact></footer-contact>')}
-                    ${this.showComponent(FooterBoard.links.enabled, `   
+                    ${showComponent(FooterBoard.contact.enabled, '<footer-contact></footer-contact>')}
+                    ${showComponent(FooterBoard.links.enabled, `   
                         <footer-link-section 
                             title="QuickLinks"
                             url="sfoxinsurance.org/quicklinks"
@@ -48,7 +42,7 @@ class Footer extends HTMLElement {
                         </footer-link-section>           
                     `)}
                 </div>
-                ${this.showComponent(FooterBoard.dislaimer.enabled, '<footer-disclaimer></footer-disclaimer>')}
+                ${showComponent(FooterBoard.dislaimer.enabled, '<footer-disclaimer></footer-disclaimer>')}
             </footer>
         `;
     }

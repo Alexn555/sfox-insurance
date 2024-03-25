@@ -1,4 +1,4 @@
-import { simulateDelay } from '../components/common/utils/server';
+import { simulateDelay } from '../components/common/utils/';
 import mockDisclaimerData from '../data/mocks/disclaimer';
 
 export default class InfoService {

@@ -2,8 +2,9 @@
 import { GlobalSizes, Animations, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
-import { FooterBoard } from '../components/common/settings';
+import { HeaderBoard, FooterBoard } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
+import { showComponent } from '../components/common/utils';
 
 class Layout extends HTMLElement {
     constructor() {
@@ -14,7 +15,6 @@ class Layout extends HTMLElement {
         this.dataStorage = new DataStorage();
         this.screenW = window.innerWidth;
         this.settingsToggle = true;
-        this.ontainer = this.shadow.querySelector('.layout');
         this.animationDuration = Animations.topSettings;
         this.loadingNotice = '';
     }
@@ -93,13 +93,6 @@ class Layout extends HTMLElement {
         }
     }
 
-    showFooter() {
-        if (FooterBoard.board.enabled) {
-            return '<footer-section></footer-section>';
-        }
-        return '';
-    }
-
     render() {  
         this.shadow.innerHTML = `
             <style>
@@ -135,11 +128,11 @@ class Layout extends HTMLElement {
                     Loading settings...
                 </dialog>
 
-                <header-section></header-section>
+                ${showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
 
                 <page-switcher></page-switcher>
 
-                ${this.showFooter()}
+                ${showComponent(FooterBoard.board.enabled, '<footer-section></footer-section>')}
             </div> 
         `;
     }

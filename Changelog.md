@@ -1,4 +1,7 @@
 ## Changelog
+v 1.70
+  Added refactor showComponent, small fixes
+
 v 1.67
   Refactored Settings
   
