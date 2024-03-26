@@ -1,96 +1,52 @@
 // @ts-nocheck
-import { GlobalSizes, Animations, PageStructure } from '../components/common/settings';
+import { GlobalSizes, Animations, CustomEvents, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../components/common/settings';
-import { SaveObjects } from '../components/common/saves';
 import { showComponent } from '../components/common/utils';
 
 class Layout extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        document.addEventListener('settings-close', this.closeSettings.bind(this));
         window.addEventListener('resize', this.updateSize.bind(this));
+        document.addEventListener(CustomEvents.settings.moveLayout, (evt) => {
+            this.moveLayout(evt.detail.value);
+        });
+
         this.dataStorage = new DataStorage();
-        this.screenW = window.innerWidth;
-        this.settingsToggle = true;
         this.animationDuration = Animations.topSettings;
-        this.loadingNotice = '';
     }
     
     connectedCallback() {
         this.render();
-        this.setLayoutOffset(true);
-        
-        const el = this.shadow.getElementById('settingsOpen');
-        const container = this.shadow.querySelector('.layout');
-
-        el.addEventListener('click', () => {
-           this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
-           this.toggleNotice(this.settingsToggle);
-           this.moveLayout(container);
-        });
-    }
-
-    disconnectedCallback() {
-        const el = this.shadow.getElementById('settingsOpen');
-        el.removeEventListener('click', null);
+        this.setLayoutOffset();
     }
 
     updateSize() {
-        this.screenW = window.innerWidth;
         this.setLayoutOffset();
-        const stn = this.shadow.querySelector('.settings-button');
-        stn.style.left = `${this.getStnPosition()}px`;
     }
 
-    setLayoutOffset(isInit = false) {
+    setLayoutOffset() {
         const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         this.laytOffsetSettings = isMobile ? '60' : '0';
-        if (isInit) {
-            this.setToggle(false);
-            this.moveLayout(this.shadow.querySelector('.layout'));
-        }
     }
 
-    getStnPosition() {
-        return `${this.screenW - 100}`;
-    }
-
-    moveLayout(container) {
-        const top = this.settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
+    moveLayout(settingsToggle) {
+        const container = this.shadow.querySelector('.layout');
+        const top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
         container.style.transform = `translateY(${top}px)`;
 
         container.style.transitionDuration = `${this.animationDuration}s`;
 
-        document.dispatchEvent(new CustomEvent('settings-toggle', { 
-            detail: { value: this.settingsToggle },
+        document.dispatchEvent(new CustomEvent(CustomEvents.settings.toggle, { 
+            detail: { value: settingsToggle },
             bubbles: false, cancelable: false 
         }));
 
         setTimeout(() => {
             container.style.transform = `translateY(0)`;
-         }, this.animationDuration * 1200);
-
-        this.setToggle(!this.settingsToggle);
-    }
-
-    closeSettings() {
-        this.setToggle(true);
-        this.moveLayout(this.shadow.querySelector('.layout'));
-    }
-
-    setToggle(toggle) {
-        this.settingsToggle = toggle;
-    }
-
-    toggleNotice(isClose) {
-        const elDialog = this.shadow.getElementById('load-settings');
-        if (!isClose) {
-            elDialog.showModal();
-            setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);
-        }
+        }, this.animationDuration * 1200);
     }
 
     render() {  
@@ -102,31 +58,9 @@ class Layout extends HTMLElement {
                     background-color: ${theme.layout.background};
                     overflow-x: hidden;
                 }
-
-                /* {this.screenW - 100}px - to avoid shifting when overlay shows */
-                .settings-button {
-                    position: absolute;
-                    left: ${this.getStnPosition()}px; 
-                    top: 16px;
-                    z-index: 2000;
-                    opacity: 0.3;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-
-                    @media (max-width: 768px) {
-                        top: 60px;
-                    }
-                }
             </style>
             <div class="layout">
-                <div class="settings-button">                
-                    <action-button label="Settings" id="settingsOpen" type="action"> </action-button>
-                </div>
-                <dialog id="load-settings">
-                    Loading settings...
-                </dialog>
+                <load-settings></load-settings>
 
                 ${showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
 
@@ -137,7 +71,6 @@ class Layout extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('main-layout', Layout);

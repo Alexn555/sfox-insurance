@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Themes } from '../../theme/theme';
-import { GlobalSizes } from '../../components/common/settings';
+import { GlobalSizes, CustomEvents } from '../../components/common/settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';
@@ -56,7 +56,7 @@ class ThemeSettings extends HTMLElement {
     setTheme(_theme = Themes.main1) {
         this.theme = _theme;
         this.dataStorage.save(SaveObjects.themes.active, _theme);
-        document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+        document.dispatchEvent(new CustomEvent(CustomEvents.settings.themeChanged, { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
     }
 
     showButton(id, label) {

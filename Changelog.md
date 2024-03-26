@@ -1,4 +1,7 @@
 ## Changelog
+v 1.72
+  Added move settings close button with dialog as component
+
 v 1.70
   Added refactor showComponent, small fixes
 

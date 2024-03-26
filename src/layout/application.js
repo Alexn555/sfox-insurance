@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure, SEO, SettingsBoard } from '../components/common/settings';
+import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../components/common/settings';
 import { SaveObjects } from '../components/common/saves';
 import { getVersionFromPackage } from '../components/common/utils/';
 import DataStorage from '../services/storage';
@@ -9,8 +9,8 @@ class Application extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        document.addEventListener('settings-theme-changed', this.settingsChanged.bind(this));
-        document.addEventListener('settings-toggle', this.toggleSettings.bind(this));
+        document.addEventListener(CustomEvents.settings.themeChanged, this.settingsChanged.bind(this));
+        document.addEventListener(CustomEvents.settings.toggle, this.toggleSettings.bind(this));
         this.dataStorage = new DataStorage();
         this.setTitle();
         this.isInit = true;
@@ -22,8 +22,8 @@ class Application extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener('settings-theme-changed', null);
-        document.removeEventListener('settings-toggle', null);
+        document.removeEventListener(CustomEvents.settings.themeChanged, null);
+        document.removeEventListener(CustomEvents.settings.toggle, null);
     }
 
     setTitle() {

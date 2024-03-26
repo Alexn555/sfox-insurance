@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
-import { HeaderSettings } from '../../components/common/settings';
+import { HeaderSettings, CustomEvents } from '../../components/common/settings';
 import { SaveForms, SaveObjects } from '../../components/common/saves';
 
 class ResetSettings extends HTMLElement {
@@ -34,7 +34,7 @@ class ResetSettings extends HTMLElement {
             if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
               this.dataStorage.removeList(list);
               setTimeout(() => { // reset to root page
-                document.dispatchEvent(new CustomEvent('settings-theme-changed', { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+                document.dispatchEvent(new CustomEvent(CustomEvents.settings.themeChanged, { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
               }, 500);
             }
         });
