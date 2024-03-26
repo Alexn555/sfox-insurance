@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { pageNames, Animations } from "../components/common/settings";
+import { pageNames, Animations, CustomEvents } from "../components/common/settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
@@ -11,11 +11,11 @@ class PageSwitcher extends HTMLElement {
         this.dataStorage = new DataStorage();
         this.pageIds = ['home', 'insurance', 'additional'];
 
-        document.addEventListener('header-menu-click', (evt) => {
+        document.addEventListener(CustomEvents.header.menuClick, (evt) => {
             this.getPage(evt.detail.value, false);
         });
 
-        document.addEventListener('flip-board', (evt) => {
+        document.addEventListener(CustomEvents.interaction.flipBoard, (evt) => {
             const { value } = evt.detail;
             const el = this.shadow.querySelector('.page');
             const isAngle = true;
@@ -89,8 +89,8 @@ class PageSwitcher extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener('header-menu-click', null);
-        document.removeEventListener('flip-board', null);
+        document.removeEventListener(CustomEvents.header.menuClick, null);
+        document.removeEventListener(CustomEvents.interaction.flipBoard, null);
     }
 
     render() {

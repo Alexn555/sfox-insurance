@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';
@@ -55,7 +56,7 @@ class InsuranceBanner extends HTMLElement {
     flipBoard() {
         this.toggleFlip(!this.isFliped);
         this.dataStorage.save(SaveForms.performance.bannerFlip, this.isFliped);
-        document.dispatchEvent(new CustomEvent('flip-board', { detail: { value: this.isFliped }, bubbles: true, cancelable: false }));
+        document.dispatchEvent(new CustomEvent(CustomEvents.interaction.flipBoard, { detail: { value: this.isFliped }, bubbles: true, cancelable: false }));
     }
 
     toggleFlip(toggle) {

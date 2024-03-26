@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalSizes, HeaderBoard } from '../../components/common/settings';
+import { GlobalSizes, HeaderBoard, CustomEvents } from '../../components/common/settings';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
 import { showComponent } from '../../components/common/utils';
@@ -11,14 +11,14 @@ class Header extends HTMLElement {
         this.shadow.addEventListener('click', this.toggleMenu.bind(this));
         window.addEventListener('resize', this.updateSize.bind(this));
 
-        document.addEventListener('header-menu-overlay', () => {
+        document.addEventListener(CustomEvents.header.menuOverlay, () => {
             const overlay = this.shadow.querySelector('.header-overlay');
             if (overlay) {
                 overlay.style.display = 'block';
             }
         });
 
-        document.addEventListener('header-menu-overlay-remove', () => {
+        document.addEventListener(CustomEvents.header.menuOverlayRemove, () => {
             const overlay = this.shadow.querySelector('.header-overlay');
             if (overlay) {
                 overlay.style.display = 'none';
@@ -37,8 +37,8 @@ class Header extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener('header-menu-overlay', null);
-        document.removeEventListener('header-menu-overlay-remove', null);
+        document.removeEventListener(CustomEvents.header.menuOverlay, null);
+        document.removeEventListener(CustomEvents.header.menuOverlayRemove, null);
     }
 
     toggleMenu() {

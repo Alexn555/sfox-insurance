@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 import { imageMap } from '../../components/common/assets';
 
 class HeaderMenu extends HTMLElement {
@@ -21,19 +22,18 @@ class HeaderMenu extends HTMLElement {
     }
 
     setOverlay() {
-        document.dispatchEvent(new CustomEvent('header-menu-overlay', { bubbles: true, cancelable: false }));
-     }
+        document.dispatchEvent(new CustomEvent(CustomEvents.header.menuOverlay, { bubbles: true, cancelable: false }));
+    }
      
     removeOverlay() {
-        document.dispatchEvent(new CustomEvent('header-menu-overlay-remove', { bubbles: true, cancelable: false }));
-     }
-     
+        document.dispatchEvent(new CustomEvent(CustomEvents.header.menuOverlayRemove, { bubbles: true, cancelable: false }));
+    }
 
     toggleMenuItem(evt) {
         const { target } = evt;
         const item =  target.id;
         const selectedItem = this.setSelected(item);
-        document.dispatchEvent(new CustomEvent('header-menu-click', { detail: {value: item}, bubbles: true, cancelable: false }));
+        document.dispatchEvent(new CustomEvent(CustomEvents.header.menuClick, { detail: {value: item}, bubbles: true, cancelable: false }));
         
         const searchCl = this.shadow.querySelectorAll('.header-menu-item');
     
