@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 
 class TextInput extends HTMLElement { // numeric, usual text
   constructor() {
@@ -22,14 +22,14 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.render();
     const el = this.shadow.getElementById(this.id);
     el.onchange = (() => {
-      document.dispatchEvent(new CustomEvent(`text-input-change-${this.id}`, {
+      document.dispatchEvent(new CustomEvent(`${CustomEvents.interaction.textInputChange}-${this.id}`, {
         detail: {value: el.value}, bubbles: true, cancelable: false 
       }));
     }); 
   }
 
   disconnectedCallback() {
-    document.removeEventListener(`text-input-change-${this.id}`, null);
+    document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.id}`, null);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

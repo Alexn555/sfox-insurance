@@ -2,6 +2,7 @@
 import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 import { SaveForms } from '../../components/common/saves';
 import { getOptionFromString } from '../../components/common/utils/arrays';
 import DataStorage from '../../services/storage';
@@ -31,17 +32,20 @@ class InsuranceCalculatorForm extends HTMLElement {
         interests: getOptionFromString(dtInterests, 0) 
       };
 
-      document.addEventListener(`slider-value-change-${this.selectIds.loan}`, (evt) => {
+
+      document.addEventListener(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (evt) => {
         this.loan = evt.detail.value;
         this.save('loan', evt.detail.value);
         const el = this.shadow.querySelector('.loan-current-amount');
         el.innerHTML = `${this.loan} ${this.currency}`;
       });
-      document.addEventListener(`select-change-${this.selectIds.period}`, (evt) => {
+
+      const selectEvt = CustomEvents.interaction.selectChange;
+      document.addEventListener(`${selectEvt}-${this.selectIds.period}`, (evt) => {
         this.period = evt.detail.value;
         this.save('period', evt.detail.value);
       });
-      document.addEventListener(`select-change-${this.selectIds.interests}`, (evt) => {
+      document.addEventListener(`${selectEvt}-${this.selectIds.interests}`, (evt) => {
         this.interests = evt.detail.value;
         this.save('interests', evt.detail.value);
       });

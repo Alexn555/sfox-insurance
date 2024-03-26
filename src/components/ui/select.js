@@ -1,13 +1,14 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 
 class Selectbox extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: "open" });
+      this.id = this.getAttribute('id') || 'select-id';
       this.label = this.getAttribute('label') || '';
       this.symbol = this.getAttribute('symbol') || '';
-      this.id = this.getAttribute('id') || 'select-id';
       this.value = this.getAttribute('value') || '';
       this.width = this.getAttribute('width') || '100';
       this.items = this.getAttribute('items') || '[]';
@@ -23,14 +24,14 @@ class Selectbox extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        document.dispatchEvent(new CustomEvent(`select-change-${this.id}`, {
+        document.dispatchEvent(new CustomEvent(`${CustomEvents.interaction.selectChange}-${this.id}`, {
           detail: {value: el.value}, bubbles: true, cancelable: false 
         }));
       }); 
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`select-change-${this.id}`, null);
+      document.removeEventListener(`${CustomEvents.interaction.selectChange}-${this.id}`, null);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

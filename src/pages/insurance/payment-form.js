@@ -2,6 +2,7 @@
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 import { getOptionFromString } from '../../components/common/utils/arrays';
 import { SaveForms } from '../../components/common/saves';
 import DataStorage from '../../services/storage';
@@ -31,11 +32,14 @@ class InsurancePaymentForm extends HTMLElement {
         savedPayments: 'savedPayments'
     };
 
-    document.addEventListener(`select-change-${this.selectIds.accounts}`, (evt) => {
+    this.selectChangeEvt = CustomEvents.interaction.selectChange;
+    this.textInputChangeEvt = CustomEvents.interaction.textInputChange;
+
+    document.addEventListener(`${this.selectChangeEvt}-${this.selectIds.accounts}`, (evt) => {
         this.accounts = evt.detail.value;
         this.save('accounts', evt.detail.value);
     });
-    document.addEventListener(`select-change-${this.selectIds.savedPayments}`, (evt) => {
+    document.addEventListener(`${this.selectChangeEvt}-${this.selectIds.savedPayments}`, (evt) => {
         this.savedPayments = evt.detail.value;
         this.save('payments', evt.detail.value);
     });
@@ -52,10 +56,10 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   disconnectedCallback() {
-    document.removeEventListener('text-input-change-amount', null);
-    document.removeEventListener('text-input-change-description', null);
-    document.removeEventListener(`select-change-${this.selectIds.accounts}`, null);
-    document.removeEventListener(`select-change-${this.selectIds.savedPayments}`, null);
+    document.removeEventListener(`${this.textInputChangeEvt}-amount`, null);
+    document.removeEventListener(`${this.textInputChangeEvt}-description`, null);
+    document.removeEventListener(`${this.selectChangeEvt}-${this.selectIds.accounts}`, null);
+    document.removeEventListener(`${this.selectChangeEvt}-${this.selectIds.savedPayments}`, null);
   }
 
   initForm() {
@@ -72,10 +76,10 @@ class InsurancePaymentForm extends HTMLElement {
     this.$accounts.setAttribute('value', this.savedForm.accounts);
     this.$savedPayments.setAttribute('value', this.savedForm.payments);
 
-    document.addEventListener('text-input-change-amount', (evt) => {
+    document.addEventListener(`${this.textInputChangeEvt}-amount`, (evt) => {
         this.setAmount(evt?.detail.value);
     });
-    document.addEventListener('text-input-change-description', (evt) => {
+    document.addEventListener(`${this.textInputChangeEvt}-description`, (evt) => {
         this.setDescription(evt?.detail.value);
     });
   }

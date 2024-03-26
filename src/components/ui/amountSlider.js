@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import { CustomEvents } from '../../components/common/settings';
 
 class AmountSlider extends HTMLElement {
     constructor() {
@@ -10,6 +11,7 @@ class AmountSlider extends HTMLElement {
       this.value = this.getAttribute('value') || '';
       this.minAmount = this.getAttribute('min-amount') || '100';
       this.maxAmount = this.getAttribute('max-amount') || '3200';
+      this.changeEvt = CustomEvents.interaction.sliderValueChange;
     }
   
     static get observedAttributes() { 
@@ -20,14 +22,14 @@ class AmountSlider extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        document.dispatchEvent(new CustomEvent(`slider-value-change-${this.id}`, {
+        document.dispatchEvent(new CustomEvent(`${this.changeEvt}-${this.id}`, {
           detail: {value: el.value}, bubbles: true, cancelable: false 
         }));
       }); 
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`slider-value-change-${this.id}`, null);
+      document.removeEventListener(`${this.changeEvt}-${this.id}`, null);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
