@@ -1,4 +1,5 @@
 import RestAPI from './restApi';
+import LoggerService from './loggerService';
 
 export default class WriterService {
 
@@ -9,7 +10,7 @@ export default class WriterService {
       } else {
          return fetch('https://jsonplaceholder.typicode.com/todos/1')
             .then(response => response.json())
-            .then(json => console.log(json));
+            .then(json => LoggerService.log(json));
       }
    }
 }
