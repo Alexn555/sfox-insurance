@@ -23,7 +23,7 @@ class AmountSlider extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        CustomEventService.sendEvent(`${this.changeEvt}-${this.id}`, el.value);
+        CustomEventService.send(`${this.changeEvt}-${this.id}`, el.value);
       }); 
     }
 

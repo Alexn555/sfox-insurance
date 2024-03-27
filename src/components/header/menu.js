@@ -23,11 +23,11 @@ class HeaderMenu extends HTMLElement {
     }
 
     setOverlay() {
-        CustomEventService.sendEvent(CustomEvents.header.menuOverlay);
+        CustomEventService.send(CustomEvents.header.menuOverlay);
     }
      
     removeOverlay() {
-        CustomEventService.sendEvent(CustomEvents.header.menuOverlayRemove);
+        CustomEventService.send(CustomEvents.header.menuOverlayRemove);
     }
 
     toggleMenuItem(evt) {
@@ -35,7 +35,7 @@ class HeaderMenu extends HTMLElement {
         const item =  target.id;
         const selectedItem = this.setSelected(item);
         
-        CustomEventService.sendEvent(CustomEvents.header.menuClick, item);
+        CustomEventService.send(CustomEvents.header.menuClick, item);
         
         const searchCl = this.shadow.querySelectorAll('.header-menu-item');
     

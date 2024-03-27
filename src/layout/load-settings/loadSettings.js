@@ -53,7 +53,7 @@ class LoadSettings extends HTMLElement {
 
     moveLayout() {
         // send signal layout animate
-        CustomEventService.sendEvent(CustomEvents.settings.moveLayout, this.settingsToggle);
+        CustomEventService.send(CustomEvents.settings.moveLayout, this.settingsToggle);
         this.setToggle(!this.settingsToggle);
     }
 

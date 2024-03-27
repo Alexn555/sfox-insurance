@@ -25,7 +25,7 @@ class Selectbox extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        CustomEventService.sendEvent(`${CustomEvents.interaction.selectChange}-${this.id}`, el.value);
+        CustomEventService.send(`${CustomEvents.interaction.selectChange}-${this.id}`, el.value);
       }); 
     }
 

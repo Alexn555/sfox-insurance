@@ -35,7 +35,7 @@ class ResetSettings extends HTMLElement {
             if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
               this.dataStorage.removeList(list);
               setTimeout(() => { // reset to root page
-                CustomEventService.sendEvent(CustomEvents.settings.themeChanged, this.theme);
+                CustomEventService.send(CustomEvents.settings.themeChanged, this.theme);
               }, 500);
             }
         });

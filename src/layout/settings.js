@@ -23,7 +23,7 @@ class AppSettings extends HTMLElement {
         elClose.onclick = (() => {
             this.dataStorage.save(SaveObjects.settings.close, '1');
             elClose.className += this.useCloseAnimation ? ' close' : '';
-            CustomEventService.sendEvent(CustomEvents.settings.close);
+            CustomEventService.send(CustomEvents.settings.close);
         });
     }
 

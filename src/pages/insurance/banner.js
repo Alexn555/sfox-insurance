@@ -57,7 +57,7 @@ class InsuranceBanner extends HTMLElement {
     flipBoard() {
         this.toggleFlip(!this.isFliped);
         this.dataStorage.save(SaveForms.performance.bannerFlip, this.isFliped);
-        CustomEventService.sendEvent(CustomEvents.interaction.flipBoard, this.isFliped);
+        CustomEventService.send(CustomEvents.interaction.flipBoard, this.isFliped);
     }
 
     toggleFlip(toggle) {

@@ -40,7 +40,7 @@ class Layout extends HTMLElement {
 
         container.style.transitionDuration = `${this.animationDuration}s`;
 
-        CustomEventService.sendEvent(CustomEvents.settings.toggle, settingsToggle);
+        CustomEventService.send(CustomEvents.settings.toggle, settingsToggle);
         
         setTimeout(() => {
             container.style.transform = `translateY(0)`;

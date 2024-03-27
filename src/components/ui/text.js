@@ -23,7 +23,7 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.render();
     const el = this.shadow.getElementById(this.id);
     el.onchange = (() => {
-      CustomEventService.sendEvent(`${CustomEvents.interaction.textInputChange}-${this.id}`, el.value);
+      CustomEventService.send(`${CustomEvents.interaction.textInputChange}-${this.id}`, el.value);
     }); 
   }
 

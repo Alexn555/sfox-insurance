@@ -57,7 +57,7 @@ class ThemeSettings extends HTMLElement {
     setTheme(_theme = Themes.main1) {
         this.theme = _theme;
         this.dataStorage.save(SaveObjects.themes.active, _theme);
-        CustomEventService.sendEvent(CustomEvents.settings.themeChanged, this.theme);
+        CustomEventService.send(CustomEvents.settings.themeChanged, this.theme);
     }
 
     showButton(id, label) {
