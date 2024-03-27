@@ -4,6 +4,7 @@ import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../components/common/settings';
 import { showComponent } from '../components/common/utils';
+import { CustomEventService } from '../services';
 
 class Layout extends HTMLElement {
     constructor() {
@@ -39,11 +40,8 @@ class Layout extends HTMLElement {
 
         container.style.transitionDuration = `${this.animationDuration}s`;
 
-        document.dispatchEvent(new CustomEvent(CustomEvents.settings.toggle, { 
-            detail: { value: settingsToggle },
-            bubbles: false, cancelable: false 
-        }));
-
+        CustomEventService.sendEvent(CustomEvents.settings.toggle, settingsToggle);
+        
         setTimeout(() => {
             container.style.transform = `translateY(0)`;
         }, this.animationDuration * 1200);

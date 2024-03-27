@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../components/common/settings';
+import { CustomEventService } from '../../services';
 
 class AmountSlider extends HTMLElement {
     constructor() {
@@ -22,9 +23,7 @@ class AmountSlider extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        document.dispatchEvent(new CustomEvent(`${this.changeEvt}-${this.id}`, {
-          detail: {value: el.value}, bubbles: true, cancelable: false 
-        }));
+        CustomEventService.sendEvent(`${this.changeEvt}-${this.id}`, el.value);
       }); 
     }
 

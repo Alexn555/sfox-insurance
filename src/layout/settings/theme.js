@@ -4,6 +4,7 @@ import { GlobalSizes, CustomEvents } from '../../components/common/settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';
+import { CustomEventService } from '../../services';
 
 class ThemeSettings extends HTMLElement {
     constructor() {
@@ -56,7 +57,7 @@ class ThemeSettings extends HTMLElement {
     setTheme(_theme = Themes.main1) {
         this.theme = _theme;
         this.dataStorage.save(SaveObjects.themes.active, _theme);
-        document.dispatchEvent(new CustomEvent(CustomEvents.settings.themeChanged, { detail:{ value: this.theme }, bubbles: false, cancelable: false }));
+        CustomEventService.sendEvent(CustomEvents.settings.themeChanged, this.theme);
     }
 
     showButton(id, label) {

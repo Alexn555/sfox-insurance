@@ -1,4 +1,7 @@
 ## Changelog
+v 1.73
+  Moved CustomEvent to separate service, moved accountTable to ui component
+
 v 1.72
   Added move settings close button with dialog as component
 

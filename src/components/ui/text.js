@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CustomEvents } from '../../components/common/settings';
+import { CustomEventService } from '../../services';
 
 class TextInput extends HTMLElement { // numeric, usual text
   constructor() {
@@ -22,9 +23,7 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.render();
     const el = this.shadow.getElementById(this.id);
     el.onchange = (() => {
-      document.dispatchEvent(new CustomEvent(`${CustomEvents.interaction.textInputChange}-${this.id}`, {
-        detail: {value: el.value}, bubbles: true, cancelable: false 
-      }));
+      CustomEventService.sendEvent(`${CustomEvents.interaction.textInputChange}-${this.id}`, el.value);
     }); 
   }
 

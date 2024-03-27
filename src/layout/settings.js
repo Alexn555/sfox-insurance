@@ -4,6 +4,7 @@ import { SettingsBoard, CustomEvents } from '../components/common/settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
 import { showComponent } from "../components/common/utils/";
+import { CustomEventService } from '../services';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -22,7 +23,7 @@ class AppSettings extends HTMLElement {
         elClose.onclick = (() => {
             this.dataStorage.save(SaveObjects.settings.close, '1');
             elClose.className += this.useCloseAnimation ? ' close' : '';
-            document.dispatchEvent(new CustomEvent(CustomEvents.settings.close, { bubbles: false, cancelable: false }));
+            CustomEventService.sendEvent(CustomEvents.settings.close);
         });
     }
 

@@ -2,6 +2,7 @@
 import { Animations, CustomEvents } from '../../components/common/settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
+import { CustomEventService } from '../../services';
 
 class LoadSettings extends HTMLElement {
     constructor() {
@@ -52,10 +53,7 @@ class LoadSettings extends HTMLElement {
 
     moveLayout() {
         // send signal layout animate
-        document.dispatchEvent(new CustomEvent(CustomEvents.settings.moveLayout, { 
-            detail: { value: this.settingsToggle },
-            bubbles: false, cancelable: false 
-        }));
+        CustomEventService.sendEvent(CustomEvents.settings.moveLayout, this.settingsToggle);
         this.setToggle(!this.settingsToggle);
     }
 

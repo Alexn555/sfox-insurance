@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../components/common/settings';
+import { CustomEventService } from '../../services';
 
 class Selectbox extends HTMLElement {
     constructor() {
@@ -24,9 +25,7 @@ class Selectbox extends HTMLElement {
       this.render();
       const el = this.shadow.getElementById(this.id);
       el.onchange = (() => {
-        document.dispatchEvent(new CustomEvent(`${CustomEvents.interaction.selectChange}-${this.id}`, {
-          detail: {value: el.value}, bubbles: true, cancelable: false 
-        }));
+        CustomEventService.sendEvent(`${CustomEvents.interaction.selectChange}-${this.id}`, el.value);
       }); 
     }
 
