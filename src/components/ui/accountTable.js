@@ -3,7 +3,7 @@ import { theme } from '../../theme/theme';
 class AccountTable extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.title = '';
         this.columnNames = this.getAttribute('column-names') || '["Account", "Received"]';
         this.colSize = this.getAttribute('col-size') || '5';

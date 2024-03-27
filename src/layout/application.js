@@ -8,7 +8,7 @@ import DataStorage from '../services/storage';
 class Application extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         document.addEventListener(CustomEvents.settings.themeChanged, this.settingsChanged.bind(this));
         document.addEventListener(CustomEvents.settings.toggle, this.toggleSettings.bind(this));
         this.dataStorage = new DataStorage();

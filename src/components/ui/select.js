@@ -6,7 +6,7 @@ import { CustomEventService } from '../../services';
 class Selectbox extends HTMLElement {
     constructor() {
       super();
-      this.shadow = this.attachShadow({ mode: "open" });
+      this.shadow = this.attachShadow({ mode: 'closed' });
       this.id = this.getAttribute('id') || 'select-id';
       this.label = this.getAttribute('label') || '';
       this.symbol = this.getAttribute('symbol') || '';

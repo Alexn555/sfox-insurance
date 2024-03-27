@@ -1,4 +1,7 @@
 ## Changelog
+v 1.75
+  Changed mode closed for more optimization
+
 v 1.73
   Moved CustomEvent to separate service, moved accountTable to ui component
 

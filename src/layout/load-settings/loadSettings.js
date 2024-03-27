@@ -7,7 +7,7 @@ import { CustomEventService } from '../../services';
 class LoadSettings extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         window.addEventListener('resize', this.updateSize.bind(this));
         document.addEventListener(CustomEvents.settings.close, this.closeSettings.bind(this));
 

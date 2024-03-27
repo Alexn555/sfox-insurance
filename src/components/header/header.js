@@ -7,7 +7,7 @@ import { showComponent } from '../../components/common/utils';
 class Header extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.shadow.addEventListener('click', this.toggleMenu.bind(this));
         window.addEventListener('resize', this.updateSize.bind(this));
 

@@ -3,7 +3,7 @@ import { theme } from '../../theme/theme';
 class SplitLine extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.height = this.getAttribute('height') || '6px';
     }
     

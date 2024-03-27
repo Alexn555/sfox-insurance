@@ -9,7 +9,7 @@ import { CustomEventService } from '../../services';
 class ThemeSettings extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.theme = Themes.main1;
         this.dataStorage = new DataStorage();
 

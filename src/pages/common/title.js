@@ -4,7 +4,7 @@ import { TextSizes } from '../../components/common/settings';
 class PageTitle extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.title = this.getAttribute('title');
     }
     

@@ -60,7 +60,7 @@ template.innerHTML = `
 class InsuranceTabs extends HTMLElement {
     constructor() {
       super();
-      this.shadow = this.attachShadow({mode: 'open'});
+      this.shadow = this.attachShadow({mode: 'closed'});
       this.shadow.appendChild(template.content.cloneNode(true));
     }
     

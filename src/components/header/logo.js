@@ -3,7 +3,7 @@ import { imageMap } from '../../components/common/assets';
 class HeaderLogo extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
     }
     
     connectedCallback() {

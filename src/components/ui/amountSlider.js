@@ -6,7 +6,7 @@ import { CustomEventService } from '../../services';
 class AmountSlider extends HTMLElement {
     constructor() {
       super();
-      this.shadow = this.attachShadow({ mode: "open" });
+      this.shadow = this.attachShadow({ mode: 'closed' });
       this.currency = '€';
       this.id = this.getAttribute('id') || 'amount-slider';
       this.value = this.getAttribute('value') || '';

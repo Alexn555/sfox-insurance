@@ -4,7 +4,7 @@ import { ButtonTypes } from '../../components/common/ui';
 class ActionButton extends HTMLElement {
     constructor(cb) {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.label = this.getAttribute('label') || 'Go';
         this.buttonType = this.getAttribute('type') || 'action';
     }

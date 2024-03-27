@@ -11,7 +11,7 @@ import { CustomEventService } from '../../services';
 class InsuranceBanner extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.dataStorage = new DataStorage();
         this.bannerService = new BannerService();
         this.savedBannerData = this.bannerService.getSavedData(SaveObjects.banners.performance);

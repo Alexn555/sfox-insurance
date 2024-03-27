@@ -8,7 +8,7 @@ import { SaveObjects } from '../../components/common/saves';
 class SettignsTextSize extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.dataStorage = new DataStorage();
         this.textSizePrcnt = TextSizes.settings.default;
     }

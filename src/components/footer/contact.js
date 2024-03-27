@@ -3,7 +3,7 @@ import { theme } from '../../theme/theme';
 class FooterContact extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
     }
     
     connectedCallback() {
@@ -30,7 +30,7 @@ class FooterContact extends HTMLElement {
                     padding-bottom: 12px;
                 }
                 .address {
-                    white-space: pre-wrap;
+                    white-space: pre;
                     font-size: smaller;
                     transform: translate(-65px, -8px);
                 }

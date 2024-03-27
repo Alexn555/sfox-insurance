@@ -5,7 +5,7 @@ import { CustomEventService } from '../../services';
 class TextInput extends HTMLElement { // numeric, usual text
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow = this.attachShadow({ mode: 'closed' });
     this.id = this.getAttribute('id') || 'text-id';
     this.label = this.getAttribute('label') || '';
     this.min = this.getAttribute('min') || '0';

@@ -5,7 +5,7 @@ import { theme } from '../../theme/theme';
 class FooterLinkSection extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.title = this.getAttribute('title') || 'Section';
         this.url = this.getAttribute('url') || 'sfoxinsurance.org';
 

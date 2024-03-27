@@ -10,7 +10,7 @@ import DataStorage from '../../services/storage';
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
       super();
-      this.shadow = this.attachShadow({ mode: "open" });
+      this.shadow = this.attachShadow({ mode: 'closed' });
       this.dataStorage = new DataStorage();
 
       this.selectIds = {

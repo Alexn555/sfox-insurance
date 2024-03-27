@@ -1,7 +1,7 @@
 class FooterSocialItem extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         this.url = this.getAttribute('url') || 'https://facebook.com/sfoxinsurance';
         this.imgName = this.getAttribute('image-name') || 'facebook';
         this.imgAlt = this.getAttribute('image-alt') || 'facebook';

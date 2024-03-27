@@ -9,7 +9,7 @@ import { CustomEventService } from '../services';
 class Layout extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'closed'});
         window.addEventListener('resize', this.updateSize.bind(this));
         document.addEventListener(CustomEvents.settings.moveLayout, (evt) => {
             this.moveLayout(evt.detail.value);
