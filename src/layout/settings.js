@@ -27,6 +27,10 @@ class AppSettings extends HTMLElement {
         });
     }
 
+    showSettings() {
+        console.log(' ----> settings ');
+    }
+
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -78,7 +82,7 @@ class AppSettings extends HTMLElement {
                         </div>
                     `)}
                     <div>
-                        <action-button id="close" label="Close" type="passive" />
+                        <action-button id="close" label="Close" type="passive" handle-click="${this.showSettings}" />
                     </div>
                     ${showComponent(SettingsBoard.textSizes.enabled, `
                         <div>

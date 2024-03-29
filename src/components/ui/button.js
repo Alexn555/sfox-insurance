@@ -2,15 +2,26 @@ import { theme } from '../../theme/theme';
 import { ButtonTypes } from '../../components/common/ui';
 
 class ActionButton extends HTMLElement {
-    constructor(cb) {
+    constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
+        this.id = this.getAttribute('id') || '';
         this.label = this.getAttribute('label') || 'Go';
         this.buttonType = this.getAttribute('type') || 'action';
+        const handle = this.getAttribute('handle-click');
+        
+        if (handle !== '') {
+            const cbFunc = `(function ${handle})`;
+            this.callbackClick = eval(cbFunc);
+        }
     }
     
     connectedCallback() {
         this.render();
+        const handler = this.shadow.getElementById(this.id);
+        handler.onclick = (() => {
+            this.callbackClick();
+        });
     }
 
     setColor() {
