@@ -100,7 +100,7 @@ class WriterForm extends HTMLElement {
                     </div>
                     <div class="writeContent"> </div>
                     <div id="image">
-                      <img id="imgSource" src="../../assets/wallet.svg" alt="loading image" />
+                      <img id="imgSource" src="../../assets/wallet.svg" alt="..." />
                       <span id="loading">Loading image...</span>
                     </div>
                 </div>
