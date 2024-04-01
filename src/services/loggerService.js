@@ -1,9 +1,13 @@
 export default class LoggerService {
-    static log(str) {
-        console.log(str);
+    static log() {
+        for(let i=0; i < arguments.length; i++ ) {
+            console.log(arguments[i]);
+        }
     }
 
-    static error(str) {
-        console.error(str);
+    static error() {
+        for(let i=0; i < arguments.length; i++ ) {
+            console.error(arguments[i]);
+        }
     }
 }

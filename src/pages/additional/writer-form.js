@@ -1,6 +1,8 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
+import FlickService from '../../services/flickrService';
+import { CustomEventService } from '../../services/';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -8,14 +10,37 @@ class WriterForm extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isGameOpen = false;
       this.writerService = new WriterService();
+      this.flickrService = new FlickService();
+      this.imgMedium = '';
+      this.imgViewerId = 'imageViewer';
+      this.imgViewerSize = {
+        w: 800,
+        h: 600
+      };
     }
   
     connectedCallback() {
       this.render();
-
+      this.loadEl = this.shadow.getElementById('loading');
+      this.loadEl.style.opacity = 0;
       this.shadow.getElementById('fetchOpen').addEventListener('click', () => {
         this.featchContent();
+        this.fetchImage();
       });
+
+      this.shadow.getElementById('image').addEventListener('click', () => {
+        this.openViewer();
+      });
+    }
+
+    disconnectedCallback() {
+      this.shadow.getElementById('image').removeEventListener('click', null);
+    }
+
+    openViewer() {
+      if (this.imgMedium) {
+        CustomEventService.send('image-viewer-open', this.imgMedium);
+      }
     }
 
     async featchContent() {
@@ -26,6 +51,17 @@ class WriterForm extends HTMLElement {
       if (content && content?.title) {
         el.innerHTML = content.title;
       }
+    }
+
+    async fetchImage() {
+      this.loadEl.style.opacity = 1;
+      const { imgSm, imgMedium } = await this.flickrService.getImage('formula 1 lego', true);
+      this.imgMedium = imgMedium;
+      const imgEl = this.shadow.getElementById('imgSource');
+      const imgViewerEl = this.shadow.getElementById('imgViewer');
+      this.loadEl.style.display = 'none';
+      imgEl.setAttribute('src', imgSm);
+      imgViewerEl.setAttribute('source', imgMedium);
     }
   
     render() {
@@ -43,6 +79,18 @@ class WriterForm extends HTMLElement {
                     grid-template-columns: 100%;
                   }
               }
+
+              #image {
+                width: 300px;
+                height: 200px;
+                border: 1px dashed black;
+                cursor: pointer;
+                overflow: hidden;
+              }
+
+              #loading {
+                padding-left: 8px;
+              }
             </style>
             <form>
                 <div class="writer-wrapper">
@@ -51,7 +99,13 @@ class WriterForm extends HTMLElement {
                         <action-button id="fetchOpen" label="Fetch content" type="action" /> 
                     </div>
                     <div class="writeContent"> </div>
+                    <div id="image">
+                      <img id="imgSource" src="../../assets/wallet.svg" alt="loading image" />
+                      <span id="loading">Loading image...</span>
+                    </div>
                 </div>
+
+                <image-viewer id="imgViewer" source=""></image-viewer>
            </form>
        `;
     }

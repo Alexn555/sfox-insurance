@@ -1,4 +1,7 @@
 ## Changelog
+v 1.82
+  Created ImageViewer that uses Flickr API for News content
+
 v 1.75
   Changed mode closed for more optimization
 
