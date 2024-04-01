@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalSizes, HeaderBoard, CustomEvents } from '../../components/common/settings';
+import { GlobalSizes, HeaderBoard, CommonEvents, CustomEvents } from '../../components/common/settings';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
 import { showComponent } from '../../components/common/utils';
@@ -9,7 +9,7 @@ class Header extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         this.shadow.addEventListener('click', this.toggleMenu.bind(this));
-        window.addEventListener('resize', this.updateSize.bind(this));
+        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
 
         document.addEventListener(CustomEvents.header.menuOverlay, () => {
             const overlay = this.shadow.querySelector('.header-overlay');

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalSizes, Animations, CustomEvents, PageStructure } from '../components/common/settings';
+import { GlobalSizes, Animations, CommonEvents, CustomEvents, PageStructure } from '../components/common/settings';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../components/common/settings';
@@ -10,7 +10,7 @@ class Layout extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        window.addEventListener('resize', this.updateSize.bind(this));
+        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
         document.addEventListener(CustomEvents.settings.moveLayout, (evt) => {
             this.moveLayout(evt.detail.value);
         });

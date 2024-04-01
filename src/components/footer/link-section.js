@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { GlobalSizes } from '../../components/common/settings';
+import { CommonEvents, GlobalSizes } from '../../components/common/settings';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
@@ -10,7 +10,7 @@ class FooterLinkSection extends HTMLElement {
         this.url = this.getAttribute('url') || 'sfoxinsurance.org';
 
         this.addEventListener('click', this.toggleContent.bind(this));
-        window.addEventListener('resize', this.updateSize.bind(this));
+        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
 
         const rowLinks = this.getAttribute('links');
         this.links = [];
@@ -49,7 +49,7 @@ class FooterLinkSection extends HTMLElement {
 
     disconnectedCallback() {
         this.removeEventListener('click', null);
-        window.removeEventListener('resize', null);
+        window.removeEventListener(CommonEvents.resize, null);
     }
 
     getTogglePosition() {

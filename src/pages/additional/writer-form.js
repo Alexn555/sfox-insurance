@@ -1,5 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
+import { CustomEvents } from '../../components/common/settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import { CustomEventService } from '../../services/';
@@ -39,7 +40,7 @@ class WriterForm extends HTMLElement {
 
     openViewer() {
       if (this.imgMedium) {
-        CustomEventService.send('image-viewer-open', this.imgMedium);
+        CustomEventService.send(CustomEvents.imageViwer.open, this.imgMedium);
       }
     }
 
@@ -55,7 +56,7 @@ class WriterForm extends HTMLElement {
 
     async fetchImage() {
       this.loadEl.style.opacity = 1;
-      const { imgSm, imgMedium } = await this.flickrService.getImage('formula 1 lego', true);
+      const { imgSm, imgMedium } = await this.flickrService.getImage('formula1 lego', true);
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
       const imgViewerEl = this.shadow.getElementById('imgViewer');
@@ -100,7 +101,7 @@ class WriterForm extends HTMLElement {
                     </div>
                     <div class="writeContent"> </div>
                     <div id="image">
-                      <img id="imgSource" src="../../assets/wallet.svg" alt="..." />
+                      <img id="imgSource" src="../../assets/wallet.svg" alt="loading image" />
                       <span id="loading">Loading image...</span>
                     </div>
                 </div>

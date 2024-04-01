@@ -5,6 +5,9 @@ export const CustomEvents = {
         close: 'settings-close',
         themeChanged: 'settings-theme-changed'
     },
+    imageViwer: {
+        open: 'image-viewer-open'
+    },
     interaction: {
         flipBoard: 'flip-board',
         sliderValueChange: 'slider-value-change',
@@ -16,4 +19,8 @@ export const CustomEvents = {
         menuClick: 'header-menu-click',
         menuOverlayRemove: 'header-menu-overlay-remove'
     },
+};
+
+export const CommonEvents = {
+    resize: 'resize'
 };

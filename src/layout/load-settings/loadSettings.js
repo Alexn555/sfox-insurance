@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Animations, CustomEvents } from '../../components/common/settings';
+import { Animations, CommonEvents, CustomEvents } from '../../components/common/settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { CustomEventService } from '../../services';
@@ -8,7 +8,7 @@ class LoadSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        window.addEventListener('resize', this.updateSize.bind(this));
+        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
         document.addEventListener(CustomEvents.settings.close, this.closeSettings.bind(this));
 
         this.dataStorage = new DataStorage();

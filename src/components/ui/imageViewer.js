@@ -1,13 +1,13 @@
 // @ts-nocheck
-import { GlobalSizes } from '../../components/common/settings';
+import { GlobalSizes, CommonEvents, CustomEvents} from '../../components/common/settings';
 
 class ImageViewer extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.imgMedium = '';
-      window.addEventListener('resize', this.updateSize.bind(this));
-      window.addEventListener('image-viewer-open', (evt) => {
+      window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
+      window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
         if (evt.detail) { // just to double check
             this.imgMedium = evt.detail.value;
         }
@@ -112,6 +112,11 @@ class ImageViewer extends HTMLElement {
                   width: auto;
                   height: auto;
                   border: 1px solid grey;
+
+                  &:hover {
+                    transform: scale(1.1);
+                    transition: transform 0.5s ease-in-out;
+                  }
                 }
 
                 .close {
