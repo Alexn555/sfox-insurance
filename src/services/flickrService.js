@@ -1,8 +1,5 @@
 // @ts-nocheck
 import 'jimp';
-//import * as Jimp from 'jimp';
-//import Jimp from 'jimp/browser/lib/jimp.js';
-
 import { createFlickr } from 'flickr-sdk';
 import LoggerService from './loggerService';
 import { randomInteger } from '../components/common/utils';
@@ -68,10 +65,8 @@ export default class FlickService {
         const readFile = false;
         if (readFile) {
              Jimp.read(url).then(function (image) {
-                // Do something with the image
                 LoggerService.log(' -----> image ', image);
             }).catch(function (err) {
-                // Handle any errors
                 LoggerService.error(' ----> image error ', err);
             });
         }
