@@ -7,7 +7,7 @@ import { randomInteger } from '../components/common/utils';
 export default class FlickService {
     
     constructor() {
-        this.API_KEY = 'a3a8a5e75c8813ffae1b2bcbc5b73ca6';
+        this.API_KEY = process.env.FLICKR_API_KEY;
 
         const { flickr } = createFlickr(this.API_KEY);
         this.flickr = flickr;

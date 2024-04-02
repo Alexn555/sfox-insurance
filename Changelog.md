@@ -1,4 +1,7 @@
 ## Changelog
+v 1.83
+  Added env file with required public url, api key
+
 v 1.82
   Created ImageViewer that uses Flickr API for News content
 

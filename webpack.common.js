@@ -3,8 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
 const publicPath = "./";
+
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
 
 module.exports = {
     entry: "./src/index.js",
@@ -59,6 +62,10 @@ module.exports = {
                 removeComments: true,
                 collapseWhitespace: false
             }
+        }),
+        new DefinePlugin({
+            'process.env': JSON.stringify(dotenv.parsed),
+            'process.env.FLICKR_API_KEY': JSON.stringify(process.env.FLICKR_API_KEY)
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
