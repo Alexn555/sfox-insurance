@@ -9,7 +9,7 @@ class Header extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.shadow.addEventListener('click', this.toggleMenu.bind(this));
+        this.shadow.addEventListener(CommonEvents.click, this.toggleMenu.bind(this));
         window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
 
         document.addEventListener(CustomEvents.header.menuOverlay, () => {

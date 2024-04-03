@@ -1,11 +1,12 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import { CommonEvents } from '../../components/common/settings';
 
 class AdditionalTabs extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
-      this.shadow.addEventListener('click', this.openTab.bind(this));
+      this.shadow.addEventListener(CommonEvents.click, this.openTab.bind(this));
     }
     
     connectedCallback() {

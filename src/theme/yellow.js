@@ -86,6 +86,13 @@ export const themeYellow = {
             }
         }
     },
+    imageViewer: {
+        error: {
+            bck: 'black',
+            border: 'red',
+            text: 'white'
+        }
+    },
     footer: {
         background: '#f7edf6',
         contact: {

@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { CommonEvents } from '../../components/common/settings';
+
 class MapForm extends HTMLElement {
     constructor() {
       super();
@@ -9,10 +11,10 @@ class MapForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.getElementById('mapOpen').addEventListener('click', () => {
+      this.shadow.getElementById('mapOpen').addEventListener(CommonEvents.click, () => {
           this.toggleGame(true);
       });
-      this.shadow.getElementById('closeMap').addEventListener('click', () => {
+      this.shadow.getElementById('closeMap').addEventListener(CommonEvents.click, () => {
         this.toggleGame(false);
       });
     }

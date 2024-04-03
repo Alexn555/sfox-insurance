@@ -23,7 +23,7 @@ class LoadSettings extends HTMLElement {
         
         const el = this.shadow.getElementById('settingsOpen');
 
-        el.addEventListener('click', () => {
+        el.addEventListener(CommonEvents.click, () => {
            this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
            this.toggleNotice(this.settingsToggle);
            this.moveLayout();
@@ -32,7 +32,7 @@ class LoadSettings extends HTMLElement {
 
     disconnectedCallback() {
         const el = this.shadow.getElementById('settingsOpen');
-        el.removeEventListener('click', null);
+        el.removeEventListener(CommonEvents.click, null);
     }
 
     updateSize() {

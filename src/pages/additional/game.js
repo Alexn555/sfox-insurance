@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { CommonEvents } from '../../components/common/settings';
+
 class GameForm extends HTMLElement {
     constructor() {
       super();
@@ -9,10 +11,10 @@ class GameForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.getElementById('gameOpen').addEventListener('click', () => {
+      this.shadow.getElementById('gameOpen').addEventListener(CommonEvents.click, () => {
           this.toggleGame(true);
       });
-      this.shadow.getElementById('closeGame').addEventListener('click', () => {
+      this.shadow.getElementById('closeGame').addEventListener(CommonEvents.click, () => {
         this.toggleGame(false);
       });
     }

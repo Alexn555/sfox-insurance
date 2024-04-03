@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import { theme } from '../../theme/theme';
-import { CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../components/common/settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';
@@ -39,13 +39,13 @@ class InsuranceBanner extends HTMLElement {
 
     attachFlipBoard() {
         this.flipBoardId = this.shadow.getElementById('flipBoard');
-        this.flipBoardId.addEventListener('click', () => {
+        this.flipBoardId.addEventListener(CommonEvents.click, () => {
             this.flipBoard();
         });
     }
 
     disconnectedCallback() {
-        this.flipBoardId.removeEventListener('click', null);
+        this.flipBoardId.removeEventListener(CommonEvents.click, null);
     }
 
     checkInitFlipBoard() {

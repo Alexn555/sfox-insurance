@@ -1,6 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../components/common/settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import { CustomEventService } from '../../services/';
@@ -24,18 +24,18 @@ class WriterForm extends HTMLElement {
       this.render();
       this.loadEl = this.shadow.getElementById('loading');
       this.loadEl.style.opacity = 0;
-      this.shadow.getElementById('fetchOpen').addEventListener('click', () => {
+      this.shadow.getElementById('fetchOpen').addEventListener(CommonEvents.click, () => {
         this.featchContent();
         this.fetchImage();
       });
 
-      this.shadow.getElementById('image').addEventListener('click', () => {
+      this.shadow.getElementById('image').addEventListener(CommonEvents.click, () => {
         this.openViewer();
       });
     }
 
     disconnectedCallback() {
-      this.shadow.getElementById('image').removeEventListener('click', null);
+      this.shadow.getElementById('image').removeEventListener(CommonEvents.click, null);
     }
 
     openViewer() {
@@ -61,8 +61,20 @@ class WriterForm extends HTMLElement {
       const imgEl = this.shadow.getElementById('imgSource');
       const imgViewerEl = this.shadow.getElementById('imgViewer');
       this.loadEl.style.display = 'none';
+
       imgEl.setAttribute('src', imgSm);
       imgViewerEl.setAttribute('source', imgMedium);
+
+      this.setImageError(imgEl, imgSm)
+    }
+
+    setImageError(el, image) {
+      const errEl = this.shadow.getElementById('error');
+      errEl.style.display = 'none';
+      if (image === '' || image === null) {
+        el.setAttribute('src', `${process.env.PUBLIC_URL}assets/imageviewer/demo_c.jpg`);
+        errEl.style.display = 'block';
+      }
     }
   
     render() {
@@ -89,6 +101,12 @@ class WriterForm extends HTMLElement {
                 overflow: hidden;
               }
 
+              #error {
+                display: none;
+                color: red;
+                font-weight: bold;
+              }
+
               #loading {
                 padding-left: 8px;
               }
@@ -103,6 +121,7 @@ class WriterForm extends HTMLElement {
                     <div id="image">
                       <img id="imgSource" src="${process.env.PUBLIC_URL}assets/wallet.svg" alt="..." />
                       <span id="loading">Loading image...</span>
+                      <div id="error">Server Error, Demo (c) Flickr image</div>
                     </div>
                 </div>
 

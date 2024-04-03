@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../components/common/settings';
 import { imageMap } from '../../components/common/assets';
 import { CustomEventService } from '../../services';
 
@@ -10,14 +10,14 @@ class HeaderMenu extends HTMLElement {
     }
     
     connectedCallback() {
-        this.shadow.addEventListener('click', this.toggleMenuItem.bind(this));
+        this.shadow.addEventListener(CommonEvents.click, this.toggleMenuItem.bind(this));
         this.shadow.addEventListener('mouseover', this.setOverlay.bind(this));
         this.shadow.addEventListener('mouseout', this.removeOverlay.bind(this));
         this.render();
     }
 
     disconnectedCallback() {
-        this.shadow.removeEventListener('click', null);
+        this.shadow.removeEventListener(CommonEvents.click, null);
         this.shadow.removeEventListener('mouseover', null);
         this.shadow.removeEventListener('mouseout', null);
     }

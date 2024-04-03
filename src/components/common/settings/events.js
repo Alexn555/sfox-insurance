@@ -22,5 +22,6 @@ export const CustomEvents = {
 };
 
 export const CommonEvents = {
+    click: 'click',
     resize: 'resize'
 };

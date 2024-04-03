@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import { CommonEvents } from '../../components/common/settings';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -65,7 +66,7 @@ class InsuranceTabs extends HTMLElement {
     }
     
     connectedCallback() {
-      this.shadow.addEventListener('click', this.openTab.bind(this));
+      this.shadow.addEventListener(CommonEvents.click, this.openTab.bind(this));
     }
 
     openTab(evt) {

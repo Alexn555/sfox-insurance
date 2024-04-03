@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomEvents} from '../../components/common/settings';
 import { isMobile } from '../../components/common/utils';
 import { draggableContainer } from '../../services/dragContainer';
@@ -34,8 +35,11 @@ class ImageViewer extends HTMLElement {
       this.render();
       this.updateSize();
 
+      this.$error = this.shadow.getElementById('error');
+      this.$content = this.shadow.getElementById('imgDetail');
+      this.toggleError(false);
       this.$close = this.shadow.getElementById('close');
-      this.$close.addEventListener('click', () => {
+      this.$close.addEventListener(CommonEvents.click, () => {
         this.toggleViewer(false);
       });
 
@@ -45,13 +49,19 @@ class ImageViewer extends HTMLElement {
     }
 
     disconnectedCallback() {
-      this.$close.removeEventListener('click', null);
+      this.$close.removeEventListener(CommonEvents.click, null);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
       if (name === 'source' && oldValue !== newValue) {
         this.imgMedium = newValue;
         this.setImage();
+      }
+    }
+
+    toggleError(isVisible = false) {
+      if (this.$error) {
+        this.$error.style.display = isVisible ? 'block': 'none';
       }
     }
 
@@ -78,6 +88,7 @@ class ImageViewer extends HTMLElement {
       if (el && this.imgMedium) {
         if (!this.imgViewerVisible) {
           this.setImage();
+          this.checkImage();
           el.showModal();
         } else {
           el.close();
@@ -87,8 +98,17 @@ class ImageViewer extends HTMLElement {
     }
 
     setImage() {
-      const content = this.shadow.getElementById('imgDetail');
-      content?.setAttribute('src', this.imgMedium);
+      this.$content?.setAttribute('src', this.imgMedium);
+    }
+
+    checkImage() {
+      const newSource = this.$content.getAttribute('src');
+      this.toggleError(false);
+      if (newSource === '' || this.imgMedium === '') {
+        this.$content?.setAttribute('src', 
+          `${process.env.PUBLIC_URL}assets/imageviewer/demo_m.jpg`);
+        this.toggleError(true);
+      }
     }
 
     setImgViewer(toggle) {
@@ -99,7 +119,7 @@ class ImageViewer extends HTMLElement {
       this.shadow.innerHTML = `
             <style>
               dialog#imageViewer {
-                position: relative;
+                position: absolute;
                 width: ${this.imgViewerSize.w};
                 height: ${this.imgViewerSize.h};
                 padding: 20px;
@@ -127,6 +147,22 @@ class ImageViewer extends HTMLElement {
                   }
                 }
 
+                #error {
+                  position: absolute;
+                  left: 20%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  padding: 20px;
+                  width: 200px;
+                  height: 80px;
+                  text-align: center;
+                  background-color: ${theme.imageViewer.error.bck};
+                  font-size: smaller;
+                  font-weight: bold;
+                  border: 1px solid ${theme.imageViewer.error.border};
+                  color: ${theme.imageViewer.error.text};
+                }
+
                 .close {
                   position: absolute;
                   right: 10px;
@@ -145,7 +181,13 @@ class ImageViewer extends HTMLElement {
               }
             </style>
             <dialog id="${this.imgViewerId}">
-                <img id="imgDetail" src="../../assets/wallet.svg" alt="loading image" />
+                <img id="imgDetail" src="" alt="loading image" />
+                <div id="error"> 
+                  Server error <br />
+                  Demo Image <br />
+                  (c) Flickr.com images
+                </div>
+
                 <div class="close">
                     <action-button id="close" label="Close" type="action" />
                 </div>

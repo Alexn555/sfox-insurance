@@ -10,7 +10,7 @@ class FooterLinkSection extends HTMLElement {
         this.title = this.getAttribute('title') || 'Section';
         this.url = this.getAttribute('url') || 'sfoxinsurance.org';
 
-        this.addEventListener('click', this.toggleContent.bind(this));
+        this.addEventListener(CommonEvents.click, this.toggleContent.bind(this));
         window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
 
         const rowLinks = this.getAttribute('links');
@@ -48,7 +48,7 @@ class FooterLinkSection extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.removeEventListener('click', null);
+        this.removeEventListener(CommonEvents.click, null);
         window.removeEventListener(CommonEvents.resize, null);
     }
 
