@@ -3,6 +3,7 @@ import WriterService from '../../services/writerService';
 import { CommonEvents, CustomEvents } from '../../components/common/settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
+import GlobalsService from '../../services/globalsService';
 import DateService from '../../services/dateService';
 import { CustomEventService } from '../../services/';
 
@@ -73,7 +74,7 @@ class WriterForm extends HTMLElement {
       const errEl = this.shadow.getElementById('error');
       errEl.style.display = 'none';
       if (image === '' || image === null) {
-        el.setAttribute('src', `${process.env.PUBLIC_URL}assets/imageviewer/demo_c.jpg`);
+        el.setAttribute('src', `${GlobalsService.getRoot()}assets/imageviewer/demo_c.jpg`);
         errEl.style.display = 'block';
       }
     }
@@ -121,7 +122,7 @@ class WriterForm extends HTMLElement {
                     </div>
                     <div class="writeContent"> </div>
                     <div id="image">
-                      <img id="imgSource" src="${process.env.PUBLIC_URL}assets/wallet.svg" alt="..." />
+                      <img id="imgSource" src="${GlobalsService.getRoot()}assets/wallet.svg" alt="..." />
                       <span id="loading">Loading image...</span>
                       <div id="error">Server Error, Flickr © ${DateService.getYear()} Demo image</div>
                     </div>

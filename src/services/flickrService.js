@@ -2,12 +2,13 @@
 import 'jimp';
 import { createFlickr } from 'flickr-sdk';
 import LoggerService from './loggerService';
+import GlobalsService from './globalsService';
 import { randomInteger } from '../components/common/utils';
 
 export default class FlickService {
     
     constructor() {
-        this.API_KEY = process.env.FLICKR_API_KEY;
+        this.API_KEY = GlobalsService.getFlickrAPIKey();
 
         const { flickr } = createFlickr(this.API_KEY);
         this.flickr = flickr;

@@ -3,7 +3,8 @@ import { theme } from '../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../components/common/settings';
 import { isMobile } from '../../components/common/utils';
 import DateService from '../../services/dateService';
-import { draggableContainer } from '../../services/dragContainer';
+import GlobalsService from '../../services/globalsService';
+import { draggableContainer } from '../../modifiers/dragContainer';
 
 class ImageViewer extends HTMLElement {
     constructor() {
@@ -107,7 +108,7 @@ class ImageViewer extends HTMLElement {
       this.toggleError(false);
       if (newSource === '' || this.imgMedium === '') {
         this.$content?.setAttribute('src', 
-          `${process.env.PUBLIC_URL}assets/imageviewer/demo_m.jpg`);
+          `${GlobalsService.getRoot()}assets/imageviewer/demo_m.jpg`);
         this.toggleError(true);
       }
     }
