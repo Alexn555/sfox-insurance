@@ -6,6 +6,8 @@ import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';
 import DateService from '../../services/dateService';
 import { CustomEventService } from '../../services/';
+import { getRandomItemFromList } from '../../components/common/utils/arrays';
+import { imageList } from '../../data/mocks/writerImageList';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -58,7 +60,7 @@ class WriterForm extends HTMLElement {
 
     async fetchImage() {
       this.loadEl.style.opacity = 1;
-      const { imgSm, imgMedium } = await this.flickrService.getImage('formula1 lego', true);
+      const { imgSm, imgMedium } = await this.flickrService.getImage(getRandomItemFromList(imageList), true);
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
       const imgViewerEl = this.shadow.getElementById('imgViewer');
@@ -67,10 +69,10 @@ class WriterForm extends HTMLElement {
       imgEl.setAttribute('src', imgSm);
       imgViewerEl.setAttribute('source', imgMedium);
 
-      this.setImageError(imgEl, imgSm)
+      this.handleImageError(imgEl, imgSm)
     }
 
-    setImageError(el, image) {
+    handleImageError(el, image) {
       const errEl = this.shadow.getElementById('error');
       errEl.style.display = 'none';
       if (image === '' || image === null) {
