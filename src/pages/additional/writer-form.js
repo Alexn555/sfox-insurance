@@ -3,6 +3,7 @@ import WriterService from '../../services/writerService';
 import { CommonEvents, CustomEvents } from '../../components/common/settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
+import DateService from '../../services/dateService';
 import { CustomEventService } from '../../services/';
 
 class WriterForm extends HTMLElement {
@@ -104,6 +105,7 @@ class WriterForm extends HTMLElement {
               #error {
                 display: none;
                 color: red;
+                font-size: smaller;
                 font-weight: bold;
               }
 
@@ -121,7 +123,7 @@ class WriterForm extends HTMLElement {
                     <div id="image">
                       <img id="imgSource" src="${process.env.PUBLIC_URL}assets/wallet.svg" alt="..." />
                       <span id="loading">Loading image...</span>
-                      <div id="error">Server Error, Demo (c) Flickr image</div>
+                      <div id="error">Server Error, Flickr © ${DateService.getYear()} Demo image</div>
                     </div>
                 </div>
 

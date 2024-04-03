@@ -2,6 +2,7 @@
 import { theme } from '../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../components/common/settings';
 import { isMobile } from '../../components/common/utils';
+import DateService from '../../services/dateService';
 import { draggableContainer } from '../../services/dragContainer';
 
 class ImageViewer extends HTMLElement {
@@ -185,7 +186,7 @@ class ImageViewer extends HTMLElement {
                 <div id="error"> 
                   Server error <br />
                   Demo Image <br />
-                  (c) Flickr.com images
+                  © ${DateService.getYear()} Flickr.com images
                 </div>
 
                 <div class="close">
