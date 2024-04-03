@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { GlobalSizes, HeaderBoard, CommonEvents, CustomEvents } from '../../components/common/settings';
+import { HeaderBoard, CommonEvents, CustomEvents } from '../../components/common/settings';
+import { isMobile } from '../../components/common/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
 import { showComponent } from '../../components/common/utils';
@@ -27,9 +28,8 @@ class Header extends HTMLElement {
     }
 
     updateSize() {
-        const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         const toggleItem = this.shadow.querySelector('.menu-toggle');
-        toggleItem.style.display = isMobile ? 'none' : 'block';
+        toggleItem.style.display = isMobile() ? 'none' : 'block';
     }
     
     connectedCallback() {
@@ -42,8 +42,7 @@ class Header extends HTMLElement {
     }
 
     toggleMenu() {
-       const isMobile = window.innerWidth < GlobalSizes.mobileMax;
-       if (isMobile) {
+       if (isMobile()) {
             const toggleItem = this.shadow.querySelector('.menu-toggle');
             const toggleIcon = this.shadow.querySelector('.toggle-icon');
             const isMenuOpen = toggleItem.style.display === 'none';

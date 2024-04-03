@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { CommonEvents, GlobalSizes } from '../../components/common/settings';
+import { CommonEvents } from '../../components/common/settings';
+import { isMobile } from '../../components/common/utils/';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
@@ -30,9 +31,8 @@ class FooterLinkSection extends HTMLElement {
     }
 
     updateSize() {
-        const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         this.screenW = window.innerWidth;
-        if (!isMobile) {
+        if (!isMobile()) {
             const content = this.shadow.querySelectorAll('.link-content');
             content.forEach((contentItem) => {
                 contentItem.style.display = 'block';
@@ -57,11 +57,10 @@ class FooterLinkSection extends HTMLElement {
     }
 
     toggleContent() {
-        const isMobile = window.innerWidth < GlobalSizes.mobileMax;
         this.contentOpen = !this.contentOpen;
         const content = this.shadow.querySelector('.link-content');
     
-        if (isMobile && content) {
+        if (isMobile() && content) {
             content.style.display = !this.contentOpen ? 'none' : 'block';
         }
     }

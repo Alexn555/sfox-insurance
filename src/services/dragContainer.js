@@ -21,7 +21,9 @@ export const draggableContainer = (el) => {
         initY = e.clientY;
         // set the element's new position:
         el.style.top = (el.offsetTop - posY) + "px";
-        el.style.left = (el.offsetLeft - initX) + "px"; // posX
+        const newX = (el.offsetLeft - initX);
+        const offsetX = newX > 0 ? -Math.abs(newX) : Math.abs(newX);
+        el.style.left = offsetX + "px"; // posX
     }
 
     const close = () => {

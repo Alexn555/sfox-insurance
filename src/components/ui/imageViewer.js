@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { GlobalSizes, CommonEvents, CustomEvents} from '../../components/common/settings';
-import { draggableContainer } from '../../services/dragElement';
+import { isMobile } from '../../components/common/utils';
+import { draggableContainer } from '../../services/dragContainer';
 
 class ImageViewer extends HTMLElement {
     constructor() {
@@ -55,7 +56,7 @@ class ImageViewer extends HTMLElement {
     }
 
     updateSize() {
-      this.isMobile = window.innerWidth < GlobalSizes.mobileMax;
+      this.isMobile = isMobile();
       this.screenW = window.innerWidth;
       this.screenH = window.innerHeight;
       let factors = this.isMobile ? { w: 1.1, h: 1.1 } : { w: 1.1, h: 1.2 };

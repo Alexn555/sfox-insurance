@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { GlobalSizes, Animations, CommonEvents, CustomEvents, PageStructure } from '../components/common/settings';
+import { Animations, CommonEvents, CustomEvents, PageStructure } from '../components/common/settings';
+import { isMobile } from '../components/common/utils';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../components/common/settings';
@@ -29,8 +30,7 @@ class Layout extends HTMLElement {
     }
 
     setLayoutOffset() {
-        const isMobile = window.innerWidth < GlobalSizes.mobileMax;
-        this.laytOffsetSettings = isMobile ? '60' : '0';
+        this.laytOffsetSettings = isMobile() ? '60' : '0';
     }
 
     moveLayout(settingsToggle) {

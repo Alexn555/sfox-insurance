@@ -1,4 +1,7 @@
 ## Changelog
+v 1.85
+  Added isMobile detection feature
+
 v 1.83
   Added env file with required public url, api key
 
