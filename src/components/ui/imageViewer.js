@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents} from '../../components/common/settings';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../components/common/settings';
 import { isMobile } from '../../components/common/utils';
 import { draggableContainer } from '../../services/dragContainer';
 
@@ -43,7 +43,7 @@ class ImageViewer extends HTMLElement {
         this.toggleViewer(false);
       });
 
-      if (!this.isMobile) {
+      if (!this.isMobile && ImageViewerSettings.draggable) {
         draggableContainer(this.shadow.getElementById(this.imgViewerId));
       }
     }

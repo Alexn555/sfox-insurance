@@ -8,3 +8,4 @@ export { Animations } from './settings/animations';
 export { SettingsBoard } from './settings/settingsBoard';
 export { HeaderBoard } from './settings/header';
 export { FooterBoard } from './settings/footer';
+export { ImageViewerSettings } from './settings/views';
