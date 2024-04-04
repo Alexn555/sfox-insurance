@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import { theme } from '../../theme/theme';
-import { CommonEvents, CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/bannerService';

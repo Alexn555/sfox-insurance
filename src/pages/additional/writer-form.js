@@ -1,6 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';

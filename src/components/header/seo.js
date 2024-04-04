@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { SEO } from '../../components/common/settings';
+import { SEO } from '../../settings';
 
 class SEOHelmet extends HTMLElement {
     constructor() {

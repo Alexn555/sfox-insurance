@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { Animations, CommonEvents, CustomEvents, PageStructure } from '../components/common/settings';
+import { Animations, CommonEvents, CustomEvents, PageStructure } from '../settings';
 import { isMobile } from '../components/common/utils';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
-import { HeaderBoard, FooterBoard } from '../components/common/settings';
+import { HeaderBoard, FooterBoard } from '../settings';
 import { showComponent } from '../components/common/utils';
 import { CustomEventService } from '../services';
 

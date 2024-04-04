@@ -1,4 +1,7 @@
 ## Changelog
+v 1.90
+  Moved settings to more logical place in src folder, added zoomEnable feature
+
 v 1.85
   Added isMobile detection feature
 

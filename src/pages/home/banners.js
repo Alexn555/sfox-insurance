@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { Banners } from '../../components/common/settings';
+import { Banners } from '../../settings';
 
 class HomeBanners extends HTMLElement {
     constructor() {

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { pageNames, Animations, CustomEvents } from "../components/common/settings";
+import { pageNames, Animations, CustomEvents } from "../settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';

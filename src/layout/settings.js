@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, Themes } from '../theme/theme';
-import { SettingsBoard, CustomEvents } from '../components/common/settings';
+import { SettingsBoard, CustomEvents } from '../settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
 import { showComponent } from "../components/common/utils/";

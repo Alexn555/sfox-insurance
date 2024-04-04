@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonEvents } from '../../components/common/settings';
+import { CommonEvents } from '../../settings';
 import { isMobile } from '../../components/common/utils/';
 import { theme } from '../../theme/theme';
 

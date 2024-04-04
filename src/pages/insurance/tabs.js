@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { CommonEvents } from '../../components/common/settings';
+import { CommonEvents } from '../../settings';
 
 const template = document.createElement('template');
 template.innerHTML = `

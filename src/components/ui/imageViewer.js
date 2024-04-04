@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../components/common/settings';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../settings';
 import { isMobile } from '../../components/common/utils';
 import DateService from '../../services/dateService';
 import GlobalsService from '../../services/globalsService';
@@ -116,6 +116,13 @@ class ImageViewer extends HTMLElement {
     setImgViewer(toggle) {
       this.imgViewerVisible = toggle;
     }
+
+    setZoomAbility() {
+      return ImageViewerSettings.zoomEnable ? `
+        transform: scale(1.1);
+        transition: transform 0.5s ease-in-out;
+        cursor: zoom-in;` : '';
+    }
   
     render() {
       this.shadow.innerHTML = `
@@ -143,9 +150,7 @@ class ImageViewer extends HTMLElement {
                   border: 1px solid grey;
 
                   &:hover {
-                    transform: scale(1.1);
-                    transition: transform 0.5s ease-in-out;
-                    cursor: zoom-in;
+                    ${this.setZoomAbility()}
                   }
                 }
 

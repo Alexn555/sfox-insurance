@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
-import { HeaderSettings, CustomEvents } from '../../components/common/settings';
+import { HeaderSettings, CustomEvents } from '../../settings';
 import { SaveForms, SaveObjects } from '../../components/common/saves';
 import { CustomEventService } from '../../services';
 

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonEvents } from '../../components/common/settings';
+import { CommonEvents } from '../../settings';
 
 class MapForm extends HTMLElement {
     constructor() {

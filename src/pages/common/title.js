@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { TextSizes } from '../../components/common/settings';
+import { TextSizes } from '../../settings';
 
 class PageTitle extends HTMLElement {
     constructor() {

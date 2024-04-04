@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { CustomEvents } from '../../components/common/settings';
+import { CustomEvents } from '../../settings';
 import { CustomEventService } from '../../services';
 
 class AmountSlider extends HTMLElement {

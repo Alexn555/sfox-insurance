@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { TextSizes } from '../../components/common/settings';
+import { TextSizes } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';

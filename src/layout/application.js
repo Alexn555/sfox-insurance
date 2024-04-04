@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../components/common/settings';
+import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../settings';
 import { SaveObjects } from '../components/common/saves';
 import { getVersionFromPackage } from '../components/common/utils/';
 import DataStorage from '../services/storage';

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Animations, CommonEvents, CustomEvents } from '../../components/common/settings';
+import { Animations, CommonEvents, CustomEvents } from '../../settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { CustomEventService } from '../../services';

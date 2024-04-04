@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { HeaderBoard, CommonEvents, CustomEvents } from '../../components/common/settings';
+import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
 import { isMobile } from '../../components/common/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';

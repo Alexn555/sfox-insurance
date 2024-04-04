@@ -1,6 +1,6 @@
 import './style.css';
 import './theme/index';
-import './components/common/settings';
+import './settings';
 import './components/ui/index';
 import './data/index';
 import './layout/index';

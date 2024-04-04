@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Themes } from '../../theme/theme';
-import { GlobalSizes, CustomEvents } from '../../components/common/settings';
+import { GlobalSizes, CustomEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';

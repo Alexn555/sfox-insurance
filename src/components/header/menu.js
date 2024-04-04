@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { CommonEvents, CustomEvents } from '../../components/common/settings';
+import { CommonEvents, CustomEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
 import { CustomEventService } from '../../services';
 

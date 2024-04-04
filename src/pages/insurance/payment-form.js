@@ -2,7 +2,7 @@
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
 import { theme } from '../../theme/theme';
-import { CustomEvents } from '../../components/common/settings';
+import { CustomEvents } from '../../settings';
 import { getOptionFromString } from '../../components/common/utils/arrays';
 import { SaveForms } from '../../components/common/saves';
 import DataStorage from '../../services/storage';
