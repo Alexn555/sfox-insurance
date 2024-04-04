@@ -7,6 +7,6 @@ export const getOptionFromString = (key, index) => {
     return JSON.parse(key)[index];
 }
 
-export const getRandomItemFromList = (list) => {
-    return list[randomInteger(0, list.length - 1)];
+export const getRandomItemFromList = (list, fIndex = 0, lastIndex = list.length - 1) => {
+    return list[randomInteger(fIndex, lastIndex)];
 }

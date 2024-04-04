@@ -1,6 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents } from '../../settings';
+import { CommonEvents, CustomEvents, ImageViewerSettings } from '../../settings';
 import { toggleDisplay } from '../../components/common/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';
@@ -59,8 +59,9 @@ class WriterForm extends HTMLElement {
     }
 
     async fetchImage() {
-      this.loadEl.style.opacity = 1;
-      const { imgSm, imgMedium } = await this.flickrService.getImage(getRandomItemFromList(imageList), true);
+      this.loadEl.style.opacity = 1; 
+      
+      const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
       const imgViewerEl = this.shadow.getElementById('imgViewer');
@@ -70,6 +71,12 @@ class WriterForm extends HTMLElement {
       imgViewerEl.setAttribute('source', imgMedium);
 
       this.handleImageError(imgEl, imgSm)
+    }
+
+    getImageSearchTerm() {
+      const listCase = ImageViewerSettings.searchListNum;
+      const lastIndex = listCase === 'all' ? imageList.length - 1 : listCase;
+      return getRandomItemFromList(imageList, 0, lastIndex);
     }
 
     handleImageError(el, image) {
