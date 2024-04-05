@@ -8,4 +8,4 @@ export { Animations } from './sets/animations';
 export { SettingsBoard } from './sets/settingsBoard';
 export { HeaderBoard } from './sets/header';
 export { FooterBoard } from './sets/footer';
-export { ImageViewerSettings } from './sets/views';
+export { ImageViewerSettings, ImageViewerIds } from './sets/views';

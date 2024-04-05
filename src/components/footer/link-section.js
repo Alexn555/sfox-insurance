@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
-import { isMobile } from '../../components/common/utils/';
+import { isMobile } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {

@@ -3,7 +3,7 @@ import 'jimp';
 import { createFlickr } from 'flickr-sdk';
 import LoggerService from './loggerService';
 import GlobalsService from './globalsService';
-import { randomInteger } from '../components/common/utils';
+import { randomInteger } from './utils';
 
 export default class FlickService {
     

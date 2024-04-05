@@ -2,7 +2,7 @@
 import { theme, changeTheme } from '../theme/theme';
 import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../settings';
 import { SaveObjects } from '../components/common/saves';
-import { getVersionFromPackage } from '../components/common/utils/';
+import { getVersionFromPackage } from '../services/utils';
 import DataStorage from '../services/storage';
 
 class Application extends HTMLElement {

@@ -1,4 +1,4 @@
-import { simulateDelay } from '../components/common/utils/';
+import { simulateDelay } from './utils';
 import performanceBannerData from '../data/mocks/performance';
 import DataStorage from './storage';
 

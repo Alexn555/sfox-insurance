@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings } from '../../settings';
-import { isMobile } from '../../components/common/utils';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../settings';
+import { isMobile } from '../../services/utils';
 import DateService from '../../services/dateService';
 import GlobalsService from '../../services/globalsService';
 import { draggableContainer } from '../../modifiers/dragContainer';
@@ -21,6 +21,7 @@ class ImageViewer extends HTMLElement {
 
       this.isMobile = false;
       this.imgSource = this.getAttribute('source') || '';
+      this.id = this.getAttribute('id') || ImageViewerIds.writer;
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.imgViewerSize = {
@@ -45,7 +46,7 @@ class ImageViewer extends HTMLElement {
         this.toggleViewer(false);
       });
 
-      if (!this.isMobile && ImageViewerSettings.draggable) {
+      if (!this.isMobile && ImageViewerSettings[this.id].draggable) {
         draggableContainer(this.shadow.getElementById(this.imgViewerId));
       }
     }
@@ -118,7 +119,7 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomAbility() {
-      return ImageViewerSettings.zoomEnable ? `
+      return ImageViewerSettings[this.id].zoomEnable ? `
         transform: scale(1.1);
         transition: transform 0.5s ease-in-out;
         cursor: zoom-in;` : '';

@@ -1,6 +1,6 @@
 import { setStyle } from "./styles/footer";
 import { FooterBoard } from '../../settings';
-import { showComponent } from "../../components/common/utils/";
+import { showComponent } from "../../services/utils";
 
 class Footer extends HTMLElement {
     constructor() {

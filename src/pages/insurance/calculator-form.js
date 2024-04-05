@@ -4,7 +4,7 @@ import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
-import { getOptionFromString } from '../../components/common/utils/arrays';
+import { getOptionFromString } from '../../services/utils/arrays';
 import DataStorage from '../../services/storage';
 
 class InsuranceCalculatorForm extends HTMLElement {

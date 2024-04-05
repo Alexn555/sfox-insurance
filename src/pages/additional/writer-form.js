@@ -1,12 +1,12 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents, ImageViewerSettings } from '../../settings';
-import { toggleDisplay } from '../../components/common/utils/toggleButton';
+import { CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../settings';
+import { toggleDisplay } from '../../services/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';
 import DateService from '../../services/dateService';
 import { CustomEventService } from '../../services/';
-import { getRandomItemFromList } from '../../components/common/utils/arrays';
+import { getRandomItemFromList } from '../../services/utils/arrays';
 import { imageList } from '../../data/mocks/writerImageList';
 
 class WriterForm extends HTMLElement {
@@ -17,7 +17,7 @@ class WriterForm extends HTMLElement {
       this.writerService = new WriterService();
       this.flickrService = new FlickService();
       this.imgMedium = '';
-      this.imgViewerId = 'imageViewer';
+      this.imgViewerId = ImageViewerIds.writer;
       this.imgViewerSize = {
         w: 800,
         h: 600
@@ -64,7 +64,7 @@ class WriterForm extends HTMLElement {
       const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
-      const imgViewerEl = this.shadow.getElementById('imgViewer');
+      const imgViewerEl = this.shadow.getElementById(ImageViewerIds.writer);
       this.loadEl.style.display = 'none';
 
       imgEl.setAttribute('src', imgSm);
@@ -74,7 +74,7 @@ class WriterForm extends HTMLElement {
     }
 
     getImageSearchTerm() {
-      const listCase = ImageViewerSettings.searchListNum;
+      const listCase = ImageViewerSettings[ImageViewerIds.writer].searchListNum;
       const lastIndex = listCase === 'all' ? imageList.length - 1 : listCase;
       return getRandomItemFromList(imageList, 0, lastIndex);
     }
@@ -137,7 +137,7 @@ class WriterForm extends HTMLElement {
                     </div>
                 </div>
 
-                <image-viewer id="imgViewer" source=""></image-viewer>
+                <image-viewer id="${ImageViewerIds.writer}" source=""></image-viewer>
            </form>
        `;
     }

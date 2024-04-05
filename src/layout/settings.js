@@ -3,7 +3,7 @@ import { theme, Themes } from '../theme/theme';
 import { SettingsBoard, CustomEvents } from '../settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
-import { showComponent } from "../components/common/utils/";
+import { showComponent } from "../services/utils";
 import { CustomEventService } from '../services';
 
 class AppSettings extends HTMLElement {

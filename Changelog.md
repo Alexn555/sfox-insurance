@@ -1,4 +1,7 @@
 ## Changelog
+v 1.92
+  Added ImageViewer updates, improved utilities
+  
 v 1.90
   Moved settings to more logical place in src folder, added zoomEnable feature
 

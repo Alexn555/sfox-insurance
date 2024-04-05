@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
-import { isMobile } from '../../components/common/utils';
+import { isMobile } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
-import { showComponent } from '../../components/common/utils';
+import { showComponent } from '../../services/utils';
 
 class Header extends HTMLElement {
     constructor() {

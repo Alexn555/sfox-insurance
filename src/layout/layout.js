@@ -1,10 +1,10 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents, PageStructure } from '../settings';
-import { isMobile } from '../components/common/utils';
+import { isMobile } from '../services/utils';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
-import { showComponent } from '../components/common/utils';
+import { showComponent } from '../services/utils';
 import { CustomEventService } from '../services';
 
 class Layout extends HTMLElement {
