@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
+import { ButtonTypes } from '../../components/common/ui';
 
 class MapForm extends HTMLElement {
     constructor() {
@@ -63,7 +64,7 @@ class MapForm extends HTMLElement {
             <form>
                 <div class="map-wrapper">
                     <div>
-                      <action-button id="mapOpen" label="Open Map" type="action" />
+                      <action-button id="mapOpen" label="Open Map" type="${ButtonTypes.action}" />
                     </div>
                     <div>
                         <dialog id="mapDialog">
@@ -75,7 +76,7 @@ class MapForm extends HTMLElement {
                                 height="400"
                                 src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
                             </iframe>
-                            <action-button id="closeMap" label="Close" type="action" />
+                            <action-button id="closeMap" label="Close" type="${ButtonTypes.action}" />
                         </dialog>
                     </div>
                 </div>

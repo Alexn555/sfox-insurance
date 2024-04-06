@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerIds } from '../../../settings';
+import { ButtonTypes } from '../../common/ui';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/dateService';
 import GlobalsService from '../../../services/globalsService';
@@ -42,9 +43,16 @@ class ImageViewer extends HTMLElement {
       this.$error = this.shadow.getElementById('error');
       this.$content = this.shadow.getElementById('imgDetail');
       this.toggleError(false);
+
+      this.$original = this.shadow.getElementById('originalImage');
       this.$close = this.shadow.getElementById('close');
       this.$close.addEventListener(CommonEvents.click, () => {
         this.toggleViewer(false);
+      });
+      this.$original.addEventListener(CommonEvents.click, () => {
+        if (this.imgMedium) {
+          window.open(this.imgMedium);
+        }
       });
 
       if (!this.isMobile && ImageViewerHelper.getId(this.id).draggable) {
@@ -54,6 +62,7 @@ class ImageViewer extends HTMLElement {
 
     disconnectedCallback() {
       this.$close.removeEventListener(CommonEvents.click, null);
+      this.$original.removeEventListener(CommonEvents.click, null);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -127,6 +136,10 @@ class ImageViewer extends HTMLElement {
     }
   
     render() {
+      const sharedBtnStyles = `
+        padding: 10px;
+        border-radius: 0;`;
+        
       this.shadow.innerHTML = `
             <style>
               dialog#imageViewer {
@@ -183,8 +196,22 @@ class ImageViewer extends HTMLElement {
                   @media (max-width: 768px) {
                     right: 30px;
                     top: 12px;
-                    padding: 10px;
-                    border-radius: 0;
+                    ${sharedBtnStyles}
+                  }
+                }
+
+                .original {
+                  position: absolute;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  bottom: 10px;
+                  padding: 2px;
+                  background-color: white;
+                  border-radius: 4px;
+                       
+                  @media (max-width: 768px) {
+                    bottom: 20px;
+                    ${sharedBtnStyles}
                   }
                 }
               }
@@ -198,7 +225,10 @@ class ImageViewer extends HTMLElement {
                 </div>
 
                 <div class="close">
-                    <action-button id="close" label="Close" type="action" />
+                  <action-button id="close" label="Close" type="${ButtonTypes.action}" />
+                </div> 
+                <div class="original">
+                  <action-button id="originalImage" label="Original image" type="${ButtonTypes.highlight}" />
                 </div>
             </dialog>
        `;
