@@ -13,6 +13,8 @@ class ImageViewer extends HTMLElement {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.imgMedium = '';
+      this.settings = ImageViewerHelper.getId(this.id);
+
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
       window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
         if (evt.detail) { // just to double check
@@ -55,7 +57,7 @@ class ImageViewer extends HTMLElement {
         }
       });
 
-      if (!this.isMobile && ImageViewerHelper.getId(this.id).draggable) {
+      if (!this.isMobile && this.settings.draggable) {
         draggableContainer(this.shadow.getElementById(this.imgViewerId));
       }
     }
@@ -129,10 +131,16 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomAbility() {
-      return ImageViewerHelper.getId(this.id).zoomEnable ? `
+      return this.settings.zoomEnable ? `
         transform: scale(1.1);
         transition: transform 0.5s ease-in-out;
         cursor: zoom-in;` : '';
+    }
+
+    setOriginalImageLink() {
+      return this.settings.originalLink ? `<div class="original">
+        <action-button id="originalImage" label="Original image" type="${ButtonTypes.highlight}" />
+      </div>` : '';
     }
   
     render() {
@@ -227,9 +235,7 @@ class ImageViewer extends HTMLElement {
                 <div class="close">
                   <action-button id="close" label="Close" type="${ButtonTypes.action}" />
                 </div> 
-                <div class="original">
-                  <action-button id="originalImage" label="Original image" type="${ButtonTypes.highlight}" />
-                </div>
+                ${this.setOriginalImageLink()}
             </dialog>
        `;
     }

@@ -8,11 +8,13 @@ export const ImageViewerSettings = {
         // searchListNum: 0 - fist item, 1 - 2 items, [num] - integer items, 'all' - all items
         searchListNum: 0,
         draggable: true,
-        zoomEnable: true 
+        zoomEnable: true,
+        originalLink: true
     },
     writer: { // writer - id
         searchListNum: 0,
         draggable: true,
-        zoomEnable: true 
+        zoomEnable: true,
+        originalLink: true
     }
 };
