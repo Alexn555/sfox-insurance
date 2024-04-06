@@ -1,4 +1,7 @@
 ## Changelog
+v 1.95
+  Added ImageViewerHelper to improve getting ids
+
 v 1.92
   Added ImageViewer updates, improved utilities
   

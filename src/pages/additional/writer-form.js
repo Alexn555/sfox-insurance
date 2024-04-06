@@ -8,6 +8,7 @@ import DateService from '../../services/dateService';
 import { CustomEventService } from '../../services/';
 import { getRandomItemFromList } from '../../services/utils/arrays';
 import { imageList } from '../../data/mocks/writerImageList';
+import { ImageViewerHelper } from '../../components/ui/imageViewer/imageViewerHelper';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -74,7 +75,7 @@ class WriterForm extends HTMLElement {
     }
 
     getImageSearchTerm() {
-      const listCase = ImageViewerSettings[ImageViewerIds.writer].searchListNum;
+      const listCase =  ImageViewerHelper.getId(ImageViewerIds.writer).searchListNum;
       const lastIndex = listCase === 'all' ? imageList.length - 1 : listCase;
       return getRandomItemFromList(imageList, 0, lastIndex);
     }

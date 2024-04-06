@@ -1,10 +1,11 @@
 // @ts-nocheck
-import { theme } from '../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../settings';
-import { isMobile } from '../../services/utils';
-import DateService from '../../services/dateService';
-import GlobalsService from '../../services/globalsService';
-import { draggableContainer } from '../../modifiers/dragContainer';
+import { theme } from '../../../theme/theme';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../../settings';
+import { isMobile } from '../../../services/utils';
+import DateService from '../../../services/dateService';
+import GlobalsService from '../../../services/globalsService';
+import { draggableContainer } from '../../../modifiers/dragContainer';
+import { ImageViewerHelper } from './imageViewerHelper';
 
 class ImageViewer extends HTMLElement {
     constructor() {
@@ -46,7 +47,7 @@ class ImageViewer extends HTMLElement {
         this.toggleViewer(false);
       });
 
-      if (!this.isMobile && ImageViewerSettings[this.id].draggable) {
+      if (!this.isMobile && ImageViewerHelper.getId(this.id).draggable) {
         draggableContainer(this.shadow.getElementById(this.imgViewerId));
       }
     }
@@ -119,7 +120,7 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomAbility() {
-      return ImageViewerSettings[this.id].zoomEnable ? `
+      return ImageViewerHelper.getId(this.id).zoomEnable ? `
         transform: scale(1.1);
         transition: transform 0.5s ease-in-out;
         cursor: zoom-in;` : '';

@@ -4,4 +4,4 @@ import './amountSlider';
 import './select';
 import './button';
 import './accountTable';
-import './imageViewer';
+import './imageViewer/imageViewer';
