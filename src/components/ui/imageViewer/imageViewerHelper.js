@@ -8,6 +8,9 @@ export class ImageViewerHelper {
             cont = ImageViewerSettings[ImageViewerIds.common];
             LoggerService.warn(`ImageViewer container not found id:"${id}", using common id`);
         }
+        if (Object.keys(cont).length < ImageViewerSettings.propertyAmount) {
+            LoggerService.warn(`ImageViewer container with id:"${id}", currently having less [properties] than required!`);
+        }
         return cont;
     }
 }

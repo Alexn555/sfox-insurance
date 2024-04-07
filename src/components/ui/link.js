@@ -1,6 +1,6 @@
 import { theme } from '../../theme/theme';
-import { getCommonButton } from '../../styles/';
-import { ButtonTypes } from '../../components/common/ui';
+import { getCommonButton } from '../../styles';
+import { LinkTypes } from '../../components/common/ui';
 
 class ActionButton extends HTMLElement {
     constructor() {
@@ -8,6 +8,7 @@ class ActionButton extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'closed'});
         this.label = this.getAttribute('label') || 'Go';
         this.buttonType = this.getAttribute('type') || 'action';
+        this.addCl = '';
     }
     
     connectedCallback() {
@@ -18,15 +19,9 @@ class ActionButton extends HTMLElement {
         const { button: btn } = theme.ui;
         let color = btn.default;
         switch(this.buttonType) {
-            case ButtonTypes.action:
-            default:
-                color = btn.action;
-            break;
-            case ButtonTypes.highlight:
-                color = btn.highlight;
-            break;
-            case ButtonTypes.passive:
-                color = btn.passive;
+            case LinkTypes.transparentButton:
+                color = 'transparent';
+                this.addCl = 'link';
             break;
         }
         return color;
@@ -35,12 +30,17 @@ class ActionButton extends HTMLElement {
     render() {
         this.shadow.innerHTML = `
             <style>
-                .action-button {
+                .link {
+                    color: black !important;
+                    text-decoration: underline;
+                }
+
+                .action-link {
                     background-color: ${this.setColor()};
                     ${getCommonButton()}
                 }
             </style>
-            <button class="action-button">
+            <button class="action-link ${this.addCl}">
                 ${this.label}
             </button>
         `;
@@ -48,5 +48,5 @@ class ActionButton extends HTMLElement {
 }
 
 if ('customElements' in window) {
-	customElements.define('action-button', ActionButton);
+	customElements.define('action-link', ActionButton);
 }

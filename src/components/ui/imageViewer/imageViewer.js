@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerIds } from '../../../settings';
-import { ButtonTypes } from '../../common/ui';
+import { ButtonTypes, LinkTypes } from '../../common/ui';
+import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/dateService';
 import GlobalsService from '../../../services/globalsService';
@@ -76,7 +77,7 @@ class ImageViewer extends HTMLElement {
 
     toggleError(isVisible = false) {
       if (this.$error) {
-        this.$error.style.display = isVisible ? 'block': 'none';
+        StyleService.setDisplay(this.$error, isVisible);
       }
     }
 
@@ -139,7 +140,7 @@ class ImageViewer extends HTMLElement {
 
     setOriginalImageLink() {
       return this.settings.originalLink ? `<div class="original">
-        <action-button id="originalImage" label="Original image" type="${ButtonTypes.highlight}" />
+        <action-link id="originalImage" label="Original image" type="${LinkTypes.transparentButton}" />
       </div>` : '';
     }
   

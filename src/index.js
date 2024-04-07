@@ -1,4 +1,5 @@
 import './style.css';
+import './styles/index';
 import './theme/index';
 import './settings';
 import './components/ui/index';

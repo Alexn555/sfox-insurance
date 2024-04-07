@@ -1,2 +1,6 @@
 import CustomEventService from './customEventService';
-export { CustomEventService };
+import StyleService from './styleService';
+export { 
+    CustomEventService,
+    StyleService 
+};

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
+import { StyleService } from '../../services';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { getOptionFromString } from '../../services/utils/arrays';
@@ -87,10 +88,10 @@ class InsurancePaymentForm extends HTMLElement {
   setAmount(amountVal) {
     if (amountVal && amountVal !== '') {
         const errorLabel = this.shadow.querySelector('.input-error');
-        errorLabel.style.display = 'none';
+        StyleService.setDisplay(errorLabel, false);
         const isNumber = /^\d+$/.test(amountVal);
         if (!isNumber) {
-            errorLabel.style.display = 'block';
+            StyleService.setDisplay(errorLabel, true);
         } else {
             this.savedForm.amount = amountVal;
         }

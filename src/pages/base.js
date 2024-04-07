@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { StyleService } from '../services';
+
 class BasePage extends HTMLElement {
     constructor() {
         super();
@@ -20,12 +22,12 @@ class BasePage extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         const el = this.shadow.querySelector('.container');
         if (el !== null) {
-            el.style.display = newValue === 'true' ? 'block' : 'none';
+            StyleService.setDisplay(el, newValue === 'true');
         }
     }
 
     setInit() {
-        this.el.style.display = 'none';
+        StyleService.setDisplay(this.el, false);
     }
 
     render() {

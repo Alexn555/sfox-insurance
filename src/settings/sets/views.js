@@ -4,6 +4,7 @@ export const ImageViewerIds = {
 };
 
 export const ImageViewerSettings = {
+    propertyAmount: 4,
     common: { // default, non-specific
         // searchListNum: 0 - fist item, 1 - 2 items, [num] - integer items, 'all' - all items
         searchListNum: 0,

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CommonEvents } from '../../settings';
+import { StyleService } from '../../services';
 
 class AdditionalTabs extends HTMLElement {
     constructor() {
@@ -22,21 +23,23 @@ class AdditionalTabs extends HTMLElement {
       const tabWriterForm = this.shadow.getElementById('writerForm');
 
       if (tab) {
-        tabGame.style.display = 'none';
-        tabMap.style.display = 'none';
-        tabWriterForm.style.display = 'none';
+        StyleService.setDisplayMultiple([tabGame, tabMap, tabWriterForm], false);
       }
 
+      let selected = null;
       switch (item) {
         case 'game-btn':
-          tabGame.style.display = 'block';
+          selected = tabGame;
           break;
         case 'map-btn':
-          tabMap.style.display = 'block';
+          selected = tabMap;
           break;
         case 'writer-btn':
-          tabWriterForm.style.display = 'block';
+          selected = tabWriterForm;
           break;
+      }
+      if (selected !== null) {
+        StyleService.setDisplay(selected, true);
       }
     }
 

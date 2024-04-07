@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
+import { StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
@@ -35,7 +36,7 @@ class FooterLinkSection extends HTMLElement {
         if (!isMobile()) {
             const content = this.shadow.querySelectorAll('.link-content');
             content.forEach((contentItem) => {
-                contentItem.style.display = 'block';
+                StyleService.setDisplay(contentItem, true);
             });
         } else {
             const toggleBtn = this.shadow.querySelector('.toggle-content');
@@ -61,7 +62,7 @@ class FooterLinkSection extends HTMLElement {
         const content = this.shadow.querySelector('.link-content');
     
         if (isMobile() && content) {
-            content.style.display = !this.contentOpen ? 'none' : 'block';
+            StyleService.setDisplay(content, this.contentOpen);
         }
     }
 

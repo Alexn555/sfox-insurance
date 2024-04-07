@@ -1,11 +1,11 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents, ImageViewerSettings, ImageViewerIds } from '../../settings';
+import { CommonEvents, CustomEvents, ImageViewerIds } from '../../settings';
 import { toggleDisplay } from '../../services/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';
 import DateService from '../../services/dateService';
-import { CustomEventService } from '../../services/';
+import { CustomEventService, StyleService } from '../../services/';
 import { getRandomItemFromList } from '../../services/utils/arrays';
 import { imageList } from '../../data/mocks/writerImageList';
 import { ImageViewerHelper } from '../../components/ui/imageViewer/imageViewerHelper';
@@ -66,7 +66,7 @@ class WriterForm extends HTMLElement {
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
       const imgViewerEl = this.shadow.getElementById(ImageViewerIds.writer);
-      this.loadEl.style.display = 'none';
+      StyleService.setDisplay(this.loadEl, false);
 
       imgEl.setAttribute('src', imgSm);
       imgViewerEl.setAttribute('source', imgMedium);
@@ -82,10 +82,10 @@ class WriterForm extends HTMLElement {
 
     handleImageError(el, image) {
       const errEl = this.shadow.getElementById('error');
-      errEl.style.display = 'none';
+      StyleService.setDisplay(errEl, false);
       if (image === '' || image === null) {
         el.setAttribute('src', `${GlobalsService.getRoot()}assets/imageviewer/demo_c.jpg`);
-        errEl.style.display = 'block';
+        StyleService.setDisplay(errEl, true);
       }
     }
   

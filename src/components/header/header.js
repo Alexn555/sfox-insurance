@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
+import { StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
@@ -15,21 +16,21 @@ class Header extends HTMLElement {
         document.addEventListener(CustomEvents.header.menuOverlay, () => {
             const overlay = this.shadow.querySelector('.header-overlay');
             if (overlay) {
-                overlay.style.display = 'block';
+                StyleService.setDisplay(overlay, true);
             }
         });
 
         document.addEventListener(CustomEvents.header.menuOverlayRemove, () => {
             const overlay = this.shadow.querySelector('.header-overlay');
             if (overlay) {
-                overlay.style.display = 'none';
+                StyleService.setDisplay(overlay, false);
             }
         });
     }
 
     updateSize() {
         const toggleItem = this.shadow.querySelector('.menu-toggle');
-        toggleItem.style.display = isMobile() ? 'none' : 'block';
+        StyleService.setDisplay(toggleItem, !isMobile());
     }
     
     connectedCallback() {
@@ -45,11 +46,11 @@ class Header extends HTMLElement {
        if (isMobile()) {
             const toggleItem = this.shadow.querySelector('.menu-toggle');
             const toggleIcon = this.shadow.querySelector('.toggle-icon');
-            const isMenuOpen = toggleItem.style.display === 'none';
-            toggleItem.style.display = isMenuOpen ? 'block' : 'none';
+            const isMenuOpen = !StyleService.isDisplaying(toggleItem);
+            StyleService.setDisplay(toggleItem, isMenuOpen);
             toggleIcon.src = isMenuOpen ? `./${btnMap.mobile.menuClose}` : `./${btnMap.mobile.menuOpen}` ;
         } else {
-            toggleItem.style.display = 'block';
+            StyleService.setDisplay(toggleItem, true);
         }
     }
 

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CommonEvents } from '../../settings';
+import { StyleService } from '../../services';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -77,15 +78,16 @@ class InsuranceTabs extends HTMLElement {
       const tabCalculator = this.shadow.getElementById('calculator');
 
       if (tab) {
-        tabPayment.style.display = 'none';
-        tabCalculator.style.display = 'none';
+        StyleService.setDisplayMultiple([tabPayment, tabCalculator], false);
       }
 
+      let selected = null;
       if (item === 'payment-btn') {
-        tabPayment.style.display = 'block';
+        selected = tabPayment;
       } else if (item === 'calculator-btn') {
-        tabCalculator.style.display = 'block';
+        selected = tabCalculator;
       }
+      StyleService.setDisplay(selected, true);
     }
 }
 
