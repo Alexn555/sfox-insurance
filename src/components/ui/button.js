@@ -33,11 +33,13 @@ class ActionButton extends HTMLElement {
     }
 
     render() {
+        const styles = getCommonButton();
         this.shadow.innerHTML = `
             <style>
                 .action-button {
                     background-color: ${this.setColor()};
-                    ${getCommonButton()}
+                    ${styles.main}
+                    ${styles.hover}
                 }
             </style>
             <button class="action-button">

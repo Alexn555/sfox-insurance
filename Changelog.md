@@ -1,5 +1,8 @@
 ## Changelog
 v 1.96
+  Added Minor improvements
+
+v 1.96
   Added ImageViewerHelper improvements
 
 v 1.95

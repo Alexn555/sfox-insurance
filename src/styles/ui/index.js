@@ -1,5 +1,5 @@
 export const getCommonButton = () => {
-    return `       
+    const main = `
         text-align: center;
         color: white;
         border-radius: 4px;
@@ -10,10 +10,14 @@ export const getCommonButton = () => {
         user-select: none;
         cursor: pointer;
         font-weight: bold;
+    `;
 
+    const hover = `
         &:focus { 
             outline: none;
             box-shadow: none;
         }
     `;
-}
+
+    return { main, hover };
+};

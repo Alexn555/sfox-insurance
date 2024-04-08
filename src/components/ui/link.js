@@ -28,6 +28,7 @@ class ActionButton extends HTMLElement {
     }
 
     render() {
+        const styles = getCommonButton();
         this.shadow.innerHTML = `
             <style>
                 .link {
@@ -37,7 +38,8 @@ class ActionButton extends HTMLElement {
 
                 .action-link {
                     background-color: ${this.setColor()};
-                    ${getCommonButton()}
+                    ${styles.main}
+                    ${styles.hover}
                 }
             </style>
             <button class="action-link ${this.addCl}">
