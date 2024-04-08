@@ -15,11 +15,12 @@ class ImageViewer extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
+      this.errorCase = 'error';
 
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
       window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
-        if (evt.detail) { // just to double check
-            this.imgMedium = evt.detail.value;
+        if (evt.detail) {
+          this.imgMedium = evt.detail.value;;
         }
         this.toggleViewer(true);
       });
@@ -36,7 +37,7 @@ class ImageViewer extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['source']; 
+      return ['source']; 
     }
  
     connectedCallback() {
@@ -120,7 +121,7 @@ class ImageViewer extends HTMLElement {
     checkImage() {
       const newSource = this.$content.getAttribute('src');
       this.toggleError(false);
-      if (newSource === '' || this.imgMedium === '') {
+      if (newSource === '' || this.imgMedium === this.errorCase) {
         this.$content?.setAttribute('src', 
           `${GlobalsService.getRoot()}assets/imageviewer/demo_m.jpg`);
         this.toggleError(true);

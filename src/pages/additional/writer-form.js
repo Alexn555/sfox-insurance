@@ -27,6 +27,7 @@ class WriterForm extends HTMLElement {
   
     connectedCallback() {
       this.render();
+      this.$image = this.shadow.getElementById('image');
       this.loadEl = this.shadow.getElementById('loading');
       this.loadEl.style.opacity = 0;
       this.shadow.getElementById('fetchOpen').addEventListener(CommonEvents.click, () => {
@@ -34,13 +35,13 @@ class WriterForm extends HTMLElement {
         this.fetchImage();
       });
 
-      this.shadow.getElementById('image').addEventListener(CommonEvents.click, () => {
+      this.$image.addEventListener(CommonEvents.click, () => {
         this.openViewer();
       });
     }
 
     disconnectedCallback() {
-      this.shadow.getElementById('image').removeEventListener(CommonEvents.click, null);
+      this.$image.removeEventListener(CommonEvents.click, null);
     }
 
     openViewer() {
@@ -83,7 +84,8 @@ class WriterForm extends HTMLElement {
     handleImageError(el, image) {
       const errEl = this.shadow.getElementById('error');
       StyleService.setDisplay(errEl, false);
-      if (image === '' || image === null) {
+      if (!image) {
+        this.imgMedium = 'error';
         el.setAttribute('src', `${GlobalsService.getRoot()}assets/imageviewer/demo_c.jpg`);
         StyleService.setDisplay(errEl, true);
       }
