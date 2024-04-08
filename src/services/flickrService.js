@@ -2,6 +2,7 @@
 import 'jimp';
 import { createFlickr } from 'flickr-sdk';
 import LoggerService from './loggerService';
+import ApiService from './apiService';
 import GlobalsService from './globalsService';
 import { randomInteger } from './utils';
 
@@ -42,10 +43,10 @@ export default class FlickService {
             page: 1,
             per_page: 10
         };
-        const flickURL =  `https://api.flickr.com/services/rest/?method=${params.method}&
+        const flickURL = `https://api.flickr.com/services/rest/?method=${params.method}&
          api_key=${this.API_KEY}&page=${params.page}&per_page=${params.per_page}&text=${text}&format=json&nojsoncallback=1`;
-        
-        return fetch(flickURL).then(async (res) => {
+   
+        return ApiService.getWithComplete(flickURL).then(async (res) => {
             const body = await res.json();
             let image = '';
             let imageUrl = '';
@@ -55,8 +56,8 @@ export default class FlickService {
                 image = body.photos.photo[num];
                 imageUrl = await this.getImageFromSource(image);
             }
-            return imageUrl;
-        });
+            return imageUrl; 
+         });
     }
 
     async getImageFromSource(photo) {
