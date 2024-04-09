@@ -46,7 +46,7 @@ export default class FlickService {
         const flickURL = `https://api.flickr.com/services/rest/?method=${params.method}&
          api_key=${this.API_KEY}&page=${params.page}&per_page=${params.per_page}&text=${text}&format=json&nojsoncallback=1`;
    
-        return ApiService.getWithComplete(flickURL).then(async (res) => {
+        return ApiService.getWithComplete(flickURL, 'flickrService').then(async (res) => {
             const body = await res.json();
             let image = '';
             let imageUrl = '';

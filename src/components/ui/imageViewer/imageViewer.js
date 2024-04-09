@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerIds } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
@@ -15,7 +15,6 @@ class ImageViewer extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
-      this.errorCase = 'error';
 
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
       window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
@@ -121,7 +120,7 @@ class ImageViewer extends HTMLElement {
     checkImage() {
       const newSource = this.$content.getAttribute('src');
       this.toggleError(false);
-      if (newSource === '' || this.imgMedium === this.errorCase) {
+      if (newSource === '' || this.imgMedium === ImageViewerSettings.errorCase) {
         this.$content?.setAttribute('src', 
           `${GlobalsService.getRoot()}assets/imageviewer/demo_m.jpg`);
         this.toggleError(true);

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents, ImageViewerIds } from '../../settings';
+import { CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../settings';
 import { toggleDisplay } from '../../services/utils/toggleButton';
 import FlickService from '../../services/flickrService';
 import GlobalsService from '../../services/globalsService';
@@ -85,7 +85,7 @@ class WriterForm extends HTMLElement {
       const errEl = this.shadow.getElementById('error');
       StyleService.setDisplay(errEl, false);
       if (!image) {
-        this.imgMedium = 'error';
+        this.imgMedium = ImageViewerSettings.errorCase;
         el.setAttribute('src', `${GlobalsService.getRoot()}assets/imageviewer/demo_c.jpg`);
         StyleService.setDisplay(errEl, true);
       }

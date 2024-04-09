@@ -1,5 +1,8 @@
 ## Changelog
-v 1.96
+v 1.98
+  Added ErrorCase enum, added api improvements
+  
+v 1.97
   Added Minor improvements
 
 v 1.96

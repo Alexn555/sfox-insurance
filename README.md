@@ -1,4 +1,4 @@
-### Insurance Engine v 1.97
+### Insurance Engine v 1.98
 
 SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
@@ -8,7 +8,10 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
-v 1.96
+v 1.98
+  Added ErrorCase enum, added api improvements
+
+v 1.97
   Added Minor improvements
 
 v 1.96
@@ -16,16 +19,6 @@ v 1.96
 
 v 1.95
   Added ImageViewerHelper to improve getting ids
-
-v 1.92
-  Added ImageViewer updates, improved utilities
-
-v 1.90
-  Moved settings to more logical place in src folder, added zoomEnable feature
-
-v 1.85
-  Added isMobile detection feature
-
 
 
 ## Demo 
