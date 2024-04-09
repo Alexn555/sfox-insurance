@@ -3,6 +3,7 @@ import WriterService from '../../services/writerService';
 import { CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../settings';
 import { toggleDisplay } from '../../services/utils/toggleButton';
 import FlickService from '../../services/flickrService';
+import { ContentService } from '../../services/contentService';
 import GlobalsService from '../../services/globalsService';
 import DateService from '../../services/dateService';
 import { CustomEventService, StyleService } from '../../services/';
@@ -51,12 +52,18 @@ class WriterForm extends HTMLElement {
     }
 
     async featchContent() {
-      const content = await this.writerService.getContent();
+      let content = ['', ''];
+      content[0] = await this.writerService.getContent();
+      content[1] = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
       toggleDisplay('fetchOpen', this.shadow, 5000);
+      ContentService.removeArticles(el);
 
-      if (content && content?.title) {
-        el.innerHTML = content.title;
+      let html;
+      if (content && content[0]?.body) {
+        html += ContentService.createArticle(el, content[0].body);
+        html += ContentService.createArticle(el, content[1].body);
+        el.appendChild(html);
       }
     }
 
@@ -98,6 +105,10 @@ class WriterForm extends HTMLElement {
                   display: grid;
                   grid-template-columns: 50% 50%; 
 
+                  & h3 {
+                    padding-left: 8px;
+                  }
+
                   & div {
                     padding: 20px;
                   }
@@ -105,6 +116,16 @@ class WriterForm extends HTMLElement {
                   @media (max-width: 768px) {
                     grid-template-columns: 100%;
                   }
+              }
+
+              .writeContent {
+                &:first-letter {
+                  text-transform: uppercase;
+                }
+
+                & p:first-letter {
+                  text-transform: uppercase;
+                }
               }
 
               #image {
@@ -128,7 +149,7 @@ class WriterForm extends HTMLElement {
             </style>
             <form>
                 <div class="writer-wrapper">
-                    <h2>Writer content</h2>
+                    <h3>Writer content</h3>
                     <div>
                         <action-button id="fetchOpen" label="Fetch content" type="action" /> 
                     </div>

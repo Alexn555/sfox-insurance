@@ -11,6 +11,7 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.min = this.getAttribute('min') || '0';
     this.max = this.getAttribute('max') || '100';
     this.className = this.getAttribute('class-name') || '';
+    this.type = this.getAttribute('type') || 'text';
     this.value = this.getAttribute('value') || '';
     this.$textValue = '';
   }
@@ -42,24 +43,24 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.shadow.innerHTML = `
             <style>
                 input {
-                    padding: 10px;
+                  padding: 10px;
                 }
                 
                 .input-normal {
-                    width: 275px;
+                  width: 275px;
                 }
 
                 .input-error {
-                    display: none;
-                    color: var(--error-color);
+                  display: none;
+                  color: var(--error-color);
                 }
 
                 .amount {
-                    border: default;
+                  border: default;
                 }
 
                 .amount-error {
-                    border: 1px solid var(--error-color);
+                  border: 1px solid var(--error-color);
                 }
             </style>               
             <label for="${this.id}">${this.label}:</label>
@@ -67,10 +68,9 @@ class TextInput extends HTMLElement { // numeric, usual text
                 min="${this.min}" 
                 value="${this.value}"
                 max="${this.max}" 
-                type="text" 
                 id="${this.id}" 
                 name="${this.id}"
-                type="text"
+                type="${this.type}"
             >                 
         `;
   }

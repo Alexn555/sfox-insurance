@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { CommonEvents } from '../../settings';
+import { CommonEvents, AdditionalPage } from '../../settings';
 import { StyleService } from '../../services';
 
 class AdditionalTabs extends HTMLElement {
@@ -21,22 +21,27 @@ class AdditionalTabs extends HTMLElement {
       const tabGame = this.shadow.getElementById('game');
       const tabMap = this.shadow.getElementById('map');
       const tabWriterForm = this.shadow.getElementById('writerForm');
+      const tabAccount = this.shadow.getElementById('account');
 
       if (tab) {
-        StyleService.setDisplayMultiple([tabGame, tabMap, tabWriterForm], false);
+        StyleService.setDisplayMultiple([tabGame, tabMap, tabWriterForm, tabAccount], false);
       }
 
+      const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
       let selected = null;
       switch (item) {
-        case 'game-btn':
+        case game:
           selected = tabGame;
           break;
-        case 'map-btn':
+        case mapLink:
           selected = tabMap;
           break;
-        case 'writer-btn':
+        case writer:
           selected = tabWriterForm;
           break;
+        case account:
+          selected = tabAccount;
+          break; 
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -44,6 +49,7 @@ class AdditionalTabs extends HTMLElement {
     }
 
     render() {
+      const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
         this.shadow.innerHTML = `
             <style>
                 .tab {
@@ -86,9 +92,10 @@ class AdditionalTabs extends HTMLElement {
                 }
             </style>
             <div class="tab">
-              <button id="game-btn" onclick="this.openTab(event)">Game</button>
-              <button id="map-btn" onclick="this.openTab(event)">Map</button>
-              <button id="writer-btn" onclick="this.openTab(event)">Writer content</button>
+              <button id="${game}" onclick="this.openTab(event)">Game</button>
+              <button id="${mapLink}" onclick="this.openTab(event)">Map</button>
+              <button id="${writer}" onclick="this.openTab(event)">Writer content</button>
+              <button id="${account}" onclick="this.openTab(event)">Account</button>
             </div>
             
             <div id="game" class="tabcontent">
@@ -101,7 +108,11 @@ class AdditionalTabs extends HTMLElement {
             
             <div id="writerForm" class="tabcontent">
               <writer-form></writer-form>
-            </div>  
+            </div> 
+            
+            <div id="account" class="tabcontent">
+              <account-page></account-page>
+            </div> 
         `;
     }
 }

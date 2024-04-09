@@ -1,4 +1,7 @@
 ## Changelog
+v 2.01
+  Started Login, added Writer improvements
+
 v 1.98
   Added ErrorCase enum, added api improvements
   

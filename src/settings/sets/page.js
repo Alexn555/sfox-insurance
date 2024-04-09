@@ -11,6 +11,15 @@ export const PageStructure = {
     }
 };
 
+export const AdditionalPage = {
+    tabLinks: {
+        game: 'game-btn',
+        mapLink: 'map-btn',
+        writer: 'writer-btn',
+        account: 'account-btn'
+    }
+};
+
 export const Banners = {
     Accounts: {
         main: 'purple'
