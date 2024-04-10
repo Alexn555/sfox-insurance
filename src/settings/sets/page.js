@@ -11,6 +11,14 @@ export const PageStructure = {
     }
 };
 
+export const Writer = {
+    fetchOnce: true,
+    queue: {
+        amount: 2,
+        eachTime: 1000, // ms
+    }
+};
+
 export const AdditionalPage = {
     tabLinks: {
         game: 'game-btn',

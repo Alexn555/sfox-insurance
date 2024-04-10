@@ -1,7 +1,8 @@
 // @ts-nocheck
 import WriterService from '../../services/writerService';
-import { CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../settings';
+import { CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings, Writer } from '../../settings';
 import { toggleDisplay } from '../../services/utils/toggleButton';
+import { simulateDelay } from '../../services/utils';
 import FlickService from '../../services/flickrService';
 import { ContentService } from '../../services/contentService';
 import GlobalsService from '../../services/globalsService';
@@ -32,7 +33,7 @@ class WriterForm extends HTMLElement {
       this.loadEl = this.shadow.getElementById('loading');
       this.loadEl.style.opacity = 0;
       this.shadow.getElementById('fetchOpen').addEventListener(CommonEvents.click, () => {
-        this.featchContent();
+        this.fetchContent(Writer.fetchOnce);
         this.fetchImage();
       });
 
@@ -51,13 +52,21 @@ class WriterForm extends HTMLElement {
       }
     }
 
-    async featchContent() {
+    fetchContent(loadOnce) {
+      if (loadOnce) {
+        this.featchContentAtOnce();
+      } else {
+        const { amount, eachTime } = Writer.queue;
+        this.featchContentQueue(amount, eachTime);
+      }
+    }
+
+    async featchContentAtOnce() {
       let content = ['', ''];
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
-      toggleDisplay('fetchOpen', this.shadow, 5000);
-      ContentService.removeArticles(el);
+      this.removeContent();
 
       let html;
       if (content && content[0]?.body) {
@@ -67,13 +76,37 @@ class WriterForm extends HTMLElement {
       }
     }
 
+    async featchContent() {
+      const content = await this.writerService.getContent();
+      const el = this.shadow.querySelector('.writeContent');
+
+      if (content && content?.body) {
+        const html = ContentService.createArticle(el, content.body);
+        el.appendChild(html);
+      }
+    }
+
+    async featchContentQueue(amount = 4, timeout = 1000) { 
+      this.removeContent();
+      for (let i = 0; i < amount; i++) {
+        this.featchContent(i);
+        await simulateDelay(timeout);
+      }
+    }
+
+    removeContent() {
+      toggleDisplay('fetchOpen', this.shadow, 5000);
+      const el = this.shadow.querySelector('.writeContent');
+      ContentService.removeArticles(el);
+    }
+
     async fetchImage() {
       this.loadEl.style.opacity = 1; 
       
       const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
       const imgEl = this.shadow.getElementById('imgSource');
-      const imgViewerEl = this.shadow.getElementById(ImageViewerIds.writer);
+      const imgViewerEl = this.shadow.getElementById(this.imgViewerId);
       StyleService.setDisplay(this.loadEl, false);
 
       imgEl.setAttribute('src', imgSm);
@@ -83,7 +116,7 @@ class WriterForm extends HTMLElement {
     }
 
     getImageSearchTerm() {
-      const listCase =  ImageViewerHelper.getId(ImageViewerIds.writer).searchListNum;
+      const listCase =  ImageViewerHelper.getId( this.imgViewerId).searchListNum;
       const lastIndex = listCase === 'all' ? imageList.length - 1 : listCase;
       return getRandomItemFromList(imageList, 0, lastIndex);
     }

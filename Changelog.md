@@ -1,4 +1,7 @@
 ## Changelog
+v 2.02
+  Added sample utils, added queue as option to show articles
+  
 v 2.01
   Started Login, added Writer improvements
 

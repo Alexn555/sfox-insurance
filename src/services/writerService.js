@@ -1,13 +1,13 @@
 import RestAPI from './restApi';
 import LoggerService from './loggerService';
-import { randomInteger } from './utils';
+import { sample } from './utils';
 
 export default class WriterService {
 
     getContent() {
       const useRestAPI = true;
       const ids = [2, 6, 8, 11, 13, 16, 20, 31, 32];
-      const index = randomInteger(0, ids.length - 1);
+      const index = sample(ids);
       if (useRestAPI) {
          return RestAPI.get('/posts/' + ids[index], '');
       } else {
