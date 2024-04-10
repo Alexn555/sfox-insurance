@@ -48,6 +48,22 @@ class AdditionalTabs extends HTMLElement {
       }
     }
 
+    getTabs() {
+      const tabIds = ['game', 'map', 'writerForm', 'account'];
+      const tabs = [
+        '<game-form></game-form>',
+        '<map-form></map-form>',
+        '<writer-form></writer-form>',
+        '<account-page></account-page>',
+      ];
+
+      let html = '';
+      tabIds.forEach((tabId, index) => {
+        html += `<common-tab id="${tabId}">${tabs[index]}</common-tab>`;
+      });
+      return html;
+    }
+
     render() {
       const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
         this.shadow.innerHTML = `
@@ -98,21 +114,7 @@ class AdditionalTabs extends HTMLElement {
               <button id="${account}" onclick="this.openTab(event)">Account</button>
             </div>
             
-            <div id="game" class="tabcontent">
-              <game-form></game-form>
-            </div>
-
-            <div id="map" class="tabcontent">
-              <map-form></map-form>
-            </div>   
-            
-            <div id="writerForm" class="tabcontent">
-              <writer-form></writer-form>
-            </div> 
-            
-            <div id="account" class="tabcontent">
-              <account-page></account-page>
-            </div> 
+            ${this.getTabs()}
         `;
     }
 }
