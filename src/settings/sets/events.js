@@ -8,6 +8,11 @@ export const CustomEvents = {
     imageViwer: {
         open: 'image-viewer-open'
     },
+    tabs: {
+        writer: {
+            showArticles: 'show-articles'
+        }
+    },
     interaction: {
         flipBoard: 'flip-board',
         sliderValueChange: 'slider-value-change',

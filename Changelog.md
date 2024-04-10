@@ -1,4 +1,7 @@
 ## Changelog
+v 2.05
+  Added separation between artiles and image in Writer
+
 v 2.02
   Added sample utils, added queue as option to show articles
   

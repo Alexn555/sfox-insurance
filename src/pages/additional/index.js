@@ -1,5 +1,5 @@
 import './game';
-import './writer-form';
+import './writer';
 import './map';
 import './tabs';
 import './account';
