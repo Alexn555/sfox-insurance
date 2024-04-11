@@ -10,7 +10,9 @@ export const CustomEvents = {
     },
     tabs: {
         writer: {
-            showArticles: 'show-articles'
+            showArticle: 'writer-show-article',
+            showImage: 'writer-show-image',
+            getImage: 'writer-get-iamge',
         }
     },
     interaction: {

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.06
+  Added separation between article, image in writer
+
 v 2.05
   Added separation between artiles and image in Writer
 

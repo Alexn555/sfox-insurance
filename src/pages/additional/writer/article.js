@@ -4,7 +4,7 @@ import { CustomEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
 import { ContentService } from '../../../services/contentService';
 
-class WriterArticles extends HTMLElement {
+class WriterArticle extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
@@ -13,12 +13,13 @@ class WriterArticles extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      document.addEventListener(CustomEvents.tabs.writer.showArticles, () => {
+      document.addEventListener(CustomEvents.tabs.writer.showArticle, () => {
         this.fetchContent(Writer.fetchOnce);
       });
     }
 
     fetchContent(loadOnce) {
+      this.removeContent();
       if (loadOnce) {
         this.featchContentAtOnce();
       } else {
@@ -32,7 +33,6 @@ class WriterArticles extends HTMLElement {
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
-      this.removeContent();
 
       let html;
       if (content && content[0]?.body) {
@@ -53,7 +53,6 @@ class WriterArticles extends HTMLElement {
     }
 
     async featchContentQueue(amount = 4, timeout = 1000) { 
-      this.removeContent();
       for (let i = 0; i < amount; i++) {
         this.featchContent(i);
         await simulateDelay(timeout);
@@ -69,13 +68,13 @@ class WriterArticles extends HTMLElement {
       this.shadow.innerHTML = `
         <style>
             .writeContent {
-                &:first-letter {
-                    text-transform: uppercase;
-                }
+              &:first-letter {
+                text-transform: uppercase;
+              }
 
-                & p:first-letter {
-                    text-transform: uppercase;
-                }
+              & p:first-letter {
+                text-transform: uppercase;
+              }
             }
         </style>
         <div class="writeContent"> </div>
@@ -84,6 +83,6 @@ class WriterArticles extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("writer-articles", WriterArticles);
+    customElements.define("writer-article", WriterArticle);
   }
   
