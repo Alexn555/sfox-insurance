@@ -9,7 +9,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.07
-  Added styling updates to image
+  Added styling updates to image, Added decode, encode utils, Added Login Service
 
 v 2.06
   Added separation between article, image in writer

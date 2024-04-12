@@ -1,33 +1,70 @@
 // @ts-nocheck
-import { CommonEvents } from '../../../settings';
+import { CommonEvents, CustomEvents } from '../../../settings';
+import { CustomEventService, StyleService } from '../../../services';
+import { UserService } from '../../../services/usersServices';
 
 class AccountLogin extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.isGameOpen = false;
+      this.userFound = false;
+      this.textIds = {
+        username: 'username',
+        password: 'password'
+      };
     }
   
     connectedCallback() {
       this.render();
+      this.$loginSection = this.shadow.querySelector('.login');
+      this.$username = this.shadow.getElementById(this.textIds.username);
+      this.$password = this.shadow.getElementById(this.textIds.password);
       this.$accessBtn = this.shadow.getElementById('accessAccount');
+      this.initForm();
+    }
+
+    initForm() {
+      document.addEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (evt) => {
+        this.setUsername(evt?.detail.value);
+      });
+      document.addEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, (evt) => {
+        this.setPassword(evt?.detail.value);
+      });
 
       this.$accessBtn.addEventListener(CommonEvents.click, () => {
-          this.toggleLogin(true);
+        const user = {
+          username: this.$username.getAttribute('value'),
+          password: this.$password.getAttribute('value')
+        };
+        const logged = UserService.getLoginData(user);
+        if (logged) {
+          this.setAccount(logged);
+          this.hideLogin();
+        } else {
+          alert('No user with credentials found');
+        }
       });
     }
 
+    setUsername(value) {
+      this.$username.setAttribute('value', value);
+    }
+
+    setPassword(value) {
+      this.$password.setAttribute('value', value);
+    }
+
     disconnectedCallback() {
-        this.$accessBtn.removeEventListener(CommonEvents.click, null);
+      this.$accessBtn.removeEventListener(CommonEvents.click, null);
     }
 
-    toggleLogin(isOpen) {   
-
-      this.setGameOpen(isOpen);
+    setAccount(user) {   
+      // send to account that user is found and send user data
+      CustomEventService.send(CustomEvents.users.login, user);
     }
 
-    setGameOpen(toggle) {
-      this.isGameOpen = toggle;
+    hideLogin() { 
+      StyleService.setDisplay(this.$loginSection, false);
     }
   
     render() {
@@ -51,7 +88,7 @@ class AccountLogin extends HTMLElement {
                 <div class="login">
                     <div>
                         <text-input
-                            id="username" 
+                            id="${this.textIds.username}" 
                             label="&nbsp; Name"
                             class-name="input-normal"
                             value=""
@@ -61,7 +98,7 @@ class AccountLogin extends HTMLElement {
                     </div>
                     <div>
                         <text-input
-                            id="password" 
+                            id="${this.textIds.password}" 
                             label="Password"
                             class-name="input-normal"
                             value=""

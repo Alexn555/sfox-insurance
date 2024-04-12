@@ -8,6 +8,11 @@ export const CustomEvents = {
     imageViwer: {
         open: 'image-viewer-open'
     },
+    users: {
+        login: {
+            user: 'logged-user'
+        }
+    },
     tabs: {
         writer: {
             showArticle: 'writer-show-article',

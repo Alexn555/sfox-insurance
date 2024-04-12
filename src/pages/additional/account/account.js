@@ -1,26 +1,56 @@
 // @ts-nocheck
+import { LoggerService } from '../../../services';
+import { CustomEvents } from '../../../settings';
+
 class AccountPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
+      this.loggedUser = {};
     }
   
     connectedCallback() {
       this.render();
+      this.initForm();
     }
 
-    toggleAccount(isAuthorized) {
-      if (!this.isAccVisible) {
-       
-      } else {
-      
+    initForm() {
+      this.showUserDetails();
+      document.addEventListener(CustomEvents.users.login, (evt) => {
+        if (!evt.detail || !evt.detail.value) {
+          LoggerService.warn('Login data missing!');
+          return;
+        }
+        this.loggedUser = evt.detail.value;
+        this.setAvailable(true);
+      });
+    }
+
+    setAvailable(accessible) {
+      this.isAccVisible = accessible;
+      if (accessible) {
+        this.showUserDetails();
       }
-      this.setAvailable(isAuthorized);
     }
 
-    setAvailable(toggle) {
-      this.isAccVisible = toggle;
+    showUserDetails() {
+      if (Object.keys(this.loggedUser).length < 1) {
+        return;
+      }
+
+      const { username, email, name, surname } = this.loggedUser;
+      const html = `
+        <div>
+          <p> username: <b>${username}</b> </p>
+          <p> email: <b>${email}</b> </p>
+          <p> name: <b>${name}</b> <p>
+          <p> surname <b>${surname}</b> </p>
+        </div>
+      `;
+
+      const el = this.shadow.getElementById('userDetails');
+      el.innerHTML = html;
     }
   
     render() {
@@ -32,10 +62,6 @@ class AccountPage extends HTMLElement {
                 align-items: center;
                 justify-content: center;
                 padding: 20px;
-
-                @media (max-width: 768px) {
-                
-                }
             }
           </style>
           <form>
@@ -43,12 +69,9 @@ class AccountPage extends HTMLElement {
               <section>
                 <account-login></account-login>
               </section>
-
               <section>
                 <h3>Account details</h3>
-                <div> 
-                  User details
-                </div>
+                <div id="userDetails"></div>
               </section>
             </div>
           </form>

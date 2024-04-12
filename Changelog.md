@@ -1,6 +1,6 @@
 ## Changelog
 v 2.07
-  Added styling updates to image
+  Added styling updates to image, Added decode, encode utils, Added Login Service
 
 v 2.06
   Added separation between article, image in writer
