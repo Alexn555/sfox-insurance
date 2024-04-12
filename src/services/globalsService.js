@@ -1,9 +1,11 @@
+import EncryptService from './encryptService';
+
 export default class GlobalsService {
     static getRoot() {
         return process.env.PUBLIC_URL;
     }
 
     static getFlickrAPIKey() {
-        return process.env.FLICKR_API_KEY;
+        return EncryptService.decodeBase64Str(process.env.FLICKR_API_KEY);
     }
 }
