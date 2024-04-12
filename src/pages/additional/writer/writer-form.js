@@ -68,7 +68,7 @@ class WriterForm extends HTMLElement {
                     </div>               
 
                     <div class="image">  
-                        <writer-image></writer-image>
+                      <writer-image></writer-image>
                     </div>
                 </div>
 

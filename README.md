@@ -1,4 +1,4 @@
-### Insurance Engine v 2.06
+### Insurance Engine v 2.07
 
 SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
@@ -8,6 +8,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.07
+  Added styling updates to image
+
 v 2.06
   Added separation between article, image in writer
 

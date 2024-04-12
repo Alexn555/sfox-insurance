@@ -71,6 +71,9 @@ class WriterImage extends HTMLElement {
                 height: 100%;
                 cursor: pointer;
                 overflow: hidden;
+
+                padding-top: 10px;
+                padding-bottom: 10px;
               }
 
               #error {

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.07
+  Added styling updates to image
+
 v 2.06
   Added separation between article, image in writer
 
