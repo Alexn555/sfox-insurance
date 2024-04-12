@@ -1,5 +1,7 @@
 ### Insurance Engine v 2.07
 
+![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
+
 SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
 Main plot to show good features of WebComponents and how can those be used <br />
@@ -22,18 +24,6 @@ v 2.02
 
 v 2.01
   Started Login, added Writer improvements
-
-v 1.98
-  Added ErrorCase enum, added api improvements
-
-v 1.97
-  Added Minor improvements
-
-v 1.96
-  Added ImageViewerHelper improvements
-
-v 1.95
-  Added ImageViewerHelper to improve getting ids
 
 
 ## Demo 
