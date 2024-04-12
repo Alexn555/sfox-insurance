@@ -1,4 +1,4 @@
-import LoggerService from '../../../services/loggerService';
+import { LoggerService } from '../../../services/';
 import { ImageViewerSettings, ImageViewerIds } from '../../../settings/';
 
 export class ImageViewerHelper {

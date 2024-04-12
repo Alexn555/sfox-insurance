@@ -19,7 +19,7 @@ class ImageViewer extends HTMLElement {
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
       window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
         if (evt.detail) {
-          this.imgMedium = evt.detail.value;;
+          this.imgMedium = evt.detail.value;
         }
         this.toggleViewer(true);
       });

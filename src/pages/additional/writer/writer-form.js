@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, ImageViewerIds } from '../../../settings';
 import { toggleDisplay } from '../../../services/utils/toggleButton';
-import { CustomEventService } from '../../../services';
+import { CustomEventService, LoggerService } from '../../../services';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -19,6 +19,10 @@ class WriterForm extends HTMLElement {
       });
 
       document.addEventListener(CustomEvents.tabs.writer.showImage, (evt) => {
+        if (!evt.detail.value || typeof evt.detail.value !== 'string') {
+          LoggerService.error('Writer show image not defined!');
+          evt.detail.value = '';
+        }
         this.imgMedium = evt.detail.value;
         this.openViewer();
       });
