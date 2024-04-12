@@ -1,4 +1,4 @@
-### Insurance Engine v 2.07
+### SFox Insurance Engine v 2.07
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
