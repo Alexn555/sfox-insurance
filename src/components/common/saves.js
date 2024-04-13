@@ -8,12 +8,14 @@ export const SaveObjects = {
     },
     banners: {
         performance: 'performanceBanner'
-    }
+    },
+    account: 'user-account'
 };
+
 
 export const WindowSettings = {
     refresh: 'tempRefresh'
-}
+};
 
 export const SaveRoutes = {
     currentPage: 'current-page'

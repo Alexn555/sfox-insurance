@@ -93,6 +93,13 @@ export const themeBlack = {
             text: 'white'
         }
     },
+    account: {
+        login: {
+            error: {
+                text: 'red'
+            }
+        }
+    },
     footer: {
         background: '#f7edf6',
         contact: {

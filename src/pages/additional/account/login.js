@@ -1,7 +1,8 @@
 // @ts-nocheck
+import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents } from '../../../settings';
 import { CustomEventService, StyleService } from '../../../services';
-import { UserService } from '../../../services/usersServices';
+import { UserService } from '../../../services/usersService';
 
 class AccountLogin extends HTMLElement {
     constructor() {
@@ -36,12 +37,16 @@ class AccountLogin extends HTMLElement {
           username: this.$username.getAttribute('value'),
           password: this.$password.getAttribute('value')
         };
-        const logged = UserService.getLoginData(user);
-        if (logged) {
-          this.setAccount(logged);
-          this.hideLogin();
+        if (user.username.length > 0 && user.password.length > 0) {
+          const logged = UserService.getLoginData(user);
+          if (logged) {
+            this.setAccount(logged);
+            this.showError('', false);
+          } else {
+            this.showError('No user with credentials found');
+          }
         } else {
-          alert('No user with credentials found');
+          this.showError('Please type username and password');
         }
       });
     }
@@ -55,6 +60,8 @@ class AccountLogin extends HTMLElement {
     }
 
     disconnectedCallback() {
+      document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, null);
+      document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, null);
       this.$accessBtn.removeEventListener(CommonEvents.click, null);
     }
 
@@ -63,8 +70,10 @@ class AccountLogin extends HTMLElement {
       CustomEventService.send(CustomEvents.users.login, user);
     }
 
-    hideLogin() { 
-      StyleService.setDisplay(this.$loginSection, false);
+    showError(error, visible = true) {
+      const el = this.shadow.getElementById('error');
+      el.innerHTML = error;
+      StyleService.setDisplay(el, visible);
     }
   
     render() {
@@ -82,6 +91,12 @@ class AccountLogin extends HTMLElement {
                   @media (max-width: 768px) {
                     grid-template-columns: 100%;
                   }
+              }
+
+              #error {
+                display: none;
+                color: ${theme.account.login.error.text};
+                font-weight: bold;
               }
             </style>
             <form>
@@ -109,6 +124,7 @@ class AccountLogin extends HTMLElement {
                     <div>
                         <action-button id="accessAccount" label="Login" type="action" />
                     </div>
+                    <div id="error"> </div>
                 </div>
            </form>
        `;

@@ -86,6 +86,13 @@ export const themeMain1 = {
             }
         }
     },
+    account: {
+        login: {
+            error: {
+                text: 'red'
+            }
+        }
+    },
     imageViewer: {
         error: {
             bck: 'black',

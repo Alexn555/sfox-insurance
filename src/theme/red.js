@@ -86,6 +86,13 @@ export const themeRed = {
             }
         }
     },
+    account: {
+        login: {
+            error: {
+                text: 'red'
+            }
+        }
+    },
     imageViewer: {
         error: {
             bck: 'black',

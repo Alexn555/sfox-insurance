@@ -86,6 +86,13 @@ export const themeYellow = {
             }
         }
     },
+    account: {
+        login: {
+            error: {
+                text: 'red'
+            }
+        }
+    },
     imageViewer: {
         error: {
             bck: 'black',

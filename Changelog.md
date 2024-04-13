@@ -1,4 +1,7 @@
 ## Changelog
+v 2.08
+  Added Account, Login improvements
+
 v 2.07
   Added styling updates to image, Added decode, encode utils, Added Login Service
 
