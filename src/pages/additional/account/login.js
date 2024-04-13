@@ -43,7 +43,7 @@ class AccountLogin extends HTMLElement {
             this.setAccount(logged);
             this.showError('', false);
           } else {
-            this.showError('No user with credentials found');
+            this.showError('User with those credentials is not found');
           }
         } else {
           this.showError('Please type username and password');
