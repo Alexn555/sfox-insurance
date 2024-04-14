@@ -9,6 +9,9 @@ export const SaveObjects = {
     banners: {
         performance: 'performanceBanner'
     },
+    notice: {
+        topDisclaimer: 'top-disclaimer'
+    },
     account: 'user-account'
 };
 

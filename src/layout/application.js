@@ -86,6 +86,7 @@ class Application extends HTMLElement {
                 }
             </style>
             <div class="application">
+                <notice-disclaimer></notice-disclaimer>
                 ${this.showSettings()}
                 <div class="layout">
                     <main-layout></main-layout>

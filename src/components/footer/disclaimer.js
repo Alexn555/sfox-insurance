@@ -1,18 +1,16 @@
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
-
 import InfoService from '../../services/infoService';
 
 class FooterDisclaimer extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.infoService = new InfoService();
         this.disclaimerData = '';
     }
     
     async connectedCallback() {
-        this.disclaimerData = await this.infoService.getDisclaimer();
+        this.disclaimerData = await InfoService.getDisclaimer();
         setTimeout(() => { this.render(); }, 500);
     }
 

@@ -11,6 +11,10 @@ export const SEO = {
     description: 'SfoxEngine - engine to show good features webComponents.'
 };
 
+export const NoticeDisclaimerSets = {
+    enabled: true
+};
+
 export const HeaderBoard = {
     board: {
         enabled: true
