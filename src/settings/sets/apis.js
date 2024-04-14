@@ -1,3 +1,5 @@
+import GlobalsService from '../../services/globalsService';
+
 export const LoginSets = {
-   salt: '_secret'
+   salt: GlobalsService.getAccountSalt()
 };
