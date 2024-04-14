@@ -1,4 +1,7 @@
 ## Changelog
+v 2.09
+  Added Salt to login password, added user
+
 v 2.08
   Added Account, Login improvements
 

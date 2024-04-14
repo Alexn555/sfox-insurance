@@ -2,10 +2,20 @@
     "users": [
         {
             "username": "player",
-            "password": "YWRzMTIz",
+            "password": "YWRzMTIzX3NlY3JldA==",
             "name": "Alexis",
             "surname": "Person",
             "email": "player@a.com",
+            "last_visited": "1712926752",
+            "registered": "1712926720",
+            "role": "user"
+        },
+        {
+            "username": "player2",
+            "password": "YWRzMTIzX3NlY3JldA==",
+            "name": "Bart",
+            "surname": "Souchel",
+            "email": "bart@a.com",
             "last_visited": "1712926752",
             "registered": "1712926720",
             "role": "user"

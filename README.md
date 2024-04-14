@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.08
+### SFox Insurance Engine v 2.09
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.09
+  Added Salt to login password, added user
+
 v 2.08
   Added Account, Login improvements
 
@@ -18,9 +21,6 @@ v 2.07
 
 v 2.06
   Added separation between article, image in writer
-
-v 2.05
-  Added separation between artiles and image in Writer
 
 ## Demo 
 
