@@ -15,6 +15,16 @@ class ImageViewer extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
+      this.isMobile = false;
+      this.imgSource = this.getAttribute('source') || '';
+      this.id = this.getAttribute('id') || ImageViewerIds.writer;
+      this.imgViewerVisible = false;
+      this.imgViewerId = 'imageViewer';
+      this.zoomStarted = false;
+      this.imgViewerSize = {
+        w: 800,
+        h: 600
+      };
 
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
       window.addEventListener(CustomWindowEvents.imageViwer.open, (evt) => {
@@ -24,15 +34,12 @@ class ImageViewer extends HTMLElement {
         this.toggleViewer(true);
       });
 
-      this.isMobile = false;
-      this.imgSource = this.getAttribute('source') || '';
-      this.id = this.getAttribute('id') || ImageViewerIds.writer;
-      this.imgViewerVisible = false;
-      this.imgViewerId = 'imageViewer';
-      this.imgViewerSize = {
-        w: 800,
-        h: 600
-      };
+      document.addEventListener(CustomWindowEvents.draggable.moveStart, () => {
+        this.toggleZoom(false);
+      });
+      document.addEventListener(CustomWindowEvents.draggable.moveEnd, () => {
+        this.toggleZoom(true);
+      });
     }
 
     static get observedAttributes() { 
@@ -41,6 +48,7 @@ class ImageViewer extends HTMLElement {
  
     connectedCallback() {
       this.render();
+      this.toggleZoom(true);
       this.updateSize();
 
       this.$error = this.shadow.getElementById('error');
@@ -131,6 +139,21 @@ class ImageViewer extends HTMLElement {
       this.imgViewerVisible = toggle;
     }
 
+    toggleZoom(enable = false) {
+      if (this.settings.zoomEnable) {
+        const el = this.shadow.querySelector('#imageViewer img');
+        if (enable) {
+          el.classList.add('zoom');
+          this.zoomStarted = true;
+        } else {
+          if (this.zoomStarted) {
+            el.classList.remove('zoom');
+            this.zoomStarted = false;
+          }   
+        }
+      }
+    }
+
     setZoomAbility() {
       return this.settings.zoomEnable ? `
         transform: scale(1.1);
@@ -172,10 +195,6 @@ class ImageViewer extends HTMLElement {
                   width: auto;
                   height: auto;
                   border: 1px solid grey;
-
-                  &:hover {
-                    ${this.setZoomAbility()}
-                  }
                 }
 
                 #error {
@@ -223,6 +242,10 @@ class ImageViewer extends HTMLElement {
                     ${sharedBtnStyles}
                   }
                 }
+              }
+
+              .zoom:hover {
+                ${this.setZoomAbility()}
               }
             </style>
             <dialog id="${this.imgViewerId}">
