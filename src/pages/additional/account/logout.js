@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CustomEventService } from '../../../services';
-import { CommonEvents, CustomTabEvents } from '../../../settings';
+import { CommonEvents, CustomPageEvents } from '../../../settings';
 
 class AccountLogout extends HTMLElement {
     constructor() {
