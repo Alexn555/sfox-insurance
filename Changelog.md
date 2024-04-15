@@ -1,6 +1,6 @@
 ## Changelog
 v 2.10
-  Added Login, Account improvements,
+  Added Login, Account improvements, ImageViewer Zoom dynamic based on movable contrainer
 
 v 2.09
   Added Salt to login password, added user
