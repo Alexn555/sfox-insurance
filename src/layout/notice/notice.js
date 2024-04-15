@@ -47,9 +47,9 @@ class NoticeDisclaimer extends HTMLElement {
 
     toggleDisclaimer(visible) {
         if (visible) {
-            this.$el.showModal();
+            this.$el?.showModal();
         } else {
-            this.$el.close(); 
+            this.$el?.close(); 
         }
     }
 

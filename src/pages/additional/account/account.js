@@ -31,7 +31,9 @@ class AccountPage extends HTMLElement {
 
     initForm() {
       this.getSaveAccount();
-      this.showUserDetails(this.loggedUser ? this.events.login : this.events.init);
+      const statusEvt = this.loggedUser ? this.events.login : this.events.init;
+      this.showUserDetails(statusEvt);
+      this.setSaveStatus(statusEvt);
       this.$logout = this.shadow.getElementById('logout');
       this.setLogoutHandler();
       document.addEventListener(CustomEvents.users.login, (evt) => {
@@ -72,6 +74,7 @@ class AccountPage extends HTMLElement {
       this.isAccVisible = accessible;
       if (accessible) {
         this.toggleLogin(false);
+        this.setSaveStatus(evt);
         this.showUserDetails(evt);
         this.setStatus(this.statuses.loggedIn);
         this.setLogoutHandler();
@@ -94,16 +97,19 @@ class AccountPage extends HTMLElement {
       this.saveObjectAndStatus(this.statuses.offline);
       this.$logout.removeEventListener(CommonEvents.click, null);
     }
+    
+    setSaveStatus(event = this.events.init) {
+      if (objectPropertyAmount(this.loggedUser) > 1 && event === this.events.login) {
+        this.saveObjectAndStatus(this.statuses.loggedIn);
+      }
+    }
 
-    showUserDetails(event = this.events.init) {
+    showUserDetails() {
       if (objectPropertyAmount(this.loggedUser) < 1) {
         return;
       }
 
       const { username, email, name, surname } = this.loggedUser;
-      if (event === this.events.login) {
-        this.saveObjectAndStatus(this.statuses.loggedIn);
-      }
 
       const html = `
         <div class="details">

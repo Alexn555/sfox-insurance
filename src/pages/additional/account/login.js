@@ -74,6 +74,11 @@ class AccountLogin extends HTMLElement {
       const el = this.shadow.getElementById('error');
       el.innerHTML = error;
       StyleService.setDisplay(el, visible);
+      this.removeError(el);
+    }
+
+    removeError(el, timeout = 2000) {
+      setTimeout(() => el.innerHTML = '', timeout);
     }
   
     render() {
