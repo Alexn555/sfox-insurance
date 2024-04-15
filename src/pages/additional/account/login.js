@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { CommonEvents, CustomEvents } from '../../../settings';
+import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
 import { CustomEventService, StyleService } from '../../../services';
 import { UserService } from '../../../services/usersService';
 
@@ -67,7 +67,7 @@ class AccountLogin extends HTMLElement {
 
     setAccount(user) {   
       // send to account that user is found and send user data
-      CustomEventService.send(CustomEvents.users.login, user);
+      CustomEventService.send(CustomPageEvents.users.login, user);
     }
 
     showError(error, visible = true) {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { objectPropertyAmount } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
-import { CustomEvents } from '../../../settings';
+import { CustomPageEvents } from '../../../settings';
 
 class AccountDetails extends HTMLElement {
     constructor() {
@@ -18,17 +18,17 @@ class AccountDetails extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener(CustomEvents.users.account.init, null);
-        document.removeEventListener(CustomEvents.users.account.hide, null);
+        document.removeEventListener(CustomPageEvents.users.account.init, null);
+        document.removeEventListener(CustomPageEvents.users.account.hide, null);
     }
 
     initForm() {
-      document.addEventListener(CustomEvents.users.account.init, (evt) => {
+      document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
         this.loggedUser = evt.detail.value;
         this.showUserDetails(this.loggedUser);
       });
 
-      document.addEventListener(CustomEvents.users.account.hide, () => {
+      document.addEventListener(CustomPageEvents.users.account.hide, () => {
         this.setDetails('');
       })
     }

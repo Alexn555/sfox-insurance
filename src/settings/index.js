@@ -1,6 +1,6 @@
 // Settings and other global constants, variables
 
-export { CommonEvents, CustomEvents } from './sets/events';
+export { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from './sets/events';
 export { pageNames, PageStructure, Banners, AdditionalPage, Writer } from './sets/page';
 export { LoginSets } from './sets/apis';
 export { HeaderSettings, SEO, NoticeDisclaimerSets } from './sets/header';

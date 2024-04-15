@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
+import { CommonEvents, CustomPageEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
 import FlickService from '../../../services/flickrService';
 import GlobalsService from '../../../services/globalsService';
 import DateService from '../../../services/dateService';
@@ -16,7 +16,7 @@ class WriterImage extends HTMLElement {
       this.imgMedium = '';
       this.imgViewerId = ImageViewerIds.writer;
 
-      document.addEventListener(CustomEvents.tabs.writer.getImage, () => {
+      document.addEventListener(CustomPageEvents.tabs.writer.getImage, () => {
         this.fetchImage();
       });
     }
@@ -27,7 +27,7 @@ class WriterImage extends HTMLElement {
       this.loadEl = this.shadow.getElementById('loading');
       this.loadEl.style.opacity = 0;
       this.$image.addEventListener(CommonEvents.click, () => {
-        CustomEventService.send(CustomEvents.tabs.writer.showImage, this.imgMedium);
+        CustomEventService.send(CustomPageEvents.tabs.writer.showImage, this.imgMedium);
       });
     }
 

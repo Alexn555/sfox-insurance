@@ -1,6 +1,6 @@
 // @ts-nocheck
 import WriterService from '../../../services/writerService';
-import { CustomEvents, Writer } from '../../../settings';
+import { CustomPageEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
 import { ContentService } from '../../../services/contentService';
 
@@ -13,7 +13,7 @@ class WriterArticle extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      document.addEventListener(CustomEvents.tabs.writer.showArticle, () => {
+      document.addEventListener(CustomPageEvents.tabs.writer.showArticle, () => {
         this.fetchContent(Writer.fetchOnce);
       });
     }

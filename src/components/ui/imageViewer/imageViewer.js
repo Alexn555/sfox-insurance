@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
@@ -17,7 +17,7 @@ class ImageViewer extends HTMLElement {
       this.settings = ImageViewerHelper.getId(this.id);
 
       window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
-      window.addEventListener(CustomEvents.imageViwer.open, (evt) => {
+      window.addEventListener(CustomWindowEvents.imageViwer.open, (evt) => {
         if (evt.detail) {
           this.imgMedium = evt.detail.value;
         }

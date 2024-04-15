@@ -3,7 +3,7 @@ import { SaveObjects } from '../../../components/common/saves';
 import { CustomEventService, LoggerService, StyleService } from '../../../services';
 import { objectPropertyAmount } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
-import { CustomEvents } from '../../../settings';
+import { CustomPageEvents } from '../../../settings';
 
 class AccountPage extends HTMLElement {
     constructor() {
@@ -32,9 +32,9 @@ class AccountPage extends HTMLElement {
     initForm() {
       this.getSaveAccount();
       const statusEvt = this.loggedUser ? this.events.login : this.events.init;
-      CustomEventService.send(CustomEvents.users.account.init, this.loggedUser);
+      CustomEventService.send(CustomPageEvents.users.account.init, this.loggedUser);
       this.setSaveStatus(statusEvt);
-      document.addEventListener(CustomEvents.users.login, (evt) => {
+      document.addEventListener(CustomPageEvents.users.login, (evt) => {
         if (!evt.detail || !evt.detail.value) {
           LoggerService.warn('Login data missing!');
           return;
@@ -42,11 +42,11 @@ class AccountPage extends HTMLElement {
         this.loggedUser = evt.detail.value;
         this.setAvailable(true, this.events.login);
       });
-      document.addEventListener(CustomEvents.users.logout.button, this.logout.bind(this));
+      document.addEventListener(CustomPageEvents.users.logout.button, this.logout.bind(this));
     }
 
     disconnectedCallback() {
-      document.removeEventListener(CustomEvents.users.login, null);
+      document.removeEventListener(CustomPageEvents.users.login, null);
     }
 
     getSaveAccount() {
@@ -64,7 +64,7 @@ class AccountPage extends HTMLElement {
         this.toggleLogin(false);
         this.setSaveStatus(evt);
         this.setStatus(this.statuses.loggedIn);
-        CustomEventService.send(CustomEvents.users.account.init, this.loggedUser);
+        CustomEventService.send(CustomPageEvents.users.account.init, this.loggedUser);
       }
     }
 
@@ -86,7 +86,7 @@ class AccountPage extends HTMLElement {
     }
 
     setDetails() {
-      CustomEventService.send(CustomEvents.users.account.hide);
+      CustomEventService.send(CustomPageEvents.users.account.hide);
     }
 
     toggleLogin(visible) {

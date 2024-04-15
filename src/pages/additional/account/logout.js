@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CustomEventService } from '../../../services';
-import { CommonEvents, CustomEvents } from '../../../settings';
+import { CommonEvents, CustomTabEvents } from '../../../settings';
 
 class AccountLogout extends HTMLElement {
     constructor() {
@@ -33,7 +33,7 @@ class AccountLogout extends HTMLElement {
     }
 
     logout() {
-      CustomEventService.send(CustomEvents.users.logout.button);  
+      CustomEventService.send(CustomPageEvents.users.logout.button);  
       this.$logout.removeEventListener(CommonEvents.click, null);  
       this.toggleLogout(false);
     }

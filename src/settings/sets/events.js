@@ -1,3 +1,8 @@
+export const CommonEvents = {
+    click: 'click',
+    resize: 'resize'
+};
+
 export const CustomEvents = {
     settings: {
         moveLayout: 'move-layout',
@@ -5,9 +10,20 @@ export const CustomEvents = {
         close: 'settings-close',
         themeChanged: 'settings-theme-changed'
     },
-    imageViwer: {
-        open: 'image-viewer-open'
+    interaction: {
+        flipBoard: 'flip-board',
+        sliderValueChange: 'slider-value-change',
+        selectChange: 'select-change-',
+        textInputChange: 'text-input-change'
     },
+    header: {
+        menuOverlay: 'header-menu-overlay',
+        menuClick: 'header-menu-click',
+        menuOverlayRemove: 'header-menu-overlay-remove'
+    },
+};
+
+export const CustomPageEvents = {
     users: {
         account: {
             init: 'account-init',
@@ -27,20 +43,10 @@ export const CustomEvents = {
             getImage: 'writer-get-iamge',
         }
     },
-    interaction: {
-        flipBoard: 'flip-board',
-        sliderValueChange: 'slider-value-change',
-        selectChange: 'select-change-',
-        textInputChange: 'text-input-change'
-    },
-    header: {
-        menuOverlay: 'header-menu-overlay',
-        menuClick: 'header-menu-click',
-        menuOverlayRemove: 'header-menu-overlay-remove'
-    },
 };
 
-export const CommonEvents = {
-    click: 'click',
-    resize: 'resize'
+export const CustomWindowEvents = {
+    imageViwer: {
+        open: 'image-viewer-open'
+    },
 };
