@@ -9,8 +9,15 @@ export const CustomEvents = {
         open: 'image-viewer-open'
     },
     users: {
+        account: {
+            init: 'account-init',
+            hide: 'account-hide'
+        },
         login: {
             user: 'logged-user'
+        },
+        logout: {
+            button: 'account-logout'
         }
     },
     tabs: {
