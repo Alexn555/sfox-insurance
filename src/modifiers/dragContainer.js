@@ -1,7 +1,7 @@
 import { CustomWindowEvents } from '../settings';
 import { CustomEventService } from '../services';
 
-export const draggableContainer = (el) => {
+export const draggableContainer = (el, signal = false) => {
     let posX = 0, posY = 0, initX = 0, initY = 0;
 
     const dragMouseDown = (e) => {
@@ -27,13 +27,17 @@ export const draggableContainer = (el) => {
         const newX = (el.offsetLeft - initX);
         const offsetX = newX > 0 ? -Math.abs(newX) : Math.abs(newX);
         el.style.left = offsetX + 'px'; // posX
-        CustomEventService.send(CustomWindowEvents.draggable.moveStart);
+        if (signal) {
+            CustomEventService.send(CustomWindowEvents.draggable.moveStart);
+        }
     }
 
     const close = () => {
         document.onmouseup = null;
         document.onmousemove = null;
-        CustomEventService.send(CustomWindowEvents.draggable.moveEnd);
+        if (signal) {
+            CustomEventService.send(CustomWindowEvents.draggable.moveEnd);
+        }
     }
 
     el.onmousedown = dragMouseDown;

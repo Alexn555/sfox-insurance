@@ -67,7 +67,7 @@ class ImageViewer extends HTMLElement {
       });
 
       if (!this.isMobile && this.settings.draggable) {
-        draggableContainer(this.shadow.getElementById(this.imgViewerId));
+        draggableContainer(this.shadow.getElementById(this.imgViewerId), this.settings.zoomEnable);
       }
     }
 
