@@ -41,7 +41,7 @@ class AccountIcon extends HTMLElement {
       }
       
       const { username } = loggedUser;
-      const variants = ['', '_blue', '_red', '_yellow'];
+      const variants = ['', '_blue', '_red', '_yellow', '_wh', '_white', '_whred', '_whblue', '_whyellow'];
       const index = sample(variants);
       
       this.icon = `${GlobalsService.getRoot()}assets/account/profile${variants[index]}.png`;

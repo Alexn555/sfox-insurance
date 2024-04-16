@@ -11,7 +11,6 @@ class AccountPage extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
       this.loggedUser = {};
-      this.logoutSet = false;
       this.statuses = {
         offline: 'offline',
         loggedIn: 'logged-in'
