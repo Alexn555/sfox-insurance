@@ -1,8 +1,10 @@
 // @ts-nocheck
 import { objectPropertyAmount, sample } from '../../../services/utils';
+import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
-import { CustomPageEvents } from '../../../settings';
+import { CommonEvents, CustomPageEvents } from '../../../settings';
 import GlobalsService from '../../../services/globalsService';
+import { StyleService } from '../../../services';
 
 class AccountIcon extends HTMLElement {
     constructor() {
@@ -11,6 +13,10 @@ class AccountIcon extends HTMLElement {
       this.isAccVisible = false;
       this.icon = '';
       this.loggedUser = {};
+      this.iconEvents = {
+        init: 'init',
+        change: 'change'
+      };
       this.storage = new DataStorage();
     }
   
@@ -27,33 +33,60 @@ class AccountIcon extends HTMLElement {
     initForm() {
       document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
         this.loggedUser = evt.detail.value;
-        this.showUserIcon(this.loggedUser);
+        this.showUserIcon(this.loggedUser, this.iconEvents.init);
       });
+
+      this.shadow.addEventListener(CommonEvents.click, this.toggleIcon.bind(this));
 
       document.addEventListener(CustomPageEvents.users.account.hide, () => {
         this.setIcon('');
       });
     }
 
-    showUserIcon(loggedUser) {
+    showUserIcon(loggedUser, event) {
       if (objectPropertyAmount(loggedUser) < 1) {
         return;
       }
       
       const { username } = loggedUser;
-      const variants = ['', '_blue', '_red', '_yellow', '_wh', '_white', '_whred', '_whblue', '_whyellow'];
-      const index = sample(variants);
-      
-      this.icon = `${GlobalsService.getRoot()}assets/account/profile${variants[index]}.png`;
+      this.icon = this.setIconImage(event);
 
       const html = `
         <div class="icon">
           <img src="${this.icon}" alt="icon" />
           <span>${username}</span>
+          <div id="change">
+            <action-button id="changeIcon" label="Change image" type="highlight"></action-button>
+          </div>
         </div>
       `;
 
       this.setIcon(html);
+    }
+
+    toggleIcon() {
+      this.showUserIcon(this.loggedUser, this.iconEvents.change);
+      
+      const el = this.shadow.getElementById('change');
+      StyleService.setDisplay(el, false);
+      setTimeout(() => { StyleService.setDisplay(el, true) }, 2000);
+    }
+
+    setIconImage(event) {
+      const saved = this.storage.getItem(SaveObjects.account.icon);
+      const variants = ['', '_blue', '_red', '_yellow', '_wh', '_white', '_whred', '_whblue', '_whyellow'];
+      const index = sample(variants);
+      let source = variants[index];
+
+      if (saved) {
+        source = saved;
+      }
+      if (event === this.iconEvents.change) {
+        source = variants[index];
+      }
+
+      this.storage.save(SaveObjects.account.icon, source);
+      return `${GlobalsService.getRoot()}assets/account/profile${source}.png`;
     }
 
     setIcon(html) {

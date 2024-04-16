@@ -49,7 +49,7 @@ class AccountPage extends HTMLElement {
     }
 
     getSaveAccount() {
-      const saved = this.storage.getObject(SaveObjects.account);
+      const saved = this.storage.getObject(SaveObjects.account.user);
       if (saved && saved.status === this.statuses.loggedIn) {
         this.loggedUser = saved;
         this.setStatus(this.statuses.loggedIn);
@@ -95,7 +95,7 @@ class AccountPage extends HTMLElement {
   
     saveObjectAndStatus(status) {
       this.loggedUser['status'] = status;
-      this.storage.saveObject(SaveObjects.account, this.loggedUser);
+      this.storage.saveObject(SaveObjects.account.user, this.loggedUser);
     }
 
     render() {

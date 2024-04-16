@@ -12,7 +12,10 @@ export const SaveObjects = {
     notice: {
         topDisclaimer: 'top-disclaimer'
     },
-    account: 'user-account'
+    account: {
+        user: 'user-account',
+        icon: 'user-account-icon'
+    }
 };
 
 
