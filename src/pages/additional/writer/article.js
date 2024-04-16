@@ -21,6 +21,7 @@ class WriterArticle extends HTMLElement {
     fetchContent(loadOnce) {
       this.removeContent();
       if (loadOnce) {
+        this.showLoadingArticle();
         this.featchContentAtOnce();
       } else {
         const { amount, eachTime } = Writer.queue;
@@ -33,6 +34,7 @@ class WriterArticle extends HTMLElement {
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
       const el = this.shadow.querySelector('.writeContent');
+      el.innerHTML = '';
 
       let html;
       if (content && content[0]?.body) {
@@ -62,6 +64,11 @@ class WriterArticle extends HTMLElement {
     removeContent() {
       const el = this.shadow.querySelector('.writeContent');
       ContentService.removeArticles(el);
+    }
+
+    showLoadingArticle() {
+      const el = this.shadow.querySelector('.writeContent');
+      el.innerHTML = 'Loading article...';
     }
 
     render() {
