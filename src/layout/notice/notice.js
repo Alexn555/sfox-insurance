@@ -75,7 +75,7 @@ class NoticeDisclaimer extends HTMLElement {
                     justify-content: center;
                     align-items: center;
                     width: 500px;
-                    height: 300px;
+                    height: 320px;
                     border: 1px solid ${theme.settings.textSize.border};
                     border-radius: 4px;
                     
