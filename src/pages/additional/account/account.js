@@ -111,8 +111,13 @@ class AccountPage extends HTMLElement {
             }
 
             .details {
+              position: relative;
+
               & div:nth-child(1) {
-                padding-left: 100px;
+                position: absolute;
+                left: 0;
+                top: 50px;
+                transform: translateX(-120px);
               }
             }
           </style>
@@ -121,7 +126,10 @@ class AccountPage extends HTMLElement {
               <section id="login">
                 <account-login></account-login>
               </section>
-              <section>
+              <section class="details">
+                <div>
+                  <account-icon></account-icon>
+                </div>
                 <account-details></account-details>
               </section>  
             </div>

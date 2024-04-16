@@ -1,4 +1,7 @@
 ## Changelog
+v 2.11
+  Added Profile icon
+
 v 2.10
   Added Login, Account improvements, ImageViewer Zoom dynamic based on movable contrainer
 

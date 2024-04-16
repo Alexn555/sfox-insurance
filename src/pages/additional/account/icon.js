@@ -1,13 +1,15 @@
 // @ts-nocheck
-import { objectPropertyAmount } from '../../../services/utils';
+import { objectPropertyAmount, sample } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents } from '../../../settings';
+import GlobalsService from '../../../services/globalsService';
 
-class AccountDetails extends HTMLElement {
+class AccountIcon extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
+      this.icon = '';
       this.loggedUser = {};
       this.storage = new DataStorage();
     }
@@ -25,58 +27,61 @@ class AccountDetails extends HTMLElement {
     initForm() {
       document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
         this.loggedUser = evt.detail.value;
-        this.showUserDetails(this.loggedUser);
+        this.showUserIcon(this.loggedUser);
       });
 
       document.addEventListener(CustomPageEvents.users.account.hide, () => {
-        this.setDetails('');
-      })
+        this.setIcon('');
+      });
     }
 
-    showUserDetails(loggedUser) {
+    showUserIcon(loggedUser) {
       if (objectPropertyAmount(loggedUser) < 1) {
         return;
       }
-
-      const { username, email, name, surname } = loggedUser;
+      
+      const { username } = loggedUser;
+      const variants = ['', '_blue', '_red', '_yellow'];
+      const index = sample(variants);
+      
+      this.icon = `${GlobalsService.getRoot()}assets/account/profile${variants[index]}.png`;
 
       const html = `
-        <div class="details">
-          <div>
-            <account-logout></account-logout>
-          </div>
-
-          <h3>Account details</h3>
-          <p> username: <b>${username}</b> </p>
-          <p> email: <b>${email}</b> </p>
-          <p> name: <b>${name}</b> <p>
-          <p> surname <b>${surname}</b> </p>
+        <div class="icon">
+          <img src="${this.icon}" alt="icon" />
+          <span>${username}</span>
         </div>
       `;
 
-      this.setDetails(html);
+      this.setIcon(html);
     }
 
-    setDetails(html) {
-      const el = this.shadow.getElementById('userDetails');
+    setIcon(html) {
+      const el = this.shadow.getElementById('profile');
       el.innerHTML = html;
     }
 
     render() {
       this.shadow.innerHTML = `
           <style>
-            .details {
-              & div:nth-child(1) {
-                padding-left: 100px;
+            #profile {
+              width: 100px;
+              height: 100px;
+            }
+            .icon {
+              text-align: center;
+              span {
+                font-size: smaller;
+                padding-bottom: 4px;
               }
             }
           </style>
-          <div id="userDetails"></div> 
+          <div id="profile"></div> 
        `;
     }
   }
   
   if ("customElements" in window) {
-    customElements.define("account-details", AccountDetails);
+    customElements.define("account-icon", AccountIcon);
   }
   
