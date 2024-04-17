@@ -21,11 +21,12 @@ class ImageViewer extends HTMLElement {
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
+      this.$zoomPercent = 'zoomPercent';
       this.keys = {
         left: 'ArrowLeft',
         right: 'ArrowRight'
       };
-      this.zoomFactor = 1;
+      this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
       this.imgViewerSize = {
         w: 800,
         h: 600
@@ -72,11 +73,16 @@ class ImageViewer extends HTMLElement {
       });
 
       if (this.settings.zoomEnable) {
-        this.toggleZoomInfoVis(true, 5);
-        this.setZoomInfo(this.zoomFactor);
-        this.shadow.addEventListener(CommonEvents.keydown, (e) => {
-          this.setZoomUpdate(e);
-        });
+        if (this.settings.zoom.keyboard) {
+          this.toggleZoomPercent(true);
+          this.toggleZoomInfoVis(true, 5);
+          this.setZoomInfo(this.zoomFactor);
+          this.shadow.addEventListener(CommonEvents.keydown, (e) => {
+            this.setZoomUpdate(e);
+          });
+        } else {
+          this.toggleZoomPercent(false);
+        }
       }
 
       if (!this.isMobile && this.settings.draggable) {
@@ -138,11 +144,11 @@ class ImageViewer extends HTMLElement {
     setZoomUpdate(e) {
       this.toggleZommStart(true);
       if (e.key === this.keys.left) {
-        this.zoomFactor -= this.zoomFactor > this.settings.zoomMin ? 0.1 : 0;
+        this.zoomFactor -= this.zoomFactor > this.settings.zoom.min ? 0.1 : 0;
         this.toggleZoomInfoVis(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.left);
       } else if (e.key === this.keys.right) {
-        this.zoomFactor += this.zoomFactor < this.settings.zoomMax  ? 0.1 : 0;
+        this.zoomFactor += this.zoomFactor < this.settings.zoom.max  ? 0.1 : 0;
         this.toggleZoomInfoVis(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.right);
       }
@@ -151,18 +157,23 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomInfo(zoomFactor, key = '') {
-      const el = this.shadow.getElementById('zoomProcent');
+      const el = this.shadow.getElementById(this.$zoomPercent);
       const left = key === this.keys.left ? '<b>[<- key]</b>': '[<- key]';
       const right = key === this.keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
       el.innerHTML = `${left} <b>${Math.floor(zoomFactor * 100)}%</b> ${right}`;
     }
 
     toggleZoomInfoVis(toggle, removeTimeout = 0) {
-      const el = this.shadow.getElementById('zoomProcent');
+      const el = this.shadow.getElementById(this.$zoomPercent);
       StyleService.setDisplay(el, toggle);
       if (removeTimeout > 0) {
         setTimeout(() => { StyleService.setDisplay(el, !toggle); }, removeTimeout * 1000);
       }
+    }
+
+    toggleZoomPercent(toggle) {
+      const el = this.shadow.getElementById(this.$zoomPercent);
+      StyleService.setDisplay(el, toggle);
     }
 
     setImage() {
@@ -188,7 +199,9 @@ class ImageViewer extends HTMLElement {
         const el = this.shadow.querySelector('#imageViewer img');
         if (enable) {
           el.classList.add('zoom');
-          el.style = this.setZoomAbility();
+          if (this.settings.zoom.keyboard) {
+            el.style = this.setZoomAbility();
+          }
           this.toggleZommStart(true);
         } else {
           if (this.zoomStarted) {
@@ -294,7 +307,7 @@ class ImageViewer extends HTMLElement {
                 }
               }
 
-              #zoomProcent {
+              #${this.$zoomPercent} {
                 position: absolute;
                 background-color: white;
                 right: 100px;
@@ -310,7 +323,7 @@ class ImageViewer extends HTMLElement {
             </style>
             <dialog id="${this.imgViewerId}">
                 <img id="imgDetail" src="" alt="loading image" />
-                <div id="zoomProcent"></div>
+                <div id="${this.$zoomPercent}"></div>
                 <div id="error"> 
                   Server error <br />
                   Demo Image <br />
