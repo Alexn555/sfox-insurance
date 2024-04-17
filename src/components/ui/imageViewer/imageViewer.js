@@ -21,6 +21,10 @@ class ImageViewer extends HTMLElement {
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
+      this.keys = {
+        left: 'ArrowLeft',
+        right: 'ArrowRight'
+      };
       this.zoomFactor = 1;
       this.imgViewerSize = {
         w: 800,
@@ -68,6 +72,7 @@ class ImageViewer extends HTMLElement {
       });
 
       if (this.settings.zoomEnable) {
+        this.toggleZoomInfoVis(true, 5);
         this.setZoomInfo(this.zoomFactor);
         this.shadow.addEventListener(CommonEvents.keydown, (e) => {
           this.setZoomUpdate(e);
@@ -132,20 +137,32 @@ class ImageViewer extends HTMLElement {
 
     setZoomUpdate(e) {
       this.toggleZommStart(true);
-      if (e.key === 'ArrowLeft') {
+      if (e.key === this.keys.left) {
         this.zoomFactor -= this.zoomFactor > this.settings.zoomMin ? 0.1 : 0;
-        this.setZoomInfo(this.zoomFactor);
-      } else if (e.key === 'ArrowRight') {
+        this.toggleZoomInfoVis(true, 1);
+        this.setZoomInfo(this.zoomFactor, this.keys.left);
+      } else if (e.key === this.keys.right) {
         this.zoomFactor += this.zoomFactor < this.settings.zoomMax  ? 0.1 : 0;
-        this.setZoomInfo(this.zoomFactor);
+        this.toggleZoomInfoVis(true, 1);
+        this.setZoomInfo(this.zoomFactor, this.keys.right);
       }
       this.toggleZoom(false);
       setTimeout(() => { this.toggleZoom(true); }, 2000);
     }
 
-    setZoomInfo(zoomFactor) {
+    setZoomInfo(zoomFactor, key = '') {
       const el = this.shadow.getElementById('zoomProcent');
-      el.innerHTML = `[<- key] <b>${Math.floor(zoomFactor * 100)}%</b>  [key ->] `;
+      const left = key === this.keys.left ? '<b>[<- key]</b>': '[<- key]';
+      const right = key === this.keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
+      el.innerHTML = `${left} <b>${Math.floor(zoomFactor * 100)}%</b> ${right}`;
+    }
+
+    toggleZoomInfoVis(toggle, removeTimeout = 0) {
+      const el = this.shadow.getElementById('zoomProcent');
+      StyleService.setDisplay(el, toggle);
+      if (removeTimeout > 0) {
+        setTimeout(() => { StyleService.setDisplay(el, !toggle); }, removeTimeout * 1000);
+      }
     }
 
     setImage() {
