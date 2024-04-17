@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
+import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
 import { CustomEventService, StyleService } from '../../../services';
 import { UserService } from '../../../services/page/usersService';
 
@@ -80,6 +80,13 @@ class AccountLogin extends HTMLElement {
     removeError(el, timeout = 2000) {
       setTimeout(() => el.innerHTML = '', timeout);
     }
+
+    showInfoTip() {
+      return LoginSets.info.enabled ? `
+        <div class="info">
+          <login-info></login-info>
+        </div>` : '';
+    }
   
     render() {
       this.shadow.innerHTML = `
@@ -139,10 +146,7 @@ class AccountLogin extends HTMLElement {
                         <action-button id="accessAccount" label="Login" type="action" />
                     </div>
                     <div id="error"> </div>
-
-                    <div class="info">
-                      <login-info></login-info>
-                    </div>       
+                    ${this.showInfoTip()}
                 </div>
            </form>
        `;
