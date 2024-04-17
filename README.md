@@ -58,7 +58,7 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
 ## Support the Project
  Currently Project is supported by this one developer.  <br />
  You have a chance to support the project by  <br />
- using Paypal Donate [link]https://www.paypal.com/donate/?hosted_button_id=DYMC5E2TH8VGN    <br />
+ using Paypal Donate link: https://www.paypal.com/donate/?hosted_button_id=DYMC5E2TH8VGN    <br />
  Super Thanks! :)
 
 
