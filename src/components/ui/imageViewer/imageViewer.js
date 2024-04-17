@@ -21,6 +21,7 @@ class ImageViewer extends HTMLElement {
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
+      this.zoomFactor = 1;
       this.imgViewerSize = {
         w: 800,
         h: 600
@@ -66,6 +67,13 @@ class ImageViewer extends HTMLElement {
         }
       });
 
+      if (this.settings.zoomEnable) {
+        this.setZoomInfo(this.zoomFactor);
+        this.shadow.addEventListener(CommonEvents.keydown, (e) => {
+          this.setZoomUpdate(e);
+        });
+      }
+
       if (!this.isMobile && this.settings.draggable) {
         draggableContainer(this.shadow.getElementById(this.imgViewerId), this.settings.zoomEnable);
       }
@@ -74,6 +82,7 @@ class ImageViewer extends HTMLElement {
     disconnectedCallback() {
       this.$close.removeEventListener(CommonEvents.click, null);
       this.$original.removeEventListener(CommonEvents.click, null);
+      this.shadow.removeEventListener(CommonEvents.keydown, null);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -82,7 +91,7 @@ class ImageViewer extends HTMLElement {
         this.setImage();
       }
     }
-
+    
     toggleError(isVisible = false) {
       if (this.$error) {
         StyleService.setDisplay(this.$error, isVisible);
@@ -121,6 +130,24 @@ class ImageViewer extends HTMLElement {
       }
     }
 
+    setZoomUpdate(e) {
+      this.toggleZommStart(true);
+      if (e.key === 'ArrowLeft') {
+        this.zoomFactor -= this.zoomFactor > this.settings.zoomMin ? 0.1 : 0;
+        this.setZoomInfo(this.zoomFactor);
+      } else if (e.key === 'ArrowRight') {
+        this.zoomFactor += this.zoomFactor < this.settings.zoomMax  ? 0.1 : 0;
+        this.setZoomInfo(this.zoomFactor);
+      }
+      this.toggleZoom(false);
+      setTimeout(() => { this.toggleZoom(true); }, 2000);
+    }
+
+    setZoomInfo(zoomFactor) {
+      const el = this.shadow.getElementById('zoomProcent');
+      el.innerHTML = `[<- key] <b>${Math.floor(zoomFactor * 100)}%</b>  [key ->] `;
+    }
+
     setImage() {
       this.$content?.setAttribute('src', this.imgMedium);
     }
@@ -144,21 +171,27 @@ class ImageViewer extends HTMLElement {
         const el = this.shadow.querySelector('#imageViewer img');
         if (enable) {
           el.classList.add('zoom');
-          this.zoomStarted = true;
+          el.style = this.setZoomAbility();
+          this.toggleZommStart(true);
         } else {
           if (this.zoomStarted) {
             el.classList.remove('zoom');
-            this.zoomStarted = false;
+            this.toggleZommStart(false);
           }   
         }
       }
     }
 
+    toggleZommStart(toggle) {
+      this.zoomStarted = toggle;
+    }
+
     setZoomAbility() {
+      const cursor = this.zoomFactor > 1 ? 'zoom-in' : 'zoom-out';
       return this.settings.zoomEnable ? `
-        transform: scale(1.1);
+        transform: scale(${this.zoomFactor});
         transition: transform 0.5s ease-in-out;
-        cursor: zoom-in;` : '';
+        cursor: ${cursor};` : '';
     }
 
     setOriginalImageLink() {
@@ -244,12 +277,23 @@ class ImageViewer extends HTMLElement {
                 }
               }
 
+              #zoomProcent {
+                position: absolute;
+                background-color: white;
+                right: 100px;
+                top: 10px;
+                border: 1px solid black;
+                width: 180px;
+                height: 20px;
+              }
+
               .zoom:hover {
                 ${this.setZoomAbility()}
               }
             </style>
             <dialog id="${this.imgViewerId}">
                 <img id="imgDetail" src="" alt="loading image" />
+                <div id="zoomProcent"></div>
                 <div id="error"> 
                   Server error <br />
                   Demo Image <br />
