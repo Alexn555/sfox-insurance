@@ -1,4 +1,4 @@
-import LoggerService from "./loggerService";
+import LoggerService from "../loggerService";
 
 export default class StyleService {
     static setDisplay(el, toggle = true, displayType = 'block') {

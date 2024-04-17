@@ -1,4 +1,4 @@
-import EncryptService from './encryptService';
+import EncryptService from './helpers/encryptService';
 
 export default class GlobalsService {
     static getRoot() {

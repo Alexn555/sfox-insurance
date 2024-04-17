@@ -1,5 +1,5 @@
 // @ts-nocheck
-import WriterService from '../../../services/writerService';
+import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
 import { ContentService } from '../../../services/contentService';

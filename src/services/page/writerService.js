@@ -1,9 +1,8 @@
-import RestAPI from './restApi';
-import LoggerService from './loggerService';
-import { sample } from './utils';
+import RestAPI from '../api/restApi';
+import LoggerService from '../loggerService';
+import { sample } from '../utils';
 
 export default class WriterService {
-
     getContent() {
       const useRestAPI = true;
       const ids = [2, 6, 8, 11, 13, 16, 20, 31, 32];

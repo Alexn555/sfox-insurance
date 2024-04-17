@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.12
-  Readme imporvements
+  Readme imporvements, services structure improvements
 
 v 2.11
   Added Profile icon
@@ -55,9 +55,10 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
     style.css -> initial styling, main offsets and fonts
 
    
-## Support the Project
+## Chance to support the Project
  Currently Project is supported by this one developer.  <br />
  You have a chance to support the project by  <br />
+ ![Alt text](http://norwaydict.com/showcase/paypayl_donate.png "Paypal Donate") <br />
  using Paypal Donate link: https://www.paypal.com/donate/?hosted_button_id=DYMC5E2TH8VGN    <br />
  Super Thanks! :)
 

@@ -1,10 +1,10 @@
 // @ts-nocheck
 import 'jimp';
 import { createFlickr } from 'flickr-sdk';
-import LoggerService from './loggerService';
+import LoggerService from '../loggerService';
 import ApiService from './apiService';
-import GlobalsService from './globalsService';
-import { randomInteger } from './utils';
+import GlobalsService from '../globalsService';
+import { randomInteger } from '../utils';
 
 export default class FlickService {
     

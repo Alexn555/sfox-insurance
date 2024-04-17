@@ -2,7 +2,7 @@
 import { theme } from '../../theme/theme';
 import { NoticeDisclaimerSets } from '../../settings/';
 import DataStorage from '../../services/storage';
-import InfoService from '../../services/infoService';
+import InfoService from '../../services/page/infoService';
 import { SaveObjects } from '../../components/common/saves';
 import { CommonEvents } from '../../settings';
 

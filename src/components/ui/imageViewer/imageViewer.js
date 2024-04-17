@@ -4,7 +4,7 @@ import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageVie
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
-import DateService from '../../../services/dateService';
+import DateService from '../../../services/helpers/dateService';
 import GlobalsService from '../../../services/globalsService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';

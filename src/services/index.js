@@ -1,5 +1,5 @@
 import CustomEventService from './customEventService';
-import StyleService from './styleService';
+import StyleService from './dom/styleService';
 import LoggerService from './loggerService';
 export { 
     CustomEventService,

@@ -1,6 +1,6 @@
 import { theme } from '../../theme/theme';
 import { fadeInAnimation } from '../../components/common/styles/animations';
-import InfoService from '../../services/infoService';
+import InfoService from '../../services/page/infoService';
 
 class FooterDisclaimer extends HTMLElement {
     constructor() {

@@ -1,8 +1,8 @@
 // @ts-nocheck
-import usersData from '../data/mocks/users.json';
-import { LoginSets } from '../settings';
-import EncryptService from './encryptService';
-import LoggerService from './loggerService';
+import usersData from '../../data/mocks/users.json';
+import { LoginSets } from '../../settings';
+import EncryptService from '../helpers/encryptService';
+import LoggerService from '../loggerService';
 
 export class UserService {
     static getLoginData(user) {

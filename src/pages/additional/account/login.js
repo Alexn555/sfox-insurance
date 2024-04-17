@@ -2,7 +2,7 @@
 import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
 import { CustomEventService, StyleService } from '../../../services';
-import { UserService } from '../../../services/usersService';
+import { UserService } from '../../../services/page/usersService';
 
 class AccountLogin extends HTMLElement {
     constructor() {

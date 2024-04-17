@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { CommonEvents, CustomPageEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
-import FlickService from '../../../services/flickrService';
+import FlickService from '../../../services/api/flickrService';
 import GlobalsService from '../../../services/globalsService';
-import DateService from '../../../services/dateService';
+import DateService from '../../../services/helpers/dateService';
 import { CustomEventService, StyleService } from '../../../services';
 import { getRandomItemFromList } from '../../../services/utils/arrays';
 import { imageSearchList } from '../../../data/mocks/writerImageList';

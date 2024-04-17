@@ -1,6 +1,6 @@
 ## Changelog
 v 2.12
-  Readme imporvements
+  Readme imporvements, services structure improvements
 
 v 2.11
   Added Profile icon

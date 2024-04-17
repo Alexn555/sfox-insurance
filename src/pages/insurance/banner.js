@@ -4,7 +4,7 @@ import { theme } from '../../theme/theme';
 import { CommonEvents, CustomEvents } from '../../settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
-import BannerService from '../../services/bannerService';
+import BannerService from '../../services/page/bannerService';
 import DataStorage from '../../services/storage';
 import { CustomEventService } from '../../services';
 

@@ -1,4 +1,4 @@
-import LoggerService from './loggerService';
+import LoggerService from '../loggerService';
 
 export default class ApiService {
   static async getWithComplete(resource, handlerPage = '', error = 'API Request limit reached.', timeout = 10000) {

@@ -1,6 +1,6 @@
-import { simulateDelay } from './utils';
-import performanceBannerData from '../data/mocks/performance';
-import DataStorage from './storage';
+import { simulateDelay } from '../utils';
+import performanceBannerData from '../../data/mocks/performance';
+import DataStorage from '../storage';
 
 export default class BannerService {
     constructor () {

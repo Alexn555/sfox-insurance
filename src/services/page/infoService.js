@@ -1,5 +1,5 @@
-import { simulateDelay } from './utils';
-import mockDisclaimerData from '../data/mocks/disclaimer';
+import { simulateDelay } from '../utils';
+import mockDisclaimerData from '../../data/mocks/disclaimer';
 
 export default class InfoService {
     static getDisclaimer() {
