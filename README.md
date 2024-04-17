@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.10
+### SFox Insurance Engine v 2.12
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.12
+  Readme imporvements
+
 v 2.11
   Added Profile icon
 
@@ -52,6 +55,13 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
     style.css -> initial styling, main offsets and fonts
 
    
+## Support the Project
+ Currently Project is supported by this one developer.  <br />
+ You have a chance to support the project by  <br />
+ using Paypal Donate [link]https://www.paypal.com/donate/?hosted_button_id=DYMC5E2TH8VGN    <br />
+ Super Thanks! :)
+
+
 ## First (primary) way to execute 
   Uses Webpack 5
    1. npm install

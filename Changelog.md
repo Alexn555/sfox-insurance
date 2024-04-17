@@ -1,4 +1,7 @@
 ## Changelog
+v 2.12
+  Readme imporvements
+
 v 2.11
   Added Profile icon
 
