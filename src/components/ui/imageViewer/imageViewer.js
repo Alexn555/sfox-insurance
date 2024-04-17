@@ -74,14 +74,14 @@ class ImageViewer extends HTMLElement {
 
       if (this.settings.zoomEnable) {
         if (this.settings.zoom.keyboard) {
-          this.toggleZoomPercent(true);
-          this.toggleZoomInfoVis(true, 5);
+          this.toggleZoomInfo(true);
+          this.fadeZoomInfo(true, 5);
           this.setZoomInfo(this.zoomFactor);
           this.shadow.addEventListener(CommonEvents.keydown, (e) => {
             this.setZoomUpdate(e);
           });
         } else {
-          this.toggleZoomPercent(false);
+          this.toggleZoomInfo(false);
         }
       }
 
@@ -145,11 +145,11 @@ class ImageViewer extends HTMLElement {
       this.toggleZommStart(true);
       if (e.key === this.keys.left) {
         this.zoomFactor -= this.zoomFactor > this.settings.zoom.min ? 0.1 : 0;
-        this.toggleZoomInfoVis(true, 1);
+        this.fadeZoomInfo(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.left);
       } else if (e.key === this.keys.right) {
         this.zoomFactor += this.zoomFactor < this.settings.zoom.max  ? 0.1 : 0;
-        this.toggleZoomInfoVis(true, 1);
+        this.fadeZoomInfo(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.right);
       }
       this.toggleZoom(false);
@@ -163,15 +163,14 @@ class ImageViewer extends HTMLElement {
       el.innerHTML = `${left} <b>${Math.floor(zoomFactor * 100)}%</b> ${right}`;
     }
 
-    toggleZoomInfoVis(toggle, removeTimeout = 0) {
-      const el = this.shadow.getElementById(this.$zoomPercent);
-      StyleService.setDisplay(el, toggle);
+    fadeZoomInfo(toggle, removeTimeout = 0) {
+      this.toggleZoomInfo(toggle);
       if (removeTimeout > 0) {
-        setTimeout(() => { StyleService.setDisplay(el, !toggle); }, removeTimeout * 1000);
+        setTimeout(() => {  this.toggleZoomInfo(!toggle); }, removeTimeout * 1000);
       }
     }
 
-    toggleZoomPercent(toggle) {
+    toggleZoomInfo(toggle) {
       const el = this.shadow.getElementById(this.$zoomPercent);
       StyleService.setDisplay(el, toggle);
     }
