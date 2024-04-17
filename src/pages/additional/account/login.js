@@ -85,6 +85,7 @@ class AccountLogin extends HTMLElement {
       this.shadow.innerHTML = `
             <style>
                .login {
+                  position: relative;
                   display: grid;
                   grid-template-columns: 100%; 
                   border: 1px solid grey;
@@ -102,6 +103,14 @@ class AccountLogin extends HTMLElement {
                 display: none;
                 color: ${theme.account.login.error.text};
                 font-weight: bold;
+              }
+
+              .info {
+                position: absolute;
+                background-color: white;
+                right: 0;
+                width: 80px;
+                height: 40px;
               }
             </style>
             <form>
@@ -130,6 +139,10 @@ class AccountLogin extends HTMLElement {
                         <action-button id="accessAccount" label="Login" type="action" />
                     </div>
                     <div id="error"> </div>
+
+                    <div class="info">
+                      <login-info></login-info>
+                    </div>       
                 </div>
            </form>
        `;

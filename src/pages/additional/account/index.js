@@ -1,3 +1,4 @@
+import './infoTip';
 import './login';
 import './logout';
 import './icon';
