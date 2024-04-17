@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.12
-  Readme imporvements, services structure improvements
+  Readme imporvements, services structure improvements, zoom improved feature
 
 v 2.11
   Added Profile icon
