@@ -5,6 +5,7 @@ import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/helpers/dateService';
+import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';
 
@@ -183,7 +184,7 @@ class ImageViewer extends HTMLElement {
       this.toggleError(false);
       if (newSource === '' || this.imgMedium === ImageViewerSettings.errorCase) {
         this.$content?.setAttribute('src', 
-          `${GlobalsService.getRoot()}assets/imageviewer/demo_m.jpg`);
+          `${EnvService.getRoot()}assets/imageviewer/demo_m.jpg`);
         this.toggleError(true);
       }
     }
