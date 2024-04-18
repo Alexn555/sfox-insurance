@@ -5,8 +5,8 @@ export const fadeInAnimation = `
     }
 `;
 
-export const transitionHeight = (time = 1) => {
+export const transitionAnimate = (cssProperty = 'height', time = 1) => {
     return `
-        transition: height ${time}s;
+        transition: ${cssProperty} ${time}s;
     `;
 }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../../settings';
-import { transitionHeight } from '../../../components/common/styles/animations';
+import { transitionAnimate } from '../../../components/common/styles/animations';
 
 class AccountLoginInfo extends HTMLElement {
     constructor() {
@@ -35,7 +35,7 @@ class AccountLoginInfo extends HTMLElement {
             #info {
               background-color: #e6e6e6;
               height: 0px;
-              ${transitionHeight(2)}
+              ${transitionAnimate('height', 2)}
             }
           </style>
           <action-button id="infoBtn" label="Info" type="highlight"></action-button>  
