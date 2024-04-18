@@ -5,6 +5,7 @@ import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';
 import { CustomEventService } from '../../services';
+import { CookieService } from '../../services/storage/cookieService';
 
 class ThemeSettings extends HTMLElement {
     constructor() {
@@ -45,7 +46,7 @@ class ThemeSettings extends HTMLElement {
     setThemeOnInit() {
         if(document.cookie.indexOf(WindowSettings.refresh) == -1) {
             // The cookie doesn't exist. Create it now -> expires after [n] time
-            document.cookie = `${WindowSettings.refresh}=1;max-age=${GlobalSizes.wdStngsRefresh}`;
+            CookieService.setCookie(WindowSettings.refresh, 1, GlobalSizes.wdStngsRefresh);
             // to use only on 'real refresh' with all components
             const savedTheme = this.dataStorage.getItem(SaveObjects.themes.active);
             if (savedTheme) {

@@ -21,7 +21,7 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.$close.removeEventListener(CommonEvents.click, null);
+        this.$close?.removeEventListener(CommonEvents.click, null);
     }
 
     async setInfo() {
