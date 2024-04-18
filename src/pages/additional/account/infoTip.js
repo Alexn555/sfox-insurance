@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../../settings';
+import { transitionHeight } from '../../../components/common/styles/animations';
 
 class AccountLoginInfo extends HTMLElement {
     constructor() {
@@ -19,8 +20,9 @@ class AccountLoginInfo extends HTMLElement {
 
     toggleInfo() {
       const el = this.shadow.getElementById('info');
+      el.style.height = '80px'; 
       el.innerHTML = '<span>User: <b>player</b> password: <b>ads123</b></span>';
-      setTimeout(() => { el.innerHTML = ''}, 2000);
+      setTimeout(() => { el.innerHTML = '';  el.style.height = '0px'; }, 3000);
     }
 
     disconnectedCallback() {
@@ -29,14 +31,15 @@ class AccountLoginInfo extends HTMLElement {
   
     render() {
       this.shadow.innerHTML = `
-            <style>
-             #info {
-                  background-color: white;
-                }
-             }
-            </style>
-            <action-button id="infoBtn" label="Info" type="highlight"></action-button>  
-            <div id="info"></div>    
+          <style>
+            #info {
+              background-color: #e6e6e6;
+              height: 0px;
+              ${transitionHeight(2)}
+            }
+          </style>
+          <action-button id="infoBtn" label="Info" type="highlight"></action-button>  
+          <div id="info"></div>    
        `;
     }
   }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
@@ -23,8 +23,8 @@ class ImageViewer extends HTMLElement {
       this.zoomStarted = false;
       this.$zoomPercent = 'zoomPercent';
       this.keys = {
-        left: 'ArrowLeft',
-        right: 'ArrowRight'
+        left: KeyboardKeys.arrowLeft,
+        right: KeyboardKeys.arrowRight
       };
       this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
       this.imgViewerSize = {

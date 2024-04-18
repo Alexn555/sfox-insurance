@@ -117,7 +117,6 @@ class AccountLogin extends HTMLElement {
                 background-color: white;
                 right: 0;
                 width: 80px;
-                height: 40px;
               }
             </style>
             <form>

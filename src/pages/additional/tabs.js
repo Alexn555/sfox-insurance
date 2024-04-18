@@ -7,41 +7,54 @@ class AdditionalTabs extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
-      this.shadow.addEventListener(CommonEvents.click, this.openTab.bind(this));
     }
     
     connectedCallback() {
       this.render();
+      this.initForm();
     }
 
-    openTab(evt) {
-      const { target } = evt;
-      const item = target.id;
-      const tab = this.shadow.getElementById(item);
-      const tabGame = this.shadow.getElementById('game');
-      const tabMap = this.shadow.getElementById('map');
-      const tabWriterForm = this.shadow.getElementById('writerForm');
-      const tabAccount = this.shadow.getElementById('account');
+    initForm() {
+      this.$tabGame = this.shadow.getElementById('game');
+      this.$tabMap = this.shadow.getElementById('map');
+      this.$tabWriterForm = this.shadow.getElementById('writerForm');
+      this.$tabAccount = this.shadow.getElementById('account');
+      this.initButtons();
+    }
 
-      if (tab) {
-        StyleService.setDisplayMultiple([tabGame, tabMap, tabWriterForm, tabAccount], false);
-      }
-
+    initButtons() {
       const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
-      let selected = null;
-      switch (item) {
-        case game:
-          selected = tabGame;
-          break;
-        case mapLink:
-          selected = tabMap;
-          break;
-        case writer:
-          selected = tabWriterForm;
-          break;
-        case account:
-          selected = tabAccount;
-          break; 
+      this.$btnGame = this.shadow.getElementById(game);
+      this.$btnMap = this.shadow.getElementById(mapLink);
+      this.$btnWriter = this.shadow.getElementById(writer);
+      this.$btnAccount = this.shadow.getElementById(account);
+
+      this.$btnGame.addEventListener(CommonEvents.click, () => {
+        this.openTab('game', this.$tabGame);
+      });
+      this.$btnMap.addEventListener(CommonEvents.click, () => {
+        this.openTab('map', this.$tabMap);
+      });
+      this.$btnWriter.addEventListener(CommonEvents.click, () => {
+        this.openTab('writerForm', this.$tabWriterForm);
+      });
+      this.$btnAccount.addEventListener(CommonEvents.click, () => {
+        this.openTab('account', this.$tabAccount);
+      });
+    }
+
+    disconnectedCallback() {
+      this.$btnGame.removeEventListener(CommonEvents.click, null);
+      this.$btnMap.removeEventListener(CommonEvents.click, null);
+      this.$btnWriter.removeEventListener(CommonEvents.click, null);
+      this.$btnAccount.removeEventListener(CommonEvents.click, null);
+    }
+
+    openTab(evt, selected) {
+      const item = evt;
+      const tab = this.shadow.getElementById(item);
+      if (tab) {
+        StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, this.$tabWriterForm, this.$tabAccount], false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -92,10 +105,10 @@ class AdditionalTabs extends HTMLElement {
                 }
             </style>
             <div class="tab">
-              <button id="${game}" onclick="this.openTab(event)">Game</button>
-              <button id="${mapLink}" onclick="this.openTab(event)">Map</button>
-              <button id="${writer}" onclick="this.openTab(event)">Writer content</button>
-              <button id="${account}" onclick="this.openTab(event)">Account</button>
+              <button id="${game}">Game</button>
+              <button id="${mapLink}">Map</button>
+              <button id="${writer}">Writer content</button>
+              <button id="${account}">Account</button>
             </div>
             
             <div id="game" class="tabcontent">
@@ -116,7 +129,6 @@ class AdditionalTabs extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('additional-tabs', AdditionalTabs);

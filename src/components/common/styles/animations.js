@@ -4,3 +4,9 @@ export const fadeInAnimation = `
         100% { opacity: 1; }
     }
 `;
+
+export const transitionHeight = (time = 1) => {
+    return `
+        transition: height ${time}s;
+    `;
+}
