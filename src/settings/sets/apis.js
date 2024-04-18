@@ -1,7 +1,7 @@
-import GlobalsService from '../../services/globalsService';
+import EnvService from '../../services/api/envService';
 
 export const LoginSets = {
-   salt: GlobalsService.getAccountSalt(),
+   salt: EnvService.getAccountSalt(),
    info: {
       enabled: true
    }

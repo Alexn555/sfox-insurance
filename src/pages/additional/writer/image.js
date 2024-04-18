@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents, CustomPageEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
 import FlickService from '../../../services/api/flickrService';
-import GlobalsService from '../../../services/globalsService';
+import EnvService from '../../../services/api/envService';
 import DateService from '../../../services/helpers/dateService';
 import { CustomEventService, StyleService } from '../../../services';
 import { getRandomItemFromList } from '../../../services/utils/arrays';
@@ -58,7 +58,7 @@ class WriterImage extends HTMLElement {
       StyleService.setDisplay(errEl, false);
       if (!image) {
         this.imgMedium = ImageViewerSettings.errorCase;
-        el.setAttribute('src', `${GlobalsService.getRoot()}assets/imageviewer/demo_c.jpg`);
+        el.setAttribute('src', `${EnvService.getRoot()}assets/imageviewer/demo_c.jpg`);
         StyleService.setDisplay(errEl, true);
       }
     }
@@ -88,7 +88,7 @@ class WriterImage extends HTMLElement {
               }
             </style>
             <div id="image">
-                <img id="imgSource" src="${GlobalsService.getRoot()}assets/wallet.svg" alt="..." />
+                <img id="imgSource" src="${EnvService.getRoot()}assets/wallet.svg" alt="..." />
                 <span id="loading">Loading image...</span>
                 <div id="error">Server Error, Flickr © ${DateService.getYear()} Demo image</div>
             </div>

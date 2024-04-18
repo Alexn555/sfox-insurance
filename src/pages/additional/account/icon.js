@@ -3,7 +3,7 @@ import { objectPropertyAmount, sample } from '../../../services/utils';
 import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomPageEvents } from '../../../settings';
-import GlobalsService from '../../../services/globalsService';
+import EnvService from '../../../services/api/envService';
 import { StyleService } from '../../../services';
 
 class AccountIcon extends HTMLElement {
@@ -86,7 +86,7 @@ class AccountIcon extends HTMLElement {
       }
 
       this.storage.save(SaveObjects.account.icon, source);
-      return `${GlobalsService.getRoot()}assets/account/profile${source}.png`;
+      return `${EnvService.getRoot()}assets/account/profile${source}.png`;
     }
 
     setIcon(html) {

@@ -2,7 +2,7 @@
 import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
-import { ContentService } from '../../../services/contentService';
+import { ContentService } from '../../../services/dom/contentService';
 
 class WriterArticle extends HTMLElement {
     constructor() {

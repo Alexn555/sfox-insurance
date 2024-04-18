@@ -1,4 +1,7 @@
 ## Changelog
+v 2.15
+  Services structure improvements
+
 v 2.12
   Readme imporvements, services structure improvements, zoom improved feature
 

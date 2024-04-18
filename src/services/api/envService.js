@@ -1,6 +1,6 @@
-import EncryptService from './helpers/encryptService';
+import EncryptService from '../helpers/encryptService';
 
-export default class GlobalsService {
+export default class EnvService {
     static getRoot() {
         return process.env.PUBLIC_URL;
     }

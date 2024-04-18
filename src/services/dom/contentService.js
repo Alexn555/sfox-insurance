@@ -1,4 +1,4 @@
-import LoggerService from './loggerService';
+import LoggerService from '../loggerService';
 
 export class ContentService {
     static removeArticles(el) {
