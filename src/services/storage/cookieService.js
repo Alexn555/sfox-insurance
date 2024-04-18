@@ -14,10 +14,10 @@ export class CookieService {
         LoggerService.warn(`Error remove cookie: ${error}`);
     }
       
-    static remove(name) {
+    static remove(name, cbRemoved = this.onRemoved, cbError = this.onRemoved) {
         const removing = browser.cookies.remove({
           name: name,
         });
-        removing.then(this.onRemoved, this.onError);
+        removing.then(cbRemoved, cbError);
     }
 }
