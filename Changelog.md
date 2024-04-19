@@ -1,4 +1,7 @@
 ## Changelog
+v 2.17
+  Added Account additional icons
+
 v 2.15
   Services structure improvements
 

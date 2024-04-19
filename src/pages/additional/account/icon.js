@@ -76,7 +76,7 @@ class AccountIcon extends HTMLElement {
       const saved = this.storage.getItem(SaveObjects.account.icon);
       const variants = ['', '_blue', '_red', '_yellow', '_green',
       '_wh', '_white', '_whred', '_whblue', '_whyellow',
-     '_blond', '_wm', '_wmblond'];
+     '_blond', '_wm', '_wmblack', '_wmblckblond', '_wmblond'];
       const index = sample(variants);
       let source = variants[index];
 
