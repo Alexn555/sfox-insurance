@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.17
-  Added Account additional icons
+  Added Account additional icons, added Password Reminder, Added original image opacity fixes
 
 v 2.15
   Services structure improvements

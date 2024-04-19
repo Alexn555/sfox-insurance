@@ -1,6 +1,6 @@
 ## Changelog
 v 2.17
-  Added Account additional icons
+  Added Account additional icons, added Password Reminder, Added original image opacity fixes
 
 v 2.15
   Services structure improvements

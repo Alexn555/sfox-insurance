@@ -2,6 +2,7 @@
 import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
 import { CustomEventService, StyleService } from '../../../services';
+import { LinkTypes, LinkVariants } from '../../../components/common/ui';
 import { UserService } from '../../../services/page/usersService';
 
 class AccountLogin extends HTMLElement {
@@ -18,6 +19,7 @@ class AccountLogin extends HTMLElement {
     connectedCallback() {
       this.render();
       this.$loginSection = this.shadow.querySelector('.login');
+      this.$remindLink = this.shadow.getElementById('remind');
       this.$username = this.shadow.getElementById(this.textIds.username);
       this.$password = this.shadow.getElementById(this.textIds.password);
       this.$accessBtn = this.shadow.getElementById('accessAccount');
@@ -49,6 +51,10 @@ class AccountLogin extends HTMLElement {
           this.showError('Please type username and password');
         }
       });
+
+      this.$remindLink.addEventListener(CommonEvents.click, () => {
+        CustomEventService.send(CustomPageEvents.users.reminder.open);
+      })
     }
 
     setUsername(value) {
@@ -63,6 +69,7 @@ class AccountLogin extends HTMLElement {
       document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, null);
       document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, null);
       this.$accessBtn.removeEventListener(CommonEvents.click, null);
+      this.$remindLink.removeEventListener(CommonEvents.click, null);
     }
 
     setAccount(user) {   
@@ -118,6 +125,10 @@ class AccountLogin extends HTMLElement {
                 right: 0;
                 width: 80px;
               }
+
+              .reminder {
+                padding-left: 10px;  
+              }
             </style>
             <form>
                 <div class="login">
@@ -142,11 +153,21 @@ class AccountLogin extends HTMLElement {
                         </text-input>
                     </div>
                     <div>
-                        <action-button id="accessAccount" label="Login" type="action" />
+                      <action-button id="accessAccount" label="Login" type="action"> </action-button>
+                      <span class="reminder"> 
+                        <action-link 
+                          id="remind" 
+                          label="Password Reminder" 
+                          variant="${LinkVariants.thin}"
+                          type="${LinkTypes.transparentButton}"> 
+                        </action-link>
+                      </span>
                     </div>
                     <div id="error"> </div>
                     ${this.showInfoTip()}
                 </div>
+
+                <account-pwd-reminder> </account-pwd-reminder>
            </form>
        `;
     }

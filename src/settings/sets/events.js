@@ -33,6 +33,9 @@ export const CustomPageEvents = {
         login: {
             user: 'logged-user'
         },
+        reminder: {
+            open: 'account-reminder-open'
+        },
         logout: {
             button: 'account-logout'
         }

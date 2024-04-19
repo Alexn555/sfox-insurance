@@ -7,3 +7,7 @@ export const ButtonTypes = {
 export const LinkTypes = {
     transparentButton: 'transparentButton'
 };
+
+export const LinkVariants = {
+    thin: 'thin'
+};

@@ -298,9 +298,15 @@ class ImageViewer extends HTMLElement {
                   padding: 2px;
                   background-color: white;
                   border-radius: 4px;
+                  opacity: 0.3;
+
+                  &:hover {
+                    opacity: 1;
+                  }
                        
                   @media (max-width: 768px) {
                     bottom: 20px;
+                    opacity: 1;
                     ${sharedBtnStyles}
                   }
                 }

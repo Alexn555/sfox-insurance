@@ -5,6 +5,7 @@ import EnvService from '../../../services/api/envService';
 import DateService from '../../../services/helpers/dateService';
 import { CustomEventService, StyleService } from '../../../services';
 import { getRandomItemFromList } from '../../../services/utils/arrays';
+import { styleErrors } from '../../../components/common/styles/errors';
 import { imageSearchList } from '../../../data/mocks/writerImageList';
 import { ImageViewerHelper } from '../../../components/ui/imageViewer/imageViewerHelper';
 
@@ -77,10 +78,9 @@ class WriterImage extends HTMLElement {
               }
 
               #error {
-                display: none;
-                color: red;
+                display: none; 
                 font-size: smaller;
-                font-weight: bold;
+                ${styleErrors.commonText}
               }
 
               #loading {
