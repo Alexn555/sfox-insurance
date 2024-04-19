@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { objectPropertyAmount } from '../../../services/utils';
+import { formatDate } from '../../../services/utils/dates';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents } from '../../../settings';
 
@@ -9,6 +10,7 @@ class AccountDetails extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
       this.loggedUser = {};
+      this.showVisited = false;
       this.storage = new DataStorage();
     }
   
@@ -33,12 +35,16 @@ class AccountDetails extends HTMLElement {
       })
     }
 
+    showLastVisited(visited) {
+      return this.showVisited ? `<p> last visited <b>${formatDate(visited)}</b> </p>` : '';
+    }
+
     showUserDetails(loggedUser) {
       if (objectPropertyAmount(loggedUser) < 1) {
         return;
       }
 
-      const { username, email, name, surname } = loggedUser;
+      const { username, email, name, surname, last_visited } = loggedUser;
 
       const html = `
         <div class="details">
@@ -51,6 +57,7 @@ class AccountDetails extends HTMLElement {
           <p> email: <b>${email}</b> </p>
           <p> name: <b>${name}</b> <p>
           <p> surname <b>${surname}</b> </p>
+          ${this.showLastVisited(last_visited)}
         </div>
       `;
 
