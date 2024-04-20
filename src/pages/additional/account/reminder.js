@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
+import { CustomEvents, CustomPageEvents } from '../../../settings';
 import { validateEmail } from '../../../services/utils/strings';
 import { styleErrors } from '../../../components/common/styles/errors';
+import { IdService } from '../../../services';
 
 class AccountPwdReminder extends HTMLElement {
     constructor() {
@@ -18,33 +19,32 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     initForm() {
-      this.$elBtn = this.shadow.getElementById('remind');
-      this.$elBtn.addEventListener(CommonEvents.click, this.toggleInfo.bind(this));
+      this.$elBtn = IdService.idAndEvent('remind', this.shadow, this.toggleInfo.bind(this));
+      this.$email = IdService.id(this.idEmail, this.shadow);
+      this.$container = IdService.id(this.container, this.shadow);
 
-      this.$email = this.shadow.getElementById(this.idEmail);
-      this.$container = this.shadow.getElementById(this.container);
-      document.addEventListener(CustomPageEvents.users.reminder.open, () => {
+      IdService.customEvent(CustomPageEvents.users.reminder.open, () => {
         this.$container.showModal();
       });
-    
-      document.addEventListener(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {
+
+      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {
         this.email = e.detail.value;
         this.checkEmail(this.email);
       });
     }
 
     checkEmail(email) {
-        if (!validateEmail(email)) {
-            const el = this.shadow.getElementById('error');
-            el.innerText = 'Email is not correct format';
-            setTimeout(() => { el.innerText = ''; }, 2000);
-        }
+      if (!validateEmail(email)) {
+        const el = this.shadow.getElementById('error');
+        el.innerText = 'Email is not correct format';
+         setTimeout(() => { el.innerText = ''; }, 2000);
+      }
     }
 
     toggleInfo() {
       const el = this.shadow.getElementById('status');
       el.innerHTML = `<span><b>Email</b> is send to us to check if password exists. <br />
-             Actually it will not be sent - it is just a demo. :)</span>`;
+          Actually it will not be sent - it is just a demo. :)</span>`;
       setTimeout(() => { 
         el.innerHTML = ''; 
         this.close();
@@ -52,14 +52,15 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     close() {
-        this.$container?.close();
+      this.$container?.close();
     }
 
     disconnectedCallback() {
-      this.$elBtn.removeEventListener(CommonEvents.click, null);
-      this.$close.removeEventListener(CommonEvents.click, null);
-      document.removeEventListener(CustomPageEvents.users.reminder.open, null);
-      document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, null);
+      IdService.removeList([this.$elBtn, this.$close]);
+      IdService.removeEvents([
+        CustomPageEvents.users.reminder.open, 
+        `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 
+      ]);
     }
   
     render() {
@@ -71,22 +72,22 @@ class AccountPwdReminder extends HTMLElement {
             }
 
             #error {
-                padding-top: 10px;
-                ${styleErrors.commonText};
+              padding-top: 10px;
+              ${styleErrors.commonText};
             }
 
             #status {
-                padding-top: 10px;
+              padding-top: 10px;
             }
           </style>
           <dialog id="${this.container}">
             <div>
                 <text-input
-                    id="email" 
-                    label="Email"
-                    class-name="input-normal"
-                    value=""
-                    type="text"           
+                  id="email" 
+                  label="Email"
+                  class-name="input-normal"
+                  value=""
+                  type="text"           
                 >
                 </text-input>
                 <action-button id="remind" label="Send" type="action" />
