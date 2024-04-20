@@ -21,7 +21,7 @@ export const Writer = {
 
 export const Account = {
     details: {
-        showVisited: true
+        showVisited: false
     }
 };
 
