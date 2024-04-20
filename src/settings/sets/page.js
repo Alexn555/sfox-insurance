@@ -19,6 +19,12 @@ export const Writer = {
     }
 };
 
+export const Account = {
+    details: {
+        showVisited: true
+    }
+};
+
 export const AdditionalPage = {
     tabLinks: {
         game: 'game-btn',

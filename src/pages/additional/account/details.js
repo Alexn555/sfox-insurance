@@ -2,7 +2,7 @@
 import { objectPropertyAmount } from '../../../services/utils';
 import { formatDate } from '../../../services/utils/dates';
 import DataStorage from '../../../services/storage';
-import { CustomPageEvents } from '../../../settings';
+import { CustomPageEvents, Account } from '../../../settings';
 
 class AccountDetails extends HTMLElement {
     constructor() {
@@ -10,7 +10,6 @@ class AccountDetails extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
       this.loggedUser = {};
-      this.showVisited = false;
       this.storage = new DataStorage();
     }
   
@@ -36,7 +35,7 @@ class AccountDetails extends HTMLElement {
     }
 
     showLastVisited(visited) {
-      return this.showVisited ? `<p> last visited <b>${formatDate(visited)}</b> </p>` : '';
+      return Account.details.showVisited ? `<p> last visited <b>${formatDate(visited)}</b> </p>` : '';
     }
 
     showUserDetails(loggedUser) {
