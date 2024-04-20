@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { CommonEvents, AdditionalPage } from '../../settings';
-import { StyleService } from '../../services';
+import { AdditionalPage } from '../../settings';
+import { IdService, StyleService } from '../../services';
 
 class AdditionalTabs extends HTMLElement {
     constructor() {
@@ -15,44 +15,37 @@ class AdditionalTabs extends HTMLElement {
     }
 
     initForm() {
-      this.$tabGame = this.shadow.getElementById('game');
-      this.$tabMap = this.shadow.getElementById('map');
-      this.$tabWriterForm = this.shadow.getElementById('writerForm');
-      this.$tabAccount = this.shadow.getElementById('account');
+      this.$tabGame = IdService.id('game', this.shadow);
+      this.$tabMap = IdService.id('map', this.shadow);
+      this.$tabWriterForm = IdService.id('writerForm', this.shadow);
+      this.$tabAccount = IdService.id('account', this.shadow);
       this.initButtons();
     }
 
     initButtons() {
       const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
-      this.$btnGame = this.shadow.getElementById(game);
-      this.$btnMap = this.shadow.getElementById(mapLink);
-      this.$btnWriter = this.shadow.getElementById(writer);
-      this.$btnAccount = this.shadow.getElementById(account);
 
-      this.$btnGame.addEventListener(CommonEvents.click, () => {
+      this.$btnGame = IdService.idAndEvent(game, this.shadow, () => {
         this.openTab('game', this.$tabGame);
       });
-      this.$btnMap.addEventListener(CommonEvents.click, () => {
+      this.$btnMap = IdService.idAndEvent(mapLink, this.shadow, () => {
         this.openTab('map', this.$tabMap);
       });
-      this.$btnWriter.addEventListener(CommonEvents.click, () => {
+      this.$btnWriter = IdService.idAndEvent(writer, this.shadow, () => {
         this.openTab('writerForm', this.$tabWriterForm);
       });
-      this.$btnAccount.addEventListener(CommonEvents.click, () => {
-        this.openTab('account', this.$tabAccount);
+      this.$btnAccount = IdService.idAndEvent(account, this.shadow, () => {
+        this.openTab('game', this.$tabAccount);
       });
     }
 
     disconnectedCallback() {
-      this.$btnGame.removeEventListener(CommonEvents.click, null);
-      this.$btnMap.removeEventListener(CommonEvents.click, null);
-      this.$btnWriter.removeEventListener(CommonEvents.click, null);
-      this.$btnAccount.removeEventListener(CommonEvents.click, null);
+      IdService.removeList([this.$btnGame, this.$btnMap, this.$btnWriter, this.$btnAccount]);
     }
 
     openTab(evt, selected) {
       const item = evt;
-      const tab = this.shadow.getElementById(item);
+      const tab = IdService.id(item, this.shadow);
       if (tab) {
         StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, this.$tabWriterForm, this.$tabAccount], false);
       }

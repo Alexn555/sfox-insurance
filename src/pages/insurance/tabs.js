@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import { CommonEvents } from '../../settings';
-import { StyleService } from '../../services';
+import { IdService, StyleService } from '../../services';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -71,27 +70,23 @@ class InsuranceTabs extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.$btnPayment.removeEventListener(CommonEvents.click, null);
-    this.$btnCalculator.removeEventListener(CommonEvents.click, null);
+    IdService.removeList([this.$btnPayment, this.$btnCalculator]);
   }
 
   initForm() {
-    this.$btnPayment = this.shadow.getElementById('payment-btn');
-    this.$btnCalculator = this.shadow.getElementById('calculator-btn');
-
-    this.$btnPayment.addEventListener(CommonEvents.click, () => {
+    this.$btnPayment = IdService.idAndEvent('payment-btn', this.shadow, () => {
       this.openTab('payment-btn');
     });
-    this.$btnCalculator.addEventListener(CommonEvents.click, () => {
+    this.$btnCalculator = IdService.idAndEvent('calculator-btn', this.shadow, () => {
       this.openTab('calculator-btn');
     });
   }
 
   openTab(evt) {
     const item = evt;
-    const tab = this.shadow.getElementById(item);
-    const tabPayment = this.shadow.getElementById('payment');
-    const tabCalculator = this.shadow.getElementById('calculator');
+    const tab = IdService.id(item, this.shadow);
+    const tabPayment = IdService.id('payment', this.shadow);
+    const tabCalculator = IdService.id('calculator', this.shadow);
 
     if (tab) {
       StyleService.setDisplayMultiple([tabPayment, tabCalculator], false);
