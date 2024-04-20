@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
-import { StyleService } from '../../services';
+import { IdService, StyleService } from '../../services';
+import { isValidNumber } from '../../services/utils/number';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { getOptionFromString } from '../../services/utils/arrays';
@@ -57,40 +58,41 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   disconnectedCallback() {
-    document.removeEventListener(`${this.textInputChangeEvt}-amount`, null);
-    document.removeEventListener(`${this.textInputChangeEvt}-description`, null);
-    document.removeEventListener(`${this.selectChangeEvt}-${this.selectIds.accounts}`, null);
-    document.removeEventListener(`${this.selectChangeEvt}-${this.selectIds.savedPayments}`, null);
+    IdService.removeCustomEvents([
+        `${this.textInputChangeEvt}-amount`,
+        `${this.textInputChangeEvt}-description`,
+        `${this.selectChangeEvt}-${this.selectIds.accounts}`,
+        `${this.selectChangeEvt}-${this.selectIds.savedPayments}`
+    ]);
   }
 
   initForm() {
     const saved = this.dataStorage.getObject(SaveForms.performance.payment);
     this.savedForm = saved || this.savedForm;
 
-    this.$amount = this.shadow.getElementById('amount');
-    this.$description = this.shadow.getElementById('description');
-    this.$accounts = this.shadow.getElementById('accounts');
-    this.$savedPayments = this.shadow.getElementById('savedPayments');
+    this.$amount = IdService.id('amount', this.shadow);
+    this.$description = IdService.id('description', this.shadow);
+    this.$accounts = IdService.id('accounts', this.shadow);
+    this.$savedPayments = IdService.id('savedPayments', this.shadow);
 
     this.$amount.setAttribute('value', this.savedForm.amount);
     this.$description.setAttribute('value', this.savedForm.description);
     this.$accounts.setAttribute('value', this.savedForm.accounts);
     this.$savedPayments.setAttribute('value', this.savedForm.payments);
 
-    document.addEventListener(`${this.textInputChangeEvt}-amount`, (evt) => {
-        this.setAmount(evt?.detail.value);
+    IdService.customEvent(`${this.textInputChangeEvt}-amount`, (e) => {
+        this.setAmount(e?.detail.value);
     });
-    document.addEventListener(`${this.textInputChangeEvt}-description`, (evt) => {
-        this.setDescription(evt?.detail.value);
+    IdService.customEvent(`${this.textInputChangeEvt}-description`, (e) => {
+        this.setAmount(e?.detail.value);
     });
   }
 
   setAmount(amountVal) {
     if (amountVal && amountVal !== '') {
         const errorLabel = this.shadow.querySelector('.input-error');
-        StyleService.setDisplay(errorLabel, false);
-        const isNumber = /^\d+$/.test(amountVal);
-        if (!isNumber) {
+        StyleService.setDisplay(errorLabel, false);        
+        if (!isValidNumber(amountVal)) {
             StyleService.setDisplay(errorLabel, true);
         } else {
             this.savedForm.amount = amountVal;

@@ -2,7 +2,7 @@
 import { theme } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
-import { StyleService } from '../../../services';
+import { IdService, StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
@@ -57,16 +57,16 @@ class ImageViewer extends HTMLElement {
       this.toggleZoom(true);
       this.updateSize();
 
-      this.$error = this.shadow.getElementById('error');
-      this.$content = this.shadow.getElementById('imgDetail');
+      this.$error = IdService.id('error', this.shadow);
+      this.$content = IdService.id('imgDetail', this.shadow);
+
       this.toggleError(false);
 
-      this.$original = this.shadow.getElementById('originalImage');
-      this.$close = this.shadow.getElementById('close');
-      this.$close.addEventListener(CommonEvents.click, () => {
+      this.$close = IdService.idAndClick('close', this.shadow, () => {
         this.toggleViewer(false);
       });
-      this.$original.addEventListener(CommonEvents.click, () => {
+
+      this.$original = IdService.idAndClick('originalImage', this.shadow, () => {
         if (this.imgMedium) {
           window.open(this.imgMedium);
         }
@@ -86,13 +86,12 @@ class ImageViewer extends HTMLElement {
       }
 
       if (!this.isMobile && this.settings.draggable) {
-        draggableContainer(this.shadow.getElementById(this.imgViewerId), this.settings.zoomEnable);
+        draggableContainer(IdService.id(this.imgViewerId, this.shadow), this.settings.zoomEnable);
       }
     }
 
     disconnectedCallback() {
-      this.$close.removeEventListener(CommonEvents.click, null);
-      this.$original.removeEventListener(CommonEvents.click, null);
+      IdService.removeList([this.$close, this.$original]);
       this.shadow.removeEventListener(CommonEvents.keydown, null);
     }
 
@@ -118,7 +117,7 @@ class ImageViewer extends HTMLElement {
         factors = { w: 1.5, h: 1.2 };
       }
 
-      const el = this.shadow.getElementById(this.imgViewerId);
+      const el = IdService.id(this.imgViewerId, this.shadow);
       this.imgViewerSize = {
         w: Math.ceil(this.screenW / factors.w),
         h: Math.ceil(this.screenH / factors.h)
@@ -128,7 +127,7 @@ class ImageViewer extends HTMLElement {
     }
 
     toggleViewer(isOpen) {
-      const el = this.shadow.getElementById(this.imgViewerId);
+      const el = IdService.id(this.imgViewerId, this.shadow);
       if (el && this.imgMedium) {
         if (!this.imgViewerVisible) {
           this.setImage();
@@ -157,7 +156,7 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomInfo(zoomFactor, key = '') {
-      const el = this.shadow.getElementById(this.$zoomPercent);
+      const el = IdService.id(this.$zoomPercent, this.shadow);
       const left = key === this.keys.left ? '<b>[<- key]</b>': '[<- key]';
       const right = key === this.keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
       el.innerHTML = `${left} <b>${Math.floor(zoomFactor * 100)}%</b> ${right}`;
@@ -171,7 +170,7 @@ class ImageViewer extends HTMLElement {
     }
 
     toggleZoomInfo(toggle) {
-      const el = this.shadow.getElementById(this.$zoomPercent);
+      const el = IdService.id(this.$zoomPercent, this.shadow);
       StyleService.setDisplay(el, toggle);
     }
 

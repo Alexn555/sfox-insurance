@@ -11,12 +11,16 @@ export class IdService {
         return el;
     }
 
+    static event(el, evt, callback) {
+        el.addEventListener(evt, callback);
+    }
+
     static customEvent(evt, callback, context = document) {
         context.addEventListener(evt, callback);
     }
 
     static remove(el, evt = CommonEvents.click) {
-        el.removeEventListener(evt, null);
+        el?.removeEventListener(evt, null);
     }
 
     static removeById(id, context) {

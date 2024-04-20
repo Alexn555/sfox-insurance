@@ -4,7 +4,7 @@ import { GlobalSizes, CustomEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 import { CookieService } from '../../services/storage/cookieService';
 
 class ThemeSettings extends HTMLElement {
@@ -30,15 +30,19 @@ class ThemeSettings extends HTMLElement {
         this.setThemeHandlers();         
     }
 
+
     setThemeHandlers() {
         this.themeList.forEach((thm) => {
             this.setThemeHandler(thm.id, thm.content);
         });
     }
 
+    disconnectedCallback() {
+        IdService.remove(this.$thmHandler);
+    }
+
     setThemeHandler(themeId, themeSelected) {
-        const thmHandler = this.shadow.getElementById(themeId);
-        thmHandler.onclick = (() => {
+        this.$thmHandler = IdService.idAndClick(themeId, this.shadow, () => {
             this.setTheme(themeSelected);
         });
     }

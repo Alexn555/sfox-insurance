@@ -4,6 +4,7 @@ import { TextSizes } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
+import { IdService } from '../../services';
 
 class SettignsTextSize extends HTMLElement {
     constructor() {
@@ -20,14 +21,16 @@ class SettignsTextSize extends HTMLElement {
     }
 
     setTextSizeHandler() {  
-        const textMinus = this.shadow.getElementById('textMinus');
-        const textPlus = this.shadow.getElementById('textPlus');
-        textMinus.onclick = (() => {
-           this.toggleTextSize('dw');
+        this.$textMinus = IdService.idAndClick('textMinus', this.shadow, () => {
+            this.toggleTextSize('dw');
         });
-        textPlus.onclick = (() => {
+        this.$textPlus = IdService.idAndClick('textPlus', this.shadow, () => {
             this.toggleTextSize('up');
         });
+    }
+
+    disconnectedCallback() {
+        IdService.removeList([this.$textMinus, this.$textPlus]);
     }
 
     setTextSizeOnInit() {
@@ -51,7 +54,7 @@ class SettignsTextSize extends HTMLElement {
 
     setBodyTextSize(size = TextSizes.settings.default) {
         const body = document.querySelector('body');
-        const indicator = this.shadow.getElementById('indicator');
+        const indicator = IdService.id('indicator', this.shadow);
         indicator.innerHTML = `<b>${size}</b>`;
         body.style.fontSize = `${size}%`;
     }

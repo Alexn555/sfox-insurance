@@ -3,7 +3,7 @@ import { pageNames, Animations, CustomEvents } from "../settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
-import { ClassIdService } from '../services';
+import { ClassIdService, IdService } from '../services';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -52,7 +52,7 @@ class PageSwitcher extends HTMLElement {
 
         this.resetPageActive();
 
-        const activePage = this.shadow.getElementById(savePage);
+        const activePage = IdService.id(savePage, this.shadow);
         if (isInit) {
              setTimeout(() => {
                 activePage?.setAttribute('active', 'true');
@@ -69,7 +69,7 @@ class PageSwitcher extends HTMLElement {
 
     resetPageActive() {
         this.pageIds.forEach((item) => {
-            const container = this.shadow.getElementById(item);
+            const container = IdService.id(item, this.shadow);
             container.setAttribute('active', 'false');
         });
     }

@@ -1,3 +1,5 @@
+import { IdService } from '../services';
+
 // @ts-nocheck
 class IndexPage extends HTMLElement {
     constructor() {
@@ -15,7 +17,7 @@ class IndexPage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = this.shadow.getElementById('base-home');
+        const el = IdService.id('base-home', this.shadow);
         el?.setAttribute('active', newValue);
     }
 

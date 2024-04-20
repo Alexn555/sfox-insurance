@@ -3,7 +3,7 @@ import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { HeaderSettings, CustomEvents } from '../../settings';
 import { SaveForms, SaveObjects } from '../../components/common/saves';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 
 class ResetSettings extends HTMLElement {
     constructor() {
@@ -18,7 +18,7 @@ class ResetSettings extends HTMLElement {
     }
 
     setResetSettingsHandler() {
-        const resetId = this.shadow.getElementById('resetSettings');
+        const resetId = IdService.id('resetSettings', this.shadow);
         resetId.onclick = (() => {
             const saveObj = [
                 SaveObjects.themes.active, 

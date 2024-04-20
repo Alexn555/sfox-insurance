@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CustomEventService } from '../../../services';
+import { CustomEventService, IdService } from '../../../services';
 import { CommonEvents, CustomPageEvents } from '../../../settings';
 
 class AccountLogout extends HTMLElement {
@@ -15,9 +15,9 @@ class AccountLogout extends HTMLElement {
     }
 
     initForm() {
-      this.$logout = this.shadow.getElementById('logout');
+      this.$logout = IdService.id('logout', this.shadow);
       if (!this.logoutSet && this.$logout) {
-        this.$logout.addEventListener(CommonEvents.click, () => {
+        IdService.event(this.$logout, CommonEvents.click, () => {
           this.logout();
         });
         this.toggleLogout(true);

@@ -4,7 +4,7 @@ import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomPageEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
-import { StyleService } from '../../../services';
+import { IdService, StyleService } from '../../../services';
 
 class AccountIcon extends HTMLElement {
     constructor() {
@@ -67,7 +67,7 @@ class AccountIcon extends HTMLElement {
     toggleIcon() {
       this.showUserIcon(this.loggedUser, this.iconEvents.change);
       
-      const el = this.shadow.getElementById('change');
+      const el = IdService.id('change', this.shadow);
       StyleService.setDisplay(el, false);
       setTimeout(() => { StyleService.setDisplay(el, true) }, 2000);
     }
@@ -92,7 +92,7 @@ class AccountIcon extends HTMLElement {
     }
 
     setIcon(html) {
-      const el = this.shadow.getElementById('profile');
+      const el = IdService.id('profile', this.shadow);
       el.innerHTML = html;
     }
 

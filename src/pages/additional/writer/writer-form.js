@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { CommonEvents, CustomWindowEvents, CustomPageEvents, ImageViewerIds } from '../../../settings';
+import { CustomWindowEvents, CustomPageEvents, ImageViewerIds } from '../../../settings';
 import { toggleDisplay } from '../../../services/utils/toggleButton';
-import { CustomEventService, LoggerService } from '../../../services';
+import { CustomEventService, IdService, LoggerService } from '../../../services';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -12,20 +12,25 @@ class WriterForm extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      this.shadow.getElementById('fetchOpen').addEventListener(CommonEvents.click, () => {
+
+      this.$fetchOpen = IdService.idAndClick('fetchOpen', this.shadow, () => {
         toggleDisplay('fetchOpen', this.shadow, 5000);
         CustomEventService.send(CustomPageEvents.tabs.writer.showArticle);
         CustomEventService.send(CustomPageEvents.tabs.writer.getImage);
       });
 
-      document.addEventListener(CustomPageEvents.tabs.writer.showImage, (evt) => {
-        if (!evt.detail.value || typeof evt.detail.value !== 'string') {
+      IdService.customEvent(CustomPageEvents.tabs.writer.showImage, (e) => {
+        if (!e.detail.value || typeof e.detail.value !== 'string') {
           LoggerService.error('Writer show image not defined!');
-          evt.detail.value = '';
+          e.detail.value = '';
         }
-        this.imgMedium = evt.detail.value;
+        this.imgMedium = e.detail.value;
         this.openViewer();
       });
+    }
+
+    disconnectedCallback() {
+      IdService.remove(this.$fetchOpen);
     }
 
     openViewer() {

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { SaveObjects } from '../../../components/common/saves';
-import { CustomEventService, LoggerService, StyleService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { objectPropertyAmount } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents } from '../../../settings';
@@ -89,7 +89,7 @@ class AccountPage extends HTMLElement {
     }
 
     toggleLogin(visible) {
-      const $login = this.shadow.getElementById('login');
+      const $login = IdService.id('login', this.shadow);
       StyleService.setDisplay($login, visible);
     }
   

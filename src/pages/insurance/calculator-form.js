@@ -6,6 +6,7 @@ import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { getOptionFromString } from '../../services/utils/arrays';
 import DataStorage from '../../services/storage';
+import { IdService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
@@ -65,9 +66,9 @@ class InsuranceCalculatorForm extends HTMLElement {
     initForm() {
       const saved = this.dataStorage.getObject(SaveForms.calculator.main);
       this.savedForm = saved || this.savedForm;
-      const loan = this.shadow.getElementById(this.selectIds.loan);
-      const periodId = this.shadow.getElementById(this.selectIds.period);
-      const interestsId = this.shadow.getElementById(this.selectIds.interests);
+      const loan = IdService.id(this.selectIds.loan, this.shadow);
+      const periodId = IdService.id(this.selectIds.period, this.shadow);
+      const interestsId = IdService.id(this.selectIds.interests, this.shadow);
 
       if (this.savedForm.loan !== 0) {
         loan.setAttribute('value', this.savedForm.loan);

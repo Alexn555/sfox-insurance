@@ -1,3 +1,5 @@
+import { IdService } from '../services';
+
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
@@ -29,7 +31,7 @@ class InsurancePage extends HTMLElement {
     }  
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = this.shadow.getElementById('base-insurance');
+        const el = IdService.id('base-insurance', this.shadow);
         el?.setAttribute('active', newValue);
     }
 }

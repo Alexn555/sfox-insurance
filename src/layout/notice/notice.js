@@ -4,7 +4,7 @@ import { NoticeDisclaimerSets } from '../../settings/';
 import DataStorage from '../../services/storage';
 import InfoService from '../../services/page/infoService';
 import { SaveObjects } from '../../components/common/saves';
-import { CommonEvents } from '../../settings';
+import { IdService } from '../../services';
 
 class NoticeDisclaimer extends HTMLElement {
     constructor() {
@@ -21,7 +21,7 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.$close?.removeEventListener(CommonEvents.click, null);
+        IdService.remove(this.$close);
     }
 
     async setInfo() {
@@ -33,16 +33,15 @@ class NoticeDisclaimer extends HTMLElement {
             this.storage.save(SaveObjects.notice.topDisclaimer, this.info);
             this.$content.innerHTML = this.info;
             this.toggleDisclaimer(true);
-       }
+        }
     }
 
     setInit() {
-        this.$el = this.shadow.getElementById('disclaimer');
-        this.$content = this.shadow.getElementById('content');
-        this.$close = this.shadow.getElementById('noticeClose');
-        this.$close.addEventListener(CommonEvents.click, () => {
+        this.$el = IdService.id('disclaimer', this.shadow);
+        this.$content = IdService.id('content', this.shadow);
+        this.$close = IdService.idAndClick('noticeClose', this.shadow, () => {
             this.toggleDisclaimer(false);
-        });
+        })
     }
 
     toggleDisclaimer(visible) {
@@ -54,7 +53,7 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     showDialog() {
-        const el = this.shadow.getElementById('disclaimerPlace');
+        const el = IdService.id('disclaimerPlace', this.shadow);
         const html = `
             <dialog id="disclaimer">
                 <h3>Disclaimer Notice</h3>

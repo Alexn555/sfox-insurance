@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 
 class AmountSlider extends HTMLElement {
     constructor() {
@@ -21,7 +21,7 @@ class AmountSlider extends HTMLElement {
 
     connectedCallback() {
       this.render();
-      const el = this.shadow.getElementById(this.id);
+      const el = IdService.id(this.id, this.shadow);
       el.onchange = (() => {
         CustomEventService.send(`${this.changeEvt}-${this.id}`, el.value);
       }); 
@@ -32,7 +32,7 @@ class AmountSlider extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      const el = this.shadow.getElementById(this.id);
+      const el = IdService.id(this.id, this.shadow);
       if (el !== null) {
         el.value = oldValue !== newValue ? newValue : oldValue;
       }

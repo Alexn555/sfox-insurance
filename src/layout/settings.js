@@ -4,7 +4,7 @@ import { SettingsBoard, CustomEvents } from '../settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
 import { showComponent } from "../services/utils";
-import { CustomEventService } from '../services';
+import { CustomEventService, IdService } from '../services';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -18,13 +18,15 @@ class AppSettings extends HTMLElement {
     
     connectedCallback() {
         this.render();
-
-        const elClose = this.shadow.getElementById('close');
-        elClose.onclick = (() => {
+        this.$elClose = IdService.idAndClick('close', this.shadow, () => {
             this.dataStorage.save(SaveObjects.settings.close, '1');
-            elClose.className += this.useCloseAnimation ? ' close' : '';
+            this.$elClose.className += this.useCloseAnimation ? ' close' : '';
             CustomEventService.send(CustomEvents.settings.close);
         });
+    }
+
+    disconnectedCallback() {
+        IdService.remove(this.$elClose);
     }
 
     render() {

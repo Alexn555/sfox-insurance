@@ -1,3 +1,5 @@
+import { IdService } from '../services';
+
 class AddiationalPage extends HTMLElement {
     constructor() {
         super();
@@ -10,7 +12,7 @@ class AddiationalPage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = this.shadow.getElementById('base-additional');
+        const el = IdService.id('base-additional', this.shadow);
         el?.setAttribute('active', newValue);
     }
     

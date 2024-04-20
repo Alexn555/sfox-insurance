@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
-import { CustomEventService, StyleService } from '../../../services';
+import { ClassIdService, CustomEventService, IdService, StyleService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
 import { UserService } from '../../../services/page/usersService';
 
@@ -18,20 +18,20 @@ class AccountLogin extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      this.$loginSection = this.shadow.querySelector('.login');
-      this.$remindLink = this.shadow.getElementById('remind');
-      this.$username = this.shadow.getElementById(this.textIds.username);
-      this.$password = this.shadow.getElementById(this.textIds.password);
-      this.$accessBtn = this.shadow.getElementById('accessAccount');
+      this.$loginSection = ClassIdService.id('login', this.shadow);
+      this.$remindLink = IdService.id('remind', this.shadow);
+      this.$username = IdService.id(this.textIds.username, this.shadow);
+      this.$password = IdService.id(this.textIds.password, this.shadow);
+      this.$accessBtn = IdService.id('accessAccount', this.shadow);
       this.initForm();
     }
 
     initForm() {
-      document.addEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (evt) => {
-        this.setUsername(evt?.detail.value);
+      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (e) => {
+        this.setUsername(e?.detail.value);
       });
-      document.addEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, (evt) => {
-        this.setPassword(evt?.detail.value);
+      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, (e) => {
+        this.setPassword(e?.detail.value);
       });
 
       this.$accessBtn.addEventListener(CommonEvents.click, () => {
@@ -52,9 +52,9 @@ class AccountLogin extends HTMLElement {
         }
       });
 
-      this.$remindLink.addEventListener(CommonEvents.click, () => {
+      IdService.event(this.$remindLink, CommonEvents.click, () => {
         CustomEventService.send(CustomPageEvents.users.reminder.open);
-      })
+      });
     }
 
     setUsername(value) {
@@ -66,10 +66,11 @@ class AccountLogin extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, null);
-      document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, null);
-      this.$accessBtn.removeEventListener(CommonEvents.click, null);
-      this.$remindLink.removeEventListener(CommonEvents.click, null);
+      IdService.removeList([this.$accessBtn, this.$remindLink]);
+      IdService.removeCustomEvents([
+        `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
+        `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`
+      ]);
     }
 
     setAccount(user) {   
@@ -78,7 +79,7 @@ class AccountLogin extends HTMLElement {
     }
 
     showError(error, visible = true) {
-      const el = this.shadow.getElementById('error');
+      const el = IdService.id('error', this.shadow);
       el.innerHTML = error;
       StyleService.setDisplay(el, visible);
       this.removeError(el);

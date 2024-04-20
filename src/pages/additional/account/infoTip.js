@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { CommonEvents } from '../../../settings';
 import { transitionAnimate } from '../../../components/common/styles/animations';
+import { IdService } from '../../../services';
 
 class AccountLoginInfo extends HTMLElement {
     constructor() {
@@ -14,19 +14,18 @@ class AccountLoginInfo extends HTMLElement {
     }
 
     initForm() {
-      this.$elBtn = this.shadow.getElementById('infoBtn');
-      this.$elBtn.addEventListener(CommonEvents.click, this.toggleInfo.bind(this));
+      this.$elBtn = IdService.idAndClick('infoBtn', this.shadow, this.toggleInfo.bind(this));
     }
 
     toggleInfo() {
-      const el = this.shadow.getElementById('info');
+      const el = IdService.id('info', this.shadow);
       el.style.height = '80px'; 
       el.innerHTML = '<span>User: <b>player</b> password: <b>ads123</b></span>';
       setTimeout(() => { el.innerHTML = '';  el.style.height = '0px'; }, 3000);
     }
 
     disconnectedCallback() {
-      this.$elBtn.removeEventListener(CommonEvents.click, null);
+      IdService.remove(this.$elBtn);
     }
   
     render() {

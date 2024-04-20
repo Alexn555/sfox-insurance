@@ -3,7 +3,7 @@ import { CommonEvents, CustomPageEvents, ImageViewerIds, ImageViewerSettings } f
 import FlickService from '../../../services/api/flickrService';
 import EnvService from '../../../services/api/envService';
 import DateService from '../../../services/helpers/dateService';
-import { CustomEventService, StyleService } from '../../../services';
+import { CustomEventService, IdService, StyleService } from '../../../services';
 import { getRandomItemFromList } from '../../../services/utils/arrays';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { imageSearchList } from '../../../data/mocks/writerImageList';
@@ -24,16 +24,15 @@ class WriterImage extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      this.$image = this.shadow.getElementById('image');
-      this.loadEl = this.shadow.getElementById('loading');
+      this.loadEl = IdService.id('loading', this.shadow);
       this.loadEl.style.opacity = 0;
-      this.$image.addEventListener(CommonEvents.click, () => {
+      this.$image = IdService.idAndClick('image', this.shadow, () => {
         CustomEventService.send(CustomPageEvents.tabs.writer.showImage, this.imgMedium);
       });
     }
 
     disconnectedCallback() {
-      this.$image.removeEventListener(CommonEvents.click, null);
+      IdService.remove(this.$image, CommonEvents.click);
     }
 
     async fetchImage() {
@@ -41,7 +40,7 @@ class WriterImage extends HTMLElement {
       
       const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
-      const imgEl = this.shadow.getElementById('imgSource');
+      const imgEl = IdService.id('imgSource', this.shadow);
       StyleService.setDisplay(this.loadEl, false);
       imgEl.setAttribute('src', imgSm);
 
@@ -55,7 +54,7 @@ class WriterImage extends HTMLElement {
     }
 
     handleImageError(el, image) {
-      const errEl = this.shadow.getElementById('error');
+      const errEl = IdService.id('error', this.shadow);
       StyleService.setDisplay(errEl, false);
       if (!image) {
         this.imgMedium = ImageViewerSettings.errorCase;

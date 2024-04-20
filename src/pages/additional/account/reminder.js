@@ -35,14 +35,14 @@ class AccountPwdReminder extends HTMLElement {
 
     checkEmail(email) {
       if (!validateEmail(email)) {
-        const el = this.shadow.getElementById('error');
+        const el = IdService.id('error', this.shadow);
         el.innerText = 'Email is not correct format';
          setTimeout(() => { el.innerText = ''; }, 2000);
       }
     }
 
     toggleInfo() {
-      const el = this.shadow.getElementById('status');
+      const el = IdService.id('status', this.shadow);
       el.innerHTML = `<span><b>Email</b> is send to us to check if password exists. <br />
           Actually it will not be sent - it is just a demo. :)</span>`;
       setTimeout(() => { 

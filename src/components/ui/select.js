@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 
 class Selectbox extends HTMLElement {
     constructor() {
@@ -23,7 +23,7 @@ class Selectbox extends HTMLElement {
     connectedCallback() {
       this.setOptions();
       this.render();
-      const el = this.shadow.getElementById(this.id);
+      const el = IdService.id(this.id, this.shadow);
       el.onchange = (() => {
         CustomEventService.send(`${CustomEvents.interaction.selectChange}-${this.id}`, el.value);
       }); 
@@ -34,7 +34,7 @@ class Selectbox extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      const el = this.shadow.getElementById(this.id);
+      const el = IdService.id(this.id, this.shadow);
       if (el !== null) {
         el.value = oldValue !== newValue ? newValue : oldValue;
       }

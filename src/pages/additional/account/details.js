@@ -3,6 +3,7 @@ import { objectPropertyAmount } from '../../../services/utils';
 import { formatDate } from '../../../services/utils/dates';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
+import { IdService } from '../../../services';
 
 class AccountDetails extends HTMLElement {
     constructor() {
@@ -64,7 +65,7 @@ class AccountDetails extends HTMLElement {
     }
 
     setDetails(html) {
-      const el = this.shadow.getElementById('userDetails');
+      const el = IdService.id('userDetails', this.shadow);
       el.innerHTML = html;
     }
 

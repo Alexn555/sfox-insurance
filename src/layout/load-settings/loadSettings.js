@@ -2,7 +2,7 @@
 import { Animations, CommonEvents, CustomEvents } from '../../settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 
 class LoadSettings extends HTMLElement {
     constructor() {
@@ -20,19 +20,15 @@ class LoadSettings extends HTMLElement {
     connectedCallback() {
         this.render();
         this.setLayoutOffset();
-        
-        const el = this.shadow.getElementById('settingsOpen');
-
-        el.addEventListener(CommonEvents.click, () => {
-           this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
-           this.toggleNotice(this.settingsToggle);
-           this.moveLayout();
+        this.$setsOpen = IdService.idAndClick('settingsOpen', this.shadow, () => {
+            this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
+            this.toggleNotice(this.settingsToggle);
+            this.moveLayout();
         });
     }
 
     disconnectedCallback() {
-        const el = this.shadow.getElementById('settingsOpen');
-        el.removeEventListener(CommonEvents.click, null);
+        IdService.remove(this.$setsOpen);
     }
 
     updateSize() {
@@ -67,7 +63,7 @@ class LoadSettings extends HTMLElement {
     }
 
     toggleNotice(isClose) {
-        const elDialog = this.shadow.getElementById('load-settings');
+        const elDialog = IdService.id('load-settings', this.shadow);
         if (!isClose) {
             elDialog.showModal();
             setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);

@@ -6,7 +6,7 @@ import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/page/bannerService';
 import DataStorage from '../../services/storage';
-import { CustomEventService } from '../../services';
+import { CustomEventService, IdService } from '../../services';
 
 class InsuranceBanner extends HTMLElement {
     constructor() {
@@ -38,14 +38,13 @@ class InsuranceBanner extends HTMLElement {
     }
 
     attachFlipBoard() {
-        this.flipBoardId = this.shadow.getElementById('flipBoard');
-        this.flipBoardId.addEventListener(CommonEvents.click, () => {
+        this.flipBoardId = IdService.idAndClick('flipBoard', this.shadow, () => {
             this.flipBoard();
         });
     }
 
     disconnectedCallback() {
-        this.flipBoardId.removeEventListener(CommonEvents.click, null);
+        IdService.remove(this.flipBoardId, CommonEvents.click);
     }
 
     checkInitFlipBoard() {
