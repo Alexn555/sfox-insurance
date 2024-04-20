@@ -5,8 +5,8 @@ export class IdService {
         return context.getElementById(id);
     }
 
-    static idAndClick(id, context, callback) {
-        const el = this.id(id, context);
+    static idAndClick(id, ctx, callback) {
+        const el = this.id(id, ctx);
         el.addEventListener(CommonEvents.click, callback);
         return el;
     }
@@ -15,30 +15,30 @@ export class IdService {
         el.addEventListener(evt, callback);
     }
 
-    static customEvent(evt, callback, context = document) {
-        context.addEventListener(evt, callback);
+    static customEvent(evt, callback, ctx = document) {
+        ctx.addEventListener(evt, callback);
     }
 
     static remove(el, evt = CommonEvents.click) {
         el?.removeEventListener(evt, null);
     }
 
-    static removeById(id, context) {
-        this.remove(this.id(id, context));
+    static removeById(id, ctx) {
+        this.remove(this.id(id, ctx));
     }
 
-    static removeListId(ids, context) {
+    static removeListId(ids, ctx) {
         if (ids && ids.length > 0) {
             ids.forEach((id) => {
-                this.removeById(id, context);
+                this.removeById(id, ctx);
             }); 
         }
     }
 
-    static removeCustomEvents(evts, context = document) {
+    static removeCustomEvents(evts, ctx = document) {
         if (evts && evts.length > 0) {
             evts.forEach(() => {
-                context.removeEventListener(evts, null); 
+                ctx.removeEventListener(evts, null); 
             }); 
         }
     }

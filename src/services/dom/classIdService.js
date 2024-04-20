@@ -1,16 +1,16 @@
 import { CommonEvents } from '../../settings';
 
 export class ClassIdService {
-    static id(query, context) {
-        return context.querySelector(`.${query}`);
+    static id(query, ctx) {
+        return ctx.querySelector(`.${query}`);
     }
 
-    static idAll(query, context) {
-        return context.querySelectorAll(`.${query}`);
+    static idAll(query, ctx) {
+        return ctx.querySelectorAll(`.${query}`);
     }
 
-    static idAndClick(id, context, callback) {
-        const el = this.id(id, context);
+    static idAndClick(id, ctx, callback) {
+        const el = this.id(id, ctx);
         el.addEventListener(CommonEvents.click, callback);
         return el;
     }
