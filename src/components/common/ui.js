@@ -9,5 +9,5 @@ export const LinkTypes = {
 };
 
 export const LinkVariants = {
-    thin: 'thin'
+    thinText: 'thin-text'
 };

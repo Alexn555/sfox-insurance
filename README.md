@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.17
+### SFox Insurance Engine v 2.19
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.19
+  Added logical name for variant constant
+
 v 2.17
   Added Account additional icons, added Password Reminder, Added original image opacity fixes
 

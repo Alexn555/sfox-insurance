@@ -30,7 +30,7 @@ class ActionButton extends HTMLElement {
 
     setAdditional() {
         let addStyle = '';
-        if (this.variant === LinkVariants.thin) {
+        if (this.variant === LinkVariants.thinText) {
             addStyle = 'font-weight: normal;';
         }
         return addStyle;

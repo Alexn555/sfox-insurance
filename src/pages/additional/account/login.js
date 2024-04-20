@@ -158,7 +158,7 @@ class AccountLogin extends HTMLElement {
                         <action-link 
                           id="remind" 
                           label="Password Reminder" 
-                          variant="${LinkVariants.thin}"
+                          variant="${LinkVariants.thinText}"
                           type="${LinkTypes.transparentButton}"> 
                         </action-link>
                       </span>

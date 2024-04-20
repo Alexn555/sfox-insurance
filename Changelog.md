@@ -1,4 +1,7 @@
 ## Changelog
+v 2.19
+  Added logical name for variant constant
+
 v 2.17
   Added Account additional icons, added Password Reminder, Added original image opacity fixes
 
