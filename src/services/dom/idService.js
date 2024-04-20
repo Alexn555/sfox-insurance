@@ -5,7 +5,7 @@ export class IdService {
         return context.getElementById(id);
     }
 
-    static idAndEvent(id, context, callback) {
+    static idAndClick(id, context, callback) {
         const el = context.getElementById(id);
         el.addEventListener(CommonEvents.click, callback);
         return el;

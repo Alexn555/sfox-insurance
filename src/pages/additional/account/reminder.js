@@ -19,7 +19,7 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     initForm() {
-      this.$elBtn = IdService.idAndEvent('remind', this.shadow, this.toggleInfo.bind(this));
+      this.$elBtn = IdService.idAndClick('remind', this.shadow, this.toggleInfo.bind(this));
       this.$email = IdService.id(this.idEmail, this.shadow);
       this.$container = IdService.id(this.container, this.shadow);
 

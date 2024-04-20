@@ -74,10 +74,10 @@ class InsuranceTabs extends HTMLElement {
   }
 
   initForm() {
-    this.$btnPayment = IdService.idAndEvent('payment-btn', this.shadow, () => {
+    this.$btnPayment = IdService.idAndClick('payment-btn', this.shadow, () => {
       this.openTab('payment-btn');
     });
-    this.$btnCalculator = IdService.idAndEvent('calculator-btn', this.shadow, () => {
+    this.$btnCalculator = IdService.idAndClick('calculator-btn', this.shadow, () => {
       this.openTab('calculator-btn');
     });
   }

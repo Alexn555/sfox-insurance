@@ -25,16 +25,16 @@ class AdditionalTabs extends HTMLElement {
     initButtons() {
       const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
 
-      this.$btnGame = IdService.idAndEvent(game, this.shadow, () => {
+      this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab('game', this.$tabGame);
       });
-      this.$btnMap = IdService.idAndEvent(mapLink, this.shadow, () => {
+      this.$btnMap = IdService.idAndClick(mapLink, this.shadow, () => {
         this.openTab('map', this.$tabMap);
       });
-      this.$btnWriter = IdService.idAndEvent(writer, this.shadow, () => {
+      this.$btnWriter = IdService.idAndClick(writer, this.shadow, () => {
         this.openTab('writerForm', this.$tabWriterForm);
       });
-      this.$btnAccount = IdService.idAndEvent(account, this.shadow, () => {
+      this.$btnAccount = IdService.idAndClick(account, this.shadow, () => {
         this.openTab('game', this.$tabAccount);
       });
     }
