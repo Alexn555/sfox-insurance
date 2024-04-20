@@ -3,6 +3,7 @@ import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
 import { ContentService } from '../../../services/dom/contentService';
+import { ClassIdService } from '../../../services';
 
 class WriterArticle extends HTMLElement {
     constructor() {
@@ -13,6 +14,7 @@ class WriterArticle extends HTMLElement {
   
     connectedCallback() {
       this.render();
+      this.$writerContent = ClassIdService.id('writeContent', this.shadow);
       document.addEventListener(CustomPageEvents.tabs.writer.showArticle, () => {
         this.fetchContent(Writer.fetchOnce);
       });
@@ -33,7 +35,7 @@ class WriterArticle extends HTMLElement {
       let content = ['', ''];
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
-      const el = this.shadow.querySelector('.writeContent');
+      const el = this.$writerContent;
       el.innerHTML = '';
 
       let html;
@@ -46,7 +48,7 @@ class WriterArticle extends HTMLElement {
 
     async featchContent() {
       const content = await this.writerService.getContent();
-      const el = this.shadow.querySelector('.writeContent');
+      const el = this.$writerContent;
 
       if (content && content?.body) {
         const html = ContentService.createArticle(el, content.body);
@@ -62,13 +64,11 @@ class WriterArticle extends HTMLElement {
     }
 
     removeContent() {
-      const el = this.shadow.querySelector('.writeContent');
-      ContentService.removeArticles(el);
+      ContentService.removeArticles(this.$writerContent);
     }
 
     showLoadingArticle() {
-      const el = this.shadow.querySelector('.writeContent');
-      el.innerHTML = 'Loading article...';
+      this.$writerContent.innerHTML = 'Loading article...';
     }
 
     render() {

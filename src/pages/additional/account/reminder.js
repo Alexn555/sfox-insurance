@@ -57,7 +57,7 @@ class AccountPwdReminder extends HTMLElement {
 
     disconnectedCallback() {
       IdService.removeList([this.$elBtn, this.$close]);
-      IdService.removeEvents([
+      IdService.removeCustomEvents([
         CustomPageEvents.users.reminder.open, 
         `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 
       ]);

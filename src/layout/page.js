@@ -3,6 +3,7 @@ import { pageNames, Animations, CustomEvents } from "../settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
+import { ClassIdService } from '../services';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -17,7 +18,7 @@ class PageSwitcher extends HTMLElement {
 
         document.addEventListener(CustomEvents.interaction.flipBoard, (evt) => {
             const { value } = evt.detail;
-            const el = this.shadow.querySelector('.page');
+            const el = ClassIdService.id('page', this.shadow);
             const isAngle = true;
 
             if (value) {
@@ -62,7 +63,7 @@ class PageSwitcher extends HTMLElement {
     }
 
     closePageOpener() {
-        const el = this.shadow.querySelector('.heightHolder');
+        const el = ClassIdService.id('heightHolder', this.shadow);
         setTimeout(() => { el.remove(); }, 1000);
     }
 

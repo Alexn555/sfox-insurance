@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { CommonEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
+import { IdService } from '../../services';
 
 class MapForm extends HTMLElement {
     constructor() {
@@ -12,16 +12,16 @@ class MapForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.getElementById('mapOpen').addEventListener(CommonEvents.click, () => {
-          this.toggleGame(true);
+      IdService.idAndClick('mapOpen', this.shadow, () => {
+        this.toggleGame(true);
       });
-      this.shadow.getElementById('closeMap').addEventListener(CommonEvents.click, () => {
+      IdService.idAndClick('closeMap', this.shadow, () => {
         this.toggleGame(false);
       });
     }
 
     toggleGame(isOpen) {
-      const el = this.shadow.getElementById('mapDialog');
+      const el = IdService.id('mapDialog', this.shadow);
       if (!this.isMapOpen) {
         el.showModal();
       } else {

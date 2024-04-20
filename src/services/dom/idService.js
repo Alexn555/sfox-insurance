@@ -6,7 +6,7 @@ export class IdService {
     }
 
     static idAndClick(id, context, callback) {
-        const el = context.getElementById(id);
+        const el = this.id(id, context);
         el.addEventListener(CommonEvents.click, callback);
         return el;
     }
@@ -31,7 +31,7 @@ export class IdService {
         }
     }
 
-    static removeEvents(evts, context = document) {
+    static removeCustomEvents(evts, context = document) {
         if (evts && evts.length > 0) {
             evts.forEach(() => {
                 context.removeEventListener(evts, null); 

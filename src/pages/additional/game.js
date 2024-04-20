@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CommonEvents } from '../../settings';
+import { IdService } from '../../services';
 
 class GameForm extends HTMLElement {
     constructor() {
@@ -11,16 +11,16 @@ class GameForm extends HTMLElement {
     connectedCallback() {
       this.render();
 
-      this.shadow.getElementById('gameOpen').addEventListener(CommonEvents.click, () => {
-          this.toggleGame(true);
+      IdService.idAndClick('gameOpen', this.shadow, () => {
+        this.toggleGame(true);
       });
-      this.shadow.getElementById('closeGame').addEventListener(CommonEvents.click, () => {
+      IdService.idAndClick('closeGame', this.shadow, () => {
         this.toggleGame(false);
       });
     }
 
     toggleGame(isOpen) {
-      const el = this.shadow.getElementById('gameDialog');
+      const el = IdService.id('gameDialog', this.shadow);
       if (!this.isGameOpen) {
         el.showModal();
       } else {

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
-import { StyleService } from '../../services';
+import { ClassIdService, StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
@@ -34,18 +34,19 @@ class FooterLinkSection extends HTMLElement {
     updateSize() {
         this.screenW = window.innerWidth;
         if (!isMobile()) {
-            const content = this.shadow.querySelectorAll('.link-content');
+            const content = ClassIdService.idAll('link-content', this.shadow);
             content.forEach((contentItem) => {
                 StyleService.setDisplay(contentItem, true);
             });
         } else {
-            const toggleBtn = this.shadow.querySelector('.toggle-content');
+            const toggleBtn = ClassIdService.id('toggle-content', this.shadow);
             toggleBtn.style.left = `${this.getTogglePosition()}px`;
         }
     }
     
     connectedCallback() {
         this.render();
+        this.$content = ClassIdService.id('link-content', this.shadow);
     }
 
     disconnectedCallback() {
@@ -59,10 +60,8 @@ class FooterLinkSection extends HTMLElement {
 
     toggleContent() {
         this.contentOpen = !this.contentOpen;
-        const content = this.shadow.querySelector('.link-content');
-    
-        if (isMobile() && content) {
-            StyleService.setDisplay(content, this.contentOpen);
+        if (isMobile() && this.$content) {
+            StyleService.setDisplay(this.$content, this.contentOpen);
         }
     }
 
