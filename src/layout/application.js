@@ -2,7 +2,7 @@
 import { theme, changeTheme } from '../theme/theme';
 import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../settings';
 import { SaveObjects } from '../components/common/saves';
-import { StyleService } from '../services';
+import { ClassIdService, StyleService } from '../services';
 import { getVersionFromPackage } from '../services/utils';
 import DataStorage from '../services/storage';
 
@@ -41,7 +41,7 @@ class Application extends HTMLElement {
     }
 
      toggleSettings(evt) {
-        const el = this.shadow.querySelector('.settings');
+        const el = ClassIdService.id('settings', this.shadow);
         if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === '1') {
            StyleService.setDisplay(el, false);
            return;

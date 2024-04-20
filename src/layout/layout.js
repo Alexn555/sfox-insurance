@@ -5,7 +5,7 @@ import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
 import { showComponent } from '../services/utils';
-import { CustomEventService } from '../services';
+import { ClassIdService, CustomEventService } from '../services';
 
 class Layout extends HTMLElement {
     constructor() {
@@ -34,7 +34,7 @@ class Layout extends HTMLElement {
     }
 
     moveLayout(settingsToggle) {
-        const container = this.shadow.querySelector('.layout');
+        const container = ClassIdService.id('layout', this.shadow);
         const top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
         container.style.transform = `translateY(${top}px)`;
 

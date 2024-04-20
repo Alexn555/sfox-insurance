@@ -6,7 +6,7 @@ import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { getOptionFromString } from '../../services/utils/arrays';
 import DataStorage from '../../services/storage';
-import { IdService } from '../../services';
+import { ClassIdService, IdService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
@@ -37,7 +37,7 @@ class InsuranceCalculatorForm extends HTMLElement {
       document.addEventListener(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (evt) => {
         this.loan = evt.detail.value;
         this.save('loan', evt.detail.value);
-        const el = this.shadow.querySelector('.loan-current-amount');
+        const el = ClassIdService.id('loan-current-amount', this.shadow);
         el.innerHTML = `${this.loan} ${this.currency}`;
       });
 
@@ -87,7 +87,7 @@ class InsuranceCalculatorForm extends HTMLElement {
 
     calculateFormula() {
       this.totalPayment = this.loan * (this.period / this.interests);
-      const el = this.shadow.querySelector('.total-payment');
+      const el = ClassIdService.id('total-payment', this.shadow);
       el.innerHTML = `${(this.formatTotalValue(this.totalPayment))}`;
     }
 

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { StyleService } from '../services';
+import { IdService, StyleService } from '../services';
 
 class BasePage extends HTMLElement {
     constructor() {
@@ -15,14 +15,13 @@ class BasePage extends HTMLElement {
 
     connectedCallback() {
         this.render();
-        this.el = this.shadow.querySelector('.container');
+        this.el = IdService.id('container', this.shadow);
         this.setInit();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = this.shadow.querySelector('.container');
-        if (el !== null) {
-            StyleService.setDisplay(el, newValue === 'true');
+        if (this.el) {
+            StyleService.setDisplay(this.el, newValue === 'true');
         }
     }
 
@@ -33,7 +32,7 @@ class BasePage extends HTMLElement {
     render() {
         this.shadow.innerHTML = `
             <style>
-                .container {
+                #container {
                     width: 70vw;
 
                     @media (max-width: 768px) {
@@ -51,7 +50,7 @@ class BasePage extends HTMLElement {
                     }
                 }
             </style>
-            <div class="container">
+            <div id="container">
                 <page-title title="${this.title}"></page-title>
                 <slot></slot>
             </div> 

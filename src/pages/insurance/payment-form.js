@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
-import { IdService, StyleService } from '../../services';
+import { ClassIdService, IdService, StyleService } from '../../services';
 import { isValidNumber } from '../../services/utils/number';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
@@ -90,7 +90,7 @@ class InsurancePaymentForm extends HTMLElement {
 
   setAmount(amountVal) {
     if (amountVal && amountVal !== '') {
-        const errorLabel = this.shadow.querySelector('.input-error');
+        const errorLabel = ClassIdService.id('input-error', this.shadow);
         StyleService.setDisplay(errorLabel, false);        
         if (!isValidNumber(amountVal)) {
             StyleService.setDisplay(errorLabel, true);

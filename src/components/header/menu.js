@@ -1,7 +1,7 @@
 import { theme } from '../../theme/theme';
 import { CommonEvents, CustomEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
-import { CustomEventService } from '../../services';
+import { ClassIdService, CustomEventService, IdService } from '../../services';
 
 class HeaderMenu extends HTMLElement {
     constructor() {
@@ -10,16 +10,28 @@ class HeaderMenu extends HTMLElement {
     }
     
     connectedCallback() {
-        this.shadow.addEventListener(CommonEvents.click, this.toggleMenuItem.bind(this));
+        this.render();
+        this.initForm();
         this.shadow.addEventListener('mouseover', this.setOverlay.bind(this));
         this.shadow.addEventListener('mouseout', this.removeOverlay.bind(this));
-        this.render();
+    }
+
+    initForm() {
+        this.$home = IdService.idAndClick('home', this.shadow, () => {
+            this.toggleMenuItem('home');
+        });
+        this.$insurance = IdService.idAndClick('insurance', this.shadow, () => {
+            this.toggleMenuItem('insurance');
+        });
+        this.$additional = IdService.idAndClick('additional', this.shadow, () => {
+            this.toggleMenuItem('additional');
+        });
     }
 
     disconnectedCallback() {
-        this.shadow.removeEventListener(CommonEvents.click, null);
         this.shadow.removeEventListener('mouseover', null);
         this.shadow.removeEventListener('mouseout', null);
+        IdService.removeList([this.$home, this.$insurance, this.$additional]);
     }
 
     setOverlay() {
@@ -31,14 +43,12 @@ class HeaderMenu extends HTMLElement {
     }
 
     toggleMenuItem(evt) {
-        const { target } = evt;
-        const item =  target.id;
+        const item = evt;
         const selectedItem = this.setSelected(item);
         
         CustomEventService.send(CustomEvents.header.menuClick, item);
         
-        const searchCl = this.shadow.querySelectorAll('.header-menu-item');
-    
+        const searchCl = ClassIdService.id('header-menu-item', this.shadow);
         if (searchCl && searchCl.length > 0) {
             searchCl[0].setAttribute('class', 'header-menu-item');
             searchCl[1].setAttribute('class', 'header-menu-item');
@@ -116,28 +126,19 @@ class HeaderMenu extends HTMLElement {
             <div class="header-menu"> 
                 <div 
                     class="header-menu-item"
-                    id="home"
-                    onmouseover="this.setOverlay()" 
-                    onmouseout="this.removeOverlay()" 
-                    onclick="this.toggleMenuItem(event)">
+                    id="home">
                         <img src="./${imageMap.menuHome}" alt="home" /> <br />
                         Home
                 </div>
                 <div 
                     class="header-menu-item" 
-                    id="insurance"
-                    onmouseover="this.setOverlay()" 
-                    onmouseout="this.removeOverlay()" 
-                    onclick="this.toggleMenuItem(event)">
+                    id="insurance">
                         <img src="./${imageMap.menuInsurance}" alt="insurance" /> <br />
                         Everyday performance
                  </div>
                  <div 
                     class="header-menu-item" 
-                    id="additional"
-                    onmouseover="this.setOverlay()" 
-                    onmouseout="this.removeOverlay()" 
-                    onclick="this.toggleMenuItem(event)">
+                    id="additional">
                         <img src="./${imageMap.menuAdditional}" alt="Additional" /> <br />
                         Additional
                 </div>

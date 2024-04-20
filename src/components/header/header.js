@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
-import { StyleService } from '../../services';
+import { ClassIdService, IdService, StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
@@ -10,42 +10,47 @@ class Header extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.shadow.addEventListener(CommonEvents.click, this.toggleMenu.bind(this));
         window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
-
-        document.addEventListener(CustomEvents.header.menuOverlay, () => {
-            const overlay = this.shadow.querySelector('.header-overlay');
-            if (overlay) {
-                StyleService.setDisplay(overlay, true);
-            }
-        });
-
-        document.addEventListener(CustomEvents.header.menuOverlayRemove, () => {
-            const overlay = this.shadow.querySelector('.header-overlay');
-            if (overlay) {
-                StyleService.setDisplay(overlay, false);
-            }
-        });
     }
 
     updateSize() {
-        const toggleItem = this.shadow.querySelector('.menu-toggle');
+        const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
         StyleService.setDisplay(toggleItem, !isMobile());
     }
     
     connectedCallback() {
         this.render();
+        this.initForm();
+    }
+
+    initForm() {
+        //this.shadow.addEventListener(CommonEvents.click, this.toggleMenu.bind(this));
+        this.$toggleMenu = IdService.idAndClick('toggle', this.shadow, this.toggleMenu.bind(this));
+
+        this.$overlay = ClassIdService.id('header-overlay', this.shadow);
+        document.addEventListener(CustomEvents.header.menuOverlay, () => {
+            if (this.$overlay) {
+                StyleService.setDisplay(this.$overlay, true);
+            }
+        });
+
+        document.addEventListener(CustomEvents.header.menuOverlayRemove, () => {
+            if (this.$overlay) {
+                StyleService.setDisplay(this.$overlay, false);
+            }
+        });
     }
 
     disconnectedCallback() {
-        document.removeEventListener(CustomEvents.header.menuOverlay, null);
-        document.removeEventListener(CustomEvents.header.menuOverlayRemove, null);
+        IdService.removeCustomEvents([CustomEvents.header.menuOverlay, 
+            CustomEvents.header.menuOverlayRemove]);
+        IdService.remove(this.$toggleMenu);
     }
 
     toggleMenu() {
        if (isMobile()) {
-            const toggleItem = this.shadow.querySelector('.menu-toggle');
-            const toggleIcon = this.shadow.querySelector('.toggle-icon');
+            const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
+            const toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
             const isMenuOpen = !StyleService.isDisplaying(toggleItem);
             StyleService.setDisplay(toggleItem, isMenuOpen);
             toggleIcon.src = isMenuOpen ? `./${btnMap.mobile.menuClose}` : `./${btnMap.mobile.menuOpen}` ;
@@ -101,7 +106,7 @@ class Header extends HTMLElement {
                 <div class="logo-menu">
                     ${showComponent(HeaderBoard.logo.enabled, '<header-logo></header-logo>')}
                     <div class="logo-menu-toggle">
-                        <a href="#toggle" onclick="this.toggleMenu()">
+                        <a id="toggle" href="#toggle">
                             <img class="toggle-icon" src="./${btnMap.mobile.menuOpen}" />
                         </a>
                     </div>
