@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.19
-  Added logical name for variant constant, IdService first implementation
+  Added logical name for variant constant, Huge refactor to use IdService
+   and ClassIdServie in all implementations
 
 v 2.17
   Added Account additional icons, added Password Reminder, Added original image opacity fixes
@@ -28,11 +29,6 @@ v 2.11
 v 2.10
   Added Login, Account improvements, ImageViewer Zoom dynamic based on movable contrainer
 
-v 2.09
-  Added Salt to login password, added user
-
-v 2.08
-  Added Account, Login improvements
 
 ## Demo 
 

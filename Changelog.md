@@ -1,6 +1,7 @@
 ## Changelog
 v 2.19
-  Added logical name for variant constant, IdService first implementation
+  Added logical name for variant constant, Huge refactor to use IdService
+   and ClassIdServie in all implementations
 
 v 2.17
   Added Account additional icons, added Password Reminder, Added original image opacity fixes
