@@ -3,6 +3,7 @@ import { CustomEvents, CustomPageEvents } from '../../../settings';
 import { validateEmail } from '../../../services/utils/strings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService } from '../../../services';
+import { successIcon, errorIcon } from '../../../components/common/styles/statusIcons/status';
 
 class AccountPwdReminder extends HTMLElement {
     constructor() {
@@ -36,14 +37,17 @@ class AccountPwdReminder extends HTMLElement {
     checkEmail(email) {
       if (!validateEmail(email)) {
         const el = IdService.id('error', this.shadow);
-        el.innerText = 'Email is not correct format';
-         setTimeout(() => { el.innerText = ''; }, 2000);
+        el.innerHTML = `<i class="icon icon-failure">ok </i>
+        <span class="message">Email is not correct format</span>`;
+         setTimeout(() => { el.innerHTML = ''; }, 2000);
       }
     }
 
     toggleInfo() {
       const el = IdService.id('status', this.shadow);
-      el.innerHTML = `<span><b>Email</b> is send to us to check if password exists. <br />
+      el.innerHTML = `<span>
+        <i class="icon icon-success"> ok</i>
+        <span class="message"><b>Email</b> is send to us to check if password exists. <br />
           Actually it will not be sent - it is just a demo. :)</span>`;
       setTimeout(() => { 
         el.innerHTML = ''; 
@@ -66,9 +70,16 @@ class AccountPwdReminder extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
           <style>
+            ${successIcon(22, 22)}
+            ${errorIcon(22, 22)}
+
             #${this.container} {
               background-color: #f2f2f2;
               height: 100px;
+            }
+
+            .message {
+              padding-left: 2px;
             }
 
             #error {
