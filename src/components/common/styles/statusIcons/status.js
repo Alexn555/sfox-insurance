@@ -1,3 +1,4 @@
+// solution Jun 28, 2022 lonix (c) Stackoverflow.com
 
 const commonCssIcon = (w = 22, h = 22) => {
    return `.icon {
