@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.19
+### SFox Insurance Engine v 2.20
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.20
+  Show visited string and show function
+
 v 2.19
   Added logical name for variant constant, Huge refactor to use IdService
    and ClassIdServie in all implementations

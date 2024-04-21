@@ -35,8 +35,8 @@ class AccountDetails extends HTMLElement {
       })
     }
 
-    showLastVisited(visited) {
-      return Account.details.showVisited ? `<p> last visited <b>${formatDate(visited)}</b> </p>` : '';
+    showVisited(visited) {
+      return Account.details.showVisited ? `<p> visited <b>${formatDate(visited)}</b> </p>` : '';
     }
 
     showUserDetails(loggedUser) {
@@ -44,7 +44,7 @@ class AccountDetails extends HTMLElement {
         return;
       }
 
-      const { username, email, name, surname, last_visited } = loggedUser;
+      const { username, email, name, surname, visited } = loggedUser;
 
       const html = `
         <div class="details">
@@ -57,7 +57,7 @@ class AccountDetails extends HTMLElement {
           <p> email: <b>${email}</b> </p>
           <p> name: <b>${name}</b> <p>
           <p> surname <b>${surname}</b> </p>
-          ${this.showLastVisited(last_visited)}
+          ${this.showVisited(visited)}
         </div>
       `;
 

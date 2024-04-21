@@ -1,4 +1,7 @@
 ## Changelog
+v 2.20
+  Show visited string and show function
+
 v 2.19
   Added logical name for variant constant, Huge refactor to use IdService
    and ClassIdServie in all implementations
