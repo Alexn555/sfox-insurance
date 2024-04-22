@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.23
-  Created IconSelect and icon implementation
+  Created IconSelect and icon implementation, Moved event, removeList to CustomEventService,
+  Added better properties count ImageViewer
 
 v 2.20
   Show visited string and show function

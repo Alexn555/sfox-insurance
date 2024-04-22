@@ -1,6 +1,7 @@
 ## Changelog
 v 2.23
-  Created IconSelect and icon implementation
+  Created IconSelect and icon implementation, Moved event, removeList to CustomEventService,
+  Added better properties count ImageViewer
   
 v 2.20
   Show visited string and show function
