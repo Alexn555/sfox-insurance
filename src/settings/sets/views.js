@@ -5,7 +5,7 @@ export const ImageViewerIds = {
 
 export const ImageViewerSettings = {
     errorCase: 'error',
-    propertyAmount: 7,
+    propertyAmount: 5,
     common: { // default, non-specific
         // searchListNum: 0 - fist item, 1 - 2 items, [num] - integer items, 'all' - all items
         searchListNum: 0,

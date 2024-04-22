@@ -2,20 +2,26 @@
 import { objectPropertyAmount, sample } from '../../../services/utils';
 import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
-import { CommonEvents, CustomPageEvents } from '../../../settings';
+import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
-import { IdService, StyleService } from '../../../services';
+import { CustomEventService, IdService, StyleService } from '../../../services';
 
 class AccountIcon extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
+      this.isRandomSelect = false;
+      this.updateButton = false; 
       this.icon = '';
+      this.variants = ['', '_blue', '_red', '_yellow', '_green',
+        '_wh', '_white', '_whred', '_whblue', '_whyellow',
+        '_blond', '_wm', '_wmblack', '_wmblckblond', '_wmblond'];
       this.loggedUser = {};
       this.iconEvents = {
         init: 'init',
-        change: 'change'
+        change: 'change',
+        select: 'select'
       };
       this.storage = new DataStorage();
     }
@@ -26,30 +32,55 @@ class AccountIcon extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(CustomPageEvents.users.account.init, null);
-      document.removeEventListener(CustomPageEvents.users.account.hide, null);
+      IdService.removeCustomEvents([
+        CustomPageEvents.users.account.init, 
+        CustomPageEvents.users.account.hide
+      ]);
+      IdService.remove(this.$change);
     }
 
     initForm() {
       document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
         this.loggedUser = evt.detail.value;
         this.showUserIcon(this.loggedUser, this.iconEvents.init);
+        this.setIconSelectHandler();
       });
 
-      this.shadow.addEventListener(CommonEvents.click, this.toggleIcon.bind(this));
+      IdService.customEvent(`${CustomEvents.interaction.selectChange}-iconSelect`, (e) => {
+        let selected = e.detail.value;
+        selected = selected.substr(5, selected.length - 1);
+        this.toggleIcon(this.iconEvents.select, selected);
+      });
 
-      document.addEventListener(CustomPageEvents.users.account.hide, () => {
+      IdService.customEvent(CustomWindowEvents.iconSelect.close, () => {
+        IdService.remove(this.$change);
+        this.setIconSelectHandler();
+      });
+
+      IdService.customEvent(CustomPageEvents.users.account.hide, () => {
         this.setIcon('');
       });
     }
 
-    showUserIcon(loggedUser, event) {
+    setIconSelectHandler() {
+      this.$change = IdService.id('changeIcon', this.shadow);
+      if (this.$change) {
+        IdService.event(this.$change, CommonEvents.click, () => {
+          CustomEventService.send(CustomWindowEvents.iconSelect.open);
+        });
+      }
+    }
+
+    showUserIcon(loggedUser, event, selected) {
       if (objectPropertyAmount(loggedUser) < 1) {
         return;
       }
       
       const { username } = loggedUser;
-      this.icon = this.setIconImage(event);
+      this.icon = this.setIconImage(event, this.variants);
+      if (event === this.iconEvents.select) {
+        this.icon = this.setIconFromSelect(selected);
+      }
 
       const html = `
         <div class="icon">
@@ -64,19 +95,18 @@ class AccountIcon extends HTMLElement {
       this.setIcon(html);
     }
 
-    toggleIcon() {
-      this.showUserIcon(this.loggedUser, this.iconEvents.change);
-      
-      const el = IdService.id('change', this.shadow);
-      StyleService.setDisplay(el, false);
-      setTimeout(() => { StyleService.setDisplay(el, true) }, 2000);
+    toggleIcon(evt = this.iconEvents.change, selected) {
+      this.showUserIcon(this.loggedUser, evt, selected);
+      if (this.updateButton) {
+         const el = IdService.id('change', this.shadow);
+        StyleService.setDisplay(el, false);
+        setTimeout(() => { StyleService.setDisplay(el, true) }, 2000);
+      }
     }
 
-    setIconImage(event) {
+    setIconImage(event, variants) {
       const saved = this.storage.getItem(SaveObjects.account.icon);
-      const variants = ['', '_blue', '_red', '_yellow', '_green',
-      '_wh', '_white', '_whred', '_whblue', '_whyellow',
-     '_blond', '_wm', '_wmblack', '_wmblckblond', '_wmblond'];
+  
       const index = sample(variants);
       let source = variants[index];
 
@@ -88,7 +118,17 @@ class AccountIcon extends HTMLElement {
       }
 
       this.storage.save(SaveObjects.account.icon, source);
-      return `${EnvService.getRoot()}assets/account/profile${source}.png`;
+      return `${this.getIconSource()}${source}.png`;
+    }
+
+    setIconFromSelect(selected) {
+      const source = selected;
+      this.storage.save(SaveObjects.account.icon, source);
+      return `${this.getIconSource()}${source}.png`;
+    }
+
+    getIconSource() {
+      return `${EnvService.getRoot()}assets/account/profile`;
     }
 
     setIcon(html) {
@@ -97,6 +137,7 @@ class AccountIcon extends HTMLElement {
     }
 
     render() {
+      const varias = JSON.stringify(this.variants);
       this.shadow.innerHTML = `
           <style>
             #profile {
@@ -112,6 +153,12 @@ class AccountIcon extends HTMLElement {
             }
           </style>
           <div id="profile"></div> 
+          <icon-select 
+            id="iconSelect" 
+            source="${this.getIconSource()}" 
+            items='${varias}'
+          >
+          </icon-select>
        `;
     }
   }

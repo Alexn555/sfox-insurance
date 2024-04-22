@@ -60,7 +60,10 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$elBtn, this.$close]);
+      if (this.$elBtn) {
+        IdService.removeList([this.$elBtn, this.$close]);
+      }
+
       IdService.removeCustomEvents([
         CustomPageEvents.users.reminder.open, 
         `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 

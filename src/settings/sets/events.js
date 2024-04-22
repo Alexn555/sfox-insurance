@@ -53,6 +53,10 @@ export const CustomWindowEvents = {
     imageViwer: {
         open: 'image-viewer-open'
     },
+    iconSelect: {
+        open: 'icon-select-open',
+        close: 'icon-select-close'
+    },
     draggable: {
         moveStart: 'move-start',
         moveEnd: 'move-end'

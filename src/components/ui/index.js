@@ -5,4 +5,5 @@ import './select';
 import './button';
 import './link';
 import './accountTable';
+import './iconSelect';
 import './imageViewer/imageViewer';

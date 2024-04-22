@@ -1,4 +1,7 @@
 ## Changelog
+v 2.23
+  Created IconSelect and icon implementation
+  
 v 2.20
   Show visited string and show function
 
