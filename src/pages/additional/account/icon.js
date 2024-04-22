@@ -157,6 +157,8 @@ class AccountIcon extends HTMLElement {
             id="iconSelect" 
             source="${this.getIconSource()}" 
             items='${varias}'
+            columns-md="1"
+            columns-xs="1"
           >
           </icon-select>
        `;

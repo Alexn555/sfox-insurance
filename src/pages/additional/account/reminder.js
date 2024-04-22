@@ -60,7 +60,7 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     disconnectedCallback() {
-      if (this.$elBtn) {
+      if (this.$elBtn && this.$close) {
         IdService.removeList([this.$elBtn, this.$close]);
       }
 

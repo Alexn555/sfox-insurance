@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { CustomEvents, CustomWindowEvents } from '../../settings';
 import { CustomEventService, IdService, LoggerService } from '../../services';
+import { isMobile } from '../../services/utils';
 
 class IconSelect extends HTMLElement {
     constructor() {
@@ -9,17 +10,26 @@ class IconSelect extends HTMLElement {
       this.id = this.getAttribute('id') || 'select-id';
       this.source = this.getAttribute('source') || '';
       this.items = this.getAttribute('items') || '[]';
+      this.deskColumns = this.getAttribute('columns-md') || 1;
+      this.mobColumns = this.getAttribute('columns-xs') || 1;
+      this.styles = {
+        columns: 1,
+        width: 100
+      };
       this.$icons = [];
       this.$iconEls = [];
+      this.setuped = false;
       this.selected = '';
     }
 
     connectedCallback() {
+      this.initColumnStyles();
       this.render();
       this.initForm();
     }
 
     disconnectedCallback() {
+      this.toggleSetup(false);
       CustomEventService.removeList([`${CustomEvents.interaction.selectChange}-${this.id}`]);
       if (this.$iconEls && this.$iconEls.length > 0) {
         IdService.removeList(this.$iconEls);
@@ -40,25 +50,32 @@ class IconSelect extends HTMLElement {
         });
     }
 
-    setIcons() {
-        const icons = JSON.parse(this.items);
-        let html = '';
+    initColumnStyles() {
+        this.styles.columns = isMobile() ? this.mobColumns : this.deskColumns;
+        this.styles.width = this.styles.columns > 1 ? 400 : 160;
+    }
 
-        icons.forEach((icon, index) => {
-            html += `<div id="icon-${icon}" class="icon-selection">
-                        <img src="${this.source}${icon}.png" />
-                        <span>${icon}</span>
-                    </div>`;
-            this.$icons.push(`icon-${icon}`);
-            this.$iconEls[index] = IdService.id(`icon-${icon}`, this.shadow);
-        });
-        const el = IdService.id('icons', this.shadow);
-        if (el) {
-            el.innerHTML = html;
-            this.setIconHandlers();
-        } else {
-            LoggerService.warn('Icons holder not found');
-        }
+    setIcons() {
+        if (!this.setuped) {
+            const icons = JSON.parse(this.items);
+            let html = '';
+            icons.forEach((icon, index) => {
+                html += `<div id="icon-${icon}" class="icon-selection">
+                            <img src="${this.source}${icon}.png" />
+                            <span>${icon}</span>
+                        </div>`;
+                this.$icons.push(`icon-${icon}`);
+                this.$iconEls[index] = IdService.id(`icon-${icon}`, this.shadow);
+            });
+            const el = IdService.id('icons', this.shadow);
+            if (el) {
+                el.innerHTML = html;
+                this.setIconHandlers();
+            } else {
+                LoggerService.warn('Icons holder not found');
+            }
+        }   
+        this.toggleSetup(true);
     }
 
     setIconHandlers() {
@@ -71,6 +88,10 @@ class IconSelect extends HTMLElement {
                 });
             });
         }
+    }
+
+    toggleSetup(toggle) {
+        this.setuped = toggle;
     }
 
     showSelected(icon) {
@@ -89,12 +110,14 @@ class IconSelect extends HTMLElement {
             <style>
                 dialog#iconSelect {  
                     padding: 10px;
+                    width: ${this.styles.width}px;
                     border: 1px dashed grey;
                 }
                 #icons {
                     display: grid;
                     width: 90%:
-                    grid-template-columns: repeat(4, 20%);
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-columns: repeat(${this.styles.columns}, 120px);
 
                     & div {
                         padding: 8px;
