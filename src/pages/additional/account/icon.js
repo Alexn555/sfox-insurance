@@ -32,7 +32,7 @@ class AccountIcon extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeCustomEvents([
+      CustomEventService.removeList([
         CustomPageEvents.users.account.init, 
         CustomPageEvents.users.account.hide
       ]);
@@ -40,24 +40,24 @@ class AccountIcon extends HTMLElement {
     }
 
     initForm() {
-      document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
-        this.loggedUser = evt.detail.value;
+      CustomEventService.event(CustomPageEvents.users.account.init, (e) => {
+        this.loggedUser = e.detail.value;
         this.showUserIcon(this.loggedUser, this.iconEvents.init);
         this.setIconSelectHandler();
       });
 
-      IdService.customEvent(`${CustomEvents.interaction.selectChange}-iconSelect`, (e) => {
+      CustomEventService.event(`${CustomEvents.interaction.selectChange}-iconSelect`, (e) => {
         let selected = e.detail.value;
         selected = selected.substr(5, selected.length - 1);
         this.toggleIcon(this.iconEvents.select, selected);
       });
 
-      IdService.customEvent(CustomWindowEvents.iconSelect.close, () => {
+      CustomEventService.event(CustomWindowEvents.iconSelect.close, () => {
         IdService.remove(this.$change);
         this.setIconSelectHandler();
       });
 
-      IdService.customEvent(CustomPageEvents.users.account.hide, () => {
+      CustomEventService.event(CustomPageEvents.users.account.hide, () => {
         this.setIcon('');
       });
     }

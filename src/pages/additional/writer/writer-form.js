@@ -19,7 +19,7 @@ class WriterForm extends HTMLElement {
         CustomEventService.send(CustomPageEvents.tabs.writer.getImage);
       });
 
-      IdService.customEvent(CustomPageEvents.tabs.writer.showImage, (e) => {
+      CustomEventService.event(CustomPageEvents.tabs.writer.showImage, (e) => {
         if (!e.detail.value || typeof e.detail.value !== 'string') {
           LoggerService.error('Writer show image not defined!');
           e.detail.value = '';

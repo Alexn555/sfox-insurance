@@ -27,10 +27,10 @@ class AccountLogin extends HTMLElement {
     }
 
     initForm() {
-      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (e) => {
+      CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (e) => {
         this.setUsername(e?.detail.value);
       });
-      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, (e) => {
+      CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.textIds.password}`, (e) => {
         this.setPassword(e?.detail.value);
       });
 
@@ -67,7 +67,7 @@ class AccountLogin extends HTMLElement {
 
     disconnectedCallback() {
       IdService.removeList([this.$accessBtn, this.$remindLink]);
-      IdService.removeCustomEvents([
+      CustomEventService.removeList([
         `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
         `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`
       ]);

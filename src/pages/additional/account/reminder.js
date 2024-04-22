@@ -2,7 +2,7 @@
 import { CustomEvents, CustomPageEvents } from '../../../settings';
 import { validateEmail } from '../../../services/utils/strings';
 import { styleErrors } from '../../../components/common/styles/errors';
-import { IdService } from '../../../services';
+import { IdService, CustomEventService } from '../../../services';
 import { successIcon, errorIcon } from '../../../components/common/styles/statusIcons/status';
 
 class AccountPwdReminder extends HTMLElement {
@@ -24,11 +24,11 @@ class AccountPwdReminder extends HTMLElement {
       this.$email = IdService.id(this.idEmail, this.shadow);
       this.$container = IdService.id(this.container, this.shadow);
 
-      IdService.customEvent(CustomPageEvents.users.reminder.open, () => {
+      CustomEventService.event(CustomPageEvents.users.reminder.open, () => {
         this.$container.showModal();
       });
 
-      IdService.customEvent(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {
+      CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {
         this.email = e.detail.value;
         this.checkEmail(this.email);
       });
@@ -64,7 +64,7 @@ class AccountPwdReminder extends HTMLElement {
         IdService.removeList([this.$elBtn, this.$close]);
       }
 
-      IdService.removeCustomEvents([
+      CustomEventService.removeList([
         CustomPageEvents.users.reminder.open, 
         `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 
       ]);

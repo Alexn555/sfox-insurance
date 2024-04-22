@@ -20,7 +20,7 @@ class IconSelect extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeCustomEvents([`${CustomEvents.interaction.selectChange}-${this.id}`]);
+      CustomEventService.removeList([`${CustomEvents.interaction.selectChange}-${this.id}`]);
       if (this.$iconEls && this.$iconEls.length > 0) {
         IdService.removeList(this.$iconEls);
       }
@@ -29,7 +29,7 @@ class IconSelect extends HTMLElement {
 
     initForm() {
         this.$iconSelect = IdService.id('iconSelect', this.shadow);
-        IdService.customEvent(CustomWindowEvents.iconSelect.open, () => {
+        CustomEventService.event(CustomWindowEvents.iconSelect.open, () => {
             this.$iconSelect.showModal();
             this.setIcons();
         });

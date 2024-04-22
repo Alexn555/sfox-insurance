@@ -15,10 +15,6 @@ export class IdService {
         el.addEventListener(evt, callback);
     }
 
-    static customEvent(evt, callback, ctx = document) {
-        ctx.addEventListener(evt, callback);
-    }
-
     static remove(el, evt = CommonEvents.click) {
         el?.removeEventListener(evt, null);
     }
@@ -31,14 +27,6 @@ export class IdService {
         if (ids && ids.length > 0) {
             ids.forEach((id) => {
                 this.removeById(id, ctx);
-            }); 
-        }
-    }
-
-    static removeCustomEvents(evts, ctx = document) {
-        if (evts && evts.length > 0) {
-            evts.forEach(() => {
-                ctx.removeEventListener(evts, null); 
             }); 
         }
     }

@@ -4,11 +4,19 @@ export default class CustomEventService {
         document.dispatchEvent(new CustomEvent(name, { detail: detailProps, bubbles: true, cancelable: false }));
     }
 
-    static addListener(evtName, callback) {
-        document.addEventListener(evtName, callback);
+    static event(evt, callback, ctx = document) {
+        ctx.addEventListener(evt, callback);
     }
 
     static removeListener(evtName, option = null) {
         document.removeEventListener(evtName, option);
+    }
+    
+    static removeList(evts, ctx = document) {
+        if (evts && evts.length > 0) {
+            evts.forEach(() => {
+                this.removeListener(evts, ctx);
+            }); 
+        }
     }
 }

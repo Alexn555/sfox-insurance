@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
-import { ClassIdService, IdService, StyleService } from '../../services';
+import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 import { isValidNumber } from '../../services/utils/number';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
@@ -58,7 +58,7 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   disconnectedCallback() {
-    IdService.removeCustomEvents([
+    CustomEventService.removeList([
         `${this.textInputChangeEvt}-amount`,
         `${this.textInputChangeEvt}-description`,
         `${this.selectChangeEvt}-${this.selectIds.accounts}`,
@@ -80,10 +80,10 @@ class InsurancePaymentForm extends HTMLElement {
     this.$accounts.setAttribute('value', this.savedForm.accounts);
     this.$savedPayments.setAttribute('value', this.savedForm.payments);
 
-    IdService.customEvent(`${this.textInputChangeEvt}-amount`, (e) => {
+    CustomEventService.event(`${this.textInputChangeEvt}-amount`, (e) => {
         this.setAmount(e?.detail.value);
     });
-    IdService.customEvent(`${this.textInputChangeEvt}-description`, (e) => {
+    CustomEventService.event(`${this.textInputChangeEvt}-description`, (e) => {
         this.setAmount(e?.detail.value);
     });
   }

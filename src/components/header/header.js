@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
-import { ClassIdService, IdService, StyleService } from '../../services';
+import { CustomEventService, ClassIdService, IdService, StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
@@ -42,7 +42,7 @@ class Header extends HTMLElement {
     }
 
     disconnectedCallback() {
-        IdService.removeCustomEvents([CustomEvents.header.menuOverlay, 
+        CustomEventService.removeList([CustomEvents.header.menuOverlay, 
             CustomEvents.header.menuOverlayRemove]);
         IdService.remove(this.$toggleMenu);
     }
