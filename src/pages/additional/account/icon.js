@@ -36,14 +36,13 @@ class AccountIcon extends HTMLElement {
         CustomPageEvents.users.account.init, 
         CustomPageEvents.users.account.hide
       ]);
-      IdService.remove(this.$change);
+      IdService.removeList([this.$image, this.$change]);
     }
 
     initForm() {
       CustomEventService.event(CustomPageEvents.users.account.init, (e) => {
         this.loggedUser = e.detail.value;
         this.showUserIcon(this.loggedUser, this.iconEvents.init);
-        this.setIconSelectHandler();
       });
 
       CustomEventService.event(`${CustomEvents.interaction.selectChange}-iconSelect`, (e) => {
@@ -54,7 +53,6 @@ class AccountIcon extends HTMLElement {
 
       CustomEventService.event(CustomWindowEvents.iconSelect.close, () => {
         IdService.remove(this.$change);
-        this.setIconSelectHandler();
       });
 
       CustomEventService.event(CustomPageEvents.users.account.hide, () => {
@@ -63,6 +61,10 @@ class AccountIcon extends HTMLElement {
     }
 
     setIconSelectHandler() {
+      this.$image = IdService.idAndClick('image', this.shadow, () => {
+        this.toggleIcon(this.iconEvents.change, '');
+      });
+
       this.$change = IdService.id('changeIcon', this.shadow);
       if (this.$change) {
         IdService.event(this.$change, CommonEvents.click, () => {
@@ -84,7 +86,7 @@ class AccountIcon extends HTMLElement {
 
       const html = `
         <div class="icon">
-          <img src="${this.icon}" alt="icon" />
+          <img id="image" src="${this.icon}" alt="icon" />
           <span>${username}</span>
           <div id="change">
             <action-button id="changeIcon" label="Change image" type="highlight"></action-button>
@@ -93,6 +95,7 @@ class AccountIcon extends HTMLElement {
       `;
 
       this.setIcon(html);
+      this.setIconSelectHandler();
     }
 
     toggleIcon(evt = this.iconEvents.change, selected) {
