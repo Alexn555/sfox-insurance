@@ -2,7 +2,7 @@
 import { theme } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
-import { IdService, StyleService } from '../../../services';
+import { CustomEventService, IdService, StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
@@ -32,18 +32,19 @@ class ImageViewer extends HTMLElement {
         h: 600
       };
 
-      window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
-      window.addEventListener(CustomWindowEvents.imageViwer.open, (evt) => {
-        if (evt.detail) {
-          this.imgMedium = evt.detail.value;
+      CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
+      
+      CustomEventService.event(CustomWindowEvents.imageViwer.open, (e) => {
+        if (e.detail) {
+          this.imgMedium = e.detail.value;
         }
         this.toggleViewer(true);
       });
 
-      document.addEventListener(CustomWindowEvents.draggable.moveStart, () => {
+      CustomEventService.event(CustomWindowEvents.draggable.moveStart, () => {
         this.toggleZoom(false);
       });
-      document.addEventListener(CustomWindowEvents.draggable.moveEnd, () => {
+      CustomEventService.event(CustomWindowEvents.draggable.moveEnd, () => {
         this.toggleZoom(true);
       });
     }
@@ -234,111 +235,111 @@ class ImageViewer extends HTMLElement {
         border-radius: 0;`;
         
       this.shadow.innerHTML = `
-            <style>
-              dialog#imageViewer {
-                position: absolute;
-                width: ${this.imgViewerSize.w};
-                height: ${this.imgViewerSize.h};
-                padding: 20px;
-                border: 1px dotted black;
-                transition:
-                opacity 0.7s ease-out,
-                transform 0.7s ease-out,
-                overlay 0.7s ease-out allow-discrete,
-                display 0.7s ease-out allow-discrete;
-                text-align: center;
-                overflow-y: hidden;
+        <style>
+          dialog#imageViewer {
+            position: absolute;
+            width: ${this.imgViewerSize.w};
+            height: ${this.imgViewerSize.h};
+            padding: 20px;
+            border: 1px dotted black;
+            transition:
+            opacity 0.7s ease-out,
+            transform 0.7s ease-out,
+            overlay 0.7s ease-out allow-discrete,
+            display 0.7s ease-out allow-discrete;
+            text-align: center;
+            overflow-y: hidden;
 
-                & img {
-                  object-fit: contain;
-                  max-width: 100%;
-                  max-height: 100%;
-                  width: auto;
-                  height: auto;
-                  border: 1px solid grey;
-                }
+            & img {
+              object-fit: contain;
+              max-width: 100%;
+              max-height: 100%;
+              width: auto;
+              height: auto;
+              border: 1px solid grey;
+            }
 
-                #error {
-                  position: absolute;
-                  left: 20%;
-                  top: 50%;
-                  transform: translate(-50%, -50%);
-                  padding: 20px;
-                  width: 200px;
-                  height: 80px;
-                  text-align: center;
-                  background-color: ${theme.imageViewer.error.bck};
-                  font-size: smaller;
-                  font-weight: bold;
-                  border: 1px solid ${theme.imageViewer.error.border};
-                  color: ${theme.imageViewer.error.text};
-                }
+            #error {
+              position: absolute;
+              left: 20%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              padding: 20px;
+              width: 200px;
+              height: 80px;
+              text-align: center;
+              background-color: ${theme.imageViewer.error.bck};
+              font-size: smaller;
+              font-weight: bold;
+              border: 1px solid ${theme.imageViewer.error.border};
+              color: ${theme.imageViewer.error.text};
+            }
 
-                .close {
-                  position: absolute;
-                  right: 10px;
-                  top: 10px;
-                  padding: 2px;
-                  background-color: white;
-                  border-radius: 4px;
+            .close {
+              position: absolute;
+              right: 10px;
+              top: 10px;
+              padding: 2px;
+              background-color: white;
+              border-radius: 4px;
 
-                  @media (max-width: 768px) {
-                    right: 30px;
-                    top: 12px;
-                    ${sharedBtnStyles}
-                  }
-                }
-
-                .original {
-                  position: absolute;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  bottom: 10px;
-                  padding: 2px;
-                  background-color: white;
-                  border-radius: 4px;
-                  opacity: 0.3;
-
-                  &:hover {
-                    opacity: 1;
-                  }
-                       
-                  @media (max-width: 768px) {
-                    bottom: 20px;
-                    opacity: 1;
-                    ${sharedBtnStyles}
-                  }
-                }
+              @media (max-width: 768px) {
+                right: 30px;
+                top: 12px;
+                ${sharedBtnStyles}
               }
+            }
 
-              #${this.$zoomPercent} {
-                position: absolute;
-                background-color: white;
-                right: 100px;
-                top: 10px;
-                border: 1px solid black;
-                width: 180px;
-                height: 20px;
+            .original {
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: 10px;
+              padding: 2px;
+              background-color: white;
+              border-radius: 4px;
+              opacity: 0.3;
+
+              &:hover {
+                opacity: 1;
               }
-
-              .zoom:hover {
-                ${this.setZoomAbility()}
+                    
+              @media (max-width: 768px) {
+                bottom: 20px;
+                opacity: 1;
+                ${sharedBtnStyles}
               }
-            </style>
-            <dialog id="${this.imgViewerId}">
-                <img id="imgDetail" src="" alt="loading image" />
-                <div id="${this.$zoomPercent}"></div>
-                <div id="error"> 
-                  Server error <br />
-                  Demo Image <br />
-                  © ${DateService.getYear()} Flickr.com images
-                </div>
+            }
+          }
 
-                <div class="close">
-                  <action-button id="close" label="Close" type="${ButtonTypes.action}" />
-                </div> 
-                ${this.setOriginalImageLink()}
-            </dialog>
+          #${this.$zoomPercent} {
+            position: absolute;
+            background-color: white;
+            right: 100px;
+            top: 10px;
+            border: 1px solid black;
+            width: 180px;
+            height: 20px;
+          }
+
+          .zoom:hover {
+            ${this.setZoomAbility()}
+          }
+        </style>
+        <dialog id="${this.imgViewerId}">
+            <img id="imgDetail" src="" alt="loading image" />
+            <div id="${this.$zoomPercent}"></div>
+            <div id="error"> 
+              Server error <br />
+              Demo Image <br />
+              © ${DateService.getYear()} Flickr.com images
+            </div>
+
+            <div class="close">
+              <action-button id="close" label="Close" type="${ButtonTypes.action}" />
+            </div> 
+            ${this.setOriginalImageLink()}
+        </dialog>
        `;
     }
   }

@@ -18,7 +18,7 @@ class IconSelect extends HTMLElement {
       };
       this.$icons = [];
       this.$iconEls = [];
-      this.setuped = false;
+      this.mounted = false;
       this.selected = '';
     }
 
@@ -29,7 +29,7 @@ class IconSelect extends HTMLElement {
     }
 
     disconnectedCallback() {
-      this.toggleSetup(false);
+      this.toggleMount(false);
       CustomEventService.removeList([`${CustomEvents.interaction.selectChange}-${this.id}`]);
       if (this.$iconEls && this.$iconEls.length > 0) {
         IdService.removeList(this.$iconEls);
@@ -56,7 +56,7 @@ class IconSelect extends HTMLElement {
     }
 
     setIcons() {
-        if (!this.setuped) {
+        if (!this.mounted) {
             const icons = JSON.parse(this.items);
             let html = '';
             icons.forEach((icon, index) => {
@@ -75,7 +75,7 @@ class IconSelect extends HTMLElement {
                 LoggerService.warn('Icons holder not found');
             }
         }   
-        this.toggleSetup(true);
+        this.toggleMount(true);
     }
 
     setIconHandlers() {
@@ -90,8 +90,8 @@ class IconSelect extends HTMLElement {
         }
     }
 
-    toggleSetup(toggle) {
-        this.setuped = toggle;
+    toggleMount(toggle) {
+        this.mounted = toggle;
     }
 
     showSelected(icon) {
