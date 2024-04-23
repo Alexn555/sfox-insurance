@@ -1,84 +1,46 @@
 // @ts-nocheck
 import { ButtonTypes } from '../../components/common/ui';
-import { IdService } from '../../services';
 
 class MapForm extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.isMapOpen = false;
     }
   
     connectedCallback() {
       this.render();
-
-      IdService.idAndClick('mapOpen', this.shadow, () => {
-        this.toggleGame(true);
-      });
-      IdService.idAndClick('closeMap', this.shadow, () => {
-        this.toggleGame(false);
-      });
     }
 
-    toggleGame(isOpen) {
-      const el = IdService.id('mapDialog', this.shadow);
-      if (!this.isMapOpen) {
-        el.showModal();
-      } else {
-        el.close();
-      }
-      this.setMapOpen(isOpen)
-    }
-
-    setMapOpen(toggle) {
-      this.isMapOpen = toggle;
+    showContent() {
+      return `
+        <div id="map" class="map">
+          <h2>Map board</h2>
+          <iframe
+              id="mapOpenStreet"
+              title="Map"
+              width="600"
+              height="400"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+          </iframe>
+        </div>
+      `;
     }
   
     render() {
       this.shadow.innerHTML = `
             <style>
                .map-wrapper {
-                  display: grid;
-                  grid-template-columns: 50% 50%; 
-
-                  & div {
-                    padding: 20px;
-                  }
-
-                  @media (max-width: 768px) {
-                    grid-template-columns: 100%;
-                  }
-
-                  & dialog#mapDialog {
-                    width: 600px !important;
-                    padding: 20px;
-                    border: 1px dotted black;
-                    transition:
-                    opacity 0.7s ease-out,
-                    transform 0.7s ease-out,
-                    overlay 0.7s ease-out allow-discrete,
-                    display 0.7s ease-out allow-discrete;
+                  padding: 20px 0 20px 0;
+                  .map {
+                    width: fit-content;
+                    padding: 0 10px 0 10px;
+                    border: 1px dotted grey;
                   }
               }
             </style>
             <form>
                 <div class="map-wrapper">
-                    <div>
-                      <action-button id="mapOpen" label="Open Map" type="${ButtonTypes.action}" />
-                    </div>
-                    <div>
-                        <dialog id="mapDialog">
-                            <h2>Map board</h2>
-                            <iframe
-                                id="mapOpenStreet"
-                                title="Map"
-                                width="600"
-                                height="400"
-                                src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
-                            </iframe>
-                            <action-button id="closeMap" label="Close" type="${ButtonTypes.action}" />
-                        </dialog>
-                    </div>
+                  ${this.showContent()}
                 </div>
            </form>
        `;

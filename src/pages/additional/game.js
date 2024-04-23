@@ -72,13 +72,7 @@ class GameForm extends HTMLElement {
       this.shadow.innerHTML = `
             <style>
                .game-wrapper {
-                  & div {
-                    padding: 2px;
-                  }
-
-                  &:nth-child(1) {
-                    padding-top: 20px;
-                  }
+                  padding: 20px 0 20px 0;
 
                   @media (max-width: 768px) {
                     grid-template-columns: 100%;
@@ -96,8 +90,10 @@ class GameForm extends HTMLElement {
 
                   .inline-game {
                     border: 1px dashed grey;
+                    padding: 2px;
+                    
                     & h2 {
-                      padding-left: 8px;
+                      padding-left: 10px;
                     }
                   }
               }
