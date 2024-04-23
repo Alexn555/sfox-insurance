@@ -34,7 +34,9 @@ class AccountIcon extends HTMLElement {
         CustomPageEvents.users.account.init, 
         CustomPageEvents.users.account.hide
       ]);
-      IdService.removeList([this.$image, this.$change]);
+      if (this.$image && this.$change) {
+        IdService.removeList([this.$image, this.$change]);
+      }
     }
 
     initForm() {

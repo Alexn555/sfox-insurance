@@ -2,7 +2,7 @@
 import { theme } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
-import { CustomEventService, IdService, StyleService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
@@ -13,11 +13,11 @@ class ImageViewer extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
+      this.imgSource = this.getAttribute('source') || '';
+      this.id = this.getAttribute('id') || ImageViewerIds.writer;
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
       this.isMobile = false;
-      this.imgSource = this.getAttribute('source') || '';
-      this.id = this.getAttribute('id') || ImageViewerIds.writer;
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
@@ -34,13 +34,6 @@ class ImageViewer extends HTMLElement {
 
       CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
       
-      CustomEventService.event(CustomWindowEvents.imageViwer.open, (e) => {
-        if (e.detail) {
-          this.imgMedium = e.detail.value;
-        }
-        this.toggleViewer(true);
-      });
-
       CustomEventService.event(CustomWindowEvents.draggable.moveStart, () => {
         this.toggleZoom(false);
       });
@@ -62,6 +55,13 @@ class ImageViewer extends HTMLElement {
       this.$content = IdService.id('imgDetail', this.shadow);
 
       this.toggleError(false);
+
+      CustomEventService.event(CustomWindowEvents.imageViwer.open, (e) => {
+        if (e.detail) {
+          this.imgMedium = e.detail.value;
+        }
+        this.toggleViewer(true);
+      });
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
         this.toggleViewer(false);
@@ -133,7 +133,18 @@ class ImageViewer extends HTMLElement {
         if (!this.imgViewerVisible) {
           this.setImage();
           this.checkImage();
-          el.showModal();
+          try {
+            el.showModal();
+          } catch (e) {
+            // re-try with show dialog
+            LoggerService.warn('Failed to open -> trying to show again ');
+            
+            const permission = prompt(`[Warning] ImageViewer failed to open (lost focus error).
+             Type yes to reload browser. Don't worry, all data (expect this page) saved even after reload page.`);
+            if (permission !== null && permission.toLowerCase() === 'yes') {
+              location.reload();
+            }
+          }
         } else {
           el.close();
         }

@@ -12,12 +12,9 @@ class WriterForm extends HTMLElement {
   
     connectedCallback() {
       this.render();
+      setTimeout(() => { this.activateContent(); }, 1000);
 
-      this.$fetchOpen = IdService.idAndClick('fetchOpen', this.shadow, () => {
-        toggleDisplay('fetchOpen', this.shadow, 5000);
-        CustomEventService.send(CustomPageEvents.tabs.writer.showArticle);
-        CustomEventService.send(CustomPageEvents.tabs.writer.getImage);
-      });
+      this.$fetchOpen = IdService.idAndClick('fetchOpen', this.shadow, this.activateContent.bind(this));
 
       CustomEventService.event(CustomPageEvents.tabs.writer.showImage, (e) => {
         if (!e.detail.value || typeof e.detail.value !== 'string') {
@@ -31,6 +28,12 @@ class WriterForm extends HTMLElement {
 
     disconnectedCallback() {
       IdService.remove(this.$fetchOpen);
+    }
+
+    activateContent() {
+      toggleDisplay('fetchOpen', this.shadow, 5000);
+      CustomEventService.send(CustomPageEvents.tabs.writer.showArticle);
+      CustomEventService.send(CustomPageEvents.tabs.writer.getImage);
     }
 
     openViewer() {
