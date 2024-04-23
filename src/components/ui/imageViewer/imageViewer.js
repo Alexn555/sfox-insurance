@@ -137,7 +137,7 @@ class ImageViewer extends HTMLElement {
             el.showModal();
           } catch (e) {
             // re-try with show dialog
-            LoggerService.warn('Failed to open -> trying to show again ');
+            LoggerService.warn('Failed to open ImageViewer -> reload browser');
             
             const permission = prompt(`[Warning] ImageViewer failed to open (lost focus error).
              Type yes to reload browser. Don't worry, all data (expect this page) saved even after reload page.`);
