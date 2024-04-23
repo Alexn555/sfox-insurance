@@ -342,12 +342,12 @@ class ImageViewer extends HTMLElement {
             </div> 
             ${this.setOriginalImageLink()}
         </dialog>
-        <error-note
+        <general-note
           id="errorNote" 
           status="error" 
           recipe="reload"
           text="${this.lostFocusError}">
-        </error-note>
+        </general-note>
        `;
     }
   }

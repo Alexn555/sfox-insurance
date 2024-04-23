@@ -4,7 +4,7 @@ import { styleErrors } from '../common/styles/errors';
 import { IdService, CustomEventService } from '../../services';
 import { errorIcon } from '../common/styles/statusIcons/status';
 
-class ErrorNote extends HTMLElement {
+class GeneralNote extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
@@ -128,5 +128,5 @@ class ErrorNote extends HTMLElement {
 }
   
 if ("customElements" in window) {
-  customElements.define("error-note", ErrorNote);
+  customElements.define("general-note", GeneralNote);
 }

@@ -6,5 +6,5 @@ import './button';
 import './link';
 import './accountTable';
 import './iconSelect';
-import './errorNote';
+import './generalNote';
 import './imageViewer/imageViewer';
