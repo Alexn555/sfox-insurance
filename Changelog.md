@@ -1,4 +1,7 @@
 ## Changelog
+v 2.24
+  Improved Icon settings, Game Page improvements
+
 v 2.23
   Created IconSelect and icon implementation, Moved event, removeList to CustomEventService,
   Added better properties count ImageViewer

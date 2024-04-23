@@ -19,9 +19,16 @@ export const Writer = {
     }
 };
 
+export const Game = {
+    buttons: {
+        dialogOpener: false
+    }
+};
+
 export const Account = {
     details: {
-        showVisited: false
+        showVisited: false,
+        randomIcon: true
     }
 };
 

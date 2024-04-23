@@ -1,7 +1,7 @@
 // Settings and other global constants, variables
 
 export { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from './sets/events';
-export { pageNames, PageStructure, Banners, AdditionalPage, Writer, Account } from './sets/page';
+export { pageNames, PageStructure, Banners, AdditionalPage, Writer, Game, Account } from './sets/page';
 export { LoginSets } from './sets/apis';
 export { HeaderSettings, SEO, NoticeDisclaimerSets } from './sets/header';
 export { GlobalSizes, TextSizes } from './sets/sizes';

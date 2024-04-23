@@ -4,15 +4,13 @@ import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
-import { CustomEventService, IdService, StyleService } from '../../../services';
+import { CustomEventService, IdService } from '../../../services';
+import { Account } from '../../../settings';
 
 class AccountIcon extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.isAccVisible = false;
-      this.isRandomSelect = false;
-      this.updateButton = false; 
       this.icon = '';
       this.variants = ['', '_blue', '_red', '_yellow', '_green',
         '_wh', '_white', '_whred', '_whblue', '_whyellow',
@@ -62,7 +60,9 @@ class AccountIcon extends HTMLElement {
 
     setIconSelectHandler() {
       this.$image = IdService.idAndClick('image', this.shadow, () => {
-        this.toggleIcon(this.iconEvents.change, '');
+        if (Account.details.randomIcon) {
+          this.toggleIcon(this.iconEvents.change, '');
+        }
       });
 
       this.$change = IdService.id('changeIcon', this.shadow);
@@ -100,11 +100,6 @@ class AccountIcon extends HTMLElement {
 
     toggleIcon(evt = this.iconEvents.change, selected) {
       this.showUserIcon(this.loggedUser, evt, selected);
-      if (this.updateButton) {
-         const el = IdService.id('change', this.shadow);
-        StyleService.setDisplay(el, false);
-        setTimeout(() => { StyleService.setDisplay(el, true) }, 2000);
-      }
     }
 
     setIconImage(event, variants) {
