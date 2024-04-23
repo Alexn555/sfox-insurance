@@ -6,4 +6,5 @@ import './button';
 import './link';
 import './accountTable';
 import './iconSelect';
+import './errorNote';
 import './imageViewer/imageViewer';

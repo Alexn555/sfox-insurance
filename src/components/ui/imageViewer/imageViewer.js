@@ -21,6 +21,8 @@ class ImageViewer extends HTMLElement {
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
       this.$zoomPercent = 'zoomPercent';
+      this.lostFocusError = `[Warning] ImageViewer failed to open (lost focus error).
+      Press [Close] to reload browser. Don't worry, all data (expect this page) saved even after reload page.`;
       this.keys = {
         left: KeyboardKeys.arrowLeft,
         right: KeyboardKeys.arrowRight
@@ -132,11 +134,9 @@ class ImageViewer extends HTMLElement {
             // re-try with show dialog
             LoggerService.warn('Failed to open ImageViewer -> reload browser');
             
-            const permission = prompt(`[Warning] ImageViewer failed to open (lost focus error).
-             Type yes to reload browser. Don't worry, all data (expect this page) saved even after reload page.`);
-            if (permission !== null && permission.toLowerCase() === 'yes') {
-              location.reload();
-            }
+            const el = IdService.id('errorNote', this.shadow);
+            el.setAttribute('text', this.lostFocusError);
+            CustomEventService.send(CustomWindowEvents.errorNote.open, this.lostFocusError);
           }
         } else {
           el.close();
@@ -342,6 +342,12 @@ class ImageViewer extends HTMLElement {
             </div> 
             ${this.setOriginalImageLink()}
         </dialog>
+        <error-note
+          id="errorNote" 
+          status="error" 
+          recipe="reload"
+          text="${this.lostFocusError}">
+        </error-note>
        `;
     }
   }

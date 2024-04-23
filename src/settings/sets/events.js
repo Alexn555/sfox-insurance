@@ -53,6 +53,10 @@ export const CustomWindowEvents = {
     imageViwer: {
         open: 'image-viewer-open'
     },
+    errorNote: {
+        open: 'error-note-open',
+        close: 'error-note-close'
+    },
     iconSelect: {
         open: 'icon-select-open',
         close: 'icon-select-close'
