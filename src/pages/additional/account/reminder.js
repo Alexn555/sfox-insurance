@@ -74,7 +74,7 @@ class AccountPwdReminder extends HTMLElement {
       this.shadow.innerHTML = `
           <style>
             ${successIcon(22, 22)}
-            ${errorIcon(22, 22)}
+            ${errorIcon(22, 22, false)}
 
             #${this.container} {
               background-color: #f2f2f2;

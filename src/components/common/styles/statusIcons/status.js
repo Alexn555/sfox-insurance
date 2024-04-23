@@ -16,18 +16,27 @@ const commonCssIcon = (w = 22, h = 22) => {
     `;
 };
 
-export const successIcon = (w = 22, h = 22) => {
+export const successIcon = (w = 22, h = 22, loadMain = true) => {
     return `
-        ${commonCssIcon(w, h)}
+        ${loadMain ? commonCssIcon(w, h) : ''}
         .icon.icon-success          { background: green; }
         .icon.icon-success:before   { width:  3px; height:  9px; top:  6px; left: 11px; }
         .icon.icon-success:after    { width:  3px; height:  3px; top: 12px; left:  8px; }
     `;
 };
 
-export const errorIcon = (w = 22, h = 22) => {
+export const warnIcon = (w = 22, h = 22, loadMain = true) => {
     return `
-        ${commonCssIcon(w, h)}
+        ${loadMain ? commonCssIcon(w, h) : ''}
+        .icon.icon-failure          { background: orange; }
+        .icon.icon-failure::before  { width:  3px; height: 12px; top:  5px; left: 10px; }
+        .icon.icon-failure::after   { width: 12px; height:  3px; top: 10px; left:  5px; }
+    `;
+};
+
+export const errorIcon = (w = 22, h = 22, loadMain = true) => {
+    return `
+        ${loadMain ? commonCssIcon(w, h) : ''}
         .icon.icon-failure          { background: red; }
         .icon.icon-failure::before  { width:  3px; height: 12px; top:  5px; left: 10px; }
         .icon.icon-failure::after   { width: 12px; height:  3px; top: 10px; left:  5px; }
