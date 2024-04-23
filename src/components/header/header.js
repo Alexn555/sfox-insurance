@@ -10,7 +10,7 @@ class Header extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
+        CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
     }
 
     updateSize() {
@@ -24,17 +24,16 @@ class Header extends HTMLElement {
     }
 
     initForm() {
-        //this.shadow.addEventListener(CommonEvents.click, this.toggleMenu.bind(this));
         this.$toggleMenu = IdService.idAndClick('toggle', this.shadow, this.toggleMenu.bind(this));
 
         this.$overlay = ClassIdService.id('header-overlay', this.shadow);
-        document.addEventListener(CustomEvents.header.menuOverlay, () => {
+
+        CustomEventService.event(CustomEvents.header.menuOverlay, () => {
             if (this.$overlay) {
                 StyleService.setDisplay(this.$overlay, true);
             }
         });
-
-        document.addEventListener(CustomEvents.header.menuOverlayRemove, () => {
+        CustomEventService.event(CustomEvents.header.menuOverlayRemove, () => {
             if (this.$overlay) {
                 StyleService.setDisplay(this.$overlay, false);
             }

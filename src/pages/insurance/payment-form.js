@@ -37,13 +37,14 @@ class InsurancePaymentForm extends HTMLElement {
     this.selectChangeEvt = CustomEvents.interaction.selectChange;
     this.textInputChangeEvt = CustomEvents.interaction.textInputChange;
 
-    document.addEventListener(`${this.selectChangeEvt}-${this.selectIds.accounts}`, (evt) => {
-        this.accounts = evt.detail.value;
-        this.save('accounts', evt.detail.value);
+    CustomEventService.event(`${this.selectChangeEvt}-${this.selectIds.accounts}`, (e) => {
+        this.accounts = e.detail.value;
+        this.save('accounts', e.detail.value);
     });
-    document.addEventListener(`${this.selectChangeEvt}-${this.selectIds.savedPayments}`, (evt) => {
-        this.savedPayments = evt.detail.value;
-        this.save('payments', evt.detail.value);
+
+    CustomEventService.event(`${this.selectChangeEvt}-${this.selectIds.savedPayments}`, (e) => {
+        this.savedPayments = e.detail.value;
+        this.save('payments', e.detail.value);
     });
   }
 

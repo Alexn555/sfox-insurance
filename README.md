@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.24
-  Improved Icon settings, Game Page improvements
+  Improved Icon settings, Game Page improvements, ImageViewer (lost focus error) fixes,
+  Medium size refactor addEvent to CustomEventService event
 
 v 2.23
   Created IconSelect and icon implementation, Moved event, removeList to CustomEventService,

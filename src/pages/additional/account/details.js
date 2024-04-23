@@ -3,7 +3,7 @@ import { objectPropertyAmount } from '../../../services/utils';
 import { formatDate } from '../../../services/utils/dates';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
-import { IdService } from '../../../services';
+import { CustomEventService, IdService } from '../../../services';
 
 class AccountDetails extends HTMLElement {
     constructor() {
@@ -25,14 +25,13 @@ class AccountDetails extends HTMLElement {
     }
 
     initForm() {
-      document.addEventListener(CustomPageEvents.users.account.init, (evt) => {
-        this.loggedUser = evt.detail.value;
+      CustomEventService.event(CustomPageEvents.users.account.init, (e) => {
+        this.loggedUser = e.detail.value;
         this.showUserDetails(this.loggedUser);
       });
-
-      document.addEventListener(CustomPageEvents.users.account.hide, () => {
+      CustomEventService.event(CustomPageEvents.users.account.hide, (e) => {
         this.setDetails('');
-      })
+      });
     }
 
     showVisited(visited) {

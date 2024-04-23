@@ -33,15 +33,17 @@ class AccountPage extends HTMLElement {
       const statusEvt = this.loggedUser ? this.events.login : this.events.init;
       CustomEventService.send(CustomPageEvents.users.account.init, this.loggedUser);
       this.setSaveStatus(statusEvt);
-      document.addEventListener(CustomPageEvents.users.login, (evt) => {
-        if (!evt.detail || !evt.detail.value) {
+ 
+      CustomEventService.event(CustomPageEvents.users.login, (e) => {
+        if (!e.detail || !e.detail.value) {
           LoggerService.warn('Login data missing!');
           return;
         }
-        this.loggedUser = evt.detail.value;
+        this.loggedUser = e.detail.value;
         this.setAvailable(true, this.events.login);
-      });
-      document.addEventListener(CustomPageEvents.users.logout.button, this.logout.bind(this));
+      }, document);
+
+      CustomEventService.event(CustomPageEvents.users.logout.button, this.logout.bind(this), document);
     }
 
     disconnectedCallback() {

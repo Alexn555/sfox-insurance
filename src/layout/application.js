@@ -2,7 +2,7 @@
 import { theme, changeTheme } from '../theme/theme';
 import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../settings';
 import { SaveObjects } from '../components/common/saves';
-import { ClassIdService, StyleService } from '../services';
+import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { getVersionFromPackage } from '../services/utils';
 import DataStorage from '../services/storage';
 
@@ -10,8 +10,10 @@ class Application extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        document.addEventListener(CustomEvents.settings.themeChanged, this.settingsChanged.bind(this));
-        document.addEventListener(CustomEvents.settings.toggle, this.toggleSettings.bind(this));
+
+        CustomEventService.event(CustomEvents.settings.themeChanged, this.settingsChanged.bind(this), document);
+        CustomEventService.event(CustomEvents.settings.toggle, this.toggleSettings.bind(this), document);
+
         this.dataStorage = new DataStorage();
         this.setTitle();
         this.isInit = true;
@@ -23,8 +25,8 @@ class Application extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener(CustomEvents.settings.themeChanged, null);
-        document.removeEventListener(CustomEvents.settings.toggle, null);
+        CustomEventService.removeFromContext(CustomEvents.settings.themeChanged, document);
+        CustomEventService.removeFromContext(CustomEvents.settings.toggle, document);
     }
 
     setTitle() {

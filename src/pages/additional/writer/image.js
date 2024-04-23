@@ -17,9 +17,7 @@ class WriterImage extends HTMLElement {
       this.imgMedium = '';
       this.imgViewerId = ImageViewerIds.writer;
 
-      document.addEventListener(CustomPageEvents.tabs.writer.getImage, () => {
-        this.fetchImage();
-      });
+      CustomEventService.event(CustomPageEvents.tabs.writer.getImage, this.fetchImage.bind(this));
     }
   
     connectedCallback() {

@@ -6,7 +6,7 @@ import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { getOptionFromString } from '../../services/utils/arrays';
 import DataStorage from '../../services/storage';
-import { ClassIdService, IdService } from '../../services';
+import { ClassIdService, CustomEventService, IdService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
@@ -33,22 +33,21 @@ class InsuranceCalculatorForm extends HTMLElement {
         interests: getOptionFromString(dtInterests, 0) 
       };
 
-
-      document.addEventListener(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (evt) => {
-        this.loan = evt.detail.value;
-        this.save('loan', evt.detail.value);
+      CustomEventService.event(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (e) => {
+        this.loan = e.detail.value;
+        this.save('loan', e.detail.value);
         const el = ClassIdService.id('loan-current-amount', this.shadow);
         el.innerHTML = `${this.loan} ${this.currency}`;
       });
 
       const selectEvt = CustomEvents.interaction.selectChange;
-      document.addEventListener(`${selectEvt}-${this.selectIds.period}`, (evt) => {
-        this.period = evt.detail.value;
-        this.save('period', evt.detail.value);
+      CustomEventService.event(`${selectEvt}-${this.selectIds.period}`, (e) => {
+        this.period = e.detail.value;
+        this.save('period', e.detail.value);
       });
-      document.addEventListener(`${selectEvt}-${this.selectIds.interests}`, (evt) => {
-        this.interests = evt.detail.value;
-        this.save('interests', evt.detail.value);
+      CustomEventService.event(`${selectEvt}-${this.selectIds.interests}`, (e) => {
+        this.interests = e.detail.value;
+        this.save('interests', e.detail.value);
       });
     }
 

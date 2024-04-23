@@ -19,4 +19,8 @@ export default class CustomEventService {
             }); 
         }
     }
+    
+    static removeFromContext(evt, ctx) {
+        ctx.removeEventListener(evt, null);
+    }
 }

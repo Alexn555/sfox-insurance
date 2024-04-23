@@ -3,7 +3,7 @@ import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
 import { simulateDelay } from '../../../services/utils';
 import { ContentService } from '../../../services/dom/contentService';
-import { ClassIdService } from '../../../services';
+import { ClassIdService, CustomEventService } from '../../../services';
 
 class WriterArticle extends HTMLElement {
     constructor() {
@@ -15,9 +15,10 @@ class WriterArticle extends HTMLElement {
     connectedCallback() {
       this.render();
       this.$writerContent = ClassIdService.id('writeContent', this.shadow);
-      document.addEventListener(CustomPageEvents.tabs.writer.showArticle, () => {
+
+      CustomEventService.event(CustomPageEvents.tabs.writer.showArticle, () => {
         this.fetchContent(Writer.fetchOnce);
-      });
+      }, document);
     }
 
     fetchContent(loadOnce) {

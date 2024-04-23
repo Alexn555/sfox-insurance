@@ -8,8 +8,8 @@ class LoadSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
-        document.addEventListener(CustomEvents.settings.close, this.closeSettings.bind(this));
+        CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
+        CustomEventService.event(CustomEvents.settings.close, this.closeSettings.bind(this), document);
 
         this.dataStorage = new DataStorage();
         this.screenW = window.innerWidth;

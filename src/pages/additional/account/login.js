@@ -34,7 +34,7 @@ class AccountLogin extends HTMLElement {
         this.setPassword(e?.detail.value);
       });
 
-      this.$accessBtn.addEventListener(CommonEvents.click, () => {
+      IdService.event(this.$accessBtn, CommonEvents.click, () => {
         const user = {
           username: this.$username.getAttribute('value'),
           password: this.$password.getAttribute('value')

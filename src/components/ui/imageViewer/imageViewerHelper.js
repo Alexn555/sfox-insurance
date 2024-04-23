@@ -1,4 +1,5 @@
 import { LoggerService } from '../../../services/';
+import { isMobile } from '../../../services/utils';
 import { ImageViewerSettings, ImageViewerIds } from '../../../settings/';
 
 export class ImageViewerHelper {
@@ -22,5 +23,22 @@ export class ImageViewerHelper {
             LoggerService.warn(`ImageViewer container with id:"${id}", currently having less [properties] than required!`);
         }
         return cont;
+    }
+
+    static updateSize(largeScreen) {
+      const mobile = isMobile();
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      let factors = mobile ? { w: 1.1, h: 1.1 } : { w: 1.1, h: 1.2 };
+      if (window.innerWidth > largeScreen) {
+        factors = { w: 1.5, h: 1.2 };
+      }
+      return { mobile, screenW, screenH, factors };
+    }
+
+    static getZommArrows(key, keys) {
+        const left = key === keys.left ? '<b>[<- key]</b>': '[<- key]';
+        const right = key === keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
+        return { left, right };
     }
 }

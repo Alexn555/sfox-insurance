@@ -11,10 +11,10 @@ class Layout extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
-        document.addEventListener(CustomEvents.settings.moveLayout, (evt) => {
-            this.moveLayout(evt.detail.value);
-        });
+        CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
+        CustomEventService.event(CustomEvents.settings.moveLayout, (e) => {
+            this.moveLayout(e.detail.value);
+        }, document);
 
         this.dataStorage = new DataStorage();
         this.animationDuration = Animations.topSettings;

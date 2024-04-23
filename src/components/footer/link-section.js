@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
-import { ClassIdService, StyleService } from '../../services';
+import { ClassIdService, CustomEventService, StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
@@ -11,8 +11,8 @@ class FooterLinkSection extends HTMLElement {
         this.title = this.getAttribute('title') || 'Section';
         this.url = this.getAttribute('url') || 'sfoxinsurance.org';
 
-        this.addEventListener(CommonEvents.click, this.toggleContent.bind(this));
-        window.addEventListener(CommonEvents.resize, this.updateSize.bind(this));
+        CustomEventService.event(CommonEvents.click, this.toggleContent.bind(this), this.shadow);
+        CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
 
         const rowLinks = this.getAttribute('links');
         this.links = [];

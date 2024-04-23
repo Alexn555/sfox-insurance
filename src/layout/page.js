@@ -3,7 +3,7 @@ import { pageNames, Animations, CustomEvents } from "../settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
-import { ClassIdService, IdService } from '../services';
+import { ClassIdService, CustomEventService, IdService } from '../services';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -12,11 +12,11 @@ class PageSwitcher extends HTMLElement {
         this.dataStorage = new DataStorage();
         this.pageIds = ['home', 'insurance', 'additional'];
 
-        document.addEventListener(CustomEvents.header.menuClick, (evt) => {
-            this.getPage(evt.detail.value, false);
-        });
+        CustomEventService.event(CustomEvents.header.menuClick, (e) => {
+            this.getPage(e.detail.value, false);
+        }, document);
 
-        document.addEventListener(CustomEvents.interaction.flipBoard, (evt) => {
+        CustomEventService.event(CustomEvents.interaction.flipBoard, (evt) => {
             const { value } = evt.detail;
             const el = ClassIdService.id('page', this.shadow);
             const isAngle = true;
@@ -30,7 +30,7 @@ class PageSwitcher extends HTMLElement {
             } else {
                 el.style.transform = 'rotate3d(1, 1, 1, 0deg)';
             }
-        });
+        }, document);
     }
 
     getPage(name, isInit) {

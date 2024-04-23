@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { CommonEvents, CustomEvents } from '../../settings';
+import { CustomEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
 import { ClassIdService, CustomEventService, IdService } from '../../services';
 
@@ -29,8 +29,8 @@ class HeaderMenu extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.shadow.removeEventListener('mouseover', null);
-        this.shadow.removeEventListener('mouseout', null);
+        CustomEventService.removeFromContext('mouseover', this.shadow);
+        CustomEventService.removeFromContext('mouseout', this.shadow);
         IdService.removeList([this.$home, this.$insurance, this.$additional]);
     }
 
@@ -48,11 +48,11 @@ class HeaderMenu extends HTMLElement {
         
         CustomEventService.send(CustomEvents.header.menuClick, item);
         
-        const searchCl = ClassIdService.id('header-menu-item', this.shadow);
+        const searchCl = ClassIdService.idAll('header-menu-item', this.shadow);
         if (searchCl && searchCl.length > 0) {
-            searchCl[0].setAttribute('class', 'header-menu-item');
-            searchCl[1].setAttribute('class', 'header-menu-item');
-            searchCl[2].setAttribute('class', 'header-menu-item');
+            searchCl.forEach((item, index) => {
+                searchCl[index].setAttribute('class', 'header-menu-item');
+            });
             const selected = searchCl[selectedItem];
             if (selected) {
                 selected.setAttribute('class', 'header-menu-item header-menu-item-active');

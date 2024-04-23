@@ -3,7 +3,6 @@ import { theme } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
-import { isMobile } from '../../../services/utils';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
@@ -78,9 +77,9 @@ class ImageViewer extends HTMLElement {
           this.toggleZoomInfo(true);
           this.fadeZoomInfo(true, 5);
           this.setZoomInfo(this.zoomFactor);
-          this.shadow.addEventListener(CommonEvents.keydown, (e) => {
+          CustomEventService.event(CommonEvents.keydown, (e) => {
             this.setZoomUpdate(e);
-          });
+          }, this.shadow);
         } else {
           this.toggleZoomInfo(false);
         }
@@ -93,7 +92,7 @@ class ImageViewer extends HTMLElement {
 
     disconnectedCallback() {
       IdService.removeList([this.$close, this.$original]);
-      this.shadow.removeEventListener(CommonEvents.keydown, null);
+      CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -110,18 +109,12 @@ class ImageViewer extends HTMLElement {
     }
 
     updateSize() {
-      this.isMobile = isMobile();
-      this.screenW = window.innerWidth;
-      this.screenH = window.innerHeight;
-      let factors = this.isMobile ? { w: 1.1, h: 1.1 } : { w: 1.1, h: 1.2 };
-      if (window.innerWidth > GlobalSizes.largeScreen) {
-        factors = { w: 1.5, h: 1.2 };
-      }
-
+      const { mobile, screenW, screenH, factors } = ImageViewerHelper.updateSize(GlobalSizes.largeScreen);
+      this.isMobile = mobile;
       const el = IdService.id(this.imgViewerId, this.shadow);
       this.imgViewerSize = {
-        w: Math.ceil(this.screenW / factors.w),
-        h: Math.ceil(this.screenH / factors.h)
+        w: Math.ceil(screenW / factors.w),
+        h: Math.ceil(screenH / factors.h)
       };
       el.style.width = `${this.imgViewerSize.w}px`;
       el.style.height = `${this.imgViewerSize.h}px`;
@@ -169,9 +162,8 @@ class ImageViewer extends HTMLElement {
 
     setZoomInfo(zoomFactor, key = '') {
       const el = IdService.id(this.$zoomPercent, this.shadow);
-      const left = key === this.keys.left ? '<b>[<- key]</b>': '[<- key]';
-      const right = key === this.keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
-      el.innerHTML = `${left} <b>${Math.floor(zoomFactor * 100)}%</b> ${right}`;
+      const arrows = ImageViewerHelper.getZommArrows(key, this.keys);
+      el.innerHTML = `${arrows.left} <b>${Math.floor(zoomFactor * 100)}%</b> ${arrows.right}`;
     }
 
     fadeZoomInfo(toggle, removeTimeout = 0) {
@@ -182,8 +174,7 @@ class ImageViewer extends HTMLElement {
     }
 
     toggleZoomInfo(toggle) {
-      const el = IdService.id(this.$zoomPercent, this.shadow);
-      StyleService.setDisplay(el, toggle);
+      StyleService.setDisplay(IdService.id(this.$zoomPercent, this.shadow), toggle);
     }
 
     setImage() {
