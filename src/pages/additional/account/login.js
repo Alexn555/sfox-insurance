@@ -3,6 +3,7 @@ import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
+import { KeyboardKeys } from '../../../settings/enums/keyboard';
 import { UserService } from '../../../services/page/usersService';
 
 class AccountLogin extends HTMLElement {
@@ -34,7 +35,12 @@ class AccountLogin extends HTMLElement {
         this.setPassword(e?.detail.value);
       });
 
-      CustomEventService.event(CommonEvents.keypress, this.activateLogin.bind(this), this.shadow);
+      CustomEventService.event(CommonEvents.keypress, (e) => {
+        if (e.key === KeyboardKeys.enter) {
+          e.preventDefault();
+          this.activateLogin();
+        }
+      }, this.shadow);
       IdService.event(this.$accessBtn, CommonEvents.click, this.activateLogin.bind(this));
 
       IdService.event(this.$remindLink, CommonEvents.click, () => {
