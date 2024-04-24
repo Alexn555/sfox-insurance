@@ -48,7 +48,7 @@ class AccountIcon extends HTMLElement {
       CustomEventService.event(`${CustomEvents.interaction.selectChange}-iconSelect`, (e) => {
         let selected = e.detail.value;
         selected = selected.substr(5, selected.length - 1);
-        this.toggleIcon(this.iconEvents.select, selected);
+        this.showUserIcon(this.loggedUser, this.iconEvents.select, selected);
       });
 
       CustomEventService.event(CustomWindowEvents.iconSelect.close, () => {
@@ -63,7 +63,7 @@ class AccountIcon extends HTMLElement {
     setIconSelectHandler() {
       this.$image = IdService.idAndClick('image', this.shadow, () => {
         if (Account.details.randomIcon) {
-          this.toggleIcon(this.iconEvents.change, '');
+          this.showUserIcon(this.loggedUser, this.iconEvents.change, '');
         }
       });
 
@@ -98,10 +98,6 @@ class AccountIcon extends HTMLElement {
 
       this.setIcon(html);
       this.setIconSelectHandler();
-    }
-
-    toggleIcon(evt = this.iconEvents.change, selected) {
-      this.showUserIcon(this.loggedUser, evt, selected);
     }
 
     setIconImage(event, variants) {

@@ -1,3 +1,4 @@
+// W3C example (c) W3C 2024
 import { CustomWindowEvents } from '../settings';
 import { CustomEventService } from '../services';
 

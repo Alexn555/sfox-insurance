@@ -64,6 +64,8 @@ class GeneralNote extends HTMLElement {
       let icon = '';
       if (status === this.statuses.error) {
         icon = '<i class="icon icon-failure"> </i>';
+      } else if (status === this.statuses.success) {
+        icon = '<i class="icon icon-success"> </i>';
       }
       return icon;
     }

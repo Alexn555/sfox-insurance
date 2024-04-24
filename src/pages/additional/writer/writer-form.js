@@ -12,7 +12,7 @@ class WriterForm extends HTMLElement {
   
     connectedCallback() {
       this.render();
-      setTimeout(() => { this.activateContent(); }, 1000);
+      this.activateContent();
 
       this.$fetchOpen = IdService.idAndClick('fetchOpen', this.shadow, this.activateContent.bind(this));
 

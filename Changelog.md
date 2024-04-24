@@ -1,4 +1,7 @@
 ## Changelog
+v 2.26
+  Minor Writer updates, Game updates, copyright notices
+
 v 2.24
   Improved Icon settings, Game Page improvements, ImageViewer (lost focus error) fixes,
   Medium size refactor addEvent to CustomEventService event

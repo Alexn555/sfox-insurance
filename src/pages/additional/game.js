@@ -53,12 +53,12 @@ class GameForm extends HTMLElement {
       ` : '';
     }
 
-    showGameContent(w = 550, h = 530, title = 'Game board', className = '') {
+    showGameContent(w = 500, h = 530, title = 'Game board', className = '') {
       return `
         <div class="${className}">
           <h2>${title}</h2>
           <iframe 
-            src="http://norwaydict.com/html5games/wordgame/index.html"
+            src="http://norwaydict.com/html5games/wordgame/sfox_index.html"
             title="Game"
             width="${w}"
             height="${h}"
@@ -71,43 +71,43 @@ class GameForm extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
             <style>
-               .game-wrapper {
-                  padding: 20px 0 20px 0;
+              .game-wrapper {
+                padding: 20px 0 20px 0;
 
-                  @media (max-width: 768px) {
-                    grid-template-columns: 100%;
-                  }
+                @media (max-width: 768px) {
+                  grid-template-columns: 100%;
+                }
 
-                  & dialog#gameDialog {
-                    width: 600px !important;
-                    padding: 10px;
-                    border: 1px dotted black;
-                    opacity 0.7s ease-out,
-                    transform 0.7s ease-out,
-                    overlay 0.7s ease-out allow-discrete,
-                    display 0.7s ease-out allow-discrete;
-                  }
+                & dialog#game {
+                  width: 600px !important;
+                  padding: 10px;
+                  border: 1px dotted black;
+                  opacity 0.7s ease-out,
+                  transform 0.7s ease-out,
+                  overlay 0.7s ease-out allow-discrete,
+                  display 0.7s ease-out allow-discrete;
+                }
 
-                  .inline-game {
-                    border: 1px dashed grey;
-                    padding: 2px;
-                    
-                    & h2 {
-                      padding-left: 10px;
-                    }
+                .inline-game {
+                  border: 1px dashed grey;
+                  padding: 2px;
+                  
+                  & h2 {
+                    padding-left: 10px;
                   }
+                }
               }
             </style>
             <form>
-                <div class="game-wrapper">
-                    ${this.showDialogOpen()}
-                    ${this.showGameContent(550, 530, 'Game board', 'inline-game')}
-                  
-                    <dialog id="gameDialog">
-                      ${this.showGameContent(550, 530)}
-                      <action-button id="closeGame" label="Close" type="action" />
-                    </dialog>                
-                </div>
+              <div class="game-wrapper">
+                  ${this.showDialogOpen()}
+                  ${this.showGameContent(550, 530, 'Game board', 'inline-game')}
+                
+                  <dialog id="game">
+                    ${this.showGameContent(550, 530)}
+                    <action-button id="closeGame" label="Close" type="action" />
+                  </dialog>                
+              </div>
            </form>
        `;
     }
