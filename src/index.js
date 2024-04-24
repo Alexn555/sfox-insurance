@@ -1,6 +1,7 @@
 import './style.css';
 import './styles/index';
 import './theme/index';
+import './enums';
 import './settings';
 import './components/ui/index';
 import './data/index';

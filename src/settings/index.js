@@ -10,6 +10,3 @@ export { SettingsBoard } from './sets/settingsBoard';
 export { HeaderBoard } from './sets/header';
 export { FooterBoard } from './sets/footer';
 export { ImageViewerSettings, ImageViewerIds } from './sets/views';
-
-export { KeyboardKeys } from './enums/keyboard';
-export { GeneralNoteEnums, GeneralNoteCodes } from './enums/generalNote';

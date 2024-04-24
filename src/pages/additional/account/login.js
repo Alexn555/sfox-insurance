@@ -3,7 +3,7 @@ import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
-import { KeyboardKeys } from '../../../settings/enums/keyboard';
+import { KeyboardKeys } from '../../../enums';
 import { UserService } from '../../../services/page/usersService';
 
 class AccountLogin extends HTMLElement {

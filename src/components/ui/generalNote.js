@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { CustomWindowEvents, GeneralNoteEnums } from '../../settings';
+import { CustomWindowEvents } from '../../settings';
+import { GeneralNoteEnums } from '../../enums';
 import { styleErrors } from '../common/styles/errors';
 import { IdService, CustomEventService } from '../../services';
 import { errorIcon } from '../common/styles/statusIcons/status';

@@ -1,4 +1,4 @@
-const mainColor = '#152496';
+const mainColor = '#1483c9';
 
 export const themeBlue = {
     layout: {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
 import { validateEmail } from '../../../services/utils/strings';
-import { KeyboardKeys } from '../../../settings/enums/keyboard';
+import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService, CustomEventService } from '../../../services';
 import { successIcon, errorIcon } from '../../../components/common/styles/statusIcons/status';

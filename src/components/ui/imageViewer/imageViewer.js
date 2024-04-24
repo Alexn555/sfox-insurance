@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys, GeneralNoteCodes } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
+import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
-import { GeneralNoteEnums } from '../../../settings';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';
 

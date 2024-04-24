@@ -1,7 +1,7 @@
 export const GlobalSizes = {
     mobileMax: 769,
     largeScreen: 1200,
-    wdStngsRefresh: 60, // 1 minute
+    wdStngsRefresh: 20, // 20 seconds
 };
 
 export const TextSizes = {
