@@ -1,6 +1,7 @@
 // @ts-nocheck
-import { CustomEvents, CustomPageEvents } from '../../../settings';
+import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
 import { validateEmail } from '../../../services/utils/strings';
+import { KeyboardKeys } from '../../../settings/enums/keyboard';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService, CustomEventService } from '../../../services';
 import { successIcon, errorIcon } from '../../../components/common/styles/statusIcons/status';
@@ -12,6 +13,12 @@ class AccountPwdReminder extends HTMLElement {
       this.container = 'pwdReminder';
       this.email = '';
       this.idEmail = 'email';
+
+      CustomEventService.event(CommonEvents.keydown, (e) => {
+        if (e.key === KeyboardKeys.escape) {
+          this.close();
+        }
+      });
     }
   
     connectedCallback() {

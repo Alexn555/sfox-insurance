@@ -35,6 +35,11 @@ class ImageViewer extends HTMLElement {
 
       CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
       
+      CustomEventService.event(CommonEvents.keydown, (e) => {
+        if (e.key === KeyboardKeys.escape) {
+          this.toggleViewer(false);
+        }
+      });
       CustomEventService.event(CustomWindowEvents.draggable.moveStart, () => {
         this.toggleZoom(false);
       });
@@ -62,12 +67,6 @@ class ImageViewer extends HTMLElement {
           this.imgMedium = e.detail.value;
         }
         this.toggleViewer(true);
-      });
-
-      CustomEventService.event(CommonEvents.keydown, (e) => {
-        if (e.key === KeyboardKeys.escape) {
-          this.toggleViewer(false);
-        }
       });
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
