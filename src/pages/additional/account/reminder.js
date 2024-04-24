@@ -46,20 +46,24 @@ class AccountPwdReminder extends HTMLElement {
         const el = IdService.id('error', this.shadow);
         el.innerHTML = `<i class="icon icon-failure">ok </i>
         <span class="message">Email is not correct format</span>`;
-         setTimeout(() => { el.innerHTML = ''; }, 2000);
+        setTimeout(() => { el.innerHTML = ''; }, 2000);
       }
     }
 
     toggleInfo() {
-      const el = IdService.id('status', this.shadow);
-      el.innerHTML = `<span>
-        <i class="icon icon-success"> ok</i>
-        <span class="message"><b>Email</b> is send to us to check if password exists. <br />
+      if (this.email && this.email.length > 0) {
+        const el = IdService.id('status', this.shadow);
+        el.innerHTML = `<span>
+          <i class="icon icon-success"> ok</i>
+          <span class="message"><b>Email</b> is send to us to check if password exists. <br />
           Actually it will not be sent - it is just a demo. :)</span>`;
-      setTimeout(() => { 
-        el.innerHTML = ''; 
-        this.close();
-      }, 2000);
+        setTimeout(() => { 
+          el.innerHTML = ''; 
+          this.close();
+        }, 2000);
+      } else {
+        this.checkEmail('notvalidemail');
+      }
     }
 
     close() {

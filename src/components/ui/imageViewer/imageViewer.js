@@ -1,10 +1,11 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
-import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys } from '../../../settings';
+import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings, KeyboardKeys, GeneralNoteCodes } from '../../../settings';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
+import { GeneralNoteEnums } from '../../../settings';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';
 
@@ -21,7 +22,7 @@ class ImageViewer extends HTMLElement {
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
       this.$zoomPercent = 'zoomPercent';
-      this.lostFocusError = `[Warning] ImageViewer failed to open (lost focus error).
+      this.genericStatusMsg = `[Warning] ImageViewer failed to open (lost focus error).
       Press [Close] to reload browser. Don't worry, all data (expect this page) saved even after reload page.`;
       this.keys = {
         left: KeyboardKeys.arrowLeft,
@@ -140,9 +141,9 @@ class ImageViewer extends HTMLElement {
               // re-try with show dialog
               LoggerService.warn('Failed to open ImageViewer -> reload browser');
               
-              const el = IdService.id('errorNote', this.shadow);
-              el.setAttribute('text', this.lostFocusError);
-              CustomEventService.send(CustomWindowEvents.errorNote.open, this.lostFocusError);
+              const el = IdService.id('genericNote', this.shadow);
+              el.setAttribute('text', this.genericStatusMsg);
+              CustomEventService.send(CustomWindowEvents.errorNote.open, this.genericStatusMsg);
             }        
           }
         } else {
@@ -350,10 +351,12 @@ class ImageViewer extends HTMLElement {
             ${this.setOriginalImageLink()}
         </dialog>
         <general-note
-          id="errorNote" 
-          status="error" 
-          recipe="reload"
-          text="${this.lostFocusError}">
+          id="genericNote" 
+          status="${GeneralNoteEnums.status.error}" 
+          recipe="${GeneralNoteEnums.recipes.reload}" 
+          code="${GeneralNoteCodes.writerLostFocus}"
+          text="${this.genericStatusMsg}"
+          useBack="${GeneralNoteEnums.useBack.close}">
         </general-note>
        `;
     }

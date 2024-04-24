@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { CustomWindowEvents } from '../../settings';
+import { CustomWindowEvents, GeneralNoteEnums } from '../../settings';
 import { styleErrors } from '../common/styles/errors';
 import { IdService, CustomEventService } from '../../services';
 import { errorIcon } from '../common/styles/statusIcons/status';
@@ -11,15 +11,9 @@ class GeneralNote extends HTMLElement {
       this.id = this.getAttribute('id') || 'errorNote';
       this.text = this.getAttribute('text') || '';
       this.status = this.getAttribute('status') || '';
+      this.code = this.getAttribute('code') || '';
       this.recipe = this.getAttribute('recipe') || '';
       this.useBack = this.getAttribute('use-back') || '0';
-      this.statuses = {
-        error: 'error',
-        success: 'success'
-      };
-      this.recipes = {
-        reload: 'reload'
-      };
       this.container = this.id;
     }
   
@@ -61,13 +55,13 @@ class GeneralNote extends HTMLElement {
     }
 
     setStatus(status) {
-      let icon = '';
-      if (status === this.statuses.error) {
-        icon = '<i class="icon icon-failure"> </i>';
-      } else if (status === this.statuses.success) {
-        icon = '<i class="icon icon-success"> </i>';
+      let cl = '';
+      if (status === GeneralNoteEnums.status.error) {
+        cl = 'icon-failure';
+      } else if (status === GeneralNoteEnums.status.success) {
+        cl = 'icon-success';
       }
-      return icon;
+      return `<i class="icon ${cl}"> </i>`;
     }
 
     toggleInfo() {
@@ -80,10 +74,10 @@ class GeneralNote extends HTMLElement {
 
     close() {
       this.$container?.close();
-      if (this.useBack === '1') {
-        CustomEventService.send(CustomWindowEvents.errorNote.close);
+      if (this.useBack === GeneralNoteEnums.useBack.open) {
+        CustomEventService.send(CustomWindowEvents.errorNote.close, this.code);
       }
-      if (this.recipe === this.recipes.reload) {
+      if (this.recipe === GeneralNoteEnums.recipes.reload) {
         location.reload();
       }
     }
