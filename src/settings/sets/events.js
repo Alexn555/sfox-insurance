@@ -1,7 +1,8 @@
 export const CommonEvents = {
     click: 'click',
     resize: 'resize',
-    keydown: 'keydown'
+    keypress: 'keypress',
+    keydown: 'keydown',
 };
 
 export const CustomEvents = {

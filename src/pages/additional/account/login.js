@@ -34,27 +34,30 @@ class AccountLogin extends HTMLElement {
         this.setPassword(e?.detail.value);
       });
 
-      IdService.event(this.$accessBtn, CommonEvents.click, () => {
-        const user = {
-          username: this.$username.getAttribute('value'),
-          password: this.$password.getAttribute('value')
-        };
-        if (user.username.length > 0 && user.password.length > 0) {
-          const logged = UserService.getLoginData(user);
-          if (logged) {
-            this.setAccount(logged);
-            this.showError('', false);
-          } else {
-            this.showError('User with those credentials is not found');
-          }
-        } else {
-          this.showError('Please type username and password');
-        }
-      });
+      CustomEventService.event(CommonEvents.keypress, this.activateLogin.bind(this), this.shadow);
+      IdService.event(this.$accessBtn, CommonEvents.click, this.activateLogin.bind(this));
 
       IdService.event(this.$remindLink, CommonEvents.click, () => {
         CustomEventService.send(CustomPageEvents.users.reminder.open);
       });
+    }
+
+    activateLogin() {
+      const user = {
+        username: this.$username.getAttribute('value'),
+        password: this.$password.getAttribute('value')
+      };
+      if (user.username.length > 0 && user.password.length > 0) {
+        const logged = UserService.getLoginData(user);
+        if (logged) {
+          this.setAccount(logged);
+          this.showError('', false);
+        } else {
+          this.showError('User with those credentials is not found');
+        }
+      } else {
+        this.showError('Please type username and password');
+      }
     }
 
     setUsername(value) {

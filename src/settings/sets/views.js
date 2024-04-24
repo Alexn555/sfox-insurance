@@ -13,6 +13,7 @@ export const ImageViewerSettings = {
         draggable: true,
         zoomEnable: true,
         originalLink: true,
+        exceptionHandler: true,
         zoom: {
            min: 0.4,
            max: 3,
@@ -24,6 +25,7 @@ export const ImageViewerSettings = {
         draggable: true,
         zoomEnable: true,
         originalLink: true,
+        exceptionHandler: true,
         zoom: {
             min: 0.4,
             max: 3,

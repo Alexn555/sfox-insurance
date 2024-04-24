@@ -131,12 +131,14 @@ class ImageViewer extends HTMLElement {
           try {
             el.showModal();
           } catch (e) {
-            // re-try with show dialog
-            LoggerService.warn('Failed to open ImageViewer -> reload browser');
-            
-            const el = IdService.id('errorNote', this.shadow);
-            el.setAttribute('text', this.lostFocusError);
-            CustomEventService.send(CustomWindowEvents.errorNote.open, this.lostFocusError);
+            if (this.settings.exceptionHandler) {
+              // re-try with show dialog
+              LoggerService.warn('Failed to open ImageViewer -> reload browser');
+              
+              const el = IdService.id('errorNote', this.shadow);
+              el.setAttribute('text', this.lostFocusError);
+              CustomEventService.send(CustomWindowEvents.errorNote.open, this.lostFocusError);
+            }        
           }
         } else {
           el.close();
