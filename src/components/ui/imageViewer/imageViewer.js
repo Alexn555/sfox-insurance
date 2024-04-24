@@ -64,6 +64,12 @@ class ImageViewer extends HTMLElement {
         this.toggleViewer(true);
       });
 
+      CustomEventService.event(CommonEvents.keydown, (e) => {
+        if (e.key === KeyboardKeys.escape) {
+          this.toggleViewer(false);
+        }
+      });
+
       this.$close = IdService.idAndClick('close', this.shadow, () => {
         this.toggleViewer(false);
       });

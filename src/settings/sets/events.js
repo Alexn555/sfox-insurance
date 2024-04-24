@@ -5,6 +5,11 @@ export const CommonEvents = {
     keydown: 'keydown',
 };
 
+export const MouseEvents = {
+    mouseover: 'mouseover',
+    mouseout: 'mouseout'
+};
+
 export const CustomEvents = {
     settings: {
         moveLayout: 'move-layout',

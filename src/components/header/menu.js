@@ -1,5 +1,5 @@
 import { theme } from '../../theme/theme';
-import { CustomEvents } from '../../settings';
+import { CustomEvents, MouseEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
 import { ClassIdService, CustomEventService, IdService } from '../../services';
 
@@ -12,8 +12,8 @@ class HeaderMenu extends HTMLElement {
     connectedCallback() {
         this.render();
         this.initForm();
-        this.shadow.addEventListener('mouseover', this.setOverlay.bind(this));
-        this.shadow.addEventListener('mouseout', this.removeOverlay.bind(this));
+        this.shadow.addEventListener(MouseEvents.mouseover, this.setOverlay.bind(this));
+        this.shadow.addEventListener(MouseEvents.mouseout, this.removeOverlay.bind(this));
     }
 
     initForm() {
@@ -29,8 +29,8 @@ class HeaderMenu extends HTMLElement {
     }
 
     disconnectedCallback() {
-        CustomEventService.removeFromContext('mouseover', this.shadow);
-        CustomEventService.removeFromContext('mouseout', this.shadow);
+        CustomEventService.removeFromContext(MouseEvents.mouseover, this.shadow);
+        CustomEventService.removeFromContext(MouseEvents.mouseout, this.shadow);
         IdService.removeList([this.$home, this.$insurance, this.$additional]);
     }
 
