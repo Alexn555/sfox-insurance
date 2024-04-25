@@ -143,7 +143,7 @@ class ImageViewer extends HTMLElement {
               
               const el = IdService.id('genericNote', this.shadow);
               el.setAttribute('text', this.genericStatusMsg);
-              CustomEventService.send(CustomWindowEvents.errorNote.open, this.genericStatusMsg);
+              CustomEventService.send(CustomWindowEvents.generalNote.open, this.genericStatusMsg);
             }        
           }
         } else {

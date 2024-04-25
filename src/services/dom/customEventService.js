@@ -8,6 +8,10 @@ export default class CustomEventService {
         ctx.addEventListener(evt, callback);
     }
 
+    static windowEvent(evt, callback) {
+        window.addEventListener(evt, callback);
+    }
+
     static removeListener(evtName, option = null) {
         document.removeEventListener(evtName, option);
     }

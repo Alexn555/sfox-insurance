@@ -13,5 +13,6 @@ export const GeneralNoteEnums = {
 };
 
 export const GeneralNoteCodes = {
-    writerLostFocus: '102'
+    networkLost: '102',
+    writerLostFocus: '105'
 };

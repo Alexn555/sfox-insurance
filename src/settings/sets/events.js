@@ -56,10 +56,14 @@ export const CustomPageEvents = {
 };
 
 export const CustomWindowEvents = {
+    network: {
+        offline: 'offline',
+        online: 'online'
+    },
     imageViwer: {
         open: 'image-viewer-open'
     },
-    errorNote: {
+    generalNote: {
         open: 'error-note-open',
         close: 'error-note-close'
     },

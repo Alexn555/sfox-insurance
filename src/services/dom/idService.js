@@ -1,7 +1,11 @@
+import LoggerService from '../../services/loggerService';
 import { CommonEvents } from '../../settings';
 
 export class IdService {
     static id(id, context) {
+        if (!context) {
+            LoggerService.error(`IdService #${id} context not provided!`);
+        }
         return context.getElementById(id);
     }
 

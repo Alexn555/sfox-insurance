@@ -18,7 +18,6 @@ export const SaveObjects = {
     }
 };
 
-
 export const WindowSettings = {
     refresh: 'tempRefresh'
 };

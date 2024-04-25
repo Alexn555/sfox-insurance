@@ -29,10 +29,14 @@ class GeneralNote extends HTMLElement {
 
       this.$close = IdService.idAndClick('close', this.shadow, this.close.bind(this));
 
-      CustomEventService.event(CustomWindowEvents.errorNote.open, (e) => {
+      CustomEventService.event(CustomWindowEvents.generalNote.open, (e) => {
         this.text = e.detail?.value || this.text;
         this.toggleInfo();
         this.$container.showModal();
+      });
+
+      CustomEventService.event(CustomWindowEvents.generalNote.close, () => {
+        this.$container?.close();
       });
     }
 
@@ -52,31 +56,38 @@ class GeneralNote extends HTMLElement {
       }
       if (name === 'status' && oldValue !== newValue) {
         this.status = newValue;
+        this.toggleStatusCl(this.status);
+        this.toggleInfo();
       }
     }
 
-    setStatus(status) {
-      let cl = '';
-      if (status === GeneralNoteEnums.status.error) {
-        cl = 'icon-failure';
-      } else if (status === GeneralNoteEnums.status.success) {
-        cl = 'icon-success';
-      }
-      return `<i class="icon ${cl}"> </i>`;
+    setStatusIcon(status) {
+      return `<i class="icon icon-${status}"> </i>`;
     }
 
     toggleInfo() {
       const el = IdService.id('status', this.shadow);
-      el.innerHTML = `
-        ${this.setStatus(this.status)}
-        <span class="message">${this.text}</span>
-      `;
+      if (el) {
+        el.innerHTML = `
+          ${this.setStatusIcon(this.status)}
+          <span class="message">${this.text}</span>
+        `;
+      }
+    }
+
+    toggleStatusCl(status) {
+      const el = IdService.id('status', this.shadow);
+      if (el) {
+        el.classList.remove('error');
+        el.classList.remove('success');
+        el.classList.add(status);
+      }
     }
 
     close() {
       this.$container?.close();
       if (this.useBack === GeneralNoteEnums.useBack.open) {
-        CustomEventService.send(CustomWindowEvents.errorNote.close, this.code);
+        CustomEventService.send(CustomWindowEvents.generalNote.close, this.code);
       }
       if (this.recipe === GeneralNoteEnums.recipes.reload) {
         location.reload();
@@ -103,6 +114,14 @@ class GeneralNote extends HTMLElement {
               ${styleErrors.commonText};
             }
 
+            .error {
+              color: red !important;
+            }
+
+            .success {
+              color: green !important;
+            }
+
             .close {
               text-align: right;
             }
@@ -118,7 +137,7 @@ class GeneralNote extends HTMLElement {
             <div class="close">
               <action-button id="close" label="Close" type="action" />
             </div>
-            <div id="status"></div>
+            <div id="status" class="error"></div>
           </dialog>
        `;
     }

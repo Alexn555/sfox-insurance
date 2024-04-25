@@ -44,7 +44,7 @@ class AccountPwdReminder extends HTMLElement {
     checkEmail(email) {
       if (!validateEmail(email)) {
         const el = IdService.id('error', this.shadow);
-        el.innerHTML = `<i class="icon icon-failure">ok </i>
+        el.innerHTML = `<i class="icon icon-error">ok </i>
         <span class="message">Email is not correct format</span>`;
         setTimeout(() => { el.innerHTML = ''; }, 2000);
       }
