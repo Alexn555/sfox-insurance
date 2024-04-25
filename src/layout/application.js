@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard } from '../settings';
+import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard, NetworkCheckerSet } from '../settings';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { getVersionFromPackage } from '../services/utils';
@@ -66,6 +66,10 @@ class Application extends HTMLElement {
         return '';
     }
 
+    showNetworkChecker() {
+        return NetworkCheckerSet.enabled ? '<network-checker></network-checker>' : '';
+    }
+
     render() {
         const stngsHeight = PageStructure.settings.height;
         this.shadow.innerHTML = `
@@ -88,8 +92,9 @@ class Application extends HTMLElement {
                 }
             </style>
             <div class="application">
+                <general-note id="genericNote"></general-note>
+                ${this.showNetworkChecker()}
                 <notice-disclaimer></notice-disclaimer>
-                <network-checker></network-checker>
                 ${this.showSettings()}
                 <div class="layout">
                     <main-layout></main-layout>

@@ -1,6 +1,6 @@
 ## Changelog
 v 2.28
-  Added Network checker, css mixin arguments improvements
+  Added Network checker, css mixin arguments improvements, customEventService improvements
 
 v 2.26
   Minor Writer updates, Game updates, copyright notices

@@ -1,6 +1,9 @@
 export default class CustomEventService {
-    static send(name, val) {
-        const detailProps = (val && val !== null) ? { value: val } : {}; 
+    static send(name, val, convertObject = false) {
+        let detailProps = {}
+        if (val && val !== null) {
+            detailProps = { value: convertObject ? JSON.stringify(val) : val };
+        } 
         document.dispatchEvent(new CustomEvent(name, { detail: detailProps, bubbles: true, cancelable: false }));
     }
 

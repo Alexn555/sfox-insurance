@@ -8,46 +8,52 @@ class NetworkChecker extends HTMLElement {
     this.shadow = this.attachShadow({ mode: "closed" });
     this.connectionLost = "Network connection lost";
     this.connectionON = "Network connection restored";
-    this.status = "Network connection OK";
+    this.msg = "Network connection OK";
     this.container = "genericNote";
+    this.sizes = JSON.stringify({w: 240, wUnits: 'px', h: 100});
     this.lostConnection = false;
   }
 
   connectedCallback() {
-    this.render();
     this.initForm();
   }
 
   initForm() {
     this.$container = IdService.id(this.container, this.shadow);
-
+    
     if (NetworkCheckerSet.enabled) {
       CustomEventService.windowEvent(CustomWindowEvents.network.online, () => {
         if (this.lostConnection) {
-          this.toggleStatus(this.connectionON);
-          this.setInfo(GeneralNoteEnums.status.success, this.status);
+          this.toggleMessage(this.connectionON);
           this.toggleConnection(false);
-          CustomEventService.send(
-            CustomWindowEvents.generalNote.open,
-            this.status
-          );
+
+          const props = { 
+            size: this.sizes, 
+            text: this.msg, 
+            status: GeneralNoteEnums.status.success,
+            code: GeneralNoteCodes.networkLost,
+            recipe: '',
+            useBack: GeneralNoteEnums.useBack.close
+          };
+          CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
           setTimeout(() => {
-            CustomEventService.send(
-              CustomWindowEvents.generalNote.close,
-              this.status
-            );
+            CustomEventService.send(CustomWindowEvents.generalNote.close);
           }, 2000);
         }
       });
 
       CustomEventService.windowEvent(CustomWindowEvents.network.offline, () => {
-        this.toggleStatus(this.connectionLost);
-        this.setInfo(GeneralNoteEnums.status.error, this.status);
+        this.toggleMessage(this.connectionLost);
         this.toggleConnection(true);
-        CustomEventService.send(
-          CustomWindowEvents.generalNote.open,
-          this.status
-        );
+        const props = { 
+          size: this.sizes, 
+          text: this.msg, 
+          status: GeneralNoteEnums.status.error,
+          code: GeneralNoteCodes.networkLost,
+          recipe: '',
+          useBack: GeneralNoteEnums.useBack.close
+        };
+        CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
       });
     }
   }
@@ -61,30 +67,12 @@ class NetworkChecker extends HTMLElement {
     }
   }
 
-  toggleStatus(toggle) {
-    this.status = toggle;
+  toggleMessage(toggle) {
+    this.msg = toggle;
   }
 
   toggleConnection(toggle) {
     this.lostConnection = toggle;
-  }
-
-  setInfo(status, msg) {
-    this.$container.setAttribute("status", status);
-    this.$container.setAttribute("text", msg);
-  }
-
-  render() {
-    this.shadow.innerHTML = `
-        <general-note
-            id="${this.container}" 
-            status="${GeneralNoteEnums.status.error}" 
-            recipe="" 
-            code="${GeneralNoteCodes.networkLost}"
-            text="${this.status}"
-            useBack="${GeneralNoteEnums.useBack.close}">
-        </general-note>    
-    `;
   }
 }
 

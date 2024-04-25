@@ -141,9 +141,15 @@ class ImageViewer extends HTMLElement {
               // re-try with show dialog
               LoggerService.warn('Failed to open ImageViewer -> reload browser');
               
-              const el = IdService.id('genericNote', this.shadow);
-              el.setAttribute('text', this.genericStatusMsg);
-              CustomEventService.send(CustomWindowEvents.generalNote.open, this.genericStatusMsg);
+              const props = { 
+                size: '', 
+                text:  this.genericStatusMsg, 
+                status: GeneralNoteEnums.status.error,
+                code: GeneralNoteCodes.writerLostFocus,
+                recipe: GeneralNoteEnums.recipes.reload,
+                useBack: GeneralNoteEnums.useBack.close
+              };
+              CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
             }        
           }
         } else {
@@ -337,27 +343,19 @@ class ImageViewer extends HTMLElement {
           }
         </style>
         <dialog id="${this.imgViewerId}">
-            <img id="imgDetail" src="" alt="loading image" />
-            <div id="${this.$zoomPercent}"></div>
-            <div id="error"> 
-              Server error <br />
-              Demo Image <br />
-              © ${DateService.getYear()} Flickr.com images
-            </div>
+          <img id="imgDetail" src="" alt="loading image" />
+          <div id="${this.$zoomPercent}"></div>
+          <div id="error"> 
+            Server error <br />
+            Demo Image <br />
+            © ${DateService.getYear()} Flickr.com images
+          </div>
 
-            <div class="close">
-              <action-button id="close" label="Close" type="${ButtonTypes.action}" />
-            </div> 
-            ${this.setOriginalImageLink()}
+          <div class="close">
+            <action-button id="close" label="Close" type="${ButtonTypes.action}" />
+          </div> 
+          ${this.setOriginalImageLink()}
         </dialog>
-        <general-note
-          id="genericNote" 
-          status="${GeneralNoteEnums.status.error}" 
-          recipe="${GeneralNoteEnums.recipes.reload}" 
-          code="${GeneralNoteCodes.writerLostFocus}"
-          text="${this.genericStatusMsg}"
-          useBack="${GeneralNoteEnums.useBack.close}">
-        </general-note>
        `;
     }
   }

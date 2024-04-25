@@ -1,7 +1,11 @@
+import LoggerService from '../../services/loggerService';
 import { CommonEvents } from '../../settings';
 
 export class ClassIdService {
     static id(query, ctx) {
+        if (!ctx) {
+            LoggerService.error(`ClassIdService class .${query} not provided!`);
+        }
         return ctx.querySelector(`.${query}`);
     }
 

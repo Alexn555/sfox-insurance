@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.28
-  Added Network checker, css mixin arguments improvements
+  Added Network checker, css mixin arguments improvements, customEventService improvement
 
 v 2.26
   Minor Writer updates, Game updates, copyright notices
