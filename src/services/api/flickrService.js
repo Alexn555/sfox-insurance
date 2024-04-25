@@ -57,7 +57,31 @@ export default class FlickService {
                 imageUrl = await this.getImageFromSource(image);
             }
             return imageUrl; 
-         });
+        });
+    }
+
+    async getImages(text = 'formula 1', per_page = 10) {
+        const params = { 
+            method: 'flickr.photos.search',
+            page: 1,
+            per_page
+        };
+        const flickURL = `https://api.flickr.com/services/rest/?method=${params.method}&
+         api_key=${this.API_KEY}&page=${params.page}&per_page=${params.per_page}&text=${text}&format=json&nojsoncallback=1`;
+   
+        return ApiService.getWithComplete(flickURL, 'flickrService').then(async (res) => {
+            const body = await res.json();
+            let imageUrl = '';
+            let images = [];
+            if (body.photos && body.photos.photo.length > 0) {
+                const rowIamges = body.photos.photo;
+                rowIamges.forEach(async (img) => {
+                  imageUrl = await this.getImageFromSource(img);
+                  images.push(imageUrl);
+                });
+            }
+            return images; 
+        });
     }
 
     async getImageFromSource(photo) {
@@ -67,9 +91,9 @@ export default class FlickService {
         const readFile = false;
         if (readFile) {
              Jimp.read(url).then(function (image) {
-                LoggerService.log(' -----> image ', image);
+                LoggerService.log('source image ', image);
             }).catch(function (err) {
-                LoggerService.error(' ----> image error ', err);
+                LoggerService.error('source error ', err);
             });
         }
         return { imgSm, imgMedium };

@@ -37,6 +37,7 @@ export const AdditionalPage = {
         game: 'game-btn',
         mapLink: 'map-btn',
         writer: 'writer-btn',
+        gallery: 'gallery-btn',
         account: 'account-btn'
     }
 };

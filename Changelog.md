@@ -1,4 +1,7 @@
 ## Changelog
+v 2.30
+  Created Gallery First version, added theme GeneralNote
+
 v 2.28
   Added Network checker, css mixin arguments improvements, customEventService improvements
 

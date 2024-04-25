@@ -41,6 +41,11 @@ export const themeYellow = {
             }
         }
     },
+    generalNote: {
+        success: 'green',
+        warning: 'orange',
+        error: 'red'
+    },
     settings: {
         textSize: {
             border: 'orange',

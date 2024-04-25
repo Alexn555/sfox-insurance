@@ -41,6 +41,11 @@ export const themeBlack = {
             }
         }
     },
+    generalNote: {
+        success: 'green',
+        warning: 'orange',
+        error: 'red'
+    },
     settings: {
         textSize: {
             border: '#2b1e2b',

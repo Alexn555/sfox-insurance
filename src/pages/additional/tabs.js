@@ -18,12 +18,13 @@ class AdditionalTabs extends HTMLElement {
       this.$tabGame = IdService.id('game', this.shadow);
       this.$tabMap = IdService.id('map', this.shadow);
       this.$tabWriterForm = IdService.id('writerForm', this.shadow);
+      this.$tabGallery = IdService.id('gallery', this.shadow);
       this.$tabAccount = IdService.id('account', this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
+      const { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab('game', this.$tabGame);
@@ -34,20 +35,24 @@ class AdditionalTabs extends HTMLElement {
       this.$btnWriter = IdService.idAndClick(writer, this.shadow, () => {
         this.openTab('writerForm', this.$tabWriterForm);
       });
+      this.$btnGallery = IdService.idAndClick(gallery, this.shadow, () => {
+        this.openTab('gallery', this.$tabGallery);
+      });
       this.$btnAccount = IdService.idAndClick(account, this.shadow, () => {
         this.openTab('game', this.$tabAccount);
       });
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$btnGame, this.$btnMap, this.$btnWriter, this.$btnAccount]);
+      IdService.removeList([this.$btnGame, this.$btnMap, this.$btnWriter, this.$btnGallery, this.$btnAccount]);
     }
 
     openTab(evt, selected) {
       const item = evt;
       const tab = IdService.id(item, this.shadow);
       if (tab) {
-        StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, this.$tabWriterForm, this.$tabAccount], false);
+        StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, 
+          this.$tabWriterForm, this.$tabGallery, this.$tabAccount], false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -55,7 +60,7 @@ class AdditionalTabs extends HTMLElement {
     }
 
     render() {
-      const { game, mapLink, writer, account } = AdditionalPage.tabLinks;
+      const { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
         this.shadow.innerHTML = `
             <style>
                 .tab {
@@ -101,6 +106,7 @@ class AdditionalTabs extends HTMLElement {
               <button id="${game}">Game</button>
               <button id="${mapLink}">Map</button>
               <button id="${writer}">Writer content</button>
+              <button id="${gallery}">Gallery</button>
               <button id="${account}">Account</button>
             </div>
             
@@ -114,6 +120,10 @@ class AdditionalTabs extends HTMLElement {
             
             <div id="writerForm" class="tabcontent">
               <writer-form></writer-form>
+            </div> 
+
+            <div id="gallery" class="tabcontent">
+              <gallery-page></gallery-page>
             </div> 
             
             <div id="account" class="tabcontent">

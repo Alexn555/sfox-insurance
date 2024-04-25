@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
 import { CustomWindowEvents } from '../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from '../../enums';
 import { styleErrors } from '../common/styles/errors';
@@ -131,11 +132,11 @@ class GeneralNote extends HTMLElement {
             }
 
             .error {
-              color: red !important;
+              color: ${theme.generalNote.error} !important;
             }
 
             .success {
-              color: green !important;
+              color: ${theme.generalNote.success} !important;
             }
 
             .close {

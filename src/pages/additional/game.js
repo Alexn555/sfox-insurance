@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { IdService } from '../../services';
+import { easeOpacity } from '../../components/common/styles/dialogs/ease';
 import { Game } from '../../settings';
 
 class GameForm extends HTMLElement {
@@ -32,13 +33,13 @@ class GameForm extends HTMLElement {
     }
 
     toggleGame(isOpen) {
-      const el = IdService.id('gameDialog', this.shadow);
+      const el = IdService.id('game', this.shadow);
       if (!this.isGameOpen) {
         el.showModal();
       } else {
         el.close();
       }
-      this.setGameOpen(isOpen)
+      this.setGameOpen(isOpen);
     }
 
     setGameOpen(toggle) {
@@ -70,45 +71,42 @@ class GameForm extends HTMLElement {
   
     render() {
       this.shadow.innerHTML = `
-            <style>
-              .game-wrapper {
-                padding: 20px 0 20px 0;
+          <style>
+            .game-wrapper {
+              padding: 20px 0 20px 0;
 
-                @media (max-width: 768px) {
-                  grid-template-columns: 100%;
-                }
+              @media (max-width: 768px) {
+                grid-template-columns: 100%;
+              }
 
-                & dialog#game {
-                  width: 600px !important;
-                  padding: 10px;
-                  border: 1px dotted black;
-                  opacity 0.7s ease-out,
-                  transform 0.7s ease-out,
-                  overlay 0.7s ease-out allow-discrete,
-                  display 0.7s ease-out allow-discrete;
-                }
+              & dialog#game {
+                width: 600px !important;
+                padding: 10px;
+                border: 1px dotted black;
+                ${easeOpacity(0.7)}
+              }
 
-                .inline-game {
-                  border: 1px dashed grey;
-                  padding: 2px;
-                  
-                  & h2 {
-                    padding-left: 10px;
-                  }
+              .inline-game {
+                border: 1px dashed grey;
+                padding: 2px;
+                
+                & h2 {
+                  padding-left: 10px;
                 }
               }
-            </style>
-            <form>
-              <div class="game-wrapper">
-                  ${this.showDialogOpen()}
-                  ${this.showGameContent(550, 530, 'Game board', 'inline-game')}
-                
-                  <dialog id="game">
-                    ${this.showGameContent(550, 530)}
-                    <action-button id="closeGame" label="Close" type="action" />
-                  </dialog>                
-              </div>
-           </form>
+            }
+          </style>
+          <form>
+            <div class="game-wrapper">
+                ${this.showDialogOpen()}
+                ${this.showGameContent(550, 530, 'Game board', 'inline-game')}
+              
+                <dialog id="game">
+                  ${this.showGameContent(550, 530)}
+                  <action-button id="closeGame" label="Close" type="action" />
+                </dialog>                
+            </div>
+          </form>
        `;
     }
   }
