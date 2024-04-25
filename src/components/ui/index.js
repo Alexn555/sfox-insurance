@@ -4,6 +4,7 @@ import './amountSlider';
 import './select';
 import './button';
 import './link';
+import './paginatableContent';
 import './galleryViewer';
 import './accountTable';
 import './iconSelect';

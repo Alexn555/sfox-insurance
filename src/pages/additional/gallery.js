@@ -7,8 +7,9 @@ class GalleryPage extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.flickrService = new FlickService();
       this.viewer = 'galleryViewer';
-      this.perPage = 10;
-      this.totalAmount = 10;
+      this.searchWord = 'art';
+      this.perPage = 4;
+      this.totalAmount = 20;
     }
   
     connectedCallback() {
@@ -17,9 +18,9 @@ class GalleryPage extends HTMLElement {
     }
 
     async activateContent() {
-        this.$viewer = IdService.id(this.viewer, this.shadow);
-        const images = await this.flickrService.getImages('art', this.totalAmount);
-        this.$viewer.setAttribute('images', JSON.stringify(images));
+      this.$viewer = IdService.id(this.viewer, this.shadow);
+      const images = await this.flickrService.getImages(this.searchWord, this.totalAmount);
+      this.$viewer.setAttribute('images', JSON.stringify(images));
     }
 
     render() {
@@ -40,14 +41,15 @@ class GalleryPage extends HTMLElement {
           </style>
           <section>
             <div class="gallery-wrapper">
-                <h3>Gallery</h3>
-                <gallery-viewer 
-                  id="${this.viewer}" 
-                  images=''
-                  per-page="${this.perPage}"
-                  thumbs-clickable="1"
-                >
-                </gallery-viewer>
+              <h3>Gallery</h3>
+              <gallery-viewer 
+                id="${this.viewer}" 
+                label="${this.searchWord}"
+                images=''
+                per-page="${this.perPage}"
+                thumbs-clickable="1"
+              >
+              </gallery-viewer>
             </div>
           </section>
        `;

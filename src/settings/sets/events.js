@@ -63,6 +63,9 @@ export const CustomWindowEvents = {
     imageViwer: {
         open: 'image-viewer-open'
     },
+    paginatableContent: {
+        pageClick: 'paginatable-page-click'
+    },
     generalNote: {
         open: 'error-note-open',
         close: 'error-note-close'
