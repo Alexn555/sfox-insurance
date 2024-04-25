@@ -50,8 +50,8 @@ class FooterLinkSection extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.removeEventListener(CommonEvents.click, null);
-        window.removeEventListener(CommonEvents.resize, null);
+        CustomEventService.removeFromContext(CommonEvents.click, window);
+        CustomEventService.removeFromContext(CommonEvents.resize, window);
     }
 
     getTogglePosition() {
