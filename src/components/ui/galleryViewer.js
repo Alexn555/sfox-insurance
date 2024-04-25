@@ -40,7 +40,7 @@ class GalleryViewer extends HTMLElement {
       });
       this.$container.innerHTML = html;
     } else {
-      this.$container.innerHTML = "<span>No image found</span>";
+      this.$container.innerHTML = '<span class="not-found">No images found</span>';
     }
   }
 
@@ -60,6 +60,10 @@ class GalleryViewer extends HTMLElement {
 
                 & div {
                     padding: 6px;
+                }
+
+                .not-found {
+                    font-weight: bold;
                 }
 
                 @media (max-width: 768px) {
