@@ -11,17 +11,18 @@ class ImageViewerStart extends HTMLElement {
     this.container = 'imageViewer';
 
     CustomEventService.event(CustomWindowEvents.imageViewer.init, (e) => {
-        if (e.detail) {
-          const sets = JSON.parse(e.detail.value);
-          if (this.currentViewerId !== sets['settingsId']) {
-            this.currentViewerId = sets['settingsId'];
-            const el = IdService.id(this.id, this.shadow);
-            el.remove();
-            this.id = sets['settingsId'];
-            this.setImageViewer();
-          }     
-          CustomEventService.send(CustomWindowEvents.imageViewer.open, sets, true);
+      if (e.detail) {
+        const sets = JSON.parse(e.detail.value);
+        const setId = sets['settingsId'];
+        if (this.currentViewerId !== setId) {
+          this.currentViewerId = setId;
+          const el = IdService.id(this.id, this.shadow);
+          el.remove();
+          this.id = setId;
+          this.setImageViewer();
         }
+        CustomEventService.send(`${CustomWindowEvents.imageViewer.open}-${setId}`, sets, true);
+      } 
     });
   }
 

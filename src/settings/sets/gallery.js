@@ -20,6 +20,7 @@ export const GallerySet = {
     searchEnabled: true,
     pageCursor: Cursors.normal, // Cursors.pointer
     holderLoad: GallerLoadHolders.Simple,
+    thumbCursor: Cursors.normal,
     thumbsOpenable: GalleryImgViewerEnums.open, 
     minimumSearch: 3, // chars
     perPage: 4, // all - without pagination

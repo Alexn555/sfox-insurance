@@ -25,7 +25,8 @@ class WriterImage extends HTMLElement {
       this.render();
       this.loadEl = IdService.id('loading', this.shadow);
       this.loadEl.style.opacity = 0;
-      this.$image = IdService.idAndClick('image', this.shadow, () => {
+      this.$image = IdService.idAndClick('image', this.shadow, (e) => {
+        e.stopPropagation();
         CustomEventService.send(CustomPageEvents.tabs.writer.showImage, this.imgMedium);
       });
     }

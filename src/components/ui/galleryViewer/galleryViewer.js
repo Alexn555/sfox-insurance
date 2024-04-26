@@ -76,7 +76,7 @@ class GalleryViewer extends HTMLElement {
       if (GallerySet.holderLoad === GallerLoadHolders.Simple) {
         let html = "";
         images.forEach((img, index) => {
-          html += `<div id="holder-${index}"> <img src="${img.imgSm}" alt="${index}" /> </div>`;
+          html += `<div id="holder-${index}" class="thumb"> <img src="${img.imgSm}" alt="${index}" /> </div>`;
         });
         this.$container.innerHTML = html;
       } else {
@@ -84,6 +84,7 @@ class GalleryViewer extends HTMLElement {
           const holder = IdService.id(`holder-${index}`, this.shadow);
           const image = IdService.id(`img-${index}`, this.shadow);
           StyleService.toggleClass(holder, 'thumb-loading', false);
+          StyleService.toggleClass(holder, 'thumb', true);
           image.setAttribute('src', img.imgSm);
           image.setAttribute('alt', index);
         });
@@ -100,7 +101,8 @@ class GalleryViewer extends HTMLElement {
     if (this.thumbsOpenable === GalleryImgViewerEnums.open) {
       const holderAmount = this.getPerPage();
       for (let i = 0; i < holderAmount; i++) {
-        this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, () => {
+        this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, (e) => {
+          e.stopPropagation();
           CustomEventService.send(CustomWindowEvents.imageViewer.init, { 
             settingsId: ImageViewerIds.gallery,
             imgMedium: images[i].imgMedium}, 
@@ -151,6 +153,9 @@ class GalleryViewer extends HTMLElement {
             @media (max-width: 768px) {
               width: 80%;
             }
+          }
+          .thumb {
+            cursor: ${GallerySet.thumbCursor};
           }
           .thumb-loading {
             background-color: #dcdcdc;
