@@ -107,7 +107,7 @@ class PaginatableContent extends HTMLElement {
           line-height: 60px;
           border: 1px solid grey;
           user-select: none;
-          cursor: ponter;          
+          cursor: pointer;         
         }
       </style>
       <div id="${this.id}">
