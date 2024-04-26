@@ -16,13 +16,14 @@ class GalleryViewer extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['images'];
+    return ['images', 'label'];
   }
 
   connectedCallback() {
     this.render();
     this.$container = IdService.id(this.id, this.shadow);
-
+    this.$pagination = IdService.id('gallery-pagination', this.shadow);
+    
     CustomEventService.event(CustomWindowEvents.paginatableContent.pageClick, (e) => {
       this.currentPage = e.detail.value;
       this.setPortion(this.currentPage);
@@ -41,6 +42,9 @@ class GalleryViewer extends HTMLElement {
       this.allImages = this.parseImage(newValue);
       this.setAmount(this.allImages.length);
       this.setPortion(this.currentPage);
+    }
+    if (name === 'label' && oldValue !== newValue) {
+      this.$pagination.setAttribute('label', newValue);
     }
   }
 
@@ -67,9 +71,8 @@ class GalleryViewer extends HTMLElement {
 
   setAmount(length) {
     this.imageAmount = length;
-    const el = IdService.id('gallery-pagination', this.shadow);
-    if (el) {
-      el.setAttribute('total', this.imageAmount);
+    if (this.$pagination) {
+      this.$pagination.setAttribute('total', this.imageAmount);
     }
   }
 
@@ -81,7 +84,6 @@ class GalleryViewer extends HTMLElement {
             width: 80%;
             flex-wrap: wrap;
             padding: 10px;
-            border: 1px dashed grey;
 
             & div {
               padding: 6px;

@@ -18,7 +18,7 @@ class PaginatableContent extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['total'];
+    return ['total', 'label'];
   }
 
   connectedCallback() {
@@ -33,12 +33,16 @@ class PaginatableContent extends HTMLElement {
       this.calculatePages();
       this.setPagination();
     }
+    if (name === 'label' && oldValue !== newValue) {
+      const el = IdService.id('label', this.shadow);
+      el.innerText = newValue;
+    }
   }
 
   calculatePages() {
     this.totalAmount = parseInt(this.atrAmount, 10);
     this.perPage = this.atrPerPage === 'all' ? 1 : parseInt(this.atrPerPage, 10);
-    this.pageAmount = this.perPage === 1 ? 1 : Math.floor(this.totalAmount / this.perPage);
+    this.pageAmount = this.perPage === 1 ? 1 : Math.ceil(this.totalAmount / this.perPage);
   }
 
   setPagination() {
@@ -61,59 +65,56 @@ class PaginatableContent extends HTMLElement {
 
   setHandlers() {
     this.pageIds.forEach((pageId, index) => {
-        this.$pageHandlers[index] = IdService.idAndClick(pageId, this.shadow, () => { 
-            CustomEventService.send(CustomWindowEvents.paginatableContent.pageClick, index + 1);
-        });
+      this.$pageHandlers[index] = IdService.idAndClick(pageId, this.shadow, () => { 
+        CustomEventService.send(CustomWindowEvents.paginatableContent.pageClick, index + 1);
+      });
     });
   }
 
   render() {
     this.shadow.innerHTML = `
-        <style>
-            #${this.id} {
-                border: 1px dashed grey;
-            }
+      <style>
+        .content {
+          width: fit-content;
+          height: 100%;
 
-            .content {
-                border: 1px dashed black;
-                width: fit-content;
-                height: 100%;
+          & span {
+            padding-left: 4px;
+            text-transform: capitalize;
+          }
+        }
 
-                & span {
-                    padding-left: 4px;
-                    text-transform: capitalize;
-                }
-            }
+        #${this.pageContaner} {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 100%;
+          height: fit-content;
+          padding-left: 60px;     
 
-            #${this.pageContaner} {
-                display: flex;
-                flex-direction: row;
-                width: 100%;
-                height: 100px;
-                padding-left: 60px;
-            }
-            .page {
-                width: 60px;
-                height: 60px;
-                margin: 10px;
-                text-align: center;
-                font-weight: bold;
-                line-height: 60px;
-                border: 1px solid black;
-                user-select: none;
-
-                &:hover {
-                    cursor: ponter;
-                }
-            }
-        </style>
-        <div id="${this.id}">
-            <div class="content">
-                <span>${this.label}</span>
-                <slot></slot>
-            </div>
-            <div id="${this.pageContaner}"></div>
+          @media (max-width: 768px) {
+            padding-left: 20px;     
+          }
+        }
+        .page {
+          width: 60px;
+          height: 60px;
+          margin: 10px;
+          text-align: center;
+          font-weight: bold;
+          line-height: 60px;
+          border: 1px solid grey;
+          user-select: none;
+          cursor: ponter;          
+        }
+      </style>
+      <div id="${this.id}">
+        <div class="content">
+            <span id="label">${this.label}</span>
+            <slot></slot>
         </div>
+        <div id="${this.pageContaner}"></div>
+      </div>
     `;
   }
 }
