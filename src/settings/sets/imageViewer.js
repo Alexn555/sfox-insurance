@@ -35,7 +35,7 @@ export const ImageViewerSettings = {
     },
     gallery: {
         searchListNum: 0,
-        draggable: true,
+        draggable: false,
         zoomEnable: true,
         originalLink: true,
         exceptionHandler: true,

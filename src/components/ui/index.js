@@ -10,4 +10,4 @@ import './galleryViewer/galleryViewer';
 import './accountTable';
 import './iconSelect';
 import './generalNote/generalNote';
-import './imageViewer/imageViewer';
+import './imageViewer/';

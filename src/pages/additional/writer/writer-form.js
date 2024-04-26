@@ -38,7 +38,7 @@ class WriterForm extends HTMLElement {
 
     openViewer() {
       if (this.imgMedium) {
-        CustomEventService.send(CustomWindowEvents.imageViewer.open, { 
+        CustomEventService.send(CustomWindowEvents.imageViewer.init, { 
           settingsId: ImageViewerIds.writer,
           imgMedium: this.imgMedium}, 
           true);

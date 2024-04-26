@@ -13,8 +13,8 @@ class ImageViewer extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.imgSource = this.getAttribute('source') || '';
       this.id = this.getAttribute('id') || ImageViewerIds.writer;
+      this.imgSource = this.getAttribute('source') || '';
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
       this.isMobile = false;
@@ -66,11 +66,11 @@ class ImageViewer extends HTMLElement {
       CustomEventService.event(CustomWindowEvents.imageViewer.open, (e) => {
         if (e.detail) {
           const sets = JSON.parse(e.detail.value);
-          this.settings = ImageViewerHelper.getId(sets.settignsId);
-          this.imgMedium = sets.imgMedium;
-          this.updateSettings();
+          if (this.id === sets['settingsId']) {
+            this.imgMedium = sets['imgMedium'];
+            this.toggleViewer(true);
+          }
         }
-        this.toggleViewer(true);
       });
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
@@ -369,6 +369,6 @@ class ImageViewer extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("image-viewer", ImageViewer);
+    customElements.define("image-viewer-main", ImageViewer);
   }
   

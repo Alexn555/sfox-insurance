@@ -61,6 +61,7 @@ export const CustomWindowEvents = {
         online: 'online'
     },
     imageViewer: {
+        init: 'image-viewer-init',
         open: 'image-viewer-open'
     },
     paginatableContent: {
