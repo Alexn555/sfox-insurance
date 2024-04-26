@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
-import { Animations, PageStructure, CustomEvents, SEO, SettingsBoard, NetworkCheckerSet } from '../settings';
+import { Animations, PageStructure, CustomEvents, SEO,
+     SettingsBoard, NetworkCheckerSet, ImageViewerIds } from '../settings';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { getVersionFromPackage } from '../services/utils';
@@ -66,6 +67,15 @@ class Application extends HTMLElement {
         return '';
     }
 
+    showWindowComponents() { 
+        return `
+            <notice-disclaimer></notice-disclaimer>
+            <image-viewer id="${ImageViewerIds.writer}" source=""></image-viewer>
+            <general-note id="genericNote"></general-note>
+            ${this.showNetworkChecker()}
+        `;
+    }
+
     showNetworkChecker() {
         return NetworkCheckerSet.enabled ? '<network-checker></network-checker>' : '';
     }
@@ -92,9 +102,7 @@ class Application extends HTMLElement {
                 }
             </style>
             <div class="application">
-                <general-note id="genericNote"></general-note>
-                ${this.showNetworkChecker()}
-                <notice-disclaimer></notice-disclaimer>
+                ${this.showWindowComponents()}
                 ${this.showSettings()}
                 <div class="layout">
                     <main-layout></main-layout>

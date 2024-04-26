@@ -63,9 +63,12 @@ class ImageViewer extends HTMLElement {
 
       this.toggleError(false);
 
-      CustomEventService.event(CustomWindowEvents.imageViwer.open, (e) => {
+      CustomEventService.event(CustomWindowEvents.imageViewer.open, (e) => {
         if (e.detail) {
-          this.imgMedium = e.detail.value;
+          const sets = JSON.parse(e.detail.value);
+          this.settings = ImageViewerHelper.getId(sets.settignsId);
+          this.imgMedium = sets.imgMedium;
+          this.updateSettings();
         }
         this.toggleViewer(true);
       });
@@ -79,6 +82,11 @@ class ImageViewer extends HTMLElement {
           window.open(this.imgMedium);
         }
       });
+      this.updateSettings();
+    }
+
+    updateSettings() {
+      this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
 
       if (this.settings.zoomEnable) {
         if (this.settings.zoom.keyboard) {

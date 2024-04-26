@@ -1,5 +1,15 @@
 import { Cursors } from '../../enums';
 
+export const GallerLoadHolders = {
+    Simple: 'simpla',
+    Advenced: 'advenced'
+};
+
+export const GalleryImgViewerEnums = {
+    open: '1',
+    close: '0'
+};
+
 export const GallerySet = {
     defaultSearch: 'art',
     showLabel: true,
@@ -9,7 +19,8 @@ export const GallerySet = {
     searchSave: true,
     searchEnabled: true,
     pageCursor: Cursors.normal, // Cursors.pointer
-    thumbsOpenable: '1',
+    holderLoad: GallerLoadHolders.Simple,
+    thumbsOpenable: GalleryImgViewerEnums.open, 
     minimumSearch: 3, // chars
     perPage: 4, // all - without pagination
     total: 20

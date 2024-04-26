@@ -60,7 +60,7 @@ export const CustomWindowEvents = {
         offline: 'offline',
         online: 'online'
     },
-    imageViwer: {
+    imageViewer: {
         open: 'image-viewer-open'
     },
     paginatableContent: {

@@ -1,6 +1,7 @@
-import { CustomWindowEvents } from '../../../settings';
-import { CustomEventService, IdService } from '../../../services';
+import { CustomWindowEvents, GallerLoadHolders, GallerySet, GalleryImgViewerEnums, ImageViewerIds } from '../../../settings';
+import { CustomEventService, IdService, StyleService } from '../../../services';
 import { ArrayEnums } from '../../../enums';
+import EnvService from '../../../services/api/envService';
 
 class GalleryViewer extends HTMLElement {
   constructor() {
@@ -9,11 +10,13 @@ class GalleryViewer extends HTMLElement {
     this.id = this.getAttribute('id') || 'gallery-viewer';
     this.label = this.getAttribute('label') || '';
     this.images = this.getAttribute('images') || [];
-    this.perPage = this.getAttribute('per-page') || ArrayEnums.All;
-    this.thumbsClickable = this.getAttribute('thumbs-clickable') || '0';
+    this.atrPerPage = this.getAttribute('per-page') || ArrayEnums.All;
+    this.thumbsOpenable = this.getAttribute('thumbs-openable');
     this.pageCursor = this.getAttribute('page-cursor') || 'auto';
     this.imageAmount = 0;
+    this.perPage = 0;
     this.currentPage = 1;
+    this.$holder = [];
     this.allImages = [];
   }
 
@@ -25,6 +28,7 @@ class GalleryViewer extends HTMLElement {
     this.render();
     this.$container = IdService.id(this.id, this.shadow);
     this.$pagination = IdService.id('gallery-pagination', this.shadow);
+    this.showHolders();
     
     CustomEventService.event(CustomWindowEvents.paginatableContent.pageClick, (e) => {
       this.currentPage = e.detail.value;
@@ -32,11 +36,21 @@ class GalleryViewer extends HTMLElement {
     });
   }
 
+  disconnectedCallback() {
+    if (this.$holder && this.$holder.length) {
+      IdService.removeList(this.$holder);
+    }
+  }
+
   setPortion(currentPage) {
-    const perPage = this.perPage !== ArrayEnums.All ? parseInt(this.perPage, 10) : 1;
+    const perPage = this.getPerPage();
     const nextPortion = currentPage <= 1 ? 0 : (currentPage - 1) * perPage;
     const visPhotos = this.allImages.slice(nextPortion, nextPortion + perPage);
     this.setImages(visPhotos);
+  }
+
+  getPerPage() {
+    return this.atrPerPage !== ArrayEnums.All ? parseInt(this.atrPerPage, 10) : 1;
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -59,14 +73,39 @@ class GalleryViewer extends HTMLElement {
 
   setImages(images) {
     if (images && images.length > 0) {
-      let html = "";
-      images.forEach((img, index) => {
-        html += `<div> <img src=${img.imgSm} alt="${index}" /> </div>`;
-      });
-      this.$container.innerHTML = html;
+      if (GallerySet.holderLoad === GallerLoadHolders.Simple) {
+        let html = "";
+        images.forEach((img, index) => {
+          html += `<div id="holder-${index}"> <img src="${img.imgSm}" alt="${index}" /> </div>`;
+        });
+        this.$container.innerHTML = html;
+      } else {
+        images.forEach((img, index) => {
+          const holder = IdService.id(`holder-${index}`, this.shadow);
+          const image = IdService.id(`img-${index}`, this.shadow);
+          StyleService.toggleClass(holder, 'thumb-loading', false);
+          image.setAttribute('src', img.imgSm);
+          image.setAttribute('alt', index);
+        });
+      }
+      this.setHandlers(images);
     } else {
       if (this.$container) {
         this.$container.innerHTML = '<span class="not-found">No images found</span>';
+      }
+    }
+  }
+
+  setHandlers(images) {
+    if (this.thumbsOpenable === GalleryImgViewerEnums.open) {
+      const holderAmount = this.getPerPage();
+      for (let i = 0; i < holderAmount; i++) {
+        this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, () => {
+          CustomEventService.send(CustomWindowEvents.imageViewer.open, { 
+            settingsId: ImageViewerIds.gallery,
+            imgMedium: images[i].imgMedium}, 
+            true);
+        });
       }
     }
   }
@@ -75,6 +114,20 @@ class GalleryViewer extends HTMLElement {
     this.imageAmount = length;
     if (this.$pagination) {
       this.$pagination.setAttribute('total', this.imageAmount);
+    }
+  }
+
+  showHolders() {
+    if (GallerySet.holderLoad === GallerLoadHolders.Advenced) {
+      const holderAmount = this.getPerPage();
+      let html = '';
+      const thmLoad = `${EnvService.getRoot()}assets/gallery/holder.png`;
+      for (let i = 0; i < holderAmount; i++) {
+        html += `<div id="holder-${i}" class="thumb-loading">
+            <img id="img-${i}" src="${thmLoad}" alt="Loading..." />
+          </div>`;
+      }
+      this.$container.innerHTML = html;
     }
   }
 
@@ -99,11 +152,18 @@ class GalleryViewer extends HTMLElement {
               width: 80%;
             }
           }
+          .thumb-loading {
+            background-color: #dcdcdc;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            text-align: center;
+          }
         </style>
         <paginatable-content 
           id="gallery-pagination"
           label="${this.label}"
-          per-page="${this.perPage}"
+          per-page="${this.atrPerPage}"
           total="${this.imageAmount}"
           cursor="${this.pageCursor}"
         >

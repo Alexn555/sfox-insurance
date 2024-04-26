@@ -5,10 +5,10 @@ export { pageNames, PageStructure, Banners, AdditionalPage, Writer, Game, Accoun
 export { LoginSets } from './sets/apis';
 export { HeaderSettings, SEO, NoticeDisclaimerSets } from './sets/header';
 export { NetworkCheckerSet } from './sets/application';
-export { GallerySet } from './sets/gallery';
+export { GallerySet, GallerLoadHolders, GalleryImgViewerEnums } from './sets/gallery';
 export { GlobalSizes, TextSizes } from './sets/sizes';
 export { Animations } from './sets/animations';
 export { SettingsBoard } from './sets/settingsBoard';
 export { HeaderBoard } from './sets/header';
 export { FooterBoard } from './sets/footer';
-export { ImageViewerSettings, ImageViewerIds } from './sets/views';
+export { ImageViewerSettings, ImageViewerIds } from './sets/imageViewer';

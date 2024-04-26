@@ -38,7 +38,10 @@ class WriterForm extends HTMLElement {
 
     openViewer() {
       if (this.imgMedium) {
-        CustomEventService.send(CustomWindowEvents.imageViwer.open, this.imgMedium);
+        CustomEventService.send(CustomWindowEvents.imageViewer.open, { 
+          settingsId: ImageViewerIds.writer,
+          imgMedium: this.imgMedium}, 
+          true);
       }
     }
   
@@ -69,22 +72,18 @@ class WriterForm extends HTMLElement {
               }
             </style>
             <form>
-                <div class="writer-wrapper">
-                    <h3>Writer content</h3>
-                    <div>
-                        <action-button id="fetchOpen" label="Fetch content" type="action" /> 
-                    </div>
-
-                    <div>
-                      <writer-article></writer-article>
-                    </div>               
-
-                    <div class="image">  
-                      <writer-image></writer-image>
-                    </div>
+              <div class="writer-wrapper">
+                <h3>Writer content</h3>
+                <div>
+                    <action-button id="fetchOpen" label="Fetch content" type="action" /> 
                 </div>
-
-                <image-viewer id="${ImageViewerIds.writer}" source=""></image-viewer>
+                <div>
+                  <writer-article></writer-article>
+                </div>               
+                <div class="image">  
+                  <writer-image></writer-image>
+                </div>
+              </div> 
            </form>
        `;
     }
