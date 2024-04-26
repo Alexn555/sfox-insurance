@@ -35,7 +35,9 @@ class PaginatableContent extends HTMLElement {
     }
     if (name === 'label' && oldValue !== newValue) {
       const el = IdService.id('label', this.shadow);
-      el.innerText = newValue;
+      if (el) {
+        el.innerText = newValue;
+      }
     }
   }
 

@@ -1,5 +1,5 @@
-import { CustomWindowEvents } from '../../settings';
-import { CustomEventService, IdService } from "../../services";
+import { CustomWindowEvents } from '../../../settings';
+import { CustomEventService, IdService } from "../../../services";
 
 class GalleryViewer extends HTMLElement {
   constructor() {
@@ -44,7 +44,7 @@ class GalleryViewer extends HTMLElement {
       this.setPortion(this.currentPage);
     }
     if (name === 'label' && oldValue !== newValue) {
-      this.$pagination.setAttribute('label', newValue);
+      this.$pagination?.setAttribute('label', newValue);
     }
   }
 
