@@ -25,8 +25,7 @@ class WriterImage extends HTMLElement {
       this.render();
       this.loadEl = IdService.id('loading', this.shadow);
       this.loadEl.style.opacity = 0;
-      this.$image = IdService.idAndClick('image', this.shadow, (e) => {
-        e.stopPropagation();
+      this.$image = IdService.idAndClick('image', this.shadow, () => {
         CustomEventService.send(CustomPageEvents.tabs.writer.showImage, this.imgMedium);
       });
     }
@@ -65,32 +64,32 @@ class WriterImage extends HTMLElement {
   
     render() {
       this.shadow.innerHTML = `
-            <style>
-              #image {
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                overflow: hidden;
+          <style>
+            #image {
+              width: 100%;
+              height: 100%;
+              cursor: pointer;
+              overflow: hidden;
 
-                padding-top: 10px;
-                padding-bottom: 10px;
-              }
+              padding-top: 10px;
+              padding-bottom: 10px;
+            }
 
-              #error {
-                display: none; 
-                font-size: smaller;
-                ${styleErrors.commonText}
-              }
+            #error {
+              display: none; 
+              font-size: smaller;
+              ${styleErrors.commonText}
+            }
 
-              #loading {
-                padding-left: 8px;
-              }
-            </style>
-            <div id="image">
-                <img id="imgSource" src="${EnvService.getRoot()}assets/wallet.svg" alt="..." />
-                <span id="loading">Loading image...</span>
-                <div id="error">Server Error, Flickr © ${DateService.getYear()} Demo image</div>
-            </div>
+            #loading {
+              padding-left: 8px;
+            }
+          </style>
+          <div id="image">
+            <img id="imgSource" src="${EnvService.getRoot()}assets/wallet.svg" alt="..." />
+            <span id="loading">Loading image...</span>
+            <div id="error">Server Error, Flickr © ${DateService.getYear()} Demo image</div>
+          </div>
        `;
     }
   }

@@ -101,8 +101,7 @@ class GalleryViewer extends HTMLElement {
     if (this.thumbsOpenable === GalleryImgViewerEnums.open) {
       const holderAmount = this.getPerPage();
       for (let i = 0; i < holderAmount; i++) {
-        this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, (e) => {
-          e.stopPropagation();
+        this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, () => {
           CustomEventService.send(CustomWindowEvents.imageViewer.init, { 
             settingsId: ImageViewerIds.gallery,
             imgMedium: images[i].imgMedium}, 
@@ -135,45 +134,45 @@ class GalleryViewer extends HTMLElement {
 
   render() {
     this.shadow.innerHTML = `
-        <style>
-          #${this.id} {
-            display: flex;
+      <style>
+        #${this.id} {
+          display: flex;
+          width: 80%;
+          flex-wrap: wrap;
+          padding: 10px;
+
+          & div {
+            padding: 6px;
+          }
+
+          .not-found {
+            font-weight: bold;
+          }
+
+          @media (max-width: 768px) {
             width: 80%;
-            flex-wrap: wrap;
-            padding: 10px;
-
-            & div {
-              padding: 6px;
-            }
-
-            .not-found {
-              font-weight: bold;
-            }
-
-            @media (max-width: 768px) {
-              width: 80%;
-            }
           }
-          .thumb {
-            cursor: ${GallerySet.thumbCursor};
-          }
-          .thumb-loading {
-            background-color: #dcdcdc;
-            width: 160px;
-            height: 160px;
-            margin: 10px;
-            text-align: center;
-          }
-        </style>
-        <paginatable-content 
-          id="gallery-pagination"
-          label="${this.label}"
-          per-page="${this.atrPerPage}"
-          total="${this.imageAmount}"
-          cursor="${this.pageCursor}"
-        >
-          <div id="${this.id}"></div>
-        </paginatable-content>
+        }
+        .thumb {
+          cursor: ${GallerySet.thumbCursor};
+        }
+        .thumb-loading {
+          background-color: #dcdcdc;
+          width: 160px;
+          height: 160px;
+          margin: 10px;
+          text-align: center;
+        }
+      </style>
+      <paginatable-content 
+        id="gallery-pagination"
+        label="${this.label}"
+        per-page="${this.atrPerPage}"
+        total="${this.imageAmount}"
+        cursor="${this.pageCursor}"
+      >
+        <div id="${this.id}"></div>
+      </paginatable-content>
     `;
   }
 }
