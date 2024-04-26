@@ -12,14 +12,16 @@ class GalleryPage extends HTMLElement {
       this.perPage = GallerySet.perPage;
       this.totalAmount = GallerySet.total;
 
-      CustomEventService.event(GallerySet.searchSavedInit, (e) => {
-        const saved = e.detail.value;
-        this.searchWord = saved;
-        setTimeout(() => {
-          this.updateLabel(this.searchWord);
-          this.activateContent(this.searchWord);
-        }, 500);
-      }, document);
+      if (GallerySet.searchEnabled) {
+        CustomEventService.event(GallerySet.searchSavedInit, (e) => {
+          const saved = e.detail.value;
+          this.searchWord = saved;
+          setTimeout(() => {
+            this.updateLabel(this.searchWord);
+            this.activateContent(this.searchWord);
+          }, 500);
+        }, document);
+      }
     }
   
     connectedCallback() {
@@ -29,15 +31,18 @@ class GalleryPage extends HTMLElement {
 
     initForm() {    
       this.$viewer = IdService.id(this.viewer, this.shadow);
-  
-      CustomEventService.event(GallerySet.searchEvent, (e) => {
-        const input = e.detail?.value || '';
-        if (input !== '' && input.length >= GallerySet.minimumSearch) {
-          this.searchWord = input;
-          this.updateLabel(this.searchWord);
-          this.activateContent(this.searchWord);
-        }
-      }, document);
+      if (GallerySet.searchEnabled) {
+        CustomEventService.event(GallerySet.searchEvent, (e) => {
+          const input = e.detail?.value || '';
+          if (input !== '' && input.length >= GallerySet.minimumSearch) {
+            this.searchWord = input;
+            this.updateLabel(this.searchWord);
+            this.activateContent(this.searchWord);
+          }
+        }, document);
+      } else {
+        this.activateContent(this.searchWord);
+      }
     }
 
     async activateContent(searchword) {
@@ -71,7 +76,7 @@ class GalleryPage extends HTMLElement {
           </style>
           <div class="gallery-wrapper">
             <h3>Gallery</h3>
-            <gallery-search></gallery-search>
+            ${GallerySet.searchEnabled ? '<gallery-search></gallery-search>' : ''}
 
             <gallery-viewer 
               id="${this.viewer}" 

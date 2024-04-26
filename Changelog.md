@@ -1,7 +1,7 @@
 ## Changelog
 v 2.32
-  Added Gallery updates
-
+  Added Gallery updates, Added GallerySearch separate component
+  
 v 2.30
   Created Gallery First version, added theme GeneralNote,
   added Pagination for Gallery viewer
