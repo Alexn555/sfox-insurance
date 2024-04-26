@@ -213,14 +213,14 @@ class ImageViewer extends HTMLElement {
       if (this.settings.zoomEnable) {
         const el = this.shadow.querySelector('#imageViewer img');
         if (enable) {
-          el.classList.add('zoom');
+          StyleService.toggleClass(el, 'zoom', true);
           if (this.settings.zoom.keyboard) {
             el.style = this.setZoomAbility();
           }
           this.toggleZommStart(true);
         } else {
           if (this.zoomStarted) {
-            el.classList.remove('zoom');
+            StyleService.toggleClass(el, 'zoom', false);
             this.toggleZommStart(false);
           }   
         }

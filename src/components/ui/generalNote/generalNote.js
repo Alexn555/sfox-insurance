@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { theme } from '../../theme/theme';
-import { CustomWindowEvents } from '../../settings';
-import { GeneralNoteCodes, GeneralNoteEnums } from '../../enums';
-import { styleErrors } from '../common/styles/errors';
-import { IdService, CustomEventService, ClassIdService } from '../../services';
-import { errorIcon } from '../common/styles/statusIcons/status';
+import { theme } from '../../../theme/theme';
+import { CustomWindowEvents } from '../../../settings';
+import { GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
+import { styleErrors } from '../../common/styles/errors';
+import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
+import { errorIcon } from '../../common/styles/statusIcons/status';
 
 class GeneralNote extends HTMLElement {
     constructor() {
@@ -87,9 +87,7 @@ class GeneralNote extends HTMLElement {
     toggleStatusCl(status) {
       const el = IdService.id('status', this.shadow);
       if (el) {
-        el.classList.remove('error');
-        el.classList.remove('success');
-        el.classList.add(status);
+        StyleService.removeAndAddClass(el, ['error', 'success'], status);
       }
     }
 

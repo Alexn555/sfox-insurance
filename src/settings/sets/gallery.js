@@ -1,3 +1,5 @@
+import { Cursors } from '../../enums';
+
 export const GallerySet = {
     defaultSearch: 'art',
     showLabel: true,
@@ -6,7 +8,7 @@ export const GallerySet = {
     searchSavedInit: 'gallery-saved-init',
     searchSave: true,
     searchEnabled: true,
-    pageCursor: 'auto', // pointer
+    pageCursor: Cursors.normal, // Cursors.pointer
     thumbsOpenable: '1',
     minimumSearch: 3, // chars
     perPage: 4, // all - without pagination

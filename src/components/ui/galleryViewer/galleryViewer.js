@@ -1,5 +1,6 @@
 import { CustomWindowEvents } from '../../../settings';
-import { CustomEventService, IdService } from "../../../services";
+import { CustomEventService, IdService } from '../../../services';
+import { ArrayEnums } from '../../../enums';
 
 class GalleryViewer extends HTMLElement {
   constructor() {
@@ -8,7 +9,7 @@ class GalleryViewer extends HTMLElement {
     this.id = this.getAttribute('id') || 'gallery-viewer';
     this.label = this.getAttribute('label') || '';
     this.images = this.getAttribute('images') || [];
-    this.perPage = this.getAttribute('per-page') || 'all';
+    this.perPage = this.getAttribute('per-page') || ArrayEnums.All;
     this.thumbsClickable = this.getAttribute('thumbs-clickable') || '0';
     this.pageCursor = this.getAttribute('page-cursor') || 'auto';
     this.imageAmount = 0;
@@ -32,7 +33,7 @@ class GalleryViewer extends HTMLElement {
   }
 
   setPortion(currentPage) {
-    const perPage = this.perPage !== 'all' ? parseInt(this.perPage, 10) : 1;
+    const perPage = this.perPage !== ArrayEnums.All ? parseInt(this.perPage, 10) : 1;
     const nextPortion = currentPage <= 1 ? 0 : (currentPage - 1) * perPage;
     const visPhotos = this.allImages.slice(nextPortion, nextPortion + perPage);
     this.setImages(visPhotos);

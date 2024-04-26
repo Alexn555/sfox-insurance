@@ -14,6 +14,32 @@ export default class StyleService {
         });
     }
 
+    static toggleClass(el, className, toggle) {
+        if (toggle) {
+            el.classList.add(className);
+        } else {
+            el.classList.remove(className);
+        }
+    }
+
+    static removeAndAddClass(el, list, addCl) {
+        if (list && list.length > 0) {
+            list.forEach((item) => {
+                el.classList.remove(item);
+            });
+            el.classList.add(addCl);
+        }
+    }
+
+    static setActive(els = [], selected, className = '') {
+        els.forEach((el, index) => {
+            el.classList.remove(className);
+            if (index === selected) {
+                el.classList.add(className);
+            }
+        });
+    }
+
     static isDisplaying(el, displayType = 'block') {
         return el.style.display === displayType;
     }

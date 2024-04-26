@@ -8,6 +8,7 @@ import { getRandomItemFromList } from '../../../services/utils/arrays';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { imageSearchList } from '../../../data/mocks/writerImageList';
 import { ImageViewerHelper } from '../../../components/ui/imageViewer/imageViewerHelper';
+import { ArrayEnums } from '../../../enums';
 
 class WriterImage extends HTMLElement {
     constructor() {
@@ -47,7 +48,7 @@ class WriterImage extends HTMLElement {
 
     getImageSearchTerm() {
       const listCase = ImageViewerHelper.getId(this.imgViewerId).searchListNum;
-      const lastIndex = listCase === 'all' ? imageSearchList.length - 1 : listCase;
+      const lastIndex = listCase === ArrayEnums.All ? imageSearchList.length - 1 : listCase;
       return getRandomItemFromList(imageSearchList, 0, lastIndex);
     }
 

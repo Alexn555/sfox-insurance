@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CustomEvents, CustomWindowEvents } from '../../settings';
-import { CustomEventService, IdService, LoggerService } from '../../services';
+import { CustomEventService, IdService, LoggerService, StyleService } from '../../services';
 import { isMobile } from '../../services/utils';
 
 class IconSelect extends HTMLElement {
@@ -97,9 +97,9 @@ class IconSelect extends HTMLElement {
     showSelected(icon) {
         if (this.$icons && this.$icons.length > 0) {
             this.$iconEls.forEach((iconEl, index) => {
-                iconEl.classList.remove('selected');
+                StyleService.toggleClass(iconEl, 'selected', false);
                 if (this.$icons[index] === icon) {
-                    iconEl.classList.add('selected');
+                   StyleService.toggleClass(iconEl, 'selected', true);
                 }
             });
         }

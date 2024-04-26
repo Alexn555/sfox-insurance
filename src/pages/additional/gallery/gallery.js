@@ -1,6 +1,7 @@
-import { GallerySet } from '../../settings';
-import { CustomEventService, IdService } from '../../services';
-import FlickService from '../../services/api/flickrService';
+import { theme } from '../../../theme/theme';
+import { GallerySet } from '../../../settings';
+import { CustomEventService, IdService } from '../../../services';
+import FlickService from '../../../services/api/flickrService';
 
 class GalleryPage extends HTMLElement {
     constructor() {
@@ -61,12 +62,12 @@ class GalleryPage extends HTMLElement {
           <style>
             .gallery-wrapper {
               padding: 2px 0 20px 0;
-              border: 1px dashed #f2f2f2;
+              border: 1px dashed ${theme.galleryPage.background};
 
               .photo {
                 width: fit-content;
                 padding: 0 10px 0 10px;
-                border: 1px dotted grey;
+                border: 1px dotted ${theme.galleryPage.border};
               }
 
               & h3 {

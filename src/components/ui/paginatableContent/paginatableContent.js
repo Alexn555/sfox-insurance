@@ -1,5 +1,7 @@
-import { CustomWindowEvents } from '../../settings';
-import { CustomEventService, IdService } from "../../services";
+import { theme } from '../../../theme/theme';
+import { CustomWindowEvents } from '../../../settings';
+import { CustomEventService, IdService, StyleService } from "../../../services";
+import { Cursors, ArrayEnums } from '../../../enums';
 
 class PaginatableContent extends HTMLElement {
   constructor() {
@@ -7,9 +9,9 @@ class PaginatableContent extends HTMLElement {
     this.shadow = this.attachShadow({ mode: "closed" });
     this.id = this.getAttribute('id') || '';
     this.atrAmount = this.getAttribute('total') || '0';
-    this.atrPerPage = this.getAttribute('per-page') || 'all';
+    this.atrPerPage = this.getAttribute('per-page') || ArrayEnums.All;
     this.label = this.getAttribute('label') || '';
-    this.cursor = this.getAttribute('cursor') || 'auto';
+    this.cursor = this.getAttribute('cursor') || Cursors.normal;
     this.pageContaner = 'pagination';
     this.$pageHandlers = [];
     this.pageIds = [];
@@ -44,7 +46,7 @@ class PaginatableContent extends HTMLElement {
 
   calculatePages() {
     this.totalAmount = parseInt(this.atrAmount, 10);
-    this.perPage = this.atrPerPage === 'all' ? 1 : parseInt(this.atrPerPage, 10);
+    this.perPage = this.atrPerPage === ArrayEnums.All ? 1 : parseInt(this.atrPerPage, 10);
     this.pageAmount = this.perPage === 1 ? 1 : Math.ceil(this.totalAmount / this.perPage);
   }
 
@@ -62,7 +64,7 @@ class PaginatableContent extends HTMLElement {
         this.pageIds.push('page-'+(i+1));
       }
       this.$pagination.innerHTML = html;
-      setTimeout(() => { this.setHandlers(); }, 1000);
+      this.setHandlers();
     }
   }
 
@@ -73,15 +75,11 @@ class PaginatableContent extends HTMLElement {
         this.setActive(index);
       });
     });
+    this.setActive(0);
   }
 
   setActive(selected) {
-    this.$pageHandlers.forEach(($page, index) => {
-      $page.classList.remove('active');
-      if (index === selected) {
-        $page.classList.add('active');
-      }
-    });
+    StyleService.setActive(this.$pageHandlers, selected, 'active');
   }
 
   render() {
@@ -113,16 +111,17 @@ class PaginatableContent extends HTMLElement {
           width: 60px;
           height: 60px;
           margin: 10px;
+          background-color: ${theme.paginatableContent.background};
           text-align: center;
           font-weight: bold;
           line-height: 60px;
-          border: 1px solid grey;
+          border: 1px solid ${theme.paginatableContent.border};
           user-select: none;
           cursor: ${this.cursor};         
         }
 
         .active {
-          background-color: #dcdcdc;
+          background-color: ${theme.paginatableContent.active};
         }
       </style>
       <div id="${this.id}">

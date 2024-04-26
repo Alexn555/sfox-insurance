@@ -1,3 +1,7 @@
+import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
+import { generalNoteTheme } from '../components/ui/generalNote/theme';
+import { GalleryPageTheme } from '../pages/additional/gallery/theme';
+
 const mainColor = '#1483c9';
 
 export const themeBlue = {
@@ -41,11 +45,9 @@ export const themeBlue = {
             }
         }
     },
-    generalNote: {
-        success: 'green',
-        warning: 'orange',
-        error: 'red'
-    },
+    generalNote: generalNoteTheme.common,
+    paginatableContent: paginatableContentTheme.blue,
+    galleryPage: GalleryPageTheme.common,
     settings: {
         textSize: {
             border: mainColor,
