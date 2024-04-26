@@ -10,6 +10,7 @@ class GalleryViewer extends HTMLElement {
     this.images = this.getAttribute('images') || [];
     this.perPage = this.getAttribute('per-page') || 'all';
     this.thumbsClickable = this.getAttribute('thumbs-clickable') || '0';
+    this.pageCursor = this.getAttribute('page-cursor') || 'auto';
     this.imageAmount = 0;
     this.currentPage = 1;
     this.allImages = [];
@@ -103,6 +104,7 @@ class GalleryViewer extends HTMLElement {
           label="${this.label}"
           per-page="${this.perPage}"
           total="${this.imageAmount}"
+          cursor="${this.pageCursor}"
         >
           <div id="${this.id}"></div>
         </paginatable-content>

@@ -84,6 +84,7 @@ class GalleryPage extends HTMLElement {
               images=''
               per-page="${this.perPage}"
               thumbs-openable="${GallerySet.thumbsOpenable}"
+              page-cursor="${GallerySet.pageCursor}"
             >
             </gallery-viewer>
           </div>

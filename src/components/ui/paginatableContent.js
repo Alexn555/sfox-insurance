@@ -9,6 +9,7 @@ class PaginatableContent extends HTMLElement {
     this.atrAmount = this.getAttribute('total') || '0';
     this.atrPerPage = this.getAttribute('per-page') || 'all';
     this.label = this.getAttribute('label') || '';
+    this.cursor = this.getAttribute('cursor') || 'auto';
     this.pageContaner = 'pagination';
     this.$pageHandlers = [];
     this.pageIds = [];
@@ -69,7 +70,17 @@ class PaginatableContent extends HTMLElement {
     this.pageIds.forEach((pageId, index) => {
       this.$pageHandlers[index] = IdService.idAndClick(pageId, this.shadow, () => { 
         CustomEventService.send(CustomWindowEvents.paginatableContent.pageClick, index + 1);
+        this.setActive(index);
       });
+    });
+  }
+
+  setActive(selected) {
+    this.$pageHandlers.forEach(($page, index) => {
+      $page.classList.remove('active');
+      if (index === selected) {
+        $page.classList.add('active');
+      }
     });
   }
 
@@ -107,7 +118,11 @@ class PaginatableContent extends HTMLElement {
           line-height: 60px;
           border: 1px solid grey;
           user-select: none;
-          cursor: pointer;         
+          cursor: ${this.cursor};         
+        }
+
+        .active {
+          background-color: #dcdcdc;
         }
       </style>
       <div id="${this.id}">
