@@ -1,6 +1,7 @@
 import { CustomEvents, GallerySet } from '../../settings';
 import { CustomEventService, IdService } from '../../services';
 import FlickService from '../../services/api/flickrService';
+import DataStorage from '../../services/storage';
 
 class GalleryPage extends HTMLElement {
     constructor() {
@@ -12,9 +13,11 @@ class GalleryPage extends HTMLElement {
       this.searchWord = GallerySet.defaultSearch;
       this.perPage = GallerySet.perPage;
       this.totalAmount = GallerySet.total;
+      this.storage = new DataStorage();
     }
   
     connectedCallback() {
+      this.getSavedSearch();
       this.render();
       this.initForm();
       this.activateContent();
@@ -29,8 +32,20 @@ class GalleryPage extends HTMLElement {
           this.$searchInput.setAttribute('value', this.searchWord);
           this.updateLabel(this.searchWord);
           this.activateContent();
+          this.saveSearch(this.searchWord);
         }
       }); 
+    }
+
+    getSavedSearch() {
+      const saved = this.storage.getItem(GallerySet.saveId);
+      if (saved) {
+        this.searchWord = saved;
+      }
+    }
+
+    saveSearch(searchVal) {
+      this.storage.save(GallerySet.saveId, searchVal);
     }
 
     async activateContent() {
