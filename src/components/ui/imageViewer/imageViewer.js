@@ -84,8 +84,6 @@ class ImageViewer extends HTMLElement {
     }
 
     updateSettings() {
-      this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
-
       if (this.settings.zoomEnable) {
         if (this.settings.zoom.keyboard) {
           this.toggleZoomInfo(true);

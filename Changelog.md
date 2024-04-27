@@ -1,4 +1,7 @@
 ## Changelog
+v 2.33
+  Added removal not needed twice zoomFactor
+
 v 2.32
   Added Gallery updates, Added GallerySearch separate component,
   First time use UI Component mountable theme,
