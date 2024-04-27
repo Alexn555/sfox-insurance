@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
-import { validateEmail } from '../../../services/utils/strings';
+import { validateEmail } from '../../../services/utils/validators';
 import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService, CustomEventService } from '../../../services';

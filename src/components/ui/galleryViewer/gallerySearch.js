@@ -1,6 +1,6 @@
 import { CustomEvents, GallerySet } from '../../../settings';
 import { CustomEventService, IdService } from '../../../services';
-import { valideAlphaNumeric } from '../../../services/utils/strings';
+import { valideAlphaNumeric } from '../../../services/utils/validators';
 import { styleErrors } from '../../common/styles/errors';
 import DataStorage from '../../../services/storage';
 
