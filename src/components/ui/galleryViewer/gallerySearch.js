@@ -1,5 +1,7 @@
 import { CustomEvents, GallerySet } from '../../../settings';
 import { CustomEventService, IdService } from '../../../services';
+import { valideAlphaNumeric } from '../../../services/utils/strings';
+import { styleErrors } from '../../common/styles/errors';
 import DataStorage from '../../../services/storage';
 
 class GallerySearch extends HTMLElement {
@@ -19,16 +21,33 @@ class GallerySearch extends HTMLElement {
 
     initForm() {
       this.$searchInput = IdService.id(this.searchInput, this.shadow);
+      this.$error = IdService.id('error', this.shadow);
+
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.searchInput}`, (e) => {        
         const input = e.detail?.value || '';
 
         if (input !== '' && input.length >= GallerySet.minimumSearch) {
-          this.searchWord = input;
+          this.searchWord = this.validaterequest(input);
           this.$searchInput.setAttribute('value', this.searchWord);
           this.saveSearch(this.searchWord);
           CustomEventService.send(GallerySet.searchEvent, this.searchWord);
+        } else {
+          this.$error.innerText = `Please type minimum ${GallerySet.minimumSearch} chars`;
         }
       }); 
+    }
+
+    validaterequest(input) {
+      let isError = false;
+      if (!valideAlphaNumeric(input)) {
+        this.$error.innerText = 'Please type only words and numbers, no special chars';
+        input = GallerySet.defaultSearch;
+        isError = true;
+      } 
+      if (!isError) {
+        this.$error.innerText = '';
+      }
+      return input;
     }
 
     getSavedSearch() {
@@ -52,16 +71,21 @@ class GallerySearch extends HTMLElement {
               padding: 8px;
               font-size: smaller;
             }
+            #error {
+              ${styleErrors.commonText}
+              padding-left: 4px;
+            }
           </style>
           <div id="searchbox">
             <text-input
-                id="${this.searchInput}" 
-                label="Search"
-                class-name="input-normal"
-                value="${this.searchWord}"
-                type="text"           
+              id="${this.searchInput}" 
+              label="Search"
+              class-name="input-normal"
+              value="${this.searchWord}"
+              type="text"           
             >
             </text-input>
+            <span id="error"> </span>
           </div>
        `;
     }
