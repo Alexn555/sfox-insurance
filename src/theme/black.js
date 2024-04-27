@@ -1,6 +1,7 @@
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
+import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
 
 const mainColor = '#000';
 
@@ -93,13 +94,7 @@ export const themeBlack = {
             }
         }
     },
-    imageViewer: {
-        error: {
-            bck: 'black',
-            border: 'red',
-            text: 'white'
-        }
-    },
+    imageViewer: ImageViewerTheme.common,
     account: {
         login: {
             error: {

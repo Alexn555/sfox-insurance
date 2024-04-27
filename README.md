@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.33
-  Added removal not needed twice zoomFactor
+  Added removal not needed twice zoomFactor, Added search request validate check
 
 v 2.32
   Added Gallery updates, Added GallerySearch separate component,
