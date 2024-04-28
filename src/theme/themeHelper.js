@@ -1,4 +1,5 @@
 import { LoggerService } from '../services';
+import { objectPropertyAmount } from '../services/utils';
 import { Themes} from './enums';
 
 export default class ThemeHelper {
@@ -16,13 +17,18 @@ export default class ThemeHelper {
             if (!pack[defaultTheme]) {
                 LoggerService.error(`Theme pack ${id} does not have default theme!`);
                 return {};
+            } else {
+              if (objectPropertyAmount(pack[defaultTheme]) < 1) {
+                LoggerService.error(`Theme pack ${id} has no items in default theme!`);
+                return {};
+              }
             }
             if (foundPack) {
                 return foundPack;
             }
             return pack[defaultTheme];
         } 
-        LoggerService.error(`Theme pack ${id} does not have default theme!`);
+        LoggerService.error(`Theme pack ${id} does not have theme!`);
         return {};     
     }
 }
