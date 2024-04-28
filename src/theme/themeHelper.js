@@ -7,11 +7,12 @@ export default class ThemeHelper {
         if (pack) {
             const themes = [Themes.main1, Themes.blue, Themes.black, Themes.red, Themes.yellow];
             let foundPack = null;
-            themes.forEach((theme) => {
-                if (theme === curTheme && pack[theme]) {
-                    foundPack = pack[theme];
+            for (let i = 0; i < themes.length; i++) {
+                if (themes[i] === curTheme && pack[themes[i]]) {
+                    foundPack = pack[themes[i]];
+                    break;
                 }
-            });
+            }
             if (!pack[defaultTheme]) {
                 LoggerService.error(`Theme pack ${id} does not have default theme!`);
                 return {};
