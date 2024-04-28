@@ -1,4 +1,5 @@
 import './line';
+import './networkChecker';
 import './text';
 import './amountSlider';
 import './select';

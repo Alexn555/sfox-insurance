@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { theme, Themes } from '../theme/theme';
+import { Themes } from '../theme/enums';
+import { theme } from '../theme/theme';
 import { SettingsBoard, CustomEvents } from '../settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';

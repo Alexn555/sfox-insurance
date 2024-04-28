@@ -1,8 +1,3 @@
-import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
-import { generalNoteTheme } from '../components/ui/generalNote/theme';
-import { GalleryPageTheme } from '../pages/additional/gallery/theme';
-import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
-
 const mainColor = '#dba016';
 
 export const themeYellow = {
@@ -46,9 +41,6 @@ export const themeYellow = {
             }
         }
     },
-    generalNote: generalNoteTheme.common,
-    paginatableContent: paginatableContentTheme.common,
-    galleryPage: GalleryPageTheme.common,
     settings: {
         textSize: {
             border: 'orange',
@@ -101,7 +93,6 @@ export const themeYellow = {
             }
         }
     },
-    imageViewer: ImageViewerTheme.common,
     footer: {
         background: '#f7edf6',
         contact: {

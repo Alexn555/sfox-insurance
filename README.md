@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.33
+### SFox Insurance Engine v 2.34
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,10 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.34
+  Added Gallery validation search improvements, tap on mobile idAndClick,
+  Created Theme Pack handler
+
 v 2.33
   Added removal not needed twice zoomFactor, Added search request validate check
 

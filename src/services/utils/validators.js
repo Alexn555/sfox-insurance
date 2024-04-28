@@ -7,5 +7,10 @@ export const validateEmail = (email) => {
 }
 
 export const valideAlphaNumeric = (input) => {
-    return String(input).toLocaleLowerCase().match(/^[0-9a-z]+$/);
+    return String(input).toLocaleLowerCase().match(/^[0-9a-z\s]+$/);
+}
+
+export const validateWhiteSpaces = (input, minAllowed = 3) => {
+    const str = input.replace(' ', '');
+    return str.length >= minAllowed;
 }

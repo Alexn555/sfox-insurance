@@ -1,4 +1,8 @@
 ## Changelog
+v 2.34
+  Added Gallery validation search improvements, tap on mobile idAndClick,
+  Created Theme Pack handler
+  
 v 2.33
   Added removal not needed twice zoomFactor, Added search request validate check
 

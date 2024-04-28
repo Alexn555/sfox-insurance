@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Themes } from '../../theme/theme';
+import { Themes } from '../../theme/enums';
 import { GlobalSizes, CustomEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
