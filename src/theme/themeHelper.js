@@ -7,7 +7,7 @@ export default class ThemeHelper {
         if (pack) {
             const themes = [Themes.main1, Themes.blue, Themes.black, Themes.red, Themes.yellow];
             let foundPack = null;
-            for (let i = 0; i < themes.length; i++) {
+            for (let i = 0, c = themes.length; i < c; i++) {
                 if (themes[i] === curTheme && pack[themes[i]]) {
                     foundPack = pack[themes[i]];
                     break;
