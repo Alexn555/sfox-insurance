@@ -7,11 +7,9 @@ export default class ThemeHelper {
         const defaultTheme = 'common';
         if (pack) {
             const themes = [Themes.main1, Themes.blue, Themes.black, Themes.red, Themes.yellow];
-            let foundPack = null;
             for (let i = 0, c = themes.length; i < c; i++) {
                 if (themes[i] === curTheme && pack[themes[i]]) {
-                    foundPack = pack[themes[i]];
-                    break;
+                    return pack[themes[i]];
                 }
             }
             if (!pack[defaultTheme]) {
@@ -22,9 +20,6 @@ export default class ThemeHelper {
                 LoggerService.error(`Theme pack ${id} has no items in default theme!`);
                 return {};
               }
-            }
-            if (foundPack) {
-                return foundPack;
             }
             return pack[defaultTheme];
         } 
