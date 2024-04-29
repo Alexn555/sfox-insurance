@@ -3,6 +3,7 @@ import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
+import { contentSwitcherTheme } from '../components/ui/contentSwitcher/theme';
 import ThemeHelper from './themeHelper';
 
 export default class ThemePackHandler {
@@ -13,6 +14,7 @@ export default class ThemePackHandler {
                 { id: 'paginatableContent', pack: paginatableContentTheme },
                 { id: 'galleryPage', pack: GalleryPageTheme },
                 { id: 'imageViewer', pack: ImageViewerTheme },
+                { id: 'contentSwitcher', pack: contentSwitcherTheme }
             ];
             packs.forEach((pack) => {
                 _theme[pack.id] = ThemeHelper.handlePack(pack.pack, pack.id, curTheme);

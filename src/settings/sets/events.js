@@ -65,6 +65,9 @@ export const CustomWindowEvents = {
         init: 'image-viewer-init',
         open: 'image-viewer-open'
     },
+    contentSwitcher: {
+        pageClick: 'content-switcher-click'
+    },
     paginatableContent: {
         pageClick: 'paginatable-page-click'
     },

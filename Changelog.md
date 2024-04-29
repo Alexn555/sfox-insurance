@@ -1,4 +1,7 @@
 ## Changelog
+v 2.37
+  Created GameViewer and ContentSwitcher to view games
+
 v 2.35
   Added ThemeHelper performance improvements
 
