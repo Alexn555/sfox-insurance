@@ -63,13 +63,10 @@ class ImageViewer extends HTMLElement {
 
       this.toggleError(false);
 
-      CustomEventService.event(`${CustomWindowEvents.imageViewer.open}-${this.id}`, (e) => {
-        if (e.detail) {
-          const sets = JSON.parse(e.detail.value);
-          this.imgMedium = sets['imgMedium'];
-          this.toggleViewer(true); 
-        }
-      });
+      CustomEventService.eventData(`${CustomWindowEvents.imageViewer.open}-${this.id}`, (res) => {
+        this.imgMedium = res['imgMedium'];
+        this.toggleViewer(true); 
+      }, document, true);
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
         this.toggleViewer(false);
