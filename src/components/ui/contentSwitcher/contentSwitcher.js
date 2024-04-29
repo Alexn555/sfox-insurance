@@ -2,6 +2,7 @@ import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
 import { Cursors, ArrayEnums } from '../../../enums';
+import { ContentSwSides } from './enums';
 
 class ContentSwitcher extends HTMLElement {
   constructor() {
@@ -16,7 +17,7 @@ class ContentSwitcher extends HTMLElement {
     this.id = this.getAttribute('id') || '';
     this.atrAmount = this.getAttribute('total') || '0';
     this.atrPerPage = this.getAttribute('per-page') || ArrayEnums.All;
-    this.side = this.getAttribute('side') || 'right';
+    this.side = this.getAttribute('side') || ContentSwSides.right;
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
     this.pageContaner = 'pagination';
     this.$pageHandlers = [];

@@ -6,6 +6,7 @@ import { styleErrors } from '../../../components/common/styles/errors';
 import EnvService from '../../../services/api/envService';
 import { randomInteger } from '../../../services/utils';
 import { gmVwGames } from './games';
+import { ContentSwSides } from '../contentSwitcher/enums';
 
 class GameViewer extends HTMLElement {
     constructor() {
@@ -13,7 +14,7 @@ class GameViewer extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.id = this.getAttribute('id') || 'game-viewer';
         this.displayLabel = this.getAttribute('display-label') || '0';
-        this.side = this.getAttribute('side') || 'right';
+        this.side = this.getAttribute('side') || ContentSwSides.right;
         this.currentIndex = 0;
         this.games = gmVwGames;
         this.gamesAmount = this.games.length;
