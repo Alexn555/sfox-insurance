@@ -12,16 +12,14 @@ export default class ThemeHelper {
                     return pack[themes[i]];
                 }
             }
-            if (!pack[defaultTheme]) {
-                LoggerService.error(`Theme pack ${id} does not have default theme!`);
-                return {};
-            } else {
-              if (objectPropertyAmount(pack[defaultTheme]) < 1) {
-                LoggerService.error(`Theme pack ${id} has no items in default theme!`);
-                return {};
-              }
-            }
-            return pack[defaultTheme];
+            if (pack[defaultTheme]) {
+                if (objectPropertyAmount(pack[defaultTheme]) > 0) {
+                    return pack[defaultTheme];
+                } else {
+                    LoggerService.error(`Theme pack ${id} has no items in default theme!`);
+                    return {};
+                }
+            } 
         } 
         LoggerService.error(`Theme pack ${id} does not have theme!`);
         return {};     

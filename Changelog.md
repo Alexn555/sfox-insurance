@@ -1,4 +1,7 @@
 ## Changelog
+v 2.35
+  Added ThemeHelper performance improvements
+
 v 2.34
   Added Gallery validation search improvements, tap on mobile idAndClick,
   Created Theme Pack handler

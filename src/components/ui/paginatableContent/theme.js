@@ -1,15 +1,17 @@
+import { Themes } from '../../../theme/enums';
+
 export const paginatableContentTheme = {
     common: {
        border: 'grey',
        background: 'white',
        active: '#dcdcdc'    
     },
-    main1: {
+    [Themes.main1]: {
         border: 'grey',
         background: 'white',
         active: '#dcdcdc'  
     },
-    blue: {
+    [Themes.blue]: {
         border: 'grey',
         background: 'white',
         active: '#96cfeb'  
