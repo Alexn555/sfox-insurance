@@ -5,3 +5,7 @@ export const Themes = {
     red: 'red',
     yellow: 'yellow'
 };
+
+export const PackThemes = {
+    common: 'common'
+};

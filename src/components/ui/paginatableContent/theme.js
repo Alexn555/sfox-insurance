@@ -1,7 +1,7 @@
-import { Themes } from '../../../theme/enums';
+import { Themes, PackThemes } from '../../../theme/enums';
 
 export const paginatableContentTheme = {
-    common: {
+    [PackThemes.common]: {
        border: 'grey',
        background: 'white',
        active: '#dcdcdc'    
