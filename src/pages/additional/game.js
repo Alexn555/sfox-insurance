@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { IdService } from '../../services';
+import { GameViewerSettings } from '../../settings/sets/gameViewer';
 import { Game } from '../../settings';
 
 class GameForm extends HTMLElement {
@@ -25,7 +26,12 @@ class GameForm extends HTMLElement {
             }
           </style>
           <div class="game-wrapper">
-             <game-viewer id="html5Games"></game-viewer>
+             <game-viewer 
+              id="html5Games"
+              display-label="${GameViewerSettings.displayLabel}"
+              side="${GameViewerSettings.side}"
+             >
+             </game-viewer>
           </div>
        `;
     }
