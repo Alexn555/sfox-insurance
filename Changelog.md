@@ -1,4 +1,7 @@
 ## Changelog
+v 2.38
+  Added GameViewer improvements, ContentSwitcher improvements
+
 v 2.37
   Created GameViewer and ContentSwitcher to view games
 

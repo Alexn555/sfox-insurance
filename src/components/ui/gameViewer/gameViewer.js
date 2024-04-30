@@ -6,7 +6,7 @@ import { styleErrors } from '../../../components/common/styles/errors';
 import EnvService from '../../../services/api/envService';
 import { randomInteger } from '../../../services/utils';
 import { gmVwGames } from './games';
-import { ContentSwSides } from '../contentSwitcher/enums';
+import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
 
 class GameViewer extends HTMLElement {
     constructor() {
@@ -47,7 +47,7 @@ class GameViewer extends HTMLElement {
 
         const game = this.games[index];
         this.setLoading(2, game.title, () => {
-           let html = this.setGame(game.title, game.link, this.sessionId, game.w, game.h); 
+           let html = this.setGame(game, this.sessionId); 
            this.$container.innerHTML = html;
         });
     }
@@ -71,15 +71,19 @@ class GameViewer extends HTMLElement {
         return this.displayLabel === '1' ? `<h2>${title}</h2>` : '';
     }
 
-    setGame(title, link, session = '', w = 550, h = 500) {
-        return `${this.setLabel(title)}
+    setGame(game, sessionId) {
+        return `${this.setLabel(game.title)}
             <iframe 
-                src="${link}?session=${session}"
-                title="${title}"
-                width="${w}"
-                height="${h}">
+                src="${game.link}?session=${sessionId}${game.params}"
+                title="${game.title}"
+                width="${game.w}"
+                height="${game.h}">
             </iframe>
         `;
+    }
+
+    getGameLabels() {
+        return JSON.stringify(this.games.map(game => game.title));
     }
 
     render() {
@@ -99,6 +103,7 @@ class GameViewer extends HTMLElement {
                 width: 50%;
                 heigth: 10px;
                 border: 1px solid blue;
+                z-index: 2;
               }
 
               .loading-content {
@@ -126,7 +131,9 @@ class GameViewer extends HTMLElement {
                 <content-switcher 
                   id="gameContentSwitcher"
                   per-page="1" 
+                  labels='${this.getGameLabels()}'
                   side="${this.side}"
+                  icon-type="${LabelIcons.game.id}"
                   total="${this.gamesAmount}"
                 >
                     <div id="${this.id}"> </div>

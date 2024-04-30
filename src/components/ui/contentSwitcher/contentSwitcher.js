@@ -1,14 +1,14 @@
 import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
+import EnvService from '../../../services/api/envService';
 import { Cursors, ArrayEnums } from '../../../enums';
-import { ContentSwSides } from './enums';
+import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
 class ContentSwitcher extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "closed" });
-
     this.sides = {
       Lt: 'sideLt',
       Rt: 'sideRt'
@@ -17,9 +17,12 @@ class ContentSwitcher extends HTMLElement {
     this.id = this.getAttribute('id') || '';
     this.atrAmount = this.getAttribute('total') || '0';
     this.atrPerPage = this.getAttribute('per-page') || ArrayEnums.All;
+    this.labels = this.getAttribute('labels') || '[]';
     this.side = this.getAttribute('side') || ContentSwSides.right;
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
+    this.iconType = this.getAttribute('icon-type') || 'game';
     this.pageContaner = 'pagination';
+    this.labelMode = LabelModes.labels;
     this.$pageHandlers = [];
     this.pageIds = [];
     this.totalAmount = 0;
@@ -33,6 +36,7 @@ class ContentSwitcher extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.initLabels();
     this.calculatePages();
     this.setPagination();
     this.setSide(this.side);
@@ -52,6 +56,41 @@ class ContentSwitcher extends HTMLElement {
     this.pageAmount = Math.ceil(this.totalAmount / this.perPage);
   }
 
+  initLabels() {
+    let labels = [];
+    if (this.labels) {
+      labels = JSON.parse(this.labels);
+      this.labels = labels;
+    }
+    if (labels.length === 0) {
+      this.labelMode = LabelModes.numeric;
+    }
+  }
+
+  setLabel(index, num) {
+    let html = '';
+    if (this.labelMode === LabelModes.numeric) {
+      html = num;
+    } else {
+      html = `<div class="label">${this.labels[index]}</div>`;
+    }
+    return html;
+  }
+
+  setLabelIcons(pages) {
+    pages.forEach((page) => {
+      let $page = IdService.id(page, this.shadow);
+      $page.style.background = `url("${EnvService.getRoot()}${LabelIcons[this.iconType].source}")`;
+    });
+  }
+
+  setPageContainer(pagesAmount) {
+    if (pagesAmount > 3) {
+      this.$pagination.style.overflowY = 'scroll';
+      this.$pagination.style.scrollbarWidth = 'thin';
+    }
+  }
+
   setPagination() {
     this.$container = IdService.id(this.id, this.shadow);
     this.$pagination = IdService.id(this.pageContaner, this.shadow);
@@ -63,11 +102,15 @@ class ContentSwitcher extends HTMLElement {
       this.pageIds = [];
       let html = '';
       for (let i = 0; i < this.pageAmount; i++) {
-        html += `<div id="page-${i+1}" class="page">${i + 1}</div>`;
+        html += `<div id="page-${i+1}" class="page">
+          ${this.setLabel(i, i + 1)}
+        </div>`;
         this.pageIds.push('page-'+(i+1));
       }
       this.$pagination.innerHTML = html;
+      this.setPageContainer(this.pageIds.length);
       this.setHandlers();
+      this.setLabelIcons(this.pageIds);
     }
   }
 
@@ -95,7 +138,6 @@ class ContentSwitcher extends HTMLElement {
       <style>
         #${this.id} {
           display: flex;
-          //flex-direction: row;
         }
 
         .sideLt {
@@ -104,6 +146,11 @@ class ContentSwitcher extends HTMLElement {
 
         .sideRt {
           flex-direction: row;
+        }
+
+        .label {
+          font-size: 12px;
+          transform: translateY(60px);
         }
 
         .content {
@@ -120,7 +167,7 @@ class ContentSwitcher extends HTMLElement {
           display: flex;
           flex-direction: column;
           width: 30%;
-          height: fit-content;
+          height: 500px;
           padding-left: 60px;     
 
           @media (max-width: 768px) {
@@ -130,7 +177,7 @@ class ContentSwitcher extends HTMLElement {
         .page {
           width: 80px;
           height: 100px;
-          margin: 10px;
+          margin: 20px 10px 20px 10px;
           background-color: ${theme.contentSwitcher.background};
           text-align: center;
           font-weight: bold;

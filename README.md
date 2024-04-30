@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.37
+### SFox Insurance Engine v 2.38
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.38
+  Added GameViewer improvements, ContentSwitcher improvements
+
 v 2.37
   Created GameViewer and ContentSwitcher to view games
 
@@ -27,47 +30,6 @@ v 2.32
   Added Gallery updates, Added GallerySearch separate component,
   First time use UI Component mountable theme,
   Added ImageViewer to open every Gallery image
-
-v 2.30
-  Created Gallery First version, added theme GeneralNote, 
-  added Pagination for Gallery viewer
-
-v 2.28
-  Added Network checker, css mixin arguments improvements, customEventService improvement
-
-v 2.26
-  Minor Writer updates, Game updates, copyright notices
-
-v 2.24
-  Improved Icon settings, Game Page improvements, ImageViewer (lost focus error) fixes,
-  Medium size refactor addEvent to CustomEventService event
-
-v 2.23
-  Created IconSelect and icon implementation, Moved event, removeList to CustomEventService,
-  Added better properties count ImageViewer
-
-v 2.20
-  Show visited string and show function
-
-v 2.19
-  Added logical name for variant constant, Huge refactor to use IdService
-   and ClassIdServie in all implementations
-
-v 2.17
-  Added Account additional icons, added Password Reminder, Added original image opacity fixes
-
-v 2.15
-  Services structure improvements
-
-v 2.12
-  Readme imporvements, services structure improvements, zoom improved feature
-
-v 2.11
-  Added Profile icon
-
-v 2.10
-  Added Login, Account improvements, ImageViewer Zoom dynamic based on movable contrainer
-
 
 ## Demo 
 
