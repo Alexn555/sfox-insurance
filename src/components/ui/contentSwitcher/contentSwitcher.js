@@ -1,7 +1,7 @@
 import { theme } from '../../../theme/theme';
+import { PackIds } from '../../../theme/enums';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
-import EnvService from '../../../services/api/envService';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
@@ -24,7 +24,9 @@ class ContentSwitcher extends HTMLElement {
     this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
     this.pageContaner = 'pagination';
     this.labelMode = LabelModes.labels;
+    this.theme = theme[PackIds.contentSwitcher];
     this.$pageHandlers = [];
+    this.$labels = [];
     this.pageIds = [];
     this.totalAmount = 0;
     this.perPage = 0;
@@ -82,7 +84,7 @@ class ContentSwitcher extends HTMLElement {
     if (this.labelMode === LabelModes.numeric) {
       html = num;
     } else {
-      html = `<div class="label">${this.labels[index]}</div>`;
+      html = `<div id="label-${index}" class="label">${this.labels[index]}</div>`;
     }
     return html;
   }
@@ -90,7 +92,7 @@ class ContentSwitcher extends HTMLElement {
   setLabelIcons(pages) {
     pages.forEach((page) => {
       let $page = IdService.id(page, this.shadow);
-      $page.style.background = `url("${EnvService.getRoot()}${LabelIcons[this.iconType].source}")`;
+      $page.style.background = `url("${LabelIcons[this.iconType].source}")`;
     });
   }
 
@@ -110,12 +112,14 @@ class ContentSwitcher extends HTMLElement {
       }
 
       this.pageIds = [];
+      this.labelIds = [];
       let html = '';
       for (let i = 0; i < this.pageAmount; i++) {
         html += `<div id="page-${i+1}" class="page">
           ${this.setLabel(i, i + 1)}
         </div>`;
         this.pageIds.push('page-'+(i+1));
+        this.labelIds.push('label-'+(i+1));
       }
       this.$pagination.innerHTML = html;
       this.setPageContainer(this.pageIds.length);
@@ -130,17 +134,19 @@ class ContentSwitcher extends HTMLElement {
         CustomEventService.send(CustomWindowEvents.contentSwitcher.pageClick, index + 1);
         this.setActive(index);
       });
+      this.$labels[index] = IdService.id('label-'+index, this.shadow);
     });
     this.setActive(0);
   }
 
   setSide(side) {
-    let cl = side === 'left' ? this.sides.Lt : this.sides.Rt;
+    let cl = side === ContentSwSides.left ? this.sides.Lt : this.sides.Rt;
     StyleService.toggleClass(this.$container, cl, true);
   }
 
   setActive(selected) {
     StyleService.setActive(this.$pageHandlers, selected, 'active');
+    StyleService.setActive(this.$labels, selected, 'activeLabel');
   }
 
   render() {
@@ -162,6 +168,10 @@ class ContentSwitcher extends HTMLElement {
           font-size: 12px;
           transform: translateY(60px);
         }
+
+        .activeLabel {
+          color: ${this.theme.activeLabel};
+        } 
 
         .content {
           width: fit-content;
@@ -188,17 +198,17 @@ class ContentSwitcher extends HTMLElement {
           width: 80px;
           height: 100px;
           margin: 20px 10px 20px 10px;
-          background-color: ${theme.contentSwitcher.background};
+          background-color: ${this.theme.background};
           text-align: center;
           font-weight: bold;
           line-height: 100px;
-          border: 1px solid ${theme.contentSwitcher.border};
+          border: 1px solid ${this.theme.border};
           user-select: none;
           cursor: ${this.cursor};         
         }
 
         .active {
-          background-color: ${theme.contentSwitcher.active};
+          background-color: ${this.theme.active};
         }
       </style>
       <div id="${this.id}">

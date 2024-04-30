@@ -5,10 +5,6 @@ export const contentSwitcherTheme = {
        border: 'grey',
        background: '#dcdcdc',
        active: 'white',
-    },
-    [Themes.main1]: {
-        border: 'grey',
-        background: '#dcdcdc',
-        active: 'white',
+       activeLabel: '#7d1657'
     },
 };

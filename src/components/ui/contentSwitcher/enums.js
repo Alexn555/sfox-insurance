@@ -1,3 +1,5 @@
+import EnvService from '../../../services/api/envService';
+
 export const ContentSwSides = {
     left: 'left',
     right: 'right'
@@ -8,9 +10,11 @@ export const LabelModes = {
     numeric: 'numeric'
 };
 
+const path = `${EnvService.getRoot()}assets/contentsw/`;
+
 export const LabelIcons = {
     game: {
         id: 'game',
-        source: 'assets/contentsw/game.png'
+        source: path+'game.png'
     }
 };
