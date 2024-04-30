@@ -4,12 +4,12 @@ import { theme } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
-import EnvService from '../../../services/api/envService';
 import { randomInteger } from '../../../services/utils';
 import { gmVwGames } from './games';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
 import { PackIds } from '../../../theme/enums';
+import { LoadingIcons } from './enums';
 
 class GameViewer extends HTMLElement {
     constructor() {
@@ -67,7 +67,7 @@ class GameViewer extends HTMLElement {
         this.$loading.innerHTML =`
             <div class="loading-content">
               <div>Loading</div>
-              <img src="${EnvService.getRoot()}assets/gameviewer/loading.gif" alt="" />
+              <img src="${LoadingIcons.game.source}" alt="" />
               <div>${title}</div>
             </div>`;
         StyleService.setDisplay(this.$loading, true);
