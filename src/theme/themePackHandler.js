@@ -4,17 +4,21 @@ import { paginatableContentTheme } from '../components/ui/paginatableContent/the
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
 import { contentSwitcherTheme } from '../components/ui/contentSwitcher/theme';
+import { GameViewerTheme } from '../components/ui/gameViewer/theme';
+
+import { PackIds } from './enums';
 import ThemeHelper from './themeHelper';
 
 export default class ThemePackHandler {
   static addPlugins(_theme, curTheme, addPack) {
         if (addPack) {
             const packs = [
-                { id: 'generalNote', pack: generalNoteTheme },
-                { id: 'paginatableContent', pack: paginatableContentTheme },
-                { id: 'galleryPage', pack: GalleryPageTheme },
-                { id: 'imageViewer', pack: ImageViewerTheme },
-                { id: 'contentSwitcher', pack: contentSwitcherTheme }
+                { id: PackIds.generalNote, pack: generalNoteTheme },
+                { id: PackIds.paginatableContent, pack: paginatableContentTheme },
+                { id: PackIds.galleryPage, pack: GalleryPageTheme },
+                { id: PackIds.imageViewer, pack: ImageViewerTheme },
+                { id: PackIds.contentSwitcher, pack: contentSwitcherTheme },
+                { id: PackIds.gameViewer, pack: GameViewerTheme }
             ];
             packs.forEach((pack) => {
                 _theme[pack.id] = ThemeHelper.handlePack(pack.pack, pack.id, curTheme);

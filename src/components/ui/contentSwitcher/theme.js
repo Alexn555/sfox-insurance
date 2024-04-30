@@ -4,11 +4,11 @@ export const contentSwitcherTheme = {
     [PackThemes.common]: {
        border: 'grey',
        background: '#dcdcdc',
-       active: 'white'    
+       active: 'white',
     },
     [Themes.main1]: {
         border: 'grey',
         background: '#dcdcdc',
-        active: 'white'  
+        active: 'white',
     },
 };

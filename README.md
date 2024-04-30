@@ -11,7 +11,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.38
-  Added GameViewer improvements, ContentSwitcher improvements
+  Added GameViewer improvements, ContentSwitcher improvements, added gameViewer theme
 
 v 2.37
   Created GameViewer and ContentSwitcher to view games

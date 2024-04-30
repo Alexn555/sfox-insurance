@@ -1,24 +1,28 @@
 // Gif loading icon (c) cons8.com/preloaders
 
+import { theme } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import EnvService from '../../../services/api/envService';
 import { randomInteger } from '../../../services/utils';
 import { gmVwGames } from './games';
+import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
+import { PackIds } from '../../../theme/enums';
 
 class GameViewer extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.id = this.getAttribute('id') || 'game-viewer';
-        this.displayLabel = this.getAttribute('display-label') || '0';
+        this.displayLabel = this.getAttribute('display-label') || BoolEnums.bFalse;
         this.side = this.getAttribute('side') || ContentSwSides.right;
         this.currentIndex = 0;
         this.games = gmVwGames;
         this.gamesAmount = this.games.length;
         this.sessionId = randomInteger(0, 200);
+        this.theme = theme[PackIds.gameViewer];
     }
     
     connectedCallback() {
@@ -26,6 +30,7 @@ class GameViewer extends HTMLElement {
         this.$container = IdService.id(this.id, this.shadow);
         this.$loading = IdService.id('loading', this.shadow);
         this.$error = IdService.id('error', this.shadow);
+        this.$cntSwitcher = IdService.id('gameContentSwitcher', this.shadow);
 
         this.activateGame(0);
         CustomEventService.event(CustomWindowEvents.contentSwitcher.pageClick, (e) => {
@@ -46,10 +51,16 @@ class GameViewer extends HTMLElement {
         }
 
         const game = this.games[index];
-        this.setLoading(2, game.title, () => {
+        this.toggleContentLoaded(false);
+        this.setLoading(randomInteger(1, 3), game.title, () => {
            let html = this.setGame(game, this.sessionId); 
            this.$container.innerHTML = html;
+           this.toggleContentLoaded(true);
         });
+    }
+
+    toggleContentLoaded(toggle) {
+        this.$cntSwitcher.setAttribute('disable-actions', toggle ? BoolEnums.bFalse : BoolEnums.bTrue);
     }
 
     setLoading(timeout = 1, title, onComplete) {
@@ -68,7 +79,7 @@ class GameViewer extends HTMLElement {
     }
 
     setLabel(title) {
-        return this.displayLabel === '1' ? `<h2>${title}</h2>` : '';
+        return this.displayLabel === BoolEnums.bTrue ? `<h2>${title}</h2>` : '';
     }
 
     setGame(game, sessionId) {
@@ -91,18 +102,19 @@ class GameViewer extends HTMLElement {
             <style>
               .game-viewer-wrapper {
                 position: relative;
-                background-color: #dcdcdc;
+                background-color: ${this.theme.wrapper.background};
                 text-align: center;
               }
 
               #loading {
                 position: absolute;
                 text-align: center;
-                background-color: white;
+                background-color: ${this.theme.loading.background};
                 top: 240px;
                 width: 50%;
                 heigth: 10px;
-                border: 1px solid blue;
+                color: ${this.theme.loading.text};
+                border: 1px solid ${this.theme.loading.border};
                 z-index: 2;
               }
 
@@ -120,7 +132,7 @@ class GameViewer extends HTMLElement {
               }
 
               #${this.id} {
-                border: 1px solid black;
+                border: 1px solid ${this.theme.container.border};
                 min-width: 500px;
                 min-height: 500px;
               }  
@@ -135,6 +147,7 @@ class GameViewer extends HTMLElement {
                   side="${this.side}"
                   icon-type="${LabelIcons.game.id}"
                   total="${this.gamesAmount}"
+                  disable-actions="${BoolEnums.bFalse}"
                 >
                     <div id="${this.id}"> </div>
                 </content-switcher>

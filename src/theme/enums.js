@@ -6,6 +6,15 @@ export const Themes = {
     yellow: 'yellow'
 };
 
+export const PackIds = {
+    generalNote: 'generalNote',
+    paginatableContent: 'paginatableContent',
+    galleryPage: 'galleryPage',
+    imageViewer: 'imageViewer',
+    contentSwitcher: 'contentSwitcher',
+    gameViewer: 'gameViewer'
+};
+
 export const PackThemes = {
     common: 'common'
 };

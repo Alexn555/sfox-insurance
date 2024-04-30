@@ -2,7 +2,7 @@ import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
 import EnvService from '../../../services/api/envService';
-import { Cursors, ArrayEnums } from '../../../enums';
+import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
 class ContentSwitcher extends HTMLElement {
@@ -21,6 +21,7 @@ class ContentSwitcher extends HTMLElement {
     this.side = this.getAttribute('side') || ContentSwSides.right;
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
     this.iconType = this.getAttribute('icon-type') || 'game';
+    this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
     this.pageContaner = 'pagination';
     this.labelMode = LabelModes.labels;
     this.$pageHandlers = [];
@@ -31,7 +32,7 @@ class ContentSwitcher extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['total'];
+    return ['total', 'disable-actions'];
   }
 
   connectedCallback() {
@@ -47,6 +48,9 @@ class ContentSwitcher extends HTMLElement {
       this.atrAmount = newValue;
       this.calculatePages();
       this.setPagination();
+    }
+    if (name === 'disable-actions' && oldValue !== newValue) {
+      this.activatePageClicks(newValue);
     }
   }
 
@@ -64,6 +68,12 @@ class ContentSwitcher extends HTMLElement {
     }
     if (labels.length === 0) {
       this.labelMode = LabelModes.numeric;
+    }
+  }
+
+  activatePageClicks(activate) {
+    if (this.$pagination) {
+      this.$pagination.style.pointerEvents = activate ===  BoolEnums.bTrue ? 'none' : 'initial';
     }
   }
 
@@ -168,7 +178,7 @@ class ContentSwitcher extends HTMLElement {
           flex-direction: column;
           width: 30%;
           height: 500px;
-          padding-left: 60px;     
+          padding-left: 60px;   
 
           @media (max-width: 768px) {
             padding-left: 20px;     
