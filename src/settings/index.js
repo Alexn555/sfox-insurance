@@ -11,4 +11,5 @@ export { Animations } from './sets/animations';
 export { SettingsBoard } from './sets/settingsBoard';
 export { HeaderBoard } from './sets/header';
 export { FooterBoard } from './sets/footer';
+export { ContentSwSet } from './sets/contentSw';
 export { ImageViewerSettings, ImageViewerIds } from './sets/imageViewer';

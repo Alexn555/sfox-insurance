@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
-import { CustomWindowEvents } from '../../../settings';
+import { CustomWindowEvents, ContentSwSet } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
@@ -20,8 +21,10 @@ class ContentSwitcher extends HTMLElement {
     this.labels = this.getAttribute('labels') || '[]';
     this.side = this.getAttribute('side') || ContentSwSides.right;
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
+    this.indIcons = this.getAttribute('individual-icons') || '';
     this.iconType = this.getAttribute('icon-type') || 'game';
     this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
+    this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
     this.pageContaner = 'pagination';
     this.labelMode = LabelModes.labels;
     this.theme = theme[PackIds.contentSwitcher];
@@ -40,6 +43,7 @@ class ContentSwitcher extends HTMLElement {
   connectedCallback() {
     this.render();
     this.initLabels();
+    this.initIndividualIcons();
     this.calculatePages();
     this.setPagination();
     this.setSide(this.side);
@@ -62,6 +66,12 @@ class ContentSwitcher extends HTMLElement {
     this.pageAmount = Math.ceil(this.totalAmount / this.perPage);
   }
 
+  initIndividualIcons() {
+    if (this.indIcons !== '') {
+      this.indIcons = JSON.parse(this.indIcons);
+    }
+  }
+
   initLabels() {
     let labels = [];
     if (this.labels) {
@@ -75,7 +85,7 @@ class ContentSwitcher extends HTMLElement {
 
   activatePageClicks(activate) {
     if (this.$pagination) {
-      this.$pagination.style.pointerEvents = activate ===  BoolEnums.bTrue ? 'none' : 'initial';
+      this.$pagination.style.pointerEvents = activate === BoolEnums.bTrue ? 'none' : 'initial';
     }
   }
 
@@ -90,14 +100,15 @@ class ContentSwitcher extends HTMLElement {
   }
 
   setLabelIcons(pages) {
-    pages.forEach((page) => {
+    pages.forEach((page, index) => {
       let $page = IdService.id(page, this.shadow);
-      $page.style.background = `url("${LabelIcons[this.iconType].source}")`;
+      $page.style.background = 
+        `url("${this.useIndIcons === BoolEnums.bTrue ? this.indIcons[index].source : LabelIcons[this.iconType].source}")`;
     });
   }
 
   setPageContainer(pagesAmount) {
-    if (pagesAmount > 3) {
+    if (pagesAmount > ContentSwSet.maxColumn) {
       this.$pagination.style.overflowY = 'scroll';
       this.$pagination.style.scrollbarWidth = 'thin';
     }

@@ -1,6 +1,6 @@
 ## Changelog
 v 2.39
-  Added GameViewer imporvements
+  Added GameViewer imporvements, Added Individual Game icons
 
 v 2.38
   Added GameViewer improvements, ContentSwitcher improvements, added gameViewer theme

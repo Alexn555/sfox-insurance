@@ -16,5 +16,13 @@ export const LabelIcons = {
     game: {
         id: 'game',
         source: path+'game.png'
+    },
+    text: {
+        id: 'text',
+        source: path+'file.png'
+    },
+    video: {
+        id: 'video',
+        source: path+'video.png'
     }
 };

@@ -97,6 +97,10 @@ class GameViewer extends HTMLElement {
         return JSON.stringify(this.games.map(game => game.title));
     }
 
+    getGameIcons() {
+        return JSON.stringify(this.games.map(game => game.icon));
+    }
+
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -145,6 +149,8 @@ class GameViewer extends HTMLElement {
                   per-page="1" 
                   labels='${this.getGameLabels()}'
                   side="${this.side}"
+                  individual-icons='${this.getGameIcons()}'
+                  use-ind-icons="${BoolEnums.bTrue}"
                   icon-type="${LabelIcons.game.id}"
                   total="${this.gamesAmount}"
                   disable-actions="${BoolEnums.bFalse}"
