@@ -22,6 +22,18 @@ export default class StyleService {
         }
     }
 
+    static setProperty(el, property, value) {
+        el.style[property] = value;
+    }
+
+    static setProperties(el, props) {
+        if (props && props.length > 0) {
+            props.forEach((prop) => {
+                this.setProperty(el, prop.property, prop.value);
+            });
+        }
+    }
+
     static removeAndAddClass(el, list, addCl) {
         if (list && list.length > 0) {
             list.forEach((item) => {

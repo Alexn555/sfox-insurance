@@ -1,6 +1,6 @@
 // Gif loading icon (c) cons8.com/preloaders
 
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
@@ -22,7 +22,7 @@ class GameViewer extends HTMLElement {
         this.games = gmVwGames;
         this.gamesAmount = this.games.length;
         this.sessionId = randomInteger(0, 200);
-        this.theme = theme[PackIds.gameViewer];
+        this.theme = ThemeHelper.get([PackIds.gameViewer]);
     }
     
     connectedCallback() {

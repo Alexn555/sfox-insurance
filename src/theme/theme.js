@@ -5,9 +5,12 @@ import { themeRed } from './red';
 import { themeYellow } from './yellow';
 import { Themes } from './enums';
 import ThemePackHandler from './themePackHandler';
+import ThemeHelper from './themeHelper';
 
 export let theme = themeMain1;
 theme = ThemePackHandler.addPlugins(theme, Themes.main1, true);
+
+export { ThemeHelper };
 
 export const changeTheme = (themeId) => {
     theme = themeMain1;

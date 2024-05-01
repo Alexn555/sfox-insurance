@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
@@ -13,7 +13,7 @@ class GeneralNote extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.id = this.getAttribute('id') || 'generalNote';
       this.closeBtn = 'close';
-      this.theme = theme[PackIds.generalNote];
+      this.theme = ThemeHelper.get(PackIds.generalNote);
       this.size = '';
       this.text = '';
       this.status = '';

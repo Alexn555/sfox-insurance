@@ -5,24 +5,24 @@ export const contentSwitcherTheme = {
        border: 'grey',
        background: '#dcdcdc',
        active: 'white',
-       activeLabel: '#7d1657'
+       labelActive: '#7d1657'
     },
     [Themes.red]: {
         border: 'grey',
         background: '#dcdcdc',
         active: 'white',
-        activeLabel: '#c91a34'
+        labelActive: '#c91a34'
     },
     [Themes.blue]: {
         border: 'grey',
         background: '#dcdcdc',
         active: 'white',
-        activeLabel: '#4d82d6'
+        labelActive: '#4d82d6'
     },
     [Themes.yellow]: {
         border: 'grey',
         background: '#dcdcdc',
         active: 'white',
-        activeLabel: '#cfa32b'
+        labelActive: '#cfa32b'
     },
 };

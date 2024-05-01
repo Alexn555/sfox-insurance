@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { CustomWindowEvents, ContentSwSet } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
@@ -27,7 +27,7 @@ class ContentSwitcher extends HTMLElement {
     this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
     this.pageContaner = 'pagination';
     this.labelMode = LabelModes.labels;
-    this.theme = theme[PackIds.contentSwitcher];
+    this.theme = ThemeHelper.get(PackIds.contentSwitcher, 'contentSw');
     this.$pageHandlers = [];
     this.$labels = [];
     this.pageIds = [];
@@ -85,7 +85,7 @@ class ContentSwitcher extends HTMLElement {
 
   activatePageClicks(activate) {
     if (this.$pagination) {
-      this.$pagination.style.pointerEvents = activate === BoolEnums.bTrue ? 'none' : 'initial';
+      StyleService.setProperty(this.$pagination, 'pointerEvents', activate === BoolEnums.bTrue ? 'none' : 'initial');
     }
   }
 
@@ -102,15 +102,19 @@ class ContentSwitcher extends HTMLElement {
   setLabelIcons(pages) {
     pages.forEach((page, index) => {
       let $page = IdService.id(page, this.shadow);
-      $page.style.background = 
-        `url("${this.useIndIcons === BoolEnums.bTrue ? this.indIcons[index].source : LabelIcons[this.iconType].source}")`;
+      StyleService.setProperty($page, 'background', 
+        `url("${this.useIndIcons === BoolEnums.bTrue ? this.indIcons[index].source : LabelIcons[this.iconType].source}")`);
     });
   }
 
   setPageContainer(pagesAmount) {
     if (pagesAmount > ContentSwSet.maxColumn) {
-      this.$pagination.style.overflowY = 'scroll';
-      this.$pagination.style.scrollbarWidth = 'thin';
+      StyleService.setProperties(this.$pagination, 
+        [ 
+          { property: 'overflowY', value: 'scroll' },
+          { property: 'scrollbarWidth', value: 'thin' },
+        ]
+      );
     }
   }
 
@@ -179,7 +183,7 @@ class ContentSwitcher extends HTMLElement {
         }
 
         .labelActive {
-          color: ${this.theme.activeLabel};
+          color: ${this.theme.labelActive};
         } 
 
         .content {

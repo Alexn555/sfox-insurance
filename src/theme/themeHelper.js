@@ -1,6 +1,7 @@
 import { LoggerService } from '../services';
 import { objectPropertyAmount } from '../services/utils';
 import { Themes, PackThemes } from './enums';
+import { theme } from './theme';
 
 export default class ThemeHelper {
     static handlePack(pack, id, curTheme = Themes.main1) {
@@ -23,5 +24,17 @@ export default class ThemeHelper {
         } 
         LoggerService.error(`Theme pack ${id} does not have theme!`);
         return {};     
+    }
+
+    static get(packId) {
+        let found = false;
+        if (packId) {
+            found = theme[packId] !== null || theme[packId] !== undefined;
+        } 
+        if (!found) {
+            LoggerService.error(`Check pack id #${packId} is not found`);
+            return {};
+        }
+        return theme[packId];
     }
 }

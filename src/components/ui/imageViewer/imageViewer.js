@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
@@ -19,7 +19,7 @@ class ImageViewer extends HTMLElement {
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
       this.isMobile = false;
-      this.theme = theme[PackIds.imageViewer];
+      this.theme = ThemeHelper.get(PackIds.imageViewer);
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;

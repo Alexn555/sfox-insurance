@@ -1,4 +1,4 @@
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
 import { PackIds } from '../../../theme/enums';
@@ -14,7 +14,7 @@ class PaginatableContent extends HTMLElement {
     this.label = this.getAttribute('label') || '';
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
     this.pageContaner = 'pagination';
-    this.theme = theme[PackIds.paginatableContent];
+    this.theme = ThemeHelper.get(PackIds.paginatableContent);
     this.$pageHandlers = [];
     this.pageIds = [];
     this.totalAmount = 0;
