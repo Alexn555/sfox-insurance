@@ -27,9 +27,9 @@ class GameForm extends HTMLElement {
           </style>
           <div class="game-wrapper">
              <game-viewer 
-              id="html5Games"
-              display-label="${GameViewerSettings.displayLabel}"
-              side="${GameViewerSettings.side}"
+              id="${GameViewerSettings.gamePage.id}"
+              display-label="${GameViewerSettings.gamePage.displayLabel}"
+              side="${GameViewerSettings.gamePage.side}"
              >
              </game-viewer>
           </div>
