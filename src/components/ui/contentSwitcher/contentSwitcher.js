@@ -112,14 +112,12 @@ class ContentSwitcher extends HTMLElement {
       }
 
       this.pageIds = [];
-      this.labelIds = [];
       let html = '';
       for (let i = 0; i < this.pageAmount; i++) {
         html += `<div id="page-${i+1}" class="page">
           ${this.setLabel(i, i + 1)}
         </div>`;
         this.pageIds.push('page-'+(i+1));
-        this.labelIds.push('label-'+(i+1));
       }
       this.$pagination.innerHTML = html;
       this.setPageContainer(this.pageIds.length);
@@ -146,7 +144,7 @@ class ContentSwitcher extends HTMLElement {
 
   setActive(selected) {
     StyleService.setActive(this.$pageHandlers, selected, 'active');
-    StyleService.setActive(this.$labels, selected, 'activeLabel');
+    StyleService.setActive(this.$labels, selected, 'labelActive');
   }
 
   render() {
@@ -169,7 +167,7 @@ class ContentSwitcher extends HTMLElement {
           transform: translateY(60px);
         }
 
-        .activeLabel {
+        .labelActive {
           color: ${this.theme.activeLabel};
         } 
 

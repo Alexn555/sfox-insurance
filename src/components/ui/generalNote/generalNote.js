@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
-import { GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
+import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
 import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
 import { errorIcon } from '../../common/styles/statusIcons/status';
