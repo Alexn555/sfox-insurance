@@ -4,6 +4,7 @@ import { GlobalSizes, CommonEvents, CustomWindowEvents, ImageViewerIds, ImageVie
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
+import { PackIds } from '../../../theme/enums';
 import DateService from '../../../services/helpers/dateService';
 import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
@@ -18,6 +19,7 @@ class ImageViewer extends HTMLElement {
       this.imgMedium = '';
       this.settings = ImageViewerHelper.getId(this.id);
       this.isMobile = false;
+      this.theme = theme[PackIds.imageViewer];
       this.imgViewerVisible = false;
       this.imgViewerId = 'imageViewer';
       this.zoomStarted = false;
@@ -285,11 +287,11 @@ class ImageViewer extends HTMLElement {
               width: 200px;
               height: 80px;
               text-align: center;
-              background-color: ${theme.imageViewer.error.bck};
+              background-color: ${this.theme.error.bck};
               font-size: smaller;
               font-weight: bold;
-              border: 1px solid ${theme.imageViewer.error.border};
-              color: ${theme.imageViewer.error.text};
+              border: 1px solid ${this.theme.error.border};
+              color: ${this.theme.error.text};
             }
 
             .close {

@@ -3,6 +3,7 @@ import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
+import { PackIds } from '../../../theme/enums';
 import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
 import { errorIcon } from '../../common/styles/statusIcons/status';
 
@@ -12,6 +13,7 @@ class GeneralNote extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.id = this.getAttribute('id') || 'generalNote';
       this.closeBtn = 'close';
+      this.theme = theme[PackIds.generalNote];
       this.size = '';
       this.text = '';
       this.status = '';
@@ -130,11 +132,11 @@ class GeneralNote extends HTMLElement {
             }
 
             .error {
-              color: ${theme.generalNote.error} !important;
+              color: ${this.theme.error} !important;
             }
 
             .success {
-              color: ${theme.generalNote.success} !important;
+              color: ${this.theme.success} !important;
             }
 
             .close {

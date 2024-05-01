@@ -1,6 +1,7 @@
 import { theme } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from "../../../services";
+import { PackIds } from '../../../theme/enums';
 import { Cursors, ArrayEnums } from '../../../enums';
 
 class PaginatableContent extends HTMLElement {
@@ -13,6 +14,7 @@ class PaginatableContent extends HTMLElement {
     this.label = this.getAttribute('label') || '';
     this.cursor = this.getAttribute('cursor') || Cursors.normal;
     this.pageContaner = 'pagination';
+    this.theme = theme[PackIds.paginatableContent];
     this.$pageHandlers = [];
     this.pageIds = [];
     this.totalAmount = 0;
@@ -111,17 +113,17 @@ class PaginatableContent extends HTMLElement {
           width: 60px;
           height: 60px;
           margin: 10px;
-          background-color: ${theme.paginatableContent.background};
+          background-color: ${this.theme.background};
           text-align: center;
           font-weight: bold;
           line-height: 60px;
-          border: 1px solid ${theme.paginatableContent.border};
+          border: 1px solid ${this.theme.border};
           user-select: none;
           cursor: ${this.cursor};         
         }
 
         .active {
-          background-color: ${theme.paginatableContent.active};
+          background-color: ${this.theme.active};
         }
       </style>
       <div id="${this.id}">
