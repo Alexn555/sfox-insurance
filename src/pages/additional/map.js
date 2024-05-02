@@ -1,4 +1,4 @@
-class MapForm extends HTMLElement {
+class MapPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
@@ -35,15 +35,13 @@ class MapForm extends HTMLElement {
               }
             }
           </style>
-          <form>
-            <div class="map-wrapper">
-              ${this.showContent(600, 400)}
-            </div>
-          </form>
+          <div class="map-wrapper">
+            ${this.showContent(600, 400)}
+          </div>
        `;
     }
   }
   
   if ("customElements" in window) {
-    customElements.define("map-form", MapForm);
+    customElements.define("map-page", MapPage);
   }

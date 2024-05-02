@@ -1,4 +1,7 @@
 ## Changelog
+v 2.46
+  Created Start intial version, Added Welcome page, Improved Tabs structure
+
 v 2.40
   Added Games list to game page, Huge improvements to settings and sets structure,
   Moved Notice to UI components

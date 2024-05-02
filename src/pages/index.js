@@ -1,9 +1,10 @@
 import './base';
 import './common/index';
-import './home';
 import './home/index';
-import './insurance';
+import './start/index';
+import'./start';
 import './insurance/index';
-import './additional';
+import './insurance';
 import './additional/index';
+import './additional';
 import './uknown';

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import commonTabStyle from '../../pages/common/tabsStyle';
 import { AdditionalPage } from '../../settings';
 import { IdService, StyleService } from '../../services';
 
@@ -7,6 +8,7 @@ class AdditionalTabs extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
+      this.theme = theme.page.tabs;
     }
     
     connectedCallback() {
@@ -63,44 +65,11 @@ class AdditionalTabs extends HTMLElement {
       const { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
         this.shadow.innerHTML = `
             <style>
-                .tab {
-                  overflow: hidden;
-                  background-color: ${theme.page.tabs.background};
-                  border-radius: 4px;
-                }
-                
-                .tab button {
-                  background-color: inherit;
-                  float: left;
-                  border: none;
-                  outline: none;
-                  cursor: pointer;
-                  padding: 14px 16px;
-                  transition: 0.3s;
-                  font-size: 17px;
-                }
-                
-                .tab button:hover {
-                  background-color: ${theme.page.tabs.hover};
-                  color: white;
-                  border-radius: 4px;
-                }
-                
-                .tab button.active {
-                  background-color: ${theme.page.tabs.background};
-                }
-                
-                .tabcontent {
-                  display: none;
-                  padding: 6px 12px;
-                  background-color: white;
-                  border: 1px solid ${theme.page.tabs.border};
-                  border-top: none;
-                }
+              ${commonTabStyle(this.theme)}
 
-                #writerForm {
-                  display: block;
-                }
+              #writerForm {
+                display: block;
+              }
             </style>
             <div class="tab">
               <button id="${game}">Game</button>
@@ -111,11 +80,11 @@ class AdditionalTabs extends HTMLElement {
             </div>
             
             <div id="game" class="tabcontent">
-              <game-form></game-form>
+              <game-page></game-page>
             </div>
 
             <div id="map" class="tabcontent">
-              <map-form></map-form>
+              <map-page></map-page>
             </div>   
             
             <div id="writerForm" class="tabcontent">

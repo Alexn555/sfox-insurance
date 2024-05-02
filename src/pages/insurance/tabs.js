@@ -1,44 +1,12 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
+import commonTabStyle from '../../pages/common/tabsStyle';
 import { IdService, StyleService } from '../../services';
 
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
-      .tab {
-        overflow: hidden;
-        background-color: ${theme.page.tabs.background};
-        border-radius: 4px;
-      }
-      
-      .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-        font-size: 17px;
-      }
-      
-      .tab button:hover {
-        background-color: ${theme.page.tabs.hover};
-        color: white;
-        border-radius: 4px;
-      }
-      
-      .tab button.active {
-        background-color: ${theme.page.tabs.background};
-      }
-      
-      .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        background-color: white;
-        border: 1px solid ${theme.page.tabs.border};
-        border-top: none;
-      }
+      ${commonTabStyle(theme.page.tabs)}
 
       #calculator {
         display: block;

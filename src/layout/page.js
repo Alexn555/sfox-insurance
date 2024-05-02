@@ -90,8 +90,8 @@ class PageSwitcher extends HTMLElement {
     }
 
     disconnectedCallback() {
-        document.removeEventListener(CustomEvents.header.menuClick, null);
-        document.removeEventListener(CustomEvents.interaction.flipBoard, null);
+        CustomEventService.removeFromContext(CustomEvents.header.menuClick, document);
+        CustomEventService.removeFromContext(CustomEvents.interaction.flipBoard, document);
     }
 
     render() {

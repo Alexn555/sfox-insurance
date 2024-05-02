@@ -4,7 +4,7 @@ import { GameViewerSettings } from '../../../components/ui/gameViewer/sets';
 import { gmVwGames } from './games';
 import { Game } from '../../../settings';
 
-class GameForm extends HTMLElement {
+class GamePage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
@@ -41,6 +41,6 @@ class GameForm extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("game-form", GameForm);
+    customElements.define("game-page", GamePage);
   }
   
