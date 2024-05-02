@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { theme } from '../../theme/theme';
-import { NoticeDisclaimerSets } from '../../settings/';
-import DataStorage from '../../services/storage';
-import InfoService from '../../services/page/infoService';
-import { SaveObjects } from '../../components/common/saves';
-import { IdService } from '../../services';
+import { theme } from '../../../theme/theme';
+import { NoticeDisclaimerSets } from '../../../settings';
+import DataStorage from '../../../services/storage';
+import InfoService from '../../../services/page/infoService';
+import { SaveObjects } from '../../common/saves';
+import { IdService } from '../../../services';
 
 class NoticeDisclaimer extends HTMLElement {
     constructor() {

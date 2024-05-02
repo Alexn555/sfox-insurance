@@ -1,6 +1,7 @@
 ## Changelog
 v 2.40
-  Added Games list to game page
+  Added Games list to game page, Huge improvements to settings and sets structure,
+  Moved Notice to UI components
 
 v 2.39
   Added GameViewer imporvements, Added Individual Game icons

@@ -1,6 +1,6 @@
 import './settings';
 import './layout';
-import './notice/notice';
+import '../components/ui/notice/notice';
 import './page';
 import './application';
 import './settings/index';
