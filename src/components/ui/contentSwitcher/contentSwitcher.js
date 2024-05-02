@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
-import { CustomWindowEvents, ContentSwSet } from '../../../settings';
+import { CustomWindowEvents } from '../../../settings';
+import { ContentSwSet } from './sets';
 import { CustomEventService, IdService, StyleService } from "../../../services";
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
@@ -101,9 +102,11 @@ class ContentSwitcher extends HTMLElement {
 
   setLabelIcons(pages) {
     pages.forEach((page, index) => {
-      let $page = IdService.id(page, this.shadow);
-      StyleService.setProperty($page, 'background', 
-        `url("${this.useIndIcons === BoolEnums.bTrue ? this.indIcons[index].source : LabelIcons[this.iconType].source}")`);
+      if (index < pages.length) {
+        let $page = IdService.id(page, this.shadow);
+        StyleService.setProperty($page, 'background', 
+          `url("${this.useIndIcons === BoolEnums.bTrue ? this.indIcons[index].source : LabelIcons[this.iconType].source}")`);
+      }
     });
   }
 

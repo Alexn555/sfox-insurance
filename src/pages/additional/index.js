@@ -1,4 +1,4 @@
-import './game';
+import './games/game';
 import './writer';
 import './gallery/gallery';
 import './map';

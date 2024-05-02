@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { CustomWindowEvents, CustomPageEvents, ImageViewerIds } from '../../../settings';
+import { CustomWindowEvents, CustomPageEvents } from '../../../settings';
+import { ImageViewerIds } from '../../../settings/ui';
 import { toggleDisplay } from '../../../services/utils/toggleButton';
 import { CustomEventService, IdService, LoggerService } from '../../../services';
 

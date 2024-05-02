@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Gif loading icon (c) cons8.com/preloaders
 
 import { ThemeHelper } from '../../../theme/theme';
@@ -5,7 +6,6 @@ import { CustomEventService, IdService, LoggerService, StyleService } from '../.
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { randomInteger } from '../../../services/utils';
-import { gmVwGames } from './games';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
 import { PackIds } from '../../../theme/enums';
@@ -18,11 +18,12 @@ class GameViewer extends HTMLElement {
         this.id = this.getAttribute('id') || 'game-viewer';
         this.displayLabel = this.getAttribute('display-label') || BoolEnums.bFalse;
         this.side = this.getAttribute('side') || ContentSwSides.right;
+        this.games = this.getAttribute('games') || '[]';
         this.currentIndex = 0;
-        this.games = gmVwGames;
-        this.gamesAmount = this.games.length;
+        this.gamesAmount = 0;
         this.sessionId = randomInteger(0, 200);
         this.theme = ThemeHelper.get([PackIds.gameViewer]);
+        this.setGames();
     }
     
     connectedCallback() {
@@ -61,6 +62,13 @@ class GameViewer extends HTMLElement {
 
     toggleContentLoaded(toggle) {
         this.$cntSwitcher.setAttribute('disable-actions', toggle ? BoolEnums.bFalse : BoolEnums.bTrue);
+    }
+
+    setGames() {
+        if (this.games) {
+            this.games = JSON.parse(this.games);
+            this.gamesAmount = this.games && this.games.length > 0 ? this.games.length : 0;
+        }
     }
 
     setLoading(timeout = 1, title, onComplete) {

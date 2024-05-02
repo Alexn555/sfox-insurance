@@ -1,6 +1,6 @@
 import { LoggerService } from '../../../services/';
 import { isMobile } from '../../../services/utils';
-import { ImageViewerSettings, ImageViewerIds } from '../../../settings/';
+import { ImageViewerSettings, ImageViewerIds } from './sets';
 
 export class ImageViewerHelper {
 

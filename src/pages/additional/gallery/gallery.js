@@ -1,5 +1,5 @@
 import { theme } from '../../../theme/theme';
-import { GallerySet } from '../../../settings';
+import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService } from '../../../services';
 import FlickService from '../../../services/api/flickrService';
 

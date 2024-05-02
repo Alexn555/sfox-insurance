@@ -1,4 +1,5 @@
-import { CustomWindowEvents, ImageViewerIds } from "../../../settings";
+import { CustomWindowEvents } from "../../../settings";
+import { ImageViewerIds } from './sets';
 import { CustomEventService, IdService } from "../../../services";
 
 class ImageViewerStart extends HTMLElement {

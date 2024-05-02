@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { CommonEvents, CustomPageEvents, ImageViewerIds, ImageViewerSettings } from '../../../settings';
+import { CommonEvents, CustomPageEvents } from '../../../settings';
+import { ImageViewerIds, ImageViewerSettings } from '../../../settings/ui';
 import FlickService from '../../../services/api/flickrService';
 import EnvService from '../../../services/api/envService';
 import DateService from '../../../services/helpers/dateService';

@@ -1,13 +1,15 @@
 // @ts-nocheck
-import { IdService } from '../../services';
-import { GameViewerSettings } from '../../settings/sets/gameViewer';
-import { Game } from '../../settings';
+import { IdService } from '../../../services';
+import { GameViewerSettings } from '../../../components/ui/gameViewer/sets';
+import { gmVwGames } from './games';
+import { Game } from '../../../settings';
 
 class GameForm extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isModal = Game.buttons.dialogOpener;
+      this.games = JSON.stringify(gmVwGames);
     }
   
     connectedCallback() {
@@ -28,6 +30,7 @@ class GameForm extends HTMLElement {
           <div class="game-wrapper">
              <game-viewer 
               id="${GameViewerSettings.gamePage.id}"
+              games='${this.games}'
               display-label="${GameViewerSettings.gamePage.displayLabel}"
               side="${GameViewerSettings.gamePage.side}"
              >

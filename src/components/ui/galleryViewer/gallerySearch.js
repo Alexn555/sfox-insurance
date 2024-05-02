@@ -1,4 +1,5 @@
-import { CustomEvents, GallerySet } from '../../../settings';
+import { CustomEvents } from '../../../settings/';
+import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService } from '../../../services';
 import { validateWhiteSpaces, valideAlphaNumeric } from '../../../services/utils/validators';
 import { styleErrors } from '../../common/styles/errors';

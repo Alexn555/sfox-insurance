@@ -1,4 +1,7 @@
 ## Changelog
+v 2.40
+  Added Games list to game page
+
 v 2.39
   Added GameViewer imporvements, Added Individual Game icons
 

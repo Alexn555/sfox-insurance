@@ -1,4 +1,6 @@
-import { CustomWindowEvents, GallerLoadHolders, GallerySet, GalleryImgViewerEnums, ImageViewerIds } from '../../../settings';
+import { CustomWindowEvents } from '../../../settings';
+import { ImageViewerIds } from '../../../settings/ui';
+import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
 import { CustomEventService, IdService, StyleService } from '../../../services';
 import { ArrayEnums } from '../../../enums';
 import EnvService from '../../../services/api/envService';

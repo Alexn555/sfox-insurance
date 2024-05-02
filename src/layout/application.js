@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
 import { Animations, PageStructure, CustomEvents, SEO,
-     SettingsBoard, NetworkCheckerSet, ImageViewerIds } from '../settings';
+     SettingsBoard, NetworkCheckerSet } from '../settings';
+import { ImageViewerIds } from '../settings/ui';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { getVersionFromPackage } from '../services/utils';

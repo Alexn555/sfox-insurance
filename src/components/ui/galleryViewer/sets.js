@@ -1,4 +1,4 @@
-import { Cursors } from '../../enums';
+import { Cursors } from '../../../enums';
 
 export const GallerLoadHolders = {
     Simple: 'simpla',
