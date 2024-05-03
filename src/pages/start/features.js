@@ -35,6 +35,7 @@ class FeaturesPage extends HTMLElement {
                     & ul {
                         & li {
                             list-style: none; 
+                            padding: 4px;
                         }
                     }
 
@@ -74,7 +75,10 @@ class FeaturesPage extends HTMLElement {
                             <b>GameViewer</b> - Change Game rapidly and get all needed sources from games 
                         </li>
                         <li>
-                            <b>Economy forms</b>: Slider, input, select - typical Form items to help build economy sites 
+                            <b>Economy forms</b>: Slider, banner, input, select - typical Form items to help build economy sites 
+                        </li>
+                        <li>
+                            <b>Settings (sets)</b> - global, env, pages settings 
                         </li>
                         <li>
                             <b>GalleryViewer</b> - to view and explore Images
