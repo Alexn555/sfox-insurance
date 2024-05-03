@@ -69,7 +69,7 @@ class HomeTabs extends HTMLElement {
             <style>
                 ${commonTabStyle(this.theme)}
 
-                #${this.tabs.accounts} {
+                #${this.tabs.start} {
                   display: block;
                 }
             </style>

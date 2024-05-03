@@ -23,8 +23,6 @@ class IndexPage extends HTMLElement {
 
     render() {
         this.shadow.innerHTML = `
-            <style>
-            </style>
             <base-page id="base-home" title="Start Your Page" active="${this.active}">
                 <home-tabs></home-tabs>
             </base-page> 

@@ -1,27 +1,16 @@
 // Info icon svg (c) css.gg/info
 
 import { IdService } from '../../services';
-import EnvService from '../../services/api/envService';
 
 // @ts-nocheck
 class FeaturesPage extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.active = this.getAttribute('active') || 'false';
-    }
-    
-    static get observedAttributes() { 
-        return ['active']; 
     }
 
     connectedCallback() {
         this.render();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
     }
 
     render() {
@@ -76,6 +65,12 @@ class FeaturesPage extends HTMLElement {
                         </li>
                         <li>
                             <b>Economy forms</b>: Slider, banner, input, select - typical Form items to help build economy sites 
+                        </li>
+                        <li>
+                            <b>Theme feature</b> - you can everytime change theme of page, plugins items
+                        </li>
+                        <li>
+                            <b>Save system</b> - all data values are saved after update
                         </li>
                         <li>
                             <b>Settings (sets)</b> - global, env, pages settings 
