@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { transitionAnimate } from '../../../components/common/styles/animations';
-import { IdService } from '../../../services';
+import { IdService, StyleService } from '../../../services';
 
 class AccountLoginInfo extends HTMLElement {
     constructor() {
@@ -19,9 +19,9 @@ class AccountLoginInfo extends HTMLElement {
 
     toggleInfo() {
       const el = IdService.id('info', this.shadow);
-      el.style.height = '80px'; 
+      StyleService.setProperty(el, 'height', '80px');
       el.innerHTML = '<span>User: <b>player</b> password: <b>ads123</b></span>';
-      setTimeout(() => { el.innerHTML = '';  el.style.height = '0px'; }, 3000);
+      setTimeout(() => { el.innerHTML = '';  StyleService.setProperty(el, 'height', '0px'); }, 3000);
     }
 
     disconnectedCallback() {

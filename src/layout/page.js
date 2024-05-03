@@ -3,7 +3,7 @@ import { pageNames, Animations, CustomEvents } from "../settings";
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
-import { ClassIdService, CustomEventService, IdService } from '../services';
+import { ClassIdService, CustomEventService, IdService, StyleService } from '../services';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -20,16 +20,19 @@ class PageSwitcher extends HTMLElement {
             const { value } = evt.detail;
             const el = ClassIdService.id('page', this.shadow);
             const isAngle = true;
-
+            let transform = '';
+            
             if (value) {
                 if (isAngle) {
-                    el.style.transform = 'rotate3d(1, 1, 1, 7deg)';
+                    transform = 'rotate3d(1, 1, 1, 7deg)';
                 } else {
-                    el.style.transform = 'rotateY(180deg)';
+                    transform = 'rotateY(180deg)';
                 }
             } else {
-                el.style.transform = 'rotate3d(1, 1, 1, 0deg)';
+                transform = 'rotate3d(1, 1, 1, 0deg)';
             }
+
+            StyleService.setProperty(el, 'transform', transform);
         }, document);
     }
 

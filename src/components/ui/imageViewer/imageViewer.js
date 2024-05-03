@@ -128,8 +128,10 @@ class ImageViewer extends HTMLElement {
         w: Math.ceil(screenW / factors.w),
         h: Math.ceil(screenH / factors.h)
       };
-      el.style.width = `${this.imgViewerSize.w}px`;
-      el.style.height = `${this.imgViewerSize.h}px`;
+      StyleService.setProperties(el, [
+        { property: 'width', value: `${this.imgViewerSize.w}px`},
+        { property: 'height', value: `${this.imgViewerSize.h}px`},  
+      ]);
     }
 
     toggleViewer(isOpen) {

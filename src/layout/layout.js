@@ -5,7 +5,7 @@ import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
 import { showComponent } from '../services/utils';
-import { ClassIdService, CustomEventService } from '../services';
+import { ClassIdService, CustomEventService, StyleService } from '../services';
 
 class Layout extends HTMLElement {
     constructor() {
@@ -36,14 +36,14 @@ class Layout extends HTMLElement {
     moveLayout(settingsToggle) {
         const container = ClassIdService.id('layout', this.shadow);
         const top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
-        container.style.transform = `translateY(${top}px)`;
-
-        container.style.transitionDuration = `${this.animationDuration}s`;
-
+        StyleService.setProperties(container, [
+            { property: 'transform', value: `translateY(${top}px)` },
+            { property: 'transitionDuration', value: `${this.animationDuration}s` },
+        ])
         CustomEventService.send(CustomEvents.settings.toggle, settingsToggle);
         
         setTimeout(() => {
-            container.style.transform = `translateY(0)`;
+            StyleService.setProperty(container, 'transform', 'translateY(0)');
         }, this.animationDuration * 1200);
     }
 

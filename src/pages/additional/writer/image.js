@@ -25,7 +25,7 @@ class WriterImage extends HTMLElement {
     connectedCallback() {
       this.render();
       this.loadEl = IdService.id('loading', this.shadow);
-      this.loadEl.style.opacity = 0;
+      StyleService.setProperty(this.loadEl, 'opacity', '0');
       this.$image = IdService.idAndClick('image', this.shadow, () => {
         CustomEventService.send(CustomPageEvents.tabs.writer.showImage, this.imgMedium);
       });
@@ -36,8 +36,8 @@ class WriterImage extends HTMLElement {
     }
 
     async fetchImage() {
-      this.loadEl.style.opacity = 1; 
-      
+      StyleService.setProperty(this.loadEl, 'opacity', '1');
+
       const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
       const imgEl = IdService.id('imgSource', this.shadow);

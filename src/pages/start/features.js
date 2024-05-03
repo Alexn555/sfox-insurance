@@ -58,7 +58,7 @@ class FeaturesPage extends HTMLElement {
                             <b>NetworkChecker</b> - Ability to check internet connection 
                         </li>
                         <li>
-                            <b>ImageViewer</b> - huge plugin component that desides how Image Viewing looks 
+                            <b>ImageViewer</b> - Huge plugin that decides how Image Viewing looks 
                         </li>
                         <li>
                             <b>GameViewer</b> - Change Game rapidly and get all needed sources from games 
@@ -67,19 +67,19 @@ class FeaturesPage extends HTMLElement {
                             <b>Economy forms</b>: Slider, banner, input, select - typical Form items to help build economy sites 
                         </li>
                         <li>
-                            <b>Theme feature</b> - you can everytime change theme of page, plugins items
+                            <b>Theme feature</b> - You can everytime change theme of page, plugins items
                         </li>
                         <li>
-                            <b>Save system</b> - all data values are saved after update
+                            <b>Save system</b> - Selected data values are saved after update
                         </li>
                         <li>
-                            <b>Settings (sets)</b> - global, env, pages settings 
+                            <b>Settings (sets)</b> - Global, env, pages settings 
                         </li>
                         <li>
-                            <b>GalleryViewer</b> - to view and explore Images
+                            <b>GalleryViewer</b> - To view and explore Images
                         </li>
                         <li>
-                            <b>Simple Login</b> - login example to authenticate user
+                            <b>Simple Login</b> - Login example to authenticate user
                         </li>
                         <li>
                             <b>Account</b> - Account example 

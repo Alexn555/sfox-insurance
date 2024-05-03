@@ -40,7 +40,7 @@ class FooterLinkSection extends HTMLElement {
             });
         } else {
             const toggleBtn = ClassIdService.id('toggle-content', this.shadow);
-            toggleBtn.style.left = `${this.getTogglePosition()}px`;
+            StyleService.setProperty(toggleBtn, 'left', `${this.getTogglePosition()}px`);
         }
     }
     

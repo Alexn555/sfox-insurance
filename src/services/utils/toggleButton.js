@@ -1,3 +1,4 @@
+import StyleService from '../../services/dom/styleService';
 import { IdService } from '../dom/idService';
 
 export const toggleButton = (id, context, timeout = 2000) => {
@@ -8,6 +9,6 @@ export const toggleButton = (id, context, timeout = 2000) => {
 
 export const toggleDisplay = (id, context, timeout = 2000) => {
     const el = IdService.id(id, context);
-    el.style.display = 'none';
-    setTimeout(() => {  el.style.display = 'block'; }, timeout);
+    StyleService.setProperty(el, 'display', 'none');
+    setTimeout(() => { StyleService.setProperty(el, 'display', 'block'); }, timeout);
 }

@@ -67,8 +67,10 @@ class GeneralNote extends HTMLElement {
       if (this.size !== '') {
         const sizes = JSON.parse(this.size);
         const { w, wUnits, h } = sizes;
-        this.$container.style.width = `${w}${wUnits}`;
-        this.$container.style.height = `${h}px`;
+        StyleService.setProperties(this.$container, [
+          { property: 'width', value: `${w}${wUnits}` },
+          { property: 'height', value: `${h}px` },
+        ])
       }
     }
 
@@ -105,10 +107,8 @@ class GeneralNote extends HTMLElement {
 
     setCloseVis() {
       const el = ClassIdService.id(this.closeBtn, this.shadow);
-      el.style.opacity = '1';
-      if (this.code === GeneralNoteCodes.networkLost) {
-        el.style.opacity = '0';
-      }
+      let opacity = this.code === GeneralNoteCodes.networkLost ? '0' : '1';
+      StyleService.setProperty(el, 'opacity', opacity);
     }
 
     render() {

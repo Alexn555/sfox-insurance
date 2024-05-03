@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.48
-  Added improvements to Welcome page, Added Features page
+  Added improvements to Welcome page, Added Features page, 
+  Style setProperty implementation
 
 v 2.46
   Created Start intial version, Added Welcome page, Improved Tabs structure
