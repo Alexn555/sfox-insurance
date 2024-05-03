@@ -12,6 +12,7 @@ class HomeTabs extends HTMLElement {
       this.tabs = {
         start: 'start',
         welcome: 'welcome',
+        features: 'features',
         accounts: 'accounts'
       };
     }
@@ -24,12 +25,13 @@ class HomeTabs extends HTMLElement {
     initForm() {
       this.$tabStart = IdService.id(this.tabs.start, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
+      this.$tabFeatures = IdService.id(this.tabs.features, this.shadow);
       this.$tabAccount = IdService.id(this.tabs.accounts, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { start, welcome, accounts } = HomePageTabs.tabLinks;
+      const { start, welcome, features, accounts } = HomePageTabs.tabLinks;
 
       this.$btnStart = IdService.idAndClick(start, this.shadow, () => {
         this.openTab(this.tabs.start, this.$tabStart);
@@ -37,13 +39,16 @@ class HomeTabs extends HTMLElement {
       this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
         this.openTab(this.tabs.welcome, this.$tabWelcome);
       });
+      this.$btnFeatures = IdService.idAndClick(features, this.shadow, () => {
+        this.openTab(this.tabs.features, this.$tabFeatures);
+      });
       this.$btnAccount = IdService.idAndClick(accounts, this.shadow, () => {
         this.openTab(this.tabs.accounts, this.$tabAccount);
       });
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$btnStart, this.$btnWelcome, this.$btnAccount]);
+      IdService.removeList([this.$btnStart, this.$btnWelcome, this.$btnFeatures, this.$btnAccount]);
     }
 
     openTab(evt, selected) {
@@ -51,7 +56,7 @@ class HomeTabs extends HTMLElement {
       const tab = IdService.id(item, this.shadow);
 
       if (tab) {
-        StyleService.setDisplayMultiple([this.$tabStart, this.$tabWelcome, this.$tabAccount], false);
+        StyleService.setDisplayMultiple([this.$tabStart, this.$tabWelcome, this.$tabFeatures, this.$tabAccount], false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -59,7 +64,7 @@ class HomeTabs extends HTMLElement {
     }
 
     render() {
-      const { start, welcome, accounts } = HomePageTabs.tabLinks;
+      const { start, welcome, features, accounts } = HomePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
                 ${commonTabStyle(this.theme)}
@@ -71,6 +76,7 @@ class HomeTabs extends HTMLElement {
             <div class="tab">
               <button id="${start}">Start</button>
               <button id="${welcome}">Welcome</button>
+              <button id="${features}">Features</button>
               <button id="${accounts}">Accounts</button>
             </div>
 
@@ -81,6 +87,10 @@ class HomeTabs extends HTMLElement {
             <div id="${this.tabs.welcome}" class="tabcontent">
                 <welcome-page></welcome-page>
             </div> 
+
+            <div id="${this.tabs.features}" class="tabcontent">
+              <features-page></features-page>
+            </div>
             
             <div id="${this.tabs.accounts}" class="tabcontent">
               <home-accounts-page></home-accounts-page>

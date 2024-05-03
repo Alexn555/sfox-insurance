@@ -1,3 +1,5 @@
+// Info icon svg (c) css.gg/info
+
 import { IdService } from '../../services';
 import EnvService from '../../services/api/envService';
 
@@ -22,10 +24,10 @@ class WelcomePage extends HTMLElement {
         el?.setAttribute('active', newValue);
     }
 
-    showLogo() {
+    showLogo() { 
         return `
             <p>
-                <img src="${EnvService.getRoot()}/assets/logos/cater.png" alt="Cater" />
+                <img src="${EnvService.getRoot()}/assets/intro/info.svg" width="64" height="64" alt="Cater" />
             </p>
         `;
     }
@@ -35,6 +37,7 @@ class WelcomePage extends HTMLElement {
             <style>
                 .welcome {
                     text-align: center;
+                    padding-bottom: 20px;
                 }
             </style>
             <div class="welcome">
