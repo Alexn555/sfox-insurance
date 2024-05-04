@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.49
-  Added Start Page improvements, Start page theme, Menu links improvements
+  Added Start Page improvements, Start page theme, Menu links improvements,
+  Added JSONService to parse, set arrays and objects
 
 v 2.48
   Added improvements to Welcome page, Added Features page, 

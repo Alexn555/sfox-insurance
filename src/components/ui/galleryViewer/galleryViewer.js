@@ -2,8 +2,9 @@ import { CustomWindowEvents } from '../../../settings';
 import { ImageViewerIds } from '../../../settings/ui';
 import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
 import { CustomEventService, IdService, StyleService } from '../../../services';
-import { ArrayEnums } from '../../../enums';
+import { JSONService } from '../../../services/utils';
 import EnvService from '../../../services/api/envService';
+import { ArrayEnums } from '../../../enums';
 
 class GalleryViewer extends HTMLElement {
   constructor() {
@@ -57,20 +58,13 @@ class GalleryViewer extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'images' && oldValue !== newValue) {
-      this.allImages = this.parseImage(newValue);
+      this.allImages = JSONService.getArray(newValue);
       this.setAmount(this.allImages.length);
       this.setPortion(this.currentPage);
     }
     if (name === 'label' && oldValue !== newValue) {
       this.$pagination?.setAttribute('label', newValue);
     }
-  }
-
-  parseImage(images) {
-    if (images) {
-      return JSON.parse(images);
-    }
-    return [];
   }
 
   setImages(images) {

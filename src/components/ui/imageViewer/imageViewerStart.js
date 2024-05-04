@@ -1,6 +1,7 @@
 import { CustomWindowEvents } from "../../../settings";
 import { ImageViewerIds } from './sets';
 import { CustomEventService, IdService } from "../../../services";
+import { JSONService } from '../../../services/utils';
 
 class ImageViewerStart extends HTMLElement {
   constructor() {
@@ -13,7 +14,7 @@ class ImageViewerStart extends HTMLElement {
 
     CustomEventService.event(CustomWindowEvents.imageViewer.init, (e) => {
       if (e.detail) {
-        const sets = JSON.parse(e.detail.value);
+        const sets = JSONService.getObj(e.detail.value);
         const setId = sets['settingsId'];
         if (this.currentViewerId !== setId) {
           this.currentViewerId = setId;

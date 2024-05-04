@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CustomEvents, CustomWindowEvents } from '../../settings';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../services';
-import { isMobile } from '../../services/utils';
+import { JSONService, isMobile } from '../../services/utils';
 
 class IconSelect extends HTMLElement {
     constructor() {
@@ -57,7 +57,7 @@ class IconSelect extends HTMLElement {
 
     setIcons() {
         if (!this.mounted) {
-            const icons = JSON.parse(this.items);
+            const icons = JSONService.getArray(this.items);
             let html = '';
             icons.forEach((icon, index) => {
                 html += `<div id="icon-${icon}" class="icon-selection">

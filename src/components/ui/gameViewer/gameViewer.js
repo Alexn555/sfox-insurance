@@ -1,11 +1,10 @@
 // @ts-nocheck
 // Gif loading icon (c) cons8.com/preloaders
-
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
-import { randomInteger } from '../../../services/utils';
+import { randomInteger, JSONService } from '../../../services/utils';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
 import { PackIds } from '../../../theme/enums';
@@ -66,7 +65,7 @@ class GameViewer extends HTMLElement {
 
     setGames() {
         if (this.games) {
-            this.games = JSON.parse(this.games);
+            this.games = JSONService.getArray(this.games);
             this.gamesAmount = this.games && this.games.length > 0 ? this.games.length : 0;
         }
     }

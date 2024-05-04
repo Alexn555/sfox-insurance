@@ -5,6 +5,7 @@ import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
 import { PackIds } from '../../../theme/enums';
 import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { errorIcon } from '../../common/styles/statusIcons/status';
 
 class GeneralNote extends HTMLElement {
@@ -48,7 +49,7 @@ class GeneralNote extends HTMLElement {
     }
 
     setProps(rowProps = '') {
-      const props = JSON.parse(rowProps);
+      const props = JSONService.getObj(rowProps);
       this.status = props.status;
       this.code = props.code;
       this.text = props.text;
@@ -65,7 +66,7 @@ class GeneralNote extends HTMLElement {
 
     setCustomSize() {
       if (this.size !== '') {
-        const sizes = JSON.parse(this.size);
+        const sizes = JSONService.getObj(this.size);
         const { w, wUnits, h } = sizes;
         StyleService.setProperties(this.$container, [
           { property: 'width', value: `${w}${wUnits}` },

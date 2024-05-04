@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
 import { ClassIdService, CustomEventService, StyleService } from '../../services';
-import { isMobile } from '../../services/utils';
+import { JSONService, isMobile } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
@@ -22,7 +22,7 @@ class FooterLinkSection extends HTMLElement {
         const protocol = 'https://';
 
         if (rowLinks && rowLinks.length > 0) {
-            this.links = JSON.parse(rowLinks);
+            this.links = JSONService.getArray(rowLinks);
             for (let i = 0; i < this.links.length; i++) {
                 this.linksContent += `<div class="link-item">
                   <a href="${protocol}${this.url}/${this.links[i]}">${this.links[i]}</a>

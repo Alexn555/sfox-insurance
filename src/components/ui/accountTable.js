@@ -1,3 +1,4 @@
+import { JSONService } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
 class AccountTable extends HTMLElement {
@@ -20,12 +21,12 @@ class AccountTable extends HTMLElement {
     }
 
     constructTable() {
-        const names = JSON.parse(this.columnNames);
-        const column1 = [names[0], ...JSON.parse(this.col1)];
-        const column2 = [names[1], ...JSON.parse(this.col2)];
-        const column3 = [names[2], ...JSON.parse(this.col3)];
-        const column4 = [names[3], ...JSON.parse(this.col4)];
-        const column5 = [names[4], ...JSON.parse(this.col5)];
+        const names = JSONService.getArray(this.columnNames);
+        const column1 = [names[0], ...JSONService.getArray(this.col1)];
+        const column2 = [names[1], ...JSONService.getArray(this.col2)];
+        const column3 = [names[2], ...JSONService.getArray(this.col3)];
+        const column4 = [names[3], ...JSONService.getArray(this.col4)];
+        const column5 = [names[4], ...JSONService.getArray(this.col5)];
 
         const isLastTotal2x = JSON.parse(this.lastTotal2x) !== '';
         const columns = [column1, column2, column3, column4, column5];

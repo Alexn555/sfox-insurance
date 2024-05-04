@@ -2,6 +2,7 @@
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { CustomEventService, IdService } from '../../services';
+import { JSONService } from '../../services/utils';
 
 class Selectbox extends HTMLElement {
     constructor() {
@@ -42,10 +43,10 @@ class Selectbox extends HTMLElement {
 
    setOptions() {
       let html = '';
-      const hmtlItems = JSON.parse(this.items);
+      const hmtlItems = JSONService.getArray(this.items);
       let optNames = '';
       if (this.optionNames !== '') {
-        optNames = JSON.parse(this.optionNames);
+        optNames = JSONService.getArray(this.optionNames);
       }
 
       for (let i = 0; i < hmtlItems.length; i++) {

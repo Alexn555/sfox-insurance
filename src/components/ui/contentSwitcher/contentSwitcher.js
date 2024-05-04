@@ -4,6 +4,7 @@ import { PackIds } from '../../../theme/enums';
 import { CustomWindowEvents } from '../../../settings';
 import { ContentSwSet } from './sets';
 import { CustomEventService, IdService, StyleService } from "../../../services";
+import { JSONService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
@@ -69,14 +70,14 @@ class ContentSwitcher extends HTMLElement {
 
   initIndividualIcons() {
     if (this.indIcons !== '') {
-      this.indIcons = JSON.parse(this.indIcons);
+      this.indIcons = JSONService.getArray(this.indIcons);
     }
   }
 
   initLabels() {
     let labels = [];
     if (this.labels) {
-      labels = JSON.parse(this.labels);
+      labels = JSONService.getArray(this.labels);
       this.labels = labels;
     }
     if (labels.length === 0) {
