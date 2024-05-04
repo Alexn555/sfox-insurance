@@ -1,4 +1,7 @@
 ## Changelog
+v 2.49
+  Added Start Page improvements, Start page theme, Menu links improvements
+
 v 2.48
   Added improvements to Welcome page, Added Features page, 
   Style setProperty implementation

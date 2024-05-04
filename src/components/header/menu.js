@@ -1,6 +1,7 @@
 import { theme } from '../../theme/theme';
 import { CustomEvents, MouseEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
+import { HeaderMenuLinks } from '../../enums/menuLinks';
 import { ClassIdService, CustomEventService, IdService } from '../../services';
 
 class HeaderMenu extends HTMLElement {
@@ -18,13 +19,13 @@ class HeaderMenu extends HTMLElement {
 
     initForm() {
         this.$home = IdService.idAndClick('home', this.shadow, () => {
-            this.toggleMenuItem('home');
+            this.toggleMenuItem(HeaderMenuLinks.Home);
         });
         this.$insurance = IdService.idAndClick('insurance', this.shadow, () => {
-            this.toggleMenuItem('insurance');
+            this.toggleMenuItem(HeaderMenuLinks.Insurance);
         });
         this.$additional = IdService.idAndClick('additional', this.shadow, () => {
-            this.toggleMenuItem('additional');
+            this.toggleMenuItem(HeaderMenuLinks.Additional);
         });
     }
 

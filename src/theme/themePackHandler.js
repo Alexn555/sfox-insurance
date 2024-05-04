@@ -1,4 +1,5 @@
 // packs
+import { StartPageTheme } from '../pages/start/theme';
 import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
@@ -13,6 +14,7 @@ export default class ThemePackHandler {
   static addPlugins(_theme, curTheme, addPack) {
         if (addPack) {
             const packs = [
+                { id: PackIds.startPage, pack: StartPageTheme },
                 { id: PackIds.generalNote, pack: generalNoteTheme },
                 { id: PackIds.paginatableContent, pack: paginatableContentTheme },
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },

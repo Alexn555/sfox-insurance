@@ -1,6 +1,6 @@
 // W3C example (c) W3C 2024
 import { CustomWindowEvents } from '../settings';
-import { CustomEventService } from '../services';
+import { CustomEventService, StyleService } from '../services';
 
 export const draggableContainer = (el, signal = false) => {
     let posX = 0, posY = 0, initX = 0, initY = 0;
@@ -24,10 +24,10 @@ export const draggableContainer = (el, signal = false) => {
         initX = e.clientX;
         initY = e.clientY;
         // set the element's new position:
-        el.style.top = (el.offsetTop - posY) + 'px';
+        StyleService.setProperty(el, 'top', (el.offsetTop - posY) + 'px');
         const newX = (el.offsetLeft - initX);
         const offsetX = newX > 0 ? -Math.abs(newX) : Math.abs(newX);
-        el.style.left = offsetX + 'px'; // posX
+        StyleService.setProperty(el, 'left',  offsetX + 'px');  // posX
         if (signal) {
             CustomEventService.send(CustomWindowEvents.draggable.moveStart);
         }

@@ -1,5 +1,11 @@
 // @ts-nocheck
-import { IdService } from '../../../services';
+import { ThemeHelper } from '../../../theme/theme';
+import { PackIds } from '../../../theme/enums';
+import { IdService, CustomEventService } from '../../../services';
+import { capFirstLetter } from '../../../services/utils';
+import { CustomEvents } from '../../../settings';
+import { HeaderMenuLinks } from '../../../enums/menuLinks';
+import { LinkTypes, LinkVariants } from '../../../components/common/ui';
 import { StartItemInfo } from './info';
 
 class StartItemPage extends HTMLElement {
@@ -12,6 +18,7 @@ class StartItemPage extends HTMLElement {
             label: '', 
             description: '' 
         };
+        this.theme = ThemeHelper.get(PackIds.startPage);
     }
 
     connectedCallback() {
@@ -24,14 +31,33 @@ class StartItemPage extends HTMLElement {
         if (this.info) {
             this.$main = IdService.id('main', this.shadow);
             this.$main.innerHTML = `
-                <h3>${this.info.label}</h3
+                <h3>
+                    <span class="label">${this.info.label}</span>
+                    <action-link 
+                        id="link-${id}"
+                        label="${this.info.label}" 
+                        type="${LinkTypes.transparentButton}"
+                        variant="${LinkVariants.thinText}"> 
+                    </action-link>
+                </h3>
                 <p>${this.info.description}</p>
             `;
             this.$image = IdService.id('image', this.shadow);
             this.$image.setAttribute('src', this.info.image);
             this.$link = IdService.id('linkImage', this.shadow);
             this.$link.setAttribute('href', this.info.image);
+            this.setHandlers(this.id);
         }
+    }
+
+    setHandlers(id) {
+        this.$btnLink = IdService.idAndClick(`link-${id}`, this.shadow, () => {
+            CustomEventService.send(CustomEvents.header.menuClick, this.getLink(id));     
+        });
+    }
+
+    getLink(id) {
+        return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[capFirstLetter(id)];
     }
 
     render() {
@@ -40,11 +66,15 @@ class StartItemPage extends HTMLElement {
                 .page {
                     display: grid;
                     grid-template-columns: 30% 70%;
-                    border: 1px dashed #dcdcdc;
+                    border: 1px dashed ${this.theme.startItem.border};
                 }
                 #main {
                     width: 100%;
                     height: 100px;
+
+                    .label {
+                        color: ${this.theme.startItem.label};
+                    }
                 }
                 .image {
                     & img {

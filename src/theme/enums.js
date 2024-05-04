@@ -7,6 +7,7 @@ export const Themes = {
 };
 
 export const PackIds = {
+    startPage: 'startPage',
     generalNote: 'generalNote',
     paginatableContent: 'paginatableContent',
     galleryPage: 'galleryPage',

@@ -2,7 +2,7 @@
 import { Animations, CommonEvents, CustomEvents } from '../../settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
-import { ClassIdService, CustomEventService, IdService } from '../../services';
+import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 
 class LoadSettings extends HTMLElement {
     constructor() {
@@ -34,7 +34,7 @@ class LoadSettings extends HTMLElement {
     updateSize() {
         this.screenW = window.innerWidth;
         const stn = ClassIdService.id('settings-button', this.shadow);
-        stn.style.left = `${this.getStnPosition()}px`;
+        StyleService.setProperty(stn, 'left', this.getStnPosition()+'px');
     }
 
     setLayoutOffset() {
