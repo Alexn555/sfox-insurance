@@ -2,6 +2,7 @@ import { theme } from '../../../theme/theme';
 import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService } from '../../../services';
 import FlickService from '../../../services/api/flickrService';
+import { JSONService } from '../../../services/utils';
 
 class GalleryPage extends HTMLElement {
     constructor() {
@@ -48,7 +49,7 @@ class GalleryPage extends HTMLElement {
 
     async activateContent(searchword) {
       const images = await this.flickrService.getImages(searchword, this.totalAmount);
-      this.$viewer.setAttribute('images', JSON.stringify(images));
+      this.$viewer.setAttribute('images', JSONService.set(images));
     }
 
     updateLabel(searchword) {

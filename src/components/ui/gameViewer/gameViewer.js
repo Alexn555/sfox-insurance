@@ -2,9 +2,9 @@
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
+import { randomInteger, JSONService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
-import { randomInteger, JSONService } from '../../../services/utils';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
 import { PackIds } from '../../../theme/enums';
@@ -101,11 +101,11 @@ class GameViewer extends HTMLElement {
     }
 
     getGameLabels() {
-        return JSON.stringify(this.games.map(game => game.title));
+       return JSONService.set(this.games.map(game => game.title));
     }
 
     getGameIcons() {
-        return JSON.stringify(this.games.map(game => game.icon));
+        return JSONService.set(this.games.map(game => game.icon));
     }
 
     render() {

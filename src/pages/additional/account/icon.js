@@ -5,6 +5,7 @@ import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
 import { CustomEventService, IdService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { Account } from '../../../settings';
 
 class AccountIcon extends HTMLElement {
@@ -133,7 +134,7 @@ class AccountIcon extends HTMLElement {
     }
 
     render() {
-      const varias = JSON.stringify(this.variants);
+      const varias = JSONService.set(this.variants);
       this.shadow.innerHTML = `
           <style>
             #profile {

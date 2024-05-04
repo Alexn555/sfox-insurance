@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { IdService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { GameViewerSettings } from '../../../components/ui/gameViewer/sets';
 import { gmVwGames } from './games';
 import { Game } from '../../../settings';
@@ -9,7 +10,7 @@ class GamePage extends HTMLElement {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isModal = Game.buttons.dialogOpener;
-      this.games = JSON.stringify(gmVwGames);
+      this.games = JSONService.set(gmVwGames);
     }
   
     connectedCallback() {

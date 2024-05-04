@@ -1,5 +1,5 @@
 import { LoggerService } from '../../../services/';
-import { isMobile } from '../../../services/utils';
+import { isMobile, JSONService } from '../../../services/utils';
 import { ImageViewerSettings, ImageViewerIds } from './sets';
 
 export class ImageViewerHelper {
@@ -9,7 +9,7 @@ export class ImageViewerHelper {
 
         let propertiesAmount = 0;
         if (ImageViewerSettings.allLevelsCount) {
-            propertiesAmount = JSON.stringify(cont).match(/[^\\]":/g).length;
+            propertiesAmount = JSONService.set(cont).match(/[^\\]":/g).length;
         } else {
             propertiesAmount = Object.keys(cont).length;
         }

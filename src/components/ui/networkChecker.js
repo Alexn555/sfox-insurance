@@ -1,5 +1,6 @@
 import { CustomWindowEvents, NetworkCheckerSet } from "../../settings";
 import { CustomEventService, IdService } from "../../services";
+import { JSONService } from '../../services/utils';
 import { GeneralNoteEnums, GeneralNoteCodes } from "../../enums";
 
 class NetworkChecker extends HTMLElement {
@@ -10,7 +11,7 @@ class NetworkChecker extends HTMLElement {
     this.connectionON = "Network connection restored";
     this.msg = "Network connection OK";
     this.container = "genericNote";
-    this.sizes = JSON.stringify({w: 240, wUnits: 'px', h: 100});
+    this.sizes = JSONService.set({w: 240, wUnits: 'px', h: 100});
     this.lostConnection = false;
   }
 
