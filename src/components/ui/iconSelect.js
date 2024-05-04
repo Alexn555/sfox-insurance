@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CustomEvents, CustomWindowEvents } from '../../settings';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../services';
-import { JSONService, isMobile } from '../../services/utils';
+import { JSONService, MobileService } from '../../services/utils';
 
 class IconSelect extends HTMLElement {
     constructor() {
@@ -51,7 +51,7 @@ class IconSelect extends HTMLElement {
     }
 
     initColumnStyles() {
-        this.styles.columns = isMobile() ? this.mobColumns : this.deskColumns;
+        this.styles.columns = MobileService.isMobile() ? this.mobColumns : this.deskColumns;
         this.styles.width = this.styles.columns > 1 ? 400 : 160;
     }
 

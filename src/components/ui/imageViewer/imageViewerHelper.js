@@ -1,5 +1,5 @@
 import { LoggerService } from '../../../services/';
-import { isMobile, JSONService } from '../../../services/utils';
+import { MobileService, JSONService } from '../../../services/utils';
 import { ImageViewerSettings, ImageViewerIds } from './sets';
 
 export class ImageViewerHelper {
@@ -26,7 +26,7 @@ export class ImageViewerHelper {
     }
 
     static updateSize(largeScreen) {
-      const mobile = isMobile();
+      const mobile = MobileService.isMobile();
       const screenW = window.innerWidth;
       const screenH = window.innerHeight;
       let factors = mobile ? { w: 1.1, h: 1.1 } : { w: 1.1, h: 1.2 };

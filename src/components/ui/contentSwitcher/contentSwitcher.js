@@ -175,10 +175,16 @@ class ContentSwitcher extends HTMLElement {
 
         .sideLt {
           flex-direction: row-reverse;
+          @media (max-width: 768px) {
+            flex-direction: column-reverse;
+          }
         }
 
         .sideRt {
           flex-direction: row;
+          @media (max-width: 768px) {
+            flex-direction: column-reverse;
+          }
         }
 
         .label {
@@ -208,9 +214,13 @@ class ContentSwitcher extends HTMLElement {
           padding-left: 60px;   
 
           @media (max-width: 768px) {
+            flex-direction: row;
+            width: 100%;
+            height: 160px;
             padding-left: 20px;     
           }
         }
+
         .page {
           width: 80px;
           height: 100px;

@@ -1,6 +1,5 @@
 export const CommonEvents = {
     click: 'click',
-    tap: 'tap',
     resize: 'resize',
     keypress: 'keypress',
     keydown: 'keydown',

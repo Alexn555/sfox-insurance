@@ -12,8 +12,9 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 ## Changelog
 v 2.49
   Added Start Page improvements, Start page theme, Menu links improvements,
-  Added JSONService to parse, set arrays and objects
-
+  Added JSONService to parse, set arrays and objects,
+  Improved Mobile detection and MobileService
+  
 v 2.48
   Added improvements to Welcome page, Added Features page, 
   Style setProperty implementation
@@ -30,16 +31,6 @@ v 2.39
 
 v 2.38
   Added GameViewer improvements, ContentSwitcher improvements, added gameViewer theme
-
-v 2.37
-  Created GameViewer and ContentSwitcher to view games
-
-v 2.35
-  Added ThemeHelper performance improvements
-
-v 2.34
-  Added Gallery validation search improvements, tap on mobile idAndClick,
-  Created Theme Pack handler
 
 ## Demo 
 

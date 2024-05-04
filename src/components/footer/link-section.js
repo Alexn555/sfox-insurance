@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
 import { ClassIdService, CustomEventService, StyleService } from '../../services';
-import { JSONService, isMobile } from '../../services/utils';
+import { JSONService, MobileService } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
@@ -33,7 +33,7 @@ class FooterLinkSection extends HTMLElement {
 
     updateSize() {
         this.screenW = window.innerWidth;
-        if (!isMobile()) {
+        if (!MobileService.isMobile()) {
             const content = ClassIdService.idAll('link-content', this.shadow);
             content.forEach((contentItem) => {
                 StyleService.setDisplay(contentItem, true);
@@ -60,7 +60,7 @@ class FooterLinkSection extends HTMLElement {
 
     toggleContent() {
         this.contentOpen = !this.contentOpen;
-        if (isMobile() && this.$content) {
+        if (MobileService.isMobile() && this.$content) {
             StyleService.setDisplay(this.$content, this.contentOpen);
         }
     }

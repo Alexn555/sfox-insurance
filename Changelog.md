@@ -1,7 +1,8 @@
 ## Changelog
 v 2.49
   Added Start Page improvements, Start page theme, Menu links improvements,
-  Added JSONService to parse, set arrays and objects
+  Added JSONService to parse, set arrays and objects,
+  Improved Mobile detection and MobileService
 
 v 2.49
   Added Start Page improvements, Start page theme, Menu links improvements

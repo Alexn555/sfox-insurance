@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents, PageStructure } from '../settings';
-import { isMobile } from '../services/utils';
+import { MobileService } from '../services/utils';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
@@ -30,7 +30,7 @@ class Layout extends HTMLElement {
     }
 
     setLayoutOffset() {
-        this.laytOffsetSettings = isMobile() ? '60' : '0';
+        this.laytOffsetSettings = MobileService.isMobile() ? '60' : '0';
     }
 
     moveLayout(settingsToggle) {

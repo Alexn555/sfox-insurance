@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
 import { CustomEventService, ClassIdService, IdService, StyleService } from '../../services';
-import { isMobile } from '../../services/utils';
+import { MobileService } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
 import { showComponent } from '../../services/utils';
@@ -15,7 +15,7 @@ class Header extends HTMLElement {
 
     updateSize() {
         const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
-        StyleService.setDisplay(toggleItem, !isMobile());
+        StyleService.setDisplay(toggleItem, !MobileService.isMobile());
     }
     
     connectedCallback() {
@@ -47,7 +47,7 @@ class Header extends HTMLElement {
     }
 
     toggleMenu() {
-       if (isMobile()) {
+       if (MobileService.isMobile()) {
             const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
             const toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
             const isMenuOpen = !StyleService.isDisplaying(toggleItem);

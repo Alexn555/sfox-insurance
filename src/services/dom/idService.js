@@ -1,4 +1,3 @@
-import { isMobile } from '../../services/utils';
 import LoggerService from '../../services/loggerService';
 import { CommonEvents } from '../../settings';
 
@@ -12,7 +11,7 @@ export class IdService {
 
     static idAndClick(id, ctx, callback) {
         const el = this.id(id, ctx);
-        el.addEventListener(!isMobile() ? CommonEvents.click : CommonEvents.tap, callback);
+        el.addEventListener(CommonEvents.click, callback);
         return el;
     }
 
