@@ -32,7 +32,12 @@ class AccountPwdReminder extends HTMLElement {
       this.$container = IdService.id(this.container, this.shadow);
 
       CustomEventService.event(CustomPageEvents.users.reminder.open, () => {
-        this.$container.showModal();
+        setTimeout(() => {
+          if (this.$container) {
+            this.$container.close();
+            this.$container.showModal();
+          }
+        }, 500);
       });
 
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {

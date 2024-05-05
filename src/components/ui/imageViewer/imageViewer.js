@@ -141,7 +141,12 @@ class ImageViewer extends HTMLElement {
           this.setImage();
           this.checkImage();
           try {
-            el.showModal();
+            setTimeout(() => {
+              if (el) {
+                el.close();
+                el.showModal();
+              }
+            }, 500);
           } catch (e) {
             if (this.settings.exceptionHandler) {
               // re-try with show dialog
