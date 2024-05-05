@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { SaveObjects } from '../../../components/common/saves';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
-import { objectPropertyAmount } from '../../../services/utils';
+import { ObjectService } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents } from '../../../settings';
 
@@ -81,7 +81,7 @@ class AccountPage extends HTMLElement {
     }
     
     setSaveStatus(event = this.events.init) {
-      if (objectPropertyAmount(this.loggedUser) > 1 && event === this.events.login) {
+      if (ObjectService.objectPropertyAmount(this.loggedUser) > 1 && event === this.events.login) {
         this.saveObjectAndStatus(this.statuses.loggedIn);
       }
     }

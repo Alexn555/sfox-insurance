@@ -1,7 +1,11 @@
-export { simulateDelay } from './server';
-export { showComponent } from './render';
-export { getVersionFromPackage, capFirstLetter } from './strings';
-export { randomInteger, sample } from './number';
-export { objectPropertyAmount } from './object';
+export { RenderService } from './renderService';
+export { ServerService } from './serverService';
+export { StringService } from './stringService';
+export { DateService } from './dateService';
+export { ValidatorService } from './validatorService';
+export { ToggleService } from './toggleService';
+export { ArrayService } from './arrayService';
+export { NumberService } from './numberService';
+export { ObjectService } from './objectService';
 export { MobileService } from '../platform/mobile';
 export { JSONService } from '../storage/jsonService';

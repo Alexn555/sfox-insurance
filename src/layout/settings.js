@@ -4,7 +4,7 @@ import { theme } from '../theme/theme';
 import { SettingsBoard, CustomEvents } from '../settings';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
-import { showComponent } from "../services/utils";
+import { RenderService } from "../services/utils";
 import { CustomEventService, IdService } from '../services';
 
 class AppSettings extends HTMLElement {
@@ -70,12 +70,12 @@ class AppSettings extends HTMLElement {
             <div class="settings">
                 <h2>Main Settings</h2>
                 <div class="settings-list">
-                    ${showComponent(SettingsBoard.theme.enabled, `
+                    ${RenderService.showComponent(SettingsBoard.theme.enabled, `
                         <div>
                             <theme-settings></theme-settings>
                         </div>
                     `)}
-                    ${showComponent(SettingsBoard.resetSettings.enabled, `
+                    ${RenderService.showComponent(SettingsBoard.resetSettings.enabled, `
                         <div>
                             <reset-settings></reset-settings>
                         </div>
@@ -83,7 +83,7 @@ class AppSettings extends HTMLElement {
                     <div>
                         <action-button id="close" label="Close" type="passive" />
                     </div>
-                    ${showComponent(SettingsBoard.textSizes.enabled, `
+                    ${RenderService.showComponent(SettingsBoard.textSizes.enabled, `
                         <div>
                             <settings-text-size></settings-text-size>
                         </div>

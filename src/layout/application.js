@@ -5,7 +5,7 @@ import { Animations, PageStructure, CustomEvents, SEO,
 import { ImageViewerIds } from '../settings/ui';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
-import { getVersionFromPackage } from '../services/utils';
+import { StringService } from '../services/utils';
 import DataStorage from '../services/storage';
 
 class Application extends HTMLElement {
@@ -34,7 +34,7 @@ class Application extends HTMLElement {
     setTitle() {
         const pckData = require('../../package.json');
         const titleEl = document.querySelector('title');
-        titleEl.innerHTML = `${SEO.application} R${getVersionFromPackage(pckData.version)}`;
+        titleEl.innerHTML = `${SEO.application} R${StringService.getVersionFromPackage(pckData.version)}`;
     }
 
     settingsChanged(evt) {

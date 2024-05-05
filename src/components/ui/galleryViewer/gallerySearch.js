@@ -1,7 +1,7 @@
 import { CustomEvents } from '../../../settings/';
 import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService } from '../../../services';
-import { validateWhiteSpaces, valideAlphaNumeric } from '../../../services/utils/validators';
+import { ValidatorService } from '../../../services/utils';
 import { styleErrors } from '../../common/styles/errors';
 import DataStorage from '../../../services/storage';
 
@@ -40,12 +40,12 @@ class GallerySearch extends HTMLElement {
 
     validaterequest(input) {
       let isError = false;
-      if (!valideAlphaNumeric(input)) {
+      if (!ValidatorService.valideAlphaNumeric(input)) {
         const res = this.handleCommonError('Please type only words and numbers, no special chars');
         input = res.input;
         isError = res.isError;
       } 
-      if (!validateWhiteSpaces(input)) {
+      if (!ValidatorService.validateWhiteSpaces(input)) {
         const res = this.handleCommonError('Please type word without too many whitespaces');
         input = res.input;
         isError = res.isError;

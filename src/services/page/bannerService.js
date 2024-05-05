@@ -1,4 +1,4 @@
-import { simulateDelay } from '../utils';
+import { ServerService } from '../utils';
 import performanceBannerData from '../../data/mocks/performance';
 import DataStorage from '../storage';
 
@@ -14,7 +14,7 @@ export default class BannerService {
     getPerformance(savedBannerDataId) {
         let data = performanceBannerData;
 
-        return simulateDelay(1000).then(() => { 
+        return ServerService.simulateDelay(1000).then(() => { 
             const savedData = this.dataStorage.getItem(savedBannerDataId);
             let isSaved = false;
             if (savedData) {

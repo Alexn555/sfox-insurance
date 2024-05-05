@@ -2,7 +2,7 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { IdService, CustomEventService } from '../../../services';
-import { capFirstLetter } from '../../../services/utils';
+import { StringService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
 import { HeaderMenuLinks } from '../../../enums/menuLinks';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
@@ -57,7 +57,7 @@ class StartItemPage extends HTMLElement {
     }
 
     getLink(id) {
-        return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[capFirstLetter(id)];
+        return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[StringService.capFirstLetter(id)];
     }
 
     render() {

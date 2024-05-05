@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
-import { validateEmail } from '../../../services/utils/validators';
+import { ValidatorService } from '../../../services/utils';
 import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService, CustomEventService } from '../../../services';
@@ -42,7 +42,7 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     checkEmail(email) {
-      if (!validateEmail(email)) {
+      if (!ValidatorService.validateEmail(email)) {
         const el = IdService.id('error', this.shadow);
         el.innerHTML = `<i class="icon icon-error">ok </i>
         <span class="message">Email is not correct format</span>`;

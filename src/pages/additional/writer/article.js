@@ -1,7 +1,7 @@
 // @ts-nocheck
 import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
-import { simulateDelay } from '../../../services/utils';
+import { ServerService } from '../../../services/utils';
 import { ContentService } from '../../../services/dom/contentService';
 import { ClassIdService, CustomEventService } from '../../../services';
 
@@ -60,7 +60,7 @@ class WriterArticle extends HTMLElement {
     async featchContentQueue(amount = 4, timeout = 1000) { 
       for (let i = 0; i < amount; i++) {
         this.featchContent(i);
-        await simulateDelay(timeout);
+        await ServerService.simulateDelay(timeout);
       }
     }
 

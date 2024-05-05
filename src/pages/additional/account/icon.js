@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { objectPropertyAmount, sample } from '../../../services/utils';
+import { ObjectService, NumberService } from '../../../services/utils';
 import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
@@ -77,7 +77,7 @@ class AccountIcon extends HTMLElement {
     }
 
     showUserIcon(loggedUser, event, selected) {
-      if (objectPropertyAmount(loggedUser) < 1) {
+      if (ObjectService.objectPropertyAmount(loggedUser) < 1) {
         return;
       }
       
@@ -104,7 +104,7 @@ class AccountIcon extends HTMLElement {
     setIconImage(event, variants) {
       const saved = this.storage.getItem(SaveObjects.account.icon);
   
-      const index = sample(variants);
+      const index = NumberService.sample(variants);
       let source = variants[index];
 
       if (saved) {

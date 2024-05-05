@@ -4,7 +4,7 @@ import { dtAmountSlider } from '../../data/sliders';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
-import { getOptionFromString } from '../../services/utils/arrays';
+import { ArrayService } from '../../services/utils';
 import DataStorage from '../../services/storage';
 import { ClassIdService, CustomEventService, IdService } from '../../services';
 
@@ -29,8 +29,8 @@ class InsuranceCalculatorForm extends HTMLElement {
       this.totalPayment = '0.00';
       this.savedForm = { 
         loan: 320,
-        period: getOptionFromString(dtPeriods, 0), 
-        interests: getOptionFromString(dtInterests, 0) 
+        period: ArrayService.getOptionFromString(dtPeriods, 0), 
+        interests: ArrayService.getOptionFromString(dtInterests, 0) 
       };
 
       CustomEventService.event(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (e) => {

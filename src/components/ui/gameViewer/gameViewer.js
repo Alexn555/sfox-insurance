@@ -2,7 +2,7 @@
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
-import { randomInteger, JSONService } from '../../../services/utils';
+import { NumberService, JSONService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { BoolEnums } from '../../../enums';
@@ -20,7 +20,7 @@ class GameViewer extends HTMLElement {
         this.games = this.getAttribute('games') || '[]';
         this.currentIndex = 0;
         this.gamesAmount = 0;
-        this.sessionId = randomInteger(0, 200);
+        this.sessionId = NumberService.randomInteger(0, 200);
         this.theme = ThemeHelper.get([PackIds.gameViewer]);
         this.setGames();
     }
@@ -52,7 +52,7 @@ class GameViewer extends HTMLElement {
 
         const game = this.games[index];
         this.toggleContentLoaded(false);
-        this.setLoading(randomInteger(1, 3), game.title, () => {
+        this.setLoading(NumberService.randomInteger(1, 3), game.title, () => {
            let html = this.setGame(game, this.sessionId); 
            this.$container.innerHTML = html;
            this.toggleContentLoaded(true);

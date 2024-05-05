@@ -4,7 +4,7 @@ import { MobileService } from '../services/utils';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
-import { showComponent } from '../services/utils';
+import { RenderService } from '../services/utils';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
 
 class Layout extends HTMLElement {
@@ -60,11 +60,11 @@ class Layout extends HTMLElement {
             <div class="layout">
                 <load-settings></load-settings>
 
-                ${showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
+                ${RenderService.showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
 
                 <page-switcher></page-switcher>
 
-                ${showComponent(FooterBoard.board.enabled, '<footer-section></footer-section>')}
+                ${RenderService.showComponent(FooterBoard.board.enabled, '<footer-section></footer-section>')}
             </div> 
         `;
     }

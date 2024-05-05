@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { objectPropertyAmount } from '../../../services/utils';
-import { formatDate } from '../../../services/utils/dates';
+import { ObjectService } from '../../../services/utils';
+import { DateService } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
 import { CustomEventService, IdService } from '../../../services';
@@ -35,11 +35,11 @@ class AccountDetails extends HTMLElement {
     }
 
     showVisited(visited) {
-      return Account.details.showVisited ? `<p> visited <b>${formatDate(visited)}</b> </p>` : '';
+      return Account.details.showVisited ? `<p> visited <b>${DateService.formatDate(visited)}</b> </p>` : '';
     }
 
     showUserDetails(loggedUser) {
-      if (objectPropertyAmount(loggedUser) < 1) {
+      if (ObjectService.objectPropertyAmount(loggedUser) < 1) {
         return;
       }
 

@@ -4,7 +4,7 @@ import { CustomEventService, ClassIdService, IdService, StyleService } from '../
 import { MobileService } from '../../services/utils';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
-import { showComponent } from '../../services/utils';
+import { RenderService } from '../../services/utils';
 
 class Header extends HTMLElement {
     constructor() {
@@ -103,7 +103,7 @@ class Header extends HTMLElement {
             <header class="header">
                 <split-line height="10"></split-line>
                 <div class="logo-menu">
-                    ${showComponent(HeaderBoard.logo.enabled, '<header-logo></header-logo>')}
+                    ${RenderService.showComponent(HeaderBoard.logo.enabled, '<header-logo></header-logo>')}
                     <div class="logo-menu-toggle">
                         <a id="toggle" href="#toggle">
                             <img class="toggle-icon" src="./${btnMap.mobile.menuOpen}" />

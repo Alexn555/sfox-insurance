@@ -2,10 +2,10 @@
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
-import { isValidNumber } from '../../services/utils/number';
+import { NumberService } from '../../services/utils/';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
-import { getOptionFromString } from '../../services/utils/arrays';
+import { ArrayService } from '../../services/utils';
 import { SaveForms } from '../../components/common/saves';
 import DataStorage from '../../services/storage';
 
@@ -22,8 +22,8 @@ class InsurancePaymentForm extends HTMLElement {
 
     this.savedForm = { 
         amount: 320,
-        accounts: getOptionFromString(dtAccNameValues, 0), 
-        payments: getOptionFromString(dtSaveValues, 0),
+        accounts: ArrayService.getOptionFromString(dtAccNameValues, 0), 
+        payments: ArrayService.getOptionFromString(dtSaveValues, 0),
         description: ''
     };
 
@@ -93,7 +93,7 @@ class InsurancePaymentForm extends HTMLElement {
     if (amountVal && amountVal !== '') {
         const errorLabel = ClassIdService.id('input-error', this.shadow);
         StyleService.setDisplay(errorLabel, false);        
-        if (!isValidNumber(amountVal)) {
+        if (!NumberService.isValidNumber(amountVal)) {
             StyleService.setDisplay(errorLabel, true);
         } else {
             this.savedForm.amount = amountVal;

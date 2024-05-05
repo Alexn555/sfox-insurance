@@ -1,12 +1,12 @@
 import RestAPI from '../api/restApi';
 import LoggerService from '../loggerService';
-import { sample } from '../utils';
+import { NumberService } from '../utils';
 
 export default class WriterService {
     getContent() {
       const useRestAPI = true;
       const ids = [2, 6, 8, 11, 13, 16, 20, 31, 32];
-      const index = sample(ids);
+      const index = NumberService.sample(ids);
       if (useRestAPI) {
          return RestAPI.get('/posts/' + ids[index], '');
       } else {

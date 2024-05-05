@@ -4,7 +4,7 @@ import { createFlickr } from 'flickr-sdk';
 import LoggerService from '../loggerService';
 import ApiService from './apiService';
 import EnvService from './envService';
-import { randomInteger } from '../utils';
+import { NumberService } from '../utils';
 
 export default class FlickService {
     
@@ -52,7 +52,7 @@ export default class FlickService {
             let imageUrl = '';
             if (body.photos && body.photos.photo.length > 0) {
                 const maxNum = params.per_page === 10 ? params.per_page - 1 : params.per_page;
-                const num = isRandom ? randomInteger(0, maxNum) : index;
+                const num = isRandom ? NumberService.randomInteger(0, maxNum) : index;
                 image = body.photos.photo[num];
                 imageUrl = await this.getImageFromSource(image);
             }

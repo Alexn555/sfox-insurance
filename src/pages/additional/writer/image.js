@@ -5,7 +5,7 @@ import FlickService from '../../../services/api/flickrService';
 import EnvService from '../../../services/api/envService';
 import DateService from '../../../services/helpers/dateService';
 import { CustomEventService, IdService, StyleService } from '../../../services';
-import { getRandomItemFromList } from '../../../services/utils/arrays';
+import { ArrayService } from '../../../services/utils';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { imageSearchList } from '../../../data/mocks/writerImageList';
 import { ImageViewerHelper } from '../../../components/ui/imageViewer/imageViewerHelper';
@@ -50,7 +50,7 @@ class WriterImage extends HTMLElement {
     getImageSearchTerm() {
       const listCase = ImageViewerHelper.getId(this.imgViewerId).searchListNum;
       const lastIndex = listCase === ArrayEnums.All ? imageSearchList.length - 1 : listCase;
-      return getRandomItemFromList(imageSearchList, 0, lastIndex);
+      return ArrayService.getRandomItemFromList(imageSearchList, 0, lastIndex);
     }
 
     handleImageError(el, image) {
