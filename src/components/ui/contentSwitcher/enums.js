@@ -2,7 +2,8 @@ import EnvService from '../../../services/api/envService';
 
 export const ContentSwSides = {
     left: 'left',
-    right: 'right'
+    right: 'right',
+    top: 'top'
 };
 
 export const LabelModes = {

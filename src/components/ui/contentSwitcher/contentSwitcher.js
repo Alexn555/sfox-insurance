@@ -12,9 +12,10 @@ class ContentSwitcher extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "closed" });
-    this.sides = {
-      Lt: 'sideLt',
-      Rt: 'sideRt'
+    this.sides = { // with style class names
+      left: 'sideLt',
+      right: 'sideRt',
+      top: 'sideTop'
     };
     this.id = this.getAttribute('id') || '';
     this.atrAmount = this.getAttribute('total') || '0';
@@ -26,7 +27,7 @@ class ContentSwitcher extends HTMLElement {
     this.iconType = this.getAttribute('icon-type') || 'game';
     this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
     this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
-    this.pageContaner = 'pagination';
+    this.paginationId = 'pagination';
     this.labelMode = LabelModes.labels;
     this.theme = ThemeHelper.get(PackIds.contentSwitcher, 'contentSw');
     this.$pageHandlers = [];
@@ -140,7 +141,7 @@ class ContentSwitcher extends HTMLElement {
 
   setPagination() {
     this.$container = IdService.id(this.id, this.shadow);
-    this.$pagination = IdService.id(this.pageContaner, this.shadow);
+    this.$pagination = IdService.id(this.paginationId, this.shadow);
     if (this.$pagination) {
       if (this.pageAmount === 0) {
         return this.$pagination.innerHTML = '';
@@ -173,13 +174,32 @@ class ContentSwitcher extends HTMLElement {
   }
 
   setSide(side) {
-    let cl = side === ContentSwSides.left ? this.sides.Lt : this.sides.Rt;
-    StyleService.toggleClass(this.$container, cl, true);
+    StyleService.toggleClass(this.$container, this.sides[side], true);
   }
 
   setActive(selected) {
     StyleService.setActive(this.$pageHandlers, selected, 'active');
     StyleService.setActive(this.$labels, selected, 'labelActive');
+  }
+
+  setPaginationStyles(side) {
+    let css = `
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      height: 500px;
+      padding-left: 60px;   
+    `;
+    if (side === ContentSwSides.top) {
+      css = `
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 160px;
+        padding-left: 20px; 
+      `;
+    }
+    return css;
   }
 
   render() {
@@ -203,6 +223,10 @@ class ContentSwitcher extends HTMLElement {
           }
         }
 
+        .sideTop {
+          flex-direction: column-reverse;   
+        }
+
         .label {
           font-size: 12px;
           transform: translateY(60px);
@@ -222,12 +246,8 @@ class ContentSwitcher extends HTMLElement {
           }
         }
 
-        #${this.pageContaner} {
-          display: flex;
-          flex-direction: column;
-          width: 30%;
-          height: 500px;
-          padding-left: 60px;   
+        #${this.paginationId} {
+          ${this.setPaginationStyles(this.side)}
 
           @media (max-width: 768px) {
             flex-direction: row;
@@ -258,7 +278,7 @@ class ContentSwitcher extends HTMLElement {
         <div class="content">
           <slot></slot>
         </div>
-        <div id="${this.pageContaner}"></div>
+        <div id="${this.paginationId}"></div>
       </div>
     `;
   }
