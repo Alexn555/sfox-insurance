@@ -1,10 +1,10 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
-import { CustomWindowEvents } from '../../../settings';
+import { CommonEvents, CustomWindowEvents } from '../../../settings';
 import { ContentSwSet } from './sets';
 import { CustomEventService, IdService, StyleService } from "../../../services";
-import { JSONService } from '../../../services/utils';
+import { JSONService, MobileService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
@@ -16,7 +16,6 @@ class ContentSwitcher extends HTMLElement {
       Lt: 'sideLt',
       Rt: 'sideRt'
     };
-
     this.id = this.getAttribute('id') || '';
     this.atrAmount = this.getAttribute('total') || '0';
     this.atrPerPage = this.getAttribute('per-page') || ArrayEnums.All;
@@ -36,6 +35,7 @@ class ContentSwitcher extends HTMLElement {
     this.totalAmount = 0;
     this.perPage = 0;
     this.pageAmount = 0;
+    CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
   }
 
   static get observedAttributes() {
@@ -59,6 +59,12 @@ class ContentSwitcher extends HTMLElement {
     }
     if (name === 'disable-actions' && oldValue !== newValue) {
       this.activatePageClicks(newValue);
+    }
+  }
+
+  updateSize() {
+    if (this.$pagination) {
+      this.setPageContainer(this.$pagination);
     }
   }
 
@@ -112,13 +118,23 @@ class ContentSwitcher extends HTMLElement {
   }
 
   setPageContainer(pagesAmount) {
-    if (pagesAmount > ContentSwSet.maxColumn) {
-      StyleService.setProperties(this.$pagination, 
-        [ 
+    const isMobile = MobileService.isMobile();
+    const isPagesMax = isMobile ? pagesAmount > ContentSwSet.maxMobileColumn : pagesAmount > ContentSwSet.maxColumn; 
+    let properties = [];
+    
+    if (isPagesMax) {
+      if (isMobile) {
+        properties =  [ 
+          { property: 'overflowX', value: 'scroll' },
+          { property: 'scrollbarWidth', value: 'thin' },
+        ];
+      } else {
+        properties =  [ 
           { property: 'overflowY', value: 'scroll' },
           { property: 'scrollbarWidth', value: 'thin' },
-        ]
-      );
+        ];
+      }
+      StyleService.setProperties(this.$pagination, properties);
     }
   }
 
