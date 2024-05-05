@@ -29,7 +29,7 @@ class TextInput extends HTMLElement { // numeric, usual text
   }
 
   disconnectedCallback() {
-    document.removeEventListener(`${CustomEvents.interaction.textInputChange}-${this.id}`, null);
+    CustomEventService.removeListener(`${CustomEvents.interaction.textInputChange}-${this.id}`);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

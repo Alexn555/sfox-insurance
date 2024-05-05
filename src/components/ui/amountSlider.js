@@ -28,7 +28,7 @@ class AmountSlider extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`${this.changeEvt}-${this.id}`, null);
+      CustomEventService.removeListener(`${this.changeEvt}-${this.id}`);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

@@ -20,8 +20,8 @@ class AccountDetails extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(CustomPageEvents.users.account.init, null);
-      document.removeEventListener(CustomPageEvents.users.account.hide, null);
+      CustomEventService.removeListener(CustomPageEvents.users.account.init);
+      CustomEventService.removeListener(CustomPageEvents.users.account.hide);
     }
 
     initForm() {

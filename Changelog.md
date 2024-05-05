@@ -1,6 +1,7 @@
 ## Changelog
 v 2.50
-  Improved Services utils to use classes
+  Improved Services utils to use classes, Added removeEvent and article paragraph
+   not element in Node issue fixes
 
 v 2.49
   Added Start Page improvements, Start page theme, Menu links improvements,

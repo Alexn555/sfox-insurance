@@ -31,7 +31,7 @@ class Selectbox extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(`${CustomEvents.interaction.selectChange}-${this.id}`, null);
+      CustomEventService.removeListener(`${CustomEvents.interaction.selectChange}-${this.id}`);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

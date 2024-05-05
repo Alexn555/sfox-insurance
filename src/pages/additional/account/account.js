@@ -47,7 +47,7 @@ class AccountPage extends HTMLElement {
     }
 
     disconnectedCallback() {
-      document.removeEventListener(CustomPageEvents.users.login, null);
+      CustomEventService.removeListener(CustomPageEvents.users.login);
     }
 
     getSaveAccount() {

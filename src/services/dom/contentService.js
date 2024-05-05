@@ -12,11 +12,9 @@ export class ContentService {
             LoggerService.error('Content service not article id provided!');
             return;
         }
-
         const para = document.createElement('p');
         const node = document.createTextNode(content);
         para.appendChild(node);
-        el.appendChild(para);
-        return el;
+        return para;
     }
 }

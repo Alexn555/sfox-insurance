@@ -39,11 +39,11 @@ class WriterArticle extends HTMLElement {
       const el = this.$writerContent;
       el.innerHTML = '';
 
-      let html;
       if (content && content[0]?.body) {
-        html += ContentService.createArticle(el, content[0].body);
-        html += ContentService.createArticle(el, content[1].body);
-        el.appendChild(html);
+        let para1 = ContentService.createArticle(el, content[0].body);
+        let para2 = ContentService.createArticle(el, content[1].body);
+        el.appendChild(para1);
+        el.appendChild(para2);
       }
     }
 
