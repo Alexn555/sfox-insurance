@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { CustomWindowEvents, CustomPageEvents } from '../../../settings';
 import { ImageViewerIds } from '../../../settings/ui';
-import { ToggleService } from '../../../services/utils';
 import { CustomEventService, IdService, LoggerService } from '../../../services';
+import { RenderService } from '../../../services/helpers';
 
 class WriterForm extends HTMLElement {
     constructor() {
@@ -32,7 +32,7 @@ class WriterForm extends HTMLElement {
     }
 
     activateContent() {
-      ToggleService.toggleDisplay('fetchOpen', this.shadow, 5000);
+      RenderService.toggleDisplay('fetchOpen', this.shadow, 5000);
       CustomEventService.send(CustomPageEvents.tabs.writer.showArticle);
       CustomEventService.send(CustomPageEvents.tabs.writer.getImage);
     }

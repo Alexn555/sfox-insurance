@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents, PageStructure } from '../settings';
+import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { MobileService } from '../services/utils';
+import { RenderService } from '../services/helpers';
 import { theme } from '../theme/theme';
 import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
-import { RenderService } from '../services/utils';
-import { ClassIdService, CustomEventService, StyleService } from '../services';
 
 class Layout extends HTMLElement {
     constructor() {

@@ -11,4 +11,8 @@ export class ArrayService {
     static getRandomItemFromList(list, fIndex = 0, lastIndex = list.length - 1) {
         return list[NumberService.randomInteger(fIndex, lastIndex)];
     }
+
+    static objectPropertyAmount(obj) {
+        return obj ? Object.keys(obj).length : 0;
+    }
 }

@@ -1,4 +1,4 @@
-import { ServerService } from '../utils';
+import { ServerService } from '../helpers';
 import performanceBannerData from '../../data/mocks/performance';
 import DataStorage from '../storage';
 

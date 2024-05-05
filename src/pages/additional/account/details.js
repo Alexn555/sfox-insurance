@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { ObjectService } from '../../../services/utils';
-import { DateService } from '../../../services/utils';
+import { ArrayService } from '../../../services/utils';
+import { DateService }  from '../../../services/helpers';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
 import { CustomEventService, IdService } from '../../../services';
@@ -39,7 +39,7 @@ class AccountDetails extends HTMLElement {
     }
 
     showUserDetails(loggedUser) {
-      if (ObjectService.objectPropertyAmount(loggedUser) < 1) {
+      if (ArrayService.objectPropertyAmount(loggedUser) < 1) {
         return;
       }
 

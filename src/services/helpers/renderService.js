@@ -1,7 +1,14 @@
 import StyleService from '../../services/dom/styleService';
 import { IdService } from '../dom/idService';
 
-export class ToggleService {
+export class RenderService {
+    static showComponent(isEnabled, template) {
+        if (isEnabled) {
+            return template;
+        }
+        return '';
+    }
+
     static toggleButton(id, context, timeout = 2000) {
         const el = IdService.id(id, context);
         el.setAttribute('disabled', '');

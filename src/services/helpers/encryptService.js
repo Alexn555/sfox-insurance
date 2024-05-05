@@ -1,4 +1,4 @@
-export default class EncryptService {
+export class EncryptService {
     static decodeBase64Str(encodedStr) {
         let str = '';
         if (encodedStr && encodedStr.length > 0) {

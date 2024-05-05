@@ -1,4 +1,4 @@
-import EncryptService from '../helpers/encryptService';
+import { EncryptService } from '../helpers';
 
 export default class EnvService {
     static getRoot() {

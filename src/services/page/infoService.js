@@ -1,4 +1,4 @@
-import { ServerService } from '../utils';
+import { ServerService } from '../helpers';
 import mockDisclaimerData from '../../data/mocks/disclaimer';
 
 export default class InfoService {

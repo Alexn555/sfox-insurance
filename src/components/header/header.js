@@ -2,9 +2,9 @@
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
 import { CustomEventService, ClassIdService, IdService, StyleService } from '../../services';
 import { MobileService } from '../../services/utils';
+import { RenderService } from '../../services/helpers';
 import { btnMap } from '../../components/common/assets';
 import { theme } from '../../theme/theme';
-import { RenderService } from '../../services/utils';
 
 class Header extends HTMLElement {
     constructor() {

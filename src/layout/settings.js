@@ -2,10 +2,10 @@
 import { Themes } from '../theme/enums';
 import { theme } from '../theme/theme';
 import { SettingsBoard, CustomEvents } from '../settings';
+import { CustomEventService, IdService } from '../services';
+import { RenderService } from '../services/helpers';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
-import { RenderService } from "../services/utils";
-import { CustomEventService, IdService } from '../services';
 
 class AppSettings extends HTMLElement {
     constructor() {

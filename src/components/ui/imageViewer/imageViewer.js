@@ -5,7 +5,7 @@ import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { PackIds } from '../../../theme/enums';
-import DateService from '../../../services/helpers/dateService';
+import { DateService } from '../../../services/helpers';
 import { ImageViewerIds, ImageViewerSettings } from './sets';
 import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';

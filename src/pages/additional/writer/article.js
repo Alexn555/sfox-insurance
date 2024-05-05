@@ -1,7 +1,7 @@
 // @ts-nocheck
 import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
-import { ServerService } from '../../../services/utils';
+import { ServerService } from '../../../services/helpers';
 import { ContentService } from '../../../services/dom/contentService';
 import { ClassIdService, CustomEventService } from '../../../services';
 
