@@ -4,6 +4,7 @@ import { GlobalSizes, CommonEvents, CustomWindowEvents } from '../../../settings
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
+import { RenderService } from '../../../services/helpers';
 import { PackIds } from '../../../theme/enums';
 import { DateService } from '../../../services/helpers';
 import { ImageViewerIds, ImageViewerSettings } from './sets';
@@ -141,12 +142,7 @@ class ImageViewer extends HTMLElement {
           this.setImage();
           this.checkImage();
           try {
-            setTimeout(() => {
-              if (el) {
-                el.close();
-                el.showModal();
-              }
-            }, 500);
+            RenderService.modal(el, 500);
           } catch (e) {
             if (this.settings.exceptionHandler) {
               // re-try with show dialog

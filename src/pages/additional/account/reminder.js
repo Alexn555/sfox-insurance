@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
 import { ValidatorService } from '../../../services/utils';
+import { RenderService } from '../../../services/helpers';
 import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { IdService, CustomEventService } from '../../../services';
@@ -32,12 +33,7 @@ class AccountPwdReminder extends HTMLElement {
       this.$container = IdService.id(this.container, this.shadow);
 
       CustomEventService.event(CustomPageEvents.users.reminder.open, () => {
-        setTimeout(() => {
-          if (this.$container) {
-            this.$container.close();
-            this.$container.showModal();
-          }
-        }, 500);
+        RenderService.modal(this.$container, 500);
       });
 
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.idEmail}`, (e) => {

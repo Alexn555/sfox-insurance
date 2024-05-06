@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.50
+### SFox Insurance Engine v 2.51
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.51
+  Added improvement to fix lost focus of showModal
+
 v 2.50
   Improved Services utils to use classes, Added removeEvent and article paragraph
    not element in Node issue fixes, Added showModal issue fixes
