@@ -5,6 +5,7 @@ import DataStorage from '../../../services/storage';
 import InfoService from '../../../services/page/infoService';
 import { SaveObjects } from '../../common/saves';
 import { IdService } from '../../../services';
+import { RenderService } from '../../../services/helpers';
 
 class NoticeDisclaimer extends HTMLElement {
     constructor() {
@@ -46,7 +47,9 @@ class NoticeDisclaimer extends HTMLElement {
 
     toggleDisclaimer(visible) {
         if (visible) {
-            this.$el?.showModal();
+            if (this.$el) {  
+                RenderService.modal(this.$el, 500); 
+            }
         } else {
             this.$el?.close(); 
         }

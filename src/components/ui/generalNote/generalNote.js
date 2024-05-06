@@ -6,6 +6,7 @@ import { styleErrors } from '../../common/styles/errors';
 import { PackIds } from '../../../theme/enums';
 import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
 import { JSONService } from '../../../services/utils';
+import { RenderService } from '../../../services/helpers';
 import { errorIcon } from '../../common/styles/statusIcons/status';
 
 class GeneralNote extends HTMLElement {
@@ -41,7 +42,7 @@ class GeneralNote extends HTMLElement {
         this.toggleInfo();
         this.setCustomSize(); 
         this.setCloseVis();
-        this.$container.showModal();
+        RenderService.modal(this.$container, 500);
       });
       CustomEventService.event(CustomWindowEvents.generalNote.close, () => {
         this.$container?.close();
