@@ -6,7 +6,7 @@ export class JSONService {
     static getArray(arrStr) {
         if (arrStr) {
            const array = JSON.parse(arrStr);
-            return array && array.length > 0 ? array : [];  
+            return array && array['length'] !== undefined && array.length > 0 ? array : [];  
         }
         return [];
     }

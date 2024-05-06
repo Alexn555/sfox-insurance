@@ -3,6 +3,7 @@ import { CustomEvents, MouseEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
 import { HeaderMenuLinks } from '../../enums/menuLinks';
 import { ClassIdService, CustomEventService, IdService } from '../../services';
+import { ArrayService } from '../../services/utils';
 
 class HeaderMenu extends HTMLElement {
     constructor() {
@@ -50,7 +51,7 @@ class HeaderMenu extends HTMLElement {
         CustomEventService.send(CustomEvents.header.menuClick, item);
         
         const searchCl = ClassIdService.idAll('header-menu-item', this.shadow);
-        if (searchCl && searchCl.length > 0) {
+        if (ArrayService.minLength(searchCl)) {
             searchCl.forEach((item, index) => {
                 searchCl[index].setAttribute('class', 'header-menu-item');
             });

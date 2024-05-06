@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CommonEvents } from '../../settings';
 import { ClassIdService, CustomEventService, StyleService } from '../../services';
-import { JSONService, MobileService } from '../../services/utils';
+import { ArrayService, JSONService, MobileService } from '../../services/utils';
 import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
@@ -21,7 +21,7 @@ class FooterLinkSection extends HTMLElement {
         this.screenW = window.innerWidth;
         const protocol = 'https://';
 
-        if (rowLinks && rowLinks.length > 0) {
+        if (ArrayService.minLength(rowLinks)) {
             this.links = JSONService.getArray(rowLinks);
             for (let i = 0; i < this.links.length; i++) {
                 this.linksContent += `<div class="link-item">

@@ -28,7 +28,7 @@ export class IdService {
     }
 
     static removeListId(ids, ctx) {
-        if (ids && ids.length > 0) {
+        if (ids && ids['length'] !== undefined && ids.length > 0) {
             ids.forEach((id) => {
                 this.removeById(id, ctx);
             }); 
@@ -36,7 +36,7 @@ export class IdService {
     }
 
     static removeList(els) {
-        if (els && els.length > 0) {
+        if (els && els['length'] !== undefined && els.length > 0) {
             els.forEach((el) => {
                 el.removeEventListener(CommonEvents.click, null); 
             }); 

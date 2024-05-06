@@ -1,6 +1,6 @@
 ## Changelog
 v 2.51
-  Added improvement to fix lost focus of showModal
+  Added improvement to fix lost focus of showModal, Added minLength improvements
 
 v 2.50
   Improved Services utils to use classes, Added removeEvent and article paragraph

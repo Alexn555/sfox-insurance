@@ -24,7 +24,7 @@ export class ClassIdService {
     }
 
     static removeList(els) {
-        if (els && els.length > 0) {
+        if (els && els['length'] !== undefined && els.length > 0) {
             els.forEach((el) => {
                 el.removeEventListener(CommonEvents.click, null); 
             }); 

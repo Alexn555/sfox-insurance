@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CommonEvents, CustomEvents, CustomPageEvents } from '../../../settings';
-import { ValidatorService } from '../../../services/utils';
+import { ValidatorService, ArrayService } from '../../../services/utils';
 import { RenderService } from '../../../services/helpers';
 import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
@@ -52,7 +52,7 @@ class AccountPwdReminder extends HTMLElement {
     }
 
     toggleInfo() {
-      if (this.email && this.email.length > 0) {
+      if (ArrayService.minLength(this.email)) {
         const el = IdService.id('status', this.shadow);
         el.innerHTML = `<span>
           <i class="icon icon-success"> ok</i>

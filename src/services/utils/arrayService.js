@@ -8,6 +8,10 @@ export class ArrayService {
         return JSON.parse(key)[index];
     }
 
+    static minLength(obj, min = 0) {
+        return obj && obj['length'] !== undefined && obj.length > min;
+    }
+
     static getRandomItemFromList(list, fIndex = 0, lastIndex = list.length - 1) {
         return list[NumberService.randomInteger(fIndex, lastIndex)];
     }

@@ -1,4 +1,5 @@
 import LoggerService from "../loggerService";
+import { ArrayService } from '../utils';
 
 export default class StyleService {
     static setDisplay(el, toggle = true, displayType = 'block') {
@@ -27,7 +28,7 @@ export default class StyleService {
     }
 
     static setProperties(el, props) {
-        if (props && props.length > 0) {
+        if (ArrayService.minLength(props)) {
             props.forEach((prop) => {
                 this.setProperty(el, prop.property, prop.value);
             });
@@ -35,7 +36,7 @@ export default class StyleService {
     }
 
     static removeAndAddClass(el, list, addCl) {
-        if (list && list.length > 0) {
+        if (ArrayService.minLength(list)) {
             list.forEach((item) => {
                 el.classList.remove(item);
             });

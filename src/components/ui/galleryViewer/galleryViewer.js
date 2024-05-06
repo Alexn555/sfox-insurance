@@ -2,7 +2,7 @@ import { CustomWindowEvents } from '../../../settings';
 import { ImageViewerIds } from '../../../settings/ui';
 import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
 import { CustomEventService, IdService, StyleService } from '../../../services';
-import { JSONService } from '../../../services/utils';
+import { ArrayService, JSONService } from '../../../services/utils';
 import EnvService from '../../../services/api/envService';
 import { ArrayEnums } from '../../../enums';
 
@@ -68,7 +68,7 @@ class GalleryViewer extends HTMLElement {
   }
 
   setImages(images) {
-    if (images && images.length > 0) {
+    if (ArrayService.minLength(images)) {
       if (GallerySet.holderLoad === GallerLoadHolders.Simple) {
         let html = "";
         images.forEach((img, index) => {
