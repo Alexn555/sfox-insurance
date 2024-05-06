@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.51
-  Added improvement to fix lost focus of showModal, Added minLength improvements
+  Added improvement to fix lost focus of showModal, Added minLength improvements,
+  Added LinkSection toggle improvements (long awaited) :)
 
 v 2.50
   Improved Services utils to use classes, Added removeEvent and article paragraph
