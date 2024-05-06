@@ -9,6 +9,11 @@ class HeaderMenu extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
+
+        CustomEventService.event(CustomEvents.header.changeActivePage, (e) => {
+            const selectedItem = e.detail.value;
+            this.toggleMenuItem(selectedItem); 
+        });
     }
     
     connectedCallback() {
@@ -47,9 +52,11 @@ class HeaderMenu extends HTMLElement {
     toggleMenuItem(evt) {
         const item = evt;
         const selectedItem = this.setSelected(item);
-        
         CustomEventService.send(CustomEvents.header.menuClick, item);
-        
+        this.setHighlighted(selectedItem);
+    }
+
+    setHighlighted(selectedItem) {
         const searchCl = ClassIdService.idAll('header-menu-item', this.shadow);
         if (ArrayService.minLength(searchCl)) {
             searchCl.forEach((item, index) => {

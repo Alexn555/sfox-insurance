@@ -26,6 +26,7 @@ export const CustomEvents = {
     header: {
         menuOverlay: 'header-menu-overlay',
         menuClick: 'header-menu-click',
+        changeActivePage: 'heeader-menu-change-page',
         menuOverlayRemove: 'header-menu-overlay-remove'
     },
 };

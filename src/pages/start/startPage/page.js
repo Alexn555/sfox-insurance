@@ -52,7 +52,8 @@ class StartItemPage extends HTMLElement {
 
     setHandlers(id) {
         this.$btnLink = IdService.idAndClick(`link-${id}`, this.shadow, () => {
-            CustomEventService.send(CustomEvents.header.menuClick, this.getLink(id));     
+            CustomEventService.send(CustomEvents.header.menuClick, this.getLink(id)); 
+            CustomEventService.send(CustomEvents.header.changeActivePage, this.getLink(id));   
         });
     }
 
