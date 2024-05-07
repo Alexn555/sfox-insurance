@@ -11,6 +11,7 @@ class Layout extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
+        this.themeChange = this.getAttribute('theme-change') || '';
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
         CustomEventService.event(CustomEvents.settings.moveLayout, (e) => {
             this.moveLayout(e.detail.value);
@@ -58,7 +59,7 @@ class Layout extends HTMLElement {
                 }
             </style>
             <div class="layout">
-                <load-settings></load-settings>
+                <load-settings theme-change="${this.themeChange}"></load-settings>
 
                 ${RenderService.showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
 

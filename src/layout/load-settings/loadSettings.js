@@ -8,6 +8,7 @@ class LoadSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
+        this.themeChange = this.getAttribute('theme-change') || '';
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
         CustomEventService.event(CustomEvents.settings.close, this.closeSettings.bind(this), document);
 
@@ -25,6 +26,9 @@ class LoadSettings extends HTMLElement {
             this.toggleNotice(this.settingsToggle);
             this.moveLayout();
         });
+        if (this.themeChange !== '1') {
+            this.$setsOpen.click();
+        }
     }
 
     disconnectedCallback() {

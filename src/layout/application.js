@@ -40,7 +40,7 @@ class Application extends HTMLElement {
     settingsChanged(evt) {
         changeTheme(evt.detail.value);
         setTimeout(() => {
-            this.render();
+            this.render('1');
         }, 500);
     }
 
@@ -81,7 +81,7 @@ class Application extends HTMLElement {
         return NetworkCheckerSet.enabled ? '<network-checker></network-checker>' : '';
     }
 
-    render() {
+    render(themeChange = '') {
         const stngsHeight = PageStructure.settings.height;
         this.shadow.innerHTML = `
             <style>
@@ -106,7 +106,7 @@ class Application extends HTMLElement {
                 ${this.showWindowComponents()}
                 ${this.showSettings()}
                 <div class="layout">
-                    <main-layout></main-layout>
+                    <main-layout theme-change="${themeChange}"></main-layout>
                 </div>
             </div> 
         `;
