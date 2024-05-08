@@ -1,5 +1,6 @@
 export const HeaderMenuLinks = {
     Home: 'home',
     Insurance: 'insurance',
-    Additional: 'additional'
+    Additional: 'additional',
+    Safe: 'safe'
 };

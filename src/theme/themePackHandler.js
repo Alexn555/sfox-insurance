@@ -1,5 +1,6 @@
 // packs
 import { StartPageTheme } from '../pages/start/theme';
+import { SafePageTheme } from '../pages/safe/theme';
 import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
@@ -15,6 +16,7 @@ export default class ThemePackHandler {
         if (addPack) {
             const packs = [
                 { id: PackIds.startPage, pack: StartPageTheme },
+                { id: PackIds.safePage, pack: SafePageTheme },
                 { id: PackIds.generalNote, pack: generalNoteTheme },
                 { id: PackIds.paginatableContent, pack: paginatableContentTheme },
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },

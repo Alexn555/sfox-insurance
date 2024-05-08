@@ -1,6 +1,7 @@
 ## Changelog
 v 2.52
-  Added settings save object to use BoolEnums
+  Added settings save object to use BoolEnums,
+    Created SafeKing Game v1 (safe locker)
 
 v 2.51
   Added improvement to fix lost focus of showModal, Added minLength improvements,

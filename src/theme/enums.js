@@ -8,6 +8,7 @@ export const Themes = {
 
 export const PackIds = {
     startPage: 'startPage',
+    safePage: 'safePage',
     generalNote: 'generalNote',
     paginatableContent: 'paginatableContent',
     galleryPage: 'galleryPage',

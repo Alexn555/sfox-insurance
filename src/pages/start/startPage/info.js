@@ -24,6 +24,13 @@ export const StartItemInfo = {
         w: 200,
         h: 100
     },
+    safe: {
+        label: 'Safe',
+        description: 'Safe Page shows game and other pages.',
+        image: `${rootPath}home.jpg`,
+        w: 200,
+        h: 100
+    },
     additionalMore: {
         pages: [
             { label: 'Game', description: 'Game page using GameViewer' },

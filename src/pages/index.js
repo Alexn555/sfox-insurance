@@ -7,4 +7,6 @@ import './insurance/index';
 import './insurance';
 import './additional/index';
 import './additional';
+import './safe/index';
+import './safe';
 import './uknown';

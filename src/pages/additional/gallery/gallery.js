@@ -1,4 +1,5 @@
-import { theme } from '../../../theme/theme';
+import { ThemeHelper } from '../../../theme/theme';
+import { PackIds } from '../../../theme/enums';
 import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService } from '../../../services';
 import FlickService from '../../../services/api/flickrService';
@@ -13,6 +14,7 @@ class GalleryPage extends HTMLElement {
       this.searchWord = GallerySet.defaultSearch;
       this.perPage = GallerySet.perPage;
       this.totalAmount = GallerySet.total;
+      this.theme = ThemeHelper.get([PackIds.galleryPage]);
 
       if (GallerySet.searchEnabled) {
         CustomEventService.event(GallerySet.searchSavedInit, (e) => {
@@ -63,12 +65,12 @@ class GalleryPage extends HTMLElement {
           <style>
             .gallery-wrapper {
               padding: 2px 0 20px 0;
-              border: 1px dashed ${theme.galleryPage.background};
+              border: 1px dashed ${this.theme.background};
 
               .photo {
                 width: fit-content;
                 padding: 0 10px 0 10px;
-                border: 1px dotted ${theme.galleryPage.border};
+                border: 1px dotted ${this.theme.border};
               }
 
               & h3 {

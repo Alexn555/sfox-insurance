@@ -33,6 +33,9 @@ class StartPage extends HTMLElement {
                     <div>
                         <start-item id="additional"></start-item>
                     </div>
+                    <div>
+                        <start-item id="safe"></start-item>
+                    </div>
                 </div>
             </div>
         `;

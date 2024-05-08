@@ -1,7 +1,8 @@
 export const pageNames = { 
     home: 'home', 
     insurance: 'insurance',
-    additional: 'additional'
+    additional: 'additional',
+    safe: 'safe'
 };
 
 export const PageStructure = {

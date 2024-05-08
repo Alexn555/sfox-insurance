@@ -10,7 +10,7 @@ class PageSwitcher extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         this.dataStorage = new DataStorage();
-        this.pageIds = ['home', 'insurance', 'additional'];
+        this.pageIds = ['home', 'insurance', 'additional', 'safe'];
 
         CustomEventService.event(CustomEvents.header.menuClick, (e) => {
             this.getPage(e.detail.value, false);
@@ -48,6 +48,9 @@ class PageSwitcher extends HTMLElement {
             break;
             case pageNames.additional:
                 savePage = pageNames.additional;
+            break;
+            case pageNames.safe:
+                savePage = pageNames.safe;
             break;
         }
 
@@ -125,6 +128,7 @@ class PageSwitcher extends HTMLElement {
                 <index-page id="${pageNames.home}"></index-page>
                 <insurance-page id="${pageNames.insurance}"></insurance-page>
                 <additional-page id="${pageNames.additional}"></additional-page>
+                <safe-page id="${pageNames.safe}"></safe-page>
                 <div class="heightHolder"></div>
             </main> 
         `;
