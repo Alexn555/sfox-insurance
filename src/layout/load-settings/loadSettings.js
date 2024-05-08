@@ -3,6 +3,7 @@ import { Animations, CommonEvents, CustomEvents } from '../../settings';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
+import { BoolEnums } from '../../enums';
 
 class LoadSettings extends HTMLElement {
     constructor() {
@@ -21,7 +22,7 @@ class LoadSettings extends HTMLElement {
         this.render();
         this.setLayoutOffset();
         this.$setsOpen = IdService.idAndClick('settingsOpen', this.shadow, () => {
-            this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? '1' : '0');
+            this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? BoolEnums.bTrue : BoolEnums.bFalse);
             this.toggleNotice(this.settingsToggle);
             this.moveLayout();
         });

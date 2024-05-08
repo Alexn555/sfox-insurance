@@ -7,6 +7,7 @@ import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { StringService } from '../services/utils';
 import DataStorage from '../services/storage';
+import { BoolEnums } from '../enums';
 
 class Application extends HTMLElement {
     constructor() {
@@ -46,7 +47,7 @@ class Application extends HTMLElement {
 
      toggleSettings(evt) {
         const el = ClassIdService.id('settings', this.shadow);
-        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === '1') {
+        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === BoolEnums.bTrue) {
            StyleService.setDisplay(el, false);
            return;
         }

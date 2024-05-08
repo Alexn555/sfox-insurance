@@ -1,4 +1,7 @@
 ## Changelog
+v 2.52
+  Added settings save object to use BoolEnums
+
 v 2.51
   Added improvement to fix lost focus of showModal, Added minLength improvements,
   Added LinkSection toggle improvements (long awaited) :)

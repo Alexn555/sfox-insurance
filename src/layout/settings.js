@@ -6,6 +6,7 @@ import { CustomEventService, IdService } from '../services';
 import { RenderService } from '../services/helpers';
 import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
+import { BoolEnums } from '../enums';
 
 class AppSettings extends HTMLElement {
     constructor() {
@@ -20,7 +21,7 @@ class AppSettings extends HTMLElement {
     connectedCallback() {
         this.render();
         this.$elClose = IdService.idAndClick('close', this.shadow, () => {
-            this.dataStorage.save(SaveObjects.settings.close, '1');
+            this.dataStorage.save(SaveObjects.settings.close, BoolEnums.bTrue);
             this.$elClose.className += this.useCloseAnimation ? ' close' : '';
             CustomEventService.send(CustomEvents.settings.close);
         });
