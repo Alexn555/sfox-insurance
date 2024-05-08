@@ -73,7 +73,7 @@ class SafeTabs extends HTMLElement {
             </div> 
 
             <div id="${this.tabs.welcome}" class="tabcontent">
-                <welcome-page></welcome-page>
+                <safe-welcome-page></safe-welcome-page>
             </div> 
         `;
     }
