@@ -4,7 +4,7 @@ import { Animations, PageStructure, CustomEvents, SEO,
      SettingsBoard, NetworkCheckerSet } from '../settings';
 import { ImageViewerIds } from '../settings/ui';
 import { SaveObjects } from '../components/common/saves';
-import { ClassIdService, CustomEventService, StyleService } from '../services';
+import { ClassIdService, CustomEventService, StyleService, HTMLService } from '../services';
 import { StringService } from '../services/utils';
 import DataStorage from '../services/storage';
 import { BoolEnums } from '../enums';
@@ -35,7 +35,7 @@ class Application extends HTMLElement {
     setTitle() {
         const pckData = require('../../package.json');
         const titleEl = document.querySelector('title');
-        titleEl.innerHTML = `${SEO.application} R${StringService.getVersionFromPackage(pckData.version)}`;
+        HTMLService.html(titleEl, `${SEO.application} R${StringService.getVersionFromPackage(pckData.version)}`);
     }
 
     settingsChanged(evt) {
@@ -84,7 +84,7 @@ class Application extends HTMLElement {
 
     render() {
         const stngsHeight = PageStructure.settings.height;
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
                 .application {
                     width: 100vw;
@@ -110,7 +110,7 @@ class Application extends HTMLElement {
                     <main-layout></main-layout>
                 </div>
             </div> 
-        `;
+        `);
     }
 }
 

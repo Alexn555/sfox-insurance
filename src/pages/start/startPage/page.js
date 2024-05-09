@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
-import { IdService, CustomEventService } from '../../../services';
+import { IdService, CustomEventService, HTMLService } from '../../../services';
 import { StringService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
 import { HeaderMenuLinks } from '../../../enums/menuLinks';
@@ -30,7 +30,7 @@ class StartItemPage extends HTMLElement {
         this.info = StartItemInfo[id];
         if (this.info) {
             this.$main = IdService.id('main', this.shadow);
-            this.$main.innerHTML = `
+            HTMLService.html(this.$main, `
                 <h3>
                     <span class="label">${this.info.label}</span>
                     <action-link 
@@ -41,7 +41,7 @@ class StartItemPage extends HTMLElement {
                     </action-link>
                 </h3>
                 <p>${this.info.description}</p>
-            `;
+            `);
             this.$image = IdService.id('image', this.shadow);
             this.$image.setAttribute('src', this.info.image);
             this.$link = IdService.id('linkImage', this.shadow);
@@ -62,7 +62,7 @@ class StartItemPage extends HTMLElement {
     }
 
     render() {
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
                 .page {
                     display: grid;
@@ -98,7 +98,7 @@ class StartItemPage extends HTMLElement {
                 </div>
                 <div id="main"> </div> 
             </div>
-        `;
+        `);
     }
 }
 

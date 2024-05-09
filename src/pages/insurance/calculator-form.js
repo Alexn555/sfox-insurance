@@ -6,7 +6,7 @@ import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { ArrayService } from '../../services/utils';
 import DataStorage from '../../services/storage';
-import { ClassIdService, CustomEventService, IdService } from '../../services';
+import { ClassIdService, CustomEventService, IdService, HTMLService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
@@ -37,7 +37,7 @@ class InsuranceCalculatorForm extends HTMLElement {
         this.loan = e.detail.value;
         this.save('loan', e.detail.value);
         const el = ClassIdService.id('loan-current-amount', this.shadow);
-        el.innerHTML = `${this.loan} ${this.currency}`;
+        HTMLService.html(el, `${this.loan} ${this.currency}`);
       });
 
       const selectEvt = CustomEvents.interaction.selectChange;
@@ -87,7 +87,7 @@ class InsuranceCalculatorForm extends HTMLElement {
     calculateFormula() {
       this.totalPayment = this.loan * (this.period / this.interests);
       const el = ClassIdService.id('total-payment', this.shadow);
-      el.innerHTML = `${(this.formatTotalValue(this.totalPayment))}`;
+      HTMLService.html(el, `${(this.formatTotalValue(this.totalPayment))}`);
     }
 
     formatTotalValue(val, option = 2) {
@@ -104,7 +104,7 @@ class InsuranceCalculatorForm extends HTMLElement {
     }
   
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
             <style>
                 .calculator-wrapper {
                   display: grid;
@@ -208,7 +208,7 @@ class InsuranceCalculatorForm extends HTMLElement {
                   </div>
                 </div>
           </form>
-      `;
+      `);
     }
   }
   

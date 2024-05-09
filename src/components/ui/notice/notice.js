@@ -4,7 +4,7 @@ import { NoticeDisclaimerSets } from '../../../settings';
 import DataStorage from '../../../services/storage';
 import InfoService from '../../../services/page/infoService';
 import { SaveObjects } from '../../common/saves';
-import { IdService } from '../../../services';
+import { IdService, HTMLService } from '../../../services';
 import { RenderService } from '../../../services/helpers';
 
 class NoticeDisclaimer extends HTMLElement {
@@ -32,7 +32,7 @@ class NoticeDisclaimer extends HTMLElement {
             this.setInit();
             this.info = await InfoService.getDisclaimer();
             this.storage.save(SaveObjects.notice.topDisclaimer, this.info);
-            this.$content.innerHTML = this.info;
+            HTMLService.html(this.$content, this.info);
             this.toggleDisclaimer(true);
         }
     }
@@ -65,11 +65,11 @@ class NoticeDisclaimer extends HTMLElement {
                     <action-button id="noticeClose" label="OK" type="action"></action-button>
                 </div>
             </dialog>`;
-        el.innerHTML = html;
+        HTMLService.html(el, html);
     }
 
     render() {
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
                 dialog#disclaimer {
                     display: flex;
@@ -96,7 +96,7 @@ class NoticeDisclaimer extends HTMLElement {
                 }
             </style>
             <div id="disclaimerPlace"></div>
-        `;
+        `);
     }
 }
 

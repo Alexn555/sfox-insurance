@@ -1,6 +1,6 @@
 import ThemeHelper from '../../../theme/themeHelper';
 import { PackIds } from '../../../theme/enums';
-import { CustomEventService, IdService, LoggerService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
 import { NumberService } from '../../../services/utils';
 import { LockerEvents } from '../../../pages/safe/events';
 
@@ -85,24 +85,24 @@ class SafeGame extends HTMLElement {
     setScore(val) {
       if (val) {
         this.score = val;
-        this.$score.innerHTML = `Score: <b>${val}</b>`;
+        HTMLService.html(this.$score, `Score: <b>${val}</b>`);
       }
     }
 
     resetScore() {
       if (this.$score) {
-        this.$score.innerHTML = `Score: <b>0</b>`;
+        HTMLService.html(this.$score, `Score: <b>0</b>`);
       }
     }
     
     setNote(val, cl) {
       if (this.$note && val) {
-        this.$note.innerHTML = `<span class="${cl}">${val}</span>`;
+        HTMLService.html(this.$note, `<span class="${cl}">${val}</span>`);
       }
     }
 
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             .safe-game {
               padding: 2px 0 20px 0;
@@ -138,7 +138,7 @@ class SafeGame extends HTMLElement {
                   color: blue;
                 }
                 & span.notGuess {
-                  color: red;
+                  color: black;
                 }
               }
             }
@@ -155,7 +155,7 @@ class SafeGame extends HTMLElement {
             </div> 
             <safe-locker id="locker"></safe-locker>
           </div>    
-       `;
+       `);
     }
   }
   

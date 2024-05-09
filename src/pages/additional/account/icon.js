@@ -4,7 +4,7 @@ import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
-import { CustomEventService, IdService } from '../../../services';
+import { CustomEventService, IdService, HTMLService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { Account } from '../../../settings';
 
@@ -130,12 +130,12 @@ class AccountIcon extends HTMLElement {
 
     setIcon(html) {
       const el = IdService.id('profile', this.shadow);
-      el.innerHTML = html;
+      HTMLService.html(el, html);
     }
 
     render() {
       const varias = JSONService.set(this.variants);
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             #profile {
               width: 100px;
@@ -158,7 +158,7 @@ class AccountIcon extends HTMLElement {
             columns-xs="1"
           >
           </icon-select>
-       `;
+       `);
     }
   }
   

@@ -1,6 +1,6 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomWindowEvents } from '../../../settings';
-import { CustomEventService, IdService, StyleService } from "../../../services";
+import { CustomEventService, IdService, StyleService, HTMLService } from "../../../services";
 import { PackIds } from '../../../theme/enums';
 import { Cursors, ArrayEnums } from '../../../enums';
 
@@ -41,7 +41,7 @@ class PaginatableContent extends HTMLElement {
     if (name === 'label' && oldValue !== newValue) {
       const el = IdService.id('label', this.shadow);
       if (el) {
-        el.innerText = newValue;
+        HTMLService.text(el, newValue);
       }
     }
   }
@@ -56,7 +56,8 @@ class PaginatableContent extends HTMLElement {
     this.$pagination = IdService.id(this.pageContaner, this.shadow);
     if (this.$pagination) {
       if (this.pageAmount === 0) {
-        return this.$pagination.innerHTML = '';
+        HTMLService.html(this.$pagination, '');
+        return;
       }
 
       this.pageIds = [];
@@ -65,7 +66,7 @@ class PaginatableContent extends HTMLElement {
         html += `<div id="page-${i+1}" class="page">${i + 1}</div>`;
         this.pageIds.push('page-'+(i+1));
       }
-      this.$pagination.innerHTML = html;
+      HTMLService.html(this.$pagination, html);
       this.setHandlers();
     }
   }
@@ -85,7 +86,7 @@ class PaginatableContent extends HTMLElement {
   }
 
   render() {
-    this.shadow.innerHTML = `
+    HTMLService.html(this.shadow, `
       <style>
         .content {
           width: fit-content;
@@ -133,7 +134,7 @@ class PaginatableContent extends HTMLElement {
         </div>
         <div id="${this.pageContaner}"></div>
       </div>
-    `;
+    `);
   }
 }
 

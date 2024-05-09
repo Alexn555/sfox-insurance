@@ -3,7 +3,7 @@ import { ThemeHelper } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents } from '../../../settings';
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
-import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
+import { CustomEventService, HTMLService, IdService, LoggerService, StyleService } from '../../../services';
 import { RenderService } from '../../../services/helpers';
 import { PackIds } from '../../../theme/enums';
 import { DateService } from '../../../services/helpers';
@@ -184,7 +184,7 @@ class ImageViewer extends HTMLElement {
     setZoomInfo(zoomFactor, key = '') {
       const el = IdService.id(this.$zoomPercent, this.shadow);
       const arrows = ImageViewerHelper.getZommArrows(key, this.keys);
-      el.innerHTML = `${arrows.left} <b>${Math.floor(zoomFactor * 100)}%</b> ${arrows.right}`;
+      HTMLService.html(el, `${arrows.left} <b>${Math.floor(zoomFactor * 100)}%</b> ${arrows.right}`);
     }
 
     fadeZoomInfo(toggle, removeTimeout = 0) {
@@ -257,7 +257,7 @@ class ImageViewer extends HTMLElement {
         padding: 10px;
         border-radius: 0;`;
         
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
         <style>
           dialog#imageViewer {
             position: absolute;
@@ -363,7 +363,7 @@ class ImageViewer extends HTMLElement {
           </div> 
           ${this.setOriginalImageLink()}
         </dialog>
-       `;
+       `);
     }
   }
   

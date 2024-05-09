@@ -3,7 +3,7 @@ import WriterService from '../../../services/page/writerService';
 import { CustomPageEvents, Writer } from '../../../settings';
 import { ServerService } from '../../../services/helpers';
 import { ContentService } from '../../../services/dom/contentService';
-import { ClassIdService, CustomEventService } from '../../../services';
+import { ClassIdService, CustomEventService, HTMLService } from '../../../services';
 
 class WriterArticle extends HTMLElement {
     constructor() {
@@ -37,7 +37,7 @@ class WriterArticle extends HTMLElement {
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
       const el = this.$writerContent;
-      el.innerHTML = '';
+      HTMLService.html(el, '');
 
       if (content && content[0]?.body) {
         let para1 = ContentService.createArticle(el, content[0].body);
@@ -69,11 +69,11 @@ class WriterArticle extends HTMLElement {
     }
 
     showLoadingArticle() {
-      this.$writerContent.innerHTML = 'Loading article...';
+      HTMLService.html(this.$writerContent, 'Loading article...');
     }
 
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
         <style>
             .writeContent {
               &:first-letter {
@@ -86,7 +86,7 @@ class WriterArticle extends HTMLElement {
             }
         </style>
         <div class="writeContent"> </div>
-       `;
+       `);
     }
   }
   

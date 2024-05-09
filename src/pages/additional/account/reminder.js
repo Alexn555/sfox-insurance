@@ -4,7 +4,7 @@ import { ValidatorService, ArrayService } from '../../../services/utils';
 import { RenderService } from '../../../services/helpers';
 import { KeyboardKeys } from '../../../enums';
 import { styleErrors } from '../../../components/common/styles/errors';
-import { IdService, CustomEventService } from '../../../services';
+import { IdService, CustomEventService, HTMLService } from '../../../services';
 import { successIcon, errorIcon } from '../../../components/common/styles/statusIcons/status';
 
 class AccountPwdReminder extends HTMLElement {
@@ -45,21 +45,25 @@ class AccountPwdReminder extends HTMLElement {
     checkEmail(email) {
       if (!ValidatorService.validateEmail(email)) {
         const el = IdService.id('error', this.shadow);
-        el.innerHTML = `<i class="icon icon-error">ok </i>
-        <span class="message">Email is not correct format</span>`;
-        setTimeout(() => { el.innerHTML = ''; }, 2000);
+        HTMLService.html(el, `<i class="icon icon-error">ok </i>
+        <span class="message">Email is not correct format</span>`);
+
+        setTimeout(() => { 
+          HTMLService.html(el, '');
+        }, 2000);
       }
     }
 
     toggleInfo() {
       if (ArrayService.minLength(this.email)) {
         const el = IdService.id('status', this.shadow);
-        el.innerHTML = `<span>
-          <i class="icon icon-success"> ok</i>
-          <span class="message"><b>Email</b> is send to us to check if password exists. <br />
-          Actually it will not be sent - it is just a demo. :)</span>`;
+        HTMLService.html(el, `<span>
+        <i class="icon icon-success"> ok</i>
+        <span class="message"><b>Email</b> is send to us to check if password exists. <br />
+        Actually it will not be sent - it is just a demo. :)</span>`);
+
         setTimeout(() => { 
-          el.innerHTML = ''; 
+          HTMLService.html(el, '');
           this.close();
         }, 2000);
       } else {
@@ -83,7 +87,7 @@ class AccountPwdReminder extends HTMLElement {
     }
   
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             ${successIcon(22, 22)}
             ${errorIcon(22, 22, false)}
@@ -121,7 +125,7 @@ class AccountPwdReminder extends HTMLElement {
             <div id="error"></div>
             <div id="status"></div>
           </dialog>
-       `;
+       `);
     }
   }
   

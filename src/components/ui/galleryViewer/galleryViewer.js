@@ -1,7 +1,7 @@
 import { CustomWindowEvents } from '../../../settings';
 import { ImageViewerIds } from '../../../settings/ui';
 import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
-import { CustomEventService, IdService, StyleService } from '../../../services';
+import { CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
 import { ArrayService, JSONService } from '../../../services/utils';
 import EnvService from '../../../services/api/envService';
 import { ArrayEnums } from '../../../enums';
@@ -74,7 +74,7 @@ class GalleryViewer extends HTMLElement {
         images.forEach((img, index) => {
           html += `<div id="holder-${index}" class="thumb"> <img src="${img.imgSm}" alt="${index}" /> </div>`;
         });
-        this.$container.innerHTML = html;
+        HTMLService.html(this.$container, html);
       } else {
         images.forEach((img, index) => {
           const holder = IdService.id(`holder-${index}`, this.shadow);
@@ -88,7 +88,7 @@ class GalleryViewer extends HTMLElement {
       this.setHandlers(images);
     } else {
       if (this.$container) {
-        this.$container.innerHTML = '<span class="not-found">No images found</span>';
+        HTMLService.html(this.$container, '<span class="not-found">No images found</span>');
       }
     }
   }
@@ -124,12 +124,12 @@ class GalleryViewer extends HTMLElement {
             <img id="img-${i}" src="${thmLoad}" alt="Loading..." />
           </div>`;
       }
-      this.$container.innerHTML = html;
+      HTMLService.html(this.$container, html);
     }
   }
 
   render() {
-    this.shadow.innerHTML = `
+    HTMLService.html(this.shadow, `
       <style>
         #${this.id} {
           display: flex;
@@ -169,7 +169,7 @@ class GalleryViewer extends HTMLElement {
       >
         <div id="${this.id}"></div>
       </paginatable-content>
-    `;
+    `);
   }
 }
 

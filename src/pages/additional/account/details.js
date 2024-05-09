@@ -3,7 +3,7 @@ import { ArrayService } from '../../../services/utils';
 import { DateService }  from '../../../services/helpers';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
-import { CustomEventService, IdService } from '../../../services';
+import { CustomEventService, IdService, HTMLService } from '../../../services';
 
 class AccountDetails extends HTMLElement {
     constructor() {
@@ -65,11 +65,11 @@ class AccountDetails extends HTMLElement {
 
     setDetails(html) {
       const el = IdService.id('userDetails', this.shadow);
-      el.innerHTML = html;
+      HTMLService.html(el, html);
     }
 
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             .details {
               & div:nth-child(1) {
@@ -78,7 +78,7 @@ class AccountDetails extends HTMLElement {
             }
           </style>
           <div id="userDetails"></div> 
-       `;
+       `);
     }
   }
   

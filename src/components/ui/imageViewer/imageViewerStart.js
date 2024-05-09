@@ -1,6 +1,6 @@
 import { CustomWindowEvents } from "../../../settings";
 import { ImageViewerIds } from './sets';
-import { CustomEventService, IdService } from "../../../services";
+import { CustomEventService, IdService, HTMLService } from "../../../services";
 import { JSONService } from '../../../services/utils';
 
 class ImageViewerStart extends HTMLElement {
@@ -35,13 +35,13 @@ class ImageViewerStart extends HTMLElement {
 
   setImageViewer() {
     const el = IdService.id(this.container, this.shadow);
-    el.innerHTML = `<image-viewer-main id="${this.id}" source="${this.imgSource}"></image-viewer-main>`;
+    HTMLService.html(el, `<image-viewer-main id="${this.id}" source="${this.imgSource}"></image-viewer-main>`);
   }
 
   render() {
-    this.shadow.innerHTML = `
+    HTMLService.html(this.shadow, `
        <div id="${this.container}"></div>
-    `;
+    `);
   }
 }
 

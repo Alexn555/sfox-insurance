@@ -4,7 +4,7 @@ import { TextSizes } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
-import { IdService, StyleService } from '../../services';
+import { IdService, StyleService, HTMLService } from '../../services';
 
 class SettignsTextSize extends HTMLElement {
     constructor() {
@@ -55,12 +55,12 @@ class SettignsTextSize extends HTMLElement {
     setBodyTextSize(size = TextSizes.settings.default) {
         const body = document.querySelector('body');
         const indicator = IdService.id('indicator', this.shadow);
-        indicator.innerHTML = `<b>${size}</b>`;
+        HTMLService.html(indicator, `<b>${size}</b>`);
         StyleService.setProperty(body, 'fontSize', size+'%');
     }
 
     render() {
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
                 .text-size {
                     display: flex;
@@ -91,7 +91,7 @@ class SettignsTextSize extends HTMLElement {
                     </div>
                 </div> 
             </div> 
-        `;
+        `);
     }
 }
 

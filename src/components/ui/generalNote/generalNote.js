@@ -4,7 +4,7 @@ import { CustomWindowEvents } from '../../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
 import { PackIds } from '../../../theme/enums';
-import { IdService, CustomEventService, ClassIdService, StyleService } from '../../../services';
+import { IdService, CustomEventService, ClassIdService, StyleService, HTMLService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { RenderService } from '../../../services/helpers';
 import { errorIcon } from '../../common/styles/statusIcons/status';
@@ -83,10 +83,10 @@ class GeneralNote extends HTMLElement {
     toggleInfo() {
       const el = IdService.id('status', this.shadow);
       if (el) {
-        el.innerHTML = `
+        HTMLService.html(el, `
           ${this.setStatusIcon(this.status)}
           <span class="message">${this.text}</span>
-        `;
+        `);
       }
     }
 
@@ -114,7 +114,7 @@ class GeneralNote extends HTMLElement {
     }
 
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             ${errorIcon(22, 22)}
 
@@ -158,7 +158,7 @@ class GeneralNote extends HTMLElement {
             </div>
             <div id="status" class="error"></div>
           </dialog>
-       `;
+       `);
     }
 }
   

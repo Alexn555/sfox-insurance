@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
-import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, StyleService, HTMLService } from '../../../services';
 import { NumberService, JSONService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
@@ -46,7 +46,7 @@ class GameViewer extends HTMLElement {
     activateGame(index) {
         if (index < 0 || index > this.gamesAmount) {
             LoggerService.error('GameViewer index out of games boundaries');
-            this.$error.innerText = 'Error Index for game not found';
+            HTMLService.text(this.$error, 'Error Index for game not found');
             return;
         }
 
@@ -54,7 +54,7 @@ class GameViewer extends HTMLElement {
         this.toggleContentLoaded(false);
         this.setLoading(NumberService.randomInteger(1, 3), game.title, () => {
            let html = this.setGame(game, this.sessionId); 
-           this.$container.innerHTML = html;
+           HTMLService.html(this.$container, html);
            this.toggleContentLoaded(true);
         });
     }
@@ -71,15 +71,16 @@ class GameViewer extends HTMLElement {
     }
 
     setLoading(timeout = 1, title, onComplete) {
-        this.$loading.innerHTML =`
+        HTMLService.html(this.$loading, `
             <div class="loading-content">
               <div>Loading</div>
               <img src="${LoadingIcons.game.source}" alt="" />
               <div>${title}</div>
-            </div>`;
+            </div>`);
+
         StyleService.setDisplay(this.$loading, true);
         setTimeout(() => {
-            this.$loading.innerHTML = '';
+            HTMLService.html(this.$loading, '');
             StyleService.setDisplay(this.$loading, false);
             onComplete();
         }, timeout * 1000);
@@ -109,7 +110,7 @@ class GameViewer extends HTMLElement {
     }
 
     render() {
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
               .game-viewer-wrapper {
                 position: relative;
@@ -165,7 +166,7 @@ class GameViewer extends HTMLElement {
                     <div id="${this.id}"> </div>
                 </content-switcher>
             <div>
-        `;
+        `);
     }
 }
 

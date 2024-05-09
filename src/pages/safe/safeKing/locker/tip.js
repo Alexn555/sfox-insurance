@@ -1,5 +1,5 @@
 import { LockerEvents } from '../../../../pages/safe/events';
-import { CustomEventService, IdService, LoggerService } from '../../../../services';
+import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../../services';
 
 class SafeLocker extends HTMLElement {
     constructor() {
@@ -36,57 +36,62 @@ class SafeLocker extends HTMLElement {
         if (value) {
           this.code += value;
           if (this.code && this.isHelpDigits(value)) {
-            const tip = this.getTip(value, this.theCode);
-            this.setCode(tip);
+            const { key, pos } = this.getTip(value, this.theCode);
+            this.setCode(key, pos);
           }
         }
       });
     }
 
     getTip(val, theCode) {
-        const helpKey = val.substr(6, 1);
-        const foundKey = theCode.charAt(helpKey - 1);
-        return foundKey;
+      const helpKey = val.substr(6, 1);
+      const foundKey = theCode.charAt(helpKey - 1);
+      return { key: foundKey, pos: helpKey };
     }
 
     isHelpDigits(val) {
-        const found = this.helpDigits.indexOf(val);
-        return found !== -1;
+      const found = this.helpDigits.indexOf(val);
+      return found !== -1;
     }
 
     setPenaltyFactor(tries) {
-        let factor = 10;
-        if (tries <= 1) {
-            factor = 10;
-        }
-        if(tries > 1 && tries <= 4) {
-            factor = 20;
-        }
-        if (tries > 4) {
-            factor = 50;
-        }
-        return factor > this.penaltyLimit ? this.penaltyLimit : factor;
+      let factor = 10;
+      if (tries <= 1) {
+          factor = 10;
+      }
+      if(tries > 1 && tries <= 4) {
+          factor = 20;
+      }
+      if (tries > 4) {
+          factor = 50;
+      }
+      return factor > this.penaltyLimit ? this.penaltyLimit : factor;
     }
 
     setPenalty() {
-        this.tries += 1;
-        this.penalty = this.tries * this.setPenaltyFactor(this.tries);
-        LoggerService.log(`Code penalty ${this.penalty}`);
-        CustomEventService.send(LockerEvents.deductPenalty, this.penalty);
+      this.tries += 1;
+      this.penalty = this.tries * this.setPenaltyFactor(this.tries);
+      LoggerService.log(`Code penalty ${this.penalty}`);
+      CustomEventService.send(LockerEvents.deductPenalty, this.penalty);
     }
 
-    setCode(code) {
+    setCode(code, pos) {
       if (code) {
-        this.$codeDisplay.innerText = code;
+        HTMLService.text(this.$codeDisplay, this.setHelpLabel(code, pos));
         setTimeout(() => {
-            this.$codeDisplay.innerText = ' '; 
+            HTMLService.text(this.$codeDisplay, ' ');
             this.setPenalty();
         }, this.tipTime * 1000);
       }
     }
 
+    setHelpLabel(code, pos) {
+      let mask = '****';
+      return mask.substring(0, pos - 1) + `${code}` + mask.substring(pos);
+    }
+
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
           <style>
             .safe-tip {
               border: 1px solid brown;
@@ -119,7 +124,7 @@ class SafeLocker extends HTMLElement {
                 <safe-locker-key id="key23" label="Digit 4"></safe-locker-key>            
             </div>
           </div>    
-       `;
+       `);
     }
   }
   

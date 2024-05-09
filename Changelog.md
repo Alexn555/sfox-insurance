@@ -1,4 +1,7 @@
 ## Changelog
+v 2.53
+  Added HTMLService to set text, innerHtml
+
 v 2.52
   Added settings save object to use BoolEnums,
     Created SafeKing Game v1 (safe locker)

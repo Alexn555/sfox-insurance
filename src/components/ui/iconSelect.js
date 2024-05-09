@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { CustomEvents, CustomWindowEvents } from '../../settings';
-import { CustomEventService, IdService, LoggerService, StyleService } from '../../services';
+import { CustomEventService, IdService, LoggerService, StyleService, HTMLService } from '../../services';
 import { JSONService, MobileService } from '../../services/utils';
 
 class IconSelect extends HTMLElement {
@@ -69,7 +69,7 @@ class IconSelect extends HTMLElement {
             });
             const el = IdService.id('icons', this.shadow);
             if (el) {
-                el.innerHTML = html;
+                HTMLService.html(el, html);
                 this.setIconHandlers();
             } else {
                 LoggerService.warn('Icons holder not found');
@@ -106,7 +106,7 @@ class IconSelect extends HTMLElement {
     }
     
     render() {
-        this.shadow.innerHTML = `
+        HTMLService.html(this.shadow, `
             <style>
                 dialog#iconSelect {  
                     padding: 10px;
@@ -148,7 +148,7 @@ class IconSelect extends HTMLElement {
                 </div>
                 <div id="icons"></div>
             </dialog>
-        `;
+        `);
     }
 }
 

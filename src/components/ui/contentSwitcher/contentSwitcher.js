@@ -3,7 +3,7 @@ import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { CommonEvents, CustomWindowEvents } from '../../../settings';
 import { ContentSwSet } from './sets';
-import { CustomEventService, IdService, StyleService } from "../../../services";
+import { CustomEventService, IdService, StyleService, HTMLService } from "../../../services";
 import { JSONService, MobileService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
@@ -144,7 +144,8 @@ class ContentSwitcher extends HTMLElement {
     this.$pagination = IdService.id(this.paginationId, this.shadow);
     if (this.$pagination) {
       if (this.pageAmount === 0) {
-        return this.$pagination.innerHTML = '';
+        HTMLService.html(this.$pagination, '');
+        return;
       }
 
       this.pageIds = [];
@@ -155,7 +156,7 @@ class ContentSwitcher extends HTMLElement {
         </div>`;
         this.pageIds.push('page-'+(i+1));
       }
-      this.$pagination.innerHTML = html;
+      HTMLService.html(this.$pagination, html);
       this.setPageContainer(this.pageIds.length);
       this.setHandlers();
       this.setLabelIcons(this.pageIds);
@@ -203,7 +204,7 @@ class ContentSwitcher extends HTMLElement {
   }
 
   render() {
-    this.shadow.innerHTML = `
+    HTMLService.html(this.shadow, `
       <style>
         #${this.id} {
           display: flex;
@@ -280,7 +281,7 @@ class ContentSwitcher extends HTMLElement {
         </div>
         <div id="${this.paginationId}"></div>
       </div>
-    `;
+    `);
   }
 }
 

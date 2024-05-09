@@ -1,6 +1,6 @@
 import { CustomEvents } from '../../../settings/';
 import { GallerySet } from '../../../settings/ui';
-import { CustomEventService, IdService } from '../../../services';
+import { CustomEventService, IdService, HTMLService } from '../../../services';
 import { ValidatorService } from '../../../services/utils';
 import { styleErrors } from '../../common/styles/errors';
 import DataStorage from '../../../services/storage';
@@ -33,7 +33,7 @@ class GallerySearch extends HTMLElement {
           this.saveSearch(this.searchWord);
           CustomEventService.send(GallerySet.searchEvent, this.searchWord);
         } else {
-          this.$error.innerText = `Please type minimum ${GallerySet.minimumSearch} chars`;
+          HTMLService.text(this.$error, `Please type minimum ${GallerySet.minimumSearch} chars`);
         }
       }); 
     }
@@ -52,13 +52,13 @@ class GallerySearch extends HTMLElement {
       }
 
       if (!isError) {
-        this.$error.innerText = '';
+        HTMLService.text(this.$error, '');
       }
       return input;
     }
 
     handleCommonError(msg) {
-      this.$error.innerText = msg;
+      HTMLService.text(this.$error, msg);
       return { input: GallerySet.defaultSearch, isError: true};
     }
 

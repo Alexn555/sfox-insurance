@@ -1,5 +1,5 @@
 import { LockerEvents } from '../../../../pages/safe/events';
-import { CustomEventService, IdService, StyleService } from '../../../../services';
+import { CustomEventService, IdService, StyleService, HTMLService } from '../../../../services';
 
 class SafeLocker extends HTMLElement {
     constructor() {
@@ -64,7 +64,7 @@ class SafeLocker extends HTMLElement {
     setCode(code) {
       if (code) {
         this.setGuessHighlight(code, this.theCode);
-        this.$codeDisplay.innerText = code;
+        HTMLService.text(this.$codeDisplay, code);
       }
     }
 

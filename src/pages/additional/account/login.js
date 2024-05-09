@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
-import { ClassIdService, CustomEventService, IdService, StyleService } from '../../../services';
+import { ClassIdService, CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
 import { KeyboardKeys } from '../../../enums';
 import { UserService } from '../../../services/page/usersService';
@@ -89,13 +89,13 @@ class AccountLogin extends HTMLElement {
 
     showError(error, visible = true) {
       const el = IdService.id('error', this.shadow);
-      el.innerHTML = error;
+      HTMLService.html(el, error);
       StyleService.setDisplay(el, visible);
       this.removeError(el);
     }
 
     removeError(el, timeout = 2000) {
-      setTimeout(() => el.innerHTML = '', timeout);
+      setTimeout(() => HTMLService.html(el, ''), timeout);
     }
 
     showInfoTip() {
@@ -106,7 +106,7 @@ class AccountLogin extends HTMLElement {
     }
   
     render() {
-      this.shadow.innerHTML = `
+      HTMLService.html(this.shadow, `
             <style>
                .login {
                   position: relative;
@@ -179,7 +179,7 @@ class AccountLogin extends HTMLElement {
 
                 <account-pwd-reminder> </account-pwd-reminder>
            </form>
-       `;
+       `);
     }
   }
   
