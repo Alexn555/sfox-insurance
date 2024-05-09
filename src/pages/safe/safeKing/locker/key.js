@@ -1,27 +1,47 @@
 import { LockerEvents } from '../../../../pages/safe/events';
-import { CustomEventService, IdService } from '../../../../services';
+import { CustomEventService, IdService, StyleService } from '../../../../services';
+import { classes } from '../enums';
 
 class SafeLockerKey extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.id = this.getAttribute('key') || '';
+      this.id = this.getAttribute('id') || '';
       this.label = this.getAttribute('label') || '';
+      this.className = this.getAttribute('class-name') || '';
     }
   
+    static get observedAttributes() { 
+      return ['class-name']; 
+    }
+
     connectedCallback() {
       this.render();
       this.initForm();
+      this.setActiveCl(this.className);
     }
 
     disconnectedCallback() {
-        IdService.remove(this.$key);
+      IdService.remove(this.$key);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (this.$key && name === 'class-name') {
+        this.className = oldValue !== newValue ? newValue : oldValue;
+        this.setActiveCl(this.className);
+      }
     }
 
     initForm() {    
-       this.$key = IdService.idAndClick(`key-${this.id}`, this.shadow, () => {
-          CustomEventService.send(LockerEvents.keyPress, this.label);
-       });
+      this.$key = IdService.idAndClick(this.id, this.shadow, () => {
+        CustomEventService.send(LockerEvents.keyPress, this.label);
+      });
+    }
+
+    setActiveCl(actCl) {
+      if (actCl !== '') {
+        StyleService.removeAndAddClass(this.$key, [classes.active, classes.normal], actCl);
+      }
     }
 
     render() {
@@ -50,10 +70,17 @@ class SafeLockerKey extends HTMLElement {
                 height: 40px;
               }
             }
+            .${classes.active} {
+              background-color: #dcdcdc;
+              border: 2px solid black;
+            }
+            .${classes.normal} {
+              border: none;
+            }
           </style>
           <div class="safe-key">
-            <button id="key-${this.id}"> 
-                ${this.label}
+            <button id="${this.id}"> 
+              ${this.label}
             </button>
           </div>    
        `;

@@ -1,5 +1,7 @@
 import { LockerEvents } from '../../../../pages/safe/events';
 import { CustomEventService, IdService, StyleService, HTMLService } from '../../../../services';
+import { NumberService } from '../../../../services/utils';
+import { classes } from '../enums';
 
 class SafeLocker extends HTMLElement {
     constructor() {
@@ -7,7 +9,10 @@ class SafeLocker extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.codeDisplay = 'code-display';
       this.codeLen = 4;
+      this.keyDigits = 10;
       this.theCode = '';
+      this.curCodeDigit = 0;
+      this.$keys = [];
       this.code = '';
     }
   
@@ -20,6 +25,8 @@ class SafeLocker extends HTMLElement {
       this.$codeDisplay = IdService.id(this.codeDisplay, this.shadow);
       this.setHandlers();
       this.setReset();
+      this.toggleCurCodeDigit(0);
+      this.setupKeys();
     }
 
     setHandlers() {
@@ -32,6 +39,8 @@ class SafeLocker extends HTMLElement {
         const val = e.detail.value;
         if (val && !this.isHelpDigit(val)) {
           this.code += val;
+          this.curCodeDigit += 1;
+          this.setKeysActive(this.curCodeDigit);
           if (this.code && this.code.length <= this.codeLen) {
             this.setCode(this.code);
             this.guessCode(this.code);
@@ -42,6 +51,43 @@ class SafeLocker extends HTMLElement {
 
     isHelpDigit(key) {
       return key.indexOf('Digit') !== -1;
+    }
+
+    setupKeys() {
+      for (let i = 0; i < this.keyDigits; i++) {
+        this.$keys[i] = IdService.id('key'+i, this.shadow);
+      }
+      this.resetClasses();
+    }
+
+    resetClasses() {
+      for (let i = 0; i < this.keyDigits; i++) {
+        this.$keys[i].setAttribute('class-name', classes.normal);
+      }
+    }
+
+    setKeysActive(digitNumber) {
+      if (digitNumber < this.codeLen) {
+        this.resetClasses();
+
+        const correctDigit = this.theCode.charAt(digitNumber);
+        this.$keyCorrect = IdService.id(`key${correctDigit}`, this.shadow);
+        this.$keyCorrect.setAttribute('class-name', classes.active);
+
+        const randDigits = [ 
+          NumberService.randomInteger(0, this.keyDigits - 1),
+          NumberService.randomInteger(0, this.keyDigits - 1)
+        ];
+
+        randDigits.forEach((randDigit) => {
+          let keyFriend = IdService.id(`key${randDigit}`, this.shadow);
+          keyFriend.setAttribute('class-name', classes.active);
+        });
+      }
+    }
+
+    toggleCurCodeDigit(toggle) {
+      this.curCodeDigit = toggle;
     }
 
     guessCode(code) {
@@ -59,6 +105,8 @@ class SafeLocker extends HTMLElement {
     resetVal() {
       this.code = '';
       this.setCode(' ');
+      this.toggleCurCodeDigit(0);
+      this.resetClasses();
     }
 
     setCode(code) {
