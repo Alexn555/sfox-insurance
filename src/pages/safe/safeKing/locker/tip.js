@@ -1,5 +1,6 @@
 import { LockerEvents } from '../../../../pages/safe/events';
 import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../../services';
+import { StringService } from '../../../../services/utils';
 
 class SafeLocker extends HTMLElement {
     constructor() {
@@ -77,17 +78,12 @@ class SafeLocker extends HTMLElement {
 
     setCode(code, pos) {
       if (code) {
-        HTMLService.text(this.$codeDisplay, this.setHelpLabel(code, pos));
+        HTMLService.text(this.$codeDisplay, StringService.getMaskSymbol(code, pos, '*', 4));
         setTimeout(() => {
-            HTMLService.text(this.$codeDisplay, ' ');
-            this.setPenalty();
+          HTMLService.text(this.$codeDisplay, ' ');
+          this.setPenalty();
         }, this.tipTime * 1000);
       }
-    }
-
-    setHelpLabel(code, pos) {
-      let mask = '****';
-      return mask.substring(0, pos - 1) + `${code}` + mask.substring(pos);
     }
 
     render() {

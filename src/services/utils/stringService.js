@@ -11,4 +11,12 @@ export class StringService {
     static capFirstLetter(str) {
         return str.charAt(0).toUpperCase()+ str.slice(1);
     }
+
+    static getMaskSymbol(replaceSymb, pos, symb = '*', symbAmount = 4) {
+        let mask = '';
+        for (let i = 0; i < symbAmount; i++) {
+          mask += symb;
+        }
+        return mask.substring(0, pos - 1) + `${replaceSymb}` + mask.substring(pos);
+    }
 }
