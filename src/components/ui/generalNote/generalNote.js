@@ -114,7 +114,7 @@ class GeneralNote extends HTMLElement {
     }
 
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             ${errorIcon(22, 22)}
 
@@ -158,7 +158,7 @@ class GeneralNote extends HTMLElement {
             </div>
             <div id="status" class="error"></div>
           </dialog>
-       `);
+       `;
     }
 }
   

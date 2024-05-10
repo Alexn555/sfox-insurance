@@ -84,7 +84,7 @@ class Application extends HTMLElement {
 
     render() {
         const stngsHeight = PageStructure.settings.height;
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
                 .application {
                     width: 100vw;
@@ -110,7 +110,7 @@ class Application extends HTMLElement {
                     <main-layout></main-layout>
                 </div>
             </div> 
-        `);
+        `;
     }
 }
 

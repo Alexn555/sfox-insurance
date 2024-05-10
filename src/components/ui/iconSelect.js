@@ -106,7 +106,7 @@ class IconSelect extends HTMLElement {
     }
     
     render() {
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
                 dialog#iconSelect {  
                     padding: 10px;
@@ -148,7 +148,7 @@ class IconSelect extends HTMLElement {
                 </div>
                 <div id="icons"></div>
             </dialog>
-        `);
+        `;
     }
 }
 

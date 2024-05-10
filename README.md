@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.54
-  Added Game SafeKing settings improvements
+  Added Game SafeKing settings improvements,
+  Restored to use in render method innerHTML for better stability and performance
 
 v 2.53
   Added HTMLService to set text, innerHtml

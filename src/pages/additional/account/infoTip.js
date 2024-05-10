@@ -32,7 +32,7 @@ class AccountLoginInfo extends HTMLElement {
     }
   
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             #info {
               background-color: #e6e6e6;
@@ -42,7 +42,7 @@ class AccountLoginInfo extends HTMLElement {
           </style>
           <action-button id="infoBtn" label="Info" type="highlight"></action-button>  
           <div id="info"></div>    
-       `);
+       `;
     }
   }
   

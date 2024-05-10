@@ -62,7 +62,7 @@ class StartItemPage extends HTMLElement {
     }
 
     render() {
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
                 .page {
                     display: grid;
@@ -98,7 +98,7 @@ class StartItemPage extends HTMLElement {
                 </div>
                 <div id="main"> </div> 
             </div>
-        `);
+        `;
     }
 }
 

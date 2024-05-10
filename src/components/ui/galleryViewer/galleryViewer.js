@@ -129,7 +129,7 @@ class GalleryViewer extends HTMLElement {
   }
 
   render() {
-    HTMLService.html(this.shadow, `
+    this.shadow.innerHTML = `
       <style>
         #${this.id} {
           display: flex;
@@ -169,7 +169,7 @@ class GalleryViewer extends HTMLElement {
       >
         <div id="${this.id}"></div>
       </paginatable-content>
-    `);
+    `;
   }
 }
 

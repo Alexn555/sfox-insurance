@@ -135,7 +135,7 @@ class AccountIcon extends HTMLElement {
 
     render() {
       const varias = JSONService.set(this.variants);
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             #profile {
               width: 100px;
@@ -158,7 +158,7 @@ class AccountIcon extends HTMLElement {
             columns-xs="1"
           >
           </icon-select>
-       `);
+       `;
     }
   }
   

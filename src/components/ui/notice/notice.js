@@ -69,7 +69,7 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     render() {
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
                 dialog#disclaimer {
                     display: flex;
@@ -96,7 +96,7 @@ class NoticeDisclaimer extends HTMLElement {
                 }
             </style>
             <div id="disclaimerPlace"></div>
-        `);
+        `;
     }
 }
 

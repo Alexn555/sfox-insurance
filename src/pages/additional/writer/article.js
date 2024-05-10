@@ -73,7 +73,7 @@ class WriterArticle extends HTMLElement {
     }
 
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
         <style>
             .writeContent {
               &:first-letter {
@@ -86,7 +86,7 @@ class WriterArticle extends HTMLElement {
             }
         </style>
         <div class="writeContent"> </div>
-       `);
+       `;
     }
   }
   

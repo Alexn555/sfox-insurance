@@ -87,7 +87,7 @@ class SafeLocker extends HTMLElement {
     }
 
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             .safe-tip {
               border: 1px solid brown;
@@ -120,7 +120,7 @@ class SafeLocker extends HTMLElement {
                 <safe-locker-key id="key23" label="Digit 4"></safe-locker-key>            
             </div>
           </div>    
-       `);
+       `;
     }
   }
   

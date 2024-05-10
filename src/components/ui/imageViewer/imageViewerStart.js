@@ -39,9 +39,9 @@ class ImageViewerStart extends HTMLElement {
   }
 
   render() {
-    HTMLService.html(this.shadow, `
+    this.shadow.innerHTML = `
        <div id="${this.container}"></div>
-    `);
+    `;
   }
 }
 

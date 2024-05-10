@@ -204,7 +204,7 @@ class ContentSwitcher extends HTMLElement {
   }
 
   render() {
-    HTMLService.html(this.shadow, `
+    this.shadow.innerHTML = `
       <style>
         #${this.id} {
           display: flex;
@@ -281,7 +281,7 @@ class ContentSwitcher extends HTMLElement {
         </div>
         <div id="${this.paginationId}"></div>
       </div>
-    `);
+    `;
   }
 }
 

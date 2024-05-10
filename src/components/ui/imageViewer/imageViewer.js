@@ -257,7 +257,7 @@ class ImageViewer extends HTMLElement {
         padding: 10px;
         border-radius: 0;`;
         
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
         <style>
           dialog#imageViewer {
             position: absolute;
@@ -363,7 +363,7 @@ class ImageViewer extends HTMLElement {
           </div> 
           ${this.setOriginalImageLink()}
         </dialog>
-       `);
+       `;
     }
   }
   

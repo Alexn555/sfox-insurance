@@ -104,7 +104,7 @@ class SafeGame extends HTMLElement {
     }
 
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             .safe-game {
               padding: 2px 0 20px 0;
@@ -157,7 +157,7 @@ class SafeGame extends HTMLElement {
             </div> 
             <safe-locker id="locker"></safe-locker>
           </div>    
-       `);
+       `;
     }
   }
   

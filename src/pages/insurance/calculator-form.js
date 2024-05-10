@@ -104,7 +104,7 @@ class InsuranceCalculatorForm extends HTMLElement {
     }
   
     render() {
-      HTMLService.html(this.shadow, `
+      	this.shadow.innerHTML = `
             <style>
                 .calculator-wrapper {
                   display: grid;
@@ -161,7 +161,7 @@ class InsuranceCalculatorForm extends HTMLElement {
                       }
                   }
                 }
-                
+      
             </style>
             <form>
               <div class="calculator-wrapper">
@@ -208,7 +208,7 @@ class InsuranceCalculatorForm extends HTMLElement {
                   </div>
                 </div>
           </form>
-      `);
+      `;
     }
   }
   

@@ -87,7 +87,7 @@ class AccountPwdReminder extends HTMLElement {
     }
   
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             ${successIcon(22, 22)}
             ${errorIcon(22, 22, false)}
@@ -125,7 +125,7 @@ class AccountPwdReminder extends HTMLElement {
             <div id="error"></div>
             <div id="status"></div>
           </dialog>
-       `);
+       `;
     }
   }
   

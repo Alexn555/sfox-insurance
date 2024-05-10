@@ -106,7 +106,7 @@ class AccountLogin extends HTMLElement {
     }
   
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
             <style>
                .login {
                   position: relative;
@@ -179,7 +179,7 @@ class AccountLogin extends HTMLElement {
 
                 <account-pwd-reminder> </account-pwd-reminder>
            </form>
-       `);
+       `;
     }
   }
   

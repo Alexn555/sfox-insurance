@@ -110,7 +110,7 @@ class GameViewer extends HTMLElement {
     }
 
     render() {
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
               .game-viewer-wrapper {
                 position: relative;
@@ -166,7 +166,7 @@ class GameViewer extends HTMLElement {
                     <div id="${this.id}"> </div>
                 </content-switcher>
             <div>
-        `);
+        `;
     }
 }
 

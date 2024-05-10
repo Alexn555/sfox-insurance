@@ -86,7 +86,7 @@ class PaginatableContent extends HTMLElement {
   }
 
   render() {
-    HTMLService.html(this.shadow, `
+    this.shadow.innerHTML = `
       <style>
         .content {
           width: fit-content;
@@ -134,7 +134,7 @@ class PaginatableContent extends HTMLElement {
         </div>
         <div id="${this.pageContaner}"></div>
       </div>
-    `);
+    `;
   }
 }
 

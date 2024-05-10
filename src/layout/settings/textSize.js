@@ -60,7 +60,7 @@ class SettignsTextSize extends HTMLElement {
     }
 
     render() {
-        HTMLService.html(this.shadow, `
+        this.shadow.innerHTML = `
             <style>
                 .text-size {
                     display: flex;
@@ -91,7 +91,7 @@ class SettignsTextSize extends HTMLElement {
                     </div>
                 </div> 
             </div> 
-        `);
+        `;
     }
 }
 

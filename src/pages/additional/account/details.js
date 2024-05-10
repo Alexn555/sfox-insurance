@@ -69,7 +69,7 @@ class AccountDetails extends HTMLElement {
     }
 
     render() {
-      HTMLService.html(this.shadow, `
+      this.shadow.innerHTML = `
           <style>
             .details {
               & div:nth-child(1) {
@@ -78,7 +78,7 @@ class AccountDetails extends HTMLElement {
             }
           </style>
           <div id="userDetails"></div> 
-       `);
+       `;
     }
   }
   
