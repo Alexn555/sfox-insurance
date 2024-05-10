@@ -1,4 +1,7 @@
 ## Changelog
+v 2.54
+  Added Game SafeKing settings improvements
+
 v 2.53
   Added HTMLService to set text, innerHtml
 

@@ -1,6 +1,7 @@
 import { LockerEvents } from '../../../../pages/safe/events';
 import { CustomEventService, IdService, StyleService, HTMLService } from '../../../../services';
 import { NumberService } from '../../../../services/utils';
+import { SafeKingSets } from '../sets';
 import { classes } from '../enums';
 
 class SafeLocker extends HTMLElement {
@@ -54,6 +55,7 @@ class SafeLocker extends HTMLElement {
     }
 
     setupKeys() {
+      if (!SafeKingSets.enableHintKeys) { return; }
       for (let i = 0; i < this.keyDigits; i++) {
         this.$keys[i] = IdService.id('key'+i, this.shadow);
       }
@@ -61,13 +63,14 @@ class SafeLocker extends HTMLElement {
     }
 
     resetClasses() {
+      if (!SafeKingSets.enableHintKeys) { return; }
       for (let i = 0; i < this.keyDigits; i++) {
         this.$keys[i].setAttribute('class-name', classes.normal);
       }
     }
 
     setKeysActive(digitNumber) {
-      if (digitNumber < this.codeLen) {
+      if (digitNumber < this.codeLen && SafeKingSets.enableHintKeys) {
         this.resetClasses();
 
         const correctDigit = this.theCode.charAt(digitNumber);

@@ -3,7 +3,7 @@ import { PackIds } from '../../../theme/enums';
 import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
 import { NumberService } from '../../../services/utils';
 import { LockerEvents } from '../../../pages/safe/events';
-
+import { SafeKingSets } from './sets';
 
 class SafeGame extends HTMLElement {
     constructor() {
@@ -55,10 +55,12 @@ class SafeGame extends HTMLElement {
       });
 
       CustomEventService.event(LockerEvents.deductPenalty, (e) => {
-        const penalty = e.detail.value;
-        const curScore = this.getScore();
-        this.tries += 1;
-        this.setScore(curScore - penalty);
+        if (SafeKingSets.deductPenalty) {
+          const penalty = e.detail.value;
+          const curScore = this.getScore();
+          this.tries += 1;
+          this.setScore(curScore - penalty);
+        }
       });
     }
 
