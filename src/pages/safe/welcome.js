@@ -1,5 +1,4 @@
 // Info icon svg (c) css.gg/info
-
 import { IdService } from '../../services';
 import EnvService from '../../services/api/envService';
 

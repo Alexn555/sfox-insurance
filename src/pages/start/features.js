@@ -1,8 +1,3 @@
-// Info icon svg (c) css.gg/info
-
-import { IdService } from '../../services';
-
-// @ts-nocheck
 class FeaturesPage extends HTMLElement {
     constructor() {
         super();
