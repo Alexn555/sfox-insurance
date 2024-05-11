@@ -3,8 +3,10 @@ export const SafeKingSets = {
     deductPenalty: true,
     bonus: {
         animation: {
+            useInterval: true,
+            durationInterval: 90,
+            durationFrame: 200,
             randomPrize: true,
-            useOnStart: false,
             rotate: true
         }
     }

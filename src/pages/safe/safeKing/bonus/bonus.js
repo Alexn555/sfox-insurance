@@ -17,7 +17,8 @@ class SafeGame extends HTMLElement {
       this.sets = SafeKingSets.bonus;
       this.ctx = null;
       this.$animationTimer = null;
-      this.duration = 90;
+      const stgsAnm = this.sets.animation;
+      this.duration = stgsAnm.useInterval ? stgsAnm.durationInterval : stgsAnm.durationFrame;
     }
   
     connectedCallback() {
@@ -39,21 +40,14 @@ class SafeGame extends HTMLElement {
     setTextures() {
         if (this.$prize) {
             this.$prize.setAttribute('src', this.setPrizeImage());
-            this.setBonusCard();
-
-            if (this.sets.animation.useOnStart) {
-                this.$prize.addEventListener('load', () => {
-                    window.requestAnimationFrame(this.renderLoop.bind(this));
-                });
-            }
         }
+        this.setBonusCard();
     }
 
     setHandlers() {
       CustomEventService.event(LockerEvents.doorOpen, (e) => {
         this.setTextures();
         this.resetAnimation();
-        this.setBonusCard();
 
         const curWin = e.detail.value;
         const bonus = this.getBonus();
@@ -66,7 +60,7 @@ class SafeGame extends HTMLElement {
     setPrizeImage() {
         if (this.sets.animation.randomPrize) {
             const prizes = [textures.dollar, textures.card];
-            return prizes[NumberService.randomInteger(0, 1)];
+            return prizes[NumberService.randomInteger(0, prizes.length - 1)];
         }
         return textures.dollar;
     }
@@ -110,8 +104,8 @@ class SafeGame extends HTMLElement {
         let rotate = this.sets.animation.rotate;
         const w = this.$canvas.width;
         const h = this.$canvas.height;
-        
-        this.$animationTimer = setInterval(() => {
+
+        const play = () => {
             if (rotate) {
                 this.rotateImage(this.$prize, 0, 90, duration / 10, w * 0.5, h * 0.5, 1.5, '');
             } else {
@@ -129,10 +123,20 @@ class SafeGame extends HTMLElement {
                     CustomEventService.send(LockerEvents.bonusClose);
                 }, 2000);
                 return
+            } else {
+                if (!this.sets.animation.useInterval) {
+                    window.requestAnimationFrame(play);
+                }
             }
 
            duration += 1;
-        }, 60);
+        };
+        
+        if (this.sets.animation.useInterval) {
+            this.$animationTimer = setInterval(() => { play(); }, 60); 
+        } else {
+            window.requestAnimationFrame(play);
+        }
     }
 
     resetAnimation() {
