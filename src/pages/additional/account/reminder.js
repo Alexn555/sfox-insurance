@@ -27,6 +27,17 @@ class AccountPwdReminder extends HTMLElement {
       this.initForm();
     }
 
+    disconnectedCallback() {
+      if (this.$elBtn && this.$close) {
+        IdService.removeList([this.$elBtn, this.$close]);
+      }
+
+      CustomEventService.removeList([
+        CustomPageEvents.users.reminder.open, 
+        `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 
+      ]);
+    }
+
     initForm() {
       this.$elBtn = IdService.idAndClick('remind', this.shadow, this.toggleInfo.bind(this));
       this.$email = IdService.id(this.idEmail, this.shadow);
@@ -73,17 +84,6 @@ class AccountPwdReminder extends HTMLElement {
 
     close() {
       this.$container?.close();
-    }
-
-    disconnectedCallback() {
-      if (this.$elBtn && this.$close) {
-        IdService.removeList([this.$elBtn, this.$close]);
-      }
-
-      CustomEventService.removeList([
-        CustomPageEvents.users.reminder.open, 
-        `${CustomEvents.interaction.textInputChange}-${this.idEmail}` 
-      ]);
     }
   
     render() {

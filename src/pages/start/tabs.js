@@ -22,6 +22,10 @@ class HomeTabs extends HTMLElement {
       this.initForm();
     }
 
+    disconnectedCallback() {
+      IdService.removeList([this.$btnStart, this.$btnWelcome, this.$btnFeatures, this.$btnAccount]);
+    }
+
     initForm() {
       this.$tabStart = IdService.id(this.tabs.start, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
@@ -45,10 +49,6 @@ class HomeTabs extends HTMLElement {
       this.$btnAccount = IdService.idAndClick(accounts, this.shadow, () => {
         this.openTab(this.tabs.accounts, this.$tabAccount);
       });
-    }
-
-    disconnectedCallback() {
-      IdService.removeList([this.$btnStart, this.$btnWelcome, this.$btnFeatures, this.$btnAccount]);
     }
 
     openTab(evt, selected) {

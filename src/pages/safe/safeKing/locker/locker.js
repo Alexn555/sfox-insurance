@@ -1,6 +1,6 @@
 import { LockerEvents } from '../../../../pages/safe/events';
 import { CustomEventService, IdService, StyleService, HTMLService } from '../../../../services';
-import { NumberService } from '../../../../services/utils';
+import { ArrayService, NumberService } from '../../../../services/utils';
 import { SafeKingSets } from '../sets';
 import { classes } from '../enums';
 
@@ -125,15 +125,28 @@ class SafeLocker extends HTMLElement {
       StyleService.setProperty(this.$codeDisplay, 'color', correct);
     }
 
+    showDigits(keys = []) {
+      let html = '';
+      if (ArrayService.minLength(keys)) {
+        for (let i = 0, l = keys.length; i < l; i++) {
+          html += `<safe-locker-key id="key${keys[i]}" label="${keys[i]}"></safe-locker-key>`;
+        }
+      }
+      return html;
+    }
+
     render() {
       this.shadow.innerHTML = `
           <style>
             .safe-locker {
-              border: 1px solid brown;
+              width: 400px;
+              background-color: #dcdcdc;
+              border: 4px solid brown;
             }
             
             #${this.codeDisplay} {
               border: 1px solid black;
+              background-color: #ededed;
               padding: 10px;
               width: 120px;
               height: 10px;
@@ -161,20 +174,13 @@ class SafeLocker extends HTMLElement {
             <div id="${this.codeDisplay}"></div>
             <div id="keyboard">
               <div>
-                <safe-locker-key id="key0" label="0"></safe-locker-key>
-                <safe-locker-key id="key1" label="1"></safe-locker-key>
-                <safe-locker-key id="key2" label="2"></safe-locker-key>
-                <safe-locker-key id="key3" label="3"></safe-locker-key>
+                ${this.showDigits([0, 1, 2, 3])}
               </div>
               <div>
-                <safe-locker-key id="key4" label="4"></safe-locker-key>
-                <safe-locker-key id="key5" label="5"></safe-locker-key>
-                <safe-locker-key id="key6" label="6"></safe-locker-key>
+                ${this.showDigits([4, 5, 6])}
               </div>
               <div>
-                <safe-locker-key id="key7" label="7"></safe-locker-key>
-                <safe-locker-key id="key8" label="8"></safe-locker-key>
-                <safe-locker-key id="key9" label="9"></safe-locker-key>
+                ${this.showDigits([7, 8, 9])}
               </div>
               <div id="reset">
                 <button id="reset-btn"> 

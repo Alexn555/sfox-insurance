@@ -95,6 +95,7 @@ class SafeLocker extends HTMLElement {
             
             #${this.codeDisplay} {
               border: 1px solid black;
+              letter-spacing: 4px;
               padding: 10px;
               width: 120px;
               height: 10px;

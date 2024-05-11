@@ -20,6 +20,10 @@ class SafeTabs extends HTMLElement {
       this.initForm();
     }
 
+    disconnectedCallback() {
+      IdService.removeList([this.$btnGame, this.$btnWelcome]);
+    }
+
     initForm() {
       this.$tabGame = IdService.id(this.tabs.game, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
@@ -35,10 +39,6 @@ class SafeTabs extends HTMLElement {
       this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
         this.openTab(this.tabs.welcome, this.$tabWelcome);
       });
-    }
-
-    disconnectedCallback() {
-      IdService.removeList([this.$btnGame, this.$btnWelcome]);
     }
 
     openTab(evt, selected) {

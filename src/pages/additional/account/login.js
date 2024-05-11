@@ -27,6 +27,14 @@ class AccountLogin extends HTMLElement {
       this.initForm();
     }
 
+    disconnectedCallback() {
+      IdService.removeList([this.$accessBtn, this.$remindLink]);
+      CustomEventService.removeList([
+        `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
+        `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`
+      ]);
+    }
+
     initForm() {
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.textIds.username}`, (e) => {
         this.setUsername(e?.detail.value);
@@ -73,15 +81,7 @@ class AccountLogin extends HTMLElement {
     setPassword(value) {
       this.$password.setAttribute('value', value);
     }
-
-    disconnectedCallback() {
-      IdService.removeList([this.$accessBtn, this.$remindLink]);
-      CustomEventService.removeList([
-        `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
-        `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`
-      ]);
-    }
-
+    
     setAccount(user) {   
       // send to account that user is found and send user data
       CustomEventService.send(CustomPageEvents.users.login, user);

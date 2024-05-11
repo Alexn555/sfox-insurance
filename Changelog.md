@@ -1,4 +1,7 @@
 ## Changelog
+v 2.55
+  Added Lifecycle order improvements
+
 v 2.54
   Added Game SafeKing settings improvements,
   Restored to use in render method innerHTML for better stability and performance
