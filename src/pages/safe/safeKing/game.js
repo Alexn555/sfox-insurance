@@ -1,8 +1,9 @@
 import ThemeHelper from '../../../theme/themeHelper';
 import { PackIds } from '../../../theme/enums';
-import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, HTMLService, StyleService } from '../../../services';
 import { NumberService } from '../../../services/utils';
 import { LockerEvents } from '../../../pages/safe/events';
+import { textures } from './enums';
 import { SafeKingSets } from './sets';
 
 class SafeGame extends HTMLElement {
@@ -22,11 +23,13 @@ class SafeGame extends HTMLElement {
     connectedCallback() {
       this.render();
       this.initForm();
+      this.setDoorBg();
     }
 
     initForm() {    
       this.$score = IdService.id('score', this.shadow);
       this.$note = IdService.id('note', this.shadow);
+      this.$door = IdService.id('locker', this.shadow);
       this.$codeGenerator = IdService.idAndClick('generator', this.shadow, this.generateTheCode.bind(this));
       this.setGameHandlers();
       this.generateTheCode();
@@ -38,6 +41,7 @@ class SafeGame extends HTMLElement {
       CustomEventService.send(LockerEvents.codeStart, this.theCode);
       this.resetScore();
       this.setNote(' ', this.awardCl.guess);
+      this.resetDoor();
     }
 
     setGameHandlers() {
@@ -46,8 +50,9 @@ class SafeGame extends HTMLElement {
         const curScore = this.getScore();
         const prize = this.checkCodeAward(guessCode, this.theCode, this.tries);
         if (prize > 0) {
-          this.setScore(curScore + prize);
           this.setNote('You guessed the code!', this.awardCl.guess);
+          this.openBonus();
+          this.handleDoorOpen(curScore, prize);
         } else {
           this.setNote('Your guess not correct', this.awardCl.notGuess);
           setTimeout(() => { this.setNote(' ', this.awardCl.notGuess) }, 1000);
@@ -62,6 +67,16 @@ class SafeGame extends HTMLElement {
           this.setScore(curScore - penalty);
         }
       });
+
+      CustomEventService.event(LockerEvents.bonusClose, () => {
+        this.resetDoor();
+      });
+    }
+
+    handleDoorOpen(curScore, prize) {
+      const curWin = curScore + prize;
+      this.setScore(curWin);
+      CustomEventService.send(LockerEvents.doorOpen, curWin);
     }
 
     checkCodeAward(guessCode, realCode, tries) {
@@ -101,6 +116,19 @@ class SafeGame extends HTMLElement {
       if (this.$note && val) {
         HTMLService.html(this.$note, `<span class="${cl}">${val}</span>`);
       }
+    }
+
+    setDoorBg() {
+      const $safe = IdService.id('safe', this.shadow);
+      StyleService.setProperty($safe, 'backgroundImage', `url("${textures.safeBg}")`);
+    }
+
+    openBonus() {
+      StyleService.removeAndAddClass(this.$door, ['doorAnimation'], 'doorAnimation');
+    }
+
+    resetDoor() {
+      StyleService.toggleClass(this.$door, 'doorAnimation', false);
     }
 
     render() {
@@ -143,6 +171,33 @@ class SafeGame extends HTMLElement {
                   color: black;
                 }
               }
+
+              .safe {
+                position: relative;
+                width: 500px;
+                height: 500px;
+                border: 1px solid black;
+                overflow-y: hidden;
+              }
+
+              #bonus {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+              }
+
+              #locker {
+                position: absolute;
+                border: 2px solid black;
+                left: 18.7%;
+              }
+
+              .doorAnimation {
+                transform: translateY(-80%);
+                transition-duration: 3s;
+                transition-timing-function: ease-out;
+              }
             }
           </style>
           <div class="safe-game">
@@ -155,7 +210,10 @@ class SafeGame extends HTMLElement {
                 </div>
               <div id="note"></div>
             </div> 
-            <safe-locker id="locker"></safe-locker>
+            <div id="safe" class="safe">
+              <safe-bonus id="bonus"></safe-bonus>
+              <safe-locker id="locker"></safe-locker>
+            </div>
           </div>    
        `;
     }

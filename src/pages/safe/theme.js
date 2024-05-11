@@ -4,7 +4,10 @@ export const SafePageTheme = {
     [PackThemes.common]: {
         game: {
            border: '#dcdcdc',
-           noteBorder: 'black'
+           noteBorder: 'black',
+           bonus: {
+            background: 'white'
+           }
         }
     },
 };

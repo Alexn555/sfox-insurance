@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.55
-  Added Lifecycle order improvements
+  Added Lifecycle order improvements,
+  Created Bonus section to SafeKing game
 
 v 2.54
   Added Game SafeKing settings improvements,

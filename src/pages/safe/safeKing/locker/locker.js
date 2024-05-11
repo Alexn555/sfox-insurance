@@ -139,7 +139,7 @@ class SafeLocker extends HTMLElement {
       this.shadow.innerHTML = `
           <style>
             .safe-locker {
-              width: 400px;
+              width: 300px;
               background-color: #dcdcdc;
               border: 4px solid brown;
             }
