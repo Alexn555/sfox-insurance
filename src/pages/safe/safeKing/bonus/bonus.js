@@ -17,8 +17,8 @@ class SafeGame extends HTMLElement {
       this.sets = SafeKingSets.bonus;
       this.ctx = null;
       this.$animationTimer = null;
-      const stgsAnm = this.sets.animation;
-      this.duration = stgsAnm.useInterval ? stgsAnm.durationInterval : stgsAnm.durationFrame;
+      this.stgsAnm = this.sets.animation;
+      this.duration = this.stgsAnm.useInterval ? this.stgsAnm.durationInterval : this.stgsAnm.durationFrame;
 
       this.mainAnimation = {
         clear: false,
@@ -63,7 +63,7 @@ class SafeGame extends HTMLElement {
     }    
 
     setPrizeImage() {
-        if (this.sets.animation.randomPrize) {
+        if (this.stgsAnm.randomPrize) {
             const prizes = [textures.dollar, textures.coin, textures.card];
             const selectedIndex = NumberService.randomInteger(0, prizes.length - 1);
             this.mainAnimation.scale = selectedIndex === 1 ? 1 : 1.5;
@@ -116,7 +116,7 @@ class SafeGame extends HTMLElement {
 
     animate(onComplete = () => {}) {
         let duration = 0;
-        let rotate = this.sets.animation.rotate;
+        let rotate = this.stgsAnm.rotate;
         const w = this.$canvas.width;
         const h = this.$canvas.height;
 
@@ -161,7 +161,7 @@ class SafeGame extends HTMLElement {
                 onComplete(props);
                 return;
             } else {
-                if (!this.sets.animation.useInterval) {
+                if (!this.stgsAnm.useInterval) {
                     window.requestAnimationFrame(play);
                 }
             }
@@ -169,7 +169,7 @@ class SafeGame extends HTMLElement {
            duration += 1;
         };
         
-        if (this.sets.animation.useInterval) {
+        if (this.stgsAnm.useInterval) {
             this.$animationTimer = setInterval(() => { play(); }, 60); 
         } else {
             window.requestAnimationFrame(play);
@@ -178,10 +178,14 @@ class SafeGame extends HTMLElement {
 
     drawWin(props) {
         this.drawScore();
+        this.drawBonusWinnings();
+        this.drawGlow();
         this.rotateImage(this.$winner, props, false);
         setTimeout(() => {
+            this.clear();
+            this.clearGlow();
             CustomEventService.send(LockerEvents.bonusClose);
-        }, 2000);
+        }, this.stgsAnm.shuffleTime * 1000);
     }
 
     resetAnimation() {
@@ -195,6 +199,37 @@ class SafeGame extends HTMLElement {
         ctx.font = "bold 18px Courier";
         ctx.fontWeight = 'bold';
         ctx.fillText(`Your score ${this.score}`, 70, 250);
+    }
+
+    drawBonusWinnings() {
+        if (this.stgsAnm.showBonusWins) {
+            const ctx = this.ctx;
+            ctx.font = "bold 12px Courier";
+            ctx.fontWeight = 'bold';
+            ctx.fillText(`bonus ${this.bonus}`, 70, 220);
+        }
+    }
+
+    drawGlow() {
+        if (this.stgsAnm.showGlow) {
+            this.glow('#2ca3f2');
+        }
+    }
+
+    clearGlow() {
+        if (this.stgsAnm.showGlow) {
+            this.glow('white');
+        }
+    }
+
+    glow(color = 'white') {
+        const ctx = this.ctx;
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 30;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.stroke();
+        ctx.fill();
     }
 
     clear() {

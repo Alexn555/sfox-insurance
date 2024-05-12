@@ -4,7 +4,10 @@ export const SafeKingSets = {
     bonus: {
         animation: {
             useInterval: true,
+            shuffleTime: 2, // seconds
             durationInterval: 90,
+            showGlow: false,
+            showBonusWins: false,
             durationFrame: 200,
             randomPrize: true,
             rotate: true
