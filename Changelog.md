@@ -1,4 +1,7 @@
 ## Changelog
+v 2.56
+  Added Huge Safe game animation improvements
+
 v 2.55
   Added Lifecycle order improvements,
   Created Bonus section to SafeKing game

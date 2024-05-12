@@ -7,10 +7,15 @@ export const classes = {
 
 const rootPath = `${EnvService.getRoot()}/assets/safe/`;
 
-// (c) https://upload.wikimedia.org/wikipedia/
+/* 
+(c) https://upload.wikimedia.org/wikipedia/
+and (c) usmint.gov/coins/coin-medal-programs/  
+*/
+
 export const textures = {
     safeBg: `${rootPath}wood.jpg`,
     dollar: `${rootPath}twenty.png`,
+    coin: `${rootPath}coin.jpg`,
     card: `${rootPath}x.gif`,
     winner: `${rootPath}card`,
 };

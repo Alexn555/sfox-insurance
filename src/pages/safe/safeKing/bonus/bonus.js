@@ -19,6 +19,11 @@ class SafeGame extends HTMLElement {
       this.$animationTimer = null;
       const stgsAnm = this.sets.animation;
       this.duration = stgsAnm.useInterval ? stgsAnm.durationInterval : stgsAnm.durationFrame;
+
+      this.mainAnimation = {
+        clear: false,
+        scale: 1.5
+      };
     }
   
     connectedCallback() {
@@ -53,14 +58,16 @@ class SafeGame extends HTMLElement {
         const bonus = this.getBonus();
         this.toggleScore(curWin + bonus);
         this.drawScore();
-        this.animate();
+        this.animate(this.drawWin.bind(this));
       });
     }    
 
     setPrizeImage() {
         if (this.sets.animation.randomPrize) {
-            const prizes = [textures.dollar, textures.card];
-            return prizes[NumberService.randomInteger(0, prizes.length - 1)];
+            const prizes = [textures.dollar, textures.coin, textures.card];
+            const selectedIndex = NumberService.randomInteger(0, prizes.length - 1);
+            this.mainAnimation.scale = selectedIndex === 1 ? 1 : 1.5;
+            return prizes[selectedIndex];
         }
         return textures.dollar;
     }
@@ -81,25 +88,33 @@ class SafeGame extends HTMLElement {
         }
     }
 
-    rotateImage(img, axisX, axisY, rotate, centerX, centerY, scale = 1, backCol = '') {
-        const iw = img.naturalWidth * scale;
-        const ih = img.naturalHeight * scale;
-        const axisLen = Math.hypot(axisX, axisY);
-        const nAx = axisX / axisLen;
-        const nAy = axisY / axisLen;
-        const wScale = Math.cos(rotate);
+    rotateImage(img, props, clear = true) {
+        const iw = img.naturalWidth * props.scale;
+        const ih = img.naturalHeight * props.scale;
+        const axisLen = Math.hypot(props.axisX, props.axisY);
+        const nAx = props.axisX / axisLen;
+        const nAy = props.axisY / axisLen;
+        const wScale = Math.cos(props.rotate);
         const ctx = this.ctx;
-        ctx.setTransform(nAy * wScale, -nAx * wScale, nAx, nAy, centerX, centerY);
+
+        const w = this.$canvas.width;
+        const h = this.$canvas.height;
+        if (clear) {
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, w, h);
+        }
+      
+        ctx.setTransform(nAy * wScale, -nAx * wScale, nAx, nAy, props.centerX, props.centerY);
         ctx.globalAlpha = 1;
         ctx.drawImage(img, -iw * 0.5, -ih * 0.5, iw, ih);
-        if (backCol) {
+        if (props.backCol) {
             ctx.globalAlpha = wScale < 0 ? 1 : 1 - wScale;
-            ctx.fillStyle = backCol;
+            ctx.fillStyle = props.backCol;
             ctx.fillRect(-iw * 0.5, -ih * 0.5, iw, ih);
         }
     }
 
-    animate() {
+    animate(onComplete = () => {}) {
         let duration = 0;
         let rotate = this.sets.animation.rotate;
         const w = this.$canvas.width;
@@ -107,22 +122,44 @@ class SafeGame extends HTMLElement {
 
         const play = () => {
             if (rotate) {
-                this.rotateImage(this.$prize, 0, 90, duration / 10, w * 0.5, h * 0.5, 1.5, '');
+                const props = {
+                    axisX: 0, 
+                    axisY: 90, 
+                    rotate: duration / 10, 
+                    centerX: w * 0.5, 
+                    centerY: h * 0.5, 
+                    scale: this.mainAnimation.scale, 
+                    backCol: ''
+                };        
+                this.rotateImage(this.$prize, props, this.mainAnimation.clear);
             } else {
                 // lay dollars stack
-                this.rotateImage(this.$prize, 20 * duration, 300, duration * 10, duration * 2, 100, 1, '');
+                const stack = {
+                    axisX: 20 * duration, 
+                    axisY: 300, 
+                    rotate: duration * 10, 
+                    centerX: duration * 2, 
+                    centerY: 100, 
+                    scale: 1, 
+                    backCol: ''
+                };
+                this.rotateImage(this.$prize, stack, false);
             }
 
             if (duration > this.duration) {
                 duration = 0;
+                const props = {
+                    axisX: 0, 
+                    axisY: 90, 
+                    rotate: duration / 10, 
+                    centerX: w * 0.5, 
+                    centerY: h * 0.5, 
+                    scale: 1.5, 
+                    backCol: ''
+                };        
                 this.resetAnimation();
-                this.drawScore();
-                this.rotateImage(this.$winner, 0, 90, duration / 10, w * 0.5, h * 0.5, 1.5, '');
-           
-                setTimeout(() => {
-                    CustomEventService.send(LockerEvents.bonusClose);
-                }, 2000);
-                return
+                onComplete(props);
+                return;
             } else {
                 if (!this.sets.animation.useInterval) {
                     window.requestAnimationFrame(play);
@@ -139,22 +176,18 @@ class SafeGame extends HTMLElement {
         }
     }
 
+    drawWin(props) {
+        this.drawScore();
+        this.rotateImage(this.$winner, props, false);
+        setTimeout(() => {
+            CustomEventService.send(LockerEvents.bonusClose);
+        }, 2000);
+    }
+
     resetAnimation() {
         clearInterval(this.$animationTimer);
         this.$animationTimer = null;
         this.clear();
-    }
-
-    renderLoop(time) { // @todo to improve
-        if (!this.ctx || !this.$canvas) { return; }
-        const ctx = this.ctx;
-        const w = this.$canvas.width;
-        const h = this.$canvas.height;
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.clearRect(0, 0, w, h);
-        
-        this.rotateImage(this.$prize, Math.cos(time / 4200), Math.sin(time / 4200), time / 500, w * 0.5, h * 0.5, "#268C");
-        window.requestAnimationFrame(this.renderLoop);
     }
 
     drawScore() {
