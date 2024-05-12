@@ -7,6 +7,7 @@ export const SafeKingSets = {
             shuffleTime: 2, // seconds
             durationInterval: 90,
             showGlow: false,
+            animateGlow: false,
             showBonusWins: false,
             durationFrame: 200,
             randomPrize: true,

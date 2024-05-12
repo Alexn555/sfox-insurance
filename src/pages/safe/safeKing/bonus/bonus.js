@@ -4,6 +4,7 @@ import { PackIds } from '../../../../theme/enums';
 import { CustomEventService, IdService } from '../../../../services';
 import { NumberService } from '../../../../services/utils';
 import { LockerEvents } from '../../../../pages/safe/events';
+import BonusDrawer from './drawer';
 import { textures } from '../enums';
 import { SafeKingSets } from '../sets';
 
@@ -14,6 +15,7 @@ class SafeGame extends HTMLElement {
       this.score = 0;
       this.bonus = 0;
       this.theme = ThemeHelper.get(PackIds.safePage).game.bonus;
+      this.background = this.theme.background;
       this.sets = SafeKingSets.bonus;
       this.ctx = null;
       this.$animationTimer = null;
@@ -24,6 +26,7 @@ class SafeGame extends HTMLElement {
         clear: false,
         scale: 1.5
       };
+      this.bonusDrawer = new BonusDrawer();
     }
   
     connectedCallback() {
@@ -38,6 +41,7 @@ class SafeGame extends HTMLElement {
       this.$prize = IdService.id('prize', this.shadow);
       this.$card = IdService.id('card', this.shadow);
       this.$winner = IdService.id('winner', this.shadow);
+      this.bonusDrawer.setContext(this.ctx, this.$canvas);
       this.setTextures();
       this.setHandlers();
     }
@@ -57,7 +61,7 @@ class SafeGame extends HTMLElement {
         const curWin = e.detail.value;
         const bonus = this.getBonus();
         this.toggleScore(curWin + bonus);
-        this.drawScore();
+        this.bonusDrawer.drawScore(this.score);
         this.animate(this.drawWin.bind(this));
       });
     }    
@@ -88,41 +92,15 @@ class SafeGame extends HTMLElement {
         }
     }
 
-    rotateImage(img, props, clear = true) {
-        const iw = img.naturalWidth * props.scale;
-        const ih = img.naturalHeight * props.scale;
-        const axisLen = Math.hypot(props.axisX, props.axisY);
-        const nAx = props.axisX / axisLen;
-        const nAy = props.axisY / axisLen;
-        const wScale = Math.cos(props.rotate);
-        const ctx = this.ctx;
-
-        const w = this.$canvas.width;
-        const h = this.$canvas.height;
-        if (clear) {
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            ctx.clearRect(0, 0, w, h);
-        }
-      
-        ctx.setTransform(nAy * wScale, -nAx * wScale, nAx, nAy, props.centerX, props.centerY);
-        ctx.globalAlpha = 1;
-        ctx.drawImage(img, -iw * 0.5, -ih * 0.5, iw, ih);
-        if (props.backCol) {
-            ctx.globalAlpha = wScale < 0 ? 1 : 1 - wScale;
-            ctx.fillStyle = props.backCol;
-            ctx.fillRect(-iw * 0.5, -ih * 0.5, iw, ih);
-        }
-    }
-
     animate(onComplete = () => {}) {
         let duration = 0;
         let rotate = this.stgsAnm.rotate;
-        const w = this.$canvas.width;
-        const h = this.$canvas.height;
+        let w = this.$canvas.width;
+        let h = this.$canvas.height;
 
         const play = () => {
             if (rotate) {
-                const props = {
+                let props = {
                     axisX: 0, 
                     axisY: 90, 
                     rotate: duration / 10, 
@@ -131,10 +109,10 @@ class SafeGame extends HTMLElement {
                     scale: this.mainAnimation.scale, 
                     backCol: ''
                 };        
-                this.rotateImage(this.$prize, props, this.mainAnimation.clear);
+                this.bonusDrawer.rotateImage(this.$prize, props, this.mainAnimation.clear);
             } else {
                 // lay dollars stack
-                const stack = {
+                let stack = {
                     axisX: 20 * duration, 
                     axisY: 300, 
                     rotate: duration * 10, 
@@ -143,7 +121,7 @@ class SafeGame extends HTMLElement {
                     scale: 1, 
                     backCol: ''
                 };
-                this.rotateImage(this.$prize, stack, false);
+                this.bonusDrawer.rotateImage(this.$prize, stack, false);
             }
 
             if (duration > this.duration) {
@@ -177,13 +155,15 @@ class SafeGame extends HTMLElement {
     }
 
     drawWin(props) {
-        this.drawScore();
-        this.drawBonusWinnings();
-        this.drawGlow();
-        this.rotateImage(this.$winner, props, false);
+        this.bonusDrawer.drawScore(this.score);
+        this.bonusDrawer.drawBonusWinnings(this.bonus);
+        this.animateGlow();
+
+        this.bonusDrawer.rotateImage(this.$winner, props, false);
+      
         setTimeout(() => {
-            this.clear();
-            this.clearGlow();
+            this.bonusDrawer.clear();
+            this.bonusDrawer.clearGlow();
             CustomEventService.send(LockerEvents.bonusClose);
         }, this.stgsAnm.shuffleTime * 1000);
     }
@@ -191,57 +171,37 @@ class SafeGame extends HTMLElement {
     resetAnimation() {
         clearInterval(this.$animationTimer);
         this.$animationTimer = null;
-        this.clear();
+        this.bonusDrawer.clear();
     }
 
-    drawScore() {
-        const ctx = this.ctx;
-        ctx.font = "bold 18px Courier";
-        ctx.fontWeight = 'bold';
-        ctx.fillText(`Your score ${this.score}`, 70, 250);
-    }
-
-    drawBonusWinnings() {
-        if (this.stgsAnm.showBonusWins) {
-            const ctx = this.ctx;
-            ctx.font = "bold 12px Courier";
-            ctx.fontWeight = 'bold';
-            ctx.fillText(`bonus ${this.bonus}`, 70, 220);
+    animateGlow() {
+        if (!this.stgsAnm.animateGlow) {
+            this.bonusDrawer.drawGlow();
+            return;
         }
-    }
 
-    drawGlow() {
-        if (this.stgsAnm.showGlow) {
-            this.glow('#2ca3f2');
-        }
-    }
-
-    clearGlow() {
-        if (this.stgsAnm.showGlow) {
-            this.glow('white');
-        }
-    }
-
-    glow(color = 'white') {
-        const ctx = this.ctx;
-        ctx.shadowColor = color;
-        ctx.shadowBlur = 30;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-        ctx.stroke();
-        ctx.fill();
-    }
-
-    clear() {
-        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-        this.ctx.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
+        let d = 0;
+        let colors = ['blue', 'red', 'orange'];
+        this.bonusDrawer.drawGlow(colors[NumberService.randomInteger(0, colors.length)]);
+        function play() {
+            this.bonusDrawer.drawLine(d * 2);
+        
+            if (d % 3 === 0) {
+               this.bonusDrawer.clearGlow();
+            }
+            if (d < 100) {
+                window.requestAnimationFrame(play.bind(this));  
+            }
+            d += 1;
+        };
+        window.requestAnimationFrame(play.bind(this));
     }
 
     render() {
       this.shadow.innerHTML = `
           <style>
             .bonus-game {
-                background-color: ${this.theme.background};
+                background-color: ${this.background};
             }
             .image {
                 display: none;
