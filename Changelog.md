@@ -1,6 +1,7 @@
 ## Changelog
 v 2.57
-  Added Bonus game minor changes, ContentSW naming improvements
+  Added Bonus game minor changes, ContentSW naming improvements,
+  Created Text Editor first version
 
 v 2.56
   Added Huge Safe game animation improvements

@@ -21,7 +21,8 @@ export const CustomEvents = {
         flipBoard: 'flip-board',
         sliderValueChange: 'slider-value-change',
         selectChange: 'select-change-',
-        textInputChange: 'text-input-change'
+        textInputChange: 'text-input-change',
+        textAreaChange: 'text-area-change'
     },
     header: {
         menuOverlay: 'header-menu-overlay',

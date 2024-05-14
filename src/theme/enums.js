@@ -14,6 +14,7 @@ export const PackIds = {
     galleryPage: 'galleryPage',
     imageViewer: 'imageViewer',
     contentSw: 'contentSw',
+    textViewer: 'textViewer',
     gameViewer: 'gameViewer'
 };
 

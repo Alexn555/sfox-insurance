@@ -20,6 +20,7 @@ class GameViewer extends HTMLElement {
         this.games = this.getAttribute('games') || '[]';
         this.currentIndex = 0;
         this.gamesAmount = 0;
+        this.contentSwid = 'gameContentSw';
         this.sessionId = NumberService.randomInteger(0, 200);
         this.theme = ThemeHelper.get([PackIds.gameViewer]);
         this.setGames();
@@ -30,17 +31,17 @@ class GameViewer extends HTMLElement {
         this.$container = IdService.id(this.id, this.shadow);
         this.$loading = IdService.id('loading', this.shadow);
         this.$error = IdService.id('error', this.shadow);
-        this.$cntSwitcher = IdService.id('gameContentSwitcher', this.shadow);
+        this.$cntSwitcher = IdService.id('gameContentSw', this.shadow);
 
         this.activateGame(0);
-        CustomEventService.event(CustomWindowEvents.contentSw.pageClick, (e) => {
+        CustomEventService.event(`${CustomWindowEvents.contentSw.pageClick}-${this.contentSwid}`, (e) => {
             this.currentIndex = e.detail.value;
             this.activateGame(this.currentIndex - 1);
         });
     }
 
     disconnectedCallback() {
-        CustomEventService.removeList([CustomWindowEvents.contentSw.pageClick]);
+        CustomEventService.removeList([`${CustomWindowEvents.contentSw.pageClick}-${this.contentSwid}`]);
     }
 
     activateGame(index) {
@@ -153,7 +154,7 @@ class GameViewer extends HTMLElement {
                 <div id="error"></div>
                 <div id="loading"></div>
                 <content-sw
-                  id="gameContentSwitcher"
+                  id="${this.contentSwid}"
                   per-page="1" 
                   labels='${this.getGameLabels()}'
                   side="${this.side}"

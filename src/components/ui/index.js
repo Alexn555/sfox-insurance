@@ -1,6 +1,7 @@
 import './line';
 import './networkChecker';
 import './text';
+import './textArea';
 import './amountSlider';
 import './select';
 import './button';
@@ -13,4 +14,5 @@ import './accountTable';
 import './iconSelect';
 import './generalNote/generalNote';
 import './gameViewer/gameViewer';
+import './textEditor/index';
 import './imageViewer/';

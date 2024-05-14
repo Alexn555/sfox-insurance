@@ -5,6 +5,7 @@ import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
+import { TextFileViewerTheme } from '../components/ui/textEditor/theme';
 import { contentSwitcherTheme } from '../components/ui/contentSw/theme';
 import { GameViewerTheme } from '../components/ui/gameViewer/theme';
 
@@ -22,6 +23,7 @@ export default class ThemePackHandler {
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },
                 { id: PackIds.imageViewer, pack: ImageViewerTheme },
                 { id: PackIds.contentSw, pack: contentSwitcherTheme },
+                { id: PackIds.textViewer, pack: TextFileViewerTheme },
                 { id: PackIds.gameViewer, pack: GameViewerTheme }
             ];
             packs.forEach((pack) => {

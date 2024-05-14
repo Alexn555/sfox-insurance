@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.57
-  Added Bonus game minor changes, ContentSW naming improvements
+  Added Bonus game minor changes, ContentSW naming improvements,
+  Created Text Editor first version
 
 v 2.56
   Added Huge Safe game animation improvements

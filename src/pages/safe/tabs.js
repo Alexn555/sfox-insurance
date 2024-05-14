@@ -12,6 +12,7 @@ class SafeTabs extends HTMLElement {
       this.tabs = {
         game: 'game',
         welcome: 'welcome',
+        editor: 'editor'
       };
     }
     
@@ -27,17 +28,21 @@ class SafeTabs extends HTMLElement {
     initForm() {
       this.$tabGame = IdService.id(this.tabs.game, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
+      this.$tabTextEditor = IdService.id(this.tabs.editor, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { game, welcome } = SafePageTabs.tabLinks;
+      const { game, welcome, editor } = SafePageTabs.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab(this.tabs.game, this.$tabGame);
       });
       this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
         this.openTab(this.tabs.welcome, this.$tabWelcome);
+      });
+      this.$btnEditor = IdService.idAndClick(editor, this.shadow, () => {
+        this.openTab(this.tabs.editor, this.$tabTextEditor);
       });
     }
 
@@ -46,7 +51,7 @@ class SafeTabs extends HTMLElement {
       const tab = IdService.id(item, this.shadow);
 
       if (tab) {
-        StyleService.setDisplayMultiple([this.$tabGame, this.$tabWelcome], false);
+        StyleService.setDisplayMultiple([this.$tabGame, this.$tabWelcome, this.$tabTextEditor], false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -54,7 +59,7 @@ class SafeTabs extends HTMLElement {
     }
 
     render() {
-      const { game, welcome } = SafePageTabs.tabLinks;
+      const { game, welcome, editor } = SafePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
                 ${commonTabStyle(this.theme)}
@@ -66,14 +71,19 @@ class SafeTabs extends HTMLElement {
             <div class="tab">
               <button id="${game}">SafeKing</button>
               <button id="${welcome}">Welcome</button>
+              <button id="${editor}">Editor</button>
             </div>
 
             <div id="${this.tabs.game}" class="tabcontent">
-                <safe-king-page></safe-king-page>
+              <safe-king-page></safe-king-page>
             </div> 
 
             <div id="${this.tabs.welcome}" class="tabcontent">
-                <safe-welcome-page></safe-welcome-page>
+              <safe-welcome-page></safe-welcome-page>
+            </div> 
+      
+            <div id="${this.tabs.editor}" class="tabcontent">
+              <text-editor-page></text-editor-page>
             </div> 
         `;
     }

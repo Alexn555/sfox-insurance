@@ -166,7 +166,7 @@ class ContentSw extends HTMLElement {
   setHandlers() {
     this.pageIds.forEach((pageId, index) => {
       this.$pageHandlers[index] = IdService.idAndClick(pageId, this.shadow, () => { 
-        CustomEventService.send(CustomWindowEvents.contentSw.pageClick, index + 1);
+        CustomEventService.send(`${CustomWindowEvents.contentSw.pageClick}-${this.id}`, index + 1);
         this.setActive(index);
       });
       this.$labels[index] = IdService.id('label-'+index, this.shadow);
