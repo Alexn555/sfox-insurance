@@ -29,7 +29,7 @@ class ContentSw extends HTMLElement {
     this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
     this.paginationId = 'pagination';
     this.labelMode = LabelModes.labels;
-    this.theme = ThemeHelper.get(PackIds.contentSwitcher, 'contentSw');
+    this.theme = ThemeHelper.get(PackIds.contentSw, 'contentSw');
     this.$pageHandlers = [];
     this.$labels = [];
     this.pageIds = [];
@@ -166,7 +166,7 @@ class ContentSw extends HTMLElement {
   setHandlers() {
     this.pageIds.forEach((pageId, index) => {
       this.$pageHandlers[index] = IdService.idAndClick(pageId, this.shadow, () => { 
-        CustomEventService.send(CustomWindowEvents.contentSwitcher.pageClick, index + 1);
+        CustomEventService.send(CustomWindowEvents.contentSw.pageClick, index + 1);
         this.setActive(index);
       });
       this.$labels[index] = IdService.id('label-'+index, this.shadow);
@@ -286,5 +286,5 @@ class ContentSw extends HTMLElement {
 }
 
 if ("customElements" in window) {
-  customElements.define("content-switcher", ContentSw);
+  customElements.define("content-sw", ContentSw);
 }

@@ -21,7 +21,7 @@ export default class ThemePackHandler {
                 { id: PackIds.paginatableContent, pack: paginatableContentTheme },
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },
                 { id: PackIds.imageViewer, pack: ImageViewerTheme },
-                { id: PackIds.contentSwitcher, pack: contentSwitcherTheme },
+                { id: PackIds.contentSw, pack: contentSwitcherTheme },
                 { id: PackIds.gameViewer, pack: GameViewerTheme }
             ];
             packs.forEach((pack) => {

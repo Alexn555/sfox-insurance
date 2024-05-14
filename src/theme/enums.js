@@ -13,7 +13,7 @@ export const PackIds = {
     paginatableContent: 'paginatableContent',
     galleryPage: 'galleryPage',
     imageViewer: 'imageViewer',
-    contentSwitcher: 'contentSwitcher',
+    contentSw: 'contentSw',
     gameViewer: 'gameViewer'
 };
 

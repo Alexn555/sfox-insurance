@@ -33,14 +33,14 @@ class GameViewer extends HTMLElement {
         this.$cntSwitcher = IdService.id('gameContentSwitcher', this.shadow);
 
         this.activateGame(0);
-        CustomEventService.event(CustomWindowEvents.contentSwitcher.pageClick, (e) => {
+        CustomEventService.event(CustomWindowEvents.contentSw.pageClick, (e) => {
             this.currentIndex = e.detail.value;
             this.activateGame(this.currentIndex - 1);
         });
     }
 
     disconnectedCallback() {
-        CustomEventService.removeList([CustomWindowEvents.contentSwitcher.pageClick]);
+        CustomEventService.removeList([CustomWindowEvents.contentSw.pageClick]);
     }
 
     activateGame(index) {
@@ -152,7 +152,7 @@ class GameViewer extends HTMLElement {
             <div class="game-viewer-wrapper">
                 <div id="error"></div>
                 <div id="loading"></div>
-                <content-switcher 
+                <content-sw
                   id="gameContentSwitcher"
                   per-page="1" 
                   labels='${this.getGameLabels()}'
@@ -164,7 +164,7 @@ class GameViewer extends HTMLElement {
                   disable-actions="${BoolEnums.bFalse}"
                 >
                     <div id="${this.id}"> </div>
-                </content-switcher>
+                </content-sw>
             <div>
         `;
     }
