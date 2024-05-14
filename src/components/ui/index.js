@@ -5,7 +5,7 @@ import './amountSlider';
 import './select';
 import './button';
 import './link';
-import './contentSwitcher/contentSwitcher';
+import './contentSw/contentSw';
 import './paginatableContent/paginatableContent';
 import './galleryViewer/gallerySearch';
 import './galleryViewer/galleryViewer';

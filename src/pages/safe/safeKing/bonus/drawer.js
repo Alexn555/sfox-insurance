@@ -3,8 +3,7 @@ import { SafeKingSets } from '../sets';
 
 export default class BonusDrawer {
     constructor(background) {
-        this.sets = SafeKingSets.bonus;
-        this.stgsAnm = this.sets.animation;
+        this.stgs = SafeKingSets.bonus;
         this.background = background || 'white';
         this.ctx = null;
     }
@@ -22,7 +21,7 @@ export default class BonusDrawer {
     }
 
     drawBonusWinnings(bonus) {
-        if (this.stgsAnm.showBonusWins) {
+        if (this.stgs.showBonusWins) {
             let ctx = this.ctx;
             ctx.font = "bold 12px Courier";
             ctx.fontWeight = 'bold';
@@ -31,13 +30,13 @@ export default class BonusDrawer {
     }
 
     drawGlow(color = '#2ca3f2') {
-        if (this.stgsAnm.showGlow) {
+        if (this.stgs.showGlow) {
             this.glow(color);
         }
     }
 
     clearGlow() {
-        if (this.stgsAnm.showGlow) {
+        if (this.stgs.showGlow) {
             this.glow(this.background);
         }
     }

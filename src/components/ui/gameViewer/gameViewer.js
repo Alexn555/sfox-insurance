@@ -6,7 +6,7 @@ import { NumberService, JSONService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { BoolEnums } from '../../../enums';
-import { ContentSwSides, LabelIcons } from '../contentSwitcher/enums';
+import { ContentSwSides, LabelIcons } from '../contentSw/enums';
 import { PackIds } from '../../../theme/enums';
 import { LoadingIcons } from './enums';
 

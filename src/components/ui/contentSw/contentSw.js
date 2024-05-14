@@ -8,7 +8,7 @@ import { JSONService, MobileService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
-class ContentSwitcher extends HTMLElement {
+class ContentSw extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "closed" });
@@ -286,5 +286,5 @@ class ContentSwitcher extends HTMLElement {
 }
 
 if ("customElements" in window) {
-  customElements.define("content-switcher", ContentSwitcher);
+  customElements.define("content-switcher", ContentSw);
 }

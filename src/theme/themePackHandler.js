@@ -5,7 +5,7 @@ import { generalNoteTheme } from '../components/ui/generalNote/theme';
 import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
-import { contentSwitcherTheme } from '../components/ui/contentSwitcher/theme';
+import { contentSwitcherTheme } from '../components/ui/contentSw/theme';
 import { GameViewerTheme } from '../components/ui/gameViewer/theme';
 
 import { PackIds } from './enums';

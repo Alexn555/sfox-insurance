@@ -1,5 +1,5 @@
 import { BoolEnums } from '../../../enums';
-import { ContentSwSides } from '../contentSwitcher/enums';
+import { ContentSwSides } from '../contentSw/enums';
 
 export const GameViewerSettings = {
     gamePage: {
