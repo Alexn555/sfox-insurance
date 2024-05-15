@@ -5,6 +5,7 @@ import { NumberService, JSONService, ArrayService } from '../../../services/util
 import DataStorage from '../../../services/storage';
 import { CustomWindowEvents, CustomEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
+import { TextEditorSettings, TextEditorSetEnums } from './sets';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSw/enums';
 import { PackIds } from '../../../theme/enums';
@@ -15,9 +16,11 @@ class TextEditor extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.id = this.getAttribute('id') || 'text-viewer';
-        this.displayLabel = this.getAttribute('display-label') || BoolEnums.bFalse;
-        this.side = this.getAttribute('side') || ContentSwSides.right;
         this.files = this.getAttribute('files') || '[]';
+        this.setsId = this.getAttribute('setsId') || TextEditorSetEnums.textEditorPage;
+        this.sets = TextEditorSettings[this.setsId];
+        this.displayLabel = this.sets.displayLabel || BoolEnums.bFalse;
+        this.side = this.sets.side || ContentSwSides.right;
         this.currentIndex = 0;
         this.filesAmount = 0;
         this.parseArray = true;
@@ -73,14 +76,14 @@ class TextEditor extends HTMLElement {
     saveFile(evt, value) {
         const saved = this.storage.getObject(FileSaveEnums.object);
         let savedArray = [];
-        if (saved && saved.length > 0) {
+        if (ArrayService.minLength(saved)) {
             savedArray = saved;
         }
 
         const saveObj = { 
             id: this.textObject.id,
-            name: evt === SaveEvts.name ? value : this.textObject.name,
-            content: evt === SaveEvts.content ? value : this.textObject.content
+            name: evt === SaveEvts.name ? this.validateText(evt, value) : this.textObject.name,
+            content: evt === SaveEvts.content ? this.validateText(evt, value) : this.textObject.content
         };
 
         const foundIndex = this.getSaveObjIndex(this.textObject.id, savedArray);
@@ -91,6 +94,28 @@ class TextEditor extends HTMLElement {
         }
         this.storage.saveObject(FileSaveEnums.object, savedArray);
         this.updateLabels(savedArray);
+    }
+
+    validateText(evt, value) {
+        let error = '';
+        let allowed = 0;
+        let nameMax = this.sets.name.max;
+        let contentMax = this.sets.content.max;
+        if (evt === SaveEvts.name && value.length > nameMax) {
+            error = `Your File name cannot longer than ${nameMax} chars`;
+            allowed = nameMax;
+        }
+        if (evt === SaveEvts.content && value.length > contentMax) {
+            error = `Your File content cannot be bigger than ${contentMax} chars`;
+            allowed = contentMax;
+        }
+        if (error !== '') {
+            this.$error.innerHTML = `<b>${error}</b>`;
+            setTimeout(() => { this.$error.innerHTML = ''; }, 2000);
+            return value.substr(0, allowed);
+        }
+
+        return value;
     }
 
     getFileObject(file) {
@@ -121,7 +146,8 @@ class TextEditor extends HTMLElement {
         let realArray = this.files;
         this.files.forEach((file, index) => {
             if (savedArray[index] && file.id === savedArray[index].id) {
-                realArray[index].name = savedArray[index].name;
+                let name = savedArray[index].name;
+                realArray[index].name = name !== '' ? name : file.id;
             }
         });
 

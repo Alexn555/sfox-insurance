@@ -1,5 +1,6 @@
 import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
+import { TextEditorSetEnums } from '../../../components/ui/textEditor/sets';
 import { textFiles } from './files';
 
 class EditorPage extends HTMLElement {
@@ -32,7 +33,10 @@ class EditorPage extends HTMLElement {
           </style>
           <div class="editor-wrapper">
             <h3>Text Editor</h3>
-            <text-editor files='${JSONService.set(textFiles)}'></text-editor>
+            <text-editor 
+              setsId="${TextEditorSetEnums.textEditorPage}"
+              files='${JSONService.set(textFiles)}'
+            ></text-editor>
           </div>
        `;
     }

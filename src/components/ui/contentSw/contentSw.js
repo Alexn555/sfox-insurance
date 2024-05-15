@@ -3,7 +3,7 @@ import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { CommonEvents, CustomWindowEvents } from '../../../settings';
 import { ContentSwSet } from './sets';
-import { CustomEventService, IdService, StyleService, HTMLService } from "../../../services";
+import { CustomEventService, IdService, StyleService, HTMLService, LoggerService } from "../../../services";
 import { JSONService, MobileService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
@@ -62,6 +62,7 @@ class ContentSw extends HTMLElement {
     }
     if (name === 'labels' && oldValue !== newValue) {
       this.labels = JSONService.getArray(newValue);
+      this.checkLabels(this.labels);
       this.setPagination();
     }
   }
@@ -69,6 +70,17 @@ class ContentSw extends HTMLElement {
   updateSize() {
     if (this.$pagination) {
       this.setPageContainer(this.$pagination);
+    }
+  }
+
+  checkLabels(labels) {
+    if (labels) {
+      for (let i = 0, l = labels.length; i < l; i++) {
+        if (labels[i] === '' || labels[i] === undefined) {
+          LoggerService.error(`Contentsw #${this.id} some labels ${labels} doesn't have value`);
+          return;
+        }
+      }
     }
   }
 
