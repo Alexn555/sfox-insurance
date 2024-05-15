@@ -10,6 +10,7 @@ export const TextEditorSettings = {
         displayLabel: BoolEnums.bFalse,
         side: ContentSwSides.right,
         name: {
+            min: 1,
             max: 20 // chars
         },
         content: {

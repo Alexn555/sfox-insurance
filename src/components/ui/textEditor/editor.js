@@ -1,15 +1,16 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
-import { CustomEventService, IdService, LoggerService, StyleService, HTMLService } from '../../../services';
-import { NumberService, JSONService, ArrayService } from '../../../services/utils';
+import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
+import { NumberService, JSONService } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomWindowEvents, CustomEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { TextEditorSettings, TextEditorSetEnums } from './sets';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSw/enums';
+import { TextEditorHelper } from './textEditorHelper';
 import { PackIds } from '../../../theme/enums';
-import { LoadingIcons, FileSaveEnums, SaveEvts } from './enums';
+import { FileSaveEnums, SaveEvts } from './enums';
 
 class TextEditor extends HTMLElement {
     constructor() {
@@ -73,73 +74,24 @@ class TextEditor extends HTMLElement {
         ]);
     }
 
-    saveFile(evt, value) {
+    saveFile(evt, value) {  
         const saved = this.storage.getObject(FileSaveEnums.object);
-        let savedArray = [];
-        if (ArrayService.minLength(saved)) {
-            savedArray = saved;
-        }
-
-        const saveObj = { 
-            id: this.textObject.id,
-            name: evt === SaveEvts.name ? this.validateText(evt, value) : this.textObject.name,
-            content: evt === SaveEvts.content ? this.validateText(evt, value) : this.textObject.content
-        };
-
-        const foundIndex = this.getSaveObjIndex(this.textObject.id, savedArray);
-        if (foundIndex > -1) {
-            savedArray[foundIndex] = saveObj;
-        } else {
-            savedArray.push(saveObj);
-        }
-        this.storage.saveObject(FileSaveEnums.object, savedArray);
-        this.updateLabels(savedArray);
-    }
-
-    validateText(evt, value) {
-        let error = '';
-        let allowed = 0;
-        let nameMax = this.sets.name.max;
-        let contentMax = this.sets.content.max;
-        if (evt === SaveEvts.name && value.length > nameMax) {
-            error = `Your File name cannot longer than ${nameMax} chars`;
-            allowed = nameMax;
-        }
-        if (evt === SaveEvts.content && value.length > contentMax) {
-            error = `Your File content cannot be bigger than ${contentMax} chars`;
-            allowed = contentMax;
-        }
-        if (error !== '') {
-            this.$error.innerHTML = `<b>${error}</b>`;
-            setTimeout(() => { this.$error.innerHTML = ''; }, 2000);
-            return value.substr(0, allowed);
-        }
-
-        return value;
+        TextEditorHelper.saveFile(evt, value, saved, this.textObject, this.sets, this.$error, (savedArray) => {
+            this.storage.saveObject(FileSaveEnums.object, savedArray);
+            this.updateLabels(savedArray);
+        });
     }
 
     getFileObject(file) {
         const saved = this.storage.getObject(FileSaveEnums.object);
-        if (saved && ArrayService.minLength(saved)) {
-            const foundIndex = this.getSaveObjIndex(file.id, saved);
-            this.textObject = foundIndex > -1 ? saved[foundIndex] : file;
-        } else {
-            this.textObject = file;
-        }
-
-        this.textObject.rows = file.rows;
-        this.textObject.cols = file.cols;
+        this.textObject = TextEditorHelper.getFileObject(saved, file);
 
         this.toggleContentLoaded(false);
-        this.setLoading(NumberService.randomInteger(1, 2), file.name, () => {
-           let html = this.setEditor(this.textObject, this.sessionId); 
-           HTMLService.html(this.$container, html);
-           this.toggleContentLoaded(true);
+        TextEditorHelper.setLoading(NumberService.randomInteger(1, 2), file.name, this.$loading, () => {
+            let html = this.setEditor(this.textObject, this.sessionId); 
+            HTMLService.html(this.$container, html);
+            this.toggleContentLoaded(true); 
         });
-    }
-
-    getSaveObjIndex(id, savedArray) {
-        return savedArray.findIndex(file => file.id === id);
     }
 
     updateLabels(savedArray) {
@@ -175,22 +127,6 @@ class TextEditor extends HTMLElement {
             this.files = this.parseArray ? JSONService.getArray(this.files) : this.files;
             this.filesAmount = this.files && this.files.length > 0 ? this.files.length : 0;
         }
-    }
-
-    setLoading(timeout = 1, name, onComplete) {
-        HTMLService.html(this.$loading, `
-            <div class="loading-content">
-              <div>Loading</div>
-              <img src="${LoadingIcons.text.source}" alt="" />
-              <div>${name}</div>
-            </div>`);
-
-        StyleService.setDisplay(this.$loading, true);
-        setTimeout(() => {
-            HTMLService.html(this.$loading, '');
-            StyleService.setDisplay(this.$loading, false);
-            onComplete();
-        }, timeout * 1000);
     }
 
     setLabel(title) {
