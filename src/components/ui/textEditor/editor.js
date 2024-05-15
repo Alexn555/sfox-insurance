@@ -213,7 +213,7 @@ class TextEditor extends HTMLElement {
                 rows="${file.rows}" 
                 cols="${file.cols}"
             >
-            </text-area-inpu>
+            </text-area-input>
         `;
     }
 

@@ -7,14 +7,13 @@ export const TextEditorSetEnums = {
 
 export const TextEditorSettings = {
     textEditorPage: {
-        id: 'text-editor',
         displayLabel: BoolEnums.bFalse,
         side: ContentSwSides.right,
         name: {
             max: 20 // chars
         },
         content: {
-            max: 1000 // chars
+            max: 2000 // chars
         }
     }
 };
