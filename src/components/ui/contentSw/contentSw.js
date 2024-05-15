@@ -40,12 +40,11 @@ class ContentSw extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['total', 'disable-actions'];
+    return ['total', 'labels', 'disable-actions'];
   }
 
   connectedCallback() {
     this.render();
-    this.initLabels();
     this.initIndividualIcons();
     this.calculatePages();
     this.setPagination();
@@ -60,6 +59,10 @@ class ContentSw extends HTMLElement {
     }
     if (name === 'disable-actions' && oldValue !== newValue) {
       this.activatePageClicks(newValue);
+    }
+    if (name === 'labels' && oldValue !== newValue) {
+      this.labels = JSONService.getArray(newValue);
+      this.setPagination();
     }
   }
 
@@ -78,17 +81,6 @@ class ContentSw extends HTMLElement {
   initIndividualIcons() {
     if (this.indIcons !== '') {
       this.indIcons = JSONService.getArray(this.indIcons);
-    }
-  }
-
-  initLabels() {
-    let labels = [];
-    if (this.labels) {
-      labels = JSONService.getArray(this.labels);
-      this.labels = labels;
-    }
-    if (labels.length === 0) {
-      this.labelMode = LabelModes.numeric;
     }
   }
 

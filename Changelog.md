@@ -1,4 +1,7 @@
 ## Changelog
+v 2.58
+  Added Text Editor improvements
+
 v 2.57
   Added Bonus game minor changes, ContentSW naming improvements,
   Created Text Editor first version

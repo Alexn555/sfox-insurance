@@ -62,6 +62,14 @@ class TextEditor extends HTMLElement {
         });
     }
 
+    disconnectedCallback() {
+        CustomEventService.removeList([
+            `${CustomWindowEvents.contentSw.pageClick}-${this.contentSwid}`,
+            `${CustomEvents.interaction.textInputChange}-${this.nameId}`,
+            `${CustomEvents.interaction.textAreaChange}-${this.textAreaId}`
+        ]);
+    }
+
     saveFile(evt, value) {
         const saved = this.storage.getObject(FileSaveEnums.object);
         let savedArray = [];
@@ -82,6 +90,7 @@ class TextEditor extends HTMLElement {
             savedArray.push(saveObj);
         }
         this.storage.saveObject(FileSaveEnums.object, savedArray);
+        this.updateLabels(savedArray);
     }
 
     getFileObject(file) {
@@ -108,8 +117,16 @@ class TextEditor extends HTMLElement {
         return savedArray.findIndex(file => file.id === id);
     }
 
-    disconnectedCallback() {
-        CustomEventService.removeList([`${CustomWindowEvents.contentSw.pageClick}-${this.contentSwid}`]);
+    updateLabels(savedArray) {
+        let realArray = this.files;
+        this.files.forEach((file, index) => {
+            if (savedArray[index] && file.id === savedArray[index].id) {
+                realArray[index].name = savedArray[index].name;
+            }
+        });
+
+        const labels = this.getTextLabels(realArray);
+        this.$cntSwitcher.setAttribute('labels', labels);
     }
 
     activateFile(index) {
@@ -174,8 +191,8 @@ class TextEditor extends HTMLElement {
         `;
     }
 
-    getTextLabels() {
-       return JSONService.set(this.files.map(file => file.name));
+    getTextLabels(files = this.files) {
+       return JSONService.set(files.map(file => file.name));
     }
 
     getTextIcons() {
@@ -228,7 +245,7 @@ class TextEditor extends HTMLElement {
                 <content-sw
                   id="${this.contentSwId}"
                   per-page="1" 
-                  labels='${this.getTextLabels()}'
+                  labels='${this.getTextLabels(this.files)}'
                   side="${this.side}"
                   individual-icons='${this.getTextIcons()}'
                   use-ind-icons="${BoolEnums.bFalse}"
