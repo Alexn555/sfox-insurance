@@ -81,8 +81,10 @@ export class TextEditorHelper {
             allowed = contentMax;
         }
         if (error !== '') {
-            errEl.innerHTML = `<b>${error}</b>`;
-            setTimeout(() => { errEl.innerHTML = ''; }, 2000);
+            HTMLService.html(errEl, `<b>${error}</b>`);
+            setTimeout(() => { 
+                HTMLService.html(errEl, '');
+            }, 2000);
             return value ? value.substr(0, allowed) : '';
         }
 

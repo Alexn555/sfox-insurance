@@ -1,14 +1,14 @@
 // @ts-nocheck
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
-import { CustomEventService, IdService, LoggerService, StyleService, HTMLService } from '../../../services';
+import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
 import { NumberService, JSONService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
+import { GameViewerHelper } from './gameViewerHelper';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSw/enums';
 import { PackIds } from '../../../theme/enums';
-import { LoadingIcons } from './enums';
 
 class GameViewer extends HTMLElement {
     constructor() {
@@ -53,7 +53,8 @@ class GameViewer extends HTMLElement {
 
         const game = this.games[index];
         this.toggleContentLoaded(false);
-        this.setLoading(NumberService.randomInteger(1, 3), game.title, () => {
+
+        GameViewerHelper.setLoading(NumberService.randomInteger(1, 3), game.title, this.$loading, () => {   
            let html = this.setGame(game, this.sessionId); 
            HTMLService.html(this.$container, html);
            this.toggleContentLoaded(true);
@@ -69,22 +70,6 @@ class GameViewer extends HTMLElement {
             this.games = JSONService.getArray(this.games);
             this.gamesAmount = this.games && this.games.length > 0 ? this.games.length : 0;
         }
-    }
-
-    setLoading(timeout = 1, title, onComplete) {
-        HTMLService.html(this.$loading, `
-            <div class="loading-content">
-              <div>Loading</div>
-              <img src="${LoadingIcons.game.source}" alt="" />
-              <div>${title}</div>
-            </div>`);
-
-        StyleService.setDisplay(this.$loading, true);
-        setTimeout(() => {
-            HTMLService.html(this.$loading, '');
-            StyleService.setDisplay(this.$loading, false);
-            onComplete();
-        }, timeout * 1000);
     }
 
     setLabel(title) {

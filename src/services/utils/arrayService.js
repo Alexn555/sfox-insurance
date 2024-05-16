@@ -1,3 +1,4 @@
+import LoggerService from '../../services/loggerService';
 import { NumberService } from './numberService';
 
 export class ArrayService {
@@ -14,6 +15,15 @@ export class ArrayService {
 
     static getRandomItemFromList(list, fIndex = 0, lastIndex = list.length - 1) {
         return list[NumberService.randomInteger(fIndex, lastIndex)];
+    }
+
+    static getObject(id, obj) {
+        if (obj && obj !== undefined) {
+            return obj;
+        }
+
+        LoggerService.error(`Object #${id} is not defined`);
+        return {};
     }
 
     static objectPropertyAmount(obj) {

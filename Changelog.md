@@ -1,4 +1,7 @@
 ## Changelog
+v 2.59 
+  Added GameViewerHelper, added TextEditor improvements
+
 v 2.58
   Added Text Editor improvements
 

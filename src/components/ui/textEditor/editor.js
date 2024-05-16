@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
-import { NumberService, JSONService } from '../../../services/utils';
+import { NumberService, JSONService, ArrayService } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomWindowEvents, CustomEvents } from '../../../settings';
 import { styleErrors } from '../../../components/common/styles/errors';
@@ -19,7 +19,7 @@ class TextEditor extends HTMLElement {
         this.id = this.getAttribute('id') || 'text-viewer';
         this.files = this.getAttribute('files') || '[]';
         this.setsId = this.getAttribute('setsId') || TextEditorSetEnums.textEditorPage;
-        this.sets = TextEditorSettings[this.setsId];
+        this.sets = ArrayService.getObject('textSettings', TextEditorSettings[this.setsId]);
         this.displayLabel = this.sets.displayLabel || BoolEnums.bFalse;
         this.side = this.sets.side || ContentSwSides.right;
         this.currentIndex = 0;
@@ -52,6 +52,8 @@ class TextEditor extends HTMLElement {
         this.$textArea = IdService.id(this.textAreaId, this.shadow);
 
         this.activateFile(0);
+        this.saveFile(); // load real labels
+
         CustomEventService.event(`${CustomWindowEvents.contentSw.pageClick}-${this.contentSwId}`, (e) => {
             this.currentIndex = e.detail.value;
             this.activateFile(this.currentIndex - 1);

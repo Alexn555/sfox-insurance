@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.58
+### SFox Insurance Engine v 2.59
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.59 
+  Added GameViewerHelper, added TextEditor improvements
+
 v 2.58
   Added Text Editor improvements
 
