@@ -23,6 +23,7 @@ export const GallerySet = {
     thumbCursor: Cursors.normal,
     thumbsOpenable: GalleryImgViewerEnums.open, 
     minimumSearch: 3, // chars
+    maxSearch: 20, // chars
     perPage: 4, // all - without pagination
     total: 20
 };

@@ -27,14 +27,21 @@ class GallerySearch extends HTMLElement {
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.searchInput}`, (e) => {        
         const input = e.detail?.value || '';
 
-        if (input !== '' && input.length >= GallerySet.minimumSearch) {
-          this.searchWord = this.validaterequest(input);
-          this.$searchInput.setAttribute('value', this.searchWord);
-          this.saveSearch(this.searchWord);
-          CustomEventService.send(GallerySet.searchEvent, this.searchWord);
-        } else {
-          HTMLService.text(this.$error, `Please type minimum ${GallerySet.minimumSearch} chars`);
-        }
+        if (input !== '') {
+          let isMax = input.length > GallerySet.maxSearch;
+          if (input.length >= GallerySet.minimumSearch) {
+            if (!isMax) {
+              this.searchWord = this.validaterequest(input);
+              this.$searchInput.setAttribute('value', this.searchWord);
+              this.saveSearch(this.searchWord);
+              CustomEventService.send(GallerySet.searchEvent, this.searchWord);
+            } else {
+              HTMLService.text(this.$error, `Request can be not bigger than ${GallerySet.maxSearch} chars`);
+            }
+          } else {
+            HTMLService.text(this.$error, `Please type minimum ${GallerySet.minimumSearch} chars`);
+          } 
+        } 
       }); 
     }
 
