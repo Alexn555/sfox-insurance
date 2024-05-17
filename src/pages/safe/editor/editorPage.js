@@ -35,8 +35,9 @@ class EditorPage extends HTMLElement {
             <h3>Text Editor</h3>
             <text-editor 
               setsId="${TextEditorSetEnums.textEditorPage}"
-              files='${JSONService.set(textFiles)}'
-            ></text-editor>
+              files='${JSONService.set(textFiles)}' 
+            >
+            </text-editor>
           </div>
        `;
     }

@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.60
-  Added Feature list improvements
+  Added Feature list improvements,
+  Added GAmeViewer settings same as in TextEditor settings 
 
 v 2.59 
   Added GameViewerHelper, added TextEditor improvements

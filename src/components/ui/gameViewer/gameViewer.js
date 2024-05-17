@@ -2,12 +2,13 @@
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
-import { NumberService, JSONService } from '../../../services/utils';
+import { NumberService, JSONService, ArrayService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { GameViewerHelper } from './gameViewerHelper';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { BoolEnums } from '../../../enums';
-import { ContentSwSides, LabelIcons } from '../contentSw/enums';
+import { GameViewerSetEnums, GameViewerSettings } from './sets';
+import { LabelIcons } from '../contentSw/enums';
 import { PackIds } from '../../../theme/enums';
 
 class GameViewer extends HTMLElement {
@@ -15,9 +16,11 @@ class GameViewer extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.id = this.getAttribute('id') || 'game-viewer';
-        this.displayLabel = this.getAttribute('display-label') || BoolEnums.bFalse;
-        this.side = this.getAttribute('side') || ContentSwSides.right;
         this.games = this.getAttribute('games') || '[]';
+        this.setsId = this.getAttribute('setsId') || GameViewerSetEnums.gamePage;
+        this.sets = ArrayService.getObject('gameViewer', GameViewerSettings[this.setsId]);
+        this.displayLabel = this.sets.displayLabel;
+        this.side = this.sets.side;
         this.currentIndex = 0;
         this.gamesAmount = 0;
         this.contentSwid = 'gameContentSw';

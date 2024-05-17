@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
-import { GameViewerSettings } from '../../../components/ui/gameViewer/sets';
+import { GameViewerSettings, GameViewerSetEnums } from '../../../components/ui/gameViewer/sets';
 import { gmVwGames } from './games';
 import { Game } from '../../../settings';
 
@@ -32,8 +32,7 @@ class GamePage extends HTMLElement {
              <game-viewer 
               id="${GameViewerSettings.gamePage.id}"
               games='${this.games}'
-              display-label="${GameViewerSettings.gamePage.displayLabel}"
-              side="${GameViewerSettings.gamePage.side}"
+              setsId="${GameViewerSetEnums.gamePage}"
              >
              </game-viewer>
           </div>
