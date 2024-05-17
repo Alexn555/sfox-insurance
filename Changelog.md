@@ -1,4 +1,7 @@
 ## Changelog
+v 2.60
+  Added Feature list improvements
+
 v 2.59 
   Added GameViewerHelper, added TextEditor improvements
 

@@ -71,6 +71,12 @@ class FeaturesPage extends HTMLElement {
                             <b>Settings (sets)</b> - Global, env, pages settings 
                         </li>
                         <li>
+                            <b>Game example</b> - Example of Webcomponents game 
+                        </li>
+                        <li>
+                            <b>TextEditor</b> - Text editor with support multiple file save 
+                        </li>
+                        <li>
                             <b>GalleryViewer</b> - To view and explore Images
                         </li>
                         <li>
