@@ -83,7 +83,7 @@ class TextEditor extends HTMLElement {
 
     setMenuHandlera() {
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.paragraph.id}`, () => {
-            this.setTextTags('p');
+            this.setTextTags('p', '', true);
          });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.bold.id}`, () => {
            this.setTextTags('b');
@@ -92,13 +92,13 @@ class TextEditor extends HTMLElement {
             this.setTextTags('i');
         });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.left.id}`, () => {
-            this.setTextTags("p align='left'", 'p');
+            this.setTextTags("p align='left'", 'p', true);
         });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.center.id}`, () => {
-            this.setTextTags("p align='center'", 'p');
+            this.setTextTags("p align='center'", 'p', true);
         });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.right.id}`, () => {
-            this.setTextTags("p align='right'", 'p');
+            this.setTextTags("p align='right'", 'p', true);
         });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
             HTMLService.html(this.$preview, this.previewContent);
@@ -106,12 +106,13 @@ class TextEditor extends HTMLElement {
         });
     }
 
-    setTextTags(tag, closeTag = '') {
+    setTextTags(tag, closeTag = '', padding = false) {
         closeTag = closeTag === '' ? tag : closeTag;
         let selection = StringService.getSelectedText();
         selection = selection ? selection.toString() : '';
         let html = this.content;
-        html = html.replace(selection, `<${tag}>${selection}</${closeTag}>`);
+        let pad = padding ? '\n' : '';
+        html = html.replace(selection, `<${tag}>${pad}${selection}${pad}</${closeTag}>` );
         this.$textArea.setAttribute('value', html);
         this.saveFile(SaveEvts.content, html);
         this.togglePreviewContent(html);
