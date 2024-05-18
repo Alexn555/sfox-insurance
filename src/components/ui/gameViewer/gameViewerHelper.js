@@ -1,4 +1,5 @@
 import { HTMLService, StyleService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { LoadingIcons } from './enums';
 
 export class GameViewerHelper {
@@ -16,5 +17,13 @@ export class GameViewerHelper {
             StyleService.setDisplay($loading, false);
             onComplete();
         }, timeout * 1000);
+    }
+
+    static getGameLabels(games = []) {
+        return JSONService.set(games.map(game => game.title));
+    }
+
+    static getGameIcons(games = []) {
+        return JSONService.set(games.map(game => game.icon));
     }
 }
