@@ -31,6 +31,23 @@ class TextEditorMenu extends HTMLElement {
         return color;
     }
 
+    showPreview() {
+        let html = '';
+        if (this.sets.menu.previewEnabled) {
+            html = `
+                <texteditor-menu-button 
+                    id="${MenuButtons.preview.id}" 
+                    label="preview" 
+                    custom-width="64"
+                    setsId="${this.setsId}"
+                    btnStyle="${this.itemBorder}"
+                >
+                </texteditor-menu-button>
+            `;
+        }
+        return html;
+    }
+
     render() {
         this.shadow.innerHTML = `
             <style>
@@ -83,14 +100,7 @@ class TextEditorMenu extends HTMLElement {
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
-                <texteditor-menu-button 
-                    id="${MenuButtons.preview.id}" 
-                    label="preview" 
-                    custom-width="64"
-                    setsId="${this.setsId}"
-                    btnStyle="${this.itemBorder}"
-                >
-                </texteditor-menu-button>
+                ${this.showPreview()}
             <div>
             <div id="error"></div>
         `;

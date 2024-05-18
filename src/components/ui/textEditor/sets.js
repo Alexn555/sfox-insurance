@@ -18,6 +18,7 @@ export const TextEditorSettings = {
         },
         menu: {
             enabled: true,
+            previewEnabled: true,
             item: {
                 tooltip: true,
                 randomBorder: false,
