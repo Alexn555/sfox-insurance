@@ -1,5 +1,5 @@
 import { HTMLService, StyleService } from '../../../services';
-import { ArrayService } from '../../../services/utils';
+import { ArrayService, JSONService } from '../../../services/utils';
 import { LoadingIcons, SaveEvts } from './enums';
 
 export class TextEditorHelper {
@@ -89,5 +89,13 @@ export class TextEditorHelper {
         }
 
         return value;
+    }
+
+    static getTextLabels(files = []) {
+        return JSONService.set(files.map(file => file.name));
+    }
+     
+    static getTextIcons(files) {
+        return JSONService.set(files.map(file => file.icon));
     }
 }

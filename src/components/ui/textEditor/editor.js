@@ -41,7 +41,7 @@ class TextEditor extends HTMLElement {
 
         this.content = '';
         this.previewContent = '';
-        this.previewToggled = false;
+        this.previewToggled = true;
         this.storage = new DataStorage();
         this.setfiles();
     }
@@ -149,8 +149,7 @@ class TextEditor extends HTMLElement {
 
     toggleMode() {
         StyleService.setDisplayMultiple([this.$preview, this.$edit], false);
-        let el = this.previewToggled ? this.$preview : this.$edit;
-        StyleService.setDisplay(el, true);
+        StyleService.setDisplay(this.previewToggled ? this.$preview : this.$edit, true);
         this.previewToggled = !this.previewToggled;
     }
 
@@ -163,7 +162,7 @@ class TextEditor extends HTMLElement {
             }
         });
 
-        const labels = this.getTextLabels(realArray);
+        const labels = TextEditorHelper.getTextLabels(realArray);
         this.$cntSwitcher.setAttribute('labels', labels);
     }
 
@@ -187,10 +186,6 @@ class TextEditor extends HTMLElement {
             this.files = this.parseArray ? JSONService.getArray(this.files) : this.files;
             this.filesAmount = this.files && this.files.length > 0 ? this.files.length : 0;
         }
-    }
-
-    setLabel(title) {
-        return this.displayLabel === BoolEnums.bTrue ? `<h2>${title}</h2>` : '';
     }
 
     setEditor(file, sessionId) {
@@ -225,14 +220,6 @@ class TextEditor extends HTMLElement {
             </div>    
             <div id="preview"></div>
         `;
-    }
-
-    getTextLabels(files = this.files) {
-       return JSONService.set(files.map(file => file.name));
-    }
-
-    getTextIcons() {
-        return JSONService.set(this.files.map(file => file.icon));
     }
 
     render() {
@@ -294,9 +281,9 @@ class TextEditor extends HTMLElement {
                 <content-sw
                   id="${this.contentSwId}"
                   per-page="1" 
-                  labels='${this.getTextLabels(this.files)}'
+                  labels='${TextEditorHelper.getTextLabels(this.files)}'
                   side="${this.side}"
-                  individual-icons='${this.getTextIcons()}'
+                  individual-icons='${TextEditorHelper.getTextIcons(this.files)}'
                   use-ind-icons="${BoolEnums.bFalse}"
                   icon-type="${LabelIcons.text.id}"
                   total="${this.filesAmount}"
