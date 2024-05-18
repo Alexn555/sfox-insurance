@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { NumberService, ArrayService } from '../../../services/utils';
+import { NumberService, ObjectService } from '../../../services/utils';
 import { SaveObjects } from '../../../components/common/saves';
 import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
@@ -77,7 +77,7 @@ class AccountIcon extends HTMLElement {
     }
 
     showUserIcon(loggedUser, event, selected) {
-      if (ArrayService.objectPropertyAmount(loggedUser) < 1) {
+      if (ObjectService.objectPropertyAmount(loggedUser) < 1) {
         return;
       }
       

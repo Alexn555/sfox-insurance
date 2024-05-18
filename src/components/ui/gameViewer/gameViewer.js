@@ -2,7 +2,7 @@
 // Gif loading icon (c) cons8.com/preloaders
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, HTMLService } from '../../../services';
-import { NumberService, JSONService, ArrayService } from '../../../services/utils';
+import { NumberService, JSONService, ObjectService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { GameViewerHelper } from './gameViewerHelper';
 import { styleErrors } from '../../../components/common/styles/errors';
@@ -18,7 +18,7 @@ class GameViewer extends HTMLElement {
         this.id = this.getAttribute('id') || 'game-viewer';
         this.games = this.getAttribute('games') || '[]';
         this.setsId = this.getAttribute('setsId') || GameViewerSetEnums.gamePage;
-        this.sets = ArrayService.getObject('gameViewer', GameViewerSettings[this.setsId]);
+        this.sets = ObjectService.getObject('gameViewer', GameViewerSettings[this.setsId]);
         this.displayLabel = this.sets.displayLabel;
         this.side = this.sets.side;
         this.currentIndex = 0;

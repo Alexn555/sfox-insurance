@@ -1,4 +1,7 @@
 ## Changelog
+v 2.61
+  Added ObjectService to handle object methods
+
 v 2.60
   Added Feature list improvements,
   Added GAmeViewer settings same as in TextEditor settings 

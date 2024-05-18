@@ -1,5 +1,5 @@
 import { LoggerService } from '../services';
-import { ArrayService } from '../services/utils';
+import { ObjectService } from '../services/utils';
 import { Themes, PackThemes } from './enums';
 import { theme } from './theme';
 
@@ -14,7 +14,7 @@ export default class ThemeHelper {
                 }
             }
             if (pack[defaultTheme]) {
-                if (ArrayService.objectPropertyAmount(pack[defaultTheme]) > 0) {
+                if (ObjectService.objectPropertyAmount(pack[defaultTheme]) > 0) {
                     return pack[defaultTheme];
                 } else {
                     LoggerService.error(`Theme pack ${id} has no items in default theme!`);

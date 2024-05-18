@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ArrayService } from '../../../services/utils';
+import { ObjectService } from '../../../services/utils';
 import { DateService }  from '../../../services/helpers';
 import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
@@ -39,7 +39,7 @@ class AccountDetails extends HTMLElement {
     }
 
     showUserDetails(loggedUser) {
-      if (ArrayService.objectPropertyAmount(loggedUser) < 1) {
+      if (ObjectService.objectPropertyAmount(loggedUser) < 1) {
         return;
       }
 
