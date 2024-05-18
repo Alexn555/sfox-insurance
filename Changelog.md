@@ -1,6 +1,7 @@
 ## Changelog
 v 2.61
-  Added ObjectService to handle object methods
+  Added ObjectService to handle object methods,
+  Created TextEditor Menu tool
 
 v 2.60
   Added Feature list improvements,

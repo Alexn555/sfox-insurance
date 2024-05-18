@@ -1,3 +1,4 @@
+// @ts-nocheck
 export class StringService {
     static getVersionFromPackage(version) {
         let ver = version;
@@ -18,5 +19,18 @@ export class StringService {
           mask += symb;
         }
         return mask.substring(0, pos - 1) + `${replaceSymb}` + mask.substring(pos);
+    }
+
+    static getSelectedText() { // (c) JohnK, stackovelow
+        if (window.getSelection) {
+            return window.getSelection();
+        } 
+        if (window.document.getSelection) {
+            return window.document.getSelection();
+        } 
+        if (window.document.selection) {
+            return window.document.selection.createRange().text;
+        }
+        return '';  
     }
 }

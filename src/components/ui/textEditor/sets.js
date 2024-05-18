@@ -1,4 +1,4 @@
-import { BoolEnums } from '../../../enums';
+import { BoolEnums, Cursors } from '../../../enums';
 import { ContentSwSides } from '../contentSw/enums';
 
 export const TextEditorSetEnums = {
@@ -15,6 +15,14 @@ export const TextEditorSettings = {
         },
         content: {
             max: 2000 // chars
+        },
+        menu: {
+            enabled: true,
+            item: {
+                tooltip: true,
+                randomBorder: false,
+                cursor: Cursors.pointer
+            }
         }
     }
 };

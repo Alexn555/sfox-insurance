@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.61
-  Added ObjectService to handle object methods
+  Added ObjectService to handle object methods,
+  Created TextEditor Menu tool
 
 v 2.60
   Added Feature list improvements,
