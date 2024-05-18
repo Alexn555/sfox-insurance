@@ -75,8 +75,9 @@ class TextEditorMenu extends HTMLElement {
                     setsId="${this.setsId}"
                     btnStyle="${this.itemBorder}"
                 > 
-                </texteditor-menu-button>
+                </texteditor-menu-button>    
                 &nbsp; | &nbsp;
+                
                 <texteditor-menu-button 
                     id="${MenuButtons.bold.id}" 
                     label="b" 
@@ -91,7 +92,28 @@ class TextEditorMenu extends HTMLElement {
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
-
+                <texteditor-menu-button 
+                    id="${MenuButtons.left.id}" 
+                    label="L" 
+                    setsId="${this.setsId}"
+                    btnStyle="${this.itemBorder}"
+                >
+                </texteditor-menu-button>
+                <texteditor-menu-button 
+                    id="${MenuButtons.center.id}" 
+                    label="C" 
+                    setsId="${this.setsId}"
+                    btnStyle="${this.itemBorder}"
+                 >
+                </texteditor-menu-button>
+                <texteditor-menu-button 
+                    id="${MenuButtons.right.id}" 
+                    label="R" 
+                    setsId="${this.setsId}"
+                    btnStyle="${this.itemBorder}"
+                 >
+                </texteditor-menu-button>
+                
                 <texteditor-menu-button 
                     id="${MenuButtons.tipToggle.id}" 
                     label="tip" 

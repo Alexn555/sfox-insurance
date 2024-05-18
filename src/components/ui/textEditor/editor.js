@@ -91,18 +91,27 @@ class TextEditor extends HTMLElement {
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.italic.id}`, () => {
             this.setTextTags('i');
         });
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.left.id}`, () => {
+            this.setTextTags("p align='left'", 'p');
+        });
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.center.id}`, () => {
+            this.setTextTags("p align='center'", 'p');
+        });
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.right.id}`, () => {
+            this.setTextTags("p align='right'", 'p');
+        });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
             HTMLService.html(this.$preview, this.previewContent);
             this.toggleMode();
         });
     }
 
-    setTextTags(tag) {
+    setTextTags(tag, closeTag = '') {
+        closeTag = closeTag === '' ? tag : closeTag;
         let selection = StringService.getSelectedText();
         selection = selection ? selection.toString() : '';
         let html = this.content;
-        let selectionWithTag = `<${tag}>${selection}</${tag}>`;
-        html = html.replace(selection, selectionWithTag);
+        html = html.replace(selection, `<${tag}>${selection}</${closeTag}>`);
         this.$textArea.setAttribute('value', html);
         this.saveFile(SaveEvts.content, html);
         this.togglePreviewContent(html);

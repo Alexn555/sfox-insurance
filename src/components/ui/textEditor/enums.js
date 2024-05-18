@@ -34,6 +34,18 @@ export const MenuButtons = {
         id: 'italic',
         tip: 'Highlightes selected text italic'
     },
+    left: {
+        id: 'left',
+        tip: 'Left align with paragraph'
+    },
+    center: {
+        id: 'center',
+        tip: 'Center align with paragraph'
+    },
+    right: {
+        id: 'right',
+        tip: 'Right align with paragraph'
+    },
     tipToggle: {
         id: 'tipToggle',
         tip: 'Toggles tip'
