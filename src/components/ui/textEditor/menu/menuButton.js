@@ -1,19 +1,22 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../../theme/theme';
-import { CustomEventService, IdService } from '../../../../services';
+import { CustomEventService, IdService, StyleService } from '../../../../services';
 import { ObjectService } from '../../../../services/utils';
 import { PackIds } from '../../../../theme/enums';
+import { BoolEnums } from '../../../../enums';
 import { TextEditorSettings, TextEditorSetEnums } from '../sets';
 import { CustomMenuEvents } from '../events';
 import { MenuButtons } from '../enums';
+import { MenuIcons } from '../icons';
 
 class TxEditorMenuButton extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.id = this.getAttribute('id') || 'text-editor-menu';
+        this.id = this.getAttribute('id') || 'menu-button';
         this.label = this.getAttribute('label') || '';
         this.customWidth = this.getAttribute('custom-width') || '24';
+        this.hasIcon = this.getAttribute('hasIcon') || BoolEnums.bFalse;
         this.setsId = this.getAttribute('setsId') || TextEditorSetEnums.textEditorPage;
         this.theme = ThemeHelper.get([PackIds.textViewer]);
         this.sets = ObjectService.getObject('textSettings', TextEditorSettings[this.setsId]);
@@ -27,10 +30,19 @@ class TxEditorMenuButton extends HTMLElement {
         this.$button = IdService.idAndClick(this.id, this.shadow, () => {
             CustomEventService.send(`${CustomMenuEvents.menuClick}-${this.id}`);
         });
+        this.setIcon();
     }
 
     disconnectedCallback() {
         CustomEventService.removeListener(`${CustomMenuEvents.menuClick}-${this.id}`);
+    }
+
+    setIcon() {
+        if (this.hasIcon === BoolEnums.bTrue) {
+            this.icon = MenuIcons[this.id].source;
+            this.icon = this.icon ? this.icon: '';
+            StyleService.setProperty(this.$button, 'backgroundImage', `url("${this.icon}")`);
+        }
     }
 
     setToolTip(theme) {
@@ -65,6 +77,8 @@ class TxEditorMenuButton extends HTMLElement {
               .button {
                 position: relative;
                 background-color: ${thm.bck};
+                background-repeat: no-repeat;
+                background-size: contain;
                 text-align: center;
                 border: 1px solid ${this.btnStyle};
                 width: ${this.customWidth}px;

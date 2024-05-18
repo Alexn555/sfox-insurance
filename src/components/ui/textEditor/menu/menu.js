@@ -3,6 +3,7 @@ import { ThemeHelper } from '../../../../theme/theme';
 import { IdService } from '../../../../services';
 import { ObjectService, NumberService } from '../../../../services/utils';
 import { TextEditorSettings, TextEditorSetEnums } from '../sets';
+import { BoolEnums } from '../../../../enums';
 import { MenuButtons } from '../enums';
 import { PackIds } from '../../../../theme/enums';
 
@@ -64,7 +65,8 @@ class TextEditorMenu extends HTMLElement {
             <div id="${this.id}" class="menu">
                 <texteditor-menu-button 
                     id="${MenuButtons.save.id}"
-                    label="S" 
+                    label="" 
+                    hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}" 
                     btnStyle="${this.itemBorder}"
                 > 
@@ -80,7 +82,8 @@ class TextEditorMenu extends HTMLElement {
                 
                 <texteditor-menu-button 
                     id="${MenuButtons.bold.id}" 
-                    label="b" 
+                    label="" 
+                    hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
                     btnStyle="${this.itemBorder}"
                 > 
@@ -94,21 +97,24 @@ class TextEditorMenu extends HTMLElement {
                 </texteditor-menu-button>
                 <texteditor-menu-button 
                     id="${MenuButtons.left.id}" 
-                    label="L" 
+                    label="" 
+                    hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
                 <texteditor-menu-button 
                     id="${MenuButtons.center.id}" 
-                    label="C" 
+                    label="" 
+                    hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
                     btnStyle="${this.itemBorder}"
                  >
                 </texteditor-menu-button>
                 <texteditor-menu-button 
                     id="${MenuButtons.right.id}" 
-                    label="R" 
+                    label="" 
+                    hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
                     btnStyle="${this.itemBorder}"
                  >
