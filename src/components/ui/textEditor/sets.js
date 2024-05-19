@@ -14,7 +14,7 @@ export const TextEditorSettings = {
             max: 20 // chars
         },
         content: {
-            max: 2000 // chars
+            max: 20000 // chars
         },
         menu: {
             enabled: true,
