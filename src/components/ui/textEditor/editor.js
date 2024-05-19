@@ -84,7 +84,7 @@ class TextEditor extends HTMLElement {
     setMenuHandlera() {
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.paragraph.id}`, () => {
             this.setTextTags('p', '', true);
-         });
+        });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.bold.id}`, () => {
            this.setTextTags('b');
         });

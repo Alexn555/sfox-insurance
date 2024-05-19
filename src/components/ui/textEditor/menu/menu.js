@@ -1,11 +1,12 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../../theme/theme';
-import { IdService } from '../../../../services';
+import { IdService, CustomEventService } from '../../../../services';
 import { ObjectService, NumberService } from '../../../../services/utils';
 import { TextEditorSettings, TextEditorSetEnums } from '../sets';
 import { BoolEnums } from '../../../../enums';
-import { MenuButtons } from '../enums';
 import { PackIds } from '../../../../theme/enums';
+import { MenuButtons } from '../enums';
+import { CustomMenuEvents } from '../events';
 
 class TextEditorMenu extends HTMLElement {
     constructor() {
@@ -16,11 +17,35 @@ class TextEditorMenu extends HTMLElement {
         this.sets = ObjectService.getObject('textSettings', TextEditorSettings[this.setsId]);
         this.theme = ThemeHelper.get([PackIds.textViewer]);
         this.itemBorder = this.getBtnBorder();
+        this.swToolTip = false;
     }
     
     connectedCallback() {
         this.render();
         this.$error = IdService.id('error', this.shadow); 
+
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.tipToggle.id}`, () => {
+            const items = [ 
+                IdService.id(MenuButtons.save.id, this.shadow),
+                IdService.id(MenuButtons.paragraph.id, this.shadow),
+                IdService.id(MenuButtons.bold.id, this.shadow),
+                IdService.id(MenuButtons.italic.id, this.shadow),
+                IdService.id(MenuButtons.left.id, this.shadow),
+                IdService.id(MenuButtons.center.id, this.shadow),
+                IdService.id(MenuButtons.right.id, this.shadow),
+                IdService.id(MenuButtons.tipToggle.id, this.shadow),
+                IdService.id(MenuButtons.preview.id, this.shadow),
+            ];
+
+            items.forEach((item) => {
+               item.setAttribute('tooltip', this.swToolTip);
+            });
+            this.toggleToolTip();
+        });
+    }
+
+    toggleToolTip() {
+        this.swToolTip = !this.swToolTip;
     }
 
     getBtnBorder() {
@@ -41,6 +66,7 @@ class TextEditorMenu extends HTMLElement {
                     label="preview" 
                     custom-width="64"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
@@ -68,13 +94,15 @@ class TextEditorMenu extends HTMLElement {
                     label="" 
                     hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}" 
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 > 
                 </texteditor-menu-button>
                 <texteditor-menu-button 
                     id="${MenuButtons.paragraph.id}" 
                     label="pr"
-                    setsId="${this.setsId}"
+                    setsId="${this.setsId}"'
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 > 
                 </texteditor-menu-button>    
@@ -85,6 +113,7 @@ class TextEditorMenu extends HTMLElement {
                     label="" 
                     hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 > 
                 </texteditor-menu-button>
@@ -92,6 +121,7 @@ class TextEditorMenu extends HTMLElement {
                     id="${MenuButtons.italic.id}" 
                     label="i" 
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
@@ -100,6 +130,7 @@ class TextEditorMenu extends HTMLElement {
                     label="" 
                     hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
@@ -108,6 +139,7 @@ class TextEditorMenu extends HTMLElement {
                     label="" 
                     hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                  >
                 </texteditor-menu-button>
@@ -116,6 +148,7 @@ class TextEditorMenu extends HTMLElement {
                     label="" 
                     hasIcon="${BoolEnums.bTrue}"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                  >
                 </texteditor-menu-button>
@@ -125,6 +158,7 @@ class TextEditorMenu extends HTMLElement {
                     label="tip" 
                     custom-width="36"
                     setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>

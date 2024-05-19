@@ -16,17 +16,31 @@ class TxEditorMenuButton extends HTMLElement {
         this.id = this.getAttribute('id') || 'menu-button';
         this.label = this.getAttribute('label') || '';
         this.customWidth = this.getAttribute('custom-width') || '24';
+        this.swToolTip = this.getAttribute('tooltip') || BoolEnums.bTrue;
         this.hasIcon = this.getAttribute('hasIcon') || BoolEnums.bFalse;
         this.setsId = this.getAttribute('setsId') || TextEditorSetEnums.textEditorPage;
         this.theme = ThemeHelper.get([PackIds.textViewer]);
+        this.toolTipId = 'tooltip';
         this.sets = ObjectService.getObject('textSettings', TextEditorSettings[this.setsId]);
         this.btnStyle = this.getAttribute('btnStyle') || this.theme.menu.itemBorder;
         this.tip = MenuButtons[this.id].tip;
         this.icon = '';
     }
+
+    static get observedAttributes() { 
+        return ['tooltip']; 
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (this.$toolTip && name === 'tooltip') {
+           let toggle = newValue === 'true' ? true : false;
+           StyleService.setDisplay(this.$toolTip, toggle);
+        }
+    }
     
     connectedCallback() {
         this.render();
+        this.$toolTip = IdService.id(this.toolTipId, this.shadow);
         this.$button = IdService.idAndClick(this.id, this.shadow, () => {
             CustomEventService.send(`${CustomMenuEvents.menuClick}-${this.id}`);
         });
@@ -94,7 +108,7 @@ class TxEditorMenuButton extends HTMLElement {
             </style>
             <div id="${this.id}" class="button">
                 ${this.label}
-                <span class="tooltip">${this.tip}</span>
+                <span id="${this.toolTipId}" class="tooltip">${this.tip}</span>
             <div>
         `;
     }

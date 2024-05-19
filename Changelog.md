@@ -1,6 +1,7 @@
 ## Changelog
 v 2.62
-  Added TextEditor content limit
+  Added TextEditor content limit,
+  Added Tooltip toggle
 
 v 2.61
   Added ObjectService to handle object methods,

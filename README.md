@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.62
-  Added TextEditor content limit
+  Added TextEditor content limit,
+  Added Tooltip toggle
 
 v 2.61
   Added ObjectService to handle object methods,
