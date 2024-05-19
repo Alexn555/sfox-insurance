@@ -32,10 +32,10 @@ class TxEditorMenuButton extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (this.$toolTip && name === 'tooltip') {
+        if (this.$toolTip && name === 'tooltip' && this.sets.menu.item.tooltip) {
            let toggle = newValue === 'true' ? true : false;
            StyleService.setDisplay(this.$toolTip, toggle);
-        }
+        } 
     }
     
     connectedCallback() {
@@ -44,6 +44,9 @@ class TxEditorMenuButton extends HTMLElement {
         this.$button = IdService.idAndClick(this.id, this.shadow, () => {
             CustomEventService.send(`${CustomMenuEvents.menuClick}-${this.id}`);
         });
+        if (!this.sets.menu.item.tooltip) {
+            StyleService.setDisplay(this.$toolTip, false)
+        }
         this.setIcon();
     }
 

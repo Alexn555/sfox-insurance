@@ -22,8 +22,6 @@ class TextEditorMenu extends HTMLElement {
     
     connectedCallback() {
         this.render();
-        this.$error = IdService.id('error', this.shadow); 
-
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.tipToggle.id}`, () => {
             const items = [ 
                 IdService.id(MenuButtons.save.id, this.shadow),
@@ -164,7 +162,6 @@ class TextEditorMenu extends HTMLElement {
                 </texteditor-menu-button>
                 ${this.showPreview()}
             <div>
-            <div id="error"></div>
         `;
     }
 }
