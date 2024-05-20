@@ -163,7 +163,11 @@ class TextEditor extends HTMLElement {
     toggleMode() {
         StyleService.setDisplayMultiple([this.$preview, this.$edit], false);
         StyleService.setDisplay(this.previewToggled ? this.$preview : this.$edit, true);
-        this.previewToggled = !this.previewToggled;
+        this.togglePreview(!this.previewToggled);
+    }
+
+    togglePreview(toggle) {
+        this.previewToggled = toggle;
     }
 
     updateLabels(savedArray) {

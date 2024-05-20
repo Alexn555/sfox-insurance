@@ -45,8 +45,12 @@ class TextEditorMenu extends HTMLElement {
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
            let el = IdService.id(MenuButtons.preview.id, this.shadow);
            el.setAttribute('mode', this.previewToggled);
-           this.previewToggled = !this.previewToggled;
+           this.togglePreview(this.previewToggled);
         });
+    }
+
+    togglePreview(toggle) {
+        this.previewToggled = !toggle;
     }
 
     toggleToolTip() {
