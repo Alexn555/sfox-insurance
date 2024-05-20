@@ -23,27 +23,24 @@ class TextEditorMenu extends HTMLElement {
     
     connectedCallback() {
         this.render();
-        let items = [];
+        let items = [ 
+            IdService.id(MenuButtons.save.id, this.shadow),
+            IdService.id(MenuButtons.paragraph.id, this.shadow),
+            IdService.id(MenuButtons.bold.id, this.shadow),
+            IdService.id(MenuButtons.italic.id, this.shadow),
+            IdService.id(MenuButtons.underline.id, this.shadow),
+            IdService.id(MenuButtons.left.id, this.shadow),
+            IdService.id(MenuButtons.center.id, this.shadow),
+            IdService.id(MenuButtons.right.id, this.shadow),
+            IdService.id(MenuButtons.tipToggle.id, this.shadow),
+            IdService.id(MenuButtons.preview.id, this.shadow),
+        ];
         let $preview = null;
 
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.tipToggle.id}`, () => {
-            if (items.length < 1) {
-                items = [ 
-                    IdService.id(MenuButtons.save.id, this.shadow),
-                    IdService.id(MenuButtons.paragraph.id, this.shadow),
-                    IdService.id(MenuButtons.bold.id, this.shadow),
-                    IdService.id(MenuButtons.italic.id, this.shadow),
-                    IdService.id(MenuButtons.underline.id, this.shadow),
-                    IdService.id(MenuButtons.left.id, this.shadow),
-                    IdService.id(MenuButtons.center.id, this.shadow),
-                    IdService.id(MenuButtons.right.id, this.shadow),
-                    IdService.id(MenuButtons.tipToggle.id, this.shadow),
-                    IdService.id(MenuButtons.preview.id, this.shadow),
-                ];
-            } 
-
             this.toggleToolTip(items);
         });
+
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
            if ($preview === null) {
               $preview = IdService.id(MenuButtons.preview.id, this.shadow);
