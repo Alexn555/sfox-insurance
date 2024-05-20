@@ -28,14 +28,16 @@ class TxEditorMenuButton extends HTMLElement {
     }
 
     static get observedAttributes() { 
-        return ['tooltip']; 
+        return ['tooltip', 'mode']; 
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (this.$toolTip && name === 'tooltip' && this.sets.menu.item.tooltip) {
-           let toggle = newValue === 'true' ? true : false;
-           StyleService.setDisplay(this.$toolTip, toggle);
+           this.toggleToolTip(newValue);
         } 
+        if (name === 'mode' && this.id === MenuButtons.preview.id) {
+            this.toggleMode(newValue);
+        }
     }
     
     connectedCallback() {
@@ -52,6 +54,21 @@ class TxEditorMenuButton extends HTMLElement {
 
     disconnectedCallback() {
         CustomEventService.removeListener(`${CustomMenuEvents.menuClick}-${this.id}`);
+    }
+
+    toggleToolTip(newValue) {
+        let toggle = newValue === 'true' ? true : false;
+        StyleService.setDisplay(this.$toolTip, toggle);
+        if (this.id === MenuButtons.tipToggle.id && this.sets.menu.tipToggleHighlight) {
+           let thm = this.theme.menu.item;
+           let color = toggle ? thm.bckActive : thm.bck;
+           StyleService.setProperty(this.$button, 'backgroundColor', color);
+        }
+    }
+
+    toggleMode(newValue) {
+        let el = IdService.id('label', this.shadow);
+        el.innerHTML = newValue === 'false' ? 'preview' : 'edit';
     }
 
     setIcon() {
@@ -110,7 +127,7 @@ class TxEditorMenuButton extends HTMLElement {
               }
             </style>
             <div id="${this.id}" class="button">
-                ${this.label}
+                <span id="label">${this.label}</span>
                 <span id="${this.toolTipId}" class="tooltip">${this.tip}</span>
             <div>
         `;

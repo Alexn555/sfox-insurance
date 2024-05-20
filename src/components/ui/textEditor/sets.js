@@ -19,6 +19,7 @@ export const TextEditorSettings = {
         menu: {
             enabled: true,
             previewEnabled: true,
+            tipToggleHighlight: true,
             item: {
                 tooltip: true,
                 randomBorder: false,

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.63
+  Added TextEditor toggle tipToggle highlight, mode label
+
 v 2.62
   Added TextEditor content limit,
   Added Tooltip toggle

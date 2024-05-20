@@ -18,6 +18,7 @@ class TextEditorMenu extends HTMLElement {
         this.theme = ThemeHelper.get([PackIds.textViewer]);
         this.itemBorder = this.getBtnBorder();
         this.swToolTip = false;
+        this.previewToggled = true;
     }
     
     connectedCallback() {
@@ -39,6 +40,11 @@ class TextEditorMenu extends HTMLElement {
                item.setAttribute('tooltip', this.swToolTip);
             });
             this.toggleToolTip();
+        });
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
+           let el = IdService.id(MenuButtons.preview.id, this.shadow);
+           el.setAttribute('mode', this.previewToggled);
+           this.previewToggled = !this.previewToggled;
         });
     }
 

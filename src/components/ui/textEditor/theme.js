@@ -17,6 +17,7 @@ export const TextFileViewerTheme = {
             background: '#dcdcdc',
             item: {
                 bck: 'white',
+                bckActive: '#f0f0f0',
                 border: 'blue',
                 tipBg: 'black',
                 tipText: 'white'

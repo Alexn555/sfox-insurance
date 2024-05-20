@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.62
+### SFox Insurance Engine v 2.63
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.63
+  Added TextEditor toggle tipToggle highlight, mode label
+
 v 2.62
   Added TextEditor content limit,
   Added Tooltip toggle
