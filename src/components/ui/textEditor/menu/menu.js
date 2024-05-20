@@ -23,38 +23,50 @@ class TextEditorMenu extends HTMLElement {
     
     connectedCallback() {
         this.render();
-        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.tipToggle.id}`, () => {
-            const items = [ 
-                IdService.id(MenuButtons.save.id, this.shadow),
-                IdService.id(MenuButtons.paragraph.id, this.shadow),
-                IdService.id(MenuButtons.bold.id, this.shadow),
-                IdService.id(MenuButtons.italic.id, this.shadow),
-                IdService.id(MenuButtons.underline.id, this.shadow),
-                IdService.id(MenuButtons.left.id, this.shadow),
-                IdService.id(MenuButtons.center.id, this.shadow),
-                IdService.id(MenuButtons.right.id, this.shadow),
-                IdService.id(MenuButtons.tipToggle.id, this.shadow),
-                IdService.id(MenuButtons.preview.id, this.shadow),
-            ];
+        let items = [];
+        let $preview = null;
 
-            items.forEach((item) => {
-               item.setAttribute('tooltip', this.swToolTip);
-            });
-            this.toggleToolTip();
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.tipToggle.id}`, () => {
+            if (items.length < 1) {
+                items = [ 
+                    IdService.id(MenuButtons.save.id, this.shadow),
+                    IdService.id(MenuButtons.paragraph.id, this.shadow),
+                    IdService.id(MenuButtons.bold.id, this.shadow),
+                    IdService.id(MenuButtons.italic.id, this.shadow),
+                    IdService.id(MenuButtons.underline.id, this.shadow),
+                    IdService.id(MenuButtons.left.id, this.shadow),
+                    IdService.id(MenuButtons.center.id, this.shadow),
+                    IdService.id(MenuButtons.right.id, this.shadow),
+                    IdService.id(MenuButtons.tipToggle.id, this.shadow),
+                    IdService.id(MenuButtons.preview.id, this.shadow),
+                ];
+            } 
+
+            this.toggleToolTip(items);
         });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.preview.id}`, () => {
-           let el = IdService.id(MenuButtons.preview.id, this.shadow);
-           el.setAttribute('mode', this.previewToggled);
-           this.togglePreview(this.previewToggled);
+           if ($preview === null) {
+              $preview = IdService.id(MenuButtons.preview.id, this.shadow);
+           }
+
+           $preview.setAttribute('mode', this.previewToggled);
+           this.togglePreview(this.previewToggled);  
         });
+    }
+
+    toggleToolTip(items) {
+        items.forEach((item) => {
+           item.setAttribute('tooltip', this.swToolTip);
+        });
+        this.toggleSwToolTip(this.swToolTip);
+    }
+
+    toggleSwToolTip(toggle) {
+        this.swToolTip = !toggle;
     }
 
     togglePreview(toggle) {
         this.previewToggled = !toggle;
-    }
-
-    toggleToolTip() {
-        this.swToolTip = !this.swToolTip;
     }
 
     getBtnBorder() {
