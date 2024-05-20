@@ -91,6 +91,9 @@ class TextEditor extends HTMLElement {
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.italic.id}`, () => {
             this.setTextTags('i');
         });
+        CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.underline.id}`, () => {
+            this.setTextTags('u');
+        });
         CustomEventService.event(`${CustomMenuEvents.menuClick}-${MenuButtons.left.id}`, () => {
             this.setTextTags("p align='left'", 'p', true);
         });

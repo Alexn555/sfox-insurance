@@ -29,6 +29,7 @@ class TextEditorMenu extends HTMLElement {
                 IdService.id(MenuButtons.paragraph.id, this.shadow),
                 IdService.id(MenuButtons.bold.id, this.shadow),
                 IdService.id(MenuButtons.italic.id, this.shadow),
+                IdService.id(MenuButtons.underline.id, this.shadow),
                 IdService.id(MenuButtons.left.id, this.shadow),
                 IdService.id(MenuButtons.center.id, this.shadow),
                 IdService.id(MenuButtons.right.id, this.shadow),
@@ -129,6 +130,16 @@ class TextEditorMenu extends HTMLElement {
                     btnStyle="${this.itemBorder}"
                 >
                 </texteditor-menu-button>
+                    <texteditor-menu-button 
+                    id="${MenuButtons.underline.id}" 
+                    label="u" 
+                    setsId="${this.setsId}"
+                    tooltip="${BoolEnums.bTrue}"
+                    btnStyle="${this.itemBorder}"
+                >
+                </texteditor-menu-button>
+                &nbsp; | &nbsp;
+
                 <texteditor-menu-button 
                     id="${MenuButtons.left.id}" 
                     label="" 

@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.63
-  Added TextEditor toggle tipToggle highlight, mode label
+  Added TextEditor toggle tipToggle highlight, mode label,
+  Added underline button
 
 v 2.62
   Added TextEditor content limit,
