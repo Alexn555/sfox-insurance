@@ -64,7 +64,8 @@ export const CustomWindowEvents = {
     },
     imageViewer: {
         init: 'image-viewer-init',
-        open: 'image-viewer-open'
+        open: 'image-viewer-open',
+        change: 'image-viewer-change'
     },
     contentSw: {
         pageClick: 'content-sw-click'

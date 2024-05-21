@@ -4,6 +4,7 @@ import { GlobalSizes, CommonEvents, CustomWindowEvents } from '../../../settings
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, HTMLService, IdService, LoggerService, StyleService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { RenderService } from '../../../services/helpers';
 import { PackIds } from '../../../theme/enums';
 import { DateService } from '../../../services/helpers';
@@ -70,6 +71,11 @@ class ImageViewer extends HTMLElement {
       CustomEventService.eventData(`${CustomWindowEvents.imageViewer.open}-${this.id}`, (res) => {
         this.imgMedium = res['imgMedium'];
         this.toggleViewer(true); 
+      }, document, true);
+
+      CustomEventService.eventData(`${CustomWindowEvents.imageViewer.change}-${this.id}`, (res) => {
+        this.imgMedium = res['imgMedium'];
+        this.setImage();
       }, document, true);
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
@@ -253,6 +259,8 @@ class ImageViewer extends HTMLElement {
     }
   
     render() {
+      const sets = JSONService.set(this.settings);
+
       const sharedBtnStyles = `
         padding: 10px;
         border-radius: 0;`;
@@ -350,8 +358,10 @@ class ImageViewer extends HTMLElement {
           }
         </style>
         <dialog id="${this.imgViewerId}">
+          <image-viewer-arrows settings='${sets}'></image-viewer-arrows>
           <img id="imgDetail" src="" alt="loading image" />
           <div id="${this.$zoomPercent}"></div>
+
           <div id="error"> 
             Server error <br />
             Demo Image <br />

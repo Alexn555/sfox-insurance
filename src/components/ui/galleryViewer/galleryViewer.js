@@ -98,9 +98,12 @@ class GalleryViewer extends HTMLElement {
       const holderAmount = this.getPerPage();
       for (let i = 0; i < holderAmount; i++) {
         this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, () => {
-          CustomEventService.send(CustomWindowEvents.imageViewer.init, { 
+          CustomEventService.send(CustomWindowEvents.imageViewer.init, 
+          { 
             settingsId: ImageViewerIds.gallery,
-            imgMedium: images[i].imgMedium}, 
+            imgMedium: images[i].imgMedium,
+            images: images
+          }, 
             true);
         });
       }
