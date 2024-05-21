@@ -1,3 +1,5 @@
+import { ThemeHelper } from '../../../theme/theme';
+import { PackIds } from '../../../theme/enums';
 import { CommonEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from '../../../services';
 import { JSONService } from '../../../services/utils';
@@ -9,7 +11,9 @@ class ImageViewerArrows extends HTMLElement {
     this.shadow = this.attachShadow({ mode: "closed" });
     this.settings = this.getAttribute('settings') || {};
     this.sets = JSONService.getObj(this.settings);
-    this.initOpacity = 0.3;
+    this.theme = ThemeHelper.get(PackIds.imageViewer);
+    this.initOpacity = 0.2;
+    this.endOpacity = 0.6;
   }
 
   connectedCallback() {
@@ -40,10 +44,11 @@ class ImageViewerArrows extends HTMLElement {
   getCommonArrow() {
     return `
       position: absolute;
-      border: solid #dcdcdc;
+      border: solid ${this.theme.arrows.bck};
       border-width: 0 30px 30px 0;
       display: inline-block;
       padding: 30px;
+      z-index: 10;
     `;
   }
 
@@ -58,7 +63,7 @@ class ImageViewerArrows extends HTMLElement {
             opacity: ${this.initOpacity};
 
             &:hover {
-                opacity: 1;
+                opacity: ${this.endOpacity};
             }
           }
 
@@ -70,7 +75,7 @@ class ImageViewerArrows extends HTMLElement {
             opacity: ${this.initOpacity};
 
             &:hover {
-                opacity: 1;
+                opacity: ${this.endOpacity};
             }
           }
         </style>

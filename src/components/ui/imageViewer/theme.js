@@ -4,6 +4,9 @@ export const ImageViewerTheme = {
             bck: 'black',
             border: 'red',
             text: 'white'
+        },
+        arrows: {
+            bck: '#dcdcdc'
         }
     }
 };
