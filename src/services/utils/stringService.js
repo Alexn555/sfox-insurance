@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { BoolChecks } from '../../enums/boolean';
+
 export class StringService {
     static getVersionFromPackage(version) {
         let ver = version;
@@ -19,6 +21,10 @@ export class StringService {
           mask += symb;
         }
         return mask.substring(0, pos - 1) + `${replaceSymb}` + mask.substring(pos);
+    }
+
+    static isBoolean(value) {
+        return value === BoolChecks.TrueVal;
     }
 
     static getSelectedText() { // (c) JohnK, stackovelow

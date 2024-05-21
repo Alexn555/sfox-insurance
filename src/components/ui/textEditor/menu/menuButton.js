@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../../theme/theme';
 import { CustomEventService, IdService, StyleService } from '../../../../services';
-import { ObjectService } from '../../../../services/utils';
+import { ObjectService, StringService } from '../../../../services/utils';
 import { PackIds } from '../../../../theme/enums';
 import { BoolEnums } from '../../../../enums';
 import { TextEditorSettings, TextEditorSetEnums } from '../sets';
@@ -57,7 +57,7 @@ class TxEditorMenuButton extends HTMLElement {
     }
 
     toggleToolTip(newValue) {
-        let toggle = newValue === 'true' ? true : false;
+        let toggle = StringService.isBoolean(newValue) ? true : false;
         StyleService.setDisplay(this.$toolTip, toggle);
         if (this.id === MenuButtons.tipToggle.id && this.sets.menu.tipToggleHighlight) {
            let thm = this.theme.menu.item;

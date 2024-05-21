@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { IdService, StyleService } from '../services';
+import { StringService } from '../services/utils';
 
 class BasePage extends HTMLElement {
     constructor() {
@@ -21,7 +22,7 @@ class BasePage extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (this.el) {
-            StyleService.setDisplay(this.el, newValue === 'true');
+            StyleService.setDisplay(this.el, StringService.isBoolean(newValue));
         }
     }
 
