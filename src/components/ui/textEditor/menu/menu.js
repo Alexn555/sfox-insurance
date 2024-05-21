@@ -52,9 +52,11 @@ class TextEditorMenu extends HTMLElement {
     }
 
     toggleToolTip(items) {
-        items.forEach((item) => {
-           item.setAttribute('tooltip', this.swToolTip);
-        });
+        let i = items.length - 1;
+        while(i > -1) {
+            items[i].setAttribute('tooltip', this.swToolTip);
+            i -= 1;
+        }
         this.toggleSwToolTip(this.swToolTip);
     }
 

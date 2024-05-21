@@ -1,4 +1,7 @@
 ## Changelog
+v 2.64 
+  Added Effecient method to set TextEditor Menu items
+
 v 2.63
   Added TextEditor toggle tipToggle highlight, mode label,
   Added underline button
