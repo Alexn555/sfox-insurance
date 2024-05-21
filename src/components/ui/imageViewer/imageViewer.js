@@ -257,10 +257,16 @@ class ImageViewer extends HTMLElement {
         <action-link id="originalImage" label="Original image" type="${LinkTypes.transparentButton}" />
       </div>` : '';
     }
+
+    showArrows() {
+      if (this.settings.enableArrows) {
+        const sets = JSONService.set(this.settings);
+        return `<image-viewer-arrows settings='${sets}'></image-viewer-arrows>`;
+      }
+      return '';
+    }
   
     render() {
-      const sets = JSONService.set(this.settings);
-
       const sharedBtnStyles = `
         padding: 10px;
         border-radius: 0;`;
@@ -358,7 +364,7 @@ class ImageViewer extends HTMLElement {
           }
         </style>
         <dialog id="${this.imgViewerId}">
-          <image-viewer-arrows settings='${sets}'></image-viewer-arrows>
+          ${this.showArrows()}
           <img id="imgDetail" src="" alt="loading image" />
           <div id="${this.$zoomPercent}"></div>
 
