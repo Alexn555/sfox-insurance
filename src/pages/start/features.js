@@ -88,8 +88,8 @@ class FeaturesPage extends HTMLElement {
                     </ul>
                 </p>
                 <p>
-                    <b>ImageViewer</b> Instructions <br />
-                    Keyboard: <b>Up, Down</b> - next, previous page <br />
+                    <b>ImageViewer</b> Instructions (prev, next only in Gallery page)<br />
+                    Keyboard: <b>Up, Down</b> - next, previous image <br />
                     <b>M</b> - toggle Arrows visiblity <br />
                     <b>Left, Right</b> - keys that handle zoom
                 </p>
