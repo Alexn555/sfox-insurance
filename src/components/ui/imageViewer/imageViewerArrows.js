@@ -55,6 +55,7 @@ class ImageViewerArrows extends HTMLElement {
 
   disconnectedCallback() {
     IdService.removeList([this.$previous, this.$next]);
+    CustomEventService.removeListener(CommonEvents.keydown);
   }
 
   toggleArrowsOpacity() {
