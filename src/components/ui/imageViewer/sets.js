@@ -1,3 +1,5 @@
+import { Cursors } from '../../../enums';
+
 export const ImageViewerIds = {
     common: 'common',
     writer: 'writer',
@@ -7,7 +9,7 @@ export const ImageViewerIds = {
 export const ImageViewerSettings = {
     errorCase: 'error',
     allLevelsCount: true,
-    propertyAmount: 10,
+    propertyAmount: 12,
     common: { // default, non-specific
         // searchListNum: 0 - fist item, 1 - 2 items, [num] - integer items, ArrayEnums.All - all items
         searchListNum: 0,
@@ -16,6 +18,9 @@ export const ImageViewerSettings = {
         originalLink: true,
         exceptionHandler: true,
         enableArrows: false,
+        arrows: {
+            cursor: Cursors.normal
+        },
         zoom: {
            min: 0.4,
            max: 3,
@@ -29,6 +34,9 @@ export const ImageViewerSettings = {
         originalLink: true,
         exceptionHandler: true,
         enableArrows: false,
+        arrows: {
+            cursor: Cursors.normal
+        },
         zoom: {
             min: 0.4,
             max: 3,
@@ -42,6 +50,9 @@ export const ImageViewerSettings = {
         originalLink: true,
         exceptionHandler: true,
         enableArrows: true,
+        arrows: {
+            cursor: Cursors.normal
+        },
         zoom: {
             min: 0.4,
             max: 3,

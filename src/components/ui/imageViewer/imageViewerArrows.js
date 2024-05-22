@@ -1,5 +1,6 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
+import { Cursors, KeyboardKeys } from '../../../enums';
 import { CommonEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from '../../../services';
 import { JSONService } from '../../../services/utils';
@@ -12,8 +13,11 @@ class ImageViewerArrows extends HTMLElement {
     this.settings = this.getAttribute('settings') || {};
     this.sets = JSONService.getObj(this.settings);
     this.theme = ThemeHelper.get(PackIds.imageViewer);
+    this.diameter = 30;
+    this.cursor = this.sets.arrows.cursor || Cursors.normal;
     this.initOpacity = 0.2;
     this.endOpacity = 0.6;
+    this.opacityToggle = false;
   }
 
   connectedCallback() {
@@ -25,12 +29,24 @@ class ImageViewerArrows extends HTMLElement {
     this.$previous = IdService.id('previous', this.shadow);
     this.$next = IdService.idAndClick('next', this.shadow);
 
+    CustomEventService.event(CommonEvents.keydown, (e) => {
+      if (e.key === KeyboardKeys.m) {
+        this.toggleArrowsOpacity();
+      }
+      if (e.key === KeyboardKeys.arrowUp) {
+        CustomEventService.send(ImageViewerEvents.nextImage);
+      }
+      if (e.key === KeyboardKeys.arrowDw) {
+        CustomEventService.send(ImageViewerEvents.previousImage);
+      }
+    });
+
     if (this.sets.enableArrows) {
         IdService.event(this.$previous, CommonEvents.click, () => {
-            CustomEventService.send(ImageViewerEvents.previousImage);
+          CustomEventService.send(ImageViewerEvents.previousImage);
         });
         IdService.event(this.$next, CommonEvents.click, () => {
-            CustomEventService.send(ImageViewerEvents.nextImage);
+          CustomEventService.send(ImageViewerEvents.nextImage);
         });
     } else {
         StyleService.setDisplayMultiple([this.$previous, this.$next], false);
@@ -41,13 +57,22 @@ class ImageViewerArrows extends HTMLElement {
     IdService.removeList([this.$previous, this.$next]);
   }
 
+  toggleArrowsOpacity() {
+    let cl = 'arrowInvisible';
+    let addCl = this.opacityToggle ? `${cl}` : '';
+    StyleService.removeAndAddClass(this.$previous, ['arrowLt', cl], `arrowLt${addCl}`); // refresh class
+    StyleService.removeAndAddClass(this.$next, ['arrowRt', cl], `arrowRt${addCl}`); 
+    this.opacityToggle = !this.opacityToggle;
+  }
+
   getCommonArrow() {
     return `
       position: absolute;
       border: solid ${this.theme.arrows.bck};
-      border-width: 0 30px 30px 0;
+      border-width: 0 ${this.diameter}px ${this.diameter}px 0;
       display: inline-block;
-      padding: 30px;
+      padding: ${this.diameter}px;
+      cursor: ${this.cursor};
       z-index: 10;
     `;
   }
@@ -55,6 +80,10 @@ class ImageViewerArrows extends HTMLElement {
   render() {
     this.shadow.innerHTML = `
         <style>
+         .arrowInvisible {
+            opacity: 0 !important;
+         }
+
          .arrowLt {
             ${this.getCommonArrow()}
             left: 10px;
@@ -63,7 +92,7 @@ class ImageViewerArrows extends HTMLElement {
             opacity: ${this.initOpacity};
 
             &:hover {
-                opacity: ${this.endOpacity};
+              opacity: ${this.endOpacity};
             }
           }
 
@@ -75,7 +104,7 @@ class ImageViewerArrows extends HTMLElement {
             opacity: ${this.initOpacity};
 
             &:hover {
-                opacity: ${this.endOpacity};
+              opacity: ${this.endOpacity};
             }
           }
         </style>

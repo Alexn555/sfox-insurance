@@ -1,4 +1,7 @@
 ## Changelog
+v 2.65
+  Added ImageViewerArrows improvements
+
 v 2.64 
   Added Effecient method to set TextEditor Menu items
 
