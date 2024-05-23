@@ -97,6 +97,7 @@ class ImageViewer extends HTMLElement {
           this.fadeZoomInfo(true, 5);
           this.setZoomInfo(this.zoomFactor);
           CustomEventService.event(CommonEvents.keydown, (e) => {
+            e.preventDefault();
             this.setZoomUpdate(e);
           }, this.shadow);
         } else {

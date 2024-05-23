@@ -34,9 +34,11 @@ class ImageViewerArrows extends HTMLElement {
         this.toggleArrowsOpacity();
       }
       if (e.key === KeyboardKeys.arrowUp) {
+        e.preventDefault();
         CustomEventService.send(ImageViewerEvents.nextImage);
       }
       if (e.key === KeyboardKeys.arrowDw) {
+        e.preventDefault();
         CustomEventService.send(ImageViewerEvents.previousImage);
       }
     });
