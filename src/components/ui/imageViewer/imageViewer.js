@@ -44,11 +44,13 @@ class ImageViewer extends HTMLElement {
       CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
       
       CustomEventService.event(CommonEvents.keydown, (e) => {
-        if (e.key === KeyboardKeys.escape) {
-          this.toggleViewer(false);
-        }
-        if (e.key === KeyboardKeys.o) {
-          this.toggleOriginalLink();
+        if (this.imgViewerVisible) {
+          if (e.key === KeyboardKeys.escape) {
+            this.toggleViewer(false);
+          }
+          if (e.key === KeyboardKeys.o) {
+            this.toggleOriginalLink();
+          }
         }
       });
       CustomEventService.event(CustomWindowEvents.draggable.moveStart, () => {
