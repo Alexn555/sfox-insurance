@@ -187,7 +187,7 @@ class ImageViewer extends HTMLElement {
         this.fadeZoomInfo(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.right);
       }
-      if (this.zoomFactor > 1.5) {
+      if (this.zoomFactor > this.settings.zoom.overflowFactor) {
         this.setImageViewerOverflow('scroll');
       }
 

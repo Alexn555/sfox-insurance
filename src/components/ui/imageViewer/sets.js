@@ -9,7 +9,7 @@ export const ImageViewerIds = {
 export const ImageViewerSettings = {
     errorCase: 'error',
     allLevelsCount: true,
-    propertyAmount: 12,
+    propertyAmount: 13,
     common: { // default, non-specific
         // searchListNum: 0 - fist item, 1 - 2 items, [num] - integer items, ArrayEnums.All - all items
         searchListNum: 0,
@@ -24,6 +24,7 @@ export const ImageViewerSettings = {
         zoom: {
            min: 0.4,
            max: 3,
+           overflowFactor: 1.5,
            keyboard: true
         }
     },
@@ -40,6 +41,7 @@ export const ImageViewerSettings = {
         zoom: {
             min: 0.4,
             max: 3,
+            overflowFactor: 1.5,
             keyboard: true
         }
     },
@@ -56,6 +58,7 @@ export const ImageViewerSettings = {
         zoom: {
             min: 0.4,
             max: 3,
+            overflowFactor: 1.5,
             keyboard: true
         }
     }
