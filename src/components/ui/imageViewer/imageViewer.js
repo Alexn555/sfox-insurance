@@ -65,6 +65,7 @@ class ImageViewer extends HTMLElement {
 
       this.$error = IdService.id('error', this.shadow);
       this.$content = IdService.id('imgDetail', this.shadow);
+      this.$imageViewer = IdService.id(this.imgViewerId, this.shadow);
 
       this.toggleError(false);
 
@@ -175,6 +176,8 @@ class ImageViewer extends HTMLElement {
 
     setZoomUpdate(e) {
       this.toggleZommStart(true);
+      this.setImageViewerOverflow('hidden');
+
       if (e.key === this.keys.left) {
         this.zoomFactor -= this.zoomFactor > this.settings.zoom.min ? 0.1 : 0;
         this.fadeZoomInfo(true, 1);
@@ -184,8 +187,16 @@ class ImageViewer extends HTMLElement {
         this.fadeZoomInfo(true, 1);
         this.setZoomInfo(this.zoomFactor, this.keys.right);
       }
+      if (this.zoomFactor > 1.3) {
+        this.setImageViewerOverflow('scroll');
+      }
+
       this.toggleZoom(false);
       setTimeout(() => { this.toggleZoom(true); }, 2000);
+    }
+
+    setImageViewerOverflow(value = 'hidden') {
+      StyleService.setProperty(this.$imageViewer, 'overflow', value);
     }
 
     setZoomInfo(zoomFactor, key = '') {
@@ -274,7 +285,7 @@ class ImageViewer extends HTMLElement {
         
       this.shadow.innerHTML = `
         <style>
-          dialog#imageViewer {
+          dialog#${this.imgViewerId} {
             position: absolute;
             width: ${this.imgViewerSize.w};
             height: ${this.imgViewerSize.h};
