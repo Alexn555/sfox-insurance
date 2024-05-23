@@ -1,6 +1,6 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
-import { Cursors, KeyboardKeys } from '../../../enums';
+import { BoolEnums, Cursors, KeyboardKeys } from '../../../enums';
 import { CommonEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService } from '../../../services';
 import { JSONService } from '../../../services/utils';
@@ -11,6 +11,7 @@ class ImageViewerArrows extends HTMLElement {
     super();
     this.shadow = this.attachShadow({ mode: "closed" });
     this.settings = this.getAttribute('settings') || {};
+    this.visible = this.getAttribute('visible') || BoolEnums.bTrue;
     this.sets = JSONService.getObj(this.settings);
     this.theme = ThemeHelper.get(PackIds.imageViewer);
     this.diameter = 30;
@@ -19,6 +20,20 @@ class ImageViewerArrows extends HTMLElement {
     this.endOpacity = 0.6;
     this.opacityToggle = false;
     this.isVisible = true;
+  }
+
+  static get observedAttributes() { 
+    return ['visible']; 
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'visible' && oldValue !== newValue) {
+      let isVis = newValue === BoolEnums.bTrue ? true : false;
+      this.toggleVisible(isVis);
+      if (!isVis) {
+        CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
+      }
+    }
   }
 
   connectedCallback() {
@@ -30,15 +45,6 @@ class ImageViewerArrows extends HTMLElement {
   setHandlers() {
     this.$previous = IdService.id('previous', this.shadow);
     this.$next = IdService.idAndClick('next', this.shadow);
-
-    CustomEventService.event(ImageViewerEvents.openViewer, () => {
-      this.toggleVisible(true);
-    });
-
-    CustomEventService.event(ImageViewerEvents.closeViewer, () => {
-      this.toggleVisible(false);
-      CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
-    });
 
     CustomEventService.event(CommonEvents.keydown, (e) => {
       if (this.isVisible) {

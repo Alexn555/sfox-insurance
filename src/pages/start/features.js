@@ -90,6 +90,7 @@ class FeaturesPage extends HTMLElement {
                 <p>
                     <b>ImageViewer</b> Instructions (prev, next only in Gallery page)<br />
                     Keyboard: <b>Up, Down</b> - next, previous image <br />
+                    <b>O</b> - toggle Original Link <br />
                     <b>M</b> - toggle Arrows visiblity <br />
                     <b>Left, Right</b> - keys that handle zoom
                 </p>

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
 import { GlobalSizes, CommonEvents, CustomWindowEvents } from '../../../settings';
-import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums } from '../../../enums';
+import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums, BoolEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
 import { CustomEventService, HTMLService, IdService, LoggerService, StyleService } from '../../../services';
 import { JSONService } from '../../../services/utils';
@@ -77,7 +77,7 @@ class ImageViewer extends HTMLElement {
       CustomEventService.eventData(`${CustomWindowEvents.imageViewer.open}-${this.id}`, (res) => {
         this.imgMedium = res['imgMedium'];
         this.toggleViewer(true); 
-        CustomEventService.send(ImageViewerEvents.openViewer);
+        this.toggleArrowVisible(true);
       }, document, true);
 
       CustomEventService.eventData(`${CustomWindowEvents.imageViewer.change}-${this.id}`, (res) => {
@@ -87,6 +87,7 @@ class ImageViewer extends HTMLElement {
 
       this.$close = IdService.idAndClick('close', this.shadow, () => {
         this.toggleViewer(false);
+        this.toggleArrowVisible(false);
       });
 
       this.$original = IdService.idAndClick('originalImage', this.shadow, () => {
@@ -95,6 +96,14 @@ class ImageViewer extends HTMLElement {
         }
       });
       this.updateSettings();
+    }
+
+    toggleArrowVisible(toggle) {
+      let el = IdService.id('arrows', this.shadow);
+      if (el) {
+        let isVis = toggle ? BoolEnums.bTrue : BoolEnums.bFalse;
+        el.setAttribute('visible', isVis);
+      }
     }
 
     updateSettings() {
@@ -176,7 +185,6 @@ class ImageViewer extends HTMLElement {
         } else {
           el.close();
           CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
-          CustomEventService.send(ImageViewerEvents.closeViewer);
         }
         this.setImgViewer(isOpen);
       }
@@ -289,7 +297,12 @@ class ImageViewer extends HTMLElement {
     showArrows() {
       if (this.settings.enableArrows) {
         const sets = JSONService.set(this.settings);
-        return `<image-viewer-arrows settings='${sets}'></image-viewer-arrows>`;
+        return `
+          <image-viewer-arrows 
+            id="arrows" 
+            settings='${sets}' 
+            visible="${BoolEnums.bTrue}">
+          </image-viewer-arrows>`;
       }
       return '';
     }
