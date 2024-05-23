@@ -56,43 +56,6 @@ v 2.54
   Added Game SafeKing settings improvements,
   Restored to use in render method innerHTML for better stability and performance
 
-v 2.53
-  Added HTMLService to set text, innerHtml
-
-v 2.52
-  Added settings save object to use BoolEnums,
-  Created SafeKing Game v1 (safe locker)
-
-v 2.51
-  Added improvement to fix lost focus of showModal, Added minLength improvements,
-  Added LinkSection toggle improvements (long awaited) :)
-
-v 2.50
-  Improved Services utils to use classes, Added removeEvent and article paragraph
-   not element in Node issue fixes, Added showModal issue fixes
-
-v 2.49
-  Added Start Page improvements, Start page theme, Menu links improvements,
-  Added JSONService to parse, set arrays and objects,
-  Improved Mobile detection and MobileService
-  
-v 2.48
-  Added improvements to Welcome page, Added Features page, 
-  Style setProperty implementation
-
-v 2.46
-  Created Start intial version, Added Welcome page, Improved Tabs structure
-
-v 2.40
-  Added Games list to game page, Huge improvements to settings and sets structure,
-  Moved Notice to UI components
-
-v 2.39
-  Added GameViewer imporvements, Added Individual Game icons
-
-v 2.38
-  Added GameViewer improvements, ContentSwitcher improvements, added gameViewer theme
-
 ## Demo 
 
 ![Alt text](http://norwaydict.com/sfoxinsurance/screen.jpg "Screen")
