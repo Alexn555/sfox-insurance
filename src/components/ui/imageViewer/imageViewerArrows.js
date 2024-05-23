@@ -18,28 +18,41 @@ class ImageViewerArrows extends HTMLElement {
     this.initOpacity = 0.2;
     this.endOpacity = 0.6;
     this.opacityToggle = false;
+    this.isVisible = true;
   }
 
   connectedCallback() {
     this.render();
     this.setHandlers();
+    this.toggleVisible(true);
   }
 
   setHandlers() {
     this.$previous = IdService.id('previous', this.shadow);
     this.$next = IdService.idAndClick('next', this.shadow);
 
+    CustomEventService.event(ImageViewerEvents.openViewer, () => {
+      this.toggleVisible(true);
+    });
+
+    CustomEventService.event(ImageViewerEvents.closeViewer, () => {
+      this.toggleVisible(false);
+      CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
+    });
+
     CustomEventService.event(CommonEvents.keydown, (e) => {
-      if (e.key === KeyboardKeys.m) {
-        this.toggleArrowsOpacity();
-      }
-      if (e.key === KeyboardKeys.arrowUp) {
-        e.preventDefault();
-        CustomEventService.send(ImageViewerEvents.nextImage);
-      }
-      if (e.key === KeyboardKeys.arrowDw) {
-        e.preventDefault();
-        CustomEventService.send(ImageViewerEvents.previousImage);
+      if (this.isVisible) {
+         if (e.key === KeyboardKeys.m) {
+          this.toggleArrowsOpacity();
+        }
+        if (e.key === KeyboardKeys.arrowUp) {
+          e.preventDefault();
+          CustomEventService.send(ImageViewerEvents.nextImage);
+        }
+        if (e.key === KeyboardKeys.arrowDw) {
+          e.preventDefault();
+          CustomEventService.send(ImageViewerEvents.previousImage);
+        }
       }
     });
 
@@ -51,13 +64,17 @@ class ImageViewerArrows extends HTMLElement {
           CustomEventService.send(ImageViewerEvents.nextImage);
         });
     } else {
-        StyleService.setDisplayMultiple([this.$previous, this.$next], false);
+      StyleService.setDisplayMultiple([this.$previous, this.$next], false);
     }
   }
 
   disconnectedCallback() {
     IdService.removeList([this.$previous, this.$next]);
-    CustomEventService.removeListener(CommonEvents.keydown);
+    CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
+  }
+
+  toggleVisible(toggle) {
+    this.isVisible = toggle;
   }
 
   toggleArrowsOpacity() {

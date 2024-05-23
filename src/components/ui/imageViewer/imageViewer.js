@@ -12,6 +12,7 @@ import { ImageViewerIds, ImageViewerSettings } from './sets';
 import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';
+import { ImageViewerEvents } from './events';
 
 class ImageViewer extends HTMLElement {
     constructor() {
@@ -33,6 +34,7 @@ class ImageViewer extends HTMLElement {
         left: KeyboardKeys.arrowLeft,
         right: KeyboardKeys.arrowRight
       };
+      this.originalLinkToggle = false;
       this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
       this.imgViewerSize = {
         w: 800,
@@ -44,6 +46,9 @@ class ImageViewer extends HTMLElement {
       CustomEventService.event(CommonEvents.keydown, (e) => {
         if (e.key === KeyboardKeys.escape) {
           this.toggleViewer(false);
+        }
+        if (e.key === KeyboardKeys.o) {
+          this.toggleOriginalLink();
         }
       });
       CustomEventService.event(CustomWindowEvents.draggable.moveStart, () => {
@@ -72,6 +77,7 @@ class ImageViewer extends HTMLElement {
       CustomEventService.eventData(`${CustomWindowEvents.imageViewer.open}-${this.id}`, (res) => {
         this.imgMedium = res['imgMedium'];
         this.toggleViewer(true); 
+        CustomEventService.send(ImageViewerEvents.openViewer);
       }, document, true);
 
       CustomEventService.eventData(`${CustomWindowEvents.imageViewer.change}-${this.id}`, (res) => {
@@ -169,6 +175,8 @@ class ImageViewer extends HTMLElement {
           }
         } else {
           el.close();
+          CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
+          CustomEventService.send(ImageViewerEvents.closeViewer);
         }
         this.setImgViewer(isOpen);
       }
@@ -264,8 +272,16 @@ class ImageViewer extends HTMLElement {
         cursor: ${cursor};` : '';
     }
 
+    toggleOriginalLink() {
+      let el = IdService.id('original', this.shadow);
+      if (el) {
+        StyleService.setProperty(el, 'opacity', this.originalLinkToggle ? 0.3 : 0);
+        this.originalLinkToggle = !this.originalLinkToggle;
+      }
+    }
+
     setOriginalImageLink() {
-      return this.settings.originalLink ? `<div class="original">
+      return this.settings.originalLink ? `<div id="original" class="original">
         <action-link id="originalImage" label="Original image" type="${LinkTypes.transparentButton}" />
       </div>` : '';
     }

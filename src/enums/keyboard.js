@@ -6,5 +6,6 @@ export const KeyboardKeys = {
     arrowDw: 'ArrowDown',
     escape: 'Escape',
     enter: 'Enter',
+    o: 'o',
     m: 'm'
 };
