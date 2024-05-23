@@ -12,7 +12,6 @@ import { ImageViewerIds, ImageViewerSettings } from './sets';
 import EnvService from '../../../services/api/envService';
 import { draggableContainer } from '../../../modifiers/dragContainer';
 import { ImageViewerHelper } from './imageViewerHelper';
-import { ImageViewerEvents } from './events';
 
 class ImageViewer extends HTMLElement {
     constructor() {
@@ -130,7 +129,7 @@ class ImageViewer extends HTMLElement {
 
     disconnectedCallback() {
       IdService.removeList([this.$close, this.$original]);
-      CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
+      CustomEventService.removeListener(CommonEvents.keydown);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
