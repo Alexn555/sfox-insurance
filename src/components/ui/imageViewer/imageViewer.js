@@ -286,7 +286,7 @@ class ImageViewer extends HTMLElement {
             overlay 0.7s ease-out allow-discrete,
             display 0.7s ease-out allow-discrete;
             text-align: center;
-            overflow-y: hidden;
+            overflow: hidden;
 
             & img {
               object-fit: contain;
