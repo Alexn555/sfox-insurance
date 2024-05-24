@@ -30,9 +30,6 @@ class ImageViewerArrows extends HTMLElement {
     if (name === 'visible' && oldValue !== newValue) {
       let isVis = newValue === BoolEnums.bTrue ? true : false;
       this.toggleVisible(isVis);
-      if (!isVis) {
-        CustomEventService.removeFromContext(CommonEvents.keydown, this.shadow);
-      }
     }
   }
 

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.67
+  Added ImageViewer keybaord adjustments
+
 v 2.66
   Added ImageViewer Keyboard improvements
 

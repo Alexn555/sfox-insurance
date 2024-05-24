@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.66
+### SFox Insurance Engine v 2.67
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.67
+  Added ImageViewer keybaord adjustments
+
 v 2.66
   Added ImageViewer Keyboard improvements
 
@@ -40,21 +43,6 @@ v 2.59
 
 v 2.58
   Added Text Editor improvements
-
-v 2.57
-  Added Bonus game minor changes, ContentSW naming improvements,
-  Created Text Editor first version
-
-v 2.56
-  Added Huge Safe game animation improvements
-
-v 2.55
-  Added Lifecycle order improvements,
-  Created Bonus section to SafeKing game
-
-v 2.54
-  Added Game SafeKing settings improvements,
-  Restored to use in render method innerHTML for better stability and performance
 
 ## Demo 
 
