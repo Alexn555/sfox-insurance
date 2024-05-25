@@ -1,4 +1,7 @@
 ## Changelog
+v 2.68
+  Improved ImageViewer OriginalLink hover effect
+
 v 2.67
   Added ImageViewer keybaord adjustments
 

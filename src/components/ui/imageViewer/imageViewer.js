@@ -33,6 +33,7 @@ class ImageViewer extends HTMLElement {
         left: KeyboardKeys.arrowLeft,
         right: KeyboardKeys.arrowRight
       };
+      this.originalOpacity = 0.3;
       this.originalLinkToggle = false;
       this.zoomFactor = this.settings.zoom.keyboard ? 1 : 1.1;
       this.imgViewerSize = {
@@ -284,7 +285,7 @@ class ImageViewer extends HTMLElement {
     toggleOriginalLink() {
       let el = IdService.id('original', this.shadow);
       if (el) {
-        StyleService.setProperty(el, 'opacity', this.originalLinkToggle ? 0.3 : 0);
+        StyleService.setProperty(el, 'opacity', this.originalLinkToggle ? this.originalOpacity : 0);
         this.originalLinkToggle = !this.originalLinkToggle;
       }
     }
@@ -377,10 +378,10 @@ class ImageViewer extends HTMLElement {
               padding: 2px;
               background-color: white;
               border-radius: 4px;
-              opacity: 0.3;
+              opacity: ${this.originalOpacity};
 
               &:hover {
-                opacity: 1;
+                opacity: 1 !important;
               }
                     
               @media (max-width: 768px) {
