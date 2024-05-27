@@ -1,6 +1,5 @@
-import { LoggerService } from '../../../services';
-import { JSONService } from '../../../services/storage/jsonService';
-import { BannerCarouselSets } from '../bannerCarousel/sets';
+import { LoggerService } from '../index';
+import { JSONService } from '../storage/jsonService';
 
 export class SettingsChecker {
     static getId(id, enumIds, sets) {
@@ -14,11 +13,11 @@ export class SettingsChecker {
         }
 
         if (!cont) {
-            cont = BannerCarouselSets[enumIds.common];
+            cont = sets[enumIds.common];
             LoggerService.warn(`BannerCarousel container not found id:"${id}", using common id`);
         }
-        if (propertiesAmount !== BannerCarouselSets.propertyAmount || 
-            propertiesAmount < BannerCarouselSets.propertyAmount) {
+        if (propertiesAmount !== sets.propertyAmount || 
+            propertiesAmount < sets.propertyAmount) {
             LoggerService.warn(`BannerCarousel container with id:"${id}", currently having less [properties] than required!`);
         }
         return cont;

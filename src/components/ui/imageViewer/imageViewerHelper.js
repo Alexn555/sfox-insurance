@@ -1,5 +1,5 @@
 import { MobileService } from '../../../services/utils';
-import { SettingsChecker } from '../helpers/settingsChecker';
+import { SettingsChecker } from '../../../services/helpers/settingsChecker';
 import { ImageViewerSettings, ImageViewerIds } from './sets';
 
 export class ImageViewerHelper {
