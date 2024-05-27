@@ -13,6 +13,7 @@ import './galleryViewer/galleryViewer';
 import './accountTable';
 import './iconSelect';
 import './generalNote/generalNote';
+import './bannerCarousel/index';
 import './gameViewer/gameViewer';
 import './textEditor/index';
 import './imageViewer/';

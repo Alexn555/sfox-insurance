@@ -1,4 +1,3 @@
-import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { TextEditorSetEnums } from '../../../components/ui/textEditor/sets';
 import { textFiles } from './files';
@@ -7,16 +6,10 @@ class EditorPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.viewer = 'safe-game-page';
     }
   
     connectedCallback() {
       this.render();
-      this.initForm();
-    }
-
-    initForm() {    
-      this.$viewer = IdService.id(this.viewer, this.shadow);
     }
 
     render() {

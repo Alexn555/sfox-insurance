@@ -12,7 +12,8 @@ class SafeTabs extends HTMLElement {
       this.tabs = {
         game: 'game',
         welcome: 'welcome',
-        editor: 'editor'
+        editor: 'editor',
+        banner: 'banner'
       };
     }
     
@@ -22,18 +23,24 @@ class SafeTabs extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$btnGame, this.$btnWelcome]);
+      IdService.removeList([
+        this.$btnGame, 
+        this.$btnWelcome,
+        this.$btnEditor,
+        this.$btnBanner
+      ]);
     }
 
     initForm() {
       this.$tabGame = IdService.id(this.tabs.game, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
       this.$tabTextEditor = IdService.id(this.tabs.editor, this.shadow);
+      this.$banner = IdService.id(this.tabs.banner, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { game, welcome, editor } = SafePageTabs.tabLinks;
+      const { game, welcome, editor, banner } = SafePageTabs.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab(this.tabs.game, this.$tabGame);
@@ -44,6 +51,9 @@ class SafeTabs extends HTMLElement {
       this.$btnEditor = IdService.idAndClick(editor, this.shadow, () => {
         this.openTab(this.tabs.editor, this.$tabTextEditor);
       });
+      this.$btnBanner = IdService.idAndClick(banner, this.shadow, () => {
+        this.openTab(this.tabs.editor, this.$banner);
+      });
     }
 
     openTab(evt, selected) {
@@ -51,7 +61,12 @@ class SafeTabs extends HTMLElement {
       const tab = IdService.id(item, this.shadow);
 
       if (tab) {
-        StyleService.setDisplayMultiple([this.$tabGame, this.$tabWelcome, this.$tabTextEditor], false);
+        StyleService.setDisplayMultiple([
+          this.$tabGame, 
+          this.$tabWelcome, 
+          this.$tabTextEditor,
+          this.$banner  
+        ], false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
@@ -59,19 +74,20 @@ class SafeTabs extends HTMLElement {
     }
 
     render() {
-      const { game, welcome, editor } = SafePageTabs.tabLinks;
+      const { game, welcome, editor, banner } = SafePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
-                ${commonTabStyle(this.theme)}
+              ${commonTabStyle(this.theme)}
 
-                #${this.tabs.game} {
-                  display: block;
-                }
+              #${this.tabs.game} {
+                display: block;
+              }
             </style>
             <div class="tab">
               <button id="${game}">SafeKing</button>
               <button id="${welcome}">Welcome</button>
               <button id="${editor}">Editor</button>
+              <button id="${banner}">Banner</button>
             </div>
 
             <div id="${this.tabs.game}" class="tabcontent">
@@ -84,6 +100,10 @@ class SafeTabs extends HTMLElement {
       
             <div id="${this.tabs.editor}" class="tabcontent">
               <text-editor-page></text-editor-page>
+            </div> 
+
+            <div id="${this.tabs.banner}" class="tabcontent">
+              <banner-page></banner-page>
             </div> 
         `;
     }

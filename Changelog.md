@@ -1,4 +1,7 @@
 ## Changelog
+v 2.69 
+  Created BannerCarousel page first version
+
 v 2.68
   Improved ImageViewer OriginalLink hover effect
 

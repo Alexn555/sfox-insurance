@@ -6,6 +6,8 @@ export const CommonEvents = {
 };
 
 export const MouseEvents = {
+    mousedown: 'mousedown',
+    mouseup: 'mouseup',
     mouseover: 'mouseover',
     mouseout: 'mouseout'
 };
