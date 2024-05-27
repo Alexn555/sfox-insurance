@@ -37,16 +37,18 @@ class bannerCarousel extends HTMLElement {
        }
       
        IdService.event(this.$scene, MouseEvents.mousedown, () => {
-           document.onmousemove = (e) => {
-              let x = e.clientX - this.itemSet.w;
-              this.$scene.position = 'relative';
-              this.$scene.style.left = x + 'px';
-              this.curPos = x;
-           };
+          document.onmousemove = (e) => {
+            let x = e.offsetX * -1;
+            this.$scene.style.left = x + 'px';
+          };
+
+          document.onmouseleave = (e) => {
+            this.curPos = e.offsetX;    
+          };
        });
 
        CustomEventService.event(MouseEvents.mouseup, () => {
-           document.onmousemove = null;
+          document.onmousemove = null;
        });
     }
 
@@ -158,48 +160,48 @@ class bannerCarousel extends HTMLElement {
             }
 
             #scene {
-                position: relative;
-                background-color: ${this.theme.scene.bck};
-                wrap: no-wrap;
-                width: ${scene.w}px;
-                height: ${scene.h}px;
+              position: relative;
+              background-color: ${this.theme.scene.bck};
+              wrap: no-wrap;
+              width: ${scene.w}px;
+              height: ${scene.h}px;
             }
 
             .banner {
-                display: inline-block;
-                position: relative;
-                border: 1px solid white;
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-                user-select: none;
+              display: inline-block;
+              position: relative;
+              border: 1px solid white;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;
+              user-select: none;
             }
 
             .label { 
-                position: absolute;
-                background-color: ${this.theme.scene.bck};
-                bottom: 10px;
-                color: ${this.theme.label.text};
-                height: 30px;
-                opacity: ${this.theme.label.opacity};
+              position: absolute;
+              background-color: ${this.theme.scene.bck};
+              bottom: 10px;
+              color: ${this.theme.label.text};
+              height: 30px;
+              opacity: ${this.theme.label.opacity};
             }
 
             #navigation {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                margin: 10px;
-                width: 100%;
-                user-select: none;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              margin: 10px;
+              width: 100%;
+              user-select: none;
             }
 
             .nav {
-                width: 80px;
-                height: 30px;
-                text-align: center;
-                line-height: 30px;
-                border: 1px solid black;
-                border-radius: 4px;
+              width: 80px;
+              height: 30px;
+              text-align: center;
+              line-height: 30px;
+              border: 1px solid black;
+              border-radius: 4px;
             }
 
             @media (max-width: 768px) {
