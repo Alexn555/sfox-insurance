@@ -1,28 +1,11 @@
-import { LoggerService } from '../../../services/';
-import { MobileService, JSONService } from '../../../services/utils';
+import { MobileService } from '../../../services/utils';
+import { SettingsChecker } from '../helpers/settingsChecker';
 import { ImageViewerSettings, ImageViewerIds } from './sets';
 
 export class ImageViewerHelper {
 
     static getId(id = ImageViewerIds.writer) {
-        let cont = ImageViewerSettings[id];
-
-        let propertiesAmount = 0;
-        if (ImageViewerSettings.allLevelsCount) {
-            propertiesAmount = JSONService.set(cont).match(/[^\\]":/g).length;
-        } else {
-            propertiesAmount = Object.keys(cont).length;
-        }
-
-        if (!cont) {
-            cont = ImageViewerSettings[ImageViewerIds.common];
-            LoggerService.warn(`ImageViewer container not found id:"${id}", using common id`);
-        }
-        if (propertiesAmount !== ImageViewerSettings.propertyAmount || 
-            propertiesAmount < ImageViewerSettings.propertyAmount) {
-            LoggerService.warn(`ImageViewer container with id:"${id}", currently having less [properties] than required!`);
-        }
-        return cont;
+        return SettingsChecker.getId(id, ImageViewerIds, ImageViewerSettings);
     }
 
     static updateSize(largeScreen) {
