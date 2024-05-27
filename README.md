@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.69 
-  Created BannerCarousel page first version
+  Created BannerCarousel page first version,
+  Added SettingsChecker to common use settigns check helper
 
 v 2.68
   Improved ImageViewer OriginalLink hover effect
@@ -35,20 +36,6 @@ v 2.63
 v 2.62
   Added TextEditor content limit,
   Added Tooltip toggle
-
-v 2.61
-  Added ObjectService to handle object methods,
-  Created TextEditor Menu tool
-
-v 2.60
-  Added Feature list improvements,
-  Added GAmeViewer settings same as in TextEditor settings 
-
-v 2.59 
-  Added GameViewerHelper, added TextEditor improvements
-
-v 2.58
-  Added Text Editor improvements
 
 ## Demo 
 

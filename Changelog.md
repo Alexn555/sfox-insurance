@@ -1,6 +1,7 @@
 ## Changelog
 v 2.69 
-  Created BannerCarousel page first version
+  Created BannerCarousel page first version,
+  Added SettingsChecker to common use settigns check helper
 
 v 2.68
   Improved ImageViewer OriginalLink hover effect
