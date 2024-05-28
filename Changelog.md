@@ -1,4 +1,7 @@
 ## Changelog
+v 2.70
+  Added BannerCarousel improvements
+
 v 2.69 
   Created BannerCarousel page first version,
   Added SettingsChecker to common use settigns check helper
