@@ -2,7 +2,7 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { MouseEvents } from '../../../settings/sets/events';
-import { IdService, StyleService, HTMLService, CustomEventService } from '../../../services';
+import { IdService, HTMLService, CustomEventService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { BannerCarouelHelper } from './carouselHelper';
 import { BannerCarouselEvents } from './events';
@@ -28,19 +28,18 @@ class bannerCarousel extends HTMLElement {
     }
 
     initForm() {
-      this.$container = IdService.id(this.container, this.shadow);
       this.$scene = IdService.id('scene', this.shadow);
       this.$error = IdService.id('status', this.shadow);
 
       if (this.sets.enableNav) {
-      this.$prev = IdService.idAndClick('prev', this.shadow, this.prev.bind(this));
-      this.$next = IdService.idAndClick('next', this.shadow, this.next.bind(this));
+        this.$prev = IdService.idAndClick('prev', this.shadow, this.prev.bind(this));
+        this.$next = IdService.idAndClick('next', this.shadow, this.next.bind(this));
       }
     
       IdService.event(this.$scene, MouseEvents.mousedown, () => {
         document.onmousemove = (e) => {
           let x = e.offsetX * -1;
-          this.$scene.style.left = x + 'px';
+          this.setScenePos(x, false);
         };
 
         document.onmouseleave = (e) => {
@@ -75,21 +74,21 @@ class bannerCarousel extends HTMLElement {
       if (amount > 0) {
         for (let i = 0; i < amount; i++) {
           let style = ` 
-              background-image: url('${this.items[i].image}');
-              width: ${this.itemSet.w}px;
-              height: ${this.itemSet.h}px;
+            background-image: url('${this.items[i].image}');
+            width: ${this.itemSet.w}px;
+            height: ${this.itemSet.h}px;
           `;
 
           html += `
           <div id="item-${i}" class="banner" style="${style}">  
-              <div id="item-label-${i}" class="label">
-                  ${this.items[i].label}
-              </div>
+            <div id="item-label-${i}" class="label">
+              ${this.items[i].label}
+            </div>
           </div>`;
         }
 
       } else {
-        this.setError('No items found');
+        BannerCarouelHelper.setError(this.$error, 'No items found', this.shadow);
       }
 
       HTMLService.html(this.$scene, html);
@@ -109,17 +108,10 @@ class bannerCarousel extends HTMLElement {
       }  
     }
 
-    getSceneSizes() {
-      let amount = this.items.length;
-      let w = amount > 0 ? (amount + 1) * this.itemSet.w : this.itemSet.w;
-      return { w, h: this.itemSet.h };
-    }
-
     prev() { 
       if (this.$scene) {
         let x = this.curPos > -100 ? this.curPos + this.itemSet.w : 0;
-        this.$scene.style.left = x + 'px';
-        this.curPos = x;
+        this.setScenePos(x, true);
       }
     }
 
@@ -127,23 +119,16 @@ class bannerCarousel extends HTMLElement {
       if (this.$scene) {
         let w = this.itemSet.w;
         let amount = this.items.length;
-        let len =  amount > 0 ? w * amount : w;
-        let x = this.curPos < len ? this.curPos - this.itemSet.w : len;
-        this.$scene.style.left = x + 'px';
-        this.curPos = x;
+        let len = amount > 0 ? w * amount : w;
+        let x = this.curPos < len ? this.curPos - w : len;
+        this.setScenePos(x, true);
       }
     }
 
-    setError(msg) {
-      this.toggleStatusCl('error');
-      HTMLService.html(this.$error, msg);
-      setTimeout(() => { HTMLService.html(this.$error, ''); }, 2000);
-    }
-
-    toggleStatusCl(status) {
-      const el = IdService.id('status', this.shadow);
-      if (el) {
-        StyleService.removeAndAddClass(el, ['error', 'success'], status);
+    setScenePos(x, updatePos = false) {
+      this.$scene.style.left = x + 'px';
+      if (updatePos) {
+        this.curPos = x;
       }
     }
 
@@ -161,7 +146,7 @@ class bannerCarousel extends HTMLElement {
     }
 
     render() {
-      let scene = this.getSceneSizes();
+      let scene = BannerCarouelHelper.getSceneSizes(this.items, this.itemSet);
 
       this.shadow.innerHTML = `
           <style>
