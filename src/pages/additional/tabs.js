@@ -3,6 +3,7 @@ import { theme } from '../../theme/theme';
 import commonTabStyle from '../../pages/common/tabsStyle';
 import { AdditionalPage } from '../../settings';
 import { IdService, StyleService } from '../../services';
+import { BoolEnums } from '../../enums';
 
 class AdditionalTabs extends HTMLElement {
     constructor() {
@@ -41,7 +42,7 @@ class AdditionalTabs extends HTMLElement {
         this.openTab('gallery', this.$tabGallery);
       });
       this.$btnAccount = IdService.idAndClick(account, this.shadow, () => {
-        this.openTab('game', this.$tabAccount);
+        this.openTab('account', this.$tabAccount);
       });
     }
 
@@ -50,14 +51,15 @@ class AdditionalTabs extends HTMLElement {
     }
 
     openTab(evt, selected) {
-      const item = evt;
-      const tab = IdService.id(item, this.shadow);
-      if (tab) {
-        StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, 
-          this.$tabWriterForm, this.$tabGallery, this.$tabAccount], false);
-      }
+      let $game = IdService.id('gameContent', this.shadow);
+      $game.setAttribute('visible', BoolEnums.bFalse);
+
+      StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, 
+        this.$tabWriterForm, this.$tabGallery, this.$tabAccount], false);
+  
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
+        $game.setAttribute('visible', evt === 'game' ? BoolEnums.bTrue : BoolEnums.bFalse);
       }
     }
 
@@ -80,7 +82,7 @@ class AdditionalTabs extends HTMLElement {
             </div>
             
             <div id="game" class="tabcontent">
-              <game-page></game-page>
+              <game-page id="gameContent"></game-page>
             </div>
 
             <div id="map" class="tabcontent">

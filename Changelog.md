@@ -1,6 +1,7 @@
 ## Changelog
 v 2.73
-  Added BannerCarousel adjustements
+  Added BannerCarousel adjustements,
+  Added Page visible attribute to handle on visible examples
 
 v 2.72
   Added BannerCarousel improvements

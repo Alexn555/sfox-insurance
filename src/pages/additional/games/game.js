@@ -1,24 +1,47 @@
 // @ts-nocheck
 import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
+import { BoolEnums } from '../../../enums';
 import { GameViewerSettings, GameViewerSetEnums } from '../../../components/ui/gameViewer/sets';
 import { gmVwGames } from './games';
-import { Game } from '../../../settings';
 
 class GamePage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.isModal = Game.buttons.dialogOpener;
+      this.visible = this.getAttribute('visible') || BoolEnums.bTrue;
       this.games = JSONService.set(gmVwGames);
     }
   
+    static get observedAttributes() { 
+      return ['visible']; 
+    }
+
     connectedCallback() {
       this.render();
     }
 
     disconnectedCallback() {
       IdService.remove(this.$close);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      this.visible = name === 'visible' ? newValue : false;
+    }
+
+    showGame() {
+      let html = '';
+      if (this.visible) {
+        html = `
+          <game-viewer 
+            id="${GameViewerSettings.gamePage.id}"
+            games='${this.games}'
+            setsId="${GameViewerSetEnums.gamePage}"
+          >
+          </game-viewer>
+        `;
+      }
+      return html;
     }
   
     render() {
@@ -29,12 +52,7 @@ class GamePage extends HTMLElement {
             }
           </style>
           <div class="game-wrapper">
-             <game-viewer 
-              id="${GameViewerSettings.gamePage.id}"
-              games='${this.games}'
-              setsId="${GameViewerSetEnums.gamePage}"
-             >
-             </game-viewer>
+            ${this.showGame()}
           </div>
        `;
     }
