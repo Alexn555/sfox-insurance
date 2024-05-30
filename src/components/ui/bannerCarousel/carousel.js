@@ -92,16 +92,16 @@ class bannerCarousel extends HTMLElement {
       }
 
       HTMLService.html(this.$scene, html);
-      this.setLinkHandlers(amount);
+      this.setLinkHandlers(this.items, amount);
     }
 
-    setLinkHandlers(amount) {      
+    setLinkHandlers(items, amount) {      
       if (this.sets.enableLink) {
         this.$links = [];
         this.$links.length = amount;
         for (let i = 0; i < amount; i++) {
           let item = IdService.idAndClick(`item-label-${i}`, this.shadow, () => {
-            CustomEventService.send(`${BannerCarouselEvents.linkClick}-${i}`);
+            CustomEventService.send(BannerCarouselEvents.linkClick, items[i].id);
           });
           this.$links[i] = item;
         }
@@ -155,6 +155,7 @@ class bannerCarousel extends HTMLElement {
               border: 1px dashed ${this.theme.border};
               margin-left: 20px;
               width: 50%;
+              text-align: center;
               height: ${scene.h + 80}px;
               overflow: hidden;
             }
@@ -217,7 +218,6 @@ class bannerCarousel extends HTMLElement {
             @media (max-width: 768px) {
               #${this.container} {
                 width: 90%;
-                height: 120px;
               }
             }  
           </style>

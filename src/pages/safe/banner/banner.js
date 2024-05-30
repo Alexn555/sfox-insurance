@@ -26,15 +26,24 @@ class BannerPage extends HTMLElement {
                 padding-left: 8px;
               }
             }
+            .carousel {
+              transform: translateX(24%);
+
+              @media (max-width: 768px) {
+                transform: translateX(0);
+              }  
+            }
           </style>
           <div class="banner-wrapper">
             <h3>Banner</h3>
-            <banner-carousel
-              id="${CarouselSetIds.banner}"
-              item-set='${itemSet}'  
-              items='${banners}'
-            >
-            </banner-carousel>
+            <div class="carousel">
+              <banner-carousel
+                id="${CarouselSetIds.banner}"
+                item-set='${itemSet}'  
+                items='${banners}'
+              >
+              </banner-carousel>
+            </div>
           </div>
        `;
     }

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.73
+  Added BannerCarousel adjustements
+
 v 2.72
   Added BannerCarousel improvements
   
