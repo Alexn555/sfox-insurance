@@ -26,7 +26,9 @@ class GamePage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      this.visible = name === 'visible' ? newValue : false;
+      if (name === 'visible') {
+        this.visible = newValue === BoolEnums.bTrue ? true : false;
+      }
     }
 
     showGame() {
