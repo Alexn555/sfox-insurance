@@ -19,6 +19,7 @@ class AdditionalTabs extends HTMLElement {
 
     initForm() {
       this.$tabGame = IdService.id('game', this.shadow);
+      this.$game = IdService.id('gameContent', this.shadow);
       this.$tabMap = IdService.id('map', this.shadow);
       this.$tabWriterForm = IdService.id('writerForm', this.shadow);
       this.$tabGallery = IdService.id('gallery', this.shadow);
@@ -51,15 +52,14 @@ class AdditionalTabs extends HTMLElement {
     }
 
     openTab(evt, selected) {
-      let $game = IdService.id('gameContent', this.shadow);
-      $game.setAttribute('visible', BoolEnums.bFalse);
+      this.$game.setAttribute('visible', BoolEnums.bFalse);
 
       StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, 
         this.$tabWriterForm, this.$tabGallery, this.$tabAccount], false);
   
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
-        $game.setAttribute('visible', evt === 'game' ? BoolEnums.bTrue : BoolEnums.bFalse);
+        this.$game.setAttribute('visible', evt === 'game' ? BoolEnums.bTrue : BoolEnums.bFalse);
       }
     }
 
