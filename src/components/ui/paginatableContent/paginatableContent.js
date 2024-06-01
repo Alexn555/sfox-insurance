@@ -1,4 +1,5 @@
 import { ThemeHelper } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { CustomWindowEvents } from '../../../settings';
 import { CustomEventService, IdService, StyleService, HTMLService } from "../../../services";
 import { PackIds } from '../../../theme/enums';
@@ -105,10 +106,8 @@ class PaginatableContent extends HTMLElement {
           width: 100%;
           height: fit-content;
           padding-left: 60px;     
-
-          @media (max-width: 768px) {
-            padding-left: 20px;     
-          }
+          
+          ${ScreenQuery.mobile('padding-left: 20px;')}
         }
         .page {
           width: 60px;

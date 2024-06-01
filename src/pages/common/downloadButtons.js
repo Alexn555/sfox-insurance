@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { imageMap } from '../../components/common/assets';
 
 class DownloadButtons extends HTMLElement {
@@ -30,10 +31,8 @@ class DownloadButtons extends HTMLElement {
                     span {
                         padding: 2px;
                     }
-
-                    @media (max-width: 768px) {
-                        padding-right: 20px;
-                    }
+      
+                    ${ScreenQuery.mobile('padding-right: 20px')}
                 }         
             </style>
             <div class="download">

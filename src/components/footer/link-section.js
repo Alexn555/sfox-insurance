@@ -1,8 +1,9 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
 import { CommonEvents } from '../../settings';
+import ScreenQuery from '../../styles/query';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 import { ArrayService, JSONService, MobileService } from '../../services/utils';
-import { theme } from '../../theme/theme';
 
 class FooterLinkSection extends HTMLElement {
     constructor() {
@@ -72,10 +73,10 @@ class FooterLinkSection extends HTMLElement {
                 .footer-link-section {
                     color: ${theme.footer.links.text};
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         border-top: 1px solid #ddcdc4;
                         padding: 10px 0 10px 0;
-                    }
+                    `)}
                 }
                 .link-title {
                     position: relative;
@@ -110,18 +111,18 @@ class FooterLinkSection extends HTMLElement {
                     position: absolute;
                     left: ${this.getTogglePosition()}px;
 
-                    @media (min-width: 768px) {
-                       display: none;
-                    }
+                    ${ScreenQuery.desk(`
+                        display: none;
+                    `)}
                 }
                 .toggle-arrow {
                     cursor: pointer;
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         border: 1px solid black;
                         border-radius: 24px;
                         transform: translateY(-20px);
-                    }        
+                    `)}   
                 }
             </style>
             <section class="footer-link-section"> 

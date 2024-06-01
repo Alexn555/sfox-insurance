@@ -1,4 +1,5 @@
 import { JSONService } from '../../../services/utils';
+import ScreenQuery from '../../../styles/query';
 import { BannerItemSet, Banners } from './banners';
 import { CarouselSetIds } from '../../../components/ui/bannerCarousel/enums';
 
@@ -28,10 +29,7 @@ class BannerPage extends HTMLElement {
             }
             .carousel {
               transform: translateX(24%);
-
-              @media (max-width: 768px) {
-                transform: translateX(0);
-              }  
+              ${ScreenQuery.mobile('transform: translateX(0);')}
             }
           </style>
           <div class="banner-wrapper">

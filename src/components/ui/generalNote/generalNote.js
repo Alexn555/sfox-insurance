@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { CustomWindowEvents } from '../../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
@@ -145,12 +146,13 @@ class GeneralNote extends HTMLElement {
               text-align: right;
             }
 
-            @media (max-width: 768px) {
+            ${ScreenQuery.mobile(`
               #${this.container} {
                 width: 90%;
                 height: 120px;
               }
-            }
+            `)}
+
           </style>
           <dialog id="${this.container}">
             <div class="close">

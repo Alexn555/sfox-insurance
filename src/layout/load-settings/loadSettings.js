@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents } from '../../settings';
+import ScreenQuery from '../../styles/query';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
@@ -85,10 +86,8 @@ class LoadSettings extends HTMLElement {
                     &:hover {
                         opacity: 1;
                     }
-
-                    @media (max-width: 768px) {
-                        top: 60px;
-                    }
+                    
+                    ${ScreenQuery.mobile('top: 60px;')}
                 }
             </style>
             <div class="settings-button">                

@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import InfoService from '../../services/page/infoService';
 
@@ -30,17 +31,13 @@ class FooterDisclaimer extends HTMLElement {
                     font-size: smaller;
                     animation: fadeIn 1s;
 
-                    @media (max-width: 768px) {
-                        height: 200px;
-                    }
+                    ${ScreenQuery.mobile('height: 200px;')}
 
                     & div {
                         width: 60vw;
                         text-align: center;
 
-                        @media (max-width: 768px) {
-                            width: 90vw;
-                        }
+                        ${ScreenQuery.mobile('width: 90vw;')}
                     }
                 }
             </style>

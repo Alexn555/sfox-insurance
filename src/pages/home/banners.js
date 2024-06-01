@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { Banners } from '../../settings';
 
 class HomeBanners extends HTMLElement {
@@ -20,10 +21,7 @@ class HomeBanners extends HTMLElement {
                     display: grid;
                     grid-template-columns: 33% 33% 33%;
 
-                    @media (max-width: 768px) {
-                        grid-template-columns: 100%;
-                        width: 96vw;
-                    }
+                    ${ScreenQuery.mobile('grid-template-columns: 100%; width: 96vw;')}
 
                     a {
                         color: ${theme.page.home.banners.link};

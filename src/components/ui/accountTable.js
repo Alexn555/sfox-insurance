@@ -1,5 +1,6 @@
 import { JSONService } from '../../services/utils';
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 
 class AccountTable extends HTMLElement {
     constructor() {
@@ -61,9 +62,7 @@ class AccountTable extends HTMLElement {
                     grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
                     padding: 10px;
 
-                    @media (max-width: 768px) {
-                        grid-template-columns: 1fr 1fr;
-                    }
+                    ${ScreenQuery.mobile('grid-template-columns: 1fr 1fr;')}
                 }
                 .row-head {
                     background-color: ${theme.ui.accountTable.head};
@@ -90,9 +89,7 @@ class AccountTable extends HTMLElement {
                 }
 
                 .desktop {
-                    @media (max-width: 768px) {
-                        display: none;
-                    }
+                    ${ScreenQuery.mobile('display: none;')}
                 }
             </style>
             <div class="tbl-content">

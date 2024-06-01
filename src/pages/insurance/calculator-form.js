@@ -1,7 +1,8 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { dtPeriods, dtInterests } from '../../data/options';
 import { dtAmountSlider } from '../../data/sliders';
-import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { ArrayService } from '../../services/utils';
@@ -109,10 +110,8 @@ class InsuranceCalculatorForm extends HTMLElement {
                 .calculator-wrapper {
                   display: grid;
                   grid-template-columns: 70% 30%; 
-
-                  @media (max-width: 768px) {
-                      grid-template-columns: 100%;
-                  }
+                  
+                  ${ScreenQuery.mobile('grid-template-columns: 100%;')}
                 }
 
                 .calculator {

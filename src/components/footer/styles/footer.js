@@ -1,5 +1,6 @@
 // compoanent footer
 import { theme } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 
 export const setStyle = () => {
     return `
@@ -22,13 +23,11 @@ export const setStyle = () => {
             width: 100vw;
             overflow-x: hidden;
 
-            @media (max-width: 768px) {
+            ${ScreenQuery.medium('max-width: 70vw;')}
+            ${ScreenQuery.mobile(`
                 grid-template-columns: 100%;
                 max-width: 100vw;
-            }
-            @media (min-width: 1220px) {
-                max-width: 70vw;
-            }
+            `)}      
         }
     `;
 }

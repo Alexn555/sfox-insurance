@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
 import { CommonEvents, CustomWindowEvents } from '../../../settings';
 import { ContentSwSet } from './sets';
@@ -216,16 +217,12 @@ class ContentSw extends HTMLElement {
 
         .sideLt {
           flex-direction: row-reverse;
-          @media (max-width: 768px) {
-            flex-direction: column-reverse;
-          }
+          ${ScreenQuery.mobile('flex-direction: column-reverse;')}
         }
 
         .sideRt {
           flex-direction: row;
-          @media (max-width: 768px) {
-            flex-direction: column-reverse;
-          }
+          ${ScreenQuery.mobile('flex-direction: column-reverse;')}
         }
 
         .sideTop {
@@ -254,12 +251,12 @@ class ContentSw extends HTMLElement {
         #${this.paginationId} {
           ${this.setPaginationStyles(this.side)}
 
-          @media (max-width: 768px) {
+          ${ScreenQuery.mobile(`
             flex-direction: row;
             width: 100%;
             height: 160px;
-            padding-left: 20px;     
-          }
+            padding-left: 20px;  
+          `)}
         }
 
         .page {

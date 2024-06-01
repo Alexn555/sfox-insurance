@@ -2,6 +2,7 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { IdService, CustomEventService, HTMLService } from '../../../services';
+import ScreenQuery from '../../../styles/query';
 import { StringService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
 import { HeaderMenuLinks } from '../../../enums/menuLinks';
@@ -68,6 +69,8 @@ class StartItemPage extends HTMLElement {
                     display: grid;
                     grid-template-columns: 30% 70%;
                     border: 1px dashed ${this.theme.startItem.border};
+
+                    ${ScreenQuery.mobile('grid-template-columns: 100%;')}
                 }
                 #main {
                     width: 100%;
@@ -81,12 +84,6 @@ class StartItemPage extends HTMLElement {
                     & img {
                         width: 200px;
                         height: 100px;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    .page {
-                        grid-template-columns: 100%;
                     }
                 }
             </style>

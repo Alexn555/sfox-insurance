@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { CommonEvents, CustomEvents } from '../../settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
@@ -74,10 +75,7 @@ class InsuranceBanner extends HTMLElement {
                     padding: 16px;
                     animation: fadeIn ${this.dataFadeIn};
 
-                    @media (max-width: 768px) {
-                        grid-template-columns: 100%;
-                        width: 96vw;
-                    }
+                    ${ScreenQuery.mobile('grid-template-columns: 100%;  width: 96vw;')}
 
                     a {
                         color: ${theme.page.insurance.banner.content.link};;
@@ -91,13 +89,8 @@ class InsuranceBanner extends HTMLElement {
                     background-color: ${theme.page.insurance.banner.content.background};
                     padding: 20px;
 
-        
-                    @media (max-width: 1220px) {
-                        grid-template-columns: 30% 70%;
-                    }
-                    @media (max-width: 768px) {
-                        grid-template-columns: 100%;
-                    }
+                    ${ScreenQuery.medium('grid-template-columns: 30% 70%;')}
+                    ${ScreenQuery.mobile('grid-template-columns: 100%;')}
                 }
 
                 .content-circle {

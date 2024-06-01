@@ -1,4 +1,7 @@
 ## Changelog
+v 2.74
+  Created Mobile Query mixin to improve mobile detection in style
+
 v 2.73
   Added BannerCarousel adjustements,
   Added Page visible attribute to handle on visible examples

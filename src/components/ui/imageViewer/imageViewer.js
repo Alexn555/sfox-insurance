@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { GlobalSizes, CommonEvents, CustomWindowEvents } from '../../../settings';
 import { KeyboardKeys, GeneralNoteCodes, GeneralNoteEnums, BoolEnums } from '../../../enums';
 import { ButtonTypes, LinkTypes } from '../../common/ui';
@@ -363,11 +364,11 @@ class ImageViewer extends HTMLElement {
               background-color: white;
               border-radius: 4px;
 
-              @media (max-width: 768px) {
+              ${ScreenQuery.mobile(`
                 right: 30px;
                 top: 12px;
                 ${sharedBtnStyles}
-              }
+              `)}
             }
 
             .original {
@@ -383,12 +384,12 @@ class ImageViewer extends HTMLElement {
               &:hover {
                 opacity: 1 !important;
               }
-                    
-              @media (max-width: 768px) {
+                  
+              ${ScreenQuery.mobile(`
                 bottom: 20px;
                 opacity: 1;
                 ${sharedBtnStyles}
-              }
+              `)}
             }
           }
 

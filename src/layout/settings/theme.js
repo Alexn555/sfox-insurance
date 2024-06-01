@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { Themes } from '../../theme/enums';
+import ScreenQuery from '../../styles/query';
 import { GlobalSizes, CustomEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
 import DataStorage from '../../services/storage';
@@ -92,10 +93,8 @@ class ThemeSettings extends HTMLElement {
                     &:last-child {
                         padding-right: 0;
                     }
-
-                    @media (max-width: 768px) {
-                        padding-bottom: 10px;
-                    }
+                    
+                    ${ScreenQuery.mobile('padding-bottom: 10px;')}
                 }
             }
            </style>

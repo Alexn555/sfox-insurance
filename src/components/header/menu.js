@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { CustomEvents, MouseEvents } from '../../settings';
 import { imageMap } from '../../components/common/assets';
 import { HeaderMenuLinks } from '../../enums/menuLinks';
@@ -97,11 +98,11 @@ class HeaderMenu extends HTMLElement {
                     user-select: none;
                     z-index: 102;
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         grid-template-columns: 100%;
                         background-color: ${theme.header.menu.background};
                         height: fit-content;
-                    }
+                    `)}
                 }
                 .header-menu-item {
                     border: 1px solid ${theme.header.menu.line};
@@ -112,17 +113,17 @@ class HeaderMenu extends HTMLElement {
                     padding-top: 8px;
 
                     & img {
-                        @media (max-width: 768px) {
+                        ${ScreenQuery.mobile(`
                             display: none;
-                        }
+                        `)}
                     }
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         text-align: left;
                         align-items: center;
                         font-weight: bold;
                         padding: 0 0px 10px 20px;
-                    }
+                    `)}
                 }
                 .header-menu-item-active {
                     color: ${theme.header.menu.item.active};

@@ -1,10 +1,11 @@
 // @ts-nocheck
+import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { HeaderBoard, CommonEvents, CustomEvents } from '../../settings';
 import { CustomEventService, ClassIdService, IdService, StyleService } from '../../services';
 import { MobileService } from '../../services/utils';
 import { RenderService } from '../../services/helpers';
 import { btnMap } from '../../components/common/assets';
-import { theme } from '../../theme/theme';
 
 class Header extends HTMLElement {
     constructor() {
@@ -25,7 +26,6 @@ class Header extends HTMLElement {
 
     initForm() {
         this.$toggleMenu = IdService.idAndClick('toggle', this.shadow, this.toggleMenu.bind(this));
-
         this.$overlay = ClassIdService.id('header-overlay', this.shadow);
 
         CustomEventService.event(CustomEvents.header.menuOverlay, () => {
@@ -68,10 +68,10 @@ class Header extends HTMLElement {
                     background-color: ${theme.header.background};
                     z-index: 100;
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         position: fixed;
                         height: 60px;
-                    }
+                    `)}
                 }
                 .header-overlay {
                     display: none; 
@@ -94,10 +94,10 @@ class Header extends HTMLElement {
                     height: 20px;
                     top: 6px;
                     right: 30px;
-
-                    @media (max-width: 768px) {
+                    
+                    ${ScreenQuery.mobile(`
                         display: block;
-                    }
+                    `)}
                 }
             </style>
             <header class="header">

@@ -1,3 +1,5 @@
+import ScreenQuery from '../../styles/query';
+
 class FeaturesPage extends HTMLElement {
     constructor() {
         super();
@@ -23,9 +25,7 @@ class FeaturesPage extends HTMLElement {
                         }
                     }
 
-                    @media (max-width: 768px) {
-                        padding-left: 10px;
-                    }
+                    ${ScreenQuery.mobile('padding-left: 10px;')}
                 }
             </style>
             <div class="features">

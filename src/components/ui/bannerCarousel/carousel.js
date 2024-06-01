@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { ThemeHelper } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
 import { MouseEvents } from '../../../settings/sets/events';
 import { IdService, HTMLService, CustomEventService } from '../../../services';
@@ -215,11 +216,11 @@ class bannerCarousel extends HTMLElement {
               }
             }
 
-            @media (max-width: 768px) {
+            ${ScreenQuery.mobile(`
               #${this.container} {
                 width: 90%;
               }
-            }  
+            `)}
           </style>
           <section id="${this.container}">
             <div id="status" class="error"></div>

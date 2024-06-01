@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 
 class FooterContact extends HTMLElement {
     constructor() {
@@ -35,17 +36,18 @@ class FooterContact extends HTMLElement {
                     transform: translate(-65px, -8px);
                 }
 
-                @media (max-width: 768px) {
+                ${ScreenQuery.mobile(`
                     .footer-contact {
                         margin-left: 10px;
                     }
                     .social {
-                        margin-bottom: 6px;
+                       margin-bottom: 6px;
                     }
                     .address {
                         transform: translate(-60px, -8px);
                     }
-                }
+                `)}
+
             </style>
             <section class="footer-contact"> 
                 <div class="title">Contact</div>

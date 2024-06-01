@@ -1,4 +1,5 @@
 import { theme } from '../../theme/theme';
+import ScreenQuery from '../../styles/query';
 import { TextSizes } from '../../settings';
 
 class PageTitle extends HTMLElement {
@@ -26,10 +27,10 @@ class PageTitle extends HTMLElement {
                     margin-inline-start: 0px;
                     margin-inline-end: 0px;
 
-                    @media (max-width: 768px) {
+                    ${ScreenQuery.mobile(`
                         font-size: ${TextSizes.page.title.mobile}px;
                         padding: 10px;
-                    }   
+                    `)}
                 }
             </style>
             <h2 class="title">${this.title}</h2>

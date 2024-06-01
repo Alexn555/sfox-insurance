@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { pageNames, Animations, CustomEvents } from "../settings";
+import { pageNames, Animations, CustomEvents } from '../settings';
+import ScreenQuery from '../styles/query';
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
@@ -113,9 +114,7 @@ class PageSwitcher extends HTMLElement {
                     margin-bottom: 10px;
                     animation: fadeIn ${Animations.pageInitFadeIn}s;
 
-                    @media (max-width: 768px) {
-                        margin-top: 60px;
-                    }
+                    ${ScreenQuery.mobile('margin-top: 60px;')}
                 }  
 
                 .heightHolder {

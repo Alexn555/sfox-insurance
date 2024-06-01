@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { IdService, StyleService } from '../services';
 import { StringService } from '../services/utils';
+import ScreenQuery from '../styles/query';
 
 class BasePage extends HTMLElement {
     constructor() {
@@ -36,19 +37,11 @@ class BasePage extends HTMLElement {
                 #container {
                     width: 70vw;
 
-                    @media (max-width: 768px) {
-                        grid-template-columns: 100%;
-                        width: 100vw;
-                    }
+                    ${ScreenQuery.combo('grid-template-columns: 100%; width: 100vw;',
+                    'grid-template-columns: 100%; width: 80vw;',
+                    'grid-template-columns: 100%; width: 70vw;'
+                )}
 
-                    @media (min-width: 768px) {
-                        grid-template-columns: 100%;
-                        width: 80vw;
-                    }
-                    @media (min-width: 1220px) {
-                        grid-template-columns: 100%;
-                        width: 70vw;
-                    }
                 }
             </style>
             <div id="container">

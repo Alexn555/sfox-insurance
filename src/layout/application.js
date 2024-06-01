@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme, changeTheme } from '../theme/theme';
+import ScreenQuery from '../styles/query';
 import { Animations, PageStructure, CustomEvents, SEO,
      SettingsBoard, NetworkCheckerSet } from '../settings';
 import { ImageViewerIds } from '../settings/ui';
@@ -95,9 +96,7 @@ class Application extends HTMLElement {
                     height: ${stngsHeight}px;
                     z-index: 6;
 
-                    @media (max-width: 768px) {
-                        height: ${stngsHeight + 120}px;
-                    }   
+                    ${ScreenQuery.mobile('height: ${stngsHeight + 120}px')}
                 }
                 .layout {
                     z-index: 7;

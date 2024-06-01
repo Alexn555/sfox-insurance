@@ -1,3 +1,5 @@
+import ScreenQuery from '../../styles/query';
+
 class HomeBanner extends HTMLElement {
     constructor() {
         super();
@@ -34,10 +36,7 @@ class HomeBanner extends HTMLElement {
                     overflow-x: hidden;
                     overflow-y: hidden;
                     
-                    @media (max-width: 768px) {
-                        grid-template-columns: 100%;
-                        max-width: 100vw;
-                    }
+                    ${ScreenQuery.mobile('grid-template-columns: 100%; max-width: 100vw;')}
                 }
                 .title {
                     position: relative;

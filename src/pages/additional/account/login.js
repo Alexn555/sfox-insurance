@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
 import { ClassIdService, CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
@@ -109,18 +110,16 @@ class AccountLogin extends HTMLElement {
       this.shadow.innerHTML = `
             <style>
                .login {
-                  position: relative;
-                  display: grid;
-                  grid-template-columns: 100%; 
-                  border: 1px solid grey;
+                position: relative;
+                display: grid;
+                grid-template-columns: 100%; 
+                border: 1px solid grey;
 
-                  & div {
-                    padding: 20px;
-                  }
-
-                  @media (max-width: 768px) {
-                    grid-template-columns: 100%;
-                  }
+                & div {
+                  padding: 20px;
+                }
+                
+                ${ScreenQuery.mobile('grid-template-columns: 100%;')}
               }
 
               #error {

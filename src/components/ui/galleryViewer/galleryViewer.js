@@ -1,5 +1,6 @@
 import { CustomWindowEvents } from '../../../settings';
 import { ImageViewerIds } from '../../../settings/ui';
+import ScreenQuery from '../../../styles/query';
 import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
 import { CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
 import { ArrayService, JSONService } from '../../../services/utils';
@@ -148,9 +149,7 @@ class GalleryViewer extends HTMLElement {
             font-weight: bold;
           }
 
-          @media (max-width: 768px) {
-            width: 80%;
-          }
+          ${ScreenQuery.mobile('width: 80%;')}
         }
         .thumb {
           cursor: ${GallerySet.thumbCursor};

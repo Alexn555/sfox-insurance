@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CustomWindowEvents, CustomPageEvents } from '../../../settings';
+import ScreenQuery from '../../../styles/query';
 import { ImageViewerIds } from '../../../settings/ui';
 import { CustomEventService, IdService, LoggerService } from '../../../services';
 import { RenderService } from '../../../services/helpers';
@@ -49,21 +50,19 @@ class WriterForm extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
             <style>
-               .writer-wrapper {
-                  display: grid;
-                  grid-template-columns: 50% 50%; 
+              .writer-wrapper {
+                display: grid;
+                grid-template-columns: 50% 50%; 
 
-                  & h3 {
-                    padding-left: 8px;
-                  }
+                & h3 {
+                  padding-left: 8px;
+                }
 
-                  & div {
-                    padding: 20px;
-                  }
+                & div {
+                  padding: 20px;
+                }
 
-                  @media (max-width: 768px) {
-                    grid-template-columns: 100%;
-                  }
+                ${ScreenQuery.mobile('grid-template-columns: 100%;')}
               }
 
               .image {
