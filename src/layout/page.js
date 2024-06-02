@@ -56,7 +56,6 @@ class PageSwitcher extends HTMLElement {
         }
 
         this.dataStorage.save(SaveRoutes.currentPage, savePage);
-
         this.resetPageActive();
 
         const activePage = IdService.id(savePage, this.shadow);
@@ -116,11 +115,10 @@ class PageSwitcher extends HTMLElement {
 
                     ${ScreenQuery.mobile('margin-top: 60px;')}
                 }  
-
+                
                 .heightHolder {
                     height: 400px;
                 }
-
             </style>
 
             <main class="page">

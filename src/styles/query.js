@@ -16,13 +16,13 @@ export default class ScreenQuery {
     }
     static combo(ctMob, ctDesk, ctMedium) {
         return `  
-            @media (max-width: 768px) {
+            @media (max-width: ${sizes.xs}px) {
                 ${ctMob}
             }
-            @media (min-width: 768px) {
+            @media (min-width: ${sizes.ds}px) {
                 ${ctDesk}
             }
-            @media (min-width: 1220px) {
+            @media (min-width: ${sizes.md}px) {
                 ${ctMedium}
             }
         `;

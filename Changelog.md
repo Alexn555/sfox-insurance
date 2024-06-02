@@ -1,4 +1,7 @@
 ## Changelog
+v 2.75
+  Improved ScreenQuery functions
+
 v 2.74
   Created Mobile Query mixin to improve mobile detection in style
 
