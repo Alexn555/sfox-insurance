@@ -1,4 +1,8 @@
 ## Changelog
+v 2.76
+  Added Games assets structure improvements,
+  Created Games2 complect
+
 v 2.75
   Improved ScreenQuery functions
 

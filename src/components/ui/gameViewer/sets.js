@@ -10,5 +10,10 @@ export const GameViewerSettings = {
         id: 'html5games',
         displayLabel: BoolEnums.bFalse,
         side: ContentSwSides.right
+    },
+    safeGamePage: {
+        id: 'html5SafeGames',
+        displayLabel: BoolEnums.bFalse,
+        side: ContentSwSides.right
     }
 };

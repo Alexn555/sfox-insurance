@@ -1,13 +1,14 @@
 import EnvService from '../../../services/api/envService';
+import { GameBanners2  } from './banners2';
 
-const rootPath = `${EnvService.getRoot()}assets/contentsw/games/`;
+const rootPath = `${EnvService.getRoot()}assets/games/`;
 
 export const BannerItemSet = {
     w: 200,
     h: 200
 };
 
-export const Banners = [
+export const GameBanners = [
     { 
         id: 'banner1',
         label: 'Action game shows snake',
@@ -29,3 +30,5 @@ export const Banners = [
         image: `${rootPath}barslot.png`
     }
 ];
+
+export const Banners = GameBanners.concat(GameBanners2);

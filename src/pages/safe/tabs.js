@@ -13,6 +13,7 @@ class SafeTabs extends HTMLElement {
         game: 'game',
         welcome: 'welcome',
         editor: 'editor',
+        games: 'games',
         banner: 'banner'
       };
     }
@@ -35,12 +36,13 @@ class SafeTabs extends HTMLElement {
       this.$tabGame = IdService.id(this.tabs.game, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
       this.$tabTextEditor = IdService.id(this.tabs.editor, this.shadow);
+      this.$tabGames = IdService.id(this.tabs.games, this.shadow);
       this.$banner = IdService.id(this.tabs.banner, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { game, welcome, editor, banner } = SafePageTabs.tabLinks;
+      const { game, welcome, editor, games, banner } = SafePageTabs.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab(this.tabs.game, this.$tabGame);
@@ -50,6 +52,9 @@ class SafeTabs extends HTMLElement {
       });
       this.$btnEditor = IdService.idAndClick(editor, this.shadow, () => {
         this.openTab(this.tabs.editor, this.$tabTextEditor);
+      });
+      this.$btnGames = IdService.idAndClick(games, this.shadow, () => {
+        this.openTab(this.tabs.games, this.$tabGames);
       });
       this.$btnBanner = IdService.idAndClick(banner, this.shadow, () => {
         this.openTab(this.tabs.editor, this.$banner);
@@ -65,6 +70,7 @@ class SafeTabs extends HTMLElement {
           this.$tabGame, 
           this.$tabWelcome, 
           this.$tabTextEditor,
+          this.$tabGames, 
           this.$banner  
         ], false);
       }
@@ -74,7 +80,7 @@ class SafeTabs extends HTMLElement {
     }
 
     render() {
-      const { game, welcome, editor, banner } = SafePageTabs.tabLinks;
+      const { game, welcome, editor, games, banner } = SafePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
               ${commonTabStyle(this.theme)}
@@ -87,6 +93,7 @@ class SafeTabs extends HTMLElement {
               <button id="${game}">SafeKing</button>
               <button id="${welcome}">Welcome</button>
               <button id="${editor}">Editor</button>
+              <button id="${games}">Games2</button>
               <button id="${banner}">Banner</button>
             </div>
 
@@ -100,6 +107,10 @@ class SafeTabs extends HTMLElement {
       
             <div id="${this.tabs.editor}" class="tabcontent">
               <text-editor-page></text-editor-page>
+            </div> 
+
+            <div id="${this.tabs.games}" class="tabcontent">
+              <safe-game-page></safe-game-page>
             </div> 
 
             <div id="${this.tabs.banner}" class="tabcontent">
