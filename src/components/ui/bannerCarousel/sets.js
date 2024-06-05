@@ -8,6 +8,7 @@ export const BannerCarouselSets = {
         enableNav: true,
         enableLink: true,
         navShuffle: false,
+        descHover: 1, // seconds
         navCursor: Cursors.normal,
         linkCursor: Cursors.normal
     },
@@ -15,6 +16,7 @@ export const BannerCarouselSets = {
         enableNav: true,
         enableLink: true,
         navShuffle: false,
+        descHover: 1,
         navCursor: Cursors.normal,
         linkCursor: Cursors.pointer
     },

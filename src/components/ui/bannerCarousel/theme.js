@@ -13,6 +13,7 @@ export const bannerCarouselTheme = {
         },
         label: {
             text: 'white',
+            desc: 'white',
             opacity: 0.7
         }
     },
@@ -27,6 +28,7 @@ export const bannerCarouselTheme = {
         },
         label: {
             text: 'white',
+            desc: 'white',
             opacity: 0.7
         }
     }

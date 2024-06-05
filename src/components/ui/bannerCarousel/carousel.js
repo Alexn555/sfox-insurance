@@ -197,6 +197,7 @@ class bannerCarousel extends HTMLElement {
               wrap: no-wrap;
               width: ${scene.w}px;
               height: ${scene.h}px;
+              overflow-y: hidden;
             }
 
             .banner {
@@ -218,9 +219,13 @@ class bannerCarousel extends HTMLElement {
               opacity: ${this.theme.label.opacity};
               cursor: ${this.sets.linkCursor};
 
-              transition: height 1s;
+              transition: height ${this.sets.descHover}s;
               &:hover {
-                height: 110px;
+                height: 110px;         
+              }
+
+              p {
+                color: ${this.theme.label.desc};
               }
             }
 
