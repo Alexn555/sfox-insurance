@@ -1,4 +1,7 @@
 ## Changelog
+v 2.77
+  Added BannerCarousel shuffle and label description on hover
+
 v 2.76
   Added Games assets structure improvements,
   Created Games2 complect

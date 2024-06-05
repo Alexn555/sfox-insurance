@@ -16,4 +16,10 @@ export class HTMLService {
             LoggerService.error(`html service el ${el} html value not provided`);
         }
     }
+
+    static removeItems(parentObj) {
+        while (parentObj.firstChild) {
+          parentObj.removeChild(parentObj.lastChild);
+        }
+    }
 }

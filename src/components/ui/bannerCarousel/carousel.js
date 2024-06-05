@@ -4,7 +4,7 @@ import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
 import { MouseEvents } from '../../../settings/sets/events';
 import { IdService, HTMLService, CustomEventService } from '../../../services';
-import { JSONService } from '../../../services/utils';
+import { ArrayService, JSONService } from '../../../services/utils';
 import { BannerCarouelHelper } from './carouselHelper';
 import { BannerCarouselEvents } from './events';
 
@@ -35,6 +35,9 @@ class bannerCarousel extends HTMLElement {
       if (this.sets.enableNav) {
         this.$prev = IdService.idAndClick('prev', this.shadow, this.prev.bind(this));
         this.$next = IdService.idAndClick('next', this.shadow, this.next.bind(this));
+        if (this.sets.navShuffle) {
+          this.$shuffle = IdService.idAndClick('shuffle', this.shadow, this.shuffle.bind(this));
+        }
       }
     
       IdService.event(this.$scene, MouseEvents.mousedown, () => {
@@ -84,6 +87,9 @@ class bannerCarousel extends HTMLElement {
           <div id="item-${i}" class="banner" style="${style}">  
             <div id="item-label-${i}" class="label">
               ${this.items[i].label}
+              <p>
+                ${this.items[i].desc}
+              </p>
             </div>
           </div>`;
         }
@@ -126,6 +132,12 @@ class bannerCarousel extends HTMLElement {
       }
     }
 
+    shuffle() {
+      HTMLService.removeItems(this.$scene);
+      this.items = ArrayService.shuffleArray(this.items);
+      this.getItems();
+    }
+
     setScenePos(x, updatePos = false) {
       this.$scene.style.left = x + 'px';
       if (updatePos) {
@@ -135,15 +147,29 @@ class bannerCarousel extends HTMLElement {
 
     showNavigation() {
       let html = '';
+      let shuffle = '';
+      if (this.sets.navShuffle) {
+        shuffle = '<div id="shuffle" class="nav">shuffle</div>';
+      }
+
       if (this.sets.enableNav) {
           html = `
           <div id="navigation">
             <div id="prev" class="nav">prev</div>
+            ${shuffle}
             <div id="next" class="nav">next</div>
           </div>
         `;
       }
       return html;
+    }
+
+    adjustNext() {
+      let number = this.sets.navShuffle ? 3 : 2;
+      return `
+        &:nth-child(${number}) {
+          margin-right: 18px;
+        }`;
     }
 
     render() {
@@ -191,6 +217,11 @@ class bannerCarousel extends HTMLElement {
               height: 30px;
               opacity: ${this.theme.label.opacity};
               cursor: ${this.sets.linkCursor};
+
+              transition: height 1s;
+              &:hover {
+                height: 110px;
+              }
             }
 
             #navigation {
@@ -211,9 +242,7 @@ class bannerCarousel extends HTMLElement {
               border-radius: 4px;
               cursor: ${this.sets.navCursor};
 
-              &:nth-child(2) {
-                margin-right: 16px;
-              }
+              ${this.adjustNext()}
             }
 
             ${ScreenQuery.mobile(`

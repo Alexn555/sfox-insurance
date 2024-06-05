@@ -35,7 +35,6 @@ class HomeBanner extends HTMLElement {
                     margin: 10px;
                     overflow-x: hidden;
                     overflow-y: hidden;
-                    
                     ${ScreenQuery.mobile('grid-template-columns: 100%; max-width: 100vw;')}
                 }
                 .title {
