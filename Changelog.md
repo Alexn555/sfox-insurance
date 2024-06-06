@@ -1,4 +1,7 @@
 ## Changelog
+v 2.78
+  Added Cup image for Safe bonus game
+
 v 2.77
   Added BannerCarousel shuffle and label description on hover
 

@@ -67,7 +67,7 @@ class SafeGame extends HTMLElement {
 
     setPrizeImage() {
         if (this.stgs.randomPrize) {
-            const prizes = [textures.dollar, textures.coin, textures.card];
+            const prizes = [textures.dollar, textures.coin, textures.cup, textures.card];
             const selectedIndex = NumberService.randomInteger(0, prizes.length - 1);
             this.mainAnimation.scale = selectedIndex === 1 ? 1 : 1.5;
             return prizes[selectedIndex];

@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.77
+### SFox Insurance Engine v 2.78
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.78
+  Added Cup image for Safe bonus game
+
 v 2.77
   Added BannerCarousel shuffle and label description on hover
 
@@ -29,9 +32,6 @@ v 2.73
 
 v 2.72
   Added BannerCarousel, BannerHelper improvements
-
-v 2.70
-  Added BannerCarousel improvements
 
 ## Demo 
 
