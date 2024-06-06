@@ -11,7 +11,8 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
 v 2.78
-  Added Cup image for Safe bonus game
+  Added Cup image for Safe bonus game,
+  BannerCarousel adjustmenets
 
 v 2.77
   Added BannerCarousel shuffle and label description on hover

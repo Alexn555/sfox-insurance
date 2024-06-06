@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { ThemeHelper } from '../../../theme/theme';
+import { CustomEventService, HTMLService, IdService } from '../../../services';
+import { ArrayService, JSONService } from '../../../services/utils';
+import { MouseEvents } from '../../../settings/sets/events';
 import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
-import { MouseEvents } from '../../../settings/sets/events';
-import { IdService, HTMLService, CustomEventService } from '../../../services';
-import { ArrayService, JSONService } from '../../../services/utils';
+import { ThemeHelper } from '../../../theme/theme';
 import { BannerCarouelHelper } from './carouselHelper';
 import { BannerCarouselEvents } from './events';
 
@@ -86,7 +86,9 @@ class bannerCarousel extends HTMLElement {
           html += `
           <div id="item-${i}" class="banner" style="${style}">  
             <div id="item-label-${i}" class="label">
-              ${this.items[i].label}
+              <span class="name">
+                ${this.items[i].label}
+              </span>
               <p>
                 ${this.items[i].desc}
               </p>
@@ -174,6 +176,7 @@ class bannerCarousel extends HTMLElement {
 
     render() {
       let scene = BannerCarouelHelper.getSceneSizes(this.items, this.itemSet);
+      let lbthm = this.theme.label;
 
       this.shadow.innerHTML = `
           <style>
@@ -214,19 +217,25 @@ class bannerCarousel extends HTMLElement {
               position: absolute;
               background-color: ${this.theme.scene.bck};
               bottom: 10px;
-              color: ${this.theme.label.text};
-              height: 30px;
-              opacity: ${this.theme.label.opacity};
+              color: ${lbthm.text};
+              height: 15%;
+              opacity: ${lbthm.opacity};
               cursor: ${this.sets.linkCursor};
 
               transition: height ${this.sets.descHover}s;
               &:hover {
-                height: 110px;         
+                height: 52%;         
               }
 
               p {
-                color: ${this.theme.label.desc};
+                color: ${lbthm.desc};
               }
+            }
+            
+            .name {
+              display: inline-block;
+              border: 1px dashed ${lbthm.border};
+              height: 36px;
             }
 
             #navigation {
