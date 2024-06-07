@@ -177,6 +177,7 @@ class bannerCarousel extends HTMLElement {
     render() {
       let scene = BannerCarouelHelper.getSceneSizes(this.items, this.itemSet);
       let lbthm = this.theme.label;
+      let lbsets = this.sets.label;
 
       this.shadow.innerHTML = `
           <style>
@@ -206,6 +207,7 @@ class bannerCarousel extends HTMLElement {
             .banner {
               display: inline-block;
               position: relative;
+              margin: ${this.sets.margin};
               border: 1px solid white;
               background-repeat: no-repeat;
               background-position: center;
@@ -218,13 +220,13 @@ class bannerCarousel extends HTMLElement {
               background-color: ${this.theme.scene.bck};
               bottom: 10px;
               color: ${lbthm.text};
-              height: 15%;
+              height: ${lbsets.height};
               opacity: ${lbthm.opacity};
               cursor: ${this.sets.linkCursor};
 
               transition: height ${this.sets.descHover}s;
               &:hover {
-                height: 52%;         
+                height: ${lbsets.hoverH};         
               }
 
               p {
@@ -235,7 +237,7 @@ class bannerCarousel extends HTMLElement {
             .name {
               display: inline-block;
               border: 1px dashed ${lbthm.border};
-              height: 36px;
+              height: ${lbsets.nameH};
             }
 
             #navigation {

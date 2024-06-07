@@ -1,4 +1,7 @@
 ## Changelog
+v 2.79
+  Added Carousel settings improvements
+
 v 2.78
   Added Cup image for Safe bonus game,
   BannerCarousel adjustmenets
