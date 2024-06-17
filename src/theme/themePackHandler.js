@@ -6,6 +6,7 @@ import { paginatableContentTheme } from '../components/ui/paginatableContent/the
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { bannerCarouselTheme } from '../components/ui/bannerCarousel/theme';
 import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
+import { FAQViewerTheme } from '../components/ui/faq/theme';
 import { TextFileViewerTheme } from '../components/ui/textEditor/theme';
 import { contentSwitcherTheme } from '../components/ui/contentSw/theme';
 import { GameViewerTheme } from '../components/ui/gameViewer/theme';
@@ -23,6 +24,7 @@ export default class ThemePackHandler {
                 { id: PackIds.paginatableContent, pack: paginatableContentTheme },
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },
                 { id: PackIds.imageViewer, pack: ImageViewerTheme },
+                { id: PackIds.faqViewer, pack: FAQViewerTheme },
                 { id: PackIds.contentSw, pack: contentSwitcherTheme },
                 { id: PackIds.bannerCarousel, pack: bannerCarouselTheme },
                 { id: PackIds.textViewer, pack: TextFileViewerTheme },

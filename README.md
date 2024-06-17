@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.79
+### SFox Insurance Engine v 2.80
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.80
+  Created FAQ Viewer with faq page 
+
 v 2.79
   Added Carousel settings improvements
 
@@ -26,16 +29,6 @@ v 2.76
 
 v 2.75
   Improved ScreenQuery functions
-
-v 2.74
-  Created Mobile Query mixin to improve mobile detection in style
-
-v 2.73
-  Added BannerCarousel adjustements, 
-  Added Page visible attribute to handle on visible examples
-
-v 2.72
-  Added BannerCarousel, BannerHelper improvements
 
 ## Demo 
 

@@ -12,6 +12,7 @@ import './galleryViewer/gallerySearch';
 import './galleryViewer/galleryViewer';
 import './accountTable';
 import './iconSelect';
+import './faq';
 import './generalNote/generalNote';
 import './bannerCarousel/index';
 import './gameViewer/gameViewer';

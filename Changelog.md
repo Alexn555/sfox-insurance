@@ -1,4 +1,7 @@
 ## Changelog
+v 2.80
+  Created FAQ Viewer with faq page 
+
 v 2.79
   Added Carousel settings improvements
 
