@@ -11,6 +11,10 @@ export const FAQSets = {
             item: '8px 4px',
             name: '4px',
             content: '4px'
+        },
+        fonts: {
+            wrapper: 'smaller',
+            name: '16px'
         }
     },
     faqPage: {
@@ -22,6 +26,10 @@ export const FAQSets = {
             item: '8px 4px',
             name: '4px',
             content: '4px'
+        },
+        fonts: {
+            wrapper: 'smaller',
+            name: '16px'
         }
     }
 };

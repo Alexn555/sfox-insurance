@@ -80,32 +80,34 @@ class FAQViewer extends HTMLElement {
 
   render() {
     let pads = this.sets.pads;
+    let fonts = this.sets.fonts;
     this.shadow.innerHTML = this.sets.enabled ? `
         <style>
-            #wrapper {
-                padding: 2px;
-                font-size: smaller;
-            }
-            .item {
-                padding: ${pads.item};
-            }
-            .name {
-                font-size: 16px;
-                font-weight: bold;
-                padding: ${pads.name};
-                user-select: none;
-                background-color: ${this.theme.name.background};
-                cursor: ${this.sets.nameCursor};
-            }
-            .content {
-                padding: ${pads.content};
-                background-color: ${this.theme.content.background};
-            }
-        </style>
+          #wrapper {
+            background-color: ${this.theme.wrapper.background};
+            padding: 2px;
+            font-size: ${fonts.wrapper};
+          }
+          .item {
+            padding: ${pads.item};
+          }
+          .name {
+            font-size: ${fonts.name};
+            font-weight: bold;
+            padding: ${pads.name};
+            user-select: none;
+            background-color: ${this.theme.name.background};
+            cursor: ${this.sets.nameCursor};
+          }
+          .content {
+            padding: ${pads.content};
+            background-color: ${this.theme.content.background};
+          }
+      </style>
         <div id="wrapper">
-            <div id="${this.list}">
-                ${this.showList()}
-            </div>   
+          <div id="${this.list}">
+            ${this.showList()}
+          </div>   
         </div>
      ` : '';
   }
