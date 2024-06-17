@@ -5,7 +5,7 @@ import { ImageViewerSettings, ImageViewerIds } from './sets';
 export class ImageViewerHelper {
 
     static getId(id = ImageViewerIds.writer) {
-        return SettingsChecker.getId(id, ImageViewerIds, ImageViewerSettings);
+      return SettingsChecker.getId(id, ImageViewerIds, ImageViewerSettings);
     }
 
     static updateSize(largeScreen) {
@@ -20,8 +20,8 @@ export class ImageViewerHelper {
     }
 
     static getZommArrows(key, keys) {
-        const left = key === keys.left ? '<b>[<- key]</b>': '[<- key]';
-        const right = key === keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
-        return { left, right };
+      const left = key === keys.left ? '<b>[<- key]</b>': '[<- key]';
+      const right = key === keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
+      return { left, right };
     }
 }

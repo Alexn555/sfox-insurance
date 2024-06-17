@@ -1,5 +1,10 @@
 import { Cursors } from '../../../enums';
 
+export const FAQSetIds = {
+    common: 'common',
+    faqPage: 'faqPage'
+};
+
 const commonSets = {
     pads: {
         item: '8px 4px',
@@ -13,9 +18,9 @@ const commonSets = {
 };
 
 export const FAQSets = {
-    propertyAmount: 3,
+    propertyAmount: 6,
     common: {
-        id: 'common',
+        id: FAQSetIds.common,
         enabled: true,
         collapse: true,
         nameCursor: Cursors.normal, // Cursors.pointer
@@ -23,7 +28,7 @@ export const FAQSets = {
         fonts: commonSets.fonts
     },
     faqPage: {
-        id: 'faqPage',
+        id: FAQSetIds.faqPage,
         enabled: true,
         collapse: true,
         nameCursor: Cursors.normal, // Cursors.pointer

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { JSONService } from '../../../services/utils';
-import { FAQSets } from '../../../components/ui/faq/sets';
+import { FAQSetIds } from '../../../components/ui/faq/sets';
 import { Questions } from './questions';
 
 class FAQPage extends HTMLElement {
@@ -17,14 +17,14 @@ class FAQPage extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
           <style>
-            .questions-wrapper {
+            .wrapper {
               padding: 10px;
             }
           </style>
-          <div class="questions-wrapper">
+          <div class="wrapper">
             <h3>FAQ page</h3>
             <faq-viewer 
-              id="${FAQSets.faqPage.id}"
+              id="${FAQSetIds.faqPage}"
               items='${this.items}'
               list="questions"
             >

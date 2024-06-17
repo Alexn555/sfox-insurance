@@ -2,8 +2,9 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { IdService, StyleService } from '../../../services';
-import { JSONService, ObjectService } from '../../../services/utils';
-import { FAQSets } from './sets';
+import { JSONService } from '../../../services/utils';
+import { SettingsChecker } from '../../../services/helpers/settingsChecker';
+import { FAQSets, FAQSetIds } from './sets';
 
 class FAQViewer extends HTMLElement {
   constructor() {
@@ -13,7 +14,7 @@ class FAQViewer extends HTMLElement {
     this.items = this.getAttribute('items') || '[]';
     this.list =  this.getAttribute('list') || 'questions';
     this.theme = ThemeHelper.get([PackIds.faqViewer]);
-    this.sets = ObjectService.getObject('faq', FAQSets[this.id]);
+    this.sets = SettingsChecker.getId(this.id, FAQSetIds, FAQSets);
     this.collapsed = {};
     this.$names = [];
   }
@@ -41,12 +42,12 @@ class FAQViewer extends HTMLElement {
     let html = '';
     this.items.forEach(item => {
         html += `
-            <div id="item-${item.id}" class="item"> 
-                <div id="name-${item.id}" class="name">${item.name}</div>
-                <div id="content-${item.id}" class="content">
-                    ${item.content}
-                </div>
+          <div id="item-${item.id}" class="item"> 
+            <div id="name-${item.id}" class="name">${item.name}</div>
+            <div id="content-${item.id}" class="content">
+                ${item.content}
             </div>
+          </div>
         `;
         this.toggleCollapse(item.id, true);
     });
