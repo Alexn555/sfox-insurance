@@ -23,6 +23,7 @@ export const FAQSets = {
         id: FAQSetIds.common,
         enabled: true,
         collapse: true,
+        arrow: true,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts
@@ -31,6 +32,7 @@ export const FAQSets = {
         id: FAQSetIds.faqPage,
         enabled: true,
         collapse: true,
+        arrow: true,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts

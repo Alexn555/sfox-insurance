@@ -1,4 +1,7 @@
 ## Changelog
+v 2.82
+  Added FAQ Viewer advenced improvements
+
 v 2.80
   Created FAQ Viewer with faq page 
 

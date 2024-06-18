@@ -1,13 +1,15 @@
 // @ts-nocheck
 import { JSONService } from '../../../services/utils';
 import { FAQSetIds } from '../../../components/ui/faq/sets';
-import { Questions } from './questions';
+import { QuestionsBasic } from './basic';
+import { QuestionsAdvenced } from './advenced';
 
 class FAQPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.items = JSONService.set(Questions);
+      this.basic = JSONService.set(QuestionsBasic);
+      this.advenced = JSONService.set(QuestionsAdvenced);
     }
 
     connectedCallback() {
@@ -20,15 +22,30 @@ class FAQPage extends HTMLElement {
             .wrapper {
               padding: 10px;
             }
+            .qpack {
+              margin-bottom: 10px;
+            }
           </style>
           <div class="wrapper">
             <h3>FAQ page</h3>
-            <faq-viewer 
-              id="${FAQSetIds.faqPage}"
-              items='${this.items}'
-              list="questions"
-            >
-            </faq-viewer>
+            <div class="qpack">
+              <faq-viewer 
+                id="${FAQSetIds.faqPage}"
+                headline="Basic"
+                items='${this.basic}'
+                list="questions"
+              >
+              </faq-viewer>
+            </div>
+            <div class="qpack">
+              <faq-viewer 
+                id="${FAQSetIds.faqPage}"
+                headline="Advenced"
+                items='${this.advenced}'
+                list="questions"
+              >
+              </faq-viewer>
+            </div>
           </div>
        `;
     }

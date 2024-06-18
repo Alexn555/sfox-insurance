@@ -5,11 +5,11 @@ export const FAQViewerTheme = {
         wrapper: {
             background: 'white'
         },
-        items: {
-            border: 'none'
-        },
         name: {
             background: '#dcdcdc',
+        },
+        arrow: {
+            background: 'black'
         },
         content: {
             background: 'white',
@@ -19,11 +19,11 @@ export const FAQViewerTheme = {
         wrapper: {
            background: 'white'
         },
-        items: {
-            border: 'none'
-        },
         name: {
             background: '#debad0',
+        },
+        arrow: {
+            background: 'black'
         },
         content: {
             background: 'white',
