@@ -39,7 +39,7 @@ class FAQPage extends HTMLElement {
             </faq-viewer>
         </div>
       `;
-      HTMLService.html(el, html, true);
+      HTMLService.appendHTML(el, html);
     }
   
     render() {

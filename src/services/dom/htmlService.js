@@ -9,13 +9,17 @@ export class HTMLService {
         }
     }
 
-    static html(el, val, isAppend = false) {
+    static html(el, val) {
         if (typeof val === 'string') {
-            if (isAppend) {
-                el.innerHTML += val;   
-            } else {
-                el.innerHTML = val;   
-            }
+            el.innerHTML = val;   
+        } else {
+            LoggerService.error(`html service el ${el} html value not provided`);
+        }
+    }
+
+    static appendHTML(el, val) {
+        if (typeof val === 'string') {
+            el.innerHTML += val;   
         } else {
             LoggerService.error(`html service el ${el} html value not provided`);
         }
