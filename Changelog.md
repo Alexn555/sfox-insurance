@@ -1,4 +1,7 @@
 ## Changelog
+v 2.83
+  Added FAQ Service to more advanced get questions
+
 v 2.82
   Added FAQ Viewer advenced improvements
 

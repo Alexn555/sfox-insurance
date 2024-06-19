@@ -9,9 +9,13 @@ export class HTMLService {
         }
     }
 
-    static html(el, val) {
+    static html(el, val, isAppend = false) {
         if (typeof val === 'string') {
-            el.innerHTML = val;   
+            if (isAppend) {
+                el.innerHTML += val;   
+            } else {
+                el.innerHTML = val;   
+            }
         } else {
             LoggerService.error(`html service el ${el} html value not provided`);
         }

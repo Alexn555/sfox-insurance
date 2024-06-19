@@ -1,19 +1,45 @@
 // @ts-nocheck
-import { JSONService } from '../../../services/utils';
+import { HTMLService, IdService } from '../../../services';
 import { FAQSetIds } from '../../../components/ui/faq/sets';
-import { QuestionsBasic } from './basic';
-import { QuestionsAdvenced } from './advenced';
+import FAQService from '../../../services/page/faqService';
 
 class FAQPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.basic = JSONService.set(QuestionsBasic);
-      this.advenced = JSONService.set(QuestionsAdvenced);
+      this.basic = [];
+      this.advenced = [];
     }
 
     connectedCallback() {
       this.render();
+      this.getContent();
+    }
+
+    async getContent() {
+      this.basic = await FAQService.getBasic();
+      this.advenced = await FAQService.getAdvenced();
+
+      this.setQPack('Basic', this.basic);
+      this.setQPack('Advenced', this.advenced);
+      let el = IdService.id('loading', this.shadow);
+      el?.remove();
+    }
+
+    setQPack(name, contents) {
+      let el = IdService.id('wrapper', this.shadow);
+      let html = `
+        <div class="qpack">
+          <faq-viewer 
+              id="${FAQSetIds.faqPage}"
+              headline="${name}"
+              items='${contents}'
+              list="questions"
+            >
+            </faq-viewer>
+        </div>
+      `;
+      HTMLService.html(el, html, true);
     }
   
     render() {
@@ -26,26 +52,9 @@ class FAQPage extends HTMLElement {
               margin-bottom: 10px;
             }
           </style>
-          <div class="wrapper">
+          <div id="wrapper" class="wrapper">
             <h3>FAQ page</h3>
-            <div class="qpack">
-              <faq-viewer 
-                id="${FAQSetIds.faqPage}"
-                headline="Basic"
-                items='${this.basic}'
-                list="questions"
-              >
-              </faq-viewer>
-            </div>
-            <div class="qpack">
-              <faq-viewer 
-                id="${FAQSetIds.faqPage}"
-                headline="Advenced"
-                items='${this.advenced}'
-                list="questions"
-              >
-              </faq-viewer>
-            </div>
+            <span id="loading">Loading content</span>
           </div>
        `;
     }

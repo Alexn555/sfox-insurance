@@ -68,9 +68,9 @@ class FAQViewer extends HTMLElement {
   }
 
   updateArrow(activeId, toggle) {
-    let arrEl = IdService.id('arrow-'+activeId, this.shadow);
+    let el = IdService.id('arrow-'+activeId, this.shadow);
     let addCl = toggle ? 'arrUp' : 'arrDw';
-    StyleService.removeAndAddClass(arrEl, ['arrUp', 'arrDw'], addCl);
+    StyleService.removeAndAddClass(el, ['arrUp', 'arrDw'], addCl);
   }
 
   getCommonArrow() {
@@ -79,7 +79,7 @@ class FAQViewer extends HTMLElement {
       right: 20px;
       width: 0; 
       height: 0; 
-      bottom: 10px;
+      top: 50%;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
     `;
