@@ -1,4 +1,7 @@
 ## Changelog
+v 2.84
+  Added FAQ Advanced pack improvements
+
 v 2.83
   Added FAQ Service to more advanced get questions
 

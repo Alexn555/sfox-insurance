@@ -21,7 +21,7 @@ class FAQPage extends HTMLElement {
       this.advenced = await FAQService.getAdvenced();
 
       this.setQPack('Basic', this.basic);
-      this.setQPack('Advenced', this.advenced);
+      this.setQPack('Advanced', this.advenced);
       let el = IdService.id('loading', this.shadow);
       el?.remove();
     }

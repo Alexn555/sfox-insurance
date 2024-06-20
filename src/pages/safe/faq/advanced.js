@@ -1,4 +1,4 @@
-export const QuestionsAdvenced = [
+export const QuestionsAdvanced = [
     { 
         id: '11', 
         name: 'Is there potential to work abroad?', 
