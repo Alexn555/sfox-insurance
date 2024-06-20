@@ -61,7 +61,13 @@ class FAQViewer extends HTMLElement {
 
   updateContent(activeId, toggle) {
     let el = IdService.id('content-'+activeId, this.shadow);
-    StyleService.setProperty(el, 'display', toggle ? 'block' : 'none');
+    let isAnim = true;
+    if (isAnim) {
+      StyleService.setProperty(el, 'transform', toggle ? 'translateY(30px)' : 'translateY(0)');
+    } else {
+      StyleService.setProperty(el, 'display', toggle ? 'block' : 'none');
+    }
+
     if (this.sets.arrow) {
       this.updateArrow(activeId, toggle);
     }
@@ -98,12 +104,12 @@ class FAQViewer extends HTMLElement {
     this.items.forEach(item => {
         html += `
           <div id="item-${item.id}" class="item"> 
+            <div id="content-${item.id}" class="content">
+              ${item.content}
+            </div>
             <div id="name-${item.id}" class="name">
               ${item.name}
               ${this.showArrow(item.id)}
-            </div>
-            <div id="content-${item.id}" class="content">
-              ${item.content}
             </div>
           </div>
         `;
@@ -124,6 +130,7 @@ class FAQViewer extends HTMLElement {
           }
           .item {
             padding: ${pads.item};
+            height: 60px;
           }
           .headline {
             width: 100px;
@@ -142,15 +149,18 @@ class FAQViewer extends HTMLElement {
           }
           .arrUp {
             ${this.getCommonArrow()}
-            border-bottom: 4px solid ${this.theme.arrow.background};
+            border-bottom: 4px solid ${this.theme.arrow.background};   
           }
           .arrDw {
             ${this.getCommonArrow()}
             border-top: 4px solid ${this.theme.arrow.background};
           }
           .content {
+            position: absolute;
             padding: ${pads.content};
             background-color: ${this.theme.content.background};
+            transform: translateY(30px);
+            transition: transform 1s;
           }
       </style>
         <div id="wrapper">
