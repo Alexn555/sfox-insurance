@@ -24,7 +24,7 @@ export const FAQSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        startHidden: false,
+        contentHideOnStart: false,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts
@@ -34,7 +34,7 @@ export const FAQSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        startHidden: false,
+        contentHideOnStart: false,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts
