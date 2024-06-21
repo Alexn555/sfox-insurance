@@ -1,4 +1,7 @@
 ## Changelog
+v 2.85
+  Added FAQ on start content hide settings
+  
 v 2.84
   Added FAQ Advanced pack improvements
 

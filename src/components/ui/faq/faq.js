@@ -107,7 +107,7 @@ class FAQViewer extends HTMLElement {
             </div>
           </div>
         `;
-        this.toggleCollapse(item.id, true);
+        this.toggleCollapse(item.id, !this.sets.startHidden);
     });
     return html;
   }
@@ -149,6 +149,7 @@ class FAQViewer extends HTMLElement {
             border-top: 4px solid ${this.theme.arrow.background};
           }
           .content {
+            display: ${this.sets.startHidden ? 'none': 'block'};
             padding: ${pads.content};
             background-color: ${this.theme.content.background};
           }
