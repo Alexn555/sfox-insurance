@@ -18,7 +18,7 @@ const commonSets = {
 };
 
 export const FAQSets = {
-    propertyAmount: 6,
+    propertyAmount: 8,
     common: {
         id: FAQSetIds.common,
         enabled: true,

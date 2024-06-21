@@ -14,11 +14,11 @@ export class SettingsChecker {
 
         if (!cont) {
             cont = sets[enumIds.common];
-            LoggerService.warn(`BannerCarousel container not found id:"${id}", using common id`);
+            LoggerService.warn(`Settings container not found id:"${id}", using common id`);
         }
         if (propertiesAmount !== sets.propertyAmount || 
             propertiesAmount < sets.propertyAmount) {
-            LoggerService.warn(`BannerCarousel container with id:"${id}", currently having less [properties] than required!`);
+            LoggerService.warn(`Settings container with id:"${id}", currently having less [properties] than required!`);
         }
         return cont;
     }
