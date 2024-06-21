@@ -12,7 +12,7 @@ export const QuestionsBasic = [
     { 
         id: '3', 
         name: 'Still a sportsman? <br /> A footballer or race driver?', 
-        content: 'Damn left I am :)',
+        content: 'Damn left I am :) <br /> Yes I programmer and sportstman <br /> To show my strengths and to improve my WebComponents skills',
     },
     { 
         id: '4', 

@@ -61,7 +61,17 @@ class FAQViewer extends HTMLElement {
 
   updateContent(activeId, toggle) {
     let el = IdService.id('content-'+activeId, this.shadow);
-    StyleService.setProperty(el, 'display', toggle ? 'block' : 'none');
+    if (this.sets.contentAnim) {
+      StyleService.setProperty(el, 'height', toggle ? '30px' : '0');
+      setTimeout(() => { 
+        if (toggle) {
+          StyleService.setProperty(el, 'height', 'fit-content'); 
+        }
+      }, this.sets.contentAnimTime * 1200);
+    } else {
+      StyleService.setProperty(el, 'display', toggle ? 'block' : 'none');
+    }
+  
     if (this.sets.arrow) {
       this.updateArrow(activeId, toggle);
     }
@@ -152,6 +162,8 @@ class FAQViewer extends HTMLElement {
             display: ${this.sets.contentHideOnStart ? 'none': 'block'};
             padding: ${pads.content};
             background-color: ${this.theme.content.background};
+            transition: height ${this.sets.contentAnimTime}s;
+            overflow-y: hidden;
           }
       </style>
         <div id="wrapper">
