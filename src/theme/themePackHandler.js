@@ -1,15 +1,15 @@
 // packs
 import { StartPageTheme } from '../pages/start/theme';
 import { SafePageTheme } from '../pages/safe/theme';
-import { generalNoteTheme } from '../components/ui/generalNote/theme';
-import { paginatableContentTheme } from '../components/ui/paginatableContent/theme';
+import { generalNoteTheme } from '../components/plugins/generalNote/theme';
+import { paginatableContentTheme } from '../components/plugins/paginatableContent/theme';
 import { GalleryPageTheme } from '../pages/additional/gallery/theme';
-import { bannerCarouselTheme } from '../components/ui/bannerCarousel/theme';
-import { ImageViewerTheme } from '../components/ui/imageViewer/theme';
-import { FAQViewerTheme } from '../components/ui/faq/theme';
-import { TextFileViewerTheme } from '../components/ui/textEditor/theme';
-import { contentSwitcherTheme } from '../components/ui/contentSw/theme';
-import { GameViewerTheme } from '../components/ui/gameViewer/theme';
+import { bannerCarouselTheme } from '../components/plugins/bannerCarousel/theme';
+import { ImageViewerTheme } from '../components/plugins/imageViewer/theme';
+import { FAQViewerTheme } from '../components/plugins/faq/theme';
+import { TextFileViewerTheme } from '../components/plugins/textEditor/theme';
+import { contentSwitcherTheme } from '../components/plugins/contentSw/theme';
+import { GameViewerTheme } from '../components/plugins/gameViewer/theme';
 
 import { PackIds } from './enums';
 import ThemeHelper from './themeHelper';

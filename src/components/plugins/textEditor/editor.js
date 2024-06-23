@@ -4,7 +4,7 @@ import { CustomEventService, IdService, LoggerService, HTMLService, StyleService
 import { NumberService, JSONService, ObjectService, StringService } from '../../../services/utils';
 import DataStorage from '../../../services/storage';
 import { CustomWindowEvents, CustomEvents } from '../../../settings';
-import { styleErrors } from '../../../components/common/styles/errors';
+import { styleErrors } from '../../common/styles/errors';
 import { TextEditorSettings, TextEditorSetEnums } from './sets';
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides, LabelIcons } from '../contentSw/enums';

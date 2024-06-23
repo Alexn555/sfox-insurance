@@ -8,7 +8,7 @@ import { CustomEventService, IdService, StyleService } from '../../../services';
 import { ArrayService } from '../../../services/utils';
 import { styleErrors } from '../../../components/common/styles/errors';
 import { imageSearchList } from '../../../data/mocks/writerImageList';
-import { ImageViewerHelper } from '../../../components/ui/imageViewer/imageViewerHelper';
+import { ImageViewerHelper } from '../../../components/plugins/imageViewer/imageViewerHelper';
 import { ArrayEnums } from '../../../enums';
 
 class WriterImage extends HTMLElement {

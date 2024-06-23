@@ -1,4 +1,4 @@
-import { LabelIcons } from '../../../components/ui/contentSw/enums';
+import { LabelIcons } from '../../../components/plugins/contentSw/enums';
 
 export const textFiles = [
     { 

@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents } from '../../settings';
+import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 import ScreenQuery from '../../styles/query';
 import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
-import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 import { BoolEnums } from '../../enums';
 
 class LoadSettings extends HTMLElement {

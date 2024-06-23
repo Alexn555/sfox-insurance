@@ -1,5 +1,5 @@
 import { JSONService } from '../../../services/utils';
-import { TextEditorSetEnums } from '../../../components/ui/textEditor/sets';
+import { TextEditorSetEnums } from '../../../components/plugins/textEditor/sets';
 import { textFiles } from './files';
 
 class EditorPage extends HTMLElement {

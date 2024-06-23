@@ -1,4 +1,4 @@
-import { GameLabelIcons } from '../../../components/ui/gameViewer/icons';
+import { GameLabelIcons } from '../../../components/plugins/gameViewer/icons';
 
 export const gmVwGames = [
     { 

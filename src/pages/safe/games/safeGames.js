@@ -1,4 +1,4 @@
-import { SafeGameIcons } from '../../../components/ui/gameViewer/icons';
+import { SafeGameIcons } from '../../../components/plugins/gameViewer/icons';
 
 export const gmSfGames = [
     { 

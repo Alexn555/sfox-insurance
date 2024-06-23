@@ -5,7 +5,7 @@ import { CustomEventService, IdService, LoggerService, HTMLService } from '../..
 import { NumberService, JSONService, ObjectService } from '../../../services/utils';
 import { CustomWindowEvents } from '../../../settings';
 import { GameViewerHelper } from './gameViewerHelper';
-import { styleErrors } from '../../../components/common/styles/errors';
+import { styleErrors } from '../../common/styles/errors';
 import { BoolEnums } from '../../../enums';
 import { GameViewerSetEnums, GameViewerSettings } from './sets';
 import { LabelIcons } from '../contentSw/enums';

@@ -1,7 +1,7 @@
 import { JSONService } from '../../../services/utils';
 import ScreenQuery from '../../../styles/query';
 import { BannerItemSet, Banners } from './banners';
-import { CarouselSetIds } from '../../../components/ui/bannerCarousel/enums';
+import { CarouselSetIds } from '../../../components/plugins/bannerCarousel/enums';
 
 class BannerPage extends HTMLElement {
     constructor() {

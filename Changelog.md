@@ -1,4 +1,7 @@
 ## Changelog
+v 2.86 
+  Added new placement plugins for huge ui components
+
 v 2.85
   Added FAQ on start content hide settings
   

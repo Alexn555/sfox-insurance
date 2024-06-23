@@ -1,4 +1,4 @@
-import { CustomEvents } from '../../../settings/';
+import { CustomEvents } from '../../../settings';
 import { GallerySet } from '../../../settings/ui';
 import { CustomEventService, IdService, HTMLService } from '../../../services';
 import { ValidatorService } from '../../../services/utils';

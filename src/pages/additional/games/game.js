@@ -2,7 +2,7 @@
 import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { BoolEnums } from '../../../enums';
-import { GameViewerSettings, GameViewerSetEnums } from '../../../components/ui/gameViewer/sets';
+import { GameViewerSettings, GameViewerSetEnums } from '../../../components/plugins/gameViewer/sets';
 import { gmVwGames } from './games';
 
 class GamePage extends HTMLElement {

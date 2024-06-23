@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { HTMLService, IdService } from '../../../services';
-import { FAQSetIds } from '../../../components/ui/faq/sets';
+import { FAQSetIds } from '../../../components/plugins/faq/sets';
 import FAQService from '../../../services/page/faqService';
 
 class FAQPage extends HTMLElement {
