@@ -4,6 +4,7 @@ import './galleryViewer/gallerySearch';
 import './galleryViewer/galleryViewer';
 import './faq';
 import './notice/notice';
+import './safeKing';
 import './generalNote/generalNote';
 import './bannerCarousel';
 import './gameViewer/gameViewer';

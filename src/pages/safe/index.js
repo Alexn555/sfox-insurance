@@ -1,4 +1,4 @@
-import './safeKing/index';
+import './safeKing/page';
 import './editor/editorPage';
 import './banner/banner';
 import './faq/faqPage';

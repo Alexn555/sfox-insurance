@@ -1,4 +1,7 @@
 ## Changelog
+v 2.87
+  Moved SafeKing to plugins and page to page sections
+
 v 2.86 
   Added new placement plugins for huge ui components
 
