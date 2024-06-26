@@ -1,5 +1,7 @@
 // @ts-nocheck
+import { BoolEnums } from '../../../enums';
 import { HTMLService, IdService } from '../../../services';
+import { ContactIds } from '../../../components/plugins/contact/sets';
 
 class ReaderContactPage extends HTMLElement {
     constructor() {
@@ -13,7 +15,7 @@ class ReaderContactPage extends HTMLElement {
     }
 
     async getContent() {
-      this.setContactPack('Basic');
+      this.setContactPack('Contact');
       let el = IdService.id('loading', this.shadow);
       el?.remove();
     }
@@ -22,9 +24,13 @@ class ReaderContactPage extends HTMLElement {
       let el = IdService.id('wrapper', this.shadow);
       let html = `
         <div class="contact">
-          <h3>${name}</h3>
-          <p> Contact form </p>
-          <p> In development progress </p>
+          <contact-form
+            id="${ContactIds.readerContactPage}"
+            headline="${name}"
+            name-required="${BoolEnums.bTrue}"
+            btn-label="Send"
+          >
+          </contact-form>
         </div>
       `;
       HTMLService.appendHTML(el, html);

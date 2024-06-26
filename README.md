@@ -13,6 +13,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 v 2.87
   Moved SafeKing to plugins and page to page sections
   Created Reader base version section
+  Created ContactForm version
 
 v 2.86 
   Added new placement plugins for huge ui components
