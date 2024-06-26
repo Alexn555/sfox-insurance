@@ -18,7 +18,7 @@ const commonSets = {
 };
 
 export const ContactSets = {
-    propertyAmount: 7,
+    propertyAmount: 10,
     common: {
         id: ContactIds.common,
         enabled: true,
@@ -27,9 +27,14 @@ export const ContactSets = {
             cols: 50,
             rows: 6,
             timeout: 1,
-            maxSize: 1000
+        },
+        fields: {
+            nameMax: 20,
+            emailMax: 20,
+            messageMax: 1000
         },
         validateEmail: true,
+        messageCounter: true,
         resetForm: false,
         pads: commonSets.pads,
         fonts: commonSets.fonts
@@ -42,9 +47,14 @@ export const ContactSets = {
             cols: 50,
             rows: 6,
             timeout: 1,
-            maxSize: 1000
+        },
+        fields: {
+            nameMax: 20,
+            emailMax: 20,
+            messageMax: 1000
         },
         validateEmail: true,
+        messageCounter: true,
         resetForm: true,
         pads: commonSets.pads,
         fonts: commonSets.fonts
