@@ -31,6 +31,13 @@ export const StartItemInfo = {
         w: 200,
         h: 100
     },
+    reader: {
+        label: 'Reader',
+        description: 'Reader Page shows contact game and other pages.',
+        image: `${rootPath}home.jpg`,
+        w: 200,
+        h: 100
+    },
     additionalMore: {
         pages: [
             { label: 'Game', description: 'Game page using GameViewer' },

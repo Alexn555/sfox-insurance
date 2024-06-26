@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { pageNames, Animations, CustomEvents } from '../settings';
+import { pageIds, pageNames, Animations, CustomEvents } from '../settings';
 import ScreenQuery from '../styles/query';
 import { SaveRoutes } from '../components/common/saves';
 import DataStorage from '../services/storage';
@@ -11,7 +11,7 @@ class PageSwitcher extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         this.dataStorage = new DataStorage();
-        this.pageIds = ['home', 'insurance', 'additional', 'safe'];
+        this.pageIds = pageIds;
 
         CustomEventService.event(CustomEvents.header.menuClick, (e) => {
             this.getPage(e.detail.value, false);
@@ -52,6 +52,9 @@ class PageSwitcher extends HTMLElement {
             break;
             case pageNames.safe:
                 savePage = pageNames.safe;
+            break;
+            case pageNames.reader:
+                savePage = pageNames.reader;
             break;
         }
 
@@ -126,6 +129,7 @@ class PageSwitcher extends HTMLElement {
                 <insurance-page id="${pageNames.insurance}"></insurance-page>
                 <additional-page id="${pageNames.additional}"></additional-page>
                 <safe-page id="${pageNames.safe}"></safe-page>
+                <reader-page id="${pageNames.reader}"></reader-page>
                 <div class="heightHolder"></div>
             </main> 
         `;

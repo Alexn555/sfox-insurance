@@ -12,6 +12,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 ## Changelog
 v 2.87
   Moved SafeKing to plugins and page to page sections
+  Created Reader base version section
 
 v 2.86 
   Added new placement plugins for huge ui components
@@ -30,23 +31,6 @@ v 2.82
 
 v 2.80
   Created FAQ Viewer with faq page 
-
-v 2.79
-  Added Carousel settings improvements
-
-v 2.78
-  Added Cup image for Safe bonus game,
-  BannerCarousel adjustmenets
-
-v 2.77
-  Added BannerCarousel shuffle and label description on hover
-
-v 2.76
-  Added Games assets structure improvements,
-  Created Games2 complect
-
-v 2.75
-  Improved ScreenQuery functions
 
 ## Demo 
 

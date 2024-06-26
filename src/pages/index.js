@@ -9,4 +9,5 @@ import './additional/index';
 import './additional';
 import './safe/index';
 import './safe';
+import './reader';
 import './uknown';

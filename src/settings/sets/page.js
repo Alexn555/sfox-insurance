@@ -2,8 +2,17 @@ export const pageNames = {
     home: 'home', 
     insurance: 'insurance',
     additional: 'additional',
-    safe: 'safe'
+    safe: 'safe',
+    reader: 'reader'
 };
+
+export const pageIds = [
+    pageNames.home,
+    pageNames.insurance,
+    pageNames.additional,
+    pageNames.safe,
+    pageNames.reader
+];
 
 export const PageStructure = {
     settings: {
