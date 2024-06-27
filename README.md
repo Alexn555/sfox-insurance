@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.87
+### SFox Insurance Engine v 2.90
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.90
+  Added Reviewer changes
+
 v 2.87
   Moved SafeKing to plugins and page to page sections
   Created Reader base version section

@@ -1,4 +1,7 @@
 ## Changelog
+v 2.90
+  Added Reviewer changes
+
 v 2.87
   Moved SafeKing to plugins and page to page sections
   Created Reader base version section

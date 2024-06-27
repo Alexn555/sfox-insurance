@@ -2,7 +2,6 @@
 import { IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { BoolEnums } from '../../../enums';
-import { GameViewerSettings, GameViewerSetEnums } from '../../../components/plugins/gameViewer/sets';
 import { Reviews } from './reviews';
 
 class ReaderReviewer extends HTMLElement {
@@ -35,12 +34,7 @@ class ReaderReviewer extends HTMLElement {
       let html = '';
       if (this.visible) {
         html = `
-          <game-viewer 
-            id="${GameViewerSettings.safeGamePage.id}"
-            games='${this.reviews}'
-            setsId="${GameViewerSetEnums.gamePage}"
-          >
-          </game-viewer>
+          <span>Reviewer under development progress</span>
         `;
       }
       return html;
