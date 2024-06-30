@@ -1,4 +1,7 @@
 ## Changelog
+v 2.92
+  Added Gallery random default search
+
 v 2.90
   Added Reviewer changes
 

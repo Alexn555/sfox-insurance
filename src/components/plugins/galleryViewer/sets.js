@@ -1,4 +1,5 @@
 import { Cursors } from '../../../enums';
+import { NumberService } from '../../../services/utils';
 
 export const GallerLoadHolders = {
     Simple: 'simpla',
@@ -10,8 +11,10 @@ export const GalleryImgViewerEnums = {
     close: '0'
 };
 
+const defaultSearch = ['airplane', 'castle', 'sail'];
+
 export const GallerySet = {
-    defaultSearch: 'art',
+    defaultSearch: defaultSearch[NumberService.sample(defaultSearch)],
     showLabel: true,
     saveId: 'gallery-save-search',
     searchEvent: 'gallery-search-open',
