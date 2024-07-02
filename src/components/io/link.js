@@ -1,13 +1,15 @@
 import { theme } from '../../theme/theme';
-import { getCommonButton } from '../../styles/';
-import { ButtonTypes } from '../../components/common/ui';
+import { getCommonButton } from '../../styles';
+import { LinkTypes, LinkVariants } from '../common/ui';
 
 class ActionButton extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'closed'});
+        this.shadow = this.attachShadow({mode: 'open'});
         this.label = this.getAttribute('label') || 'Go';
         this.buttonType = this.getAttribute('type') || 'action';
+        this.variant = this.getAttribute('variant') || '';
+        this.addCl = '';
     }
     
     connectedCallback() {
@@ -18,31 +20,39 @@ class ActionButton extends HTMLElement {
         const { button: btn } = theme.ui;
         let color = btn.default;
         switch(this.buttonType) {
-            case ButtonTypes.action:
-            default:
-                color = btn.action;
-            break;
-            case ButtonTypes.highlight:
-                color = btn.highlight;
-            break;
-            case ButtonTypes.passive:
-                color = btn.passive;
+            case LinkTypes.transparentButton:
+                color = 'transparent';
+                this.addCl = 'link';
             break;
         }
         return color;
+    }
+
+    setAdditional() {
+        let addStyle = '';
+        if (this.variant === LinkVariants.thinText) {
+            addStyle = 'font-weight: normal;';
+        }
+        return addStyle;
     }
 
     render() {
         const styles = getCommonButton();
         this.shadow.innerHTML = `
             <style>
-                .action-button {
+                .link {
+                    color: black !important;
+                    text-decoration: underline;
+                }
+
+                .action-link {
                     background-color: ${this.setColor()};
                     ${styles.main}
                     ${styles.hover}
+                    ${this.setAdditional()}
                 }
             </style>
-            <button class="action-button">
+            <button class="action-link ${this.addCl}">
                 ${this.label}
             </button>
         `;
@@ -50,5 +60,5 @@ class ActionButton extends HTMLElement {
 }
 
 if ('customElements' in window) {
-	customElements.define('action-button', ActionButton);
+	customElements.define('action-link', ActionButton);
 }

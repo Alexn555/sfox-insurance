@@ -1,4 +1,7 @@
 ## Changelog
+v 2.93
+ Rename ui to io for better semantics
+
 v 2.92
   Added Gallery random default search
 

@@ -3,7 +3,7 @@ import './styles/index';
 import './theme/index';
 import './enums';
 import './settings';
-import './components/ui';
+import './components/io';
 import './components/plugins';
 import './data/index';
 import './layout/index';
