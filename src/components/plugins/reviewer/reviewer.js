@@ -135,8 +135,10 @@ class Reviewer extends HTMLElement {
             <div id="content-${item.id}" class="content">
               <radio-input-group 
                 id="radio-${item.id}"
+                sets-id="${this.sets.id}"
                 name="radio-${item.id}"
                 list='${answers}'
+                align="${this.sets.align}"
                 value=""
               >
               </radio-input-group>

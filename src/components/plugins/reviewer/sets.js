@@ -17,6 +17,11 @@ const commonSets = {
     }
 };
 
+const Alignment = {
+    row: 'row',
+    column: 'column'
+};
+
 export const ReviewSets = {
     propertyAmount: 10,
     common: {
@@ -24,7 +29,7 @@ export const ReviewSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        align: 'row', // row, column
+        align: Alignment.row,
         contentHideOnStart: false,
         contentAnim: false,
         message: {
@@ -40,7 +45,7 @@ export const ReviewSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        align: 'row', // row, column
+        align: Alignment.row,
         contentHideOnStart: false, // true, contenAnim only can be false
         contentAnim: true,
         message: {
