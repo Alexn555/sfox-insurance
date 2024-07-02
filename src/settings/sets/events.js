@@ -24,7 +24,9 @@ export const CustomEvents = {
         sliderValueChange: 'slider-value-change',
         selectChange: 'select-change-',
         textInputChange: 'text-input-change',
-        textAreaChange: 'text-area-change'
+        textAreaChange: 'text-area-change',
+        radioChange: 'radio-input-change',
+        radioGroupChange: 'radio-group-change'
     },
     header: {
         menuOverlay: 'header-menu-overlay',

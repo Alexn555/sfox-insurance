@@ -14,6 +14,7 @@ export const PackIds = {
     galleryPage: 'galleryPage',
     imageViewer: 'imageViewer',
     faqViewer: 'faqViewer',
+    reviewer: 'reviewer',
     contactForm: 'contactForm',
     bannerCarousel: 'bannerCarousel',
     contentSw: 'contentSw',

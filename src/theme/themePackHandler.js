@@ -7,6 +7,7 @@ import { GalleryPageTheme } from '../pages/additional/gallery/theme';
 import { bannerCarouselTheme } from '../components/plugins/bannerCarousel/theme';
 import { ImageViewerTheme } from '../components/plugins/imageViewer/theme';
 import { FAQViewerTheme } from '../components/plugins/faq/theme';
+import { ReviewerTheme } from '../components/plugins/reviewer/theme';
 import { ContactFormTheme } from '../components/plugins/contact/theme';
 import { TextFileViewerTheme } from '../components/plugins/textEditor/theme';
 import { contentSwitcherTheme } from '../components/plugins/contentSw/theme';
@@ -26,6 +27,7 @@ export default class ThemePackHandler {
                 { id: PackIds.galleryPage, pack: GalleryPageTheme },
                 { id: PackIds.imageViewer, pack: ImageViewerTheme },
                 { id: PackIds.faqViewer, pack: FAQViewerTheme },
+                { id: PackIds.reviewer, pack: ReviewerTheme },
                 { id: PackIds.contactForm, pack: ContactFormTheme },
                 { id: PackIds.contentSw, pack: contentSwitcherTheme },
                 { id: PackIds.bannerCarousel, pack: bannerCarouselTheme },

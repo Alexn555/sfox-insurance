@@ -1,6 +1,7 @@
 ## Changelog
 v 2.93
- Rename ui to io for better semantics
+  Renamed ui to io for better semantics
+  Created Reviewer first version
 
 v 2.92
   Added Gallery random default search

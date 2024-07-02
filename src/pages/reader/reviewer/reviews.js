@@ -1,49 +1,39 @@
-import { SafeGameIcons } from '../../../components/plugins/gameViewer/icons';
-
 export const Reviews = [
     { 
-        id: 'destinationBall', 
-        title: 'Destination Ball', 
-        link: 'https://www.norwaydict.com/xdual1/',
-        params: '&player=1&mode=real',
-        icon: SafeGameIcons.destinationBall,
-        w: 550,
-        h: 530
+        id: '1', 
+        name: 'How did you liked accommodation?', 
+        answers: [
+            { val: 1, label: 'bad' },
+            { val: 2, label: 'normal' },
+            { val: 3, label: 'good' },
+            { val: 4, label: 'very good' }
+        ]
     },
-    {
-        id: 'dual1',
-        title: 'Dual1',
-        link: 'https://www.norwaydict.com/xdual1/',
-        params: '&player=1&mode=real',
-        icon: SafeGameIcons.dual1,
-        w: 600,
-        h: 500
+    { 
+        id: '2', 
+        name: 'Is this website have decent amount of plugins?', 
+        answers: [
+            { val: 1, label: 'yes' },
+            { val: 2, label: 'no' },
+        ]
     },
-    {
-        id: 'nottretank',
-        title: 'Nottretank',
-        link: 'https://norwaydict.com/html5games/nolettank',
-        params: '&player=1&mode=real',
-        icon: SafeGameIcons.nottretank,
-        w: 600,
-        h: 500
+    { 
+        id: '3', 
+        name: 'In scale 1 - 5 (bad - good) how would you rate those plugins?', 
+        answers: [
+            { val: 1, label: '1' },
+            { val: 2, label: '2' },
+            { val: 3, label: '3' },
+            { val: 4, label: '4' },
+            { val: 5, label: '5' },
+        ]
     },
-    {
-        id: 'tictoevue',
-        title: 'TictoeVue',
-        link: 'https://norwaydict.com/vue-tictac-toe/',
-        params: '&player=1&mode=real',
-        icon: SafeGameIcons.tictoevue,
-        w: 600,
-        h: 500
+    { 
+        id: '4', 
+        name: 'Are serivces handly for this engine?', 
+        answers: [
+            { val: 1, label: 'yes' },
+            { val: 2, label: 'no' },
+        ]
     },
-    {
-        id: 'parkingcar',
-        title: 'Parkingcar',
-        link: 'https://norwaydict.com/parkingcar',
-        params: '&player=1&mode=real',
-        icon: SafeGameIcons.parkingcar,
-        w: 600,
-        h: 500
-    }
 ];

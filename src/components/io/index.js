@@ -3,6 +3,8 @@ import './networkChecker';
 import './text';
 import './textArea';
 import './accountTable';
+import './radio';
+import './radioGroup';
 import './amountSlider';
 import './select';
 import './button';

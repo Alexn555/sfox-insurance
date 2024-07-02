@@ -1,54 +1,56 @@
 // @ts-nocheck
-import { IdService } from '../../../services';
-import { JSONService } from '../../../services/utils';
-import { BoolEnums } from '../../../enums';
-import { Reviews } from './reviews';
+import { IdService, HTMLService } from '../../../services';
+import { ReviewerSetIds } from '../../../components/plugins/reviewer/sets';
+import ReviewerService from '../../../services/page/reviewerService';
 
 class ReaderReviewer extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.visible = this.getAttribute('visible') || BoolEnums.bTrue;
-      this.reviews = JSONService.set(Reviews);
-    }
-  
-    static get observedAttributes() { 
-      return ['visible']; 
     }
 
     connectedCallback() {
       this.render();
+      this.getContent();
     }
 
-    disconnectedCallback() {
-      IdService.remove(this.$close);
+    async getContent() {
+      this.basic = await ReviewerService.getBasic();
+
+      this.setReviewPack('Engine reviewer', this.basic);
+      let el = IdService.id('loading', this.shadow);
+      el?.remove();
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-      if (name === 'visible') {
-        this.visible = newValue === BoolEnums.bTrue ? true : false;
-      }
+    setReviewPack(name, contents) {
+      let el = IdService.id('reviewer', this.shadow);
+      let html = `
+        <div class="qpack">
+          <reader-reviewer
+            id="${ReviewerSetIds.reviewPage}"
+            headline="${name}"
+            items='${contents}'
+            list="answers"
+          > 
+          </reader-reviewer>
+        </div>
+      `;
+      HTMLService.appendHTML(el, html);
     }
 
-    showReviwwer() {
-      let html = '';
-      if (this.visible) {
-        html = `
-          <span>Reviewer under development progress</span>
-        `;
-      }
-      return html;
-    }
-  
     render() {
       this.shadow.innerHTML = `
           <style>
-            .reviewer {
+            #reviewer {
               padding: 10px;
             }
+            .qpack {
+              margin-bottom: 10px;
+            }
           </style>
-          <div class="reviewer">
-            ${this.showReviwwer()}
+          <div id="reviewer">
+            <h3>Reviewer page</h3>
+            <span id="loading">Loading content</span>
           </div>
        `;
     }
