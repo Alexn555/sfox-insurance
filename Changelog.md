@@ -1,4 +1,7 @@
 ## Changelog
+v 2.94
+  Added Reviewer improvements
+
 v 2.93
   Renamed ui to io for better semantics
   Created Reviewer first version

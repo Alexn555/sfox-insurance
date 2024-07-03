@@ -1,4 +1,4 @@
-import { Cursors } from '../../../enums';
+import { Cursors, DirectionAlignment } from '../../../enums';
 
 export const ReviewerSetIds = {
     common: 'common',
@@ -17,11 +17,6 @@ const commonSets = {
     }
 };
 
-const Alignment = {
-    row: 'row',
-    column: 'column'
-};
-
 export const ReviewSets = {
     propertyAmount: 10,
     common: {
@@ -29,7 +24,7 @@ export const ReviewSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        align: Alignment.row,
+        align: DirectionAlignment.row,
         contentHideOnStart: false,
         contentAnim: false,
         message: {
@@ -45,7 +40,7 @@ export const ReviewSets = {
         enabled: true,
         collapse: true,
         arrow: true,
-        align: Alignment.row,
+        align: DirectionAlignment.row,
         contentHideOnStart: false, // true, contenAnim only can be false
         contentAnim: true,
         message: {

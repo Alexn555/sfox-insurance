@@ -62,7 +62,7 @@ class Reviewer extends HTMLElement {
   }
 
   submitForm() {
-    let msg = `All ok, field validated, 
+    let msg = `All ok,
      demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `;
     HTMLService.html(this.$notice, msg);
     setTimeout(() => {

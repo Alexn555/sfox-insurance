@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { CustomEvents } from '../../settings';
+import { DirectionAlignment } from '../../enums';
 import { IdService, CustomEventService, LoggerService } from '../../services';
 import { JSONService } from '../../services/utils';
 import { radioGroupSets } from './sets/radioGroup';
@@ -13,7 +14,7 @@ class RadioInputGroup extends HTMLElement {
     this.name = this.getAttribute('name') || this.id;
     this.legend = this.getAttribute('legend') || '';
     this.list = this.getAttribute('list') || '';
-    this.align = this.getAttribute('align') || 'row';
+    this.align = this.getAttribute('align') || DirectionAlignment.row;
     this.value = this.getAttribute('value') || '';
     this.sets = radioGroupSets[this.setsId];
     this.useRadioCmp = false;
@@ -63,7 +64,7 @@ class RadioInputGroup extends HTMLElement {
   }
 
   getBorder() {
-    return this.align === 'row' ? this.sets.item.border : this.sets.item.borderColumn;
+    return this.align === DirectionAlignment.row ? this.sets.item.border : this.sets.item.borderColumn;
   }
 
   render() {
