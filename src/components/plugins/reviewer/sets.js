@@ -18,7 +18,7 @@ const commonSets = {
 };
 
 export const ReviewSets = {
-    propertyAmount: 10,
+    propertyAmount: 12,
     common: {
         id: ReviewerSetIds.common,
         enabled: true,
