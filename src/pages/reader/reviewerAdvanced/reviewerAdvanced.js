@@ -1,9 +1,8 @@
 // @ts-nocheck
 import { IdService, HTMLService } from '../../../services';
 import { ReviewerSetIds } from '../../../components/plugins/reviewer/sets';
-import ReviewerService from '../../../services/page/reviewerService';
 
-class ReaderReviewer extends HTMLElement {
+class ReaderReviewerAdvanced extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
@@ -14,26 +13,21 @@ class ReaderReviewer extends HTMLElement {
       this.getContent();
     }
 
-    async getContent() {
-      this.basic = await ReviewerService.getBasic();
-
-      this.setReviewPack('Engine reviewer', this.basic);
+    getContent() {
+      this.setReviewPack();
       let el = IdService.id('loading', this.shadow);
       el?.remove();
     }
 
-    setReviewPack(name, contents) {
+    setReviewPack() {
       let el = IdService.id('reviewer', this.shadow);
       let html = `
         <div class="qpack">
-          <reader-reviewer
+          <reviewer-step-handler
             id="${ReviewerSetIds.reviewPage}"
-            setsId="${ReviewerSetIds.reviewPage}"
-            headline="${name}"
-            items='${contents}'
-            list="answers"
+            content="reviews"
           > 
-          </reader-reviewer>
+          </reviewer-step-handler>
         </div>
       `;
       HTMLService.appendHTML(el, html);
@@ -50,7 +44,7 @@ class ReaderReviewer extends HTMLElement {
             }
           </style>
           <div id="reviewer">
-            <h3>Reviewer page</h3>
+            <h3>Reviewer Advanced page</h3>
             <span id="loading">Loading content</span>
           </div>
        `;
@@ -58,6 +52,6 @@ class ReaderReviewer extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("reader-reviewer-page", ReaderReviewer);
+    customElements.define("reader-reveiwer-advanced-page", ReaderReviewerAdvanced);
   }
   

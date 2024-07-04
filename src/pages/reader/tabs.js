@@ -13,6 +13,7 @@ class ReaderTabs extends HTMLElement {
         contact: 'contact',
         welcome: 'welcome',
         reviewer: 'reviewer',
+        reviewerAdv: 'reviewerAdv'
       };
     }
     
@@ -25,7 +26,8 @@ class ReaderTabs extends HTMLElement {
       IdService.removeList([
         this.$btnContact, 
         this.$btnWelcome,
-        this.$btnReviewer
+        this.$btnReviewer,
+        this.$btnReviewerAdv
       ]);
     }
 
@@ -33,11 +35,12 @@ class ReaderTabs extends HTMLElement {
       this.$tabContact = IdService.id(this.tabs.contact, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
       this.$tabReviwer = IdService.id(this.tabs.reviewer, this.shadow);
+      this.$tabReviwerAdv = IdService.id(this.tabs.reviewerAdv, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { contact, welcome, reviewer } = ReaderPageTabs.tabLinks;
+      const { contact, welcome, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
 
       this.$btnContact = IdService.idAndClick(contact, this.shadow, () => {
         this.openTab(this.tabs.contact, this.$tabContact);
@@ -47,6 +50,9 @@ class ReaderTabs extends HTMLElement {
       });
       this.$btnReviewer = IdService.idAndClick(reviewer, this.shadow, () => {
         this.openTab(this.tabs.reviewer, this.$tabReviwer);
+      });
+      this.$btnReviewerAdv = IdService.idAndClick(reviewerAdv, this.shadow, () => {
+        this.openTab(this.tabs.reviewerAdv, this.$tabReviwerAdv);
       });
     }
 
@@ -58,7 +64,8 @@ class ReaderTabs extends HTMLElement {
         StyleService.setDisplayMultiple([
           this.$tabContact, 
           this.$tabWelcome, 
-          this.$tabReviwer
+          this.$tabReviwer,
+          this.$tabReviwerAdv
         ], false);
       }
       if (selected !== null) {
@@ -70,13 +77,14 @@ class ReaderTabs extends HTMLElement {
       const { 
         contact,
         welcome, 
-        reviewer, 
+        reviewer,
+        reviewerAdv 
        } = ReaderPageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
               ${commonTabStyle(this.theme)}
 
-              #${this.tabs.contact} {
+              #${this.tabs.reviewerAdv} {
                 display: block;
               }
             </style>
@@ -84,6 +92,7 @@ class ReaderTabs extends HTMLElement {
               <button id="${contact}">Contact</button>
               <button id="${welcome}">Welcome</button>
               <button id="${reviewer}">Reviewer</button>
+              <button id="${reviewerAdv}">Reviewer Advanced</button>
             </div>
 
             <div id="${this.tabs.contact}" class="tabcontent">
@@ -96,6 +105,10 @@ class ReaderTabs extends HTMLElement {
       
             <div id="${this.tabs.reviewer}" class="tabcontent">
               <reader-reviewer-page></reader-reviewer-page>
+            </div> 
+
+            <div id="${this.tabs.reviewerAdv}" class="tabcontent">
+              <reader-reveiwer-advanced-page></reader-reveiwer-advanced-page>
             </div> 
         `;
     }

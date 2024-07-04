@@ -1,4 +1,7 @@
 ## Changelog
+v 2.95
+  Created Reviewer Advanced version
+
 v 2.94
   Added Reviewer improvements
 

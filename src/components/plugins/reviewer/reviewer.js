@@ -6,6 +6,7 @@ import { JSONService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
 import { SettingsChecker } from '../../../services/helpers/settingsChecker';
 import { ReviewSets, ReviewerSetIds } from './sets';
+import { ReviewEvents } from './events';
 
 class Reviewer extends HTMLElement {
   constructor() {
@@ -13,10 +14,12 @@ class Reviewer extends HTMLElement {
     this.shadow = this.attachShadow({ mode: "closed" });
     this.id = this.getAttribute('id') || 'common';
     this.headline = this.getAttribute('headline') || '';
+    this.setsId = this.getAttribute('setsId') || '';
     this.items = this.getAttribute('items') || '[]';
     this.list = this.getAttribute('list') || 'answers';
+    this.submitLabel = this.getAttribute('submit') || 'Submit';
     this.theme = ThemeHelper.get([PackIds.reviewer]);
-    this.sets = SettingsChecker.getId(this.id, ReviewerSetIds, ReviewSets);
+    this.sets = SettingsChecker.getId(this.setsId, ReviewerSetIds, ReviewSets);
     this.collapsed = {};
     this.$names = [];
     this.saveObj = {};
@@ -68,6 +71,12 @@ class Reviewer extends HTMLElement {
     setTimeout(() => {
       HTMLService.html(this.$notice, ''); 
     }, this.sets.message.timeout * 1000);
+
+    CustomEventService.send(ReviewEvents.submit, { 
+      id: this.id, 
+      label: this.headline,
+      saveObj: this.saveObj
+    });
   }
 
   toggleCollapse(id, toggle) {
@@ -205,7 +214,7 @@ class Reviewer extends HTMLElement {
           ${this.showList()}
         </div>
         <div class="submit">
-          <action-button id="reviewer-submit" label="Submit"></action-button>
+          <action-button id="reviewer-submit" label="${this.submitLabel}"></action-button>
         </div>
         <div id="notice"></div>
       </div>
