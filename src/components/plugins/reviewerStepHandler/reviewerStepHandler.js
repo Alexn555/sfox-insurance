@@ -21,16 +21,16 @@ class ReviewerStepHandler extends HTMLElement {
     this.totalSaveObj = {};
 
     this.headlines = [
-        'Engine reviewer',
-        'Advanced'
+      'Engine reviewer',
+      'Advanced'
     ];
 
     CustomEventService.event(ReviewEvents.submit, (e) => {
-        let submitObj = e.detail.value;
-        let el = IdService.id(submitObj.id, this.shadow);
-        StyleService.setDisplay(el, false);
-        this.totalSaveObj[submitObj.id] = submitObj.saveObj;
-        this.addMoreContent();
+      let submitObj = e.detail.value;
+      let el = IdService.id(submitObj.id, this.shadow);
+      StyleService.setDisplay(el, false);
+      this.totalSaveObj[submitObj.id] = submitObj.saveObj;
+      this.addMoreContent();
     });
   }
 
@@ -54,15 +54,15 @@ class ReviewerStepHandler extends HTMLElement {
   async getContent(page = 0) {
     this.content = '';
     switch (page) {
-        case 0:
-        default:
-            this.content += await ReviewerService.getBasic();
-            this.togglePage(1, false);
-        break;
-        case 1: 
-            this.content += await ReviewerService.getAdv();
-            this.togglePage(2, false);
-        break;
+      case 0:
+      default:
+        this.content += await ReviewerService.getBasic();
+        this.togglePage(1, false);
+      break;
+      case 1: 
+        this.content += await ReviewerService.getAdv();
+        this.togglePage(2, false);
+      break;
     }
 
     this.setReviewPack(this.headlines[page], page, this.content);
@@ -73,12 +73,12 @@ class ReviewerStepHandler extends HTMLElement {
   addMoreContent() {
     if (this.currentPage === -1) { return; }
     if (this.currentPage < this.pages) {
-        this.getContent(this.currentPage);
-        this.currentPage = this.currentPage + 1;
-        this.togglePage(1, true);
+      this.getContent(this.currentPage);
+      this.currentPage = this.currentPage + 1;
+      this.togglePage(1, true);
     } else {
-        this.getSubmitButton();
-        this.currentPage = -1;
+      this.getSubmitButton();
+      this.currentPage = -1;
     }
   }
 
@@ -87,7 +87,7 @@ class ReviewerStepHandler extends HTMLElement {
   }
 
   setReviewPack(name, page, contents) {
-    let submitLabel = page < 1 ? 'More questions' : 'Complete';
+    let submitLabel = page < this.pages - 1 ? 'More questions' : 'Complete';
     let html = `
       <div class="qpack">
         <reader-reviewer
@@ -110,38 +110,38 @@ class ReviewerStepHandler extends HTMLElement {
         demo message not send width save obj ${JSON.stringify(this.totalSaveObj)}! :) `;
     LoggerService.log('Reviewer step handler total save obj ', this.totalSaveObj);
     if (this.$notice) {
-        HTMLService.html(this.$notice, msg);
-        setTimeout(() => {
-        HTMLService.html(this.$notice, ''); 
-        }, this.sets.message.timeout * 1000);
+      HTMLService.html(this.$notice, msg);
+      setTimeout(() => {
+      HTMLService.html(this.$notice, ''); 
+      }, this.sets.message.timeout * 1000);
     }
   }
 
   getMoreButton() {
     if (this.sets.showMoreBtn) {
-        let html = `
+      let html = `
         <div class="more">
-            <action-button id="reviewer-more" label="More Content"></action-button>
+          <action-button id="reviewer-more" label="More Content"></action-button>
         </div>
-        `;
-        HTMLService.appendHTML(this.$content, html);
-        if (!this.$more && this.currentPage < this.pages) {
-            this.$more = IdService.idAndClick('reviewer-more', this.shadow, this.addMoreContent.bind(this));
-        }
+      `;
+      HTMLService.appendHTML(this.$content, html);
+      if (!this.$more && this.currentPage < this.pages) {
+        this.$more = IdService.idAndClick('reviewer-more', this.shadow, this.addMoreContent.bind(this));
+      }
     }
   }
 
   getSubmitButton() {
     let html = `
-        <p> Total save obj: ${JSON.stringify(this.totalSaveObj)} </p>
-        <div class="submit">
-          <action-button id="reviewer-submit" label="Submit"></action-button>
-        </div>
-        <div id="notice"></div>
+      <p> Total save obj: ${JSON.stringify(this.totalSaveObj)} </p>
+      <div class="submit">
+        <action-button id="reviewer-submit" label="Submit"></action-button>
+      </div>
+      <div id="notice"></div>
     `;
     HTMLService.appendHTML(this.$wrapper, html);
     if (!this.$submit) {
-        this.$submit = IdService.idAndClick('reviewer-submit', this.shadow, this.submitForm.bind(this));
+      this.$submit = IdService.idAndClick('reviewer-submit', this.shadow, this.submitForm.bind(this));
     }
   }
 
@@ -149,24 +149,24 @@ class ReviewerStepHandler extends HTMLElement {
     let pads = this.sets.pads;
     let fonts = this.sets.fonts;
     this.shadow.innerHTML = this.sets.enabled ? `
-        <style>
-          #wrapper {
-            background-color: ${this.theme.wrapper.background};
-            padding: 2px;
-            font-size: ${fonts.wrapper};
-          }
-          .content {
-            display: ${this.sets.contentHideOnStart ? 'none': 'block'};
-            padding: ${pads.content};
-          }
-          .more {
-            padding: 10px;
-          }
-          #notice {
-            padding: ${pads.item};
-            color: blue;
-            font-weight: bold;
-          }
+      <style>
+        #wrapper {
+          background-color: ${this.theme.wrapper.background};
+          padding: 2px;
+          font-size: ${fonts.wrapper};
+        }
+        .content {
+          display: ${this.sets.contentHideOnStart ? 'none': 'block'};
+          padding: ${pads.content};
+        }
+        .more {
+          padding: 10px;
+        }
+        #notice {
+          padding: ${pads.item};
+          color: blue;
+          font-weight: bold;
+        }
       </style>
       <div id="wrapper">
         <span id="loading">Loading advanced content</span>
