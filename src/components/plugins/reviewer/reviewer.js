@@ -185,6 +185,7 @@ class Reviewer extends HTMLElement {
             padding: ${pads.name};
             user-select: none;
             background-color: ${this.theme.name.background};
+            color: ${this.theme.name.text};
             cursor: ${this.sets.nameCursor};
           }
           .arrUp {

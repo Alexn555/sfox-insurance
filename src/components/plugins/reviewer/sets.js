@@ -2,7 +2,8 @@ import { Cursors, DirectionAlignment } from '../../../enums';
 
 export const ReviewerSetIds = {
     common: 'common',
-    reviewPage: 'reviewPage'
+    reviewPage: 'reviewPage',
+    reviewPageAdvanced: 'reviewPageAdvanced'
 };
 
 const commonSets = {
@@ -35,13 +36,29 @@ export const ReviewSets = {
         pads: commonSets.pads,
         fonts: commonSets.fonts
     },
-    reviewPage: {
+    [ReviewerSetIds.reviewPage]: {
         id: ReviewerSetIds.reviewPage,
         enabled: true,
         collapse: true,
         arrow: true,
+        align: DirectionAlignment.column,
+        contentHideOnStart: false, // true, contentAnim only can be false
+        contentAnim: true,
+        message: {
+            timeout: 1,
+        },
+        contentAnimTime: 1,
+        nameCursor: Cursors.normal, // Cursors.pointer
+        pads: commonSets.pads,
+        fonts: commonSets.fonts
+    },
+    [ReviewerSetIds.reviewPageAdvanced]: {
+        id: ReviewerSetIds.reviewPageAdvanced,
+        enabled: true,
+        collapse: true,
+        arrow: true,
         align: DirectionAlignment.row,
-        contentHideOnStart: false, // true, contenAnim only can be false
+        contentHideOnStart: false, // true, contentAnim only can be false
         contentAnim: true,
         message: {
             timeout: 1,

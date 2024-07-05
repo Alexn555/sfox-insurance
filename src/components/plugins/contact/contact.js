@@ -41,8 +41,8 @@ class ContactForm extends HTMLElement {
   disconnectedCallback() { 
     IdService.removeList([this.$submit]);
     CustomEventService.removeList([
-      `${CustomEvents.interaction.textInputChange}-${this.form.name}`
-      `${CustomEvents.interaction.textInputChange}-${this.form.email}`,
+      `${CustomEvents.interaction.textInputChange}-${this.form.name}`,
+      `${CustomEvents.interaction.textInputChange}'-${this.form.email}`,
       `${CustomEvents.interaction.textAreaChange}-${this.form.message}`
     ]);
   }
@@ -205,6 +205,7 @@ class ContactForm extends HTMLElement {
           padding: ${pads.name};
           user-select: none;
           background-color: ${this.theme.name.background};
+          color: ${this.theme.name.text};
           cursor: ${this.sets.nameCursor};
         }
         .message {

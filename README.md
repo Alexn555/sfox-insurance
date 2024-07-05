@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.95
+### SFox Insurance Engine v 2.96
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,10 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.96 
+  Added Reviewer theme improvements
+  Added Reviewer Advanced significant improvements
+
 v 2.95
   Created Reviewer Advanced version
 
@@ -25,29 +29,6 @@ v 2.92
 
 v 2.90
   Added Reviewer changes
-
-v 2.87
-  Moved SafeKing to plugins and page to page sections
-  Created Reader base version section
-  Created ContactForm version
-
-v 2.86 
-  Added new placement plugins for huge ui components
-
-v 2.85
-  Added FAQ on start content hide settings
-
-v 2.84
-  Added FAQ Advanced pack improvements
-
-v 2.83
-  Added FAQ Service to more advanced get questions
-
-v 2.82
-  Added FAQ Viewer advenced improvements
-
-v 2.80
-  Created FAQ Viewer with faq page 
 
 ## Demo 
 

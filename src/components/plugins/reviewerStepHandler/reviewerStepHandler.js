@@ -7,6 +7,7 @@ import ReviewerService from '../../../services/page/reviewerService';
 import { ReviewSets, ReviewerSetIds } from '../reviewer/sets';
 import { ReviewerStepHandlerSets } from './sets';
 import { ReviewEvents } from '../reviewer/events';
+import { ReviewerStepHelper } from './reviwerStepHelper';
 
 class ReviewerStepHandler extends HTMLElement {
   constructor() {
@@ -57,23 +58,13 @@ class ReviewerStepHandler extends HTMLElement {
   }
 
   async getContent(page = 0) {
-    this.content = '';
-    switch (page) {
-      case 0:
-      default:
-        this.content = await ReviewerService.getBasic();
-        this.togglePage(1, false);
-      break;
-      case 1: 
-        this.content = await ReviewerService.getAdv();
-        this.togglePage(2, false);
-      break;
-    }
+    this.content = await ReviewerService.getContent(page);
+    this.togglePage(page + 1, false);
 
     this.setReviewPack(this.headlines[page], page, this.content);
     let el = IdService.id('loading', this.shadow);
     el?.remove();
-    this.updateStep();
+    ReviewerStepHelper.updateStep(this.sets.showStepNotice, this.$step, this.currentPage, this.pages);
   }
 
   addMoreContent() {
@@ -92,31 +83,15 @@ class ReviewerStepHandler extends HTMLElement {
     this.currentPage = isAdd ? this.currentPage + toggle : toggle;
   }
 
-  showStep() {
-    let html = '';
-    if (this.sets.showStepNotice) {
-      html = `
-        <div id="stepNotice">Step: ${this.currentPage} / ${this.pages} </div>
-      `;
-    }
-    return html;
-  }
-
-  updateStep() {
-    if (this.sets.showStepNotice && this.$step) {
-      HTMLService.text(this.$step, `Step: ${this.currentPage} / ${this.pages}`);
-    }
-  }
-
-  setReviewPack(name, page, contents) {
+  setReviewPack(name, page, content) {
     let submitLabel = page < this.pages - 1 ? 'More questions' : 'Complete';
     let html = `
       <div class="qpack">
         <reader-reviewer
           id="${ReviewerSetIds.reviewPage}-${page}"
-          setsId="${ReviewerSetIds.reviewPage}"
+          setsId="${this.reviewSets.id}"
           headline="${name}"
-          items='${contents}'
+          items='${content}'
           list="answers"
           submit="${submitLabel}"
         > 
@@ -129,15 +104,7 @@ class ReviewerStepHandler extends HTMLElement {
   }
 
   submitForm() {
-    let msg = `All ok,
-        demo message not send width save obj ${JSON.stringify(this.totalSaveObj)}! :) `;
-    LoggerService.log('Reviewer step handler total save obj ', this.totalSaveObj);
-    if (this.$notice) {
-      HTMLService.html(this.$notice, msg);
-      setTimeout(() => {
-      HTMLService.html(this.$notice, ''); 
-      }, this.reviewSets.message.timeout * 1000);
-    }
+    ReviewerStepHelper.submitForm(this.$notice, this.totalSaveObj,  this.reviewSets.message.timeout * 1000);
   }
 
   restartForm() {
@@ -148,42 +115,24 @@ class ReviewerStepHandler extends HTMLElement {
   }
 
   getMoreButton() {
-    if (this.reviewSets.showMoreBtn) {
-      let html = `
-        <div class="more">
-          <action-button id="reviewer-more" label="More Content"></action-button>
-        </div>
-      `;
-      HTMLService.appendHTML(this.$content, html);
+    ReviewerStepHelper.getMoreButton(this.sets.showMoreBtn, this.$content, () => {
       if (!this.$more && this.currentPage < this.pages) {
         this.$more = IdService.idAndClick('reviewer-more', this.shadow, this.addMoreContent.bind(this));
       }
-    }
-  }
-
-  showRestartButton() {
-    let html = '';
-    if (this.sets.restart) {
-      html = `
-        <div class="restart">
-          <action-button id="restart" label="Restart"></action-button>
-        </div>
-      `;
-    }
-    return html;
+    });
   }
 
   getSubmitButton() {
     let html = `
       <p> Total save obj: ${JSON.stringify(this.totalSaveObj)} </p>
       <div class="submit">
-        <action-button id="reviewer-submit" label="Submit"></action-button>
+        <action-button id="total-submit" label="Submit"></action-button>
       </div>
-      ${this.showRestartButton()}
+      ${ReviewerStepHelper.showRestartButton(this.sets.restart)}
       <div id="notice"></div>
     `;
     HTMLService.appendHTML(this.$summary, html);
-    this.$submit = IdService.idAndClick('reviewer-submit', this.shadow, this.submitForm.bind(this));
+    this.$submit = IdService.idAndClick('total-submit', this.shadow, this.submitForm.bind(this));
     this.$restart = IdService.idAndClick('restart', this.shadow, this.restartForm.bind(this));
   }
 
@@ -220,7 +169,7 @@ class ReviewerStepHandler extends HTMLElement {
         <span id="loading">Loading advanced content</span>
         <div id="${this.content}" class="content"></div>
         <div id="summary"></div>
-        ${this.showStep()}
+        ${ReviewerStepHelper.showStep(this.sets.showStepNotice, this.currentPage, this.pages)}
       </div>
      ` : '';
   }

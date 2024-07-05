@@ -1,3 +1,5 @@
+import { ReviewerSetIds } from '../../plugins/reviewer/sets';
+
 const commonSets = {
     input: '10px',
     item: {
@@ -9,7 +11,15 @@ const commonSets = {
 
 export const radioGroupSets = {
     common: commonSets,
-    reviewPage: {
+    [ReviewerSetIds.reviewPage]: {
+        input: '10px',
+        item: {
+            padding: '10px',
+            border: 'none',
+            borderColumn: '1px dashed #dcdcdc'
+        }
+    },
+    [ReviewerSetIds.reviewPageAdvanced]: {
         input: '10px',
         item: {
             padding: '10px',

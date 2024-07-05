@@ -15,4 +15,18 @@ export default class ReviewerService {
             return parse ? JSONService.set(AdvReviews) : AdvReviews; 
         });
     }
+
+    static async getContent(page = 0) {
+        let content;
+        switch (page) {
+          case 0:
+          default:
+            content = await ReviewerService.getBasic();
+          break;
+          case 1: 
+            content = await ReviewerService.getAdv();
+          break;
+        }
+        return content;
+    }
 }

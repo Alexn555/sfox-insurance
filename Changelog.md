@@ -1,4 +1,8 @@
 ## Changelog
+v 2.96 
+  Added Reviewer theme improvements
+  Added Reviewer Advanced significant improvements
+
 v 2.95
   Created Reviewer Advanced version
 

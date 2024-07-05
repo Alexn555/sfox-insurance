@@ -24,7 +24,7 @@ class ReaderReviewerAdvanced extends HTMLElement {
       let html = `
         <div class="qpack">
           <reviewer-step-handler
-            id="${ReviewerSetIds.reviewPage}"
+            id="${ReviewerSetIds.reviewPageAdvanced}"
             content="reviews"
           > 
           </reviewer-step-handler>
