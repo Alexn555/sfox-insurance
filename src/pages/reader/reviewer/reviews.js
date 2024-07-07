@@ -2,6 +2,7 @@ export const Reviews = [
     { 
         id: '1', 
         name: 'How did you liked accommodation?', 
+        required: true,
         answers: [
             { val: 1, label: 'bad' },
             { val: 2, label: 'normal' },
@@ -12,6 +13,7 @@ export const Reviews = [
     { 
         id: '2', 
         name: 'Is this website have decent amount of plugins?', 
+        required: false,
         answers: [
             { val: 1, label: 'yes' },
             { val: 2, label: 'no' },
@@ -20,6 +22,7 @@ export const Reviews = [
     { 
         id: '3', 
         name: 'In scale 1 - 5 (bad - good) how would you rate those plugins?', 
+        required: false,
         answers: [
             { val: 1, label: '1' },
             { val: 2, label: '2' },
@@ -31,6 +34,7 @@ export const Reviews = [
     { 
         id: '4', 
         name: 'Are serivces handly for this engine?', 
+        required: false,
         answers: [
             { val: 1, label: 'yes' },
             { val: 2, label: 'no' },

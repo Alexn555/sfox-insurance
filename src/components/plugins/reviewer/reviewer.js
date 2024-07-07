@@ -4,6 +4,7 @@ import { PackIds } from '../../../theme/enums';
 import { IdService, StyleService, HTMLService, CustomEventService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
+import { styleErrors } from '../../common/styles/errors';
 import { SettingsChecker } from '../../../services/helpers/settingsChecker';
 import { ReviewSets, ReviewerSetIds } from './sets';
 import { ReviewEvents } from './events';
@@ -43,6 +44,7 @@ class Reviewer extends HTMLElement {
   initForm() {
     this.$list = IdService.id(this.list, this.shadow);
     this.$notice = IdService.id('notice', this.shadow);
+    this.$error = IdService.id('error', this.shadow);
     this.initButtons();
   }
 
@@ -65,18 +67,50 @@ class Reviewer extends HTMLElement {
   }
 
   submitForm() {
-    let msg = `All ok,
-     demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `;
-    HTMLService.html(this.$notice, msg);
-    setTimeout(() => {
-      HTMLService.html(this.$notice, ''); 
-    }, this.sets.message.timeout * 1000);
+    if (!this.validateForm()) {
+      let msg = `All ok,
+        demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `;
+      HTMLService.html(this.$notice, msg);
+      setTimeout(() => {
+        HTMLService.html(this.$notice, ''); 
+      }, this.sets.message.timeout * 1000);
 
-    CustomEventService.send(ReviewEvents.submit, { 
-      id: this.id, 
-      label: this.headline,
-      saveObj: this.saveObj
-    });
+      CustomEventService.send(ReviewEvents.submit, { 
+        id: this.id, 
+        label: this.headline,
+        saveObj: this.saveObj
+      });
+    }
+  }
+
+  validateForm() {
+    let isError = false;
+    let itemsRequired = 0;
+    let foundRequired = 0;
+
+    if (this.items && this.items.length > 0) {
+      this.items.forEach((item, index) => {
+        if (item.required) {
+          itemsRequired += 1;
+        }
+
+        for (const [key] of Object.entries(this.saveObj)) {
+          if (item.required && item.id === key) {
+            foundRequired += 1;
+          }
+        }
+      });
+    }
+
+    isError = itemsRequired !== foundRequired;
+
+    if (isError) {
+      HTMLService.html(this.$error, 'Error, some required marked with (*) are not answered. Please answer those');
+      StyleService.setDisplay(this.$error, true);
+      setTimeout(() => { StyleService.setDisplay(this.$error, false); }, 1000);
+    }
+
+    return isError;
   }
 
   toggleCollapse(id, toggle) {
@@ -131,6 +165,10 @@ class Reviewer extends HTMLElement {
     return this.sets.arrow ? `<div id="arrow-${id}" class="arrDw"></div>` : '';
   }
     
+  showRequired(item) {
+    return item.required ? '*' : '';
+  }
+
   showList() {
     let html = '';
     this.items.forEach(item => {
@@ -138,7 +176,7 @@ class Reviewer extends HTMLElement {
         html += `
           <div id="item-${item.id}" class="item"> 
             <div id="name-${item.id}" class="name">
-              ${item.name}
+              ${item.name} ${this.showRequired(item)}
               ${this.showArrow(item.id)}
             </div>
             <div id="content-${item.id}" class="content">
@@ -163,51 +201,55 @@ class Reviewer extends HTMLElement {
     let pads = this.sets.pads;
     let fonts = this.sets.fonts;
     this.shadow.innerHTML = this.sets.enabled ? `
-        <style>
-          #wrapper {
-            background-color: ${this.theme.wrapper.background};
-            padding: 2px;
-            font-size: ${fonts.wrapper};
-          }
-          .item {
-            padding: ${pads.item};
-          }
-          .headline {
-            width: 100px;
-            margin-left: 4px;
-            font-size: 18px;
-            border-bottom: 1px solid ${this.theme.name.background};
-          }
-          .name {
-            position: relative;
-            font-size: ${fonts.name};
-            font-weight: bold;
-            padding: ${pads.name};
-            user-select: none;
-            background-color: ${this.theme.name.background};
-            color: ${this.theme.name.text};
-            cursor: ${this.sets.nameCursor};
-          }
-          .arrUp {
-            ${this.getCommonArrow()}
-            border-bottom: 4px solid ${this.theme.arrow.background};
-          }
-          .arrDw {
-            ${this.getCommonArrow()}
-            border-top: 4px solid ${this.theme.arrow.background};
-          }
-          .content {
-            display: ${this.sets.contentHideOnStart ? 'none': 'block'};
-            padding: ${pads.content};
-            background-color: ${this.theme.content.background};
-            transition: height ${this.sets.contentAnimTime}s;
-            overflow-y: hidden;
-          }
-          #notice {
-            padding: ${pads.item};
-            color: blue;
-            font-weight: bold;
-          }
+      <style>
+        #wrapper {
+          background-color: ${this.theme.wrapper.background};
+          padding: 2px;
+          font-size: ${fonts.wrapper};
+        }
+        .item {
+          padding: ${pads.item};
+        }
+        .headline {
+          width: 100px;
+          margin-left: 4px;
+          font-size: 18px;
+          border-bottom: 1px solid ${this.theme.name.background};
+        }
+        .name {
+          position: relative;
+          font-size: ${fonts.name};
+          font-weight: bold;
+          padding: ${pads.name};
+          user-select: none;
+          background-color: ${this.theme.name.background};
+          color: ${this.theme.name.text};
+          cursor: ${this.sets.nameCursor};
+        }
+        .arrUp {
+          ${this.getCommonArrow()}
+          border-bottom: 4px solid ${this.theme.arrow.background};
+        }
+        .arrDw {
+          ${this.getCommonArrow()}
+          border-top: 4px solid ${this.theme.arrow.background};
+        }
+        .content {
+          display: ${this.sets.contentHideOnStart ? 'none': 'block'};
+          padding: ${pads.content};
+          background-color: ${this.theme.content.background};
+          transition: height ${this.sets.contentAnimTime}s;
+          overflow-y: hidden;
+        }
+        #error {
+          ${styleErrors.commonText}
+          padding-left: 4px;
+        }
+        #notice {
+          padding: ${pads.item};
+          color: blue;
+          font-weight: bold;
+        }
       </style>
       <div id="wrapper">
         <div id="${this.list}">
@@ -218,6 +260,7 @@ class Reviewer extends HTMLElement {
           <action-button id="reviewer-submit" label="${this.submitLabel}"></action-button>
         </div>
         <div id="notice"></div>
+        <div id="error"></div>
       </div>
      ` : '';
   }

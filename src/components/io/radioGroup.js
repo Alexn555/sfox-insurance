@@ -31,7 +31,7 @@ class RadioInputGroup extends HTMLElement {
       for (let i = 0, l = this.list.length; i < l; i++) {
         let el = IdService.id(this.id+'-'+i, this.shadow);
         el.onchange = (() => {
-            CustomEventService.send(`${CustomEvents.interaction.radioGroupChange}-${this.name}`, el.value);
+          CustomEventService.send(`${CustomEvents.interaction.radioGroupChange}-${this.name}`, el.value);
         }); 
       }
     } else {

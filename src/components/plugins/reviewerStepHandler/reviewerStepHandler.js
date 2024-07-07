@@ -30,9 +30,11 @@ class ReviewerStepHandler extends HTMLElement {
     CustomEventService.event(ReviewEvents.submit, (e) => {
       let submitObj = e.detail.value;
       let el = IdService.id(submitObj.id, this.shadow);
-      StyleService.setDisplay(el, false);
-      this.totalSaveObj[submitObj.id] = submitObj.saveObj;
-      this.addMoreContent();
+      if (el) {
+        StyleService.setDisplay(el, false);
+        this.totalSaveObj[submitObj.id] = submitObj.saveObj;
+        this.addMoreContent();
+      }
     });
   }
 

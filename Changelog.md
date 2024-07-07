@@ -1,6 +1,7 @@
 ## Changelog
 v 2.97 
   Added better Readme description
+  Introduced Reviews required field, to navigate only if required answered
 
 v 2.96 
   Added Reviewer theme improvements
