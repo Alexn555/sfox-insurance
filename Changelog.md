@@ -1,4 +1,7 @@
 ## Changelog
+v 2.97 
+  Added better Readme description
+
 v 2.96 
   Added Reviewer theme improvements
   Added Reviewer Advanced significant improvements

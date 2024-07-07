@@ -1,4 +1,4 @@
-### SFox Insurance Engine v 2.96
+### SFox Insurance Engine v 2.97
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.97 
+  Added better Readme description
+
 v 2.96 
   Added Reviewer theme improvements
   Added Reviewer Advanced significant improvements
@@ -37,12 +40,25 @@ v 2.90
 Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
 
+## Features 
+ This Engine helps build domestic websites. Yeah, sound kinda old fashioned,  <br />
+ but the engine does the trick, providing you with tons of good plugins (modules). <br />
+ Those plugins works with the "user" Page and IO components and service that create <br />
+ great relanshionship in order to create good website. <br />
+
+ So for now, there are about good bunch of plugins: <br />
+ Theme, network, ImageViewer, GalleryViewer, Contact form, <br />
+ Reviewer (Questionnaire), Economic forms, Game example, TextEditor, Simple Login <br />
+ and plenty to come.  <br />
+
+
 ## Overall structure
  Program is structured in this way: 
 
     All components, pages, ui elements are HTMLElements in classical WebComponents style.
 
-    ui / (common input elements)
+    plugins - most tasty section 
+    io / (common input and output elements)
 
     layout / overall portal structure
      page -> page switcher
@@ -51,6 +67,8 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
          header -> header menu (desktop, mobile)
          page -> page switcher
          footer -> footer menu (desktop, mobile)
+
+    services - to help plugins doing something with pages
 
     pages / -> pages and some components specially designed for them
       home / - home page and components
@@ -74,7 +92,7 @@ Demo link: [link](http://norwaydict.com/sfoxinsurance)
    this command will install webpack and all required plugins
 
    2. then use command:
-     npm start , runs dev server (with disabled intentionally dev-server error overlay )
+     npm start , runs dev server (with disabled intentionally dev-server error overlay)
      npm run build, builds the appliation in dist folder
 
 
