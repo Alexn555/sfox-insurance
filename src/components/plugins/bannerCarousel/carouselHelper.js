@@ -10,8 +10,7 @@ export class BannerCarouelHelper {
 
     static setError($error, msg, ctx) {
         this.toggleStatusCl('status', 'error', ctx);
-        HTMLService.html($error, msg);
-        setTimeout(() => { HTMLService.html($error, ''); }, 2000);
+        HTMLService.toggleMsg($error, msg, 2);
     }
   
     static toggleStatusCl(id, status, ctx) {

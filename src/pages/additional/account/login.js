@@ -90,13 +90,8 @@ class AccountLogin extends HTMLElement {
 
     showError(error, visible = true) {
       const el = IdService.id('error', this.shadow);
-      HTMLService.html(el, error);
+      HTMLService.toggleMsg(el, error, 2);
       StyleService.setDisplay(el, visible);
-      this.removeError(el);
-    }
-
-    removeError(el, timeout = 2000) {
-      setTimeout(() => HTMLService.html(el, ''), timeout);
     }
 
     showInfoTip() {

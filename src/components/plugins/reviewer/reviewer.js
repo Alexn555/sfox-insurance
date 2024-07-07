@@ -68,7 +68,7 @@ class Reviewer extends HTMLElement {
 
   submitForm() {
     if (!this.validateForm()) {
-      this.toggleMsg(this.$notice, 
+      HTMLService.toggleMsg(this.$notice, 
         `All ok,
         demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `, 
         this.sets.message.timeout);
@@ -103,15 +103,10 @@ class Reviewer extends HTMLElement {
     isError = itemsRequired !== foundRequired;
 
     if (isError) {
-      this.toggleMsg(this.$error, 'Error, some required marked with (*) are not answered. Please answer those', 1);
+      HTMLService.toggleMsg(this.$error, 'Error, some required marked with (*) are not answered. Please answer those', 1);
     }
 
     return isError;
-  }
-
-  toggleMsg(el, msg, tm = 1) {
-    HTMLService.html(el, msg);
-    setTimeout(() => { HTMLService.html(el, ''); }, tm * 1000);
   }
 
   toggleCollapse(id, toggle) {

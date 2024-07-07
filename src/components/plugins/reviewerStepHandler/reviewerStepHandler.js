@@ -106,7 +106,7 @@ class ReviewerStepHandler extends HTMLElement {
   }
 
   submitForm() {
-    ReviewerStepHelper.submitForm(this.$notice, this.totalSaveObj,  this.reviewSets.message.timeout * 1000);
+    ReviewerStepHelper.submitForm(this.$notice, this.totalSaveObj,  this.reviewSets.message.timeout);
   }
 
   restartForm() {

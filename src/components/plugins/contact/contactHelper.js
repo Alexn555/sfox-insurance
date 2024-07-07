@@ -5,8 +5,7 @@ import { ValidatorService } from '../../../services/utils';
 export class ContactHelper {
     static showError(el, msg, tm = 1) {
         StyleService.toggleClass(el, 'error', true);
-        HTMLService.html(el, msg);
-        setTimeout(() => { HTMLService.html(el, ''); }, tm * 1000);
+        HTMLService.toggleMsg(el, msg, 1);
     }
 
     static validateFields(saveObj, setsEmail) {

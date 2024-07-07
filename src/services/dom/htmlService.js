@@ -25,6 +25,11 @@ export class HTMLService {
         }
     }
 
+    static toggleMsg(el, val, tm = 1) {
+        HTMLService.html(el, val);
+        setTimeout(() => { HTMLService.html(el, ''); }, tm * 1000);
+    }
+
     static removeItems(parentObj) {
         while (parentObj.firstChild) {
           parentObj.removeChild(parentObj.lastChild);
