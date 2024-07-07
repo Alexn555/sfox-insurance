@@ -68,12 +68,10 @@ class Reviewer extends HTMLElement {
 
   submitForm() {
     if (!this.validateForm()) {
-      let msg = `All ok,
-        demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `;
-      HTMLService.html(this.$notice, msg);
-      setTimeout(() => {
-        HTMLService.html(this.$notice, ''); 
-      }, this.sets.message.timeout * 1000);
+      this.toggleMsg(this.$notice, 
+        `All ok,
+        demo message not send width save obj ${JSON.stringify(this.saveObj)}! :) `, 
+        this.sets.message.timeout);
 
       CustomEventService.send(ReviewEvents.submit, { 
         id: this.id, 
@@ -105,12 +103,15 @@ class Reviewer extends HTMLElement {
     isError = itemsRequired !== foundRequired;
 
     if (isError) {
-      HTMLService.html(this.$error, 'Error, some required marked with (*) are not answered. Please answer those');
-      StyleService.setDisplay(this.$error, true);
-      setTimeout(() => { StyleService.setDisplay(this.$error, false); }, 1000);
+      this.toggleMsg(this.$error, 'Error, some required marked with (*) are not answered. Please answer those', 1);
     }
 
     return isError;
+  }
+
+  toggleMsg(el, msg, tm = 1) {
+    HTMLService.html(el, msg);
+    setTimeout(() => { HTMLService.html(el, ''); }, tm * 1000);
   }
 
   toggleCollapse(id, toggle) {
