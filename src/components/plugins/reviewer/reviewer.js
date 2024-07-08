@@ -164,7 +164,7 @@ class Reviewer extends HTMLElement {
   }
     
   showNumber(num) {
-    return this.sets.nameNumber ? '('+num+')' : '';
+    return this.sets.numeration ? '('+num+')' : '';
   }
 
   showRequired(item) {

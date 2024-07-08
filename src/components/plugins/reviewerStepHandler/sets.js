@@ -3,5 +3,5 @@ export const ReviewerStepHandlerSets = {
     showStepNotice: true,
     restart: true,
     showMoreBtn: false,
-    nameNumber: true
+    numeration: true
 };
