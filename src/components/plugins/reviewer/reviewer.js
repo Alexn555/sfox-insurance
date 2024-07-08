@@ -18,6 +18,7 @@ class Reviewer extends HTMLElement {
     this.setsId = this.getAttribute('setsId') || '';
     this.items = this.getAttribute('items') || '[]';
     this.list = this.getAttribute('list') || 'answers';
+    this.startNum = this.getAttribute('start-num') || '0';
     this.submitLabel = this.getAttribute('submit') || 'Submit';
     this.theme = ThemeHelper.get([PackIds.reviewer]);
     this.sets = SettingsChecker.getId(this.setsId, ReviewerSetIds, ReviewSets);
@@ -27,7 +28,7 @@ class Reviewer extends HTMLElement {
   }
 
   connectedCallback() {
-    this.initList();
+    this.initAttributes();
     this.render();
     this.initForm();
   }
@@ -37,8 +38,9 @@ class Reviewer extends HTMLElement {
     IdService.removeList([this.$submit]);
   }
 
-  initList() {
+  initAttributes() {
     this.items = JSONService.getArray(this.items);
+    this.startNum = parseInt(this.startNum, 10);
   }
 
   initForm() {
@@ -161,18 +163,23 @@ class Reviewer extends HTMLElement {
     return this.sets.arrow ? `<div id="arrow-${id}" class="arrDw"></div>` : '';
   }
     
+  showNumber(num) {
+    return this.sets.nameNumber ? '('+num+')' : '';
+  }
+
   showRequired(item) {
     return item.required ? '*' : '';
   }
 
   showList() {
     let html = '';
-    this.items.forEach(item => {
+    this.items.forEach((item, index) => {
+      let num = this.startNum + (index + 1);
       let answers = JSONService.set(item.answers);
         html += `
           <div id="item-${item.id}" class="item"> 
             <div id="name-${item.id}" class="name">
-              ${item.name} ${this.showRequired(item)}
+              ${this.showNumber(num)} ${item.name} ${this.showRequired(item)}
               ${this.showArrow(item.id)}
             </div>
             <div id="content-${item.id}" class="content">

@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 2.98
+  Added Reviewer question numeration
+
 v 2.97 
   Added better Readme description
   Introduced Reviews required field, to navigate only if required answered

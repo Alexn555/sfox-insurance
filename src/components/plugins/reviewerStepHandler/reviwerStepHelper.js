@@ -1,4 +1,5 @@
 import { HTMLService, LoggerService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 
 export class ReviewerStepHelper {
     static showStep(isAllowed, currentPage, pages) {
@@ -15,6 +16,12 @@ export class ReviewerStepHelper {
       if (isAllowed && $step) {
         HTMLService.text($step, `Step: ${currentPage} / ${pages}`);
       }
+    }
+
+    static getNameNumber(isAllowd, page, content) {
+      if (!isAllowd) { return 0; }
+      let list = JSONService.getArray(content);
+      return page < 1 ? 0 : list.length * page;
     }
 
     static showRestartButton(isAllowed) {

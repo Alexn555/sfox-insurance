@@ -44,6 +44,7 @@ export const ReviewSets = {
         align: DirectionAlignment.column,
         contentHideOnStart: false, // true, contentAnim only can be false
         contentAnim: true,
+        nameNumber: false,
         message: {
             timeout: 1,
         },
@@ -60,6 +61,7 @@ export const ReviewSets = {
         align: DirectionAlignment.row,
         contentHideOnStart: false, // true, contentAnim only can be false
         contentAnim: true,
+        nameNumber: true,
         message: {
             timeout: 1,
         },

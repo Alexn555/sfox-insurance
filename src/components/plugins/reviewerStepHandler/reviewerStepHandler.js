@@ -87,6 +87,7 @@ class ReviewerStepHandler extends HTMLElement {
 
   setReviewPack(name, page, content) {
     let submitLabel = page < this.pages - 1 ? 'More questions' : 'Complete';
+    let num = ReviewerStepHelper.getNameNumber(this.sets.nameNumber, page, content);
     let html = `
       <div class="qpack">
         <reader-reviewer
@@ -95,6 +96,7 @@ class ReviewerStepHandler extends HTMLElement {
           headline="${name}"
           items='${content}'
           list="answers"
+          start-num="${num}"
           submit="${submitLabel}"
         > 
         </reader-reviewer>
