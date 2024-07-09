@@ -1,4 +1,7 @@
 ## Changelog
+v 2.99
+  Added better Readme, added improved index.html header
+
 v 2.98
   Added Reviewer question numeration
 
