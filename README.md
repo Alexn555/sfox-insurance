@@ -1,8 +1,8 @@
-### SFox Insurance Engine v 2.97
+### SFox Engine v 2.97
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
-SFoxInsurance (Non-existing in real brand) it's a Javascript Engine for <br />
+SFox Engine (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
 Main plot to show good features of WebComponents and how can those be used <br />
 in real website, administration systems.
