@@ -7,6 +7,7 @@ class ReaderReviewer extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
+      this.useSingle = false;
     }
 
     connectedCallback() {
@@ -15,20 +16,24 @@ class ReaderReviewer extends HTMLElement {
     }
 
     async getContent() {
+      this.$reviewer = IdService.id('reviewer', this.shadow);
       this.basic = await ReviewerService.getBasic();
 
-      this.setReviewPack('Engine reviewer', this.basic);
+      if (this.useSingle) {
+        this.setReviewPack(ReviewerSetIds.reviewPage, 'Engine reviewer', this.basic);
+      } else {
+        this.setReviewPack(ReviewerSetIds.reviewPageMultiple, 'Multiple answers reviewer', this.basic);
+      }
       let el = IdService.id('loading', this.shadow);
       el?.remove();
     }
 
-    setReviewPack(name, contents) {
-      let el = IdService.id('reviewer', this.shadow);
+    setReviewPack(id, name, contents) {
       let html = `
         <div class="qpack">
           <reader-reviewer
-            id="${ReviewerSetIds.reviewPage}"
-            setsId="${ReviewerSetIds.reviewPage}"
+            id="${id}"
+            setsId="${id}"
             headline="${name}"
             items='${contents}'
             list="answers"
@@ -36,7 +41,7 @@ class ReaderReviewer extends HTMLElement {
           </reader-reviewer>
         </div>
       `;
-      HTMLService.appendHTML(el, html);
+      HTMLService.appendHTML(this.$reviewer, html);
     }
 
     render() {

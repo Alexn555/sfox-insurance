@@ -3,6 +3,7 @@ import { Cursors, DirectionAlignment } from '../../../enums';
 export const ReviewerSetIds = {
     common: 'common',
     reviewPage: 'reviewPage',
+    reviewPageMultiple: 'reviewPageMultiple',
     reviewPageAdvanced: 'reviewPageAdvanced'
 };
 
@@ -19,7 +20,7 @@ const commonSets = {
 };
 
 export const ReviewSets = {
-    propertyAmount: 12,
+    propertyAmount: 14,
     common: {
         id: ReviewerSetIds.common,
         enabled: true,
@@ -32,11 +33,30 @@ export const ReviewSets = {
             timeout: 1,
         },
         contentAnimTime: 1, //s
+        multipleAnswers: false,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts
     },
     [ReviewerSetIds.reviewPage]: {
+        id: ReviewerSetIds.reviewPage,
+        enabled: true,
+        collapse: true,
+        arrow: true,
+        align: DirectionAlignment.column,
+        contentHideOnStart: false, // true, contentAnim only can be false (similar to faq sets)
+        contentAnim: true,
+        numeration: false,
+        message: {
+            timeout: 1,
+        },
+        contentAnimTime: 1,
+        multipleAnswers: false,
+        nameCursor: Cursors.normal, // Cursors.pointer
+        pads: commonSets.pads,
+        fonts: commonSets.fonts
+    },
+    [ReviewerSetIds.reviewPageMultiple]: { // reviewer multiple answers
         id: ReviewerSetIds.reviewPage,
         enabled: true,
         collapse: true,
@@ -49,7 +69,8 @@ export const ReviewSets = {
             timeout: 1,
         },
         contentAnimTime: 1,
-        nameCursor: Cursors.normal, // Cursors.pointer
+        multipleAnswers: true,
+        nameCursor: Cursors.normal,
         pads: commonSets.pads,
         fonts: commonSets.fonts
     },
@@ -66,7 +87,8 @@ export const ReviewSets = {
             timeout: 1,
         },
         contentAnimTime: 1,
-        nameCursor: Cursors.normal, // Cursors.pointer
+        multipleAnswers: false,
+        nameCursor: Cursors.normal,
         pads: commonSets.pads,
         fonts: commonSets.fonts
     }

@@ -16,6 +16,20 @@ export class ArrayService {
         return list[NumberService.randomInteger(fIndex, lastIndex)];
     }
 
+    static addOrSplice(saveObj, val) {
+        if (!saveObj) {
+          saveObj = [];
+        }
+
+        let found = saveObj.indexOf(val);
+        if (found < 0) {
+          saveObj.push(val);
+        } else {
+          saveObj.splice(found, 1);
+        }
+        return saveObj;
+    }
+
     // (c) ashleedawg stackoverflow
     static shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {

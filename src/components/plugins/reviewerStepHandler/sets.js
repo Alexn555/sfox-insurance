@@ -3,5 +3,6 @@ export const ReviewerStepHandlerSets = {
     showStepNotice: true,
     restart: true,
     showMoreBtn: false,
-    numeration: true
+    multipleAnswers: false,
+    numeration: true,
 };

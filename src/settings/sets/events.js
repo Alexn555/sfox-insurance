@@ -26,7 +26,8 @@ export const CustomEvents = {
         textInputChange: 'text-input-change',
         textAreaChange: 'text-area-change',
         radioChange: 'radio-input-change',
-        radioGroupChange: 'radio-group-change'
+        radioGroupChange: 'radio-group-change',
+        checkboxChange: 'checkbox-change'
     },
     header: {
         menuOverlay: 'header-menu-overlay',

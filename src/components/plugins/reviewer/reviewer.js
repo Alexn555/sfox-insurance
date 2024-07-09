@@ -2,7 +2,7 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { IdService, StyleService, HTMLService, CustomEventService } from '../../../services';
-import { JSONService } from '../../../services/utils';
+import { JSONService, ArrayService } from '../../../services/utils';
 import { CustomEvents } from '../../../settings';
 import { styleErrors } from '../../common/styles/errors';
 import { SettingsChecker } from '../../../services/helpers/settingsChecker';
@@ -62,6 +62,9 @@ class Reviewer extends HTMLElement {
 
       CustomEventService.event(`${CustomEvents.interaction.radioGroupChange}-radio-${item.id}`, (e) => {
         this.saveObj[item.id] = e.detail.value;
+      });
+      CustomEventService.event(`${CustomEvents.interaction.checkboxChange}-radio-${item.id}`, (e) => {
+        this.saveObj[item.id] = ArrayService.addOrSplice(this.saveObj[item.id], e.detail.value);
       });
     });
 
@@ -173,6 +176,7 @@ class Reviewer extends HTMLElement {
 
   showList() {
     let html = '';
+    let key = this.sets.multipleAnswers ? 'checkbox-input-group' : 'radio-input-group';
     this.items.forEach((item, index) => {
       let num = this.startNum + (index + 1);
       let answers = JSONService.set(item.answers);
@@ -183,7 +187,7 @@ class Reviewer extends HTMLElement {
               ${this.showArrow(item.id)}
             </div>
             <div id="content-${item.id}" class="content">
-              <radio-input-group 
+              <${key}
                 id="radio-${item.id}"
                 sets-id="${this.sets.id}"
                 name="radio-${item.id}"
@@ -191,7 +195,7 @@ class Reviewer extends HTMLElement {
                 align="${this.sets.align}"
                 value=""
               >
-              </radio-input-group>
+              </${key}>
             </div>
           </div>
         `;
