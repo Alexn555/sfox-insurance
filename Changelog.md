@@ -1,4 +1,8 @@
 ## Changelog
+v 3.00
+  Created numeraction for FAQ component
+  Fixed IconSelect (missed in components include) :)
+
 v 2.99
   Added better Readme, added improved index.html header
   Introduced Reviewer multiple answers

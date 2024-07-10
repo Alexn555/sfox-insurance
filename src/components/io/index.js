@@ -5,6 +5,7 @@ import './textArea';
 import './accountTable';
 import './radio';
 import './radioGroup';
+import './iconSelect';
 import './checkboxGroup';
 import './amountSlider';
 import './select';

@@ -14,6 +14,7 @@ class FAQViewer extends HTMLElement {
     this.headline = this.getAttribute('headline') || '';
     this.items = this.getAttribute('items') || '[]';
     this.list = this.getAttribute('list') || 'questions';
+    this.startNum = this.getAttribute('start-num') || '0';
     this.theme = ThemeHelper.get([PackIds.faqViewer]);
     this.sets = SettingsChecker.getId(this.id, FAQSetIds, FAQSets);
     this.collapsed = {};
@@ -37,6 +38,7 @@ class FAQViewer extends HTMLElement {
 
   initList() {
     this.items = JSONService.getArray(this.items);
+    this.startNum = parseInt(this.startNum, 10);
   }
 
   initButtons() {
@@ -102,22 +104,28 @@ class FAQViewer extends HTMLElement {
   showArrow(id) {
     return this.sets.arrow ? `<div id="arrow-${id}" class="arrDw"></div>` : '';
   }
+
+  showNumber(num) {
+    return this.sets.numeration ? '('+num+') ' : '';
+  }
     
   showList() {
     let html = '';
-    this.items.forEach(item => {
-        html += `
-          <div id="item-${item.id}" class="item"> 
-            <div id="name-${item.id}" class="name">
-              ${item.name}
-              ${this.showArrow(item.id)}
-            </div>
-            <div id="content-${item.id}" class="content">
-              ${item.content}
-            </div>
+    this.items.forEach((item, index) => {
+
+      let num = this.startNum + (index + 1);
+      html += `
+        <div id="item-${item.id}" class="item"> 
+          <div id="name-${item.id}" class="name">
+            ${this.showNumber(num)}${item.name}
+            ${this.showArrow(item.id)}
           </div>
-        `;
-        this.toggleCollapse(item.id, !this.sets.contentHideOnStart);
+          <div id="content-${item.id}" class="content">
+            ${item.content}
+          </div>
+        </div>
+      `;
+      this.toggleCollapse(item.id, !this.sets.contentHideOnStart);
     });
     return html;
   }

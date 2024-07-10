@@ -18,7 +18,7 @@ const commonSets = {
 };
 
 export const FAQSets = {
-    propertyAmount: 10,
+    propertyAmount: 11,
     common: {
         id: FAQSetIds.common,
         enabled: true,
@@ -27,6 +27,7 @@ export const FAQSets = {
         contentHideOnStart: false,
         contentAnim: false,
         contentAnimTime: 1, //s
+        numeration: true,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts
@@ -39,6 +40,7 @@ export const FAQSets = {
         contentHideOnStart: false, // true, contenAnim only can be false
         contentAnim: true,
         contentAnimTime: 1,
+        numeration: false,
         nameCursor: Cursors.normal, // Cursors.pointer
         pads: commonSets.pads,
         fonts: commonSets.fonts

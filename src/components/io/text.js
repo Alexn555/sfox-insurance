@@ -12,6 +12,7 @@ class TextInput extends HTMLElement { // numeric, usual text
     this.max = this.getAttribute('max') || '100';
     this.className = this.getAttribute('class-name') || '';
     this.type = this.getAttribute('type') || 'text';
+    this.autoComplete = this.getAttribute('autocomplete') || 'on';
     this.value = this.getAttribute('value') || '';
     this.$textValue = '';
   }
@@ -71,6 +72,7 @@ class TextInput extends HTMLElement { // numeric, usual text
                 id="${this.id}" 
                 name="${this.id}"
                 type="${this.type}"
+                autocomplete="${this.autoComplete}"
             >                 
         `;
   }

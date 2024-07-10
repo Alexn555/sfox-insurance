@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { HTMLService, IdService } from '../../../services';
+import { JSONService } from '../../../services/utils';
 import { FAQSetIds } from '../../../components/plugins/faq/sets';
 import FAQService from '../../../services/page/faqService';
 
@@ -20,13 +21,13 @@ class FAQPage extends HTMLElement {
       this.basic = await FAQService.getBasic();
       this.advenced = await FAQService.getAdvenced();
 
-      this.setQPack('Basic', this.basic);
-      this.setQPack('Advanced', this.advenced);
+      this.setQPack('Basic', this.basic, 0);
+      this.setQPack('Advanced', this.advenced, JSONService.getArray(this.basic).length);
       let el = IdService.id('loading', this.shadow);
       el?.remove();
     }
 
-    setQPack(name, contents) {
+    setQPack(name, contents, startNum) {
       let el = IdService.id('wrapper', this.shadow);
       let html = `
         <div class="qpack">
@@ -35,6 +36,7 @@ class FAQPage extends HTMLElement {
               headline="${name}"
               items='${contents}'
               list="questions"
+              start-num="${startNum}"
             >
             </faq-viewer>
         </div>
