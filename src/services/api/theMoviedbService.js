@@ -1,3 +1,4 @@
+import { ArrayService } from '../utils';
 import EnvService from './envService';
 
 export default class TheMovieDBService {
@@ -16,11 +17,13 @@ export default class TheMovieDBService {
         let headPathSm = 'https://image.tmdb.org/t/p/w185'; //w92, w154, w185
         let headPathMd = 'https://image.tmdb.org/t/p/w500';
         let images = [];
-        posters.forEach(poster => {
-          let itemSm = headPathSm + poster['poster_path'];
-          let itemMd = headPathMd + poster['poster_path'];
-          images.push({ imgSm: itemSm, imgMedium: itemMd });
-        });
+        if (ArrayService.minLength(posters)) {
+            posters.forEach(poster => {
+                let itemSm = headPathSm + poster['poster_path'];
+                let itemMd = headPathMd + poster['poster_path'];
+                images.push({ imgSm: itemSm, imgMedium: itemMd });
+            });
+        }
         return images;
     }
 }
