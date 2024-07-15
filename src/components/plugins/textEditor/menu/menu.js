@@ -103,7 +103,7 @@ class TextEditorMenu extends HTMLElement {
                 display: flex;
                 background-color: ${this.theme.menu.background};
                 border: 1px dashed black;
-                width: 90%;
+                width: 94%;
                 height: 32px;
                 padding: 4px 10px 16px 10px;
               }

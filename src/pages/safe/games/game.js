@@ -45,7 +45,7 @@ class SafeGamePage extends HTMLElement {
           <game-viewer 
             id="${GameViewerSettings.safeGamePage.id}"
             games='${this.games}'
-            setsId="${GameViewerSetEnums.gamePage}"
+            setsId="${GameViewerSetEnums.safeGames}"
           >
           </game-viewer>
         `;

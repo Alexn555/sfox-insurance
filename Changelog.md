@@ -1,6 +1,7 @@
 ## Changelog
 v 3.01
   Added GameService to the Game, Safe Game pages
+  Improved TextEditor, Games viewer design, left, right sides
 
 v 3.00
   Created numeraction for FAQ component

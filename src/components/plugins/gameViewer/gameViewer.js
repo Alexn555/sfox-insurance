@@ -95,7 +95,7 @@ class GameViewer extends HTMLElement {
             <style>
               .game-viewer-wrapper {
                 position: relative;
-                background-color: ${this.theme.wrapper.background};
+                background-color: ${this.sets.background ? this.theme.wrapper.background : 'none'};
                 text-align: center;
               }
 

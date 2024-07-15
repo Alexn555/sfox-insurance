@@ -192,8 +192,9 @@ class ContentSw extends HTMLElement {
     let css = `
       display: flex;
       flex-direction: column;
-      width: 30%;
+      width: ${window.innerWidth > 1360 ? '16%' : '30%'};
       height: 500px;
+      padding-right: 60px;
       padding-left: 60px;   
     `;
     if (side === ContentSwSides.top) {
@@ -213,6 +214,7 @@ class ContentSw extends HTMLElement {
       <style>
         #${this.id} {
           display: flex;
+          width: fit-content;
         }
 
         .sideLt {

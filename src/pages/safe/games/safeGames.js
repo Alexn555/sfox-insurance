@@ -4,7 +4,7 @@ export const gmSfGames = [
     { 
         id: 'destinationBall', 
         title: 'Destination Ball', 
-        link: 'https://www.norwaydict.com/xdual1/',
+        link: 'https://www.norwaydict.com/destinationball/',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.destinationBall,
         w: 550,

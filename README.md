@@ -12,6 +12,7 @@ Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 ## Changelog
 v 3.01
   Added GameService to the Game, Safe Game pages
+  Improved TextEditor, Games viewer design, left, right sides
   
 v 3.00
   Created numeraction for FAQ component
