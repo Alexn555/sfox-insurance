@@ -1,4 +1,7 @@
 ## Changelog
+v 3.01
+  Added GameService to the Game, Safe Game pages
+
 v 3.00
   Created numeraction for FAQ component
   Fixed IconSelect (missed in components include) :)

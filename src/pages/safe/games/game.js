@@ -1,16 +1,16 @@
 // @ts-nocheck
-import { IdService } from '../../../services';
+import { HTMLService, IdService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { BoolEnums } from '../../../enums';
 import { GameViewerSettings, GameViewerSetEnums } from '../../../components/plugins/gameViewer/sets';
-import { gmSfGames } from './safeGames';
+import GameService from '../../../services/page/gameService';
 
 class SafeGamePage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.visible = this.getAttribute('visible') || BoolEnums.bTrue;
-      this.games = JSONService.set(gmSfGames);
+      this.games = [];
     }
   
     static get observedAttributes() { 
@@ -19,6 +19,7 @@ class SafeGamePage extends HTMLElement {
 
     connectedCallback() {
       this.render();
+      this.getContent();
     }
 
     disconnectedCallback() {
@@ -31,7 +32,13 @@ class SafeGamePage extends HTMLElement {
       }
     }
 
-    showGame() {
+    async getContent() {
+      this.$wrapper = IdService.id('wrapper', this.shadow);
+      this.games = await GameService.getSafeGames();
+      this.showGames();
+    }
+
+    showGames() {
       let html = '';
       if (this.visible) {
         html = `
@@ -43,7 +50,7 @@ class SafeGamePage extends HTMLElement {
           </game-viewer>
         `;
       }
-      return html;
+      HTMLService.html(this.$wrapper, html);
     }
   
     render() {
@@ -53,8 +60,7 @@ class SafeGamePage extends HTMLElement {
               padding: 10px;
             }
           </style>
-          <div class="game-wrapper">
-            ${this.showGame()}
+          <div id="wrapper" class="game-wrapper">
           </div>
        `;
     }
