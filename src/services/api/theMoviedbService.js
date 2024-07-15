@@ -4,12 +4,12 @@ export default class TheMovieDBService {
     constructor() {
         this.API_KEY = EnvService.getTheMovieDBAPIKey();
         this.locale = 'en-US';
+        this.host = 'https://api.themoviedb.org/';
         this.page = '1';
     }
 
     async getGalleryPosters() {
-        const host = 'https://api.themoviedb.org/';
-        const response = await fetch(host + '3/movie/popular?api_key='+this.API_KEY+'&language='+this.locale+'&page='+this.page);
+        const response = await fetch(this.host + '3/movie/popular?api_key='+this.API_KEY+'&language='+this.locale+'&page='+this.page);
         const movies = await response.json();
         const posters = movies.results;
         // sizes: (c) https://themoviedb.org/talk/5aeaaf56c3a3682ddf0010de
