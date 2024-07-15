@@ -1,5 +1,5 @@
 import { CustomEvents } from '../../../settings';
-import { GallerySet } from '../../../settings/ui';
+import { GallerySet } from '../../../components/plugins/galleryViewer/sets';
 import { CustomEventService, IdService, HTMLService } from '../../../services';
 import { ValidatorService } from '../../../services/utils';
 import { styleErrors } from '../../common/styles/errors';

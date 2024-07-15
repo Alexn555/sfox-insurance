@@ -12,6 +12,7 @@ class ReaderTabs extends HTMLElement {
       this.tabs = {
         contact: 'contact',
         welcome: 'welcome',
+        galleryPosters: 'galleryPosters',
         reviewer: 'reviewer',
         reviewerAdv: 'reviewerAdv'
       };
@@ -26,6 +27,7 @@ class ReaderTabs extends HTMLElement {
       IdService.removeList([
         this.$btnContact, 
         this.$btnWelcome,
+        this.$btnPosters,
         this.$btnReviewer,
         this.$btnReviewerAdv
       ]);
@@ -34,19 +36,23 @@ class ReaderTabs extends HTMLElement {
     initForm() {
       this.$tabContact = IdService.id(this.tabs.contact, this.shadow);
       this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
+      this.$tabPosters = IdService.id(this.tabs.galleryPosters, this.shadow);
       this.$tabReviwer = IdService.id(this.tabs.reviewer, this.shadow);
       this.$tabReviwerAdv = IdService.id(this.tabs.reviewerAdv, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
-      const { contact, welcome, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
+      const { contact, welcome, galleryPosters, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
 
       this.$btnContact = IdService.idAndClick(contact, this.shadow, () => {
         this.openTab(this.tabs.contact, this.$tabContact);
       });
       this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
         this.openTab(this.tabs.welcome, this.$tabWelcome);
+      });
+      this.$btnPosters = IdService.idAndClick(galleryPosters, this.shadow, () => {
+        this.openTab(this.tabs.galleryPosters, this.$tabPosters);
       });
       this.$btnReviewer = IdService.idAndClick(reviewer, this.shadow, () => {
         this.openTab(this.tabs.reviewer, this.$tabReviwer);
@@ -64,6 +70,7 @@ class ReaderTabs extends HTMLElement {
         StyleService.setDisplayMultiple([
           this.$tabContact, 
           this.$tabWelcome, 
+          this.$tabPosters,
           this.$tabReviwer,
           this.$tabReviwerAdv
         ], false);
@@ -78,7 +85,8 @@ class ReaderTabs extends HTMLElement {
         contact,
         welcome, 
         reviewer,
-        reviewerAdv 
+        reviewerAdv,
+        galleryPosters
        } = ReaderPageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
@@ -91,12 +99,17 @@ class ReaderTabs extends HTMLElement {
             <div class="tab">
               <button id="${contact}">Contact</button>
               <button id="${welcome}">Welcome</button>
+              <button id="${galleryPosters}">Gallery Posters</button>
               <button id="${reviewer}">Reviewer</button>
               <button id="${reviewerAdv}">Reviewer Advanced</button>
             </div>
 
             <div id="${this.tabs.contact}" class="tabcontent">
               <reader-contact-page></reader-contact-page>
+            </div> 
+
+            <div id="${this.tabs.galleryPosters}" class="tabcontent">
+              <gallery-posters-page></gallery-posters-page>
             </div> 
 
             <div id="${this.tabs.welcome}" class="tabcontent">

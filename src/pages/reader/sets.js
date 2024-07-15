@@ -6,7 +6,8 @@ export const ReaderPageTabs = {
         contact: 'contact-btn',
         welcome: 'welcome-btn',
         reviewer: 'reviewer-btn',
-        reviewerAdv: 'reviewer-adv-btn'
+        reviewerAdv: 'reviewer-adv-btn',
+        galleryPosters: 'gallery-posters-btn'
     }
 };
 

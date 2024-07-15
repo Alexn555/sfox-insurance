@@ -1,31 +1,19 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { PackIds } from '../../../theme/enums';
 import { GallerySet } from '../../../components/plugins/galleryViewer/sets';
-import { CustomEventService, IdService } from '../../../services';
-import FlickService from '../../../services/api/flickrService';
+import { IdService } from '../../../services';
+import TheMovieDBService from '../../../services/api/theMoviedbService';
 import { JSONService } from '../../../services/utils';
 
-class GalleryPage extends HTMLElement {
+class GalleryPosterPage extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.flickrService = new FlickService();
+      this.themoviedbService = new TheMovieDBService();
       this.viewer = 'galleryViewer';
-      this.searchWord = GallerySet.defaultSearch;
       this.perPage = GallerySet.perPage;
       this.totalAmount = GallerySet.total;
       this.theme = ThemeHelper.get([PackIds.galleryPage]);
-
-      if (GallerySet.searchEnabled) {
-        CustomEventService.event(GallerySet.searchSavedInit, (e) => {
-          const saved = e.detail.value;
-          this.searchWord = saved;
-          setTimeout(() => {
-            this.updateLabel(this.searchWord);
-            this.activateContent(this.searchWord);
-          }, 500);
-        }, document);
-      }
     }
   
     connectedCallback() {
@@ -35,22 +23,11 @@ class GalleryPage extends HTMLElement {
 
     initForm() {    
       this.$viewer = IdService.id(this.viewer, this.shadow);
-      if (GallerySet.searchEnabled) {
-        CustomEventService.event(GallerySet.searchEvent, (e) => {
-          const input = e.detail?.value || '';
-          if (input !== '' && input.length >= GallerySet.minimumSearch) {
-            this.searchWord = input;
-            this.updateLabel(this.searchWord);
-            this.activateContent(this.searchWord);
-          }
-        }, document);
-      } else {
-        this.activateContent(this.searchWord);
-      }
+      this.activateContent();
     }
 
-    async activateContent(searchword) {
-      const images = await this.flickrService.getImages(searchword, this.totalAmount);
+    async activateContent() {
+      const images = await this.themoviedbService.getGalleryPosters();
       this.$viewer.setAttribute('images', JSONService.set(images));
     }
 
@@ -79,12 +56,11 @@ class GalleryPage extends HTMLElement {
             }
           </style>
           <div class="gallery-wrapper">
-            <h3>Gallery</h3>
-            ${GallerySet.searchEnabled ? '<gallery-search></gallery-search>' : ''}
+            <h3>Gallery Posters</h3>
 
             <gallery-viewer 
               id="${this.viewer}" 
-              label="${GallerySet.showLabel ? this.searchWord : ''}"
+              label=""
               images=''
               per-page="${this.perPage}"
               thumbs-openable="${GallerySet.thumbsOpenable}"
@@ -97,5 +73,5 @@ class GalleryPage extends HTMLElement {
   }
   
   if ("customElements" in window) {
-    customElements.define("gallery-page", GalleryPage);
+    customElements.define("gallery-posters-page", GalleryPosterPage);
   }
