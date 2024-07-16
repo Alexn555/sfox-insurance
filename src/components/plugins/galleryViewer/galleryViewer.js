@@ -1,5 +1,5 @@
 import { CustomWindowEvents } from '../../../settings';
-import { ImageViewerIds } from '../../../settings/ui';
+import { ImageViewerIds } from '../../../components/plugins/imageViewer/sets';
 import ScreenQuery from '../../../styles/query';
 import { GallerLoadHolders, GallerySet, GalleryImgViewerEnums } from './sets';
 import { CustomEventService, IdService, StyleService, HTMLService } from '../../../services';

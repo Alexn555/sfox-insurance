@@ -1,4 +1,7 @@
 ## Changelog
+v 3.02
+  Made path fixes, moved to real updated import directories
+
 v 3.01
   Added GameService to the Game, Safe Game pages
   Improved TextEditor, Games viewer design, left, right sides

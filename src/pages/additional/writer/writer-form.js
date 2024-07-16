@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CustomWindowEvents, CustomPageEvents } from '../../../settings';
 import ScreenQuery from '../../../styles/query';
-import { ImageViewerIds } from '../../../settings/ui';
+import { ImageViewerIds } from '../../../components/plugins/imageViewer/sets';
 import { CustomEventService, IdService, LoggerService } from '../../../services';
 import { RenderService } from '../../../services/helpers';
 

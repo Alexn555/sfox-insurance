@@ -3,7 +3,7 @@ import { theme, changeTheme } from '../theme/theme';
 import ScreenQuery from '../styles/query';
 import { Animations, PageStructure, CustomEvents, SEO,
      SettingsBoard, NetworkCheckerSet } from '../settings';
-import { ImageViewerIds } from '../settings/ui';
+import { ImageViewerIds } from '../components/plugins/imageViewer/sets';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService, HTMLService } from '../services';
 import { StringService } from '../services/utils';
