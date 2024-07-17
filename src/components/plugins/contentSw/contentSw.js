@@ -29,8 +29,7 @@ class ContentSw extends HTMLElement {
     this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
     this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
     this.stylesId = this.getAttribute('styles') || 'common';
-    this.styleSets = ObjectService.getObject('gameViewer', ContentSwSet.styleSets[this.stylesId])
-    this.sidePadding = this.styleSets.sidePadding || '60';
+    this.styles = ObjectService.getObject('gameViewer', ContentSwSet.styleSets[this.stylesId])
     this.paginationId = 'pagination';
     this.labelMode = LabelModes.labels;
     this.theme = ThemeHelper.get(PackIds.contentSw, 'contentSw');
@@ -197,8 +196,8 @@ class ContentSw extends HTMLElement {
       flex-direction: column;
       width: ${window.innerWidth > 1360 ? '16%' : '30%'};
       height: 500px;
-      padding-right: ${this.sidePadding}px;
-      padding-left: ${this.sidePadding}px;   
+      padding-right: ${this.styles.sidePadding}px;
+      padding-left: ${this.styles.sidePadding}px;   
     `;
     if (side === ContentSwSides.top) {
       css = `
