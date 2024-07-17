@@ -143,6 +143,7 @@ class GameViewer extends HTMLElement {
                   icon-type="${LabelIcons.game.id}"
                   total="${this.gamesAmount}"
                   disable-actions="${BoolEnums.bFalse}"
+                  styles="${this.contentSwid}"
                 >
                     <div id="${this.id}"> </div>
                 </content-sw>

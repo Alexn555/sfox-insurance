@@ -1,4 +1,7 @@
 ## Changelog
+v 3.03
+  Added styleSets to content linker and gameViewer improvements
+
 v 3.02
   Made path fixes, moved to real updated import directories
 

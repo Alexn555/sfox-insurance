@@ -2,11 +2,11 @@
 import { ThemeHelper } from '../../../theme/theme';
 import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
-import { CommonEvents, CustomWindowEvents } from '../../../settings';
-import { ContentSwSet } from './sets';
-import { CustomEventService, IdService, StyleService, HTMLService, LoggerService } from "../../../services";
-import { JSONService, MobileService } from '../../../services/utils';
 import { Cursors, ArrayEnums, BoolEnums } from '../../../enums';
+import { CommonEvents, CustomWindowEvents } from '../../../settings';
+import { CustomEventService, IdService, StyleService, HTMLService, LoggerService } from "../../../services";
+import { JSONService, MobileService, ObjectService } from '../../../services/utils';
+import { ContentSwSet } from './sets';
 import { ContentSwSides, LabelModes, LabelIcons } from './enums';
 
 class ContentSw extends HTMLElement {
@@ -28,6 +28,9 @@ class ContentSw extends HTMLElement {
     this.iconType = this.getAttribute('icon-type') || 'game';
     this.disabledClicks = this.getAttribute('disable-actions') || BoolEnums.bFalse;
     this.useIndIcons = this.getAttribute('use-ind-icons') || BoolEnums.bFalse;
+    this.stylesId = this.getAttribute('styles') || 'common';
+    this.styleSets = ObjectService.getObject('gameViewer', ContentSwSet.styleSets[this.stylesId])
+    this.sidePadding = this.styleSets.sidePadding || '60';
     this.paginationId = 'pagination';
     this.labelMode = LabelModes.labels;
     this.theme = ThemeHelper.get(PackIds.contentSw, 'contentSw');
@@ -194,8 +197,8 @@ class ContentSw extends HTMLElement {
       flex-direction: column;
       width: ${window.innerWidth > 1360 ? '16%' : '30%'};
       height: 500px;
-      padding-right: 60px;
-      padding-left: 60px;   
+      padding-right: ${this.sidePadding}px;
+      padding-left: ${this.sidePadding}px;   
     `;
     if (side === ContentSwSides.top) {
       css = `

@@ -1,4 +1,4 @@
-### SFox Engine v 3.02
+### SFox Engine v 3.03
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.03
+  Added styleSets to content linker and gameViewer improvements
+
 v 3.02
   Made path fixes, moved to real updated import directories
 
@@ -28,30 +31,6 @@ v 2.99
 
 v 2.98
   Added Reviewer question numeration
-
-v 2.97 
-  Added better Readme description
-  Introduced Reviews required field, to navigate only if required answered
-
-v 2.96 
-  Added Reviewer theme improvements
-  Added Reviewer Advanced significant improvements
-
-v 2.95
-  Created Reviewer Advanced version
-
-v 2.94
-  Added Reviewer improvements
-
-v 2.93
-  Renamed ui to io for better semantics
-  Created Reviewer first version
- 
-v 2.92
-  Added Gallery random default search
-
-v 2.90
-  Added Reviewer changes
 
 ## Demo 
 
