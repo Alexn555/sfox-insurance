@@ -2,7 +2,6 @@ import './line';
 import './networkChecker';
 import './text';
 import './textArea';
-import './accountTable';
 import './radio';
 import './radioGroup';
 import './iconSelect';

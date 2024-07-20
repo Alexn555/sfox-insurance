@@ -4,6 +4,7 @@ import './galleryViewer/gallerySearch';
 import './galleryViewer/galleryViewer';
 import './faq';
 import './reviewer';
+import './accountTable/accountTable';
 import './reviewerStepHandler';
 import './contact';
 import './notice/notice';

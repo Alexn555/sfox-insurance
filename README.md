@@ -1,4 +1,4 @@
-### SFox Engine v 3.03
+### SFox Engine v 3.04
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.04
+  Moved AccountTable to plugins
+
 v 3.03
   Added styleSets to content linker and gameViewer improvements
 
@@ -24,13 +27,6 @@ v 3.01
 v 3.00
   Created numeraction for FAQ component
   Fixed IconSelect (missed in components include) :)
-
-v 2.99
-  Added better Readme, added improved index.html header
-  Introduced Reviewer multiple answers
-
-v 2.98
-  Added Reviewer question numeration
 
 ## Demo 
 

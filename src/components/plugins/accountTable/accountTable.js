@@ -1,6 +1,6 @@
-import { JSONService } from '../../services/utils';
-import { theme } from '../../theme/theme';
-import ScreenQuery from '../../styles/query';
+import { JSONService } from '../../../services/utils';
+import { theme } from '../../../theme/theme';
+import ScreenQuery from '../../../styles/query';
 
 class AccountTable extends HTMLElement {
     constructor() {

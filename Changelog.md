@@ -1,4 +1,7 @@
 ## Changelog
+v 3.04
+  Moved AccountTable to plugins
+
 v 3.03
   Added styleSets to content linker and gameViewer improvements
 
