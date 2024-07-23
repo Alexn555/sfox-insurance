@@ -13,7 +13,7 @@ export const setStyle = () => {
         }
         .footer-main {
             display: grid;
-            max-width: 80vw;
+            max-width: 70vw;
             min-height: 230px;
             align-self: center;
             justify-self: center;
@@ -23,7 +23,7 @@ export const setStyle = () => {
             width: 100vw;
             overflow-x: hidden;
 
-            ${ScreenQuery.medium('max-width: 70vw;')}
+            ${ScreenQuery.medium('max-width: 80vw;')}
             ${ScreenQuery.mobile(`
                 grid-template-columns: 100%;
                 max-width: 100vw;

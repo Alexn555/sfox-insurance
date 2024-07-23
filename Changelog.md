@@ -1,4 +1,7 @@
 ## Changelog
+v 3.05
+  Added footer adjustments
+
 v 3.04
   Moved AccountTable to plugins
 

@@ -1,4 +1,4 @@
-### SFox Engine v 3.04
+### SFox Engine v 3.05
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.05
+  Added footer adjustments
+
 v 3.04
   Moved AccountTable to plugins
 
@@ -18,15 +21,6 @@ v 3.03
 
 v 3.02
   Made path fixes, moved to real updated import directories
-
-v 3.01
-  Added GameService to the Game, Safe Game pages
-  Improved TextEditor, Games viewer design, left, right sides
-  Created Gallery TheMoviedb Posters page
-  
-v 3.00
-  Created numeraction for FAQ component
-  Fixed IconSelect (missed in components include) :)
 
 ## Demo 
 
