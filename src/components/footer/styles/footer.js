@@ -1,6 +1,7 @@
 // compoanent footer
 import { theme } from '../../../theme/theme';
 import ScreenQuery from '../../../styles/query';
+import BasePageSizeHandler from '../../../styles/base';
 
 export const setStyle = () => {
     return `
@@ -13,7 +14,7 @@ export const setStyle = () => {
         }
         .footer-main {
             display: grid;
-            max-width: 70vw;
+            max-width: ${BasePageSizeHandler.desk()};
             min-height: 230px;
             align-self: center;
             justify-self: center;
@@ -23,7 +24,7 @@ export const setStyle = () => {
             width: 100vw;
             overflow-x: hidden;
 
-            ${ScreenQuery.medium('max-width: 80vw;')}
+            ${ScreenQuery.medium('max-width: '+BasePageSizeHandler.medium())}
             ${ScreenQuery.mobile(`
                 grid-template-columns: 100%;
                 max-width: 100vw;

@@ -2,6 +2,7 @@
 import { IdService, StyleService } from '../services';
 import { StringService } from '../services/utils';
 import ScreenQuery from '../styles/query';
+import BasePageSizeHandler from '../styles/base';
 
 class BasePage extends HTMLElement {
     constructor() {
@@ -35,13 +36,12 @@ class BasePage extends HTMLElement {
         this.shadow.innerHTML = `
             <style>
                 #container {
-                    width: 70vw;
+                    width: ${BasePageSizeHandler.desk()};
 
                     ${ScreenQuery.combo('grid-template-columns: 100%; width: 100vw;',
-                    'grid-template-columns: 100%; width: 80vw;',
-                    'grid-template-columns: 100%; width: 70vw;'
-                )}
-
+                        'grid-template-columns: 100%; width: '+BasePageSizeHandler.medium()+';',
+                        'grid-template-columns: 100%; width: '+BasePageSizeHandler.desk()+';'
+                    )}
                 }
             </style>
             <div id="container">
