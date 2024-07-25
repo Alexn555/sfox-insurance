@@ -25,6 +25,11 @@ v 3.03
 v 3.02
   Made path fixes, moved to real updated import directories
 
+## Official Site
+
+Made a site, that describes quite better what this engine is about.
+Site link: [link](http://sfox-software.com)
+
 ## Demo 
 
 ![Alt text](http://norwaydict.com/sfoxinsurance/screen.jpg "Screen")
