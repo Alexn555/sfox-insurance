@@ -1,4 +1,7 @@
 ## Changelog
+v 3.07
+  Added Code optimization improvements
+  
 v 3.06
   Added BasePageStyleHnadler to improve widths of base and footer
 

@@ -32,13 +32,13 @@ class FAQPage extends HTMLElement {
       let html = `
         <div class="qpack">
           <faq-viewer 
-              id="${FAQSetIds.faqPage}"
-              headline="${name}"
-              items='${contents}'
-              list="questions"
-              start-num="${startNum}"
-            >
-            </faq-viewer>
+            id="${FAQSetIds.faqPage}"
+            headline="${name}"
+            items='${contents}'
+            list="questions"
+            start-num="${startNum}"
+          >
+          </faq-viewer>
         </div>
       `;
       HTMLService.appendHTML(el, html);

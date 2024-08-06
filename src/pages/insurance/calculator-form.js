@@ -107,60 +107,60 @@ class InsuranceCalculatorForm extends HTMLElement {
     render() {
       	this.shadow.innerHTML = `
             <style>
-                .calculator-wrapper {
-                  display: grid;
-                  grid-template-columns: 70% 30%; 
-                  
-                  ${ScreenQuery.mobile('grid-template-columns: 100%;')}
+              .calculator-wrapper {
+                display: grid;
+                grid-template-columns: 70% 30%; 
+                
+                ${ScreenQuery.mobile('grid-template-columns: 100%;')}
+              }
+
+              .calculator {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 6px 12px;
+                background-color: ${theme.page.insurance.calculation.background};
+                border-top: none;
+                border-right: 1px solid ${theme.page.insurance.calculation.border};
+
+                & div {
+                    margin: 10px;
+                    text-align: left;
+                }    
+
+                & .loan-current-amount{
+                  color: #ee7023;
+                  font-size: 18px;
+                  padding-left: 10px;
+                }
+              }
+
+              .submit {
+                  text-align: right;
+
+                & div {
+                  margin: 6px;
                 }
 
-                .calculator {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    padding: 6px 12px;
-                    background-color: ${theme.page.insurance.calculation.background};
-                    border-top: none;
-                    border-right: 1px solid ${theme.page.insurance.calculation.border};
-
-                    & div {
-                        margin: 10px;
-                        text-align: left;
-                    }    
-
-                    & .loan-current-amount{
-                      color: #ee7023;
-                      font-size: 18px;
-                      padding-left: 10px;
-                    }
+                & div:nth-child(2) {
+                  float: right;
+                  padding-top: 8px;
                 }
-                .submit {
-                    text-align: right;
 
-                  & div {
-                      margin: 6px;
-                  }
-
-                  & div:nth-child(2) {
-                      float: right;
-                      padding-top: 8px;
-                  }
-
-                  & .calculation-total {
-                      display: flex;
-                      align-items: space-between;
-                      justify-content: space-between;
-                      border-bottom: 1px solid ${theme.page.insurance.calculation.border};                        
-          
-                      & div:nth-child(2) {
-                          color: #ee7023;
-                          font-size: 20px;
-                          transform: translateY(-4px);
-                      }
-                  }
-                }
+                & .calculation-total {
+                  display: flex;
+                  align-items: space-between;
+                  justify-content: space-between;
+                  border-bottom: 1px solid ${theme.page.insurance.calculation.border};                        
       
+                  & div:nth-child(2) {
+                      color: #ee7023;
+                      font-size: 20px;
+                      transform: translateY(-4px);
+                  }
+                }
+              }
             </style>
             <form>
               <div class="calculator-wrapper">

@@ -6,11 +6,11 @@ import { IdService, StyleService } from '../../services';
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
-      ${commonTabStyle(theme.page.tabs)}
+    ${commonTabStyle(theme.page.tabs)}
 
-      #calculator {
-        display: block;
-      }
+    #calculator {
+      display: block;
+    }
   </style>
   <div class="tab">
     <button id="calculator-btn">Calculator</button>

@@ -75,18 +75,18 @@ class WriterArticle extends HTMLElement {
     render() {
       this.shadow.innerHTML = `
         <style>
-            .writeContent {
-              &:first-letter {
-                text-transform: uppercase;
-              }
-
-              & p:first-letter {
-                text-transform: uppercase;
-              }
+          .writeContent {
+            &:first-letter {
+              text-transform: uppercase;
             }
+
+            & p:first-letter {
+              text-transform: uppercase;
+            }
+          }
         </style>
-        <div class="writeContent"> </div>
-       `;
+        <div class="writeContent"></div>
+      `;
     }
   }
   

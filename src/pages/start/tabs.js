@@ -67,11 +67,11 @@ class HomeTabs extends HTMLElement {
       const { start, welcome, features, accounts } = HomePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
-                ${commonTabStyle(this.theme)}
+              ${commonTabStyle(this.theme)}
 
-                #${this.tabs.start} {
-                  display: block;
-                }
+              #${this.tabs.start} {
+                display: block;
+              }
             </style>
             <div class="tab">
               <button id="${start}">Start</button>
@@ -85,7 +85,7 @@ class HomeTabs extends HTMLElement {
             </div> 
 
             <div id="${this.tabs.welcome}" class="tabcontent">
-                <welcome-page></welcome-page>
+              <welcome-page></welcome-page>
             </div> 
 
             <div id="${this.tabs.features}" class="tabcontent">

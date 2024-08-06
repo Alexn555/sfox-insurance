@@ -1,25 +1,25 @@
 export const HeaderSettings = {
-    resetDialog: {
-        permissionWord: 'Yes'
-    }
+  resetDialog: {
+    permissionWord: "Yes",
+  },
 };
 
 export const SEO = {
-    enabled: true,
-    application: 'SFoxInsurance engine',
-    author: 'W3C',
-    description: 'SfoxEngine - engine to show good features webComponents.'
+  enabled: true,
+  application: "SFoxInsurance engine",
+  author: "W3C",
+  description: "SfoxEngine - engine to show good features webComponents.",
 };
 
 export const NoticeDisclaimerSets = {
-    enabled: true
+  enabled: true,
 };
 
 export const HeaderBoard = {
-    board: {
-        enabled: true
-    },
-    logo: {
-        enabled: true
-    }
+  board: {
+    enabled: true,
+  },
+  logo: {
+    enabled: true,
+  },
 };
