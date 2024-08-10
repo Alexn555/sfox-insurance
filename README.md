@@ -31,7 +31,7 @@ v 3.02
 ## Official Site
 
 Made a site, that describes quite better what this engine is about.
-Site link: [link](http://sfox-software.com)
+Site link: [link](http://norwaydict.com/sfoxsoftware)
 
 ## Demo 
 
