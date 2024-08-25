@@ -40,7 +40,8 @@ Site link: [link](http://norwaydict.com/sfoxsoftware)
 Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
 ## Examples 
-Most proud of example: [link](http://penny-xp.com) <br />
+Penny-xp.com <br />
+Most proud of example: [penny-xp.com](http://penny-xp.com) <br />
 Search and Analyze a Collection of great Racing experiences. <br />
 Useful Service to give user ability to check, compare prices around the World  <br />
 
