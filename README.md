@@ -39,6 +39,10 @@ Site link: [link](http://norwaydict.com/sfoxsoftware)
 
 Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
+## Examples 
+Most proud of example: [link](http://penny-xp.com) <br />
+Search and Analyze a Collection of great Racing experiences. <br />
+Useful Service to give user ability to check, compare prices around the World  <br />
 
 ## Features 
  This Engine helps build domestic websites. Yeah, sound kinda old fashioned,  <br />
