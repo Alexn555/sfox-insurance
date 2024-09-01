@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.08
+  Added ArrayService pluck, shuffle methods
+
 v 3.07
   Added Code optimization improvements
 
@@ -18,15 +21,6 @@ v 3.06
 
 v 3.05
   Added footer adjustments
-
-v 3.04
-  Moved AccountTable to plugins
-
-v 3.03
-  Added styleSets to content linker and gameViewer improvements
-
-v 3.02
-  Made path fixes, moved to real updated import directories
 
 ## Official Site
 
@@ -39,7 +33,7 @@ Site link: [link](http://norwaydict.com/sfoxsoftware)
 
 Demo link: [link](http://norwaydict.com/sfoxinsurance)
 
-## Examples 
+## Projects, that are using this Engine 
 Penny-xp.com <br />
 Most proud of example: [penny-xp.com](http://penny-xp.com) <br />
 Search and Analyze a Collection of great Racing experiences. <br />

@@ -1,4 +1,5 @@
 import { NumberService } from './numberService';
+import { StringService } from './stringService';
 
 export class ArrayService {
     static getOptionFromString(key, index) {
@@ -10,6 +11,21 @@ export class ArrayService {
 
     static minLength(obj, min = 0) {
         return obj && obj['length'] !== undefined && obj.length > min;
+    }
+
+    // (c) https://www.30secondsofcode.org/js/s/pluck-values-from-object-array/
+    static pluck = (arr, key, mode = '') => arr.map((i) => { 
+      return mode === 'upper' ? StringService.capFirstLetter(i[key]) : i[key];
+    });
+
+    // (c) https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    static shuffle(arr) {
+      let nw = arr.slice();
+      for (let i = nw.length - 1; i > 0; i--) {
+        let rand = Math.floor(Math.random() * (i + 1));
+        [nw[i], nw[rand]] = [nw[rand], nw[i]];
+      }
+      return nw;
     }
 
     static getRandomItemFromList(list, fIndex = 0, lastIndex = list.length - 1) {
