@@ -1,4 +1,7 @@
 ## Changelog
+v 3.08
+  Added ArrayService pluck, shuffle methods
+
 v 3.07
   Added Code optimization improvements
   
