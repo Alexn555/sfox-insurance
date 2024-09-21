@@ -1,4 +1,7 @@
 ## Changelog
+v 3.09
+  Added StyleService toggleDisplay method
+
 v 3.08
   Added ArrayService pluck, shuffle methods
 

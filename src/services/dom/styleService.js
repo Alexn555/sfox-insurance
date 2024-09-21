@@ -27,6 +27,10 @@ export default class StyleService {
         el.style[property] = value;
     }
 
+    static toggleDisplay(el, visible = 'block') {
+        el.style['display'] = el.style['display'] === 'none' || el.style['display'] === '' ? visible : 'none';
+    }
+
     static setProperties(el, props) {
         if (ArrayService.minLength(props)) {
             props.forEach((prop) => {
