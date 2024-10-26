@@ -71,15 +71,6 @@ Useful Service to give user ability to check, compare prices around the World  <
     index.html -> initial point
     style.css -> initial styling, main offsets and fonts
 
-   
-## Chance to support the Project
- Currently Project is supported by this one developer.  <br />
- You have a chance to support the project by  <br />
- ![Alt text](http://norwaydict.com/showcase/paypal_donate.png "Paypal Donate") <br />
- using Paypal Donate link: https://www.paypal.com/donate/?hosted_button_id=DYMC5E2TH8VGN    <br />
- Super Thanks! :)
-
-
 ## First (primary) way to execute 
   Uses Webpack 5
    1. npm install
