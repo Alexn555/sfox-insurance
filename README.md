@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.12
+  Added Storage cache function and improvements
+
 v 3.10 
   Removed Official site
 

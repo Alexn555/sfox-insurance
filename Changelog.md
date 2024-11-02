@@ -1,4 +1,10 @@
 ## Changelog
+v 3.12
+  Added Storage cache function and improvements
+
+v 3.10
+  Removed Official site
+
 v 3.09
   Added StyleService toggleDisplay method
 
