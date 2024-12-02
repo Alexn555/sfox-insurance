@@ -1,4 +1,7 @@
 ## Changelog
+v 3.15
+  Added Components optimizations
+
 v 3.12
   Added Storage cache function and improvements
 

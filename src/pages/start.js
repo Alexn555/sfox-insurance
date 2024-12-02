@@ -13,20 +13,16 @@ class IndexPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <base-page id="base-home" title="Start Your Page" active="${this.active}">
                 <home-tabs></home-tabs>
             </base-page> 
         `;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const el = IdService.id('base-home', this.shadow);
+        el?.setAttribute('active', newValue);
     }
 }
 

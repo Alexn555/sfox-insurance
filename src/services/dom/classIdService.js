@@ -14,7 +14,7 @@ export class ClassIdService {
     }
 
     static idAndClick(id, ctx, callback) {
-        const el = this.id(id, ctx);
+        let el = this.id(id, ctx);
         el.addEventListener(CommonEvents.click, callback);
         return el;
     }

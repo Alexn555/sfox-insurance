@@ -3,8 +3,8 @@ export class ValidatorService {
         return String(email)
             .toLowerCase()
             .match(
-                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-             );
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
     }
     
     static valideAlphaNumeric(input){
@@ -12,7 +12,7 @@ export class ValidatorService {
     }
     
     static validateWhiteSpaces(input, minAllowed = 3) {
-        const str = input.replace(' ', '');
+        let str = input.replace(' ', '');
         return str.length >= minAllowed;
     }
 }

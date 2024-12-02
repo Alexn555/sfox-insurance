@@ -23,8 +23,40 @@ class StartItemPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-        this.setInfo(this.id)
+        this.shadow.innerHTML = `
+            <style>
+                .page {
+                    display: grid;
+                    grid-template-columns: 30% 70%;
+                    border: 1px dashed ${this.theme.startItem.border};
+
+                    ${ScreenQuery.mobile('grid-template-columns: 100%;')}
+                }
+                #main {
+                    width: 100%;
+                    height: 100px;
+
+                    .label {
+                        color: ${this.theme.startItem.label};
+                    }
+                }
+                .image {
+                    & img {
+                        width: 200px;
+                        height: 100px;
+                    }
+                }
+            </style>
+            <div class="page">
+                <div class="image">
+                    <a id="linkImage" href="" target="_blank">
+                        <img id="image" src="" alt="start-item" />
+                    </a>
+                </div>
+                <div id="main"> </div> 
+            </div>
+        `;
+        this.setInfo(this.id);
     }
 
     setInfo(id) {
@@ -60,42 +92,6 @@ class StartItemPage extends HTMLElement {
 
     getLink(id) {
         return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[StringService.capFirstLetter(id)];
-    }
-
-    render() {
-        this.shadow.innerHTML = `
-            <style>
-                .page {
-                    display: grid;
-                    grid-template-columns: 30% 70%;
-                    border: 1px dashed ${this.theme.startItem.border};
-
-                    ${ScreenQuery.mobile('grid-template-columns: 100%;')}
-                }
-                #main {
-                    width: 100%;
-                    height: 100px;
-
-                    .label {
-                        color: ${this.theme.startItem.label};
-                    }
-                }
-                .image {
-                    & img {
-                        width: 200px;
-                        height: 100px;
-                    }
-                }
-            </style>
-            <div class="page">
-                <div class="image">
-                    <a id="linkImage" href="" target="_blank">
-                        <img id="image" src="" alt="start-item" />
-                    </a>
-                </div>
-                <div id="main"> </div> 
-            </div>
-        `;
     }
 }
 

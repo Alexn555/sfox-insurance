@@ -7,10 +7,6 @@ class FeaturesPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .features {

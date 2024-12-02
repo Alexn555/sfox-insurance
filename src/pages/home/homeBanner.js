@@ -9,26 +9,6 @@ class HomeBanner extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    getColor() {
-        let color = 'yellow';
-        switch(this.titleColor) {
-            case 'blue':
-                color = '#5b8ad6';
-            break;
-            case 'yellow':
-                color = '#f4ba44';
-            break;
-            case 'purple':
-                color = '#c5569a';
-            break;
-        }
-        return color;
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .banner {
@@ -85,8 +65,23 @@ class HomeBanner extends HTMLElement {
             </div>
         `;
     }
-}
 
+    getColor() {
+        let color = 'yellow';
+        switch(this.titleColor) {
+            case 'blue':
+                color = '#5b8ad6';
+            break;
+            case 'yellow':
+                color = '#f4ba44';
+            break;
+            case 'purple':
+                color = '#c5569a';
+            break;
+        }
+        return color;
+    }
+}
 
 if ('customElements' in window) {
 	customElements.define('home-banner', HomeBanner);

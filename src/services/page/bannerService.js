@@ -26,5 +26,4 @@ export default class BannerService {
             return { data, isSaved }; 
         });
     }
-
 }

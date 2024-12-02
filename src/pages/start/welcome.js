@@ -15,23 +15,11 @@ class WelcomePage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
-    }
-
-    showLogo() { 
-        return `
-            <p>
+        const showLogo = () => {
+           return `<p>
                 <img src="${EnvService.getRoot()}/assets/intro/info.svg" width="64" height="64" alt="Cater" />
-            </p>
-        `;
-    }
-
-    render() {
+            </p>`;
+        };
         this.shadow.innerHTML = `
             <style>
                 .welcome {
@@ -41,7 +29,7 @@ class WelcomePage extends HTMLElement {
             </style>
             <div class="welcome">
                 <h3>Welcome Page</h3>
-                ${this.showLogo()}
+                ${showLogo()}
                 <p>
                     Welcome to <b>SFox Engine</b> - system to create casual and ecomony website. <br />
                     This Demo demonstrates most powerful Features of this engine.
@@ -59,6 +47,11 @@ class WelcomePage extends HTMLElement {
                 </p>
             </div>
         `;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const el = IdService.id('base-home', this.shadow);
+        el?.setAttribute('active', newValue);
     }
 }
 

@@ -9,10 +9,6 @@ class HomeBanners extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .banners {
@@ -85,7 +81,6 @@ class HomeBanners extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('home-banners', HomeBanners);

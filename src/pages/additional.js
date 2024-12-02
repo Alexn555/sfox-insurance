@@ -17,10 +17,6 @@ class AddiationalPage extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <base-page id="base-additional" title="Additional">
                 <additional-tabs></additional-tabs>

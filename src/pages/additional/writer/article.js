@@ -36,7 +36,7 @@ class WriterArticle extends HTMLElement {
       let content = ['', ''];
       content[0] = await this.writerService.getContent();
       content[1] = await this.writerService.getContent();
-      const el = this.$writerContent;
+      let el = this.$writerContent;
       HTMLService.html(el, '');
 
       if (content && content[0]?.body) {
@@ -48,11 +48,11 @@ class WriterArticle extends HTMLElement {
     }
 
     async featchContent() {
-      const content = await this.writerService.getContent();
-      const el = this.$writerContent;
+      let content = await this.writerService.getContent();
+      let el = this.$writerContent;
 
       if (content && content?.body) {
-        const html = ContentService.createArticle(el, content.body);
+        let html = ContentService.createArticle(el, content.body);
         el.appendChild(html);
       }
     }

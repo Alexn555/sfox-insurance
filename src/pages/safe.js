@@ -17,10 +17,6 @@ class SafePage extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <base-page id="base-additional" title="Safe">
                 <safe-tabs></safe-tabs>

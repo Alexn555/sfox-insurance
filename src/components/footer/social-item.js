@@ -8,10 +8,6 @@ class FooterSocialItem extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .social-item {
@@ -31,7 +27,6 @@ class FooterSocialItem extends HTMLElement {
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('footer-social-item', FooterSocialItem);

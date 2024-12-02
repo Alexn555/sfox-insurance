@@ -5,7 +5,21 @@ class MapPage extends HTMLElement {
     }
   
     connectedCallback() {
-      this.render();
+      this.shadow.innerHTML = `
+        <style>
+          .map-wrapper {
+            padding: 20px 0 20px 0;
+            .map {
+              width: fit-content;
+              padding: 0 10px 0 10px;
+              border: 1px dotted grey;
+            }
+          }
+        </style>
+        <div class="map-wrapper">
+          ${this.showContent(600, 400)}
+        </div>
+     `;
     }
 
     showContent(w = 600, h = 400, title = 'Map board') {
@@ -21,24 +35,6 @@ class MapPage extends HTMLElement {
           </iframe>
         </div>
       `;
-    }
-  
-    render() {
-      this.shadow.innerHTML = `
-          <style>
-            .map-wrapper {
-              padding: 20px 0 20px 0;
-              .map {
-                width: fit-content;
-                padding: 0 10px 0 10px;
-                border: 1px dotted grey;
-              }
-            }
-          </style>
-          <div class="map-wrapper">
-            ${this.showContent(600, 400)}
-          </div>
-       `;
     }
   }
   

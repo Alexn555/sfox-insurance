@@ -7,10 +7,6 @@ class HomeAccount extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .account {
@@ -48,11 +44,10 @@ class HomeAccount extends HTMLElement {
                         col5='["900.00 EUR", "46.00 EUR", "456.00 EUR"]'
                     />  
                 </div> 
-            </div>
+        </div>
         `;
     }
 }
-
 
 if ('customElements' in window) {
 	customElements.define('home-account', HomeAccount);

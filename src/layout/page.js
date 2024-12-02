@@ -93,17 +93,6 @@ class PageSwitcher extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-        this.getPage(this.getSavedPage(), true);
-        this.closePageOpener();
-    }
-
-    disconnectedCallback() {
-        CustomEventService.removeFromContext(CustomEvents.header.menuClick, document);
-        CustomEventService.removeFromContext(CustomEvents.interaction.flipBoard, document);
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 ${fadeInAnimation}
@@ -133,6 +122,13 @@ class PageSwitcher extends HTMLElement {
                 <div class="heightHolder"></div>
             </main> 
         `;
+        this.getPage(this.getSavedPage(), true);
+        this.closePageOpener();
+    }
+
+    disconnectedCallback() {
+        CustomEventService.removeFromContext(CustomEvents.header.menuClick, document);
+        CustomEventService.removeFromContext(CustomEvents.interaction.flipBoard, document);
     }
 }
 

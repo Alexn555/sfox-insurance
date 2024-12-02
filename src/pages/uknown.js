@@ -5,10 +5,6 @@ class UnknownPage extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <base-page title="Page unknown">
                 <p>Please return to initial page</p>                

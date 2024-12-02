@@ -21,7 +21,25 @@ class Layout extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
+        this.shadow.innerHTML = `
+            <style>
+                .layout {
+                    position: relative;
+                    width: 100vw;
+                    background-color: ${theme.layout.background};
+                    overflow-x: hidden;
+                }
+            </style>
+            <div class="layout">
+                <load-settings></load-settings>
+
+                ${RenderService.showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
+
+                <page-switcher></page-switcher>
+
+                ${RenderService.showComponent(FooterBoard.board.enabled, '<footer-section></footer-section>')}
+            </div> 
+        `;
         this.setLayoutOffset();
     }
 
@@ -45,28 +63,6 @@ class Layout extends HTMLElement {
         setTimeout(() => {
             StyleService.setProperty(container, 'transform', 'translateY(0)');
         }, this.animationDuration * 1200);
-    }
-
-    render() {  
-        this.shadow.innerHTML = `
-            <style>
-                .layout {
-                    position: relative;
-                    width: 100vw;
-                    background-color: ${theme.layout.background};
-                    overflow-x: hidden;
-                }
-            </style>
-            <div class="layout">
-                <load-settings></load-settings>
-
-                ${RenderService.showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
-
-                <page-switcher></page-switcher>
-
-                ${RenderService.showComponent(FooterBoard.board.enabled, '<footer-section></footer-section>')}
-            </div> 
-        `;
     }
 }
 

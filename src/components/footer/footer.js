@@ -9,10 +9,6 @@ class Footer extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 ${setStyle()}

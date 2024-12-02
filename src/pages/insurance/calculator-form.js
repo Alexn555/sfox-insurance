@@ -21,7 +21,6 @@ class InsuranceCalculatorForm extends HTMLElement {
         interests: 'interests'
       };
 
-
       this.currency = '€';
       this.currencyID = 'EUR';
       this.loan = 1;
@@ -125,8 +124,8 @@ class InsuranceCalculatorForm extends HTMLElement {
                 border-right: 1px solid ${theme.page.insurance.calculation.border};
 
                 & div {
-                    margin: 10px;
-                    text-align: left;
+                  margin: 10px;
+                  text-align: left;
                 }    
 
                 & .loan-current-amount{
@@ -137,7 +136,7 @@ class InsuranceCalculatorForm extends HTMLElement {
               }
 
               .submit {
-                  text-align: right;
+                text-align: right;
 
                 & div {
                   margin: 6px;
@@ -155,9 +154,9 @@ class InsuranceCalculatorForm extends HTMLElement {
                   border-bottom: 1px solid ${theme.page.insurance.calculation.border};                        
       
                   & div:nth-child(2) {
-                      color: #ee7023;
-                      font-size: 20px;
-                      transform: translateY(-4px);
+                    color: #ee7023;
+                    font-size: 20px;
+                    transform: translateY(-4px);
                   }
                 }
               }

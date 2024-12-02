@@ -13,15 +13,6 @@ class AccountsPage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .account {
@@ -36,6 +27,11 @@ class AccountsPage extends HTMLElement {
                 <home-banners></home-banners>
             </section>
         `;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const el = IdService.id('base-home', this.shadow);
+        el?.setAttribute('active', newValue);
     }
 }
 

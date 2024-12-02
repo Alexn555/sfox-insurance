@@ -5,7 +5,7 @@ export class JSONService {
 
     static getArray(arrStr) {
         if (arrStr) {
-           const array = JSON.parse(arrStr);
+            let array = JSON.parse(arrStr);
             return array && array['length'] !== undefined && array.length > 0 ? array : [];  
         }
         return [];
@@ -13,7 +13,7 @@ export class JSONService {
 
     static getObj(str) {
         if (str) {
-           const obj = JSON.parse(str);
+           let obj = JSON.parse(str);
            return obj && obj !== null ? obj : {};  
         }
         return {};   
