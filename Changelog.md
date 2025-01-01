@@ -1,4 +1,7 @@
 ## Changelog
+v 3.16
+  Added ImageViewer optimizations
+
 v 3.15
   Added Components optimizations
 

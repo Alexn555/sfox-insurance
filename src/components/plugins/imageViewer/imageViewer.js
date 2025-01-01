@@ -150,7 +150,7 @@ class ImageViewer extends HTMLElement {
     updateSize() {
       const { mobile, screenW, screenH, factors } = ImageViewerHelper.updateSize(GlobalSizes.largeScreen);
       this.isMobile = mobile;
-      const el = IdService.id(this.imgViewerId, this.shadow);
+      let el = IdService.id(this.imgViewerId, this.shadow);
       this.imgViewerSize = {
         w: Math.ceil(screenW / factors.w),
         h: Math.ceil(screenH / factors.h)
@@ -162,7 +162,7 @@ class ImageViewer extends HTMLElement {
     }
 
     toggleViewer(isOpen) {
-      const el = IdService.id(this.imgViewerId, this.shadow);
+      let el = IdService.id(this.imgViewerId, this.shadow);
       if (el && this.imgMedium) {
         if (!this.imgViewerVisible) {
           this.setImage();
@@ -173,16 +173,14 @@ class ImageViewer extends HTMLElement {
             if (this.settings.exceptionHandler) {
               // re-try with show dialog
               LoggerService.warn('Failed to open ImageViewer -> reload browser');
-              
-              const props = { 
+              CustomEventService.send(CustomWindowEvents.generalNote.open, { 
                 size: '', 
                 text:  this.genericStatusMsg, 
                 status: GeneralNoteEnums.status.error,
                 code: GeneralNoteCodes.writerLostFocus,
                 recipe: GeneralNoteEnums.recipes.reload,
                 useBack: GeneralNoteEnums.useBack.close
-              };
-              CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
+              }, true);
             }        
           }
         } else {
@@ -219,8 +217,8 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomInfo(zoomFactor, key = '') {
-      const el = IdService.id(this.$zoomPercent, this.shadow);
-      const arrows = ImageViewerHelper.getZommArrows(key, this.keys);
+      let el = IdService.id(this.$zoomPercent, this.shadow);
+      let arrows = ImageViewerHelper.getZommArrows(key, this.keys);
       HTMLService.html(el, `${arrows.left} <b>${Math.floor(zoomFactor * 100)}%</b> ${arrows.right}`);
     }
 
@@ -240,7 +238,7 @@ class ImageViewer extends HTMLElement {
     }
 
     checkImage() {
-      const newSource = this.$content.getAttribute('src');
+      let newSource = this.$content.getAttribute('src');
       this.toggleError(false);
       if (newSource === '' || this.imgMedium === ImageViewerSettings.errorCase) {
         this.$content?.setAttribute('src', 
@@ -255,7 +253,7 @@ class ImageViewer extends HTMLElement {
 
     toggleZoom(enable = false) {
       if (this.settings.zoomEnable) {
-        const el = this.shadow.querySelector('#imageViewer img');
+        let el = this.shadow.querySelector('#imageViewer img');
         if (enable) {
           StyleService.toggleClass(el, 'zoom', true);
           if (this.settings.zoom.keyboard) {
@@ -276,11 +274,10 @@ class ImageViewer extends HTMLElement {
     }
 
     setZoomAbility() {
-      const cursor = this.zoomFactor > 1 ? 'zoom-in' : 'zoom-out';
       return this.settings.zoomEnable ? `
         transform: scale(${this.zoomFactor});
         transition: transform 0.5s ease-in-out;
-        cursor: ${cursor};` : '';
+        cursor: ${this.zoomFactor > 1 ? 'zoom-in' : 'zoom-out'};` : '';
     }
 
     toggleOriginalLink() {
@@ -299,11 +296,10 @@ class ImageViewer extends HTMLElement {
 
     showArrows() {
       if (this.settings.enableArrows) {
-        const sets = JSONService.set(this.settings);
         return `
           <image-viewer-arrows 
             id="arrows" 
-            settings='${sets}' 
+            settings='${JSONService.set(this.settings)}' 
             visible="${BoolEnums.bTrue}">
           </image-viewer-arrows>`;
       }
@@ -311,7 +307,7 @@ class ImageViewer extends HTMLElement {
     }
   
     render() {
-      const sharedBtnStyles = `
+      let sharedBtnStyles = `
         padding: 10px;
         border-radius: 0;`;
         
