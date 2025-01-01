@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.16
+  Added ImageViewer optimizations
+
 v 3.15
   Added Components optimizations
 
@@ -24,9 +27,6 @@ v 3.09
 
 v 3.08
   Added ArrayService pluck, shuffle methods
-
-v 3.07
-  Added Code optimization improvements
 
 ## Demo 
 
