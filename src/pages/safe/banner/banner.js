@@ -10,40 +10,33 @@ class BannerPage extends HTMLElement {
     }
   
     connectedCallback() {
-      this.render();
-    }
-
-    render() {
-      let itemSet = JSONService.set(BannerItemSet);
-      let banners = JSONService.set(Banners);
-
       this.shadow.innerHTML = `
-          <style>
-            .banner-wrapper {
-              padding: 2px 0 20px 0;
-              border: 1px dashed #dcdcdc;
+        <style>
+          .banner-wrapper {
+            padding: 2px 0 20px 0;
+            border: 1px dashed #dcdcdc;
 
-              & h3 {
-                padding-left: 8px;
-              }
+            & h3 {
+              padding-left: 8px;
             }
-            .carousel {
-              transform: translateX(24%);
-              ${ScreenQuery.mobile('transform: translateX(0);')}
-            }
-          </style>
-          <div class="banner-wrapper">
-            <h3>Banner</h3>
-            <div class="carousel">
-              <banner-carousel
-                id="${CarouselSetIds.banner}"
-                item-set='${itemSet}'  
-                items='${banners}'
-              >
-              </banner-carousel>
-            </div>
+          }
+          .carousel {
+            transform: translateX(24%);
+            ${ScreenQuery.mobile('transform: translateX(0);')}
+          }
+        </style>
+        <div class="banner-wrapper">
+          <h3>Banner</h3>
+          <div class="carousel">
+            <banner-carousel
+              id="${CarouselSetIds.banner}"
+              item-set='${JSONService.set(BannerItemSet)}'  
+              items='${JSONService.set(Banners, true)}'
+            >
+            </banner-carousel>
           </div>
-       `;
+        </div>
+    `;
     }
   }
   

@@ -12,7 +12,6 @@ export class ValidatorService {
     }
     
     static validateWhiteSpaces(input, minAllowed = 3) {
-        let str = input.replace(' ', '');
-        return str.length >= minAllowed;
+        return input.replace(' ', '').length >= minAllowed;
     }
 }

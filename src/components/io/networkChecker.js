@@ -27,16 +27,14 @@ class NetworkChecker extends HTMLElement {
         if (this.lostConnection) {
           this.toggleMessage(this.connectionON);
           this.toggleConnection(false);
-
-          const props = { 
+          CustomEventService.send(CustomWindowEvents.generalNote.open, { 
             size: this.sizes, 
             text: this.msg, 
             status: GeneralNoteEnums.status.success,
             code: GeneralNoteCodes.networkLost,
             recipe: '',
             useBack: GeneralNoteEnums.useBack.close
-          };
-          CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
+          }, true);
           setTimeout(() => {
             CustomEventService.send(CustomWindowEvents.generalNote.close);
           }, 2000);
@@ -46,15 +44,14 @@ class NetworkChecker extends HTMLElement {
       CustomEventService.windowEvent(CustomWindowEvents.network.offline, () => {
         this.toggleMessage(this.connectionLost);
         this.toggleConnection(true);
-        const props = { 
+        CustomEventService.send(CustomWindowEvents.generalNote.open, { 
           size: this.sizes, 
           text: this.msg, 
           status: GeneralNoteEnums.status.error,
           code: GeneralNoteCodes.networkLost,
           recipe: '',
           useBack: GeneralNoteEnums.useBack.close
-        };
-        CustomEventService.send(CustomWindowEvents.generalNote.open, props, true);
+        }, true);
       });
     }
   }

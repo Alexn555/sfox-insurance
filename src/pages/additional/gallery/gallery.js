@@ -37,7 +37,7 @@ class GalleryPage extends HTMLElement {
       this.$viewer = IdService.id(this.viewer, this.shadow);
       if (GallerySet.searchEnabled) {
         CustomEventService.event(GallerySet.searchEvent, (e) => {
-          const input = e.detail?.value || '';
+          let input = e.detail?.value || '';
           if (input !== '' && input.length >= GallerySet.minimumSearch) {
             this.searchWord = input;
             this.updateLabel(this.searchWord);
@@ -50,7 +50,7 @@ class GalleryPage extends HTMLElement {
     }
 
     async activateContent(searchword) {
-      const images = await this.flickrService.getImages(searchword, this.totalAmount);
+      let images = await this.flickrService.getImages(searchword, this.totalAmount);
       this.$viewer.setAttribute('images', JSONService.set(images));
     }
 

@@ -1,4 +1,4 @@
-### SFox Engine v 3.16
+### SFox Engine v 3.17
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.17 
+  Added Banners and JSONService fixes and services optimizations
+
 v 3.16
   Added ImageViewer optimizations
 

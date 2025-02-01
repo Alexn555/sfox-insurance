@@ -1,6 +1,10 @@
 export class JSONService {
-    static set(obj) {
-       return JSON.stringify(obj);
+    static set(obj, escapeQuotes) {
+        return !escapeQuotes ? JSON.stringify(obj) : JSONService.escapeJSON(JSON.stringify(obj));
+    }
+
+    static escapeJSON(str) {
+        return str.replace(/'/g,'`');
     }
 
     static getArray(arrStr) {

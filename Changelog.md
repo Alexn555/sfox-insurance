@@ -1,4 +1,7 @@
 ## Changelog
+v 3.17 
+  Added Banners and JSONService fixes
+
 v 3.16
   Added ImageViewer optimizations
 

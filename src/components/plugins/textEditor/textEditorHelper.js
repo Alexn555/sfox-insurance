@@ -30,13 +30,13 @@ export class TextEditorHelper {
             savedArray = saved;
         }
 
-        const saveObj = { 
+        let saveObj = { 
             id: textObject.id,
             name: evt === SaveEvts.name ? this.validateText(evt, value, sets, errEl) : textObject.name,
             content: evt === SaveEvts.content ? this.validateText(evt, value, sets, errEl) : textObject.content
         };
 
-       const foundIndex = TextEditorHelper.getSaveObjIndex(textObject.id, savedArray);
+       let foundIndex = TextEditorHelper.getSaveObjIndex(textObject.id, savedArray);
         if (foundIndex > -1) {
             savedArray[foundIndex] = saveObj;
         } else {
@@ -49,12 +49,11 @@ export class TextEditorHelper {
     static getFileObject(saved, file) {
         let textObject = {};
         if (saved && ArrayService.minLength(saved)) {
-            const foundIndex = TextEditorHelper.getSaveObjIndex(file.id, saved);
+            let foundIndex = TextEditorHelper.getSaveObjIndex(file.id, saved);
             textObject = foundIndex > -1 ? saved[foundIndex] : file;
         } else {
             textObject = file;
         }
-
         textObject['rows'] = file.rows;
         textObject['cols'] = file.cols;
         return textObject;

@@ -7,11 +7,11 @@ import LoggerService from '../loggerService';
 export class UserService {
     static getLoginData(user) {
         if (user) {
-            const data = usersData.users;
-            const foundIndex = data.map(found => found.username).indexOf(user.username);
+            let data = usersData.users;
+            let foundIndex = data.map(found => found.username).indexOf(user.username);
             if (foundIndex > -1) {
-                const inputPwd = `${user.password}${LoginSets.salt}`;
-                const decodedPwd = EncryptService.decodeBase64Str(data[foundIndex].password);
+                let inputPwd = `${user.password}${LoginSets.salt}`;
+                let decodedPwd = EncryptService.decodeBase64Str(data[foundIndex].password);
                 if (decodedPwd === inputPwd) {
                     return data[foundIndex];
                 }
