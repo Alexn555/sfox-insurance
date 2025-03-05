@@ -30,7 +30,7 @@ class AccountsPage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-home', this.shadow);
+        let el = IdService.id('base-home', this.shadow);
         el?.setAttribute('active', newValue);
     }
 }

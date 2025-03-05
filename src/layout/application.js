@@ -34,9 +34,9 @@ class Application extends HTMLElement {
     }
 
     setTitle() {
-        const pckData = require('../../package.json');
-        const titleEl = document.querySelector('title');
-        HTMLService.html(titleEl, `${SEO.application} R${StringService.getVersionFromPackage(pckData.version)}`);
+        let pckData = require('../../package.json');
+        let $title = document.querySelector('title');
+        HTMLService.html($title, `${SEO.application} R${StringService.getVersionFromPackage(pckData.version)}`);
     }
 
     settingsChanged(evt) {
@@ -47,15 +47,13 @@ class Application extends HTMLElement {
     }
 
      toggleSettings(evt) {
-        const el = ClassIdService.id('settings', this.shadow);
+        let el = ClassIdService.id('settings', this.shadow);
         if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === BoolEnums.bTrue) {
            StyleService.setDisplay(el, false);
            return;
         }
-
-        const { value } = evt.detail;
         setTimeout(() => {
-            StyleService.setDisplay(el, !value);
+            StyleService.setDisplay(el, !evt.detail.value);
         }, Animations.topSettings * 1000);
     }
 
@@ -84,7 +82,7 @@ class Application extends HTMLElement {
     }
 
     render() {
-        const stngsHeight = PageStructure.settings.height;
+        let stngsHeight = PageStructure.settings.height;
         this.shadow.innerHTML = `
             <style>
                 .application {
@@ -96,7 +94,7 @@ class Application extends HTMLElement {
                     height: ${stngsHeight}px;
                     z-index: 6;
 
-                    ${ScreenQuery.mobile('height: ${stngsHeight + 120}px')}
+                    ${ScreenQuery.mobile('height: '+stngsHeight + 120+'px')}
                 }
                 .layout {
                     z-index: 7;

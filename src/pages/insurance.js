@@ -31,7 +31,7 @@ class InsurancePage extends HTMLElement {
     }  
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-insurance', this.shadow);
+        let el = IdService.id('base-insurance', this.shadow);
         el?.setAttribute('active', newValue);
     }
 }

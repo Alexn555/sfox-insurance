@@ -38,9 +38,9 @@ class WriterImage extends HTMLElement {
     async fetchImage() {
       StyleService.setProperty(this.loadEl, 'opacity', '1');
 
-      const { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
+      let { imgSm, imgMedium } = await this.flickrService.getImage(this.getImageSearchTerm(), true);
       this.imgMedium = imgMedium;
-      const imgEl = IdService.id('imgSource', this.shadow);
+      let imgEl = IdService.id('imgSource', this.shadow);
       StyleService.setDisplay(this.loadEl, false);
       imgEl.setAttribute('src', imgSm);
 
@@ -48,13 +48,13 @@ class WriterImage extends HTMLElement {
     }
 
     getImageSearchTerm() {
-      const listCase = ImageViewerHelper.getId(this.imgViewerId).searchListNum;
-      const lastIndex = listCase === ArrayEnums.All ? imageSearchList.length - 1 : listCase;
+      let listCase = ImageViewerHelper.getId(this.imgViewerId).searchListNum;
+      let lastIndex = listCase === ArrayEnums.All ? imageSearchList.length - 1 : listCase;
       return ArrayService.getRandomItemFromList(imageSearchList, 0, lastIndex);
     }
 
     handleImageError(el, image) {
-      const errEl = IdService.id('error', this.shadow);
+      let errEl = IdService.id('error', this.shadow);
       StyleService.setDisplay(errEl, false);
       if (!image) {
         this.imgMedium = ImageViewerSettings.errorCase;

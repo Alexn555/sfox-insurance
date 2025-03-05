@@ -12,7 +12,7 @@ class SafePage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        const el = IdService.id('base-additional', this.shadow);
+        let el = IdService.id('base-additional', this.shadow);
         el?.setAttribute('active', newValue);
     }
     

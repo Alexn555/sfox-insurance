@@ -18,22 +18,21 @@ class ResetSettings extends HTMLElement {
     }
 
     setResetSettingsHandler() {
-        const resetId = IdService.id('resetSettings', this.shadow);
+        let resetId = IdService.id('resetSettings', this.shadow);
         resetId.onclick = (() => {
-            const saveObj = [
+            let saveObj = [
                 SaveObjects.themes.active, 
                 SaveObjects.settings.close,
                 SaveObjects.settings.textSize,
                 SaveObjects.banners.performance];
-            const saveForms = [
+            let saveForms = [
                 SaveForms.performance.bannerFlip, 
                 SaveForms.calculator.main, 
                 SaveForms.performance.payment];
-            const list = saveObj.concat(saveForms);
-            const permWord = HeaderSettings.resetDialog.permissionWord;
+            let permWord = HeaderSettings.resetDialog.permissionWord;
             let permission = prompt(`You about to remove all saved values from forms, type ${permWord} to agree or cancel`, permWord);
             if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
-              this.dataStorage.removeList(list);
+              this.dataStorage.removeList(saveObj.concat(saveForms));
               setTimeout(() => { // reset to root page
                 CustomEventService.send(CustomEvents.settings.themeChanged, this.theme);
               }, 500);

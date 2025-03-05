@@ -68,7 +68,7 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   initForm() {
-    const saved = this.dataStorage.getObject(SaveForms.performance.payment);
+    let saved = this.dataStorage.getObject(SaveForms.performance.payment);
     this.savedForm = saved || this.savedForm;
 
     this.$amount = IdService.id('amount', this.shadow);
@@ -91,7 +91,7 @@ class InsurancePaymentForm extends HTMLElement {
 
   setAmount(amountVal) {
     if (amountVal && amountVal !== '') {
-        const errorLabel = ClassIdService.id('input-error', this.shadow);
+        let errorLabel = ClassIdService.id('input-error', this.shadow);
         StyleService.setDisplay(errorLabel, false);        
         if (!NumberService.isValidNumber(amountVal)) {
             StyleService.setDisplay(errorLabel, true);

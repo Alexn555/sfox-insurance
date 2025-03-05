@@ -35,7 +35,7 @@ class HomeTabs extends HTMLElement {
     }
 
     initButtons() {
-      const { start, welcome, features, accounts } = HomePageTabs.tabLinks;
+      let { start, welcome, features, accounts } = HomePageTabs.tabLinks;
 
       this.$btnStart = IdService.idAndClick(start, this.shadow, () => {
         this.openTab(this.tabs.start, this.$tabStart);
@@ -52,8 +52,8 @@ class HomeTabs extends HTMLElement {
     }
 
     openTab(evt, selected) {
-      const item = evt;
-      const tab = IdService.id(item, this.shadow);
+      let item = evt;
+      let tab = IdService.id(item, this.shadow);
 
       if (tab) {
         StyleService.setDisplayMultiple([this.$tabStart, this.$tabWelcome, this.$tabFeatures, this.$tabAccount], false);
@@ -64,7 +64,7 @@ class HomeTabs extends HTMLElement {
     }
 
     render() {
-      const { start, welcome, features, accounts } = HomePageTabs.tabLinks;
+      let { start, welcome, features, accounts } = HomePageTabs.tabLinks;
         this.shadow.innerHTML = `
             <style>
               ${commonTabStyle(this.theme)}

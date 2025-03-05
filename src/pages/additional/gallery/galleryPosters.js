@@ -27,7 +27,7 @@ class GalleryPosterPage extends HTMLElement {
     }
 
     async activateContent() {
-      const images = await this.themoviedbService.getGalleryPosters();
+      let images = await this.themoviedbService.getGalleryPosters();
       this.$viewer.setAttribute('images', JSONService.set(images));
     }
 

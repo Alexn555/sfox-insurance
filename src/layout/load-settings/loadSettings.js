@@ -35,12 +35,11 @@ class LoadSettings extends HTMLElement {
 
     updateSize() {
         this.screenW = window.innerWidth;
-        const stn = ClassIdService.id('settings-button', this.shadow);
-        StyleService.setProperty(stn, 'left', this.getStnPosition()+'px');
+        StyleService.setProperty(ClassIdService.id('settings-button', this.shadow), 'left', this.getStnPosition()+'px');
     }
 
     setLayoutOffset() {
-        const savedToggle = this.dataStorage.getItem(SaveObjects.settings.close) || false;
+        let savedToggle = this.dataStorage.getItem(SaveObjects.settings.close) || false;
         this.setToggle(savedToggle === 1);
         this.moveLayout(); 
     }
@@ -65,7 +64,7 @@ class LoadSettings extends HTMLElement {
     }
 
     toggleNotice(isClose) {
-        const elDialog = IdService.id('load-settings', this.shadow);
+        let elDialog = IdService.id('load-settings', this.shadow);
         if (!isClose) {
             elDialog.showModal();
             setTimeout(() => { elDialog.close(); }, Animations.topSettings * 1000);

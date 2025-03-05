@@ -28,7 +28,7 @@ class AdditionalTabs extends HTMLElement {
     }
 
     initButtons() {
-      const { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
+      let { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab('game', this.$tabGame);
@@ -64,7 +64,7 @@ class AdditionalTabs extends HTMLElement {
     }
 
     render() {
-      const { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
+      let { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
         this.shadow.innerHTML = `
             <style>
               ${commonTabStyle(this.theme)}

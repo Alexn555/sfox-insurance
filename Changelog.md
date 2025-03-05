@@ -1,4 +1,7 @@
 ## Changelog
+v 3.20
+  Added Huge optimizations
+
 v 3.17 
   Added Banners and JSONService fixes
 

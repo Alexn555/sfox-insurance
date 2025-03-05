@@ -52,8 +52,8 @@ class Layout extends HTMLElement {
     }
 
     moveLayout(settingsToggle) {
-        const container = ClassIdService.id('layout', this.shadow);
-        const top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
+        let container = ClassIdService.id('layout', this.shadow);
+        let top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
         StyleService.setProperties(container, [
             { property: 'transform', value: `translateY(${top}px)` },
             { property: 'transitionDuration', value: `${this.animationDuration}s` },

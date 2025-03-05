@@ -61,7 +61,7 @@ class PageSwitcher extends HTMLElement {
         this.dataStorage.save(SaveRoutes.currentPage, savePage);
         this.resetPageActive();
 
-        const activePage = IdService.id(savePage, this.shadow);
+        let activePage = IdService.id(savePage, this.shadow);
         if (isInit) {
              setTimeout(() => {
                 activePage?.setAttribute('active', 'true');
@@ -72,24 +72,21 @@ class PageSwitcher extends HTMLElement {
     }
 
     closePageOpener() {
-        const el = ClassIdService.id('heightHolder', this.shadow);
+        let el = ClassIdService.id('heightHolder', this.shadow);
         setTimeout(() => { el.remove(); }, 1000);
     }
 
     resetPageActive() {
         this.pageIds.forEach((item) => {
-            const container = IdService.id(item, this.shadow);
+            let container = IdService.id(item, this.shadow);
             container.setAttribute('active', 'false');
         });
     }
 
     getSavedPage() {
         let _page = pageNames.home;
-        const saved = this.dataStorage.getItem(SaveRoutes.currentPage);
-        if (saved) {
-            _page = pageNames[saved];
-        }
-        return _page;
+        let saved = this.dataStorage.getItem(SaveRoutes.currentPage);
+        return saved ? pageNames[saved] : _page;
     }
     
     connectedCallback() {

@@ -36,11 +36,11 @@ class InsuranceCalculatorForm extends HTMLElement {
       CustomEventService.event(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (e) => {
         this.loan = e.detail.value;
         this.save('loan', e.detail.value);
-        const el = ClassIdService.id('loan-current-amount', this.shadow);
+        let el = ClassIdService.id('loan-current-amount', this.shadow);
         HTMLService.html(el, `${this.loan} ${this.currency}`);
       });
 
-      const selectEvt = CustomEvents.interaction.selectChange;
+      let selectEvt = CustomEvents.interaction.selectChange;
       CustomEventService.event(`${selectEvt}-${this.selectIds.period}`, (e) => {
         this.period = e.detail.value;
         this.save('period', e.detail.value);
@@ -63,11 +63,11 @@ class InsuranceCalculatorForm extends HTMLElement {
     }
 
     initForm() {
-      const saved = this.dataStorage.getObject(SaveForms.calculator.main);
+      let saved = this.dataStorage.getObject(SaveForms.calculator.main);
       this.savedForm = saved || this.savedForm;
-      const loan = IdService.id(this.selectIds.loan, this.shadow);
-      const periodId = IdService.id(this.selectIds.period, this.shadow);
-      const interestsId = IdService.id(this.selectIds.interests, this.shadow);
+      let loan = IdService.id(this.selectIds.loan, this.shadow);
+      let periodId = IdService.id(this.selectIds.period, this.shadow);
+      let interestsId = IdService.id(this.selectIds.interests, this.shadow);
 
       if (this.savedForm.loan !== 0) {
         loan.setAttribute('value', this.savedForm.loan);
@@ -86,8 +86,7 @@ class InsuranceCalculatorForm extends HTMLElement {
 
     calculateFormula() {
       this.totalPayment = this.loan * (this.period / this.interests);
-      const el = ClassIdService.id('total-payment', this.shadow);
-      HTMLService.html(el, `${(this.formatTotalValue(this.totalPayment))}`);
+      HTMLService.html(ClassIdService.id('total-payment', this.shadow), `${(this.formatTotalValue(this.totalPayment))}`);
     }
 
     formatTotalValue(val, option = 2) {
@@ -97,9 +96,7 @@ class InsuranceCalculatorForm extends HTMLElement {
         );
       }
       else {
-        const options = { style: 'currency', currency: this.currencyID };
-        const result = val.toLocaleString('en-US', options);
-        return result;
+        return val.toLocaleString('en-US', { style: 'currency', currency: this.currencyID });
       }
     }
   

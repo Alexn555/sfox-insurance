@@ -51,10 +51,10 @@ class InsuranceTabs extends HTMLElement {
   }
 
   openTab(evt) {
-    const item = evt;
-    const tab = IdService.id(item, this.shadow);
-    const tabPayment = IdService.id('payment', this.shadow);
-    const tabCalculator = IdService.id('calculator', this.shadow);
+    let item = evt;
+    let tab = IdService.id(item, this.shadow);
+    let tabPayment = IdService.id('payment', this.shadow);
+    let tabCalculator = IdService.id('calculator', this.shadow);
 
     if (tab) {
       StyleService.setDisplayMultiple([tabPayment, tabCalculator], false);

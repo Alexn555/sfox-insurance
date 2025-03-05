@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import { theme } from '../../theme/theme';
 import ScreenQuery from '../../styles/query';
 import { CommonEvents, CustomEvents } from '../../settings';
@@ -31,7 +30,7 @@ class InsuranceBanner extends HTMLElement {
             return;
         }
 
-        const payload = await this.bannerService.getPerformance(SaveObjects.banners.performance);
+        let payload = await this.bannerService.getPerformance(SaveObjects.banners.performance);
         this.bannerData = payload.data;
         this.dataFadeIn = payload.isSaved ? '0s' : '1s';
         this.render(); 

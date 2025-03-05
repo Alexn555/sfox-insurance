@@ -46,7 +46,7 @@ class SafeTabs extends HTMLElement {
     }
 
     initButtons() {
-      const { game, welcome, editor, faq, games, banner } = SafePageTabs.tabLinks;
+      let { game, welcome, editor, faq, games, banner } = SafePageTabs.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
         this.openTab(this.tabs.game, this.$tabGame);
@@ -69,8 +69,8 @@ class SafeTabs extends HTMLElement {
     }
 
     openTab(evt, selected) {
-      const item = evt;
-      const tab = IdService.id(item, this.shadow);
+      let item = evt;
+      let tab = IdService.id(item, this.shadow);
 
       if (tab) {
         StyleService.setDisplayMultiple([
@@ -88,7 +88,7 @@ class SafeTabs extends HTMLElement {
     }
 
     render() {
-      const { game, welcome, 
+      let { game, welcome, 
         editor, 
         faq,
         games, banner

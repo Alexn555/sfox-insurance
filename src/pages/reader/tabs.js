@@ -43,7 +43,7 @@ class ReaderTabs extends HTMLElement {
     }
 
     initButtons() {
-      const { contact, welcome, galleryPosters, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
+      let { contact, welcome, galleryPosters, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
 
       this.$btnContact = IdService.idAndClick(contact, this.shadow, () => {
         this.openTab(this.tabs.contact, this.$tabContact);
@@ -63,8 +63,8 @@ class ReaderTabs extends HTMLElement {
     }
 
     openTab(evt, selected) {
-      const item = evt;
-      const tab = IdService.id(item, this.shadow);
+      let item = evt;
+      let tab = IdService.id(item, this.shadow);
 
       if (tab) {
         StyleService.setDisplayMultiple([
@@ -81,7 +81,7 @@ class ReaderTabs extends HTMLElement {
     }
 
     render() {
-      const { 
+      let { 
         contact,
         welcome, 
         reviewer,
