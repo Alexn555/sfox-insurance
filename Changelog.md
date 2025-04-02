@@ -1,4 +1,7 @@
 ## Changelog
+v 3.23
+  Introduced TabSelector for Start section
+
 v 3.20
   Added Huge optimizations
 

@@ -5,6 +5,7 @@ import './galleryViewer/galleryViewer';
 import './faq';
 import './reviewer';
 import './accountTable/accountTable';
+import './tabSelector/tabSelector';
 import './reviewerStepHandler';
 import './contact';
 import './notice/notice';

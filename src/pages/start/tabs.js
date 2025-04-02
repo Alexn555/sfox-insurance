@@ -1,101 +1,57 @@
 // @ts-nocheck
 import { theme } from '../../theme/theme';
-import commonTabStyle from '../../pages/common/tabsStyle';
-import { HomePageTabs } from './sets';
-import { IdService, StyleService } from '../../services';
+import { JSONService } from '../../services/utils';
 
 class HomeTabs extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
       this.theme = theme.page.tabs;
-      this.tabs = {
-        start: 'start',
-        welcome: 'welcome',
-        features: 'features',
-        accounts: 'accounts'
-      };
+      this.$menu = [
+        { id: 'tab-menu-search', label: 'Start' },
+        { id: 'tab-menu-welcome', label: 'Welcome' },
+        { id: 'tab-menu-features', label: 'Features' },
+        { id: 'tab-menu-accounts', label: 'Accounts', sideBtn: false }
+      ];
+      this.$slots = [
+        { id: 'start', name: 'start' },
+        { id: 'welcome', name: 'welcome' },
+        { id: 'features', name: 'features' },
+        { id: 'accounts', name: 'accounts' }
+      ];
     }
     
     connectedCallback() {
-      this.render();
-      this.initForm();
-    }
+      this.shadow.innerHTML = `
+        <tab-selector
+          id="start"
+          theme='${JSONService.set(theme.page.tabs)}'
+          stls='${JSONService.set({
+            width: '100%',
+            height: '280px', 
+            padding: '0',
+            margin: '0' 
+          })}'
+          menu='${JSONService.set(this.$menu)}'
+          slots='${JSONService.set(this.$slots)}'
+        >
+          <div slot="${this.$slots[0].name}">
+            <start-page></start-page>
+          </div> 
 
-    disconnectedCallback() {
-      IdService.removeList([this.$btnStart, this.$btnWelcome, this.$btnFeatures, this.$btnAccount]);
-    }
+          <div slot="${this.$slots[1].name}">
+            <welcome-page></welcome-page>
+          </div> 
 
-    initForm() {
-      this.$tabStart = IdService.id(this.tabs.start, this.shadow);
-      this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
-      this.$tabFeatures = IdService.id(this.tabs.features, this.shadow);
-      this.$tabAccount = IdService.id(this.tabs.accounts, this.shadow);
-      this.initButtons();
-    }
-
-    initButtons() {
-      let { start, welcome, features, accounts } = HomePageTabs.tabLinks;
-
-      this.$btnStart = IdService.idAndClick(start, this.shadow, () => {
-        this.openTab(this.tabs.start, this.$tabStart);
-      });
-      this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
-        this.openTab(this.tabs.welcome, this.$tabWelcome);
-      });
-      this.$btnFeatures = IdService.idAndClick(features, this.shadow, () => {
-        this.openTab(this.tabs.features, this.$tabFeatures);
-      });
-      this.$btnAccount = IdService.idAndClick(accounts, this.shadow, () => {
-        this.openTab(this.tabs.accounts, this.$tabAccount);
-      });
-    }
-
-    openTab(evt, selected) {
-      let item = evt;
-      let tab = IdService.id(item, this.shadow);
-
-      if (tab) {
-        StyleService.setDisplayMultiple([this.$tabStart, this.$tabWelcome, this.$tabFeatures, this.$tabAccount], false);
-      }
-      if (selected !== null) {
-        StyleService.setDisplay(selected, true);
-      }
-    }
-
-    render() {
-      let { start, welcome, features, accounts } = HomePageTabs.tabLinks;
-        this.shadow.innerHTML = `
-            <style>
-              ${commonTabStyle(this.theme)}
-
-              #${this.tabs.start} {
-                display: block;
-              }
-            </style>
-            <div class="tab">
-              <button id="${start}">Start</button>
-              <button id="${welcome}">Welcome</button>
-              <button id="${features}">Features</button>
-              <button id="${accounts}">Accounts</button>
-            </div>
-
-            <div id="${this.tabs.start}" class="tabcontent">
-              <start-page></start-page>
-            </div> 
-
-            <div id="${this.tabs.welcome}" class="tabcontent">
-              <welcome-page></welcome-page>
-            </div> 
-
-            <div id="${this.tabs.features}" class="tabcontent">
-              <features-page></features-page>
-            </div>
-            
-            <div id="${this.tabs.accounts}" class="tabcontent">
-              <home-accounts-page></home-accounts-page>
-            </div> 
-        `;
+          <div slot="${this.$slots[2].name}">
+            <features-page></features-page>
+          </div>
+          
+          <div slot="${this.$slots[3].name}">
+            <home-accounts-page></home-accounts-page>
+          </div> 
+        </tab-selector>
+      `;
     }
 }
 
