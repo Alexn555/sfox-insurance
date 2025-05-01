@@ -20,14 +20,6 @@ export class MobileService {
     
     static isMobileDevice() {
         let userAgent = navigator.userAgent;
-        let isPhone = false;
-        if (/windows phone/i.test(userAgent)) {
-            isPhone = true;
-        } else if (/android/i.test(userAgent)) {
-            isPhone = true;
-        } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            isPhone = true;
-        }
-        return isPhone;
+        return /windows phone/i.test(userAgent) || /android/i.test(userAgent) || (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream);
     }
 }
