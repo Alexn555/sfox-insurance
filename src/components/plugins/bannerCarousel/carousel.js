@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { CustomEventService, HTMLService, IdService } from '../../../services';
 import { ArrayService, JSONService } from '../../../services/utils';
-import { MouseEvents } from '../../../settings/sets/events';
+import { draggableContainer } from '../../../modifiers/dragContainer';
 import ScreenQuery from '../../../styles/query';
 import { PackIds } from '../../../theme/enums';
 import { ThemeHelper } from '../../../theme/theme';
@@ -39,28 +39,14 @@ class bannerCarousel extends HTMLElement {
           this.$shuffle = IdService.idAndClick('shuffle', this.shadow, this.shuffle.bind(this));
         }
       }
-    
-      IdService.event(this.$scene, MouseEvents.mousedown, () => {
-        document.onmousemove = (e) => {
-          let x = e.offsetX * -1;
-          this.setScenePos(x, false);
-        };
 
-        document.onmouseleave = (e) => {
-          this.curPos = e.offsetX;    
-        };
-      });
-
-      CustomEventService.event(MouseEvents.mouseup, () => {
-        document.onmousemove = null;
-      });
+      draggableContainer(this.$scene, false, false);
     }
 
     disconnectedCallback() {
       if (this.$prev) {
         IdService.removeList([this.$prev, this.$next]);
       }
-      CustomEventService.removeList([MouseEvents.mousedown, MouseEvents.mouseup]);
       if (this.sets.enableLink) {
         IdService.removeList(this.$links);
       }

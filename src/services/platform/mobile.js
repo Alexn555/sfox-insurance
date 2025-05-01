@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { GlobalSizes } from '../../settings';
 
 export class MobileService {
@@ -15,5 +16,18 @@ export class MobileService {
             isTouch = window.navigator.maxTouchPoints > 1;
         }
         return isTouch;
+    }
+    
+    static isMobileDevice() {
+        let userAgent = navigator.userAgent;
+        let isPhone = false;
+        if (/windows phone/i.test(userAgent)) {
+            isPhone = true;
+        } else if (/android/i.test(userAgent)) {
+            isPhone = true;
+        } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            isPhone = true;
+        }
+        return isPhone;
     }
 }

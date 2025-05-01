@@ -1,4 +1,4 @@
-### SFox Engine v 3.23
+### SFox Engine v 3.26
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 
@@ -10,6 +10,9 @@ in real website, administration systems.
 Libraries: pure Javascript (ES8), CSS3, CSS3 variables, HTML5, WebComponents
 
 ## Changelog
+v 3.26
+  Added draggableContainer improved version with Banner example
+
 v 3.23
   Introduced TabSelector for Start section
 
@@ -22,20 +25,6 @@ v 3.17
 v 3.16
   Added ImageViewer optimizations
 
-v 3.15
-  Added Components optimizations
-
-v 3.12
-  Added Storage cache function and improvements
-
-v 3.10 
-  Removed Official site
-
-v 3.09
-  Added StyleService toggleDisplay method
-
-v 3.08
-  Added ArrayService pluck, shuffle methods
 
 ## Demo 
 
