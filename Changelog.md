@@ -1,4 +1,7 @@
 ## Changelog
+v 3.26
+  Added draggableContainer improved version with Banner example
+
 v 3.23
   Introduced TabSelector for Start section
 

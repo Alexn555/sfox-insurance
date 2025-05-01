@@ -1,6 +1,6 @@
 {
   "name": "sfox-insurance-project",
-  "version": "3.2.3",
+  "version": "3.2.6",
   "description": "Insurance applications",
   "main": "index.html",
   "private": true,
