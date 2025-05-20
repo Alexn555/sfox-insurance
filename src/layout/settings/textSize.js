@@ -2,7 +2,6 @@
 import { theme } from '../../theme/theme';
 import { TextSizes } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
-import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { IdService, StyleService, HTMLService } from '../../services';
 
@@ -10,7 +9,6 @@ class SettignsTextSize extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.dataStorage = new DataStorage();
         this.textSizePrcnt = TextSizes.settings.default;
     }
     
@@ -34,7 +32,7 @@ class SettignsTextSize extends HTMLElement {
     }
 
     setTextSizeOnInit() {
-        const savePercentage = this.dataStorage.getItem(SaveObjects.settings.textSize) || 100;
+        const savePercentage = window.DataStorage.getItem(SaveObjects.settings.textSize) || 100;
         if (savePercentage) {
             this.textSizePrcnt = parseInt(savePercentage, 10);
             this.setBodyTextSize(this.textSizePrcnt);
@@ -49,7 +47,7 @@ class SettignsTextSize extends HTMLElement {
             this.textSizePrcnt -= this.textSizePrcnt > min ? step : 0;
         }
         this.setBodyTextSize(this.textSizePrcnt);
-        this.dataStorage.save(SaveObjects.settings.textSize, this.textSizePrcnt);
+        window.DataStorage.save(SaveObjects.settings.textSize, this.textSizePrcnt);
     }
 
     setBodyTextSize(size = TextSizes.settings.default) {

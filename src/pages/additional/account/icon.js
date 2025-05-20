@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { NumberService, ObjectService } from '../../../services/utils';
 import { SaveObjects } from '../../../components/common/saves';
-import DataStorage from '../../../services/storage';
 import { CommonEvents, CustomEvents, CustomPageEvents, CustomWindowEvents } from '../../../settings';
 import EnvService from '../../../services/api/envService';
 import { CustomEventService, IdService, HTMLService } from '../../../services';
@@ -22,7 +21,6 @@ class AccountIcon extends HTMLElement {
         change: 'change',
         select: 'select'
       };
-      this.storage = new DataStorage();
     }
   
     connectedCallback() {
@@ -102,7 +100,7 @@ class AccountIcon extends HTMLElement {
     }
 
     setIconImage(event, variants) {
-      const saved = this.storage.getItem(SaveObjects.account.icon);
+      const saved = window.DataStorage.getItem(SaveObjects.account.icon);
   
       const index = NumberService.sample(variants);
       let source = variants[index];
@@ -114,13 +112,13 @@ class AccountIcon extends HTMLElement {
         source = variants[index];
       }
 
-      this.storage.save(SaveObjects.account.icon, source);
+      window.DataStorage.save(SaveObjects.account.icon, source);
       return `${this.getIconSource()}${source}.png`;
     }
 
     setIconFromSelect(selected) {
       const source = selected;
-      this.storage.save(SaveObjects.account.icon, source);
+      window.DataStorage.save(SaveObjects.account.icon, source);
       return `${this.getIconSource()}${source}.png`;
     }
 

@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { theme } from '../../../theme/theme';
 import { NoticeDisclaimerSets } from '../../../settings';
-import DataStorage from '../../../services/storage';
 import InfoService from '../../../services/page/infoService';
 import { SaveObjects } from '../../common/saves';
 import { IdService, HTMLService } from '../../../services';
@@ -11,7 +10,6 @@ class NoticeDisclaimer extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.storage = new DataStorage();
         this.info = '';
     }
     
@@ -26,12 +24,12 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     async setInfo() {
-        const saved = this.storage.getItem(SaveObjects.notice.topDisclaimer);
+        const saved = window.DataStorage.getItem(SaveObjects.notice.topDisclaimer);
         if (!saved && NoticeDisclaimerSets.enabled) {
             this.showDialog();
             this.setInit();
             this.info = await InfoService.getDisclaimer();
-            this.storage.save(SaveObjects.notice.topDisclaimer, this.info);
+            window.DataStorage.save(SaveObjects.notice.topDisclaimer, this.info);
             HTMLService.html(this.$content, this.info);
             this.toggleDisclaimer(true);
         }

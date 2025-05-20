@@ -2,7 +2,6 @@
 import { Animations, CommonEvents, CustomEvents } from '../../settings';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
 import ScreenQuery from '../../styles/query';
-import DataStorage from '../../services/storage';
 import { SaveObjects } from '../../components/common/saves';
 import { BoolEnums } from '../../enums';
 
@@ -13,7 +12,6 @@ class LoadSettings extends HTMLElement {
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
         CustomEventService.event(CustomEvents.settings.close, this.closeSettings.bind(this), document);
 
-        this.dataStorage = new DataStorage();
         this.screenW = window.innerWidth;
         this.settingsToggle = true;
         this.loadingNotice = '';
@@ -23,7 +21,7 @@ class LoadSettings extends HTMLElement {
         this.render();
         this.setLayoutOffset();
         this.$setsOpen = IdService.idAndClick('settingsOpen', this.shadow, () => {
-            this.dataStorage.save(SaveObjects.settings.close, this.settingsToggle ? BoolEnums.bTrue : BoolEnums.bFalse);
+            window.DataStorage.save(SaveObjects.settings.close, this.settingsToggle ? BoolEnums.bTrue : BoolEnums.bFalse);
             this.toggleNotice(this.settingsToggle);
             this.moveLayout();
         });
@@ -39,7 +37,7 @@ class LoadSettings extends HTMLElement {
     }
 
     setLayoutOffset() {
-        let savedToggle = this.dataStorage.getItem(SaveObjects.settings.close) || false;
+        let savedToggle = window.DataStorage.getItem(SaveObjects.settings.close) || false;
         this.setToggle(savedToggle === 1);
         this.moveLayout(); 
     }

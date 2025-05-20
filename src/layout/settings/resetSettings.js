@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { ButtonTypes } from '../../components/common/ui';
-import DataStorage from '../../services/storage';
 import { HeaderSettings, CustomEvents } from '../../settings';
 import { SaveForms, SaveObjects } from '../../components/common/saves';
 import { CustomEventService, IdService } from '../../services';
@@ -9,7 +8,6 @@ class ResetSettings extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.dataStorage = new DataStorage();
     }
     
     connectedCallback() {
@@ -32,7 +30,7 @@ class ResetSettings extends HTMLElement {
             let permWord = HeaderSettings.resetDialog.permissionWord;
             let permission = prompt(`You about to remove all saved values from forms, type ${permWord} to agree or cancel`, permWord);
             if (permission !== null && permission.toLowerCase() === permWord.toLowerCase()) {
-              this.dataStorage.removeList(saveObj.concat(saveForms));
+              window.DataStorage.removeList(saveObj.concat(saveForms));
               setTimeout(() => { // reset to root page
                 CustomEventService.send(CustomEvents.settings.themeChanged, this.theme);
               }, 500);

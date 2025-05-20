@@ -7,7 +7,6 @@ import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
 import { ArrayService } from '../../services/utils';
 import { SaveForms } from '../../components/common/saves';
-import DataStorage from '../../services/storage';
 
 class InsurancePaymentForm extends HTMLElement {
   constructor() {
@@ -26,8 +25,6 @@ class InsurancePaymentForm extends HTMLElement {
         payments: ArrayService.getOptionFromString(dtSaveValues, 0),
         description: ''
     };
-
-    this.dataStorage = new DataStorage();
 
     this.selectIds = {
         accounts: 'accounts',
@@ -50,7 +47,7 @@ class InsurancePaymentForm extends HTMLElement {
 
   save(key, value) {
     this.savedForm[key] = value;
-    this.dataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
+    window.DataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
   }
 
   connectedCallback() {
@@ -68,7 +65,7 @@ class InsurancePaymentForm extends HTMLElement {
   }
 
   initForm() {
-    let saved = this.dataStorage.getObject(SaveForms.performance.payment);
+    let saved = window.DataStorage.getObject(SaveForms.performance.payment);
     this.savedForm = saved || this.savedForm;
 
     this.$amount = IdService.id('amount', this.shadow);
@@ -99,14 +96,14 @@ class InsurancePaymentForm extends HTMLElement {
             this.savedForm.amount = amountVal;
         }
     }
-    this.dataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
+    window.DataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
   }
 
   setDescription(descVal) {
     if (descVal && descVal !== '') {
         this.savedForm.description = descVal;
     }
-    this.dataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
+    window.DataStorage.saveObject(SaveForms.performance.payment, this.savedForm);
   }
 
   render() {

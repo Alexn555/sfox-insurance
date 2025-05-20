@@ -4,7 +4,6 @@ import { ClassIdService, CustomEventService, StyleService } from '../services';
 import { MobileService } from '../services/utils';
 import { RenderService } from '../services/helpers';
 import { theme } from '../theme/theme';
-import DataStorage from '../services/storage';
 import { HeaderBoard, FooterBoard } from '../settings';
 
 class Layout extends HTMLElement {
@@ -15,8 +14,6 @@ class Layout extends HTMLElement {
         CustomEventService.event(CustomEvents.settings.moveLayout, (e) => {
             this.moveLayout(e.detail.value);
         }, document);
-
-        this.dataStorage = new DataStorage();
         this.animationDuration = Animations.topSettings;
     }
     

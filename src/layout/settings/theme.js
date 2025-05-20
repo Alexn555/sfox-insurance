@@ -3,7 +3,6 @@ import { Themes } from '../../theme/enums';
 import ScreenQuery from '../../styles/query';
 import { GlobalSizes, CustomEvents } from '../../settings';
 import { ButtonTypes } from '../../components/common/ui';
-import DataStorage from '../../services/storage';
 import { SaveObjects, WindowSettings } from '../../components/common/saves';
 import { CustomEventService, IdService } from '../../services';
 import { CookieService } from '../../services/storage/cookieService';
@@ -13,7 +12,6 @@ class ThemeSettings extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         this.theme = Themes.main1;
-        this.dataStorage = new DataStorage();
 
         this.themeList = [
             { id: 'themeMain', label: 'Main Theme', content: Themes.main1, },
@@ -53,7 +51,7 @@ class ThemeSettings extends HTMLElement {
             // The cookie doesn't exist. Create it now -> expires after [n] time
             CookieService.setCookie(WindowSettings.refresh, 1, GlobalSizes.wdStngsRefresh);
             // to use only on 'real refresh' with all components
-            const savedTheme = this.dataStorage.getItem(SaveObjects.themes.active);
+            const savedTheme = window.DataStorage.getItem(SaveObjects.themes.active);
             if (savedTheme) {
                 this.setTheme(savedTheme);
             }
@@ -62,7 +60,7 @@ class ThemeSettings extends HTMLElement {
 
     setTheme(_theme = Themes.main1) {
         this.theme = _theme;
-        this.dataStorage.save(SaveObjects.themes.active, _theme);
+        window.DataStorage.save(SaveObjects.themes.active, _theme);
         CustomEventService.send(CustomEvents.settings.themeChanged, this.theme);
     }
 

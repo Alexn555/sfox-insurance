@@ -7,7 +7,6 @@ import { ImageViewerIds } from '../components/plugins/imageViewer/sets';
 import { SaveObjects } from '../components/common/saves';
 import { ClassIdService, CustomEventService, StyleService, HTMLService } from '../services';
 import { StringService } from '../services/utils';
-import DataStorage from '../services/storage';
 import { BoolEnums } from '../enums';
 
 class Application extends HTMLElement {
@@ -18,7 +17,6 @@ class Application extends HTMLElement {
         CustomEventService.event(CustomEvents.settings.themeChanged, this.settingsChanged.bind(this), document);
         CustomEventService.event(CustomEvents.settings.toggle, this.toggleSettings.bind(this), document);
 
-        this.dataStorage = new DataStorage();
         this.setTitle();
         this.isInit = true;
         setTimeout(() => { this.isInit = false; }, 3000);
@@ -48,7 +46,7 @@ class Application extends HTMLElement {
 
      toggleSettings(evt) {
         let el = ClassIdService.id('settings', this.shadow);
-        if (this.isInit && this.dataStorage.getItem(SaveObjects.settings.close) === BoolEnums.bTrue) {
+        if (this.isInit && window.DataStorage.getItem(SaveObjects.settings.close) === BoolEnums.bTrue) {
            StyleService.setDisplay(el, false);
            return;
         }

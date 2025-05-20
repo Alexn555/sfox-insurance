@@ -6,14 +6,12 @@ import { dtAmountSlider } from '../../data/sliders';
 import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { ArrayService } from '../../services/utils';
-import DataStorage from '../../services/storage';
 import { ClassIdService, CustomEventService, IdService, HTMLService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
       super();
       this.shadow = this.attachShadow({ mode: 'closed' });
-      this.dataStorage = new DataStorage();
 
       this.selectIds = {
         loan: 'amount-slider',
@@ -53,7 +51,7 @@ class InsuranceCalculatorForm extends HTMLElement {
 
     save(key, value) {
       this.savedForm[key] = value;
-      this.dataStorage.saveObject(SaveForms.calculator.main, this.savedForm);
+      window.DataStorage.saveObject(SaveForms.calculator.main, this.savedForm);
       this.calculateFormula();
     }
   
@@ -63,7 +61,7 @@ class InsuranceCalculatorForm extends HTMLElement {
     }
 
     initForm() {
-      let saved = this.dataStorage.getObject(SaveForms.calculator.main);
+      let saved = window.DataStorage.getObject(SaveForms.calculator.main);
       this.savedForm = saved || this.savedForm;
       let loan = IdService.id(this.selectIds.loan, this.shadow);
       let periodId = IdService.id(this.selectIds.period, this.shadow);

@@ -2,7 +2,6 @@
 import { ThemeHelper } from '../../../theme/theme';
 import { CustomEventService, IdService, LoggerService, HTMLService, StyleService } from '../../../services';
 import { NumberService, JSONService, ObjectService, StringService } from '../../../services/utils';
-import DataStorage from '../../../services/storage';
 import { CustomWindowEvents, CustomEvents } from '../../../settings';
 import { styleErrors } from '../../common/styles/errors';
 import { TextEditorSettings, TextEditorSetEnums } from './sets';
@@ -42,7 +41,6 @@ class TextEditor extends HTMLElement {
         this.content = '';
         this.previewContent = '';
         this.previewToggled = true;
-        this.storage = new DataStorage();
         this.setfiles();
     }
     
@@ -122,9 +120,9 @@ class TextEditor extends HTMLElement {
     }
 
     saveFile(evt, value) {  
-        const saved = this.storage.getObject(FileSaveEnums.object);
+        const saved = window.DataStorage.getObject(FileSaveEnums.object);
         TextEditorHelper.saveFile(evt, value, saved, this.textObject, this.sets, this.$error, (savedArray) => {
-            this.storage.saveObject(FileSaveEnums.object, savedArray);
+            window.DataStorage.saveObject(FileSaveEnums.object, savedArray);
             this.updateLabels(savedArray);
             if (evt === SaveEvts.content) {
                 this.togglePreviewContent(value);
@@ -133,7 +131,7 @@ class TextEditor extends HTMLElement {
     }
 
     getFileObject(file) {
-        const saved = this.storage.getObject(FileSaveEnums.object);
+        const saved = window.DataStorage.getObject(FileSaveEnums.object);
         this.textObject = TextEditorHelper.getFileObject(saved, file);
         if (this.textObject && this.textObject.content) {
             this.toggleContent(this.textObject.content);

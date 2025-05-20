@@ -1,9 +1,9 @@
+// @ts-nocheck
 import { CustomEvents } from '../../../settings';
 import { GallerySet } from '../../../components/plugins/galleryViewer/sets';
 import { CustomEventService, IdService, HTMLService } from '../../../services';
 import { ValidatorService } from '../../../services/utils';
 import { styleErrors } from '../../common/styles/errors';
-import DataStorage from '../../../services/storage';
 
 class GallerySearch extends HTMLElement {
     constructor() {
@@ -11,7 +11,6 @@ class GallerySearch extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.searchInput = 'searchword';
       this.searchWord = GallerySet.defaultSearch;
-      this.storage = new DataStorage();
     }
   
     connectedCallback() {
@@ -70,7 +69,7 @@ class GallerySearch extends HTMLElement {
     }
 
     getSavedSearch() {
-      const saved = this.storage.getItem(GallerySet.saveId);
+      const saved = window.DataStorage.getItem(GallerySet.saveId);
       if (saved && GallerySet.searchSave) {
         this.searchWord = saved;
       }
@@ -79,7 +78,7 @@ class GallerySearch extends HTMLElement {
 
     saveSearch(searchVal) {
       if (GallerySet.searchSave) {
-        this.storage.save(GallerySet.saveId, searchVal);
+        window.DataStorage.save(GallerySet.saveId, searchVal);
       }
     }
 

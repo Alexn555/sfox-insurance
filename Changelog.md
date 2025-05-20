@@ -1,4 +1,7 @@
 ## Changelog
+v 3.28
+  Introduced window.DataStorage to handle more effeciently storage
+
 v 3.26
   Added draggableContainer improved version with Banner example
 

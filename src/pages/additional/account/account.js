@@ -2,7 +2,6 @@
 import { SaveObjects } from '../../../components/common/saves';
 import { CustomEventService, IdService, LoggerService, StyleService } from '../../../services';
 import { ObjectService } from '../../../services/utils';
-import DataStorage from '../../../services/storage';
 import { CustomPageEvents } from '../../../settings';
 
 class AccountPage extends HTMLElement {
@@ -20,7 +19,6 @@ class AccountPage extends HTMLElement {
         init: 'init',
         login: 'login'
       };
-      this.storage = new DataStorage();
     }
   
     connectedCallback() {
@@ -51,7 +49,7 @@ class AccountPage extends HTMLElement {
     }
 
     getSaveAccount() {
-      const saved = this.storage.getObject(SaveObjects.account.user);
+      const saved = window.DataStorage.getObject(SaveObjects.account.user);
       if (saved && saved.status === this.statuses.loggedIn) {
         this.loggedUser = saved;
         this.setStatus(this.statuses.loggedIn);
@@ -97,7 +95,7 @@ class AccountPage extends HTMLElement {
   
     saveObjectAndStatus(status) {
       this.loggedUser['status'] = status;
-      this.storage.saveObject(SaveObjects.account.user, this.loggedUser);
+      window.DataStoragee.saveObject(SaveObjects.account.user, this.loggedUser);
     }
 
     render() {

@@ -5,14 +5,12 @@ import { CommonEvents, CustomEvents } from '../../settings';
 import { fadeInAnimation } from '../../components/common/styles/animations';
 import { SaveObjects, SaveForms } from '../../components/common/saves';
 import BannerService from '../../services/page/bannerService';
-import DataStorage from '../../services/storage';
 import { CustomEventService, IdService } from '../../services';
 
 class InsuranceBanner extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.dataStorage = new DataStorage();
         this.bannerService = new BannerService();
         this.savedBannerData = this.bannerService.getSavedData(SaveObjects.banners.performance);
         this.bannerData = this.savedBannerData || '';
@@ -48,14 +46,14 @@ class InsuranceBanner extends HTMLElement {
     }
 
     checkInitFlipBoard() {
-        if (this.dataStorage.getObject(SaveForms.performance.bannerFlip)) {
+        if (window.DataStorage.getObject(SaveForms.performance.bannerFlip)) {
             this.flipBoard();
         }
     }
 
     flipBoard() {
         this.toggleFlip(!this.isFliped);
-        this.dataStorage.save(SaveForms.performance.bannerFlip, this.isFliped);
+        window.DataStorage.save(SaveForms.performance.bannerFlip, this.isFliped);
         CustomEventService.send(CustomEvents.interaction.flipBoard, this.isFliped);
     }
 

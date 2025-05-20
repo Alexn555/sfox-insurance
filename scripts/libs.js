@@ -1,25 +1,21 @@
-export default class DataStorage {
-    getItem(key) {
+// @ts-nocheck
+window.DataStorage = {
+    getItem: function(key) {
         return localStorage.getItem(key);
-    }
-
-    getObject(key) {
+    },
+    getObject: function(key) {
         return JSON.parse(localStorage.getItem(key));
-    }
-
-    save(key, data) {
+    },
+    save: function(key, data) {
         localStorage.setItem(key, data);
-    }
-
-    saveObject(key, object) {
+    },
+    saveObject: function(key, object) {
         localStorage.setItem(key, JSON.stringify(object));
-    }
-
-    remove(key) {
+    },
+    remove: function(key) {
         localStorage.removeItem(key);
-    }
-
-    cache(key, cbNotSaved, cbSaved, deltaHour, dateService) {
+    },
+    cache: function(key, cbNotSaved, cbSaved, deltaHour, dateService) {
         let delta = deltaHour * 3600000;
         let saved = this.getObject(key);
         if (!saved) {
@@ -27,18 +23,16 @@ export default class DataStorage {
         } else {
             cbSaved(saved);
             if (dateService.compareWithCurrent(saved.timestamp) > delta) {
-                this.remove(key);
+                window.DataStorage.remove(key);
             }
         }
-    }
-    
-    removeList(keyList) {
+    },
+    removeList: function(keyList) {
         keyList.forEach(k => {
             localStorage.removeItem(k);
         });
-    }
-
-    removeAll() {
+    },
+    removeAll: function() {
         localStorage.clear();
     }
-}
+};

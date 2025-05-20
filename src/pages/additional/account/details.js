@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { ObjectService } from '../../../services/utils';
 import { DateService }  from '../../../services/helpers';
-import DataStorage from '../../../services/storage';
 import { CustomPageEvents, Account } from '../../../settings';
 import { CustomEventService, IdService, HTMLService } from '../../../services';
 
@@ -11,7 +10,6 @@ class AccountDetails extends HTMLElement {
       this.shadow = this.attachShadow({ mode: 'closed' });
       this.isAccVisible = false;
       this.loggedUser = {};
-      this.storage = new DataStorage();
     }
   
     connectedCallback() {

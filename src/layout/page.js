@@ -2,7 +2,6 @@
 import { pageIds, pageNames, Animations, CustomEvents } from '../settings';
 import ScreenQuery from '../styles/query';
 import { SaveRoutes } from '../components/common/saves';
-import DataStorage from '../services/storage';
 import { fadeInAnimation } from '../components/common/styles/animations';
 import { ClassIdService, CustomEventService, IdService, StyleService } from '../services';
 
@@ -10,7 +9,6 @@ class PageSwitcher extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-        this.dataStorage = new DataStorage();
         this.pageIds = pageIds;
 
         CustomEventService.event(CustomEvents.header.menuClick, (e) => {
@@ -58,7 +56,7 @@ class PageSwitcher extends HTMLElement {
             break;
         }
 
-        this.dataStorage.save(SaveRoutes.currentPage, savePage);
+        window.DataStorage.save(SaveRoutes.currentPage, savePage);
         this.resetPageActive();
 
         let activePage = IdService.id(savePage, this.shadow);
@@ -85,7 +83,7 @@ class PageSwitcher extends HTMLElement {
 
     getSavedPage() {
         let _page = pageNames.home;
-        let saved = this.dataStorage.getItem(SaveRoutes.currentPage);
+        let saved = window.DataStorage.getItem(SaveRoutes.currentPage);
         return saved ? pageNames[saved] : _page;
     }
     

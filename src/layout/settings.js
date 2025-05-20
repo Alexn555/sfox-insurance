@@ -4,7 +4,6 @@ import { theme } from '../theme/theme';
 import { SettingsBoard, CustomEvents } from '../settings';
 import { CustomEventService, IdService } from '../services';
 import { RenderService } from '../services/helpers';
-import DataStorage from '../services/storage';
 import { SaveObjects } from '../components/common/saves';
 import { BoolEnums } from '../enums';
 
@@ -14,14 +13,13 @@ class AppSettings extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'closed'});
         this.theme = Themes.main1;
         this.useCloseAnimation = false;
-        this.dataStorage = new DataStorage();
         this.textSizePrcnt = 100;
     }
     
     connectedCallback() {
         this.render();
         this.$elClose = IdService.idAndClick('close', this.shadow, () => {
-            this.dataStorage.save(SaveObjects.settings.close, BoolEnums.bTrue);
+            window.DataStorage.save(SaveObjects.settings.close, BoolEnums.bTrue);
             this.$elClose.className += this.useCloseAnimation ? ' close' : '';
             CustomEventService.send(CustomEvents.settings.close);
         });
