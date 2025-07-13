@@ -1,7 +1,7 @@
 const apiHost = 'https://jsonplaceholder.typicode.com';
 
 async function request(url, params, method = 'GET', host = '') {
-  const options = {
+  let options = {
     method,
     headers: {
       'Content-Type': 'application/json'
@@ -16,14 +16,14 @@ async function request(url, params, method = 'GET', host = '') {
     }
   }
 
-  const _host = host === '' ? apiHost : host;
-  const response = await fetch(_host + url, options);
+  let _host = host === '' ? apiHost : host;
+  let response = await fetch(_host + url, options);
 
   if (response.status !== 200) {
     return generateErrorResponse('The server responded with error status.');
   }
 
-  const result = await response.json();
+  let result = await response.json();
   return result;
 }
 

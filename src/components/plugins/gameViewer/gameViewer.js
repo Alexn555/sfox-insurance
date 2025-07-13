@@ -54,7 +54,7 @@ class GameViewer extends HTMLElement {
             return;
         }
 
-        const game = this.games[index];
+        let game = this.games[index];
         this.toggleContentLoaded(false);
 
         GameViewerHelper.setLoading(NumberService.randomInteger(1, 3), game.title, this.$loading, () => {   

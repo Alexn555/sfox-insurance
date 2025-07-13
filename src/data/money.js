@@ -1,3 +1,3 @@
-export const dtCurrencyNames = '["eur", "dollar", "canadianDollar"]';
+export let dtCurrencyNames = '["eur", "dollar", "canadianDollar"]';
 
-export const dtCurrencies = '["EUR", "USD", "CAD"]';
+export let dtCurrencies = '["EUR", "USD", "CAD"]';

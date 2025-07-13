@@ -1,4 +1,4 @@
-export const SaveObjects = {
+export let SaveObjects = {
     themes: {
         active: 'active',
     },
@@ -18,15 +18,15 @@ export const SaveObjects = {
     }
 };
 
-export const WindowSettings = {
+export let WindowSettings = {
     refresh: 'tempRefresh'
 };
 
-export const SaveRoutes = {
+export let SaveRoutes = {
     currentPage: 'current-page'
 };
 
-export const SaveForms = {
+export let SaveForms = {
     performance: {
         payment: 'performance-payment',
         bannerFlip: 'performance-banner-flip'

@@ -1,6 +1,6 @@
 import { Themes } from '../../theme/enums';
 
-export const StartPageTheme = {
+export let StartPageTheme = {
     [Themes.main1]: {
         startItem: {
            border: '#dcdcdc',

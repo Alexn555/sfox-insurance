@@ -1,19 +1,19 @@
 import { Cursors } from '../../../enums';
 import { NumberService } from '../../../services/utils';
 
-export const GallerLoadHolders = {
+export let GallerLoadHolders = {
     Simple: 'simpla',
     Advenced: 'advenced'
 };
 
-export const GalleryImgViewerEnums = {
+export let GalleryImgViewerEnums = {
     open: '1',
     close: '0'
 };
 
-const defaultSearch = ['airplane', 'castle', 'sail'];
+let defaultSearch = ['airplane', 'castle', 'sail'];
 
-export const GallerySet = {
+export let GallerySet = {
     defaultSearch: defaultSearch[NumberService.sample(defaultSearch)],
     showLabel: true,
     saveId: 'gallery-save-search',

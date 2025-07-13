@@ -46,9 +46,9 @@ class SafeGame extends HTMLElement {
 
     setGameHandlers() {
       CustomEventService.event(LockerEvents.codeGuess, (e) => {
-        const guessCode = e.detail.value;
-        const curScore = this.getScore();
-        const prize = this.checkCodeAward(guessCode, this.theCode, this.tries);
+        let guessCode = e.detail.value;
+        let curScore = this.getScore();
+        let prize = this.checkCodeAward(guessCode, this.theCode, this.tries);
         if (prize > 0) {
           this.setNote('You guessed the code!', this.awardCl.guess);
           this.openBonus();
@@ -61,8 +61,8 @@ class SafeGame extends HTMLElement {
 
       CustomEventService.event(LockerEvents.deductPenalty, (e) => {
         if (SafeKingSets.deductPenalty) {
-          const penalty = e.detail.value;
-          const curScore = this.getScore();
+          let penalty = e.detail.value;
+          let curScore = this.getScore();
           this.tries += 1;
           this.setScore(curScore - penalty);
         }
@@ -74,7 +74,7 @@ class SafeGame extends HTMLElement {
     }
 
     handleDoorOpen(curScore, prize) {
-      const curWin = curScore + prize;
+      let curWin = curScore + prize;
       this.setScore(curWin);
       CustomEventService.send(LockerEvents.doorOpen, curWin);
     }
@@ -119,7 +119,7 @@ class SafeGame extends HTMLElement {
     }
 
     setDoorBg() {
-      const $safe = IdService.id('safe', this.shadow);
+      let $safe = IdService.id('safe', this.shadow);
       StyleService.setProperty($safe, 'backgroundImage', `url("${textures.safeBg}")`);
     }
 

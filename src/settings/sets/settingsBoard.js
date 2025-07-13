@@ -1,4 +1,4 @@
-export const SettingsBoard = {
+export let SettingsBoard = {
   board: {
     enabled: true,
   },

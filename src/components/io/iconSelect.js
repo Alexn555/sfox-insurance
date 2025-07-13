@@ -57,7 +57,7 @@ class IconSelect extends HTMLElement {
 
     setIcons() {
         if (!this.mounted) {
-            const icons = JSONService.getArray(this.items);
+            let icons = JSONService.getArray(this.items);
             let html = '';
             icons.forEach((icon, index) => {
                 html += `<div id="icon-${icon}" class="icon-selection">
@@ -67,7 +67,7 @@ class IconSelect extends HTMLElement {
                 this.$icons.push(`icon-${icon}`);
                 this.$iconEls[index] = IdService.id(`icon-${icon}`, this.shadow);
             });
-            const el = IdService.id('icons', this.shadow);
+            let el = IdService.id('icons', this.shadow);
             if (el) {
                 HTMLService.html(el, html);
                 this.setIconHandlers();

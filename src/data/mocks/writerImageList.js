@@ -1,4 +1,4 @@
-export const imageSearchList = [
+export let imageSearchList = [
     'formula lego',
     'redbull lego',
     'williams lego',

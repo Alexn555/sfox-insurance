@@ -79,13 +79,13 @@ class AccountIcon extends HTMLElement {
         return;
       }
       
-      const { username } = loggedUser;
+      let { username } = loggedUser;
       this.icon = this.setIconImage(event, this.variants);
       if (event === this.iconEvents.select) {
         this.icon = this.setIconFromSelect(selected);
       }
 
-      const html = `
+      let html = `
         <div class="icon">
           <img id="image" src="${this.icon}" alt="icon" />
           <span>${username}</span>
@@ -100,9 +100,9 @@ class AccountIcon extends HTMLElement {
     }
 
     setIconImage(event, variants) {
-      const saved = window.DataStorage.getItem(SaveObjects.account.icon);
+      let saved = window.DataStorage.getItem(SaveObjects.account.icon);
   
-      const index = NumberService.sample(variants);
+      let index = NumberService.sample(variants);
       let source = variants[index];
 
       if (saved) {
@@ -117,7 +117,7 @@ class AccountIcon extends HTMLElement {
     }
 
     setIconFromSelect(selected) {
-      const source = selected;
+      let source = selected;
       window.DataStorage.save(SaveObjects.account.icon, source);
       return `${this.getIconSource()}${source}.png`;
     }
@@ -127,12 +127,12 @@ class AccountIcon extends HTMLElement {
     }
 
     setIcon(html) {
-      const el = IdService.id('profile', this.shadow);
+      let el = IdService.id('profile', this.shadow);
       HTMLService.html(el, html);
     }
 
     render() {
-      const varias = JSONService.set(this.variants);
+      let varias = JSONService.set(this.variants);
       this.shadow.innerHTML = `
           <style>
             #profile {

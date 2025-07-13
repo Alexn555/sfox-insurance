@@ -1,8 +1,8 @@
 import EnvService from '../../../services/api/envService';
 
-const rootPath = `${EnvService.getRoot()}/assets/intro/`;
+let rootPath = `${EnvService.getRoot()}/assets/intro/`;
 
-export const StartItemInfo = {
+export let StartItemInfo = {
     home: {
         label: 'Home',
         description: 'Home Page shows Start page, Features and Accounts (table) example.',

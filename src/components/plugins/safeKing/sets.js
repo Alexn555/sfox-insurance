@@ -1,4 +1,4 @@
-export const SafeKingSets = {
+export let SafeKingSets = {
     enableHintKeys: true,
     deductPenalty: true,
     bonus: {

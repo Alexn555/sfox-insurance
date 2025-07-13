@@ -1,6 +1,6 @@
 import {  PackThemes, Themes } from '../../../theme/enums';
 
-const commonTheme = {
+let commonTheme = {
     wrapper: {
         background: 'white'
     },
@@ -16,7 +16,7 @@ const commonTheme = {
     }
 };
 
-export const ReviewerTheme = {
+export let ReviewerTheme = {
     [PackThemes.common]: commonTheme,
     [Themes.main1]: {
         wrapper: {

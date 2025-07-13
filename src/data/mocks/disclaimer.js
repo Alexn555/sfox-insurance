@@ -1,4 +1,4 @@
-const mockDisclaimerData = `This website is a SFoxInsurance engine Demo version. <br />
+let mockDisclaimerData = `This website is a SFoxInsurance engine Demo version. <br />
 This website uses cookies and local storage to save your data, you can at any time reset 
 this data by using Settings button (click two times on start application) and Reset Settings. <br />
 Data is not saved to any database, resource other than local storage of your browser. <br />

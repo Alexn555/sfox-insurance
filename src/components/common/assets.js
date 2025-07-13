@@ -1,6 +1,6 @@
-const assetFolder = 'assets';
+let assetFolder = 'assets';
 
-export const imageMap = {
+export let imageMap = {
     logo: `${assetFolder}/logo.png`,
     menuHome: `${assetFolder}/home.svg`,
     menuInsurance: `${assetFolder}/wallet.svg`,
@@ -8,7 +8,7 @@ export const imageMap = {
     pdfIcon: `${assetFolder}/pdf.svg`
 };
 
-export const btnMap = {
+export let btnMap = {
     mobile: {
         menuOpen: `${assetFolder}/hambuger.png`,
         menuClose: `${assetFolder}/close.png`

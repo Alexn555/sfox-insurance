@@ -15,7 +15,7 @@ class Header extends HTMLElement {
     }
 
     updateSize() {
-        const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
+        let toggleItem = ClassIdService.id('menu-toggle', this.shadow);
         StyleService.setDisplay(toggleItem, !MobileService.isMobile());
     }
     
@@ -48,9 +48,9 @@ class Header extends HTMLElement {
 
     toggleMenu() {
        if (MobileService.isMobile()) {
-            const toggleItem = ClassIdService.id('menu-toggle', this.shadow);
-            const toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
-            const isMenuOpen = !StyleService.isDisplaying(toggleItem);
+            let toggleItem = ClassIdService.id('menu-toggle', this.shadow);
+            let toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
+            let isMenuOpen = !StyleService.isDisplaying(toggleItem);
             StyleService.setDisplay(toggleItem, isMenuOpen);
             toggleIcon.src = isMenuOpen ? `./${btnMap.mobile.menuClose}` : `./${btnMap.mobile.menuOpen}` ;
         } else {

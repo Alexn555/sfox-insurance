@@ -1,3 +1,3 @@
-export const NetworkCheckerSet = {
+export let NetworkCheckerSet = {
   enabled: true,
 };

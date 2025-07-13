@@ -1,4 +1,4 @@
-export const Cursors = {
+export let Cursors = {
     normal: 'auto',
     pointer: 'pointer',
     zoomIn: 'zoom-in',

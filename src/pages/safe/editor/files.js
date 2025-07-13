@@ -1,6 +1,6 @@
 import { LabelIcons } from '../../../components/plugins/contentSw/enums';
 
-export const textFiles = [
+export let textFiles = [
     { 
         id: 'file1', 
         name: 'file1',

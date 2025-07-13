@@ -28,7 +28,7 @@ class AccountPage extends HTMLElement {
 
     initForm() {
       this.getSaveAccount();
-      const statusEvt = this.loggedUser ? this.events.login : this.events.init;
+      let statusEvt = this.loggedUser ? this.events.login : this.events.init;
       CustomEventService.send(CustomPageEvents.users.account.init, this.loggedUser);
       this.setSaveStatus(statusEvt);
  
@@ -49,7 +49,7 @@ class AccountPage extends HTMLElement {
     }
 
     getSaveAccount() {
-      const saved = window.DataStorage.getObject(SaveObjects.account.user);
+      let saved = window.DataStorage.getObject(SaveObjects.account.user);
       if (saved && saved.status === this.statuses.loggedIn) {
         this.loggedUser = saved;
         this.setStatus(this.statuses.loggedIn);
@@ -89,7 +89,7 @@ class AccountPage extends HTMLElement {
     }
 
     toggleLogin(visible) {
-      const $login = IdService.id('login', this.shadow);
+      let $login = IdService.id('login', this.shadow);
       StyleService.setDisplay($login, visible);
     }
   

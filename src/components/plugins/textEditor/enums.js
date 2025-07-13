@@ -1,23 +1,23 @@
 import EnvService from '../../../services/api/envService';
 
-const path = `${EnvService.getRoot()}assets/`;
+let path = `${EnvService.getRoot()}assets/`;
 
-export const LoadingIcons = {
+export let LoadingIcons = {
     text: {
         source: path+'gameviewer/loading.gif'
     }
 };
 
-export const FileSaveEnums = {
+export let FileSaveEnums = {
     object: 'text-editor-saved-object',
 };
 
-export const SaveEvts = {
+export let SaveEvts = {
     name: 'hame',
     content: 'content'
 };
 
-export const MenuButtons = {
+export let MenuButtons = {
     save: {
         id: 'save',
         tip: 'Saves name and content'

@@ -41,9 +41,9 @@ class AccountDetails extends HTMLElement {
         return;
       }
 
-      const { username, email, name, surname, visited } = loggedUser;
+      let { username, email, name, surname, visited } = loggedUser;
 
-      const html = `
+      let html = `
         <div class="details">
           <div>
             <account-logout></account-logout>
@@ -62,7 +62,7 @@ class AccountDetails extends HTMLElement {
     }
 
     setDetails(html) {
-      const el = IdService.id('userDetails', this.shadow);
+      let el = IdService.id('userDetails', this.shadow);
       HTMLService.html(el, html);
     }
 

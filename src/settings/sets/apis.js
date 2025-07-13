@@ -1,6 +1,6 @@
 import EnvService from "../../services/api/envService";
 
-export const LoginSets = {
+export let LoginSets = {
   salt: EnvService.getAccountSalt(),
   info: {
     enabled: true,

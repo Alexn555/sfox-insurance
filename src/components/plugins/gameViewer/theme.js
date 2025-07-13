@@ -1,6 +1,6 @@
 import {  PackThemes } from '../../../theme/enums';
 
-export const GameViewerTheme = {
+export let GameViewerTheme = {
     [PackThemes.common]: {
         wrapper: {
             background: '#dcdcdc'

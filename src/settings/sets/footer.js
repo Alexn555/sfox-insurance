@@ -1,4 +1,4 @@
-export const FooterBoard = {
+export let FooterBoard = {
   board: {
     enabled: true,
   },

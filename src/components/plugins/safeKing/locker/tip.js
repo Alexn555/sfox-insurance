@@ -28,16 +28,16 @@ class SafeLocker extends HTMLElement {
 
     setHandlers() {
       CustomEventService.event(LockerEvents.codeStart, (e) => {
-        const val = e.detail.value;
+        let val = e.detail.value;
         this.theCode = val.toString();
       });
 
       CustomEventService.event(LockerEvents.keyPress, (e) => {
-        const value = e.detail.value;
+        let value = e.detail.value;
         if (value) {
           this.code += value;
           if (this.code && this.isHelpDigits(value)) {
-            const { key, pos } = this.getTip(value, this.theCode);
+            let { key, pos } = this.getTip(value, this.theCode);
             this.setCode(key, pos);
           }
         }
@@ -45,14 +45,13 @@ class SafeLocker extends HTMLElement {
     }
 
     getTip(val, theCode) {
-      const helpKey = val.substr(6, 1);
-      const foundKey = theCode.charAt(helpKey - 1);
+      let helpKey = val.substr(6, 1);
+      let foundKey = theCode.charAt(helpKey - 1);
       return { key: foundKey, pos: helpKey };
     }
 
     isHelpDigits(val) {
-      const found = this.helpDigits.indexOf(val);
-      return found !== -1;
+      return this.helpDigits.indexOf(val) !== -1;
     }
 
     setPenaltyFactor(tries) {

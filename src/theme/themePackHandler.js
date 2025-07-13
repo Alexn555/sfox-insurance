@@ -19,7 +19,7 @@ import ThemeHelper from './themeHelper';
 export default class ThemePackHandler {
   static addPlugins(_theme, curTheme, addPack) {
         if (addPack) {
-            const packs = [
+            let packs = [
                 { id: PackIds.startPage, pack: StartPageTheme },
                 { id: PackIds.safePage, pack: SafePageTheme },
                 { id: PackIds.generalNote, pack: generalNoteTheme },

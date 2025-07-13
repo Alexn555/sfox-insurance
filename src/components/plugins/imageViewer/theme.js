@@ -1,4 +1,4 @@
-export const ImageViewerTheme = {
+export let ImageViewerTheme = {
     common: {
         error: {
             bck: 'black',

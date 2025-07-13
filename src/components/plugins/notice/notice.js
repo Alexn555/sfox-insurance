@@ -24,7 +24,7 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     async setInfo() {
-        const saved = window.DataStorage.getItem(SaveObjects.notice.topDisclaimer);
+        let saved = window.DataStorage.getItem(SaveObjects.notice.topDisclaimer);
         if (!saved && NoticeDisclaimerSets.enabled) {
             this.showDialog();
             this.setInit();
@@ -54,16 +54,16 @@ class NoticeDisclaimer extends HTMLElement {
     }
 
     showDialog() {
-        const el = IdService.id('disclaimerPlace', this.shadow);
-        const html = `
+        let el = IdService.id('disclaimerPlace', this.shadow);
+        HTMLService.html(el,  `
             <dialog id="disclaimer">
                 <h3>Disclaimer Notice</h3>
                 <div id="content">Loading...</div>
                 <div>
                     <action-button id="noticeClose" label="OK" type="action"></action-button>
                 </div>
-            </dialog>`;
-        HTMLService.html(el, html);
+            </dialog>`
+        );
     }
 
     render() {

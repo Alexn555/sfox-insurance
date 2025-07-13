@@ -1,4 +1,4 @@
-export const ArrayEnums = {
+export let ArrayEnums = {
     All: 'all',
     None: 'none'
 };

@@ -1,4 +1,4 @@
-export const SafePageTabs = {
+export let SafePageTabs = {
     tabLinks: {
         game: 'game-btn',
         welcome: 'welcome-btn',

@@ -1,3 +1,3 @@
-export const BannerCarouselEvents = {
+export let BannerCarouselEvents = {
     linkClick: 'carousel-link-click'
 };

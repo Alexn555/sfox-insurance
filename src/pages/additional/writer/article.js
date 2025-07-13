@@ -27,7 +27,7 @@ class WriterArticle extends HTMLElement {
         this.showLoadingArticle();
         this.featchContentAtOnce();
       } else {
-        const { amount, eachTime } = Writer.queue;
+        let { amount, eachTime } = Writer.queue;
         this.featchContentQueue(amount, eachTime);
       }
     }

@@ -120,7 +120,7 @@ class TextEditor extends HTMLElement {
     }
 
     saveFile(evt, value) {  
-        const saved = window.DataStorage.getObject(FileSaveEnums.object);
+        let saved = window.DataStorage.getObject(FileSaveEnums.object);
         TextEditorHelper.saveFile(evt, value, saved, this.textObject, this.sets, this.$error, (savedArray) => {
             window.DataStorage.saveObject(FileSaveEnums.object, savedArray);
             this.updateLabels(savedArray);
@@ -131,7 +131,7 @@ class TextEditor extends HTMLElement {
     }
 
     getFileObject(file) {
-        const saved = window.DataStorage.getObject(FileSaveEnums.object);
+        let saved = window.DataStorage.getObject(FileSaveEnums.object);
         this.textObject = TextEditorHelper.getFileObject(saved, file);
         if (this.textObject && this.textObject.content) {
             this.toggleContent(this.textObject.content);
@@ -177,7 +177,7 @@ class TextEditor extends HTMLElement {
             }
         });
 
-        const labels = TextEditorHelper.getTextLabels(realArray);
+        let labels = TextEditorHelper.getTextLabels(realArray);
         this.$cntSwitcher.setAttribute('labels', labels);
     }
 
@@ -188,8 +188,7 @@ class TextEditor extends HTMLElement {
             return;
         }
 
-        const file = this.files[index];
-        this.getFileObject(file);
+        this.getFileObject(this.files[index]);
     }
 
     toggleContentLoaded(toggle) {

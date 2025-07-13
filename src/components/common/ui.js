@@ -1,13 +1,13 @@
-export const ButtonTypes = {
+export let ButtonTypes = {
     action: 'action',
     highlight: 'highlight',
     passive: 'passive',
 }
 
-export const LinkTypes = {
+export let LinkTypes = {
     transparentButton: 'transparentButton'
 };
 
-export const LinkVariants = {
+export let LinkVariants = {
     thinText: 'thin-text'
 };

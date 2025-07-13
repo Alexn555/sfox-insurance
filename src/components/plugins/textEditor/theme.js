@@ -1,6 +1,6 @@
 import {  PackThemes } from '../../../theme/enums';
 
-export const TextFileViewerTheme = {
+export let TextFileViewerTheme = {
     [PackThemes.common]: {
         wrapper: {
             background: '#dcdcdc'

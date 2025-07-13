@@ -1,4 +1,4 @@
-export const styleErrors = {
+export let styleErrors = {
     commonText: `
       color: red;
       font-weight: bold;

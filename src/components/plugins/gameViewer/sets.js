@@ -1,12 +1,12 @@
 import { BoolEnums } from '../../../enums';
 import { ContentSwSides } from '../contentSw/enums';
 
-export const GameViewerSetEnums = {
+export let GameViewerSetEnums = {
     gamePage: 'gamePage', // same as in textEditor, much match with Settings object
     safeGames: 'safeGamePage'
 };
 
-export const GameViewerSettings = {
+export let GameViewerSettings = {
     gamePage: {
         id: 'html5games',
         displayLabel: BoolEnums.bFalse,

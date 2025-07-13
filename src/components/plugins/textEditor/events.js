@@ -1,3 +1,3 @@
-export const CustomMenuEvents = {
+export let CustomMenuEvents = {
     menuClick: 'menu-click'
 };

@@ -1,6 +1,6 @@
 import { PackThemes } from '../../theme/enums';
 
-export const SafePageTheme = {
+export let SafePageTheme = {
     [PackThemes.common]: {
         game: {
            border: '#dcdcdc',

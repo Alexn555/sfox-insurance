@@ -1,6 +1,6 @@
 import { Themes, PackThemes } from '../../../theme/enums';
 
-export const generalNoteTheme = {
+export let generalNoteTheme = {
     [PackThemes.common]: {
        success: 'green',
        warning: 'orange',

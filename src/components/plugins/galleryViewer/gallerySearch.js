@@ -24,7 +24,7 @@ class GallerySearch extends HTMLElement {
       this.$error = IdService.id('error', this.shadow);
 
       CustomEventService.event(`${CustomEvents.interaction.textInputChange}-${this.searchInput}`, (e) => {        
-        const input = e.detail?.value || '';
+        let input = e.detail?.value || '';
 
         if (input !== '') {
           let isMax = input.length > GallerySet.maxSearch;
@@ -47,12 +47,12 @@ class GallerySearch extends HTMLElement {
     validaterequest(input) {
       let isError = false;
       if (!ValidatorService.valideAlphaNumeric(input)) {
-        const res = this.handleCommonError('Please type only words and numbers, no special chars');
+        let res = this.handleCommonError('Please type only words and numbers, no special chars');
         input = res.input;
         isError = res.isError;
       } 
       if (!ValidatorService.validateWhiteSpaces(input)) {
-        const res = this.handleCommonError('Please type word without too many whitespaces');
+        let res = this.handleCommonError('Please type word without too many whitespaces');
         input = res.input;
         isError = res.isError;
       }
@@ -69,7 +69,7 @@ class GallerySearch extends HTMLElement {
     }
 
     getSavedSearch() {
-      const saved = window.DataStorage.getItem(GallerySet.saveId);
+      let saved = window.DataStorage.getItem(GallerySet.saveId);
       if (saved && GallerySet.searchSave) {
         this.searchWord = saved;
       }

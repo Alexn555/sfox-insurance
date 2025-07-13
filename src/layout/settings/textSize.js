@@ -32,7 +32,7 @@ class SettignsTextSize extends HTMLElement {
     }
 
     setTextSizeOnInit() {
-        const savePercentage = window.DataStorage.getItem(SaveObjects.settings.textSize) || 100;
+        let savePercentage = window.DataStorage.getItem(SaveObjects.settings.textSize) || 100;
         if (savePercentage) {
             this.textSizePrcnt = parseInt(savePercentage, 10);
             this.setBodyTextSize(this.textSizePrcnt);
@@ -40,7 +40,7 @@ class SettignsTextSize extends HTMLElement {
     }
 
     toggleTextSize(direction = 'dw') {
-        const { min, max, step} = TextSizes.settings;
+        let { min, max, step} = TextSizes.settings;
         if (direction === 'up') {
             this.textSizePrcnt += this.textSizePrcnt < max ? step : 0;
         } else {
@@ -51,8 +51,8 @@ class SettignsTextSize extends HTMLElement {
     }
 
     setBodyTextSize(size = TextSizes.settings.default) {
-        const body = document.querySelector('body');
-        const indicator = IdService.id('indicator', this.shadow);
+        let body = document.querySelector('body');
+        let indicator = IdService.id('indicator', this.shadow);
         HTMLService.html(indicator, `<b>${size}</b>`);
         StyleService.setProperty(body, 'fontSize', size+'%');
     }

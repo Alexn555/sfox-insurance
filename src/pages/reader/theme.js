@@ -1,6 +1,6 @@
 import { PackThemes } from '../../theme/enums';
 
-export const ReaderPageTheme = {
+export let ReaderPageTheme = {
     [PackThemes.common]: {
         game: {
            border: '#dcdcdc',

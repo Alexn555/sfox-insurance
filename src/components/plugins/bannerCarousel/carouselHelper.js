@@ -14,7 +14,7 @@ export class BannerCarouelHelper {
     }
   
     static toggleStatusCl(id, status, ctx) {
-        const el = IdService.id(id, ctx);
+        let el = IdService.id(id, ctx);
         if (el) {
             StyleService.removeAndAddClass(el, ['error', 'success'], status);
         }

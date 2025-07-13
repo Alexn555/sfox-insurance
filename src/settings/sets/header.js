@@ -1,21 +1,21 @@
-export const HeaderSettings = {
+export let HeaderSettings = {
   resetDialog: {
     permissionWord: "Yes",
   },
 };
 
-export const SEO = {
+export let SEO = {
   enabled: true,
   application: "SFoxInsurance engine",
   author: "W3C",
   description: "SfoxEngine - engine to show good features webComponents.",
 };
 
-export const NoticeDisclaimerSets = {
+export let NoticeDisclaimerSets = {
   enabled: true,
 };
 
-export const HeaderBoard = {
+export let HeaderBoard = {
   board: {
     enabled: true,
   },

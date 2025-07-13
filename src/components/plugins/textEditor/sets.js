@@ -1,11 +1,11 @@
 import { BoolEnums, Cursors } from '../../../enums';
 import { ContentSwSides } from '../contentSw/enums';
 
-export const TextEditorSetEnums = {
+export let TextEditorSetEnums = {
     textEditorPage: 'textEditorPage' // must match 
 };
 
-export const TextEditorSettings = {
+export let TextEditorSettings = {
     textEditorPage: {
         displayLabel: BoolEnums.bFalse,
         side: ContentSwSides.right,

@@ -1,4 +1,4 @@
-export const ReviewerStepHandlerSets = {
+export let ReviewerStepHandlerSets = {
     pages: 2,
     showStepNotice: true,
     restart: true,

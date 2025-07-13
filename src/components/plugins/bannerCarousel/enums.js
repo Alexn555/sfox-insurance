@@ -1,3 +1,3 @@
-export const CarouselSetIds = {
+export let CarouselSetIds = {
     banner: 'banner'
 };

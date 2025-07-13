@@ -1,4 +1,4 @@
-export const HeaderMenuLinks = {
+export let HeaderMenuLinks = {
     Home: 'home',
     Insurance: 'insurance',
     Additional: 'additional',

@@ -20,7 +20,7 @@ class TextAreaInput extends HTMLElement { // numeric, usual text
 
   connectedCallback() {
     this.render();
-    const el = IdService.id(this.id, this.shadow);
+    let el = IdService.id(this.id, this.shadow);
     el.onchange = (() => {
       CustomEventService.send(`${CustomEvents.interaction.textAreaChange}-${this.id}`, el.value);
     }); 
@@ -31,7 +31,7 @@ class TextAreaInput extends HTMLElement { // numeric, usual text
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const el = IdService.id(this.id, this.shadow);
+    let el = IdService.id(this.id, this.shadow);
     if (el !== null) {
       el.value = oldValue !== newValue ? newValue : oldValue;
     }

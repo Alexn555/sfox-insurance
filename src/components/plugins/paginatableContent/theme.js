@@ -1,6 +1,6 @@
 import { Themes, PackThemes } from '../../../theme/enums';
 
-export const paginatableContentTheme = {
+export let paginatableContentTheme = {
     [PackThemes.common]: {
        border: 'grey',
        background: 'white',

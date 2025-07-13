@@ -1,6 +1,6 @@
 import { Cursors } from '../../../enums';
 
-export const BannerCarouselSets = {
+export let BannerCarouselSets = {
     errorCase: 'error',
     allLevelsCount: true,
     propertyAmount: 11,

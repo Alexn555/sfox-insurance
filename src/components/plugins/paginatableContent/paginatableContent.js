@@ -40,7 +40,7 @@ class PaginatableContent extends HTMLElement {
       this.setPagination();
     }
     if (name === 'label' && oldValue !== newValue) {
-      const el = IdService.id('label', this.shadow);
+      let el = IdService.id('label', this.shadow);
       if (el) {
         HTMLService.text(el, newValue);
       }

@@ -58,12 +58,12 @@ class AccountLogin extends HTMLElement {
     }
 
     activateLogin() {
-      const user = {
+      let user = {
         username: this.$username.getAttribute('value'),
         password: this.$password.getAttribute('value')
       };
       if (user.username.length > 0 && user.password.length > 0) {
-        const logged = UserService.getLoginData(user);
+        let logged = UserService.getLoginData(user);
         if (logged) {
           this.setAccount(logged);
           this.showError('', false);
@@ -89,7 +89,7 @@ class AccountLogin extends HTMLElement {
     }
 
     showError(error, visible = true) {
-      const el = IdService.id('error', this.shadow);
+      let el = IdService.id('error', this.shadow);
       HTMLService.toggleMsg(el, error, 2);
       StyleService.setDisplay(el, visible);
     }

@@ -1,18 +1,18 @@
-export const CommonEvents = {
+export let CommonEvents = {
   click: "click",
   resize: "resize",
   keypress: "keypress",
   keydown: "keydown",
 };
 
-export const MouseEvents = {
+export let MouseEvents = {
   mousedown: "mousedown",
   mouseup: "mouseup",
   mouseover: "mouseover",
   mouseout: "mouseout",
 };
 
-export const CustomEvents = {
+export let CustomEvents = {
   settings: {
     moveLayout: "move-layout",
     toggle: "settings-toggle",
@@ -37,7 +37,7 @@ export const CustomEvents = {
   },
 };
 
-export const CustomPageEvents = {
+export let CustomPageEvents = {
   users: {
     account: {
       init: "account-init",
@@ -62,7 +62,7 @@ export const CustomPageEvents = {
   },
 };
 
-export const CustomWindowEvents = {
+export let CustomWindowEvents = {
   network: {
     offline: "offline",
     online: "online",

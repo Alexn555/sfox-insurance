@@ -30,10 +30,10 @@ class ImageViewerStart extends HTMLElement {
     CustomEventService.event(CustomWindowEvents.imageViewer.init, (e) => {
       if (e.detail) {
         this.sets = JSONService.getObj(e.detail.value);
-        const setId = this.sets['settingsId'];
+        let setId = this.sets['settingsId'];
         if (this.currentViewerId !== setId) {
           this.currentViewerId = setId;
-          const el = IdService.id(this.id, this.shadow);
+          let el = IdService.id(this.id, this.shadow);
           el.remove();
           this.id = setId;
           this.setImageViewer();
@@ -63,7 +63,7 @@ class ImageViewerStart extends HTMLElement {
   }
 
   setImageViewer() {
-    const el = IdService.id(this.container, this.shadow);
+    let el = IdService.id(this.container, this.shadow);
     HTMLService.html(el, `<image-viewer-main id="${this.id}" source="${this.imgSource}"></image-viewer-main>`);
   }
 

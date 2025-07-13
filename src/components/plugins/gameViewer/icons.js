@@ -1,9 +1,9 @@
 import EnvService from '../../../services/api/envService';
 
-const path = `${EnvService.getRoot()}assets/games/`;
-const safePath = `${EnvService.getRoot()}assets/games2/`;
+let path = `${EnvService.getRoot()}assets/games/`;
+let safePath = `${EnvService.getRoot()}assets/games2/`;
 
-export const GameLabelIcons = {
+export let GameLabelIcons = {
     wordgame: {
         source: path+'wordgame.png'
     },
@@ -18,7 +18,7 @@ export const GameLabelIcons = {
     }
 };
 
-export const SafeGameIcons = {
+export let SafeGameIcons = {
     destinationBall: {
         source: safePath+'destinationball.jpg'
     },

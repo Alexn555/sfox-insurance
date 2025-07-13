@@ -4,9 +4,9 @@ import { NumberService } from '../utils';
 
 export default class WriterService {
     getContent() {
-      const useRestAPI = true;
-      const ids = [2, 6, 8, 11, 13, 16, 20, 31, 32];
-      const index = NumberService.sample(ids);
+      let useRestAPI = true;
+      let ids = [2, 6, 8, 11, 13, 16, 20, 31, 32];
+      let index = NumberService.sample(ids);
       if (useRestAPI) {
          return RestAPI.get('/posts/' + ids[index], '');
       } else {

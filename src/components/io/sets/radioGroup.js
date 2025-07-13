@@ -1,6 +1,6 @@
 import { ReviewerSetIds } from '../../plugins/reviewer/sets';
 
-const commonSets = {
+let commonSets = {
     input: '10px',
     item: {
         padding: '10px',
@@ -9,7 +9,7 @@ const commonSets = {
     }
 };
 
-export const radioGroupSets = {
+export let radioGroupSets = {
     common: commonSets,
     [ReviewerSetIds.reviewPage]: {
         input: '10px',

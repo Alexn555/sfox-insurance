@@ -97,7 +97,7 @@ class Reviewer extends HTMLElement {
           itemsRequired += 1;
         }
 
-        for (const [key] of Object.entries(this.saveObj)) {
+        for (let [key] of Object.entries(this.saveObj)) {
           if (item.required && item.id === key) {
             foundRequired += 1;
           }

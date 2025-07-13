@@ -1,3 +1,3 @@
-export const ReviewEvents = {
+export let ReviewEvents = {
     submit: 'submit'
 };

@@ -1,6 +1,6 @@
 import { GameLabelIcons } from '../../../components/plugins/gameViewer/icons';
 
-export const gmVwGames = [
+export let gmVwGames = [
     { 
         id: 'wordGame', 
         title: 'Word Game', 

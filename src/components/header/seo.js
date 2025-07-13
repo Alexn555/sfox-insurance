@@ -13,8 +13,8 @@ class SEOHelmet extends HTMLElement {
 
     setSEOInformation() {
         if (SEO.enabled){
-            const el = document.querySelector('head');
-            const content = `
+            let el = document.querySelector('head');
+            let content = `
                 <meta name="author" content="${SEO.author}" />
                 <meta
                 name="description"

@@ -15,18 +15,17 @@ class FooterLinkSection extends HTMLElement {
 
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
 
-        const rowLinks = this.getAttribute('links');
+        let rowLinks = this.getAttribute('links');
         this.links = [];
         this.linksContent = '';
         this.contentOpen = true;
         this.screenW = window.innerWidth;
-        const protocol = 'https://';
 
         if (ArrayService.minLength(rowLinks)) {
             this.links = JSONService.getArray(rowLinks);
             for (let i = 0; i < this.links.length; i++) {
                 this.linksContent += `<div class="link-item">
-                  <a href="${protocol}${this.url}/${this.links[i]}">${this.links[i]}</a>
+                  <a href="https://${this.url}/${this.links[i]}">${this.links[i]}</a>
                 </div>`;
             }
         }
@@ -35,12 +34,12 @@ class FooterLinkSection extends HTMLElement {
     updateSize() {
         this.screenW = window.innerWidth;
         if (!MobileService.isMobile()) {
-            const content = ClassIdService.idAll('link-content', this.shadow);
+            let content = ClassIdService.idAll('link-content', this.shadow);
             content.forEach((contentItem) => {
                 StyleService.setDisplay(contentItem, true);
             });
         } else {
-            const toggleBtn = ClassIdService.id('toggle-content', this.shadow);
+            let toggleBtn = ClassIdService.id('toggle-content', this.shadow);
             StyleService.setProperty(toggleBtn, 'left', `${this.getTogglePosition()}px`);
         }
     }

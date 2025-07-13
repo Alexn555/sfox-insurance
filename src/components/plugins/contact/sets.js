@@ -1,11 +1,11 @@
 import { Cursors } from '../../../enums';
 
-export const ContactIds = {
+export let ContactIds = {
     common: 'common',
     readerContactPage: 'readerContactPage'
 };
 
-const commonSets = {
+let commonSets = {
     pads: {
         item: '8px 4px',
         name: '4px',
@@ -17,7 +17,7 @@ const commonSets = {
     }
 };
 
-export const ContactSets = {
+export let ContactSets = {
     propertyAmount: 10,
     common: {
         id: ContactIds.common,

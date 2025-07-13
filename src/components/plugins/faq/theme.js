@@ -1,6 +1,6 @@
 import {  PackThemes, Themes } from '../../../theme/enums';
 
-export const FAQViewerTheme = {
+export let FAQViewerTheme = {
     [PackThemes.common]: {
         wrapper: {
             background: 'white'

@@ -9,9 +9,9 @@ export class ImageViewerHelper {
     }
 
     static updateSize(largeScreen) {
-      const mobile = MobileService.isMobile();
-      const screenW = window.innerWidth;
-      const screenH = window.innerHeight;
+      let mobile = MobileService.isMobile();
+      let screenW = window.innerWidth;
+      let screenH = window.innerHeight;
       let factors = mobile ? { w: 1.1, h: 1.1 } : { w: 1.1, h: 1.2 };
       if (window.innerWidth > largeScreen) {
         factors = { w: 1.5, h: 1.2 };
@@ -20,8 +20,8 @@ export class ImageViewerHelper {
     }
 
     static getZommArrows(key, keys) {
-      const left = key === keys.left ? '<b>[<- key]</b>': '[<- key]';
-      const right = key === keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
+      let left = key === keys.left ? '<b>[<- key]</b>': '[<- key]';
+      let right = key === keys.right ? '<b>[key ->]</b>' : '[key ->]'; 
       return { left, right };
     }
 }

@@ -17,7 +17,7 @@ class ActionButton extends HTMLElement {
     }
 
     setColor() {
-        const { button: btn } = theme.ui;
+        let { button: btn } = theme.ui;
         let color = btn.default;
         switch(this.buttonType) {
             case LinkTypes.transparentButton:
@@ -37,7 +37,7 @@ class ActionButton extends HTMLElement {
     }
 
     render() {
-        const styles = getCommonButton();
+        let styles = getCommonButton();
         this.shadow.innerHTML = `
             <style>
                 .link {

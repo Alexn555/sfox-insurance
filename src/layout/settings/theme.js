@@ -51,7 +51,7 @@ class ThemeSettings extends HTMLElement {
             // The cookie doesn't exist. Create it now -> expires after [n] time
             CookieService.setCookie(WindowSettings.refresh, 1, GlobalSizes.wdStngsRefresh);
             // to use only on 'real refresh' with all components
-            const savedTheme = window.DataStorage.getItem(SaveObjects.themes.active);
+            let savedTheme = window.DataStorage.getItem(SaveObjects.themes.active);
             if (savedTheme) {
                 this.setTheme(savedTheme);
             }

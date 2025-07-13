@@ -1,13 +1,13 @@
 import { Cursors, DirectionAlignment } from '../../../enums';
 
-export const ReviewerSetIds = {
+export let ReviewerSetIds = {
     common: 'common',
     reviewPage: 'reviewPage',
     reviewPageMultiple: 'reviewPageMultiple',
     reviewPageAdvanced: 'reviewPageAdvanced'
 };
 
-const commonSets = {
+let commonSets = {
     pads: {
         item: '8px 4px',
         name: '4px',
@@ -19,7 +19,7 @@ const commonSets = {
     }
 };
 
-export const ReviewSets = {
+export let ReviewSets = {
     propertyAmount: 14,
     common: {
         id: ReviewerSetIds.common,

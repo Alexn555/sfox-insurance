@@ -1,8 +1,8 @@
 import EnvService from '../../../services/api/envService';
 
-const rootPath = `${EnvService.getRoot()}assets/games2/`;
+let rootPath = `${EnvService.getRoot()}assets/games2/`;
 
-export const GameBanners2 = [
+export let GameBanners2 = [
     { 
         id: 'banner11',
         label: 'Destinationball punch your way',

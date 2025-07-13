@@ -126,8 +126,8 @@ class ContentSw extends HTMLElement {
   }
 
   setPageContainer(pagesAmount) {
-    const isMobile = MobileService.isMobile();
-    const isPagesMax = isMobile ? pagesAmount > ContentSwSet.maxMobileColumn : pagesAmount > ContentSwSet.maxColumn; 
+    let isMobile = MobileService.isMobile();
+    let isPagesMax = isMobile ? pagesAmount > ContentSwSet.maxMobileColumn : pagesAmount > ContentSwSet.maxColumn; 
     let properties = [];
     
     if (isPagesMax) {

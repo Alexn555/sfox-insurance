@@ -10,9 +10,9 @@ export default class TheMovieDBService {
     }
 
     async getGalleryPosters() {
-        const response = await fetch(this.host + '3/movie/popular?api_key='+this.API_KEY+'&language='+this.locale+'&page='+this.page);
-        const movies = await response.json();
-        const posters = movies.results;
+        let response = await fetch(this.host + '3/movie/popular?api_key='+this.API_KEY+'&language='+this.locale+'&page='+this.page);
+        let movies = await response.json();
+        let posters = movies.results;
         // sizes: (c) https://themoviedb.org/talk/5aeaaf56c3a3682ddf0010de
         let headPathSm = 'https://image.tmdb.org/t/p/w185'; //w92, w154, w185
         let headPathMd = 'https://image.tmdb.org/t/p/w500';

@@ -1,12 +1,12 @@
 import { Cursors } from '../../../enums';
 
-export const ImageViewerIds = {
+export let ImageViewerIds = {
     common: 'common',
     writer: 'writer',
     gallery: 'gallery'
 };
 
-export const ImageViewerSettings = {
+export let ImageViewerSettings = {
     errorCase: 'error',
     allLevelsCount: true,
     propertyAmount: 13,

@@ -1,6 +1,6 @@
-const mainColor = '#000';
+let mainColor = '#000';
 
-export const themeBlack = {
+export let themeBlack = {
     layout: {
         background: 'grey'
     },

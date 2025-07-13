@@ -1,4 +1,4 @@
-export const GeneralNoteEnums = {
+export let GeneralNoteEnums = {
     status: {
         error: 'error',
         success: 'success'
@@ -12,7 +12,7 @@ export const GeneralNoteEnums = {
     }
 };
 
-export const GeneralNoteCodes = {
+export let GeneralNoteCodes = {
     networkLost: '102',
     writerLostFocus: '105'
 };

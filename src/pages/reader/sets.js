@@ -1,7 +1,7 @@
 import { BoolEnums } from '../../enums';
 import { ContentSwSides } from '../../components/plugins/contentSw/enums';
 
-export const ReaderPageTabs = {
+export let ReaderPageTabs = {
     tabLinks: {
         contact: 'contact-btn',
         welcome: 'welcome-btn',
@@ -11,7 +11,7 @@ export const ReaderPageTabs = {
     }
 };
 
-export const ReviewerSettings = {
+export let ReviewerSettings = {
     gamePage: {
         id: 'html5games',
         displayLabel: BoolEnums.bFalse,

@@ -1,9 +1,9 @@
 import EnvService from '../../../services/api/envService';
 
-const path = `${EnvService.getRoot()}assets/texteditor/`;
+let path = `${EnvService.getRoot()}assets/texteditor/`;
 
 // (c) freepik.com/icons
-export const MenuIcons = {
+export let MenuIcons = {
     save: {
         source: path+'save.png'
     },

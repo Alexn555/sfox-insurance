@@ -24,7 +24,7 @@ class Selectbox extends HTMLElement {
     connectedCallback() {
       this.setOptions();
       this.render();
-      const el = IdService.id(this.id, this.shadow);
+      let el = IdService.id(this.id, this.shadow);
       el.onchange = (() => {
         CustomEventService.send(`${CustomEvents.interaction.selectChange}-${this.id}`, el.value);
       }); 
@@ -35,7 +35,7 @@ class Selectbox extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      const el = IdService.id(this.id, this.shadow);
+      let el = IdService.id(this.id, this.shadow);
       if (el !== null) {
         el.value = oldValue !== newValue ? newValue : oldValue;
       }
@@ -43,7 +43,7 @@ class Selectbox extends HTMLElement {
 
    setOptions() {
       let html = '';
-      const hmtlItems = JSONService.getArray(this.items);
+      let hmtlItems = JSONService.getArray(this.items);
       let optNames = '';
       if (this.optionNames !== '') {
         optNames = JSONService.getArray(this.optionNames);

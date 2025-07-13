@@ -16,9 +16,9 @@ class PageSwitcher extends HTMLElement {
         }, document);
 
         CustomEventService.event(CustomEvents.interaction.flipBoard, (evt) => {
-            const { value } = evt.detail;
-            const el = ClassIdService.id('page', this.shadow);
-            const isAngle = true;
+            let { value } = evt.detail;
+            let el = ClassIdService.id('page', this.shadow);
+            let isAngle = true;
             let transform = '';
             
             if (value) {

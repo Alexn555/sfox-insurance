@@ -57,8 +57,8 @@ class SafeGame extends HTMLElement {
         this.setTextures();
         this.resetAnimation();
 
-        const curWin = e.detail.value;
-        const bonus = this.getBonus();
+        let curWin = e.detail.value;
+        let bonus = this.getBonus();
         this.toggleScore(curWin + bonus);
         this.drawer.drawScore(this.score);
         this.animate(this.drawWin.bind(this));
@@ -67,8 +67,8 @@ class SafeGame extends HTMLElement {
 
     setPrizeImage() {
         if (this.stgs.randomPrize) {
-            const prizes = [textures.dollar, textures.coin, textures.cup, textures.card];
-            const selectedIndex = NumberService.randomInteger(0, prizes.length - 1);
+            let prizes = [textures.dollar, textures.coin, textures.cup, textures.card];
+            let selectedIndex = NumberService.randomInteger(0, prizes.length - 1);
             this.mainAnimation.scale = selectedIndex === 1 ? 1 : 1.5;
             return prizes[selectedIndex];
         }
@@ -76,7 +76,7 @@ class SafeGame extends HTMLElement {
     }
 
     setBonusCard() {
-        const cardNumber = NumberService.randomInteger(11, 14);
+        let cardNumber = NumberService.randomInteger(11, 14);
         this.$winner.setAttribute('src', `${textures.winner}/${cardNumber}d.gif`);
     }
 
@@ -97,7 +97,7 @@ class SafeGame extends HTMLElement {
         let w = this.$canvas.width;
         let h = this.$canvas.height;
 
-        const play = () => {
+        let play = () => {
             if (rotate) {
                 let props = {
                     axisX: 0, 
@@ -125,7 +125,7 @@ class SafeGame extends HTMLElement {
 
             if (duration > this.duration) {
                 duration = 0;
-                const props = {
+                let props = {
                     axisX: 0, 
                     axisY: 90, 
                     rotate: duration / 10, 

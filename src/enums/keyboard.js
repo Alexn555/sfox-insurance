@@ -1,4 +1,4 @@
-export const KeyboardKeys = {
+export let KeyboardKeys = {
     // names follow rules of event.keyName
     arrowLeft: 'ArrowLeft',
     arrowRight: 'ArrowRight',

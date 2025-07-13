@@ -1,4 +1,4 @@
-export const Reviews = [
+export let Reviews = [
     { 
         id: '1', 
         name: 'How did you liked accommodation?', 

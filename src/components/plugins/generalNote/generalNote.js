@@ -51,7 +51,7 @@ class GeneralNote extends HTMLElement {
     }
 
     setProps(rowProps = '') {
-      const props = JSONService.getObj(rowProps);
+      let props = JSONService.getObj(rowProps);
       this.status = props.status;
       this.code = props.code;
       this.text = props.text;
@@ -68,8 +68,8 @@ class GeneralNote extends HTMLElement {
 
     setCustomSize() {
       if (this.size !== '') {
-        const sizes = JSONService.getObj(this.size);
-        const { w, wUnits, h } = sizes;
+        let sizes = JSONService.getObj(this.size);
+        let { w, wUnits, h } = sizes;
         StyleService.setProperties(this.$container, [
           { property: 'width', value: `${w}${wUnits}` },
           { property: 'height', value: `${h}px` },
@@ -82,7 +82,7 @@ class GeneralNote extends HTMLElement {
     }
 
     toggleInfo() {
-      const el = IdService.id('status', this.shadow);
+      let el = IdService.id('status', this.shadow);
       if (el) {
         HTMLService.html(el, `
           ${this.setStatusIcon(this.status)}
@@ -92,7 +92,7 @@ class GeneralNote extends HTMLElement {
     }
 
     toggleStatusCl(status) {
-      const el = IdService.id('status', this.shadow);
+      let el = IdService.id('status', this.shadow);
       if (el) {
         StyleService.removeAndAddClass(el, ['error', 'success'], status);
       }
@@ -109,7 +109,7 @@ class GeneralNote extends HTMLElement {
     }
 
     setCloseVis() {
-      const el = ClassIdService.id(this.closeBtn, this.shadow);
+      let el = ClassIdService.id(this.closeBtn, this.shadow);
       let opacity = this.code === GeneralNoteCodes.networkLost ? '0' : '1';
       StyleService.setProperty(el, 'opacity', opacity);
     }

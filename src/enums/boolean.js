@@ -1,8 +1,8 @@
-export const BoolEnums = {
+export let BoolEnums = {
     bTrue: '1',
     bFalse: '0'
 };
 
-export const BoolChecks = {
+export let BoolChecks = {
     TrueVal: 'true'
 };

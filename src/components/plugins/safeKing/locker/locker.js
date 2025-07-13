@@ -37,7 +37,7 @@ class SafeLocker extends HTMLElement {
       });
 
       CustomEventService.event(LockerEvents.keyPress, (e) => {
-        const val = e.detail.value;
+        let val = e.detail.value;
         if (val && !this.isHelpDigit(val)) {
           this.code += val;
           this.curCodeDigit += 1;
@@ -73,11 +73,11 @@ class SafeLocker extends HTMLElement {
       if (digitNumber < this.codeLen && SafeKingSets.enableHintKeys) {
         this.resetClasses();
 
-        const correctDigit = this.theCode.charAt(digitNumber);
+        let correctDigit = this.theCode.charAt(digitNumber);
         this.$keyCorrect = IdService.id(`key${correctDigit}`, this.shadow);
         this.$keyCorrect.setAttribute('class-name', classes.active);
 
-        const randDigits = [ 
+        let randDigits = [ 
           NumberService.randomInteger(0, this.keyDigits - 1),
           NumberService.randomInteger(0, this.keyDigits - 1)
         ];
@@ -120,8 +120,8 @@ class SafeLocker extends HTMLElement {
     }
 
     setGuessHighlight(code, theCode) {
-      const checkCode = theCode.substr(0, code.length);
-      const correct = checkCode === code ? 'blue' : 'red';
+      let checkCode = theCode.substr(0, code.length);
+      let correct = checkCode === code ? 'blue' : 'red';
       StyleService.setProperty(this.$codeDisplay, 'color', correct);
     }
 

@@ -1,6 +1,6 @@
 import { SafeGameIcons } from '../../../components/plugins/gameViewer/icons';
 
-export const gmSfGames = [
+export let gmSfGames = [
     { 
         id: 'destinationBall', 
         title: 'Destination Ball', 

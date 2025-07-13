@@ -1,4 +1,4 @@
-export const AdvReviews = [
+export let AdvReviews = [
     { 
         id: '11', 
         name: 'How did you liked recommendation?', 

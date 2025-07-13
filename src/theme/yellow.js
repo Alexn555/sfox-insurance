@@ -1,6 +1,6 @@
-const mainColor = '#dba016';
+let mainColor = '#dba016';
 
-export const themeYellow = {
+export let themeYellow = {
     layout: {
         background: '#f0f0f0'
     },

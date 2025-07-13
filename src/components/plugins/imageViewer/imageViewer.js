@@ -148,7 +148,7 @@ class ImageViewer extends HTMLElement {
     }
 
     updateSize() {
-      const { mobile, screenW, screenH, factors } = ImageViewerHelper.updateSize(GlobalSizes.largeScreen);
+      let { mobile, screenW, screenH, factors } = ImageViewerHelper.updateSize(GlobalSizes.largeScreen);
       this.isMobile = mobile;
       let el = IdService.id(this.imgViewerId, this.shadow);
       this.imgViewerSize = {

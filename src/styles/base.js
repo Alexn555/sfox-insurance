@@ -1,4 +1,4 @@
-const sizes = {
+let sizes = {
   ds: "70vw",
   md: "80vw",
 };

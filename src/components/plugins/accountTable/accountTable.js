@@ -22,18 +22,18 @@ class AccountTable extends HTMLElement {
     }
 
     constructTable() {
-        const names = JSONService.getArray(this.columnNames);
-        const column1 = [names[0], ...JSONService.getArray(this.col1)];
-        const column2 = [names[1], ...JSONService.getArray(this.col2)];
-        const column3 = [names[2], ...JSONService.getArray(this.col3)];
-        const column4 = [names[3], ...JSONService.getArray(this.col4)];
-        const column5 = [names[4], ...JSONService.getArray(this.col5)];
+        let names = JSONService.getArray(this.columnNames);
+        let column1 = [names[0], ...JSONService.getArray(this.col1)];
+        let column2 = [names[1], ...JSONService.getArray(this.col2)];
+        let column3 = [names[2], ...JSONService.getArray(this.col3)];
+        let column4 = [names[3], ...JSONService.getArray(this.col4)];
+        let column5 = [names[4], ...JSONService.getArray(this.col5)];
 
-        const isLastTotal2x = JSON.parse(this.lastTotal2x) !== '';
-        const columns = [column1, column2, column3, column4, column5];
+        let isLastTotal2x = JSON.parse(this.lastTotal2x) !== '';
+        let columns = [column1, column2, column3, column4, column5];
 
         let html = '';
-        const maxLength = parseInt(this.colSize, 10);
+        let maxLength = parseInt(this.colSize, 10);
 
         for (let i = 0; i < maxLength; i++) {
             html += i === 0 || i === maxLength - 1 ? '<div>' : '<div class="desktop">';
@@ -45,8 +45,7 @@ class AccountTable extends HTMLElement {
                 if (index === columns[i].length - 1) {
                     className = isLastTotal2x && i === maxLength - 1 ? 'row-total-2x' : 'row-total';
                 }
-                const content = col;
-                html += `<div class="${className}">${content}</div>`;
+                html += `<div class="${className}">${col}</div>`;
             });
             html += '</div>';
         }

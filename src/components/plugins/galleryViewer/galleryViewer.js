@@ -47,9 +47,9 @@ class GalleryViewer extends HTMLElement {
   }
 
   setPortion(currentPage) {
-    const perPage = this.getPerPage();
-    const nextPortion = currentPage <= 1 ? 0 : (currentPage - 1) * perPage;
-    const visPhotos = this.allImages.slice(nextPortion, nextPortion + perPage);
+    let perPage = this.getPerPage();
+    let nextPortion = currentPage <= 1 ? 0 : (currentPage - 1) * perPage;
+    let visPhotos = this.allImages.slice(nextPortion, nextPortion + perPage);
     this.setImages(visPhotos);
   }
 
@@ -78,8 +78,8 @@ class GalleryViewer extends HTMLElement {
         HTMLService.html(this.$container, html);
       } else {
         images.forEach((img, index) => {
-          const holder = IdService.id(`holder-${index}`, this.shadow);
-          const image = IdService.id(`img-${index}`, this.shadow);
+          let holder = IdService.id(`holder-${index}`, this.shadow);
+          let image = IdService.id(`img-${index}`, this.shadow);
           StyleService.toggleClass(holder, 'thumb-loading', false);
           StyleService.toggleClass(holder, 'thumb', true);
           image.setAttribute('src', img.imgSm);
@@ -96,7 +96,7 @@ class GalleryViewer extends HTMLElement {
 
   setHandlers(images) {
     if (this.thumbsOpenable === GalleryImgViewerEnums.open) {
-      const holderAmount = this.getPerPage();
+      let holderAmount = this.getPerPage();
       for (let i = 0; i < holderAmount; i++) {
         this.$holder[i] = IdService.idAndClick(`holder-${i}`, this.shadow, () => {
           CustomEventService.send(CustomWindowEvents.imageViewer.init, 
@@ -120,9 +120,9 @@ class GalleryViewer extends HTMLElement {
 
   showHolders() {
     if (GallerySet.holderLoad === GallerLoadHolders.Advenced) {
-      const holderAmount = this.getPerPage();
+      let holderAmount = this.getPerPage();
       let html = '';
-      const thmLoad = `${EnvService.getRoot()}assets/gallery/holder.png`;
+      let thmLoad = `${EnvService.getRoot()}assets/gallery/holder.png`;
       for (let i = 0; i < holderAmount; i++) {
         html += `<div id="holder-${i}" class="thumb-loading">
             <img id="img-${i}" src="${thmLoad}" alt="Loading..." />

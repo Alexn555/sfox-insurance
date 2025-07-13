@@ -10,7 +10,7 @@ export default class BannerService {
     getPerformance(savedBannerDataId) {
         let data = performanceBannerData;
         return ServerService.simulateDelay(1000).then(() => { 
-            const savedData = window.DataStorage.getItem(savedBannerDataId);
+            let savedData = window.DataStorage.getItem(savedBannerDataId);
             let isSaved = false;
             if (savedData) {
                 data = savedData;

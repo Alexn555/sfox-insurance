@@ -1,4 +1,4 @@
-export const pageNames = {
+export let pageNames = {
   home: "home",
   insurance: "insurance",
   additional: "additional",
@@ -6,7 +6,7 @@ export const pageNames = {
   reader: "reader",
 };
 
-export const pageIds = [
+export let pageIds = [
   pageNames.home,
   pageNames.insurance,
   pageNames.additional,
@@ -14,14 +14,14 @@ export const pageIds = [
   pageNames.reader,
 ];
 
-export const PageStructure = {
+export let PageStructure = {
   settings: {
     height: 120,
     layoutOffset: 20,
   },
 };
 
-export const Writer = {
+export let Writer = {
   fetchOnce: true,
   queue: {
     amount: 2,
@@ -29,20 +29,20 @@ export const Writer = {
   },
 };
 
-export const Game = {
+export let Game = {
   buttons: {
     dialogOpener: false,
   },
 };
 
-export const Account = {
+export let Account = {
   details: {
     showVisited: false,
     randomIcon: true,
   },
 };
 
-export const AdditionalPage = {
+export let AdditionalPage = {
   tabLinks: {
     game: "game-btn",
     mapLink: "map-btn",
@@ -52,7 +52,7 @@ export const AdditionalPage = {
   },
 };
 
-export const Banners = {
+export let Banners = {
   Accounts: {
     main: "purple",
   },

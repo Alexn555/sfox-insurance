@@ -1,8 +1,8 @@
 import EnvService from '../../../services/api/envService';
 
-const path = `${EnvService.getRoot()}assets/`;
+let path = `${EnvService.getRoot()}assets/`;
 
-export const LoadingIcons = {
+export let LoadingIcons = {
     game: {
         source: path+'gameviewer/loading.gif'
     }

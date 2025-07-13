@@ -1,4 +1,4 @@
-export const Themes = {
+export let Themes = {
     main1: 'main1',
     blue: 'blue',
     black: 'black',
@@ -6,7 +6,7 @@ export const Themes = {
     yellow: 'yellow'
 };
 
-export const PackIds = {
+export let PackIds = {
     startPage: 'startPage',
     safePage: 'safePage',
     generalNote: 'generalNote',
@@ -22,6 +22,6 @@ export const PackIds = {
     gameViewer: 'gameViewer'
 };
 
-export const PackThemes = {
+export let PackThemes = {
     common: 'common'
 };

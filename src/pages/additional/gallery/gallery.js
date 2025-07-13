@@ -18,8 +18,7 @@ class GalleryPage extends HTMLElement {
 
       if (GallerySet.searchEnabled) {
         CustomEventService.event(GallerySet.searchSavedInit, (e) => {
-          const saved = e.detail.value;
-          this.searchWord = saved;
+          this.searchWord = e.detail.value;
           setTimeout(() => {
             this.updateLabel(this.searchWord);
             this.activateContent(this.searchWord);

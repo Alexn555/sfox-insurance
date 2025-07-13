@@ -1,6 +1,6 @@
 import { Themes, PackThemes } from '../../../theme/enums';
 
-export const bannerCarouselTheme = {
+export let bannerCarouselTheme = {
     propertyAmount: 3,
     [PackThemes.common]: {
         bck: '#f2f2f2',

@@ -1,4 +1,4 @@
-export const saveEvts = {
+export let  saveEvts = {
     name: 'name',
     email: 'email',
     message: 'message'

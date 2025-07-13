@@ -1,6 +1,6 @@
 import { Themes, PackThemes } from '../../../theme/enums';
 
-export const contentSwitcherTheme = {
+export let contentSwitcherTheme = {
     [PackThemes.common]: {
        border: 'grey',
        background: '#dcdcdc',

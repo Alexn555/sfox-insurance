@@ -1,19 +1,19 @@
 import EnvService from '../../../services/api/envService';
 
-export const ContentSwSides = {
+export let ContentSwSides = {
     left: 'left',
     right: 'right',
     top: 'top'
 };
 
-export const LabelModes = {
+export let LabelModes = {
     labels: 'labels',
     numeric: 'numeric'
 };
 
-const path = `${EnvService.getRoot()}assets/contentsw/`;
+let path = `${EnvService.getRoot()}assets/contentsw/`;
 
-export const LabelIcons = {
+export let LabelIcons = {
     game: {
         id: 'game',
         source: path+'game.png'

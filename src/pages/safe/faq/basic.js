@@ -1,4 +1,4 @@
-export const QuestionsBasic = [
+export let QuestionsBasic = [
     { 
         id: '1', 
         name: 'Do we live normally?', 
