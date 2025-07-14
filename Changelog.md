@@ -1,4 +1,7 @@
 ## Changelog
+v 3.32
+  Added statuses optimization
+
 v 3.30
   ScreenQuery huge optimization, Replaced const to let performance
 
