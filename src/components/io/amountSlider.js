@@ -48,17 +48,6 @@ class AmountSlider extends HTMLElement {
               padding: 1em 0;
             }
             
-            html::before {
-              content: "";
-              position: fixed;
-              left: 0;
-              top: 0;
-              width: 100vw;
-              height: 100vh;
-              background: radial-gradient(circle at center, #fff, #fafafa);
-              display: block;
-            }
-            
             /* === range theme and appearance === */
             input[type="range"] {
               font-size: 1.5rem;
@@ -82,26 +71,7 @@ class AmountSlider extends HTMLElement {
               --thumb-width: 1em;
               --clip-edges: 0.0125em;
             }
-            
-            @media (prefers-color-scheme: dark) {
-              html {
-                background-color: #000;
-              }
-            
-              html::before {
-                background: radial-gradient(circle at center, #101112, #000);
-              }
-            
-              input[type="range"] {
-                color: #f07167;
-                --track-color: rgba(255, 255, 255, 0.1);
-              }
-            
-              input[type="range"].win10-thumb {
-                color: #3a86ff;
-              }
-            }
-            
+
             /* === range commons === */
             input[type="range"] {
               position: relative;
