@@ -4,7 +4,7 @@ import { ArrayService } from '../utils';
 export default class StyleService {
     static setDisplay(el, toggle = true, displayType = 'block') {
         if (!el) {
-            LoggerService.error(`Set style id: "${el}" not found`);
+            LoggerService.error('Set style id: '+el+' not found');
         }
         el.style.display = toggle ? displayType : 'none';
     }

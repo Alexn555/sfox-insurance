@@ -10,10 +10,7 @@ class HeaderMenu extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
-
-        CustomEventService.event(CustomEvents.header.changeActivePage, (e) => {
-            this.toggleMenuItem( e.detail.value); 
-        });
+        this.$btns = [];
     }
     
     connectedCallback() {
@@ -24,21 +21,25 @@ class HeaderMenu extends HTMLElement {
     }
 
     initForm() {
-        this.$home = IdService.idAndClick('home', this.shadow, () => {
+        this.$btns['home'] = IdService.idAndClick('home', this.shadow, () => {
             this.toggleMenuItem(HeaderMenuLinks.Home);
         });
-        this.$insurance = IdService.idAndClick('insurance', this.shadow, () => {
+        this.$btns['insurance'] = IdService.idAndClick('insurance', this.shadow, () => {
             this.toggleMenuItem(HeaderMenuLinks.Insurance);
         });
-        this.$additional = IdService.idAndClick('additional', this.shadow, () => {
+        this.$btns['additional'] = IdService.idAndClick('additional', this.shadow, () => {
             this.toggleMenuItem(HeaderMenuLinks.Additional);
+        });
+        CustomEventService.event(CustomEvents.header.changeActivePage, (e) => {
+            this.toggleMenuItem(e.detail.value); 
         });
     }
 
     disconnectedCallback() {
-        CustomEventService.removeFromContext(MouseEvents.mouseover, this.shadow);
-        CustomEventService.removeFromContext(MouseEvents.mouseout, this.shadow);
-        IdService.removeList([this.$home, this.$insurance, this.$additional]);
+        [MouseEvents.mouseover, MouseEvents.mouseout, CustomEvents.header.menuClick].forEach((event) => {
+            CustomEventService.removeFromContext(event, this.shadow);
+        })
+        IdService.removeList(this.$btns);
     }
 
     setOverlay() {
@@ -49,20 +50,18 @@ class HeaderMenu extends HTMLElement {
         CustomEventService.send(CustomEvents.header.menuOverlayRemove);
     }
 
-    toggleMenuItem(evt) {
-        let item = evt;
-        let selectedItem = this.setSelected(item);
-        CustomEventService.send(CustomEvents.header.menuClick, item);
-        this.setHighlighted(selectedItem);
+    toggleMenuItem(page) {
+        CustomEventService.send(CustomEvents.header.menuClick, page);
+        this.setHighlighted(this.setSelected(page));
     }
 
     setHighlighted(selectedItem) {
-        let searchCl = ClassIdService.idAll('header-menu-item', this.shadow);
-        if (ArrayService.minLength(searchCl)) {
-            searchCl.forEach((item, index) => {
-                searchCl[index].setAttribute('class', 'header-menu-item');
+        let $menuItems = ClassIdService.idAll('header-menu-item', this.shadow);
+        if (ArrayService.minLength($menuItems)) {
+            $menuItems.forEach((item, index) => {
+                $menuItems[index].setAttribute('class', 'header-menu-item');
             });
-            let selected = searchCl[selectedItem];
+            let selected = $menuItems[selectedItem];
             if (selected) {
                 selected.setAttribute('class', 'header-menu-item header-menu-item-active');
             }
@@ -96,12 +95,6 @@ class HeaderMenu extends HTMLElement {
                     color: #913a83;
                     user-select: none;
                     z-index: 102;
-
-                    ${ScreenQuery.mobile(`
-                        grid-template-columns: 100%;
-                        background-color: ${theme.header.menu.background};
-                        height: fit-content;
-                    `)}
                 }
                 .header-menu-item {
                     border: 1px solid ${theme.header.menu.line};
@@ -110,19 +103,6 @@ class HeaderMenu extends HTMLElement {
                     align-items: center;
                     cursor: pointer;
                     padding-top: 8px;
-
-                    & img {
-                        ${ScreenQuery.mobile(`
-                            display: none;
-                        `)}
-                    }
-
-                    ${ScreenQuery.mobile(`
-                        text-align: left;
-                        align-items: center;
-                        font-weight: bold;
-                        padding: 0 0px 10px 20px;
-                    `)}
                 }
                 .header-menu-item-active {
                     color: ${theme.header.menu.item.active};
@@ -131,6 +111,25 @@ class HeaderMenu extends HTMLElement {
                         filter: invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);
                     }
                 }
+
+                 ${ScreenQuery.mobile(`
+                    .header-menu {
+                        grid-template-columns: 100%;
+                        background-color: ${theme.header.menu.background};
+                        height: fit-content;
+                    }
+
+                    .header-menu-item {
+                        & img {
+                            display: none;  
+                        }
+
+                        text-align: left;
+                        align-items: center;
+                        font-weight: bold;
+                        padding: 0 0px 10px 20px;
+                    }
+                `)}
             </style>
             <div class="header-menu"> 
                 <div 

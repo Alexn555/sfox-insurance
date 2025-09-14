@@ -2,7 +2,7 @@
 import { theme } from '../../../theme/theme';
 import ScreenQuery from '../../../styles/query';
 import { CommonEvents, CustomEvents, CustomPageEvents, LoginSets } from '../../../settings';
-import { ClassIdService, CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
+import { CustomEventService, IdService, StyleService, HTMLService } from '../../../services';
 import { LinkTypes, LinkVariants } from '../../../components/common/ui';
 import { KeyboardKeys } from '../../../enums';
 import { UserService } from '../../../services/page/usersService';
@@ -16,20 +16,21 @@ class AccountLogin extends HTMLElement {
         username: 'username',
         password: 'password'
       };
+      this.$c = [];
+      this.$btns = [];
     }
   
     connectedCallback() {
       this.render();
-      this.$loginSection = ClassIdService.id('login', this.shadow);
-      this.$remindLink = IdService.id('remind', this.shadow);
-      this.$username = IdService.id(this.textIds.username, this.shadow);
-      this.$password = IdService.id(this.textIds.password, this.shadow);
-      this.$accessBtn = IdService.id('accessAccount', this.shadow);
+      this.$c['username'] = IdService.id(this.textIds.username, this.shadow);
+      this.$c['password'] = IdService.id(this.textIds.password, this.shadow);
+      this.$btns['remind'] = IdService.id('remind', this.shadow);
+      this.$btns['access'] = IdService.id('accessAccount', this.shadow);
       this.initForm();
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$accessBtn, this.$remindLink]);
+      IdService.removeList([this.$btns['access'], this.$btns['remind']]);
       CustomEventService.removeList([
         `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
         `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`
@@ -50,17 +51,17 @@ class AccountLogin extends HTMLElement {
           this.activateLogin();
         }
       }, this.shadow);
-      IdService.event(this.$accessBtn, CommonEvents.click, this.activateLogin.bind(this));
+      IdService.event(this.$btns['access'], CommonEvents.click, this.activateLogin.bind(this));
 
-      IdService.event(this.$remindLink, CommonEvents.click, () => {
+      IdService.event(this.$btns['remind'], CommonEvents.click, () => {
         CustomEventService.send(CustomPageEvents.users.reminder.open);
       });
     }
 
     activateLogin() {
       let user = {
-        username: this.$username.getAttribute('value'),
-        password: this.$password.getAttribute('value')
+        username: this.$c['username'].getAttribute('value'),
+        password: this.$c['password'].getAttribute('value')
       };
       if (user.username.length > 0 && user.password.length > 0) {
         let logged = UserService.getLoginData(user);
@@ -76,11 +77,11 @@ class AccountLogin extends HTMLElement {
     }
 
     setUsername(value) {
-      this.$username.setAttribute('value', value);
+      this.$c['username'].setAttribute('value', value);
     }
 
     setPassword(value) {
-      this.$password.setAttribute('value', value);
+      this.$c['password'].setAttribute('value', value);
     }
     
     setAccount(user) {   
@@ -135,7 +136,7 @@ class AccountLogin extends HTMLElement {
               }
             </style>
             <form>
-                <div class="login">
+                <div id="login" class="login">
                     <div>
                         <text-input
                             id="${this.textIds.username}" 

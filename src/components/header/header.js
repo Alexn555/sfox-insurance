@@ -12,38 +12,36 @@ class Header extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
+        this.$c = [];
+        this.$btns = [];
     }
 
     updateSize() {
-        let toggleItem = ClassIdService.id('menu-toggle', this.shadow);
-        StyleService.setDisplay(toggleItem, !MobileService.isMobile());
+        StyleService.setDisplay(ClassIdService.id('menu-toggle', this.shadow), !MobileService.isMobile());
     }
     
     connectedCallback() {
         this.render();
-        this.initForm();
-    }
-
-    initForm() {
-        this.$toggleMenu = IdService.idAndClick('toggle', this.shadow, this.toggleMenu.bind(this));
-        this.$overlay = ClassIdService.id('header-overlay', this.shadow);
+        this.$btns['toggleMenu'] = IdService.idAndClick('toggle', this.shadow, this.toggleMenu.bind(this));
+        this.$c['overlay'] = ClassIdService.id('header-overlay', this.shadow);
 
         CustomEventService.event(CustomEvents.header.menuOverlay, () => {
-            if (this.$overlay) {
-                StyleService.setDisplay(this.$overlay, true);
+            if (this.$c['overlay']) {
+                StyleService.setDisplay(this.$c['overlay'], true);
             }
-        });
+        });  
         CustomEventService.event(CustomEvents.header.menuOverlayRemove, () => {
-            if (this.$overlay) {
-                StyleService.setDisplay(this.$overlay, false);
+            if (this.$c['overlay']) {
+                StyleService.setDisplay(this.$c['overlay'], false);
             }
         });
+        CustomEventService.event(CustomEvents.header.menuClick, this.toggleMenu.bind(this));
     }
 
     disconnectedCallback() {
         CustomEventService.removeList([CustomEvents.header.menuOverlay, 
             CustomEvents.header.menuOverlayRemove]);
-        IdService.remove(this.$toggleMenu);
+        IdService.remove(this.$btns);
     }
 
     toggleMenu() {
@@ -52,7 +50,7 @@ class Header extends HTMLElement {
             let toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
             let isMenuOpen = !StyleService.isDisplaying(toggleItem);
             StyleService.setDisplay(toggleItem, isMenuOpen);
-            toggleIcon.src = isMenuOpen ? `./${btnMap.mobile.menuClose}` : `./${btnMap.mobile.menuOpen}` ;
+            toggleIcon.src = isMenuOpen ? './'+btnMap.mobile.menuClose : './'+btnMap.mobile.menuOpen;
         } else {
             StyleService.setDisplay(toggleItem, true);
         }

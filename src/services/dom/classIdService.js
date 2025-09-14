@@ -4,13 +4,13 @@ import { CommonEvents } from '../../settings';
 export class ClassIdService {
     static id(query, ctx) {
         if (!ctx) {
-            LoggerService.error(`ClassIdService class .${query} not provided!`);
+            LoggerService.error('ClassIdService class .'+query+' not provided!');
         }
-        return ctx.querySelector(`.${query}`);
+        return ctx.querySelector('.'+query);
     }
 
     static idAll(query, ctx) {
-        return ctx.querySelectorAll(`.${query}`);
+        return ctx.querySelectorAll('.'+query);
     }
 
     static idAndClick(id, ctx, callback) {

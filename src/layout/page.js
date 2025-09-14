@@ -3,7 +3,7 @@ import { pageIds, pageNames, Animations, CustomEvents } from '../settings';
 import ScreenQuery from '../styles/query';
 import { SaveRoutes } from '../components/common/saves';
 import { fadeInAnimation } from '../components/common/styles/animations';
-import { ClassIdService, CustomEventService, IdService, StyleService } from '../services';
+import { CustomEventService, IdService, StyleService } from '../services';
 
 class PageSwitcher extends HTMLElement {
     constructor() {
@@ -17,7 +17,7 @@ class PageSwitcher extends HTMLElement {
 
         CustomEventService.event(CustomEvents.interaction.flipBoard, (evt) => {
             let { value } = evt.detail;
-            let el = ClassIdService.id('page', this.shadow);
+            let el = IdService.id('page', this.shadow);
             let isAngle = true;
             let transform = '';
             
@@ -70,7 +70,7 @@ class PageSwitcher extends HTMLElement {
     }
 
     closePageOpener() {
-        let el = ClassIdService.id('heightHolder', this.shadow);
+        let el = IdService.id('heightHolder', this.shadow);
         setTimeout(() => { el.remove(); }, 1000);
     }
 
@@ -108,13 +108,13 @@ class PageSwitcher extends HTMLElement {
                 }
             </style>
 
-            <main class="page">
+            <main id="page" class="page">
                 <index-page id="${pageNames.home}"></index-page>
                 <insurance-page id="${pageNames.insurance}"></insurance-page>
                 <additional-page id="${pageNames.additional}"></additional-page>
                 <safe-page id="${pageNames.safe}"></safe-page>
                 <reader-page id="${pageNames.reader}"></reader-page>
-                <div class="heightHolder"></div>
+                <div id="heightHolder" class="heightHolder"></div>
             </main> 
         `;
         this.getPage(this.getSavedPage(), true);

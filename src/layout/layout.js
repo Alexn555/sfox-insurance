@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Animations, CommonEvents, CustomEvents, PageStructure } from '../settings';
-import { ClassIdService, CustomEventService, StyleService } from '../services';
+import { CustomEventService, IdService, StyleService } from '../services';
 import { MobileService } from '../services/utils';
 import { RenderService } from '../services/helpers';
 import { theme } from '../theme/theme';
@@ -27,7 +27,7 @@ class Layout extends HTMLElement {
                     overflow-x: hidden;
                 }
             </style>
-            <div class="layout">
+            <div id="layout" class="layout">
                 <load-settings></load-settings>
 
                 ${RenderService.showComponent(HeaderBoard.board.enabled, '<header-section></header-section>')}
@@ -49,7 +49,7 @@ class Layout extends HTMLElement {
     }
 
     moveLayout(settingsToggle) {
-        let container = ClassIdService.id('layout', this.shadow);
+        let container = IdService.id('layout', this.shadow);
         let top = settingsToggle ? `-${PageStructure.settings.height + PageStructure.settings.layoutOffset}` : this.laytOffsetSettings;
         StyleService.setProperties(container, [
             { property: 'transform', value: `translateY(${top}px)` },

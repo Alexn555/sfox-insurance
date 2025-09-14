@@ -5,7 +5,7 @@ export class HTMLService {
         if (typeof val === 'string') {
           el.innerText = val;   
         } else {
-            LoggerService.error(`html service el ${el} text value not provided`);
+            LoggerService.error('html service el '+el+' text value not provided');
         }
     }
 
@@ -13,7 +13,7 @@ export class HTMLService {
         if (typeof val === 'string') {
             el.innerHTML = val;   
         } else {
-            LoggerService.error(`html service el ${el} html value not provided`);
+            LoggerService.error('html service el '+el+' text value not provided');
         }
     }
 
@@ -21,7 +21,7 @@ export class HTMLService {
         if (typeof val === 'string') {
             el.innerHTML += val;   
         } else {
-            LoggerService.error(`html service el ${el} html value not provided`);
+            LoggerService.error('html service el '+el+' text value not provided');
         }
     }
 

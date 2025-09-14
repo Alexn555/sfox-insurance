@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { dtCurrencies, dtCurrencyNames } from '../../data/money';
 import { dtAccNames, dtAccNameValues, dtSaves, dtSaveValues } from '../../data/payments';
-import { ClassIdService, CustomEventService, IdService, StyleService } from '../../services';
+import { CustomEventService, IdService, StyleService } from '../../services';
 import { NumberService } from '../../services/utils/';
 import { theme } from '../../theme/theme';
 import { CustomEvents } from '../../settings';
@@ -88,7 +88,7 @@ class InsurancePaymentForm extends HTMLElement {
 
   setAmount(amountVal) {
     if (amountVal && amountVal !== '') {
-        let errorLabel = ClassIdService.id('input-error', this.shadow);
+        let errorLabel = IdService.id('input-error', this.shadow);
         StyleService.setDisplay(errorLabel, false);        
         if (!NumberService.isValidNumber(amountVal)) {
             StyleService.setDisplay(errorLabel, true);
@@ -189,7 +189,7 @@ class InsurancePaymentForm extends HTMLElement {
                                 option-names='${dtCurrencies}'
                             />
                         </div>
-                        <div class="input-error">Amount accepts only numbers</div> 
+                        <div id="input-error" class="input-error">Amount accepts only numbers</div> 
                         <div>  
                             <text-input
                                 id="description" 

@@ -13,8 +13,7 @@ export default class CustomEventService {
 
     static eventData(evt, callback, ctx = document, parseData = false) {
         ctx.addEventListener(evt, (e) => {
-            let res = e.detail.value;
-            callback(parseData ? JSON.parse(res) : res);
+            callback(parseData ? JSON.parse(e.detail.value) : e.detail.value);
         });
     }
 

@@ -5,7 +5,7 @@ import { CustomWindowEvents } from '../../../settings';
 import { GeneralNoteCodes, GeneralNoteEnums } from './enums';
 import { styleErrors } from '../../common/styles/errors';
 import { PackIds } from '../../../theme/enums';
-import { IdService, CustomEventService, ClassIdService, StyleService, HTMLService } from '../../../services';
+import { IdService, CustomEventService, StyleService, HTMLService } from '../../../services';
 import { JSONService } from '../../../services/utils';
 import { RenderService } from '../../../services/helpers';
 import { errorIcon } from '../../common/styles/statusIcons/status';
@@ -109,7 +109,7 @@ class GeneralNote extends HTMLElement {
     }
 
     setCloseVis() {
-      let el = ClassIdService.id(this.closeBtn, this.shadow);
+      let el = IdService.id(this.closeBtn, this.shadow);
       let opacity = this.code === GeneralNoteCodes.networkLost ? '0' : '1';
       StyleService.setProperty(el, 'opacity', opacity);
     }

@@ -20,6 +20,8 @@ class FooterLinkSection extends HTMLElement {
         this.linksContent = '';
         this.contentOpen = true;
         this.screenW = window.innerWidth;
+        this.$c = [];
+        this.$btns = [];
 
         if (ArrayService.minLength(rowLinks)) {
             this.links = JSONService.getArray(rowLinks);
@@ -39,20 +41,20 @@ class FooterLinkSection extends HTMLElement {
                 StyleService.setDisplay(contentItem, true);
             });
         } else {
-            let toggleBtn = ClassIdService.id('toggle-content', this.shadow);
+            let toggleBtn = IdService.id('toggle-content', this.shadow);
             StyleService.setProperty(toggleBtn, 'left', `${this.getTogglePosition()}px`);
         }
     }
     
     connectedCallback() {
         this.render();
-        this.$content = ClassIdService.id('link-content', this.shadow);
-        this.$toggler = IdService.idAndClick(`toggler-${this.id}`, this.shadow, this.toggleContent.bind(this));
+        this.$c['content'] = ClassIdService.id('link-content', this.shadow);
+        this.$btns['toggler'] = IdService.idAndClick(`toggler-${this.id}`, this.shadow, this.toggleContent.bind(this));
     }
 
     disconnectedCallback() {
         CustomEventService.removeFromContext(CommonEvents.resize, window);
-        IdService.remove(this.$toggler);
+        IdService.remove(this.$btns);
     }
 
     getTogglePosition() {
@@ -61,8 +63,8 @@ class FooterLinkSection extends HTMLElement {
 
     toggleContent() {
         this.contentOpen = !this.contentOpen;
-        if (MobileService.isMobile() && this.$content) {
-            StyleService.setDisplay(this.$content, this.contentOpen);
+        if (MobileService.isMobile() && this.$c['content']) {
+            StyleService.setDisplay(this.$c['content'], this.contentOpen);
         }
     }
 
@@ -71,11 +73,6 @@ class FooterLinkSection extends HTMLElement {
             <style>
                 .footer-link-section {
                     color: ${theme.footer.links.text};
-
-                    ${ScreenQuery.mobile(`
-                        border-top: 1px solid #ddcdc4;
-                        padding: 10px 0 10px 0;
-                    `)}
                 }
                 .link-title {
                     position: relative;
@@ -109,25 +106,33 @@ class FooterLinkSection extends HTMLElement {
                 .toggle-content {
                     position: absolute;
                     left: ${this.getTogglePosition()}px;
-
-                    ${ScreenQuery.desk(`
-                        display: none;
-                    `)}
                 }
                 .toggle-arrow {
-                    cursor: pointer;
+                    cursor: pointer; 
+                }
+     
+                ${ScreenQuery.desk(`
+                    .toggle-content {
+                        display: none;
+                    }
+                `)}
 
-                    ${ScreenQuery.mobile(`
+                ${ScreenQuery.mobile(`
+                    .footer-link-section {
+                        border-top: 1px solid #ddcdc4;
+                        padding: 10px 0 10px 0;
+                    }   
+                    .toggle-arrow {
                         border: 1px solid black;
                         border-radius: 24px;
                         transform: translateY(-20px);
-                    `)}   
-                }
+                    }  
+                `)}
             </style>
             <section class="footer-link-section"> 
                 <div class="link-title">
                     ${this.title}
-                    <div class="toggle-content">
+                    <div id="toggle-content" class="toggle-content">
                         <div id="toggler-${this.id}" class="toggle-arrow">
                             <svg
                                 width="16"

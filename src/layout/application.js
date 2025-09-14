@@ -5,7 +5,7 @@ import { Animations, PageStructure, CustomEvents, SEO,
      SettingsBoard, NetworkCheckerSet } from '../settings';
 import { ImageViewerIds } from '../components/plugins/imageViewer/sets';
 import { SaveObjects } from '../components/common/saves';
-import { ClassIdService, CustomEventService, StyleService, HTMLService } from '../services';
+import { CustomEventService, StyleService, HTMLService, IdService } from '../services';
 import { StringService } from '../services/utils';
 import { BoolEnums } from '../enums';
 
@@ -45,7 +45,7 @@ class Application extends HTMLElement {
     }
 
      toggleSettings(evt) {
-        let el = ClassIdService.id('settings', this.shadow);
+        let el = IdService.id('settings', this.shadow);
         if (this.isInit && window.DataStorage.getItem(SaveObjects.settings.close) === BoolEnums.bTrue) {
            StyleService.setDisplay(el, false);
            return;
@@ -58,7 +58,7 @@ class Application extends HTMLElement {
     showSettings() {
         if (SettingsBoard.board.enabled) {
             return `  
-                <div class="settings">
+                <div id="settings" class="settings">
                     <main-settings> </main-settings>
                 </div>
             `;

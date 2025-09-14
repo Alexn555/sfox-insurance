@@ -6,7 +6,7 @@ import { dtAmountSlider } from '../../data/sliders';
 import { CustomEvents } from '../../settings';
 import { SaveForms } from '../../components/common/saves';
 import { ArrayService } from '../../services/utils';
-import { ClassIdService, CustomEventService, IdService, HTMLService } from '../../services';
+import { CustomEventService, IdService, HTMLService } from '../../services';
 
 class InsuranceCalculatorForm extends HTMLElement {
     constructor() {
@@ -34,7 +34,7 @@ class InsuranceCalculatorForm extends HTMLElement {
       CustomEventService.event(`${CustomEvents.interaction.sliderValueChange}-${this.selectIds.loan}`, (e) => {
         this.loan = e.detail.value;
         this.save('loan', e.detail.value);
-        let el = ClassIdService.id('loan-current-amount', this.shadow);
+        let el = IdService.id('loan-current-amount', this.shadow);
         HTMLService.html(el, `${this.loan} ${this.currency}`);
       });
 
@@ -84,7 +84,7 @@ class InsuranceCalculatorForm extends HTMLElement {
 
     calculateFormula() {
       this.totalPayment = this.loan * (this.period / this.interests);
-      HTMLService.html(ClassIdService.id('total-payment', this.shadow), `${(this.formatTotalValue(this.totalPayment))}`);
+      HTMLService.html(IdService.id('total-payment', this.shadow), `${(this.formatTotalValue(this.totalPayment))}`);
     }
 
     formatTotalValue(val, option = 2) {
@@ -160,7 +160,7 @@ class InsuranceCalculatorForm extends HTMLElement {
               <div class="calculator-wrapper">
                 <div class="calculator">
                     <div>
-                        <div class="loan-current-amount">3200 ${this.currency}</div>
+                        <div id="loan-current-amount" class="loan-current-amount">3200 ${this.currency}</div>
                         <div class="loan-slider">
                           <amount-slider 
                             id="${this.selectIds.loan}"
@@ -194,7 +194,7 @@ class InsuranceCalculatorForm extends HTMLElement {
                 <div class="submit">
                   <div class="calculation-total">
                       <div>Monthly payment</div>
-                      <div class="total-payment">${this.totalPayment} ${this.currency}</div>
+                      <div id="total-payment" class="total-payment">${this.totalPayment} ${this.currency}</div>
                   </div>
                   <div>
                       <action-button label="Apply" type="action" />
