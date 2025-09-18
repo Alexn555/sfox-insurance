@@ -16,6 +16,8 @@ class ReaderTabs extends HTMLElement {
         reviewer: 'reviewer',
         reviewerAdv: 'reviewerAdv'
       };
+      this.$tab = [];
+      this.$btns = [];
     }
     
     connectedCallback() {
@@ -24,55 +26,48 @@ class ReaderTabs extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList([
-        this.$btnContact, 
-        this.$btnWelcome,
-        this.$btnPosters,
-        this.$btnReviewer,
-        this.$btnReviewerAdv
-      ]);
+      IdService.removeList(this.$btns);
     }
 
     initForm() {
-      this.$tabContact = IdService.id(this.tabs.contact, this.shadow);
-      this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
-      this.$tabPosters = IdService.id(this.tabs.galleryPosters, this.shadow);
-      this.$tabReviwer = IdService.id(this.tabs.reviewer, this.shadow);
-      this.$tabReviwerAdv = IdService.id(this.tabs.reviewerAdv, this.shadow);
+      this.$tab['contact'] = IdService.id(this.tabs.contact, this.shadow);
+      this.$tab['welcome'] = IdService.id(this.tabs.welcome, this.shadow);
+      this.$tab['posters'] = IdService.id(this.tabs.galleryPosters, this.shadow);
+      this.$tab['reviewer'] = IdService.id(this.tabs.reviewer, this.shadow);
+      this.$tab['reviewerAdv'] = IdService.id(this.tabs.reviewerAdv, this.shadow);
       this.initButtons();
     }
 
     initButtons() {
       let { contact, welcome, galleryPosters, reviewer, reviewerAdv } = ReaderPageTabs.tabLinks;
 
-      this.$btnContact = IdService.idAndClick(contact, this.shadow, () => {
-        this.openTab(this.tabs.contact, this.$tabContact);
+      this.$btns['contact'] = IdService.idAndClick(contact, this.shadow, () => {
+        this.openTab(this.tabs.contact, this.$tab['contact']);
       });
-      this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
-        this.openTab(this.tabs.welcome, this.$tabWelcome);
+      this.$btns['welcome'] = IdService.idAndClick(welcome, this.shadow, () => {
+        this.openTab(this.tabs.welcome, this.$tab['welcome'] );
       });
-      this.$btnPosters = IdService.idAndClick(galleryPosters, this.shadow, () => {
-        this.openTab(this.tabs.galleryPosters, this.$tabPosters);
+      this.$btns['posters'] = IdService.idAndClick(galleryPosters, this.shadow, () => {
+        this.openTab(this.tabs.galleryPosters, this.$tab['posters']);
       });
-      this.$btnReviewer = IdService.idAndClick(reviewer, this.shadow, () => {
-        this.openTab(this.tabs.reviewer, this.$tabReviwer);
+      this.$btns['reviewer'] = IdService.idAndClick(reviewer, this.shadow, () => {
+        this.openTab(this.tabs.reviewer, this.$tab['reviewer']);
       });
-      this.$btnReviewerAdv = IdService.idAndClick(reviewerAdv, this.shadow, () => {
-        this.openTab(this.tabs.reviewerAdv, this.$tabReviwerAdv);
+      this.$btns['reviewerAdv'] = IdService.idAndClick(reviewerAdv, this.shadow, () => {
+        this.openTab(this.tabs.reviewerAdv, this.$tab['reviewerAdv']);
       });
     }
 
-    openTab(evt, selected) {
-      let item = evt;
+    openTab(item, selected) {
       let tab = IdService.id(item, this.shadow);
 
       if (tab) {
         StyleService.setDisplayMultiple([
-          this.$tabContact, 
-          this.$tabWelcome, 
-          this.$tabPosters,
-          this.$tabReviwer,
-          this.$tabReviwerAdv
+          this.$tab['contact'], 
+          this.$tab['welcome'] , 
+          this.$tab['posters'],
+          this.$tab['reviewer'],
+          this.$tab['reviewerAdv']
         ], false);
       }
       if (selected !== null) {

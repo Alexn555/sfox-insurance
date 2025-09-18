@@ -8,16 +8,7 @@ class SafeKingPage extends HTMLElement {
     }
   
     connectedCallback() {
-      this.render();
-      this.initForm();
-    }
-
-    initForm() {    
-      this.$viewer = IdService.id(this.viewer, this.shadow);
-    }
-
-    render() {
-      this.shadow.innerHTML = `
+       this.shadow.innerHTML = `
           <style>
             .safe-wrapper {
               padding: 2px 0 20px 0;
@@ -33,6 +24,7 @@ class SafeKingPage extends HTMLElement {
             <safe-game></safe-game>
           </div>
        `;
+       this.$viewer = IdService.id(this.viewer, this.shadow);
     }
   }
   

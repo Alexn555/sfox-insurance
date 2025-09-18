@@ -15,23 +15,12 @@ class SafeWelcomePage extends HTMLElement {
     }
 
     connectedCallback() {
-        this.render();
-    }
+        const showLogo = () => { 
+            return '<p>'+
+                '  <img src="'+EnvService.getRoot()+'/assets/intro/info.svg" width="64" height="64" alt="Cater" />'+
+                '</p>';
+        };
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        let el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
-    }
-
-    showLogo() { 
-        return `
-            <p>
-                <img src="${EnvService.getRoot()}/assets/intro/info.svg" width="64" height="64" alt="Cater" />
-            </p>
-        `;
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .welcome {
@@ -41,7 +30,7 @@ class SafeWelcomePage extends HTMLElement {
             </style>
             <div class="welcome">
                 <h3>Welcome Page</h3>
-                ${this.showLogo()}
+                ${showLogo()}
                 <p>
                     Welcome to <b>SFox Engine's Safe page</b> - Safe section. <br />
                     This page demonstrates some features
@@ -58,6 +47,11 @@ class SafeWelcomePage extends HTMLElement {
                 </p>
             </div>
         `;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        let el = IdService.id('base-home', this.shadow);
+        el?.setAttribute('active', newValue);
     }
 }
 

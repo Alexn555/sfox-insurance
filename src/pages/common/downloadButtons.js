@@ -9,10 +9,6 @@ class DownloadButtons extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .download {

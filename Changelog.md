@@ -1,4 +1,7 @@
 ## Changelog
+v 3.45 
+  Pages optimization
+
 v 3.38
   Added Utils services optimization, pages fixes. new $c and $btns format
 

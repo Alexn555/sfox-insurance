@@ -10,10 +10,6 @@ class PageTitle extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .title {

@@ -9,30 +9,26 @@ class EditorPage extends HTMLElement {
     }
   
     connectedCallback() {
-      this.render();
-    }
-
-    render() {
       this.shadow.innerHTML = `
-          <style>
-            .editor-wrapper {
-              padding: 2px 0 20px 0;
-              border: 1px dashed #dcdcdc;
+        <style>
+          .editor-wrapper {
+            padding: 2px 0 20px 0;
+            border: 1px dashed #dcdcdc;
 
-              & h3 {
-                padding-left: 8px;
-              }
+            & h3 {
+              padding-left: 8px;
             }
-          </style>
-          <div class="editor-wrapper">
-            <h3>Text Editor</h3>
-            <text-editor 
-              setsId="${TextEditorSetEnums.textEditorPage}"
-              files='${JSONService.set(textFiles)}' 
-            >
-            </text-editor>
-          </div>
-       `;
+          }
+        </style>
+        <div class="editor-wrapper">
+          <h3>Text Editor</h3>
+          <text-editor 
+            setsId="${TextEditorSetEnums.textEditorPage}"
+            files='${JSONService.set(textFiles)}' 
+          >
+          </text-editor>
+        </div>
+      `;
     }
   }
   

@@ -9,6 +9,22 @@ class HomeBanner extends HTMLElement {
     }
     
     connectedCallback() {
+        const getColor = () => {
+            let color = 'yellow';
+            switch(this.titleColor) {
+                case 'blue':
+                    color = '#5b8ad6';
+                break;
+                case 'yellow':
+                    color = '#f4ba44';
+                break;
+                case 'purple':
+                    color = '#c5569a';
+                break;
+            }
+            return color;
+        };
+
         this.shadow.innerHTML = `
             <style>
                 .banner {
@@ -19,7 +35,7 @@ class HomeBanner extends HTMLElement {
                 }
                 .title {
                     position: relative;
-                    background-color: ${this.getColor()};
+                    background-color: ${getColor()};
                     width: 100%;
                     height: 40px;
                     padding-left: 8px;
@@ -38,7 +54,7 @@ class HomeBanner extends HTMLElement {
                     content: '';
                     border-bottom: 1px dashed rgb(177, 177, 177);
                     border-right: 1px dashed rgb(177, 177, 177);
-                    background-color: ${this.getColor()};
+                    background-color: ${getColor()};
                     position: absolute;
                     left: 20px;
                     bottom: -10px;
@@ -64,22 +80,6 @@ class HomeBanner extends HTMLElement {
                 </div>
             </div>
         `;
-    }
-
-    getColor() {
-        let color = 'yellow';
-        switch(this.titleColor) {
-            case 'blue':
-                color = '#5b8ad6';
-            break;
-            case 'yellow':
-                color = '#f4ba44';
-            break;
-            case 'purple':
-                color = '#c5569a';
-            break;
-        }
-        return color;
     }
 }
 

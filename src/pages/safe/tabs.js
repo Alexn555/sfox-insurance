@@ -17,69 +17,59 @@ class SafeTabs extends HTMLElement {
         games: 'games',
         banner: 'banner'
       };
+      this.$c = [];
+      this.$btns = [];
     }
     
     connectedCallback() {
       this.render();
-      this.initForm();
+      this.$c['game'] = IdService.id(this.tabs.game, this.shadow);
+      this.$c['welcome'] = IdService.id(this.tabs.welcome, this.shadow);
+      this.$c['texteditor'] = IdService.id(this.tabs.editor, this.shadow);
+      this.$c['faq'] = IdService.id(this.tabs.faq, this.shadow);
+      this.$c['games'] = IdService.id(this.tabs.games, this.shadow);
+      this.$c['banner'] = IdService.id(this.tabs.banner, this.shadow);
+      this.initButtons();
     }
 
     disconnectedCallback() {
-      IdService.removeList([
-        this.$btnGame, 
-        this.$btnWelcome,
-        this.$btnEditor,
-        this.$btnFAQ,
-        this.$btnGames,
-        this.$btnBanner
-      ]);
-    }
-
-    initForm() {
-      this.$tabGame = IdService.id(this.tabs.game, this.shadow);
-      this.$tabWelcome = IdService.id(this.tabs.welcome, this.shadow);
-      this.$tabTextEditor = IdService.id(this.tabs.editor, this.shadow);
-      this.$tabFaq = IdService.id(this.tabs.faq, this.shadow);
-      this.$tabGames = IdService.id(this.tabs.games, this.shadow);
-      this.$tabBanner = IdService.id(this.tabs.banner, this.shadow);
-      this.initButtons();
+      IdService.removeList(this.$btns);
     }
 
     initButtons() {
       let { game, welcome, editor, faq, games, banner } = SafePageTabs.tabLinks;
 
-      this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
-        this.openTab(this.tabs.game, this.$tabGame);
+      this.$btns['game'] = IdService.idAndClick(game, this.shadow, () => {
+        this.openTab(this.tabs.game, this.$c['game']);
       });
-      this.$btnWelcome = IdService.idAndClick(welcome, this.shadow, () => {
-        this.openTab(this.tabs.welcome, this.$tabWelcome);
+      this.$btns['welcome'] = IdService.idAndClick(welcome, this.shadow, () => {
+        this.openTab(this.tabs.welcome, this.$c['welcome']);
       });
-      this.$btnEditor = IdService.idAndClick(editor, this.shadow, () => {
-        this.openTab(this.tabs.editor, this.$tabTextEditor);
+      this.$btns['texteditor'] = IdService.idAndClick(editor, this.shadow, () => {
+        this.openTab(this.tabs.editor, this.$c['texteditor']);
       });
-      this.$btnFAQ = IdService.idAndClick(faq, this.shadow, () => {
-        this.openTab(this.tabs.faq, this.$tabFaq);
+      this.$btns['faq'] = IdService.idAndClick(faq, this.shadow, () => {
+        this.openTab(this.tabs.faq, this.$c['faq']);
       });
-      this.$btnGames = IdService.idAndClick(games, this.shadow, () => {
-        this.openTab(this.tabs.games, this.$tabGames);
+      this.$btns['games'] = IdService.idAndClick(games, this.shadow, () => {
+        this.openTab(this.tabs.games, this.$c['games']);
       });
-      this.$btnBanner = IdService.idAndClick(banner, this.shadow, () => {
-        this.openTab(this.tabs.editor, this.$tabBanner);
+      this.$btns['banner'] = IdService.idAndClick(banner, this.shadow, () => {
+        this.openTab(this.tabs.editor, this.$c['banner']);
       });
     }
 
-    openTab(evt, selected) {
-      let item = evt;
+    openTab(item, selected) {
       let tab = IdService.id(item, this.shadow);
 
       if (tab) {
         StyleService.setDisplayMultiple([
-          this.$tabGame, 
-          this.$tabWelcome, 
-          this.$tabTextEditor,
-          this.$tabFaq,
-          this.$tabGames, 
-          this.$tabBanner  
+          this.$c['game'],
+          this.$c['welcome'], 
+          this.$c['texteditor'],
+          this.$c['faq'],
+          this.$c['games'],
+          this.$c['banner']
         ], false);
       }
       if (selected !== null) {

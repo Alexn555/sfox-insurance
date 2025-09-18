@@ -10,27 +10,23 @@ class ReaderReviewerAdvanced extends HTMLElement {
 
     connectedCallback() {
       this.render();
-      this.getContent();
-    }
+      const setReviewPack = () => {
+        let el = IdService.id('reviewer', this.shadow);
+        let html = `
+          <div class="qpack">
+            <reviewer-step-handler
+              id="${ReviewerSetIds.reviewPageAdvanced}"
+              content="reviews"
+            > 
+            </reviewer-step-handler>
+          </div>
+        `;
+        HTMLService.appendHTML(el, html);
+      };
 
-    getContent() {
-      this.setReviewPack();
+      setReviewPack();
       let el = IdService.id('loading', this.shadow);
       el?.remove();
-    }
-
-    setReviewPack() {
-      let el = IdService.id('reviewer', this.shadow);
-      let html = `
-        <div class="qpack">
-          <reviewer-step-handler
-            id="${ReviewerSetIds.reviewPageAdvanced}"
-            content="reviews"
-          > 
-          </reviewer-step-handler>
-        </div>
-      `;
-      HTMLService.appendHTML(el, html);
     }
 
     render() {

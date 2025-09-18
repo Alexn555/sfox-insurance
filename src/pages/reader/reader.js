@@ -17,11 +17,7 @@ class ReaderPage extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
-        this.shadow.innerHTML = `
+       this.shadow.innerHTML = `
             <base-page id="base-reader" title="Reader">
                 <reader-tabs></reader-tabs>
             </base-page> 

@@ -10,20 +10,19 @@ class AdditionalTabs extends HTMLElement {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
       this.theme = theme.page.tabs;
+      this.$tab = [];
+      this.$btns = [];
     }
     
     connectedCallback() {
       this.render();
-      this.initForm();
-    }
-
-    initForm() {
-      this.$tabGame = IdService.id('game', this.shadow);
       this.$game = IdService.id('gameContent', this.shadow);
-      this.$tabMap = IdService.id('map', this.shadow);
-      this.$tabWriterForm = IdService.id('writerForm', this.shadow);
-      this.$tabGallery = IdService.id('gallery', this.shadow);
-      this.$tabAccount = IdService.id('account', this.shadow);
+
+      this.$tab['game'] = IdService.id('game', this.shadow);
+      this.$tab['map'] = IdService.id('map', this.shadow);
+      this.$tab['writerform'] = IdService.id('writerForm', this.shadow);
+      this.$tab['gallery'] = IdService.id('gallery', this.shadow);
+      this.$tab['account'] = IdService.id('account', this.shadow);
       this.initButtons();
     }
 
@@ -31,19 +30,19 @@ class AdditionalTabs extends HTMLElement {
       let { game, mapLink, writer, gallery, account } = AdditionalPage.tabLinks;
 
       this.$btnGame = IdService.idAndClick(game, this.shadow, () => {
-        this.openTab('game', this.$tabGame);
+        this.openTab('game', this.$tab['game']);
       });
       this.$btnMap = IdService.idAndClick(mapLink, this.shadow, () => {
-        this.openTab('map', this.$tabMap);
+        this.openTab('map', this.$tab['map']);
       });
       this.$btnWriter = IdService.idAndClick(writer, this.shadow, () => {
-        this.openTab('writerForm', this.$tabWriterForm);
+        this.openTab('writerForm', this.$tab['writerform']);
       });
       this.$btnGallery = IdService.idAndClick(gallery, this.shadow, () => {
-        this.openTab('gallery', this.$tabGallery);
+        this.openTab('gallery', this.$tab['gallery']);
       });
       this.$btnAccount = IdService.idAndClick(account, this.shadow, () => {
-        this.openTab('account', this.$tabAccount);
+        this.openTab('account', this.$tab['account']);
       });
     }
 
@@ -54,8 +53,8 @@ class AdditionalTabs extends HTMLElement {
     openTab(evt, selected) {
       this.$game.setAttribute('visible', BoolEnums.bFalse);
 
-      StyleService.setDisplayMultiple([this.$tabGame, this.$tabMap, 
-        this.$tabWriterForm, this.$tabGallery, this.$tabAccount], false);
+      StyleService.setDisplayMultiple([this.$tab['game'], this.$tab['map'], 
+        this.$tab['writerform'], this.$tab['gallery'], this.$tab['account']], false);
   
       if (selected !== null) {
         StyleService.setDisplay(selected, true);

@@ -11,29 +11,25 @@ class ReaderContactPage extends HTMLElement {
 
     connectedCallback() {
       this.render();
-      this.getContent();
-    }
+      const setContactPack = (name) => {
+        let el = IdService.id('wrapper', this.shadow);
+        let html = `
+          <div class="contact">
+            <contact-form
+              id="${ContactIds.readerContactPage}"
+              headline="${name}"
+              name-required="${BoolEnums.bTrue}"
+              btn-label="Send"
+            >
+            </contact-form>
+          </div>
+        `;
+        HTMLService.appendHTML(el, html);
+      };
 
-    async getContent() {
-      this.setContactPack('Contact');
+      setContactPack('Contact');
       let el = IdService.id('loading', this.shadow);
       el?.remove();
-    }
-
-    setContactPack(name) {
-      let el = IdService.id('wrapper', this.shadow);
-      let html = `
-        <div class="contact">
-          <contact-form
-            id="${ContactIds.readerContactPage}"
-            headline="${name}"
-            name-required="${BoolEnums.bTrue}"
-            btn-label="Send"
-          >
-          </contact-form>
-        </div>
-      `;
-      HTMLService.appendHTML(el, html);
     }
   
     render() {

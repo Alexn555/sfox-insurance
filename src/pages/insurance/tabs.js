@@ -31,6 +31,7 @@ class InsuranceTabs extends HTMLElement {
     super();
     this.shadow = this.attachShadow({mode: 'closed'});
     this.shadow.appendChild(template.content.cloneNode(true));
+    this.$btns = [];
   }
   
   connectedCallback() {
@@ -38,20 +39,19 @@ class InsuranceTabs extends HTMLElement {
   }
 
   disconnectedCallback() {
-    IdService.removeList([this.$btnPayment, this.$btnCalculator]);
+    IdService.removeList(this.$btns);
   }
 
   initForm() {
-    this.$btnPayment = IdService.idAndClick('payment-btn', this.shadow, () => {
+    this.$btns['payment'] = IdService.idAndClick('payment-btn', this.shadow, () => {
       this.openTab('payment-btn');
     });
-    this.$btnCalculator = IdService.idAndClick('calculator-btn', this.shadow, () => {
+    this.$btns['calculator'] = IdService.idAndClick('calculator-btn', this.shadow, () => {
       this.openTab('calculator-btn');
     });
   }
 
-  openTab(evt) {
-    let item = evt;
+  openTab(item) {
     let tab = IdService.id(item, this.shadow);
     let tabPayment = IdService.id('payment', this.shadow);
     let tabCalculator = IdService.id('calculator', this.shadow);
