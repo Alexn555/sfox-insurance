@@ -33,7 +33,7 @@ class SafeTabs extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList(this.$btns);
+      IdService.removeList(Object.values(this.$btns));
     }
 
     initButtons() {

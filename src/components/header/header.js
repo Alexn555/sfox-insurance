@@ -45,8 +45,8 @@ class Header extends HTMLElement {
     }
 
     toggleMenu() {
+       let toggleItem = ClassIdService.id('menu-toggle', this.shadow);
        if (MobileService.isMobile()) {
-            let toggleItem = ClassIdService.id('menu-toggle', this.shadow);
             let toggleIcon = ClassIdService.id('toggle-icon', this.shadow);
             let isMenuOpen = !StyleService.isDisplaying(toggleItem);
             StyleService.setDisplay(toggleItem, isMenuOpen);

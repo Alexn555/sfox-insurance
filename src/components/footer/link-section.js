@@ -54,7 +54,7 @@ class FooterLinkSection extends HTMLElement {
 
     disconnectedCallback() {
         CustomEventService.removeFromContext(CommonEvents.resize, window);
-        IdService.remove(this.$btns);
+        IdService.remove(Object.values(this.$btns));
     }
 
     getTogglePosition() {

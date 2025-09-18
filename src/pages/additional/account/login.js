@@ -30,7 +30,7 @@ class AccountLogin extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList([this.$btns['access'], this.$btns['remind']]);
+      IdService.removeList(Object.values(this.$btns));
       CustomEventService.removeList([
         `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
         `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`

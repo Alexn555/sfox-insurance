@@ -53,8 +53,7 @@ class AdditionalTabs extends HTMLElement {
     openTab(evt, selected) {
       this.$game.setAttribute('visible', BoolEnums.bFalse);
 
-      StyleService.setDisplayMultiple([this.$tab['game'], this.$tab['map'], 
-        this.$tab['writerform'], this.$tab['gallery'], this.$tab['account']], false);
+      StyleService.setDisplayMultiple(Object.values(this.$tab), false);
   
       if (selected !== null) {
         StyleService.setDisplay(selected, true);
