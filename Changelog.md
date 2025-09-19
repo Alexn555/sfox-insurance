@@ -1,4 +1,7 @@
 ## Changelog
+v 3.46 
+  Util services improvements
+
 v 3.45 
   Pages optimization
 

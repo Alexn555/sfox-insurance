@@ -17,8 +17,8 @@ class SafeTabs extends HTMLElement {
         games: 'games',
         banner: 'banner'
       };
-      this.$c = [];
-      this.$btns = [];
+      this.$c = {};
+      this.$btns = {};
     }
     
     connectedCallback() {
@@ -33,7 +33,7 @@ class SafeTabs extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList(Object.values(this.$btns));
+      IdService.removeList(this.$btns);
     }
 
     initButtons() {

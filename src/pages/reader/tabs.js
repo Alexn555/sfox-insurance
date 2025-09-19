@@ -16,8 +16,8 @@ class ReaderTabs extends HTMLElement {
         reviewer: 'reviewer',
         reviewerAdv: 'reviewerAdv'
       };
-      this.$tab = [];
-      this.$btns = [];
+      this.$tab = {};
+      this.$btns = {};
     }
     
     connectedCallback() {
@@ -26,7 +26,7 @@ class ReaderTabs extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList(Object.values(this.$btns));
+      IdService.removeList(this.$btns);
     }
 
     initForm() {
@@ -62,7 +62,7 @@ class ReaderTabs extends HTMLElement {
       let tab = IdService.id(item, this.shadow);
 
       if (tab) {
-        StyleService.setDisplayMultiple(Object.values(this.$tab), false);
+        StyleService.setDisplayMultiple(this.$tab, false);
       }
       if (selected !== null) {
         StyleService.setDisplay(selected, true);

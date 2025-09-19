@@ -12,8 +12,8 @@ class Header extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
         CustomEventService.event(CommonEvents.resize, this.updateSize.bind(this), window);
-        this.$c = [];
-        this.$btns = [];
+        this.$c = {};
+        this.$btns = {};
     }
 
     updateSize() {

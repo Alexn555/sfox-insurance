@@ -10,6 +10,10 @@ export default class StyleService {
     }
 
     static setDisplayMultiple(els = [], toggle = true, displayType) {
+        if (els !== undefined && typeof els === 'object') {
+            els = Object.values(els);
+        }
+
         els.forEach((el) => {
             this.setDisplay(el, toggle, displayType);
         });

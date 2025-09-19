@@ -16,8 +16,8 @@ class AccountLogin extends HTMLElement {
         username: 'username',
         password: 'password'
       };
-      this.$c = [];
-      this.$btns = [];
+      this.$c = {};
+      this.$btns = {};
     }
   
     connectedCallback() {
@@ -30,7 +30,7 @@ class AccountLogin extends HTMLElement {
     }
 
     disconnectedCallback() {
-      IdService.removeList(Object.values(this.$btns));
+      IdService.removeList(this.$btns);
       CustomEventService.removeList([
         `${CustomEvents.interaction.textInputChange}-${this.textIds.username}`,
         `${CustomEvents.interaction.textInputChange}-${this.textIds.password}`

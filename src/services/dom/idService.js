@@ -36,6 +36,9 @@ export class IdService {
     }
 
     static removeList(els) {
+        if (els !== undefined && typeof els === 'object') {
+            els = Object.values(els);
+        }
         if (els && els['length'] !== undefined && els.length > 0) {
             els.forEach((el) => {
                 el.removeEventListener(CommonEvents.click, null); 

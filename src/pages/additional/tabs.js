@@ -10,8 +10,8 @@ class AdditionalTabs extends HTMLElement {
       super();
       this.shadow = this.attachShadow({mode: 'closed'});
       this.theme = theme.page.tabs;
-      this.$tab = [];
-      this.$btns = [];
+      this.$tab = {};
+      this.$btns = {};
     }
     
     connectedCallback() {
@@ -53,7 +53,7 @@ class AdditionalTabs extends HTMLElement {
     openTab(evt, selected) {
       this.$game.setAttribute('visible', BoolEnums.bFalse);
 
-      StyleService.setDisplayMultiple(Object.values(this.$tab), false);
+      StyleService.setDisplayMultiple(this.$tab, false);
   
       if (selected !== null) {
         StyleService.setDisplay(selected, true);

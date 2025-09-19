@@ -20,8 +20,8 @@ class FooterLinkSection extends HTMLElement {
         this.linksContent = '';
         this.contentOpen = true;
         this.screenW = window.innerWidth;
-        this.$c = [];
-        this.$btns = [];
+        this.$c = {};
+        this.$btns = {};
 
         if (ArrayService.minLength(rowLinks)) {
             this.links = JSONService.getArray(rowLinks);
@@ -54,7 +54,7 @@ class FooterLinkSection extends HTMLElement {
 
     disconnectedCallback() {
         CustomEventService.removeFromContext(CommonEvents.resize, window);
-        IdService.remove(Object.values(this.$btns));
+        IdService.removeList(this.$btns);
     }
 
     getTogglePosition() {
