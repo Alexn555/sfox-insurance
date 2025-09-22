@@ -15,12 +15,6 @@ class HeaderMenu extends HTMLElement {
     
     connectedCallback() {
         this.render();
-        this.initForm();
-        this.shadow.addEventListener(MouseEvents.mouseover, this.setOverlay.bind(this));
-        this.shadow.addEventListener(MouseEvents.mouseout, this.removeOverlay.bind(this));
-    }
-
-    initForm() {
         this.$btns['home'] = IdService.idAndClick('home', this.shadow, () => {
             this.toggleMenuItem(HeaderMenuLinks.Home);
         });
@@ -33,6 +27,8 @@ class HeaderMenu extends HTMLElement {
         CustomEventService.event(CustomEvents.header.changeActivePage, (e) => {
             this.toggleMenuItem(e.detail.value); 
         });
+        this.shadow.addEventListener(MouseEvents.mouseover, this.setOverlay.bind(this));
+        this.shadow.addEventListener(MouseEvents.mouseout, this.removeOverlay.bind(this));
     }
 
     disconnectedCallback() {

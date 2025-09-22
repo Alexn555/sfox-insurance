@@ -67,16 +67,15 @@ class Application extends HTMLElement {
     }
 
     showWindowComponents() { 
+        const showNetworkChecker = () => {
+            return NetworkCheckerSet.enabled ? '<network-checker></network-checker>' : '';
+        };
         return `
-            <notice-disclaimer></notice-disclaimer>
             <image-viewer id="${ImageViewerIds.writer}" source=""></image-viewer>
             <general-note id="genericNote"></general-note>
-            ${this.showNetworkChecker()}
+            ${showNetworkChecker()}
+            <notice-disclaimer></notice-disclaimer>
         `;
-    }
-
-    showNetworkChecker() {
-        return NetworkCheckerSet.enabled ? '<network-checker></network-checker>' : '';
     }
 
     render() {
@@ -99,11 +98,11 @@ class Application extends HTMLElement {
                 }
             </style>
             <div class="application">
-                ${this.showWindowComponents()}
                 ${this.showSettings()}
                 <div class="layout">
                     <main-layout></main-layout>
                 </div>
+                ${this.showWindowComponents()}
             </div> 
         `;
     }

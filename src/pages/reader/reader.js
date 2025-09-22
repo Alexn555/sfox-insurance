@@ -12,8 +12,7 @@ class ReaderPage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        let el = IdService.id('base-reader', this.shadow);
-        el?.setAttribute('active', newValue);
+        IdService.id('base-reader', this.shadow)?.setAttribute('active', newValue);
     }
     
     connectedCallback() {

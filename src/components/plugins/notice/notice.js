@@ -3,7 +3,7 @@ import { theme } from '../../../theme/theme';
 import { NoticeDisclaimerSets } from '../../../settings';
 import InfoService from '../../../services/page/infoService';
 import { SaveObjects } from '../../common/saves';
-import { IdService, HTMLService } from '../../../services';
+import { IdService, HTMLService, StyleService } from '../../../services';
 import { RenderService } from '../../../services/helpers';
 
 class NoticeDisclaimer extends HTMLElement {
@@ -38,7 +38,7 @@ class NoticeDisclaimer extends HTMLElement {
     setInit() {
         this.$el = IdService.id('disclaimer', this.shadow);
         this.$content = IdService.id('content', this.shadow);
-        this.$close = IdService.idAndClick('noticeClose', this.shadow, () => {
+        this.$close = IdService.idAndClick('close', this.shadow, () => {
             this.toggleDisclaimer(false);
         })
     }
@@ -50,6 +50,7 @@ class NoticeDisclaimer extends HTMLElement {
             }
         } else {
             this.$el?.close(); 
+            StyleService.setDisplay(this.$el, false);
         }
     }
 
@@ -60,7 +61,7 @@ class NoticeDisclaimer extends HTMLElement {
                 <h3>Disclaimer Notice</h3>
                 <div id="content">Loading...</div>
                 <div>
-                    <action-button id="noticeClose" label="OK" type="action"></action-button>
+                    <action-button id="close" label="OK" type="action"></action-button>
                 </div>
             </dialog>`
         );

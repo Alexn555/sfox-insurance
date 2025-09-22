@@ -7,10 +7,6 @@ class HeaderLogo extends HTMLElement {
     }
     
     connectedCallback() {
-        this.render();
-    }
-
-    render() {
         this.shadow.innerHTML = `
             <style>
                 .header-logo {

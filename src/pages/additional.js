@@ -12,16 +12,13 @@ class AddiationalPage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        let el = IdService.id('base-additional', this.shadow);
-        el?.setAttribute('active', newValue);
+        IdService.id('base-additional', this.shadow)?.setAttribute('active', newValue);
     }
     
     connectedCallback() {
-        this.shadow.innerHTML = `
-            <base-page id="base-additional" title="Additional">
-                <additional-tabs></additional-tabs>
-            </base-page> 
-        `;
+        this.shadow.innerHTML = '<base-page id="base-additional" title="Additional">'+
+            ' <additional-tabs></additional-tabs> '+
+            '</base-page>'; 
     }
 }
 

@@ -48,8 +48,7 @@ class ReaderWelcomePage extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        let el = IdService.id('base-home', this.shadow);
-        el?.setAttribute('active', newValue);
+        IdService.id('base-home', this.shadow)?.setAttribute('active', newValue);
     }
 }
 

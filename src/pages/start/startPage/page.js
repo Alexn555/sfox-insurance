@@ -84,14 +84,13 @@ class StartItemPage extends HTMLElement {
     }
 
     setHandlers(id) {
+        const getLink = (id) => {
+            return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[StringService.capFirstLetter(id)];
+        };
         this.$btnLink = IdService.idAndClick(`link-${id}`, this.shadow, () => {
-            CustomEventService.send(CustomEvents.header.menuClick, this.getLink(id)); 
-            CustomEventService.send(CustomEvents.header.changeActivePage, this.getLink(id));   
+            CustomEventService.send(CustomEvents.header.menuClick, getLink(id)); 
+            CustomEventService.send(CustomEvents.header.changeActivePage, getLink(id));   
         });
-    }
-
-    getLink(id) {
-        return id === 'performance' ? HeaderMenuLinks.Insurance : HeaderMenuLinks[StringService.capFirstLetter(id)];
     }
 }
 
