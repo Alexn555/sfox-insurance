@@ -14,7 +14,7 @@ class Footer extends HTMLElement {
                 ${setStyle()}
             </style>
             <footer class="footer"> 
-                <split-line height="4"></split-line>
+                <split-line height="2"></split-line>
                 <div class="footer-main">
                     ${RenderService.showComponent(FooterBoard.contact.enabled, '<footer-contact></footer-contact>')}
                     ${RenderService.showComponent(FooterBoard.links.enabled, `   

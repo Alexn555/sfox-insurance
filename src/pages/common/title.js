@@ -15,10 +15,11 @@ class PageTitle extends HTMLElement {
                 .title {
                     color: ${theme.page.common.title};
                     font-weight: bold;
-                    font-size: 32px;
+                    font-size: 24px;
+                    opacity: 0.3;
                     padding: 0;
 
-                    margin-block-start: 0.3em;
+                    margin-block-start: 0.5em;
                     margin-block-end: 0.3em;
                     margin-inline-start: 0px;
                     margin-inline-end: 0px;

@@ -1,4 +1,4 @@
-### SFox Engine v 3.50
+### SFox Engine v 3.52
 
 ![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
 

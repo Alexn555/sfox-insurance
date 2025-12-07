@@ -7,7 +7,7 @@ export let themeMain1 = {
     ui: {
         line: {
             start: mainColor,
-            mid: '#f9872d',
+            mid: '#fce4bd',
             end: '#f5b341'      
         },
         button: {

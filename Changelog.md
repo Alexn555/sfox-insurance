@@ -1,4 +1,7 @@
 ## Changelog
+v 3.52
+  Added Header menu style updates
+
 v 3.50
   Pages optimization
 

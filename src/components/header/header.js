@@ -62,7 +62,7 @@ class Header extends HTMLElement {
                 .header {
                     position: block;
                     width: 100vw;
-                    height: 112px;
+                    height: 106px;
                     background-color: ${theme.header.background};
                     z-index: 100;
 
@@ -99,7 +99,7 @@ class Header extends HTMLElement {
                 }
             </style>
             <header class="header">
-                <split-line height="10"></split-line>
+                <split-line height="6"></split-line>
                 <div class="logo-menu">
                     ${RenderService.showComponent(HeaderBoard.logo.enabled, '<header-logo></header-logo>')}
                     <div class="logo-menu-toggle">

@@ -81,14 +81,24 @@ class HeaderMenu extends HTMLElement {
     }
 
     render() {
+        const item = (id, logo, label) => {
+            return `<div 
+                class="header-menu-item" 
+                id="${id}">
+                    <img src="./${logo}" alt="${label}" /> <br />
+                    ${label}
+                </div>`;
+        };
+
         this.shadow.innerHTML = `
             <style>
                 .header-menu {
                     display: grid;
                     width: 100vw;
-                    height: 52px;
+                    height: 48px;
                     grid-template-columns: 33% 33% 33%;
                     color: #913a83;
+                    letter-spacing: 1px;
                     user-select: none;
                     z-index: 102;
                 }
@@ -99,12 +109,17 @@ class HeaderMenu extends HTMLElement {
                     align-items: center;
                     cursor: pointer;
                     padding-top: 8px;
+
+                    & img {
+                        width: 16px;
+                    }
                 }
                 .header-menu-item-active {
                     color: ${theme.header.menu.item.active};
 
                     & img {
-                        filter: invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);
+                        filter: invert(0.5) sepia(1) saturate(5) hue-rotate(300deg);
+                        width: 16px;
                     }
                 }
 
@@ -128,24 +143,9 @@ class HeaderMenu extends HTMLElement {
                 `)}
             </style>
             <div class="header-menu"> 
-                <div 
-                    class="header-menu-item"
-                    id="home">
-                        <img src="./${imageMap.menuHome}" alt="home" /> <br />
-                        Home
-                </div>
-                <div 
-                    class="header-menu-item" 
-                    id="insurance">
-                        <img src="./${imageMap.menuInsurance}" alt="insurance" /> <br />
-                        Everyday performance
-                 </div>
-                 <div 
-                    class="header-menu-item" 
-                    id="additional">
-                        <img src="./${imageMap.menuAdditional}" alt="Additional" /> <br />
-                        Additional
-                </div>
+                ${item('home', imageMap.menuHome, 'Home')}
+                ${item('insurance', imageMap.menuInsurance, 'Insurance')}
+                ${item('additional', imageMap.menuAdditional, 'Additional')}
             </div>
         `;
     }
