@@ -1,10 +1,12 @@
 import { SafeGameIcons } from '../../../components/plugins/gameViewer/icons';
 
+let host = 'https://alexn555-racing.com/projects/';
+
 export let gmSfGames = [
     { 
         id: 'destinationBall', 
         title: 'Destination Ball', 
-        link: 'https://www.norwaydict.com/destinationball/',
+        link: host+'html5games/destinationball/',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.destinationBall,
         w: 550,
@@ -13,7 +15,7 @@ export let gmSfGames = [
     {
         id: 'dual1',
         title: 'Dual1',
-        link: 'https://www.norwaydict.com/xdual1/',
+        link: host+'html5games/xdual1/',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.dual1,
         w: 600,
@@ -22,7 +24,7 @@ export let gmSfGames = [
     {
         id: 'nottretank',
         title: 'Nottretank',
-        link: 'https://norwaydict.com/html5games/nolettank',
+        link: host+'html5games/nolettank',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.nottretank,
         w: 600,
@@ -31,7 +33,7 @@ export let gmSfGames = [
     {
         id: 'tictoevue',
         title: 'TictoeVue',
-        link: 'https://norwaydict.com/vue-tictac-toe/',
+        link: host+'vue-tictac-toe/',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.tictoevue,
         w: 600,
@@ -40,7 +42,7 @@ export let gmSfGames = [
     {
         id: 'parkingcar',
         title: 'Parkingcar',
-        link: 'https://norwaydict.com/parkingcar',
+        link: host+'html5games/parkingcar',
         params: '&player=1&mode=real',
         icon: SafeGameIcons.parkingcar,
         w: 600,

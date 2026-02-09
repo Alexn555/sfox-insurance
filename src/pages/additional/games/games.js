@@ -1,10 +1,12 @@
 import { GameLabelIcons } from '../../../components/plugins/gameViewer/icons';
 
+let host = 'https://alexn555-racing.com/projects/';
+
 export let gmVwGames = [
     { 
         id: 'wordGame', 
         title: 'Word Game', 
-        link: 'http://norwaydict.com/html5games/wordgame/sfox_index.html',
+        link: host+'html5games/wordgame/sfox_index.html',
         params: '&player=1&mode=real',
         icon: GameLabelIcons.wordgame,
         w: 550,
@@ -13,7 +15,7 @@ export let gmVwGames = [
     {
         id: 'ASnake',
         title: 'ASnake',
-        link: 'https://norwaydict.com/asnake/index.html',
+        link: host+'html5games/asnake/index.html',
         params: '&player=1&mode=real',
         icon: GameLabelIcons.asnake,
         w: 600,
@@ -22,7 +24,7 @@ export let gmVwGames = [
     {
         id: 'BlackJack',
         title: 'Blackjack',
-        link: 'https://norwaydict.com/html5games/blackjack/sfox_index.html',
+        link: host+'html5games/blackjack/sfox_index.html',
         params: '&player=1&mode=real',
         icon: GameLabelIcons.blackjack,
         w: 600,
@@ -31,7 +33,7 @@ export let gmVwGames = [
     {
         id: 'Barslot',
         title: 'Barslot',
-        link: 'https://norwaydict.com/barslot/index.html',
+        link: host+'html5games/barslot/index.html',
         params: '&player=1&mode=real',
         icon: GameLabelIcons.barslot,
         w: 600,
