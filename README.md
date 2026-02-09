@@ -37,9 +37,9 @@ v 3.16
 
 ## Demo 
 
-![Alt text](http://norwaydict.com/sfoxinsurance/screen.jpg "Screen")
+![Alt text](https://alexn555-racing.com/projects/sfoxinsurance/screen.jpg "Screen")
 
-Demo link: [link](http://norwaydict.com/sfoxinsurance)
+Demo link: [link](https://alexn555-racing.com/projects/sfoxinsurance)
 
 ## Projects, that are using this Engine 
 Penny-xp.com <br />
