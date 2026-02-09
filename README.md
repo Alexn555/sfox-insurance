@@ -1,6 +1,6 @@
 ### SFox Engine v 3.52
 
-![Alt text](http://norwaydict.com/logo/sfoxinsurance.png "Screen")
+![Alt text](https://alexn555-racing.com/projects/logo/sfoxinsurance.png "Screen")
 
 SFox Engine (Non-existing in real brand) it's a Javascript Engine for <br />
 Economical, News Portal. <br />
