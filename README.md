@@ -88,15 +88,8 @@ Useful Service to give user ability to check, compare prices around the World  <
 ## Paypal donate 
   You can support my coding by donating some money. <br />
 
-```html
-	<form action="https://www.paypal.com/donate" method="post" target="_top">
-	<input type="hidden" name="hosted_button_id" value="BRCLX8GWFX3YJ" />
-	<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-	<img alt="" border="0" src="https://www.paypal.com/en_EE/i/scr/pixel.gif" width="1" height="1" />
-	</form>
-	
-	</br />
-  ```
+  [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BRCLX8GWFX3YJ)
+  <br />
 
 ## Main way to execute 
   Uses Webpack 5
